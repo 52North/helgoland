@@ -26,7 +26,8 @@
         "L.GeoSearch": "smeijer/L.GeoSearch",
         "smalot-bootstrap-datetimepicker": "2.3.4",
         "angular-ui-notification": "0.0.11",
-        "qr-js": "1.1.3"
+        "qr-js": "1.1.3",
+        "n52-sensorweb-client-core": "52North/sensorweb-client-core"
     },
     "resolutions": {
         "angular": "1.4.3",

@@ -28,11 +28,11 @@ module.exports = function (grunt) {
             'www/bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js',
             'www/bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js',
             'www/bower_components/ng-table/dist/ng-table.js',
-            'www/bower_components/js-client-core/dist/*.min.js',
+            'www/bower_components/n52-sensorweb-client-core/dist/*.min.js',
             'www/libs/jquery.flot.navigate.js'
         ],
         lib_ie9_scripts: [
-            'www/bower_components/js-client-core/dist/IE9/*.min.js'
+            'www/bower_components/n52-sensorweb-client-core/dist/IE9/*.min.js'
         ],
         lib_styles: [
             'www/bower_components/L.GeoSearch/src/css/l.geosearch.css',
