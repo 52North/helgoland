@@ -1,0 +1,22 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()">&times;</button>
+        <div class="modal-title" translate="map.providerList.provider"></div>
+    </div>
+    <div class="modal-body">
+        {{providers}}
+        <div class="providerItem" ng-repeat="provider in providerList">
+            <div class="item" ng-class="{selected : provider.selected}" ng-click="selectProvider(provider)">
+                <div>{{provider.label}}</div>
+                <div class="small">{{provider.type}}, {{provider.version}}</div>
+                <div class="small">{{provider.url}}</div>
+                <span class="small" translate="map.providerList.stations"></span>
+                <span class="small">: {{provider.quantities.stations}}</span>
+                <span class="small" translate="map.providerList.timeseries"></span>
+                <span class="small">: {{provider.quantities.timeseries}}</span>
+                <span class="small" translate="map.providerList.phenomena"></span>
+                <span class="small">: {{provider.quantities.phenomena}}</span>
+            </div> 
+        </div>
+    </div>
+</div>

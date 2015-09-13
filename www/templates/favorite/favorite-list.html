@@ -1,0 +1,10 @@
+<div id="favorites-list">
+    <div class="row favorite-entry" ng-repeat="favorite in favorites" ng-switch="favorite.type">
+        <div ng-switch-when="single">
+            <span ng-include="'templates/favorite/favorite-entry.html'"/>
+        </div>
+        <div ng-switch-when="group">
+            <span ng-include="'templates/favorite/favorite-group-entry.html'"/>
+        </div>
+    </div>
+</div>

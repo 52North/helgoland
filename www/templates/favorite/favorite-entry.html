@@ -1,0 +1,13 @@
+<span class="favorite-header">{{favorite.label}}</span>
+<span class="favorite-icons">
+    <span class="glyphicon glyphicon-edit edit" ng-click="edit(favorite)"></span>
+    <span class="glyphicon glyphicon-stats addToDiagram" ng-click="addToDiagram(favorite)"></span>
+    <span class="glyphicon glyphicon-trash delete" ng-click="delete(favorite)"></span>
+</span>
+<div>
+    <small>{{favorite.timeseries.parameters.service.label}}</small>
+</div>
+<div>
+    <span translate='favorite.lastValueAt'></span>
+    <span>{{favorite.timeseries.lastValue.value}} {{favorite.timeseries.uom}} ({{favorite.timeseries.lastValue.timestamp | date: 'dd.MM.yy HH:mm'}})</span>
+</div>
