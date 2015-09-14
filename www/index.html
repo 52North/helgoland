@@ -4,8 +4,14 @@
         <meta charset="utf8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
-        <title>AngularJS Client</title>
         
+        <!-- build:remove -->        
+        <title>AngularJS Client</title>
+        <!--/build -->
+        <!-- build:template
+        <title><%= message %></title>
+        /build -->
+
         <!-- build:template -->
         <!-- <%= message %> -->
         <!--/build -->
@@ -70,9 +76,10 @@
         <!-- /build -->
         
         <script src="app.js"></script>
-        <script src="js/menu.js"></script>
         
         <!-- build:remove -->
+        <script src="js/menu.js"></script>
+        
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/mapModule.js"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/phenomenaModule.js"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/providerModule.js"></script>
