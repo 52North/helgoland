@@ -1,17 +1,17 @@
 var mainApp = angular.module('jsClient', [
     'ngRoute',
-    'mapModule',
-    'menuModule',
+    'n52.core.map',
+    'n52.core.menu',
     'n52.client.menu',
-    'userSettingsModule',
-    'legendModule',
-    'diagramModule',
-    'dataLoadingModule',
-    'translateModule',
-    'favoriteModule',
-    'alertCore',
-    'permalinkEvalCore',
-    'translateCore']);
+    'n52.core.userSettings',
+    'n52.core.legend',
+    'n52.core.diagram',
+    'n52.core.dataLoading',
+    'n52.core.translate',
+    'n52.core.favoriteUi',
+    'n52.core.alert',
+    'n52.core.permalinkEval',
+    'n52.core.translateSelector']);
 
 mainApp.config(['$routeProvider', 'MenuProvider', function ($routeProvider, MenuProvider) {
         $routeProvider
