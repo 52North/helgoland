@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "description": "A starter project for AngularJS",
-  "repository": "TBD",
+  "repository": "https://github.com/52North/sensorweb-thin-client",
   "license": "Apache2",
   "devDependencies": {
     "archiver": "^0.12.0",

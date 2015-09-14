@@ -2,8 +2,8 @@
     "name": "sensor-web-client-core",
     "description": "TBD",
     "version": "0.1.0",
-    "homepage": "https://github.com/52north/angular-sensor-web-client",
-    "license": "MIT",
+    "homepage": "https://github.com/52North/sensorweb-thin-client",
+    "license": "Apache2",
     "private": true,
     "dependencies": {
         "angular": "~1.x",
