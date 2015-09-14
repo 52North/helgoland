@@ -45,7 +45,8 @@ module.exports = function (grunt) {
             'www/bower_components/angular-ui-notification/dist/angular-ui-notification.min.css'
         ],
         app_js: [
-            'www/app.js'
+            'www/app.js',
+            'www/js/*.js'
         ],
         copy_files: [
             'settings.json',
@@ -68,6 +69,10 @@ module.exports = function (grunt) {
             libs: {
                 src: '<%= lib_scripts %>',
                 dest: 'dist/js/deps.<%= name %>.js'
+            },
+            app: {
+                src: '<%= app_js %>',
+                dest: 'dist/js/app.js'
             },
             styles: {
                 src: 'www/css/**/*.css',
@@ -99,7 +104,7 @@ module.exports = function (grunt) {
             },
             appJs: {
                 files: {
-                    'dist/app.js': ['www/app.js']
+                    'dist/app.js': ['<%= concat.app.dest %>']
                 }
             }
         },

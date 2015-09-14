@@ -70,7 +70,7 @@
         <!-- /build -->
         
         <script src="app.js"></script>
-        <!--<script src="i18n/bootstrap-datetimepicker.de.js"></script>-->
+        <script src="js/menu.js"></script>
         
         <!-- build:remove -->
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/mapModule.js"></script>
@@ -125,45 +125,18 @@
         <div class="container">
             <div class="navbar navbar-fixed-top" role="navigation">
                 <div class="container-fluid">
-                    <div class="navbar-header chart" ng-controller="menu">
+                    <div class="navbar-header chart">
                         <div class="navbar-brand">
                             <span class="glyphicon glyphicon-stats"></span>
                             <div class="navbar-header-text hidden-xs pull-right">
                                 <span translate="main.diagram"></span>
                             </div>
                         </div>
-                        <a class="btn btn-default navbar-btn button-right" data-target="#map" href="#map">
-                            <span class="glyphicon glyphicon-globe"></span>
-                            <span class="buttonCaption" translate="main.mapView"></span>
-                        </a>
-                        <a class="btn btn-default navbar-btn button-right" data-target="#settings" ng-controller="UserSettingsCtrl" ng-click="open()">
-                            <span class="glyphicon glyphicon-cog"></span>
-                            <span class="buttonCaption" translate="main.settings"></span>
-                        </a>
-                        <a class="btn btn-default navbar-btn button-right" data-target="#tour" ng-click="showYAxis()">
-                            <span class="glyphicon glyphicon-question-sign"></span>
-                        </a>
-                        <a class="btn btn-default navbar-btn button-right" data-target="#chart" href="#diagram">
-                            <span class="glyphicon glyphicon-stats"></span>
-                            <span class="buttonCaption" translate="main.chartView"></span>
-                        </a>
-                        <a class="btn btn-default navbar-btn button-right favoriteButton" data-target="#favorites" href="#favorite"
-                           ng-controller="favoriteCounterController">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <!--<span class="buttonCaption" translate="main.favoriteView"></span>-->
-                            <span class="buttonCaption">{{favorites| objectCount}}</span>
-                        </a>
-                        <a class="btn btn-default navbar-btn button-right" data-target="#settings" ng-click="addTs()">
-                            <span class="glyphicon glyphicon-cog"></span>
-                            <span class="buttonCaption">{{timeseries| objectCount}}</span>
-                        </a>
+                        <n52-menu></n52-menu>
                     </div>
                 </div>
             </div>
 
-            <!--<p class="well">
-              <a href="#/">Start</a> | <a href="#/about">Über</a>
-            </p>-->
             <div ng-view></div>
         </div>
     </body>

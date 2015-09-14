@@ -2,6 +2,7 @@ var mainApp = angular.module('jsClient', [
     'ngRoute',
     'mapModule',
     'menuModule',
+    'n52.client.menu',
     'userSettingsModule',
     'legendModule',
     'diagramModule',
@@ -12,13 +13,37 @@ var mainApp = angular.module('jsClient', [
     'permalinkEvalCore',
     'translateCore']);
 
-mainApp.config(['$routeProvider', function ($routeProvider) {
+mainApp.config(['$routeProvider', 'MenuProvider', function ($routeProvider, MenuProvider) {
         $routeProvider
                 .when('/', {templateUrl: 'templates/views/diagramView.html', reloadOnSearch: false})
                 .when('/diagram', {templateUrl: 'templates/views/diagramView.html', reloadOnSearch: false})
                 .when('/map', {templateUrl: 'templates/views/mapView.html', reloadOnSearch: false})
                 .when('/favorite', {templateUrl: 'templates/views/favoriteView.html', reloadOnSearch: false})
                 .otherwise({redirectTo: '/'});
+        MenuProvider.add({
+            url: '/map',
+            title: 'main.mapView',
+            target: '#map',
+            icon: 'glyphicon-globe'
+        });
+        MenuProvider.add({
+            url: '/diagram',
+            title: 'main.chartView',
+            target: '#diagram',
+            icon: 'glyphicon-stats'
+        });
+        MenuProvider.add({
+            title: 'main.settings',
+            icon: 'glyphicon-cog',
+            controller: 'UserSettingsCtrl',
+            click: 'open()'
+        });
+        MenuProvider.add({
+            url: '/favorite',
+            title: 'main.favoriteView',
+            target: '#favorite',
+            icon: 'glyphicon-star'
+        });
     }]);
 
 mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($translateProvider, settingsServiceProvider) {
