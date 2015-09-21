@@ -56,7 +56,7 @@
             <div class="refEntry additionalLegendEntry" ng-repeat="refValue in timeseries.referenceValues" 
                  ng-class="{selected : refValue.visible}" 
                  ng-style="{'border-color': refValue.color}"
-                 ng-click="$event.stopPropagation(); selectRefValue(refValue, timeseries.id)">
+                 ng-click="$event.stopPropagation(); selectRefValue(refValue, timeseries)">
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span>{{refValue.label}}</span>
             </div>
