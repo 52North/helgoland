@@ -1,0 +1,16 @@
+.diagram {
+    bottom: 145px;
+}
+
+#overviewChart {
+    position: absolute; 
+    bottom: 45px; 
+    height: 100px; 
+    width: 100%;
+}
+
+#overviewChart flot {
+    position: absolute; 
+    height: 100px; 
+    width: 100%;
+}

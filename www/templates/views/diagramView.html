@@ -9,17 +9,22 @@
                 <div class="fullHeight" ng-controller="mainViewController">
                     <div id="loadingDiagram"></div>
                     <div ng-if="!tableVisible">
-                        <div ng-controller="chartController">
-                            <flot id="placeholder" class="diagram" options="options"></flot>
+                        <div ng-controller="chartCtrl">
+                            <flot class="diagram" options="options" dataset="dataset"></flot>
                         </div>
                     </div>
                     <div id="tableView" ng-if="tableVisible">
                         <div ng-include="'templates/table/table.html'">
-                            
+
+                        </div>
+                    </div>
+                    <div id="overviewChart">
+                        <div ng-controller="overviewChartCtrl">
+                            <flot options="options" dataset="dataset"></flot>
                         </div>
                     </div>
                     <div class="buttonFooter">
-                        <!--<y-axis-hide-button></y-axis-hide-button>-->
+                        <y-axis-hide-button></y-axis-hide-button>
                         <swc-time-selector-buttons></swc-time-selector-buttons>
                         <a class="btn btn-default" data-action="dataTable" ng-click="toggleTable()">
                             <span class="glyphicon glyphicon-list"></span>
