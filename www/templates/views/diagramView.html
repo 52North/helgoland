@@ -6,16 +6,15 @@
                     <button type="button" class="btn btn-primary btn-xs" ng-hide="status.showLegend" ng-click="toggleLegend()" translate="main.legend"></button>
                     <button type="button" class="btn btn-primary btn-xs" ng-show="status.showLegend" ng-click="toggleLegend()">X</button>
                 </div>
-                <div class="fullHeight" ng-controller="mainViewController">
+                <div class="fullHeight" ng-controller="ToggleCtrl">
                     <div id="loadingDiagram"></div>
-                    <div ng-if="!tableVisible">
+                    <div ng-if="!isToggled">
                         <div ng-controller="chartCtrl">
                             <flot class="diagram" options="options" dataset="dataset"></flot>
                         </div>
                     </div>
-                    <div id="tableView" ng-if="tableVisible">
+                    <div id="tableView" ng-if="isToggled">
                         <div ng-include="'templates/table/table.html'">
-
                         </div>
                     </div>
                     <div id="overviewChart">
@@ -26,7 +25,7 @@
                     <div class="buttonFooter">
                         <y-axis-hide-button></y-axis-hide-button>
                         <swc-time-selector-buttons></swc-time-selector-buttons>
-                        <a class="btn btn-default" data-action="dataTable" ng-click="toggleTable()">
+                        <a class="btn btn-default" data-action="dataTable" ng-click="toggle()">
                             <span class="glyphicon glyphicon-list"></span>
                         </a>
                     </div>
