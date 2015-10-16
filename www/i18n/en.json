@@ -5,6 +5,7 @@
         "legend": "Legend",
         "diagram": "Diagram",
         "mapView": "Map view",
+        "mobileView": "Cruses view",
         "favoriteView": "Favorites",
         "settings": "Settings",
         "stationSelection": "Select a station",
@@ -59,6 +60,14 @@
         },
         "warning": {
             "moreThanOneTimeseries": "found more than one timeseries"
+        }
+    },
+    "listSelection_mobile": {
+        "header": "Track selection by list",
+        "headers": {
+            "ship": "Ships",
+            "track": "Tracks",
+            "phenomenon": "Phenomenon"
         }
     },
     "legend": {

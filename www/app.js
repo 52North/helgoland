@@ -3,6 +3,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.map',
     'n52.core.menu',
     'n52.client.menu',
+    'mobilemapModule',
     'n52.core.userSettings',
     'n52.core.legend',
     'n52.core.diagram',
@@ -20,6 +21,7 @@ mainApp.config(['$routeProvider', 'MenuProvider', function ($routeProvider, Menu
                 .when('/diagram', {templateUrl: 'templates/views/diagramView.html', reloadOnSearch: false})
                 .when('/map', {templateUrl: 'templates/views/mapView.html', reloadOnSearch: false})
                 .when('/favorite', {templateUrl: 'templates/views/favoriteView.html', reloadOnSearch: false})
+                .when('/mobile', {templateUrl: 'templates/views/mobilemapView.html', reloadOnSearch: false})
                 .otherwise({redirectTo: '/'});
         MenuProvider.add({
             url: '/map',
@@ -44,6 +46,12 @@ mainApp.config(['$routeProvider', 'MenuProvider', function ($routeProvider, Menu
             title: 'main.favoriteView',
             target: '#favorite',
             icon: 'glyphicon-star'
+        });
+        MenuProvider.add({
+            url: '/mobile',
+            title: 'main.mobileView',
+            target: '#mobile',
+            icon: 'glyphicon-road'
         });
     }]);
 
