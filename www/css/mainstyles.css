@@ -32,6 +32,10 @@ body,html,.container,.row-offcanvas,.mainPanel {
     -ms-touch-action: none;
 }
 
+#tableView {
+    bottom: 45px;
+}
+
 .timeButtons {
     position: absolute;
     left: 0;

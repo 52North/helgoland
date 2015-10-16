@@ -6,6 +6,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.userSettings',
     'n52.core.legend',
     'n52.core.diagram',
+    'n52.core.overviewDiagram',
     'n52.core.dataLoading',
     'n52.core.translate',
     'n52.core.favoriteUi',
