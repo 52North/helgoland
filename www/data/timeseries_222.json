@@ -1,0 +1,51 @@
+{
+    "id": "222",
+    "label": "water temperature - test ship, cruise 234",
+    "uom": "°C",
+    "platform": {
+        "properties": {
+            "id": 14,
+            "label": "test ship"
+        },
+        "geometry": {
+            "id": "145",
+            "type": "Track"
+        },
+        "type": "Feature"
+    },
+    "referenceValues": [],
+    "firstValue": {
+        "timestamp": 1372895995000,
+        "value": 18.1
+    },
+    "lastValue": {
+        "timestamp": 1372908600000,
+        "value": 17.3
+    },
+    "parameters": {
+        "service": {
+            "id": "1",
+            "label": "NeXOS test service"
+        },
+        "offering": {
+            "id": "255",
+            "label": "cruise 234"
+        },
+        "feature": {
+            "id": "14",
+            "label": "test ship"
+        },
+        "procedure": {
+            "id": "254",
+            "label": "thermometer"
+        },
+        "phenomenon": {
+            "id": "9",
+            "label": "water temperature"
+        },
+        "category": {
+            "id": "2",
+            "label": "water"
+        }
+    }
+}
