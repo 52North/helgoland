@@ -1,6 +1,6 @@
 {
-    "id": "223",
-    "label": "water salinity - test ship, cruise 234",
+    "id": "186",
+    "label": "water salinity - test ship, cruise 123",
     "uom": "°C",
     "platform": {
         "properties": {
@@ -8,7 +8,7 @@
             "label": "test ship"
         },
         "geometry": {
-            "id": "145",
+            "id": "144",
             "type": "Track"
         },
         "type": "Feature"
@@ -28,20 +28,20 @@
             "label": "NeXOS test service"
         },
         "offering": {
-            "id": "255",
-            "label": "cruise 234"
+            "id": "254",
+            "label": "cruise 123"
         },
         "feature": {
             "id": "14",
             "label": "test ship"
         },
         "procedure": {
-			"id": "255",
-			"label": "salinometer"
-		},
-		"phenomenon": {
-			"id": "15",
-			"label": "salinity"
+            "id": "255",
+            "label": "salinometer"
+        },
+        "phenomenon": {
+            "id": "15",
+            "label": "salinity"
         },
         "category": {
             "id": "2",

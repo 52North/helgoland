@@ -1,5 +1,16 @@
 {
-	"145": {
+    "145": {
+        "label": "cruise 235",
+        "phenomenons": [
+            {
+                "id": "9",
+                "label": "water temperature"
+            },
+            {
+                "id": "15",
+                "label": "salinity"
+            }
+        ],
         "points": [
             {
                 "id": "1",

@@ -1,0 +1,70 @@
+{
+    "properties": {
+        "id": 14,
+        "timeseries": {
+            "133": {
+                "service": {
+                    "id": "1",
+                    "label": "NeXOS test service"
+                },
+                "offering": {
+                    "id": "254",
+                    "label": "cruise 123"
+                },
+                "feature": {
+                    "id": "14",
+                    "label": "test ship"
+                },
+                "procedure": {
+                    "id": "254",
+                    "label": "thermometer"
+                },
+                "phenomenon": {
+                    "id": "9",
+                    "label": "water temperature"
+                },
+                "category": {
+                    "id": "2",
+                    "label": "water"
+                }
+            },
+            "186": {
+                "service": {
+                    "id": "1",
+                    "label": "NeXOS test service"
+                },
+                "offering": {
+                    "id": "254",
+                    "label": "cruise 123"
+                },
+                "feature": {
+                    "id": "14",
+                    "label": "test ship"
+                },
+                "procedure": {
+                    "id": "255",
+                    "label": "salinometer"
+                },
+                "phenomenon": {
+                    "id": "15",
+                    "label": "salinity"
+                },
+                "category": {
+                    "id": "2",
+                    "label": "water"
+                }
+            }
+        },
+        "label": "test ship"
+    },
+    "geometry": [{
+        "id": "144",
+        "label": "cruise 123",
+        "type": "Track"
+    },{
+        "id": "145",
+        "label": "cruise 235",
+        "type": "Track"
+    }],
+    "type": "Feature"
+}
