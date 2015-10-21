@@ -116,26 +116,49 @@ angular.module('listSelectionModule_mobile', ['n52.core.interface', 'n52.core.st
                     if ($scope.selectedParameterIndex < $scope.parameters.length - 1) {
                         $scope.openNext($scope.selectedParameterIndex + 1);
                     } else {
-                        mobileInterfaceService.getTracks(null, url, $scope.createParams()).success(function (tracks) {
-                            angular.forEach(tracks, function (track) {
-                                mobileInterfaceService.getTracks(track.id, url, $scope.createParams()).success(function (data) {
-                                    var latlngs = [];
-                                    angular.forEach(data[track.id].points, function (point) {
-                                        latlngs.push({
-                                            lat: point.coordinates[1],
-                                            lng: point.coordinates[0]
-                                        });
-                                    });
-                                    mobilemapService.map.paths[track.id] = {
-                                        color: colorService.stringToColor(track.id),
-                                        weight: 4,
-                                        latlngs: latlngs
-                                    };
-                                });
+                        mobileInterfaceService.getTimeseries(null, url, $scope.createParams()).success(function (timeseries) {
+                            mobileInterfaceService.getTsData(timeseries.id, url, $scope.createParams()).success(function (data) {
+                                mobilemapService.clearPaths();
+                                mobilemapService.clearMarker();
+                                createPath(timeseries, data);
+                                createMarkers(timeseries, data);
                             });
-                            $scope.$parent.modalInstance.close();
                         });
+                        $scope.$parent.modalInstance.close();
                     }
+                };
+
+                createPath = function (timeseries, data) {
+                    var latlngs = [];
+                    angular.forEach(data[timeseries.id].values, function (point) {
+                        latlngs.push({
+                            lat: point[3],
+                            lng: point[2]
+                        });
+                    });
+                    mobilemapService.addPath(timeseries.id, {
+                        color: colorService.stringToColor(timeseries.id),
+                        weight: 4,
+                        latlngs: latlngs
+                    }, true);
+                };
+
+                createMarkers = function (timeseries, data) {
+                    angular.forEach(data[timeseries.id].values, function (point, idx) {
+                        var time = point[0];
+                        var value = point[1];
+                        var uom = timeseries.uom;
+                        var phenomenon = timeseries.parameters.phenomenon.label;
+                        mobilemapService.addMarker('marker' + idx, {
+                            latlngs: {
+                                lat: point[3],
+                                lng: point[2]
+                            },
+                            radius: 5,
+                            color: '#FF0000',
+                            message: phenomenon + ': ' + value + ' ' + uom + ' | ' + moment.unix(time/1000).format('DD.MM.YY HH:mm')
+                        });
+                    });
                 };
 
                 $scope.openNext(0);
@@ -154,17 +177,10 @@ angular.module('listSelectionModule_mobile', ['n52.core.interface', 'n52.core.st
                         cache: true
                     };
                 };
-//
+
                 var _createIdString = function (id) {
                     return (id === null ? "" : "/" + id);
                 };
-//
-//                function _pimpTs(ts, url) {
-//                    styleService.createStylesInTs(ts);
-//                    ts.apiUrl = url;
-//                    ts.internalId = utils.createInternalId(ts.id, url);
-//                    return ts;
-//                }
 
                 this.getPlatforms = function (id, apiUrl, params) {
                     return $http.get(apiUrl + 'platforms' + _createIdString(id), _createRequestConfigs(params));
@@ -178,60 +194,26 @@ angular.module('listSelectionModule_mobile', ['n52.core.interface', 'n52.core.st
                     return $http.get(apiUrl + 'phenomena' + _createIdString(id), _createRequestConfigs(params));
                 };
 
-//                this.getServices = function (apiUrl) {
-//                    return $http.get(apiUrl + 'services', _createRequestConfigs({expanded: true}));
-//                };
-//
-//                this.getStations = function (id, apiUrl, params) {
-//                    return $http.get(apiUrl + 'stations/' + _createIdString(id), _createRequestConfigs(params));
-//                };
-//
-//                this.getPhenomena = function (id, apiUrl, params) {
-//                    return $http.get(apiUrl + 'phenomena/' + _createIdString(id), _createRequestConfigs(params));
-//                };
-//
-//                this.getCategories = function (id, apiUrl, params) {
-//                    return $http.get(apiUrl + 'categories/' + _createIdString(id), _createRequestConfigs(params));
-//                };
-//
-//                this.getFeatures = function (id, apiUrl, params) {
-//                    return $http.get(apiUrl + 'features/' + _createIdString(id), _createRequestConfigs(params));
-//                };
-//
-//                this.getProcedures = function (id, apiUrl, params) {
-//                    return $http.get(apiUrl + 'procedures/' + _createIdString(id), _createRequestConfigs(params));
-//                };
-//
-//                this.getTimeseries = function (id, apiUrl, params) {
-//                    if (angular.isUndefined(params))
-//                        params = {};
+                this.getTimeseries = function (id, apiUrl, params) {
+                    if (angular.isUndefined(params))
+                        params = {};
 //                    params.expanded = true;
 //                    params.force_latest_values = true;
 //                    params.status_intervals = true;
 //                    params.rendering_hints = true;
-//                    return $q(function (resolve, reject) {
-//                        $http.get(apiUrl + 'timeseries/' + _createIdString(id), _createRequestConfigs(params)).success(function (data) {
-//                            if (angular.isArray(data)) {
-//                                angular.forEach(data, function (ts) {
-//                                    _pimpTs(ts, apiUrl);
-//                                });
-//                            } else {
-//                                resolve(_pimpTs(data, apiUrl));
-//                            }
-//                        });
-//                    });
-//                };
-//
-//                this.getTsData = function (id, apiUrl, timespan, extendedData) {
-//                    var params = {
-//                        timespan: timespan,
-//                        generalize: statusService.status.generalizeData || false,
-//                        expanded: true,
-//                        format: 'flot'
-//                    };
-//                    if (extendedData) {
-//                        angular.extend(params, extendedData);
-//                    }
-//                    return $http.get(apiUrl + 'timeseries/' + _createIdString(id) + "/getData", _createRequestConfigs(params));
-//                };
+                    return $http.get(apiUrl + 'timeseries/' + _createIdString(id), _createRequestConfigs(params));
+                };
+
+                this.getTsData = function (id, apiUrl, timespan, extendedData) {
+                    var params = {
+                        timespan: timespan,
+                        generalize: statusService.status.generalizeData || false,
+                        expanded: true,
+                        format: 'flot'
+                    };
+                    if (extendedData) {
+                        angular.extend(params, extendedData);
+                    }
+                    return $http.get(apiUrl + 'timeseries' + _createIdString(id) + "/getData", _createRequestConfigs(params));
+                };
             }]);
