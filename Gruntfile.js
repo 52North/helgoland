@@ -10,7 +10,7 @@ module.exports = function (grunt) {
             'www/bower_components/angular-local-storage/dist/angular-local-storage.js',
             'www/bower_components/angular-translate/angular-translate.js',
             'www/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-            'www/bower_components/angular-simple-logger/dist/index.js',
+            'www/bower_components/angular-simple-logger/dist/angular-simple-logger.js',
             'www/bower_components/moment/min/moment.min.js',
             'www/bower_components/xhr-xdr-adapter/src/xhr-xdr-adapter.js',
             'www/bower_components/flot/jquery.flot.js',
