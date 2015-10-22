@@ -38,7 +38,6 @@ angular.module('mobilemapModule',
 
                 var addPath = function (id, path, zoomTo) {
                     map.paths[id] = path;
-                    debugger;
                     map.bounds = mapHelper.createBounds(path.latlngs);
                 };
 
