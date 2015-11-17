@@ -23,8 +23,12 @@
         "annotation": "Daten ohne Gewähr!",
         "monthNames": ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
     },
-    "table": {
-        "time": "Zeit"
+    "providerList": {
+      "provider": "Datenanbieter",
+      "stations": "Stationen",
+      "timeseries": "Zeitreihen",
+      "phenomena": "Phänomene",
+      "selectAll": "Zeige alle Anbieter an"
     },
     "map": {
         "userLocation": "Hier ist ihr Standort",
