@@ -12,7 +12,7 @@ angular.module('n52.client.menu', []).provider('Menu',
                 _menu.push(item);
             };
         })
-        .directive('n52Menu', function () {
+        .directive('n52Menu', ['StationOpener', function (StationOpener) {
             return {
                 restrict: 'E',
                 templateUrl: 'templates/menu/menu.html',
@@ -22,7 +22,7 @@ angular.module('n52.client.menu', []).provider('Menu',
                         $scope.menu = Menu.getItems();
                     }]
             };
-        })
+        }])
         .directive('n52MenuEntry', ['$compile', '$location', function ($compile, $location) {
                 return {
                     restrict: 'E',
