@@ -42,7 +42,8 @@
       "provider": "Datenanbieter",
       "stations": "Stationen",
       "timeseries": "Zeitreihen",
-      "phenomena": "Phänomene"
+      "phenomena": "Phänomene",
+      "selectAll": "Zeige alle Anbieter an"
     },
     "search": {
       "label": "suche Addresse ...",
