@@ -60,18 +60,6 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($tran
         $translateProvider.determinePreferredLanguage();
     }]);
 
-mainApp.config(['NotificationProvider', function (NotificationProvider) {
-        NotificationProvider.setOptions({
-            delay: 4000,
-            startTop: 20,
-            startRight: 10,
-            verticalSpacing: 20,
-            horizontalSpacing: 20,
-            positionX: 'left',
-            positionY: 'bottom'
-        });
-    }]);
-
 mainApp.filter('objectCount', function () {
     return function (item) {
         if (item) {
