@@ -9,11 +9,11 @@
                 <div class="fullHeight" ng-controller="SwcToggleCtrl">
                     <div id="loadingDiagram"></div>
                     <div ng-if="!isToggled">
-                        <div ng-controller="chartCtrl">
+                        <div ng-controller="SwcChartCtrl">
                             <flot class="diagram" options="options" dataset="dataset"></flot>
                         </div>
                         <!--<div id="overviewChart">
-                            <div ng-controller="overviewChartCtrl">
+                            <div ng-controller="SwcOverviewChartCtrl">
                                 <flot options="options" dataset="dataset"></flot>
                             </div>
                         </div>-->
