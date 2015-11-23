@@ -15,16 +15,20 @@
                              width="100%" height="100%"></leaflet>
                 </div>
                 <div class="map-buttons">
-                    <button class="btn btn-default" data-action="provider" ng-controller="SwcProviderButtonCtrl" ng-click="selectProvider()">
+                    <button class="btn btn-default" 
+                            ng-controller="SwcProviderButtonCtrl" 
+                            ng-click="selectProvider()">
                         <span class="glyphicon glyphicon-folder-open"></span>
                     </button>
-                    <a class="btn btn-default" data-action="locate" 
+                    <a class="btn btn-default"
                        ng-controller="SwcLocateButtonCtrl" 
                        ng-click="locateUser()"
                        ng-class="{'btn-primary': isToggled}">
                         <span class="glyphicon glyphicon-map-marker"></span>
                     </a>
-                    <a class="btn btn-default" data-action="listSelection" ng-controller="SwcListSelectionButtonCtrl" ng-click="openListSelection()">
+                    <a class="btn btn-default"
+                       ng-controller="SwcListSelectionButtonCtrl"
+                       ng-click="openListSelection()">
                         <span class="glyphicon glyphicon-list-alt"></span>
                     </a>
                 </div>

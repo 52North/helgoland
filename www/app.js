@@ -8,6 +8,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.diagram',
     'n52.core.overviewDiagram',
     'n52.core.dataLoading',
+    'n52.core.listSelection',
     'n52.core.translate',
     'n52.core.favoriteUi',
     'n52.core.alert',
