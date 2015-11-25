@@ -9,7 +9,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.overviewDiagram',
     'n52.core.dataLoading',
     'n52.core.listSelection',
-    'n52.core.translate',
+    'n52.core.startup',
     'n52.core.favoriteUi',
     'n52.core.alert',
     'n52.core.permalinkEval',
@@ -111,6 +111,16 @@ function fetchData() {
 function bootstrapApp() {
     angular.element(document).ready(function () {
         var injector = angular.bootstrap(document, ["jsClient"],{strictDi:true});
-        injector.get('translateService');
+        // initilize parameter reader
+        var startupService = injector.get('startupService');
+        startupService.registerServices([
+                    'SetTimeseriesOfStatusService',
+                    'SetTimeParameterService',
+                    'SetInternalTimeseriesService',
+                    'SetConstellationService',
+                    'SetConstellationServiceHack',
+                    'SetLanguageService'
+                ]);
+        startupService.checkServices();
     });
 }
