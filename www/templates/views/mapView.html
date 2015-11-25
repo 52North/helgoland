@@ -2,11 +2,11 @@
     <div class="container-fluid content">
         <div class="row fullHeight">
             <div class="col-xs-12 col-sm-8 col-lg-9 fullHeight">
-                <div class="visible-xs leftPanelButton" ng-controller="phenomenaButtonController">
+                <div class="visible-xs leftPanelButton" ng-controller="SwcPhenomenaButtonController">
                     <button type="button" class="btn btn-primary btn-xs" ng-hide="status.showPhenomena" ng-click="togglePhenomena()" translate="main.allPhenomena"></button>
                     <button type="button" class="btn btn-primary btn-xs" ng-show="status.showPhenomena" ng-click="togglePhenomena()">X</button>
                 </div>
-                <div id ="map" ng-controller="BasicMapController as mapCtrl">
+                <div id ="map" ng-controller="SwcBasicMapCtrl as mapCtrl">
                     <leaflet bounds="map.bounds" 
                              markers="map.markers" 
                              layers="map.layers" 
@@ -15,23 +15,27 @@
                              width="100%" height="100%"></leaflet>
                 </div>
                 <div class="map-buttons">
-                    <button class="btn btn-default" data-action="provider" ng-controller="ProviderButtonCtrl" ng-click="selectProvider()">
+                    <button class="btn btn-default" 
+                            ng-controller="SwcProviderButtonCtrl" 
+                            ng-click="selectProvider()">
                         <span class="glyphicon glyphicon-folder-open"></span>
                     </button>
-                    <a class="btn btn-default" data-action="locate" 
+                    <a class="btn btn-default"
                        ng-controller="SwcLocateButtonCtrl" 
                        ng-click="locateUser()"
                        ng-class="{'btn-primary': isToggled}">
                         <span class="glyphicon glyphicon-map-marker"></span>
                     </a>
-                    <a class="btn btn-default" data-action="listSelection" ng-controller="ListSelectionButtonCtrl" ng-click="openListSelection()">
+                    <a class="btn btn-default"
+                       ng-controller="SwcListSelectionButtonCtrl"
+                       ng-click="openListSelection()">
                         <span class="glyphicon glyphicon-list-alt"></span>
                     </a>
                 </div>
             </div>
-            <div ng-controller="phenomenaButtonController">
+            <div ng-controller="SwcPhenomenaButtonController">
                 <div class="col-xs-8 col-sm-4 col-lg-3 phenomena rightPanel" ng-class="{active:status.showPhenomena}">
-                    <div ng-controller="PhenomenonListCtrl as phenomena">
+                    <div ng-controller="SwcPhenomenonListCtrl as phenomena">
                         <div class="phenomena-entry">
                             <a class="phenomenonItem" ng-click="showAllPhenomenons()" >
                                 <div class="item" ng-class="{selected:isSelected(null)}">

@@ -8,6 +8,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.diagram',
     'n52.core.overviewDiagram',
     'n52.core.dataLoading',
+    'n52.core.listSelection',
     'n52.core.translate',
     'n52.core.favoriteUi',
     'n52.core.alert',
@@ -58,18 +59,6 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($tran
         });
         $translateProvider.registerAvailableLanguageKeys(suppLang);
         $translateProvider.determinePreferredLanguage();
-    }]);
-
-mainApp.config(['NotificationProvider', function (NotificationProvider) {
-        NotificationProvider.setOptions({
-            delay: 4000,
-            startTop: 20,
-            startRight: 10,
-            verticalSpacing: 20,
-            horizontalSpacing: 20,
-            positionX: 'left',
-            positionY: 'bottom'
-        });
     }]);
 
 mainApp.filter('objectCount', function () {

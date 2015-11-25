@@ -1,9 +1,5 @@
 <span class="favorite-header">{{favorite.label}}</span>
-<span class="favorite-icons">
-    <span class="glyphicon glyphicon-edit edit" ng-click="edit(favorite)"></span>
-    <span class="glyphicon glyphicon-stats addToDiagram" ng-click="addToDiagram(favorite)"></span>
-    <span class="glyphicon glyphicon-trash delete" ng-click="delete(favorite)"></span>
-</span>
+<span ng-include="'templates/favorite/favorite-entry-icons.html'"/>
 <div>
     <small>{{favorite.timeseries.parameters.service.label}}</small>
 </div>

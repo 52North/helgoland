@@ -2,18 +2,18 @@
     <div class="container-fluid content">
         <div class="row fullHeight">
             <div class="col-xs-12 col-sm-8 col-lg-9 fullHeight">
-                <div class="visible-xs leftPanelButton" ng-controller="legendButtonController">
+                <div class="visible-xs leftPanelButton" ng-controller="SwcLegendButtonCtrl">
                     <button type="button" class="btn btn-primary btn-xs" ng-hide="status.showLegend" ng-click="toggleLegend()" translate="main.legend"></button>
                     <button type="button" class="btn btn-primary btn-xs" ng-show="status.showLegend" ng-click="toggleLegend()">X</button>
                 </div>
-                <div class="fullHeight" ng-controller="ToggleCtrl">
+                <div class="fullHeight" ng-controller="SwcToggleCtrl">
                     <div id="loadingDiagram"></div>
                     <div ng-if="!isToggled">
-                        <div ng-controller="chartCtrl">
+                        <div ng-controller="SwcChartCtrl">
                             <flot class="diagram" options="options" dataset="dataset"></flot>
                         </div>
                         <!--<div id="overviewChart">
-                            <div ng-controller="overviewChartCtrl">
+                            <div ng-controller="SwcOverviewChartCtrl">
                                 <flot options="options" dataset="dataset"></flot>
                             </div>
                         </div>-->
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div ng-controller="legendButtonController">
+            <div ng-controller="SwcLegendButtonCtrl">
                 <div class="col-xs-10 col-sm-4 col-lg-3 legend rightPanel" ng-class="{active:status.showLegend}">
                     <h3 class="header" translate="main.legend"></h3>
                     <swc-legend></swc-legend>
