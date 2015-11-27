@@ -21,20 +21,28 @@
                             caption="settings.saveStatus.header" 
                             description="settings.saveStatus.label">
                         </swc-settings-toggle-button>
-                        <a class="btn btn-block btn-default resetStatus" translate="settings.resetStatus" ng-controller="ResetStatusButtonCtrl" ng-click="resetStatus()"></a>
+                        <a class="btn btn-block btn-default resetStatus" translate="settings.resetStatus" 
+                           ng-controller="SwcResetStatusButtonCtrl" 
+                           ng-click="resetStatus()"></a>
                         <swc-language-selector></swc-language-selector>
                         <div class="panel panel-default permalink">
                             <div class="panel-heading" translate="settings.permalink.create">:</div>
                             <div class="panel-body">
-                                <div class="item link" ng-controller="PermalinkInWindowCtrl" ng-click="openInNewWindow()">
+                                <div class="item link" 
+                                     ng-controller="SwcPermalinkInWindowCtrl" 
+                                     ng-click="openInNewWindow()">
                                     <span class="glyphicon glyphicon-link"></span>
                                     <span translate="settings.permalink.inWindow"></span>
                                 </div>
-                                <div class="item mail" ng-controller="PermalinkInMailCtrl" ng-click="openInMail()">
+                                <div class="item mail" 
+                                     ng-controller="SwcPermalinkInMailCtrl" 
+                                     ng-click="openInMail()">
                                     <span class="glyphicon glyphicon-envelope"></span>
                                     <span translate="settings.permalink.inMail"></span>
                                 </div>
-                                <div class="item clipboard" ng-controller="PermalinkToClipboardCtrl" ng-click="copyToClipboard()">
+                                <div class="item clipboard" 
+                                     ng-controller="SwcPermalinkToClipboardCtrl" 
+                                     ng-click="copyToClipboard()">
                                     <span class="glyphicon glyphicon-paperclip"></span>
                                     <span translate="settings.permalink.inClipboard"></span>
                                 </div>

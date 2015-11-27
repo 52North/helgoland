@@ -37,7 +37,7 @@ mainApp.config(['$routeProvider', 'MenuProvider', function ($routeProvider, Menu
         MenuProvider.add({
             title: 'main.settings',
             icon: 'glyphicon-cog',
-            controller: 'UserSettingsCtrl',
+            controller: 'SwcUserSettingsCtrl',
             click: 'open()'
         });
         MenuProvider.add({
