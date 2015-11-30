@@ -5,6 +5,10 @@ var mainApp = angular.module('jsClient', [
     'n52.client.menu',
     'n52.core.userSettings',
     'n52.core.legend',
+    'n52.core.table',
+    'n52.core.exportTs',
+    'n52.core.timeUi',
+    'n52.core.modal',
     'n52.core.diagram',
     'n52.core.overviewDiagram',
     'n52.core.dataLoading',
@@ -54,7 +58,7 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($tran
             suffix: '.json'
         });
         var suppLang = [];
-        angular.forEach(settingsServiceProvider.$get().supportedLanguages, function(lang) {
+        angular.forEach(settingsServiceProvider.$get().supportedLanguages, function (lang) {
             suppLang.push(lang.code);
         });
         $translateProvider.registerAvailableLanguageKeys(suppLang);
@@ -110,17 +114,17 @@ function fetchData() {
 
 function bootstrapApp() {
     angular.element(document).ready(function () {
-        var injector = angular.bootstrap(document, ["jsClient"],{strictDi:true});
+        var injector = angular.bootstrap(document, ["jsClient"], {strictDi: true});
         // initilize parameter reader
         var startupService = injector.get('startupService');
         startupService.registerServices([
-                    'SetTimeseriesOfStatusService',
-                    'SetTimeParameterService',
-                    'SetInternalTimeseriesService',
-                    'SetConstellationService',
-                    'SetConstellationServiceHack',
-                    'SetLanguageService'
-                ]);
+            'SetTimeseriesOfStatusService',
+            'SetTimeParameterService',
+            'SetInternalTimeseriesService',
+            'SetConstellationService',
+            'SetConstellationServiceHack',
+            'SetLanguageService'
+        ]);
         startupService.checkServices();
     });
 }
