@@ -6,7 +6,8 @@
         "http://sosrest.irceline.be/api/v1/": "irceline",
         "http://geo.irceline.be/sos/api/v1/": "ircelineNew",
         "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-        "http://sensors.geonovum.nl/sos/api/v1/": "geonovum"
+        "http://sensors.geonovum.nl/sos/api/v1/": "geonovum",
+        "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed"
     },
     "defaultProvider": {
         "serviceID": "srv_1a5bde0a6d702f193f7be463402ec12f",
