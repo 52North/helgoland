@@ -61,6 +61,7 @@ module.exports = function (grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/Styling/directives/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Chart/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Chart/directives/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Chart/flotlib/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Favorite/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Favorite/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Favorite/directives/*.js',
