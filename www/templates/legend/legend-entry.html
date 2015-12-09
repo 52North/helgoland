@@ -1,4 +1,5 @@
 <div class="legendItem" style="position: relative;" 
+     ng-controller="SwcToggleSelectionCtrl"
      ng-style="{'border-color': timeseries.styles.color}"
      ng-class="{'selected': timeseries.styles.selected}"
      ng-click="toggleSelection(timeseries)">
@@ -11,7 +12,7 @@
             <div class="glyphicon glyphicon-refresh loading icon-spin"></div>
         </div>
     </div>
-    <div>
+    <div ng-controller="SwcToggleInformationCtrl">
         <div class="legendItemheader">
             <div class="legendItemLabel" ng-style="{color: timeseries.styles.color}">
                 <span>{{timeseries.station.properties.label}}</span>
@@ -22,7 +23,9 @@
                     <span class="glyphicon glyphicon-warning-sign red"></span>
                     <span class="small" translate="legend.entry.noData"></span>
                 </div>
-                <div class="additionalLegendEntry" ng-click="$event.stopPropagation(); jumpToLastTimeStamp(timeseries.lastValue)">
+                <div class="additionalLegendEntry" 
+                     ng-controller="SwcJumpToFirstLatestValuesCtrl"
+                     ng-click="$event.stopPropagation(); jumpToLastTimeStamp(timeseries.lastValue)">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     <span class="small" translate="legend.entry.jumpToLastValue"></span>
                 </div>
@@ -32,22 +35,37 @@
             <div class="small" ng-show="{{timeseries.parameters.category.label}}">{{timeseries.parameters.category.label}}</div>
         </div>
         <div class="legendicons">
-            <span class="glyphicon glyphicon-eye-close" 
+            <span class="glyphicon glyphicon-eye-close"
+                  ng-controller="SwcToggleVisibilityCtrl"
                   ng-class="{'glyphicon-eye-close' : timeseries.styles.visible, 'glyphicon-eye-open': !timeseries.styles.visible}" 
-                  ng-click="$event.stopPropagation(); toggleDiagram(timeseries)"></span>
-            <span class="glyphicon glyphicon-map-marker inMap" ng-click="$event.stopPropagation(); showInMap(timeseries)"></span>
-            <span class="glyphicon glyphicon-pencil changeStyle" ng-style="{color: timeseries.styles.color}" ng-click="$event.stopPropagation(); openStyling(timeseries)"></span>
-            <span class="glyphicon glyphicon-info-sign showInfo" ng-click="$event.stopPropagation(); showInformation()"></span>
-            <span class="glyphicon glyphicon-remove delete" ng-click="$event.stopPropagation(); removeTs(timeseries)"></span>
+                  ng-click="$event.stopPropagation(); toggleVisibility(timeseries)"></span>
+            <span class="glyphicon glyphicon-map-marker inMap" 
+                  ng-controller="SwcShowInMapCtrl"
+                  ng-click="$event.stopPropagation(); showInMap(timeseries)"></span>
+            <span class="glyphicon glyphicon-pencil changeStyle" 
+                  ng-controller="SwcOpenStyleModalCtrl"
+                  ng-style="{color: timeseries.styles.color}" 
+                  ng-click="$event.stopPropagation(); openStyling(timeseries)"></span>
+            <span class="glyphicon glyphicon-info-sign showInfo" 
+                  ng-click="$event.stopPropagation(); showInformation()"></span>
+            <span class="glyphicon glyphicon-remove delete" 
+                  ng-controller="SwcDeleteLegendEntryCtrl"
+                  ng-click="$event.stopPropagation(); removeTs(timeseries)"></span>
         </div>
         <div class="collapseLegendEntry small" ng-show="infoVisible">
-            <div class="firstLastEntry additionalLegendEntry" ng-show="timeseries.firstValue" ng-click="$event.stopPropagation(); jumpToFirstTimeStamp(timeseries.firstValue)">
+            <div class="firstLastEntry additionalLegendEntry"
+                 ng-controller="SwcJumpToFirstLatestValuesCtrl"
+                 ng-show="timeseries.firstValue" 
+                 ng-click="$event.stopPropagation(); jumpToFirstTimeStamp(timeseries.firstValue)">
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span translate="legend.entry.firstValueAt"></span>
                 <span>{{timeseries.firstValue.timestamp | date: 'dd.MM.yy HH:mm'}}</span>
                 <span class="hidden-medium">({{timeseries.firstValue.value}} {{timeseries.uom}})</span>
             </div>
-            <div class="firstLastEntry additionalLegendEntry" ng-show="timeseries.lastValue" ng-click="$event.stopPropagation(); jumpToLastTimeStamp(timeseries.lastValue)">
+            <div class="firstLastEntry additionalLegendEntry" 
+                 ng-controller="SwcJumpToFirstLatestValuesCtrl"
+                 ng-show="timeseries.lastValue" 
+                 ng-click="$event.stopPropagation(); jumpToLastTimeStamp(timeseries.lastValue)">
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span translate="legend.entry.lastValueAt"></span>
                 <span>{{timeseries.lastValue.timestamp | date: 'dd.MM.yy HH:mm'}}</span>
@@ -60,7 +78,9 @@
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span>{{refValue.label}}</span>
             </div>
-            <div class="additionalLegendEntry" ng-click="$event.stopPropagation(); createExportCsv(timeseries.id)">
+            <div class="additionalLegendEntry" 
+                 ng-controller="SwcExportToCsvCtrl"
+                 ng-click="$event.stopPropagation(); createExportCsv(timeseries)">
                 <span class="glyphicon glyphicon-download"></span>
                 <span translate="export.label"></span>
             </div>

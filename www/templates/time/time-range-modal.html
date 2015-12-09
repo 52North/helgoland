@@ -1,6 +1,6 @@
 <div class="modal-content">
     <div class="modal-header">
-        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+        <button type="button" class="close" ng-click="close();">&times;</button>
         <div class="modal-title" translate="timeSelection.header"></div>
     </div>
     <div class="modal-body">
@@ -14,7 +14,7 @@
                     </h4>
                 </div>
                 <div id="collapsePreset" class="panel-collapse collapse in">
-                    <div ng-controller="PredefinedTimeRangeControls">
+                    <div ng-controller="SwcPredefinedTimeRangeControls">
                         <div class="panel-body">
                             <swc-predefined-time-range-button item="item" ng-repeat="item in items"></swc-predefined-time-range-button>
                         </div>

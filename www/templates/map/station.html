@@ -1,13 +1,14 @@
 <div class="modal-content">
     <div class="modal-header">
-        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+        <button type="button" class="close" ng-click="close();">&times;</button>
         <div class="modal-title">
             <span>{{'map.stationSelection.station' | translate}}</span>:
-            <span>{{station.properties.label}}</span>
+            <span>{{station.entry.properties.label}}</span>
         </div>
     </div>
     <div class="modal-body stationContent">
-        <div ng-repeat="timeseries in station.properties.timeseries">
+        <div ng-repeat="timeseries in station.entry.properties.timeseries"
+             ng-if="phenomenonId == null || timeseries.phenomenon.id === phenomenonId">
             <h4>{{timeseries.phenomenon.label}}</h4>
             <div class="tsItem" ng-class="{selected : selected}">
                 <div class="checkbox">
@@ -24,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="selectAllOption" ng-show="(station.properties.timeseries | objectCount) > 1">
+        <div class="selectAllOption" ng-show="(station.entry.properties.timeseries | objectCount) > 1">
             <hr>
             <div class="checkbox">
                 <label>
@@ -35,6 +36,6 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="confirmTimeseriesSelection" ng-click="addTimeseriesSelection()" translate="ok"></button>
+        <button type="button" class="btn btn-primary" id="confirmTimeseriesSelection" ng-click="addTimeseriesSelection(phenomenonId)" translate="ok"></button>
     </div>
 </div>

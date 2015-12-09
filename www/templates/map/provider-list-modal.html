@@ -4,7 +4,6 @@
         <div class="modal-title" translate="map.providerList.provider"></div>
     </div>
     <div class="modal-body">
-        {{providers}}
         <div class="providerItem" ng-repeat="provider in providerList">
             <div class="item" ng-class="{selected : provider.selected}" ng-click="selectProvider(provider)">
                 <div>{{provider.label}}</div>
@@ -18,5 +17,10 @@
                 <span class="small">: {{provider.quantities.phenomena}}</span>
             </div> 
         </div>
+        <!--<div class="btn btn-block btn-default" 
+             ng-controller="SwcProviderDeselectProviderCtrl"
+             ng-click="deselectAll(); close();">
+            <div translate="map.providerList.selectAll"></div>
+        </div>-->
     </div>
 </div>

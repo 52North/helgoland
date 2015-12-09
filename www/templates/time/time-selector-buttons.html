@@ -2,7 +2,7 @@
     <button class="btn btn-default" ng-click="back()">
         <span class="glyphicon glyphicon-chevron-left"></span>
     </button>
-    <button class="btn btn-default" ng-controller="TimeRangeCtrl" ng-click="open()">
+    <button class="btn btn-default" ng-controller="SwcTimeRangeCtrl" ng-click="open()">
         {{time.start.toDate() | date : 'dd.MM.yy'}} - {{time.end.toDate() | date : 'dd.MM.yy'}}
     </button>
     <button type="button" class="btn btn-default" ng-click="forward()">

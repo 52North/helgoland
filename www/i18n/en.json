@@ -43,7 +43,8 @@
             "provider": "Provider",
             "stations": "Stations",
             "timeseries": "Timeseries",
-            "phenomena": "Phenomena"
+            "phenomena": "Phenomena",
+            "selectAll": "Show all provider"
         },
         "search": {
             "label": "search for address ...",

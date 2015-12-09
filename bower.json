@@ -12,7 +12,7 @@
         "angular-mocks": "~1.x",
         "angular-resource": "~1.x",
         "angular-translate": "~2.7.2",
-        "angular-bootstrap": "0.13.0",
+        "angular-bootstrap": "~0.14.0",
         "angular-translate-loader-static-files": "~2.7.2",
         "bootstrap": "~3.3.5",
         "angular-leaflet-directive": "~0.9.0",

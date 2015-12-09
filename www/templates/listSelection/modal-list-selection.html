@@ -3,25 +3,26 @@
         <button type="button" class="close" ng-click="close()">&times;</button>
         <div class="modal-title" translate="listSelection.header"></div>
     </div>
-    <div class="modal-body">
+    <div class="modal-body"
+         ng-controller="SwcListSelectionParametersCtrl">
         <tabset class="selectionListContent">
             <tab>
                 <tab-heading>
                     <span translate="listSelection.headers.category"></span>
                 </tab-heading>
-                <swc-list-selection parameters="categoryParams"></swc-list-selection>
+                <swc-modal-list-selection parameters="categoryParams"></swc-modal-list-selection>
             </tab>
             <tab>
                 <tab-heading>
                     <span translate="listSelection.headers.station"></span>
                 </tab-heading>
-                <swc-list-selection parameters="stationParams"></swc-list-selection>
+                <swc-modal-list-selection parameters="stationParams"></swc-modal-list-selection>
             </tab>
             <tab>
                 <tab-heading>
                     <span translate="listSelection.headers.phenomenon"></span>
                 </tab-heading>
-                <swc-list-selection parameters="phenomenonParams"></swc-list-selection>
+                <swc-modal-list-selection parameters="phenomenonParams"></swc-modal-list-selection>
             </tab>
         </tabset>
     </div>
