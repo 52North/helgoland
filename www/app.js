@@ -5,11 +5,15 @@ var mainApp = angular.module('jsClient', [
     'n52.client.menu',
     'n52.core.userSettings',
     'n52.core.legend',
+    'n52.core.table',
+    'n52.core.exportTs',
+    'n52.core.timeUi',
+    'n52.core.modal',
     'n52.core.diagram',
     'n52.core.overviewDiagram',
     'n52.core.dataLoading',
     'n52.core.listSelection',
-    'n52.core.translate',
+    'n52.core.startup',
     'n52.core.favoriteUi',
     'n52.core.alert',
     'n52.core.permalinkEval',
@@ -37,7 +41,7 @@ mainApp.config(['$routeProvider', 'MenuProvider', function ($routeProvider, Menu
         MenuProvider.add({
             title: 'main.settings',
             icon: 'glyphicon-cog',
-            controller: 'UserSettingsCtrl',
+            controller: 'SwcUserSettingsCtrl',
             click: 'open()'
         });
         MenuProvider.add({
@@ -54,7 +58,7 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($tran
             suffix: '.json'
         });
         var suppLang = [];
-        angular.forEach(settingsServiceProvider.$get().supportedLanguages, function(lang) {
+        angular.forEach(settingsServiceProvider.$get().supportedLanguages, function (lang) {
             suppLang.push(lang.code);
         });
         $translateProvider.registerAvailableLanguageKeys(suppLang);
@@ -110,7 +114,17 @@ function fetchData() {
 
 function bootstrapApp() {
     angular.element(document).ready(function () {
-        var injector = angular.bootstrap(document, ["jsClient"],{strictDi:true});
-        injector.get('translateService');
+        var injector = angular.bootstrap(document, ["jsClient"], {strictDi: true});
+        // initilize parameter reader
+        var startupService = injector.get('startupService');
+        startupService.registerServices([
+            'SetTimeseriesOfStatusService',
+            'SetTimeParameterService',
+            'SetInternalTimeseriesService',
+            'SetConstellationService',
+            'SetConstellationServiceHack',
+            'SetLanguageService'
+        ]);
+        startupService.checkServices();
     });
 }
