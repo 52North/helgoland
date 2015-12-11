@@ -1,28 +1,29 @@
-angular.module('n52.client.menu', []).provider('Menu',
-        function () {
-            var _menu = [];
-            this.$get = function () {
-                return {
-                    getItems: function () {
-                        return _menu;
-                    }
-                };
-            };
-            this.add = function (item) {
-                _menu.push(item);
-            };
-        })
+angular.module('n52.client.menu', [])
+        .provider('Menu',
+                function () {
+                    var _menu = [];
+                    this.$get = function () {
+                        return {
+                            getItems: function () {
+                                return _menu;
+                            }
+                        };
+                    };
+                    this.add = function (item) {
+                        _menu.push(item);
+                    };
+                })
         .directive('n52Menu', ['StationOpener', function (StationOpener) {
-            return {
-                restrict: 'E',
-                templateUrl: 'templates/menu/menu.html',
-                scope: {
-                },
-                controller: ['$scope', 'Menu', function ($scope, Menu) {
-                        $scope.menu = Menu.getItems();
-                    }]
-            };
-        }])
+                return {
+                    restrict: 'E',
+                    templateUrl: 'templates/menu/menu.html',
+                    scope: {
+                    },
+                    controller: ['$scope', 'Menu', function ($scope, Menu) {
+                            $scope.menu = Menu.getItems();
+                        }]
+                };
+            }])
         .directive('n52MenuEntry', ['$compile', '$location', function ($compile, $location) {
                 return {
                     restrict: 'E',

@@ -1,19 +1,18 @@
 {
-    "saveStatus" : true,
+    "saveStatus": true,
     "selectedLineWidth": 4,
     "commonLineWidth": 1,
     "restApiUrls": {
-        "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
-        "http://sosrest.irceline.be/api/v1/": "irceline",
-        "http://geo.irceline.be/sos/api/v1/": "ircelineNew",
         "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-        "http://sensors.geonovum.nl/sos/api/v1/": "geonovum",
-        "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
-        "http://insitu.webservice-energy.org/52n-sos-webapp/api/v1/": "minesParistech"
+        "http://192.168.52.117:8080/timeseries-webapp/api/v2/": "testInstanz"
+    },
+    "_defaultProvider": {
+        "serviceID": "1",
+        "url": "http://www.fluggs.de/sos2/api/v1/"
     },
     "defaultProvider": {
-        "serviceID": "srv_1a5bde0a6d702f193f7be463402ec12f",
-        "url": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+        "serviceID": "1",
+        "url": "http://192.168.52.117:8080/timeseries-webapp/api/v2/"
     },
     "chartOptions": {
         "yaxis": {

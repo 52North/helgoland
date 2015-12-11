@@ -43,6 +43,7 @@
             "provider": "Provider",
             "stations": "Stations",
             "timeseries": "Timeseries",
+            "platforms": "Platforms",
             "phenomena": "Phenomena",
             "selectAll": "Show all provider"
         },

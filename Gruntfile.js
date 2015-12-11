@@ -84,7 +84,8 @@ module.exports = function (grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/parameterServices/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/services/**/*.js'
+            'www/bower_components/n52-sensorweb-client-core/src/js/services/**/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/objects/**/*.js'
         ],
         app_js: [
             'www/app.js',

@@ -45,6 +45,7 @@
         "providerList": {
             "provider": "Datenanbieter",
             "stations": "Stationen",
+            "platforms": "Platformen",
             "timeseries": "Zeitreihen",
             "phenomena": "Phänomene"
         },

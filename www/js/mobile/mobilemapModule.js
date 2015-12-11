@@ -1,9 +1,4 @@
-angular.module('mobilemapModule',
-        ['leaflet-directive',
-            'n52.core.interface',
-            'n52.core.status',
-            'n52.core.helper',
-            'listSelectionModule_mobile'])
+angular.module('n52.client.mobileMap', ['leaflet-directive', 'listSelectionModule_mobile'])
         .controller("MobileMapController", ['$scope', 'mobilemapService', function ($scope, mobilemapService) {
                 $scope.map = mobilemapService.map;
 //                $scope.data = mobilemapService.data;
@@ -20,7 +15,7 @@ angular.module('mobilemapModule',
                     map.paths = {};
                     map.popup = {};
                     map.bounds = {
-                        address : 'Münster'
+                        address: 'Münster'
                     };
                     map.layers = {
                         baselayers: {

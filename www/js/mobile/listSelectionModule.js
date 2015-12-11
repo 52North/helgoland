@@ -1,4 +1,4 @@
-angular.module('listSelectionModule_mobile', ['n52.core.interface', 'n52.core.status'])
+angular.module('listSelectionModule_mobile', [])
         .controller('ListSelectionMobileButtonCtrl', ['$scope', '$modal',
             function ($scope, $modal) {
                 $scope.openListSelectionMobile = function () {
