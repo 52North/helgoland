@@ -3,10 +3,11 @@ var mainApp = angular.module('jsClient', [
     'ui.bootstrap',
     'ui-notification',
     'LocalStorageModule',
-    'leaflet-directive', 
+    'ui-leaflet', 
     'pascalprecht.translate',
     'ngTable',
     'ngResource',
+    'nemLogging',
     
     'n52.core.alert',
     'n52.core.barChart',
@@ -17,6 +18,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.favorite',
     'n52.core.favoriteUi',
     'n52.core.flot',
+    'n52.core.helper',
     'n52.core.interface', 
     'n52.core.legend',
     'n52.core.listSelection',
@@ -115,32 +117,6 @@ mainApp.filter('objectCount', function () {
         }
     };
 });
-
-mainApp.config(["$provide", function ($provide)
-    {
-        // Use the `decorator` solution to substitute or attach behaviors to
-        // original service instance; @see angular-mocks for more examples....
-
-        $provide.decorator('$log', ["$delegate", function ($delegate)
-            {
-                // Save the original $log.debug()
-                var debugFn = $delegate.debug;
-
-                $delegate.info = function ( )
-                {
-                    var args = [].slice.call(arguments),
-                            now = moment().format('HH:mm:ss.SSS');
-
-                    // Prepend timestamp
-                    args[0] = now + " - " + args[0];
-
-                    // Call the original with the output prepended with formatted timestamp
-                    debugFn.apply(null, args);
-                };
-
-                return $delegate;
-            }]);
-    }]);
 
 // start the app after loading the settings.json
 fetchData().then(bootstrapApp);

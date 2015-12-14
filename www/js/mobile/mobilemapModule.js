@@ -1,5 +1,6 @@
-angular.module('n52.client.mobileMap', ['leaflet-directive', 'listSelectionModule_mobile'])
-        .controller("MobileMapController", ['$scope', 'mobilemapService', function ($scope, mobilemapService) {
+angular.module('n52.client.mobileMap', ['listSelectionModule_mobile'])
+        .controller("MobileMapController", ['$scope', 'mobilemapService',
+            function ($scope, mobilemapService) {
                 $scope.map = mobilemapService.map;
 //                $scope.data = mobilemapService.data;
 //                $scope.loadData = function (id) {

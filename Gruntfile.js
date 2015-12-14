@@ -26,7 +26,7 @@ module.exports = function (grunt) {
             'www/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
             'www/bower_components/angular-ui-notification/dist/angular-ui-notification.min.js',
             'www/bower_components/qr-js/qr.min.js',
-            'www/bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js',
+            'www/bower_components/ui-leaflet/dist/ui-leaflet.js',
             'www/bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js',
             'www/bower_components/ng-table/dist/ng-table.js'
         ],
@@ -78,7 +78,8 @@ module.exports = function (grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/directives/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/helper/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/helper/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/languageSelector.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/mapHelper.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/flotlib/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/controller/*.js',

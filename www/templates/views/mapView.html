@@ -6,8 +6,9 @@
                     <button type="button" class="btn btn-primary btn-xs" ng-hide="status.showPhenomena" ng-click="togglePhenomena()" translate="main.allPhenomena"></button>
                     <button type="button" class="btn btn-primary btn-xs" ng-show="status.showPhenomena" ng-click="togglePhenomena()">X</button>
                 </div>
-                <div id ="map" ng-controller="SwcBasicMapCtrl as mapCtrl">
-                    <leaflet bounds="map.bounds" 
+                <div id="map" ng-controller="SwcBasicMapCtrl as mapCtrl">
+                    <leaflet id="stationMap"
+                             bounds="map.bounds" 
                              markers="map.markers" 
                              layers="map.layers" 
                              paths="map.paths" 

@@ -1,10 +1,10 @@
 <div class="swc-page swc-page-current" id="map-page">
     <div class="container-fluid content">
         <div class="row fullHeight">
-            <div class="col-xs-12 col-sm-8 col-lg-9 fullHeight">
-                
+            <div class="col-xs-12 col-sm-12 col-lg-12 fullHeight">
                 <div id ="map" ng-controller="MobileMapController as mapCtrl">
-                    <leaflet bounds="map.bounds" 
+                    <leaflet id="mobileMap" 
+                             bounds="map.bounds" 
                              markers="map.markers" 
                              layers="map.layers" 
                              paths="map.paths" 
@@ -25,10 +25,9 @@
                     </a>
                 </div>
             </div>
-            <div ng-controller="MobileMapController as data">
+            <!--<div ng-controller="MobileMapController as data">
                 <div class="col-xs-8 col-sm-4 col-lg-3 rightPanel">
                     <div class="timeseries-entry">
-
                         <div ng-repeat="datas in data.platform.geometry">
                             <a class="timeseriasItem" data-id="{{datas.id}}">
                                 <div class="item" ng-click="loadData(datas.id)">
@@ -38,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-       </div>
+            </div>-->
+        </div>
     </div>
 </div>
