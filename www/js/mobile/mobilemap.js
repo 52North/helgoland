@@ -2,15 +2,11 @@ angular.module('n52.client.mobileMap', ['listSelectionModule_mobile'])
         .controller("MobileMapController", ['$scope', 'mobilemapService',
             function ($scope, mobilemapService) {
                 $scope.map = mobilemapService.map;
-//                $scope.data = mobilemapService.data;
-//                $scope.loadData = function (id) {
-//                    mobilemapService.loadTrack(id);
-//                };
             }])
         .factory('mobilemapService', ['mapHelper', function (mapHelper) {
                 var map = {};
                 var data = {};
-
+                
                 var init = function () {
                     map.markers = {};
                     map.paths = {};

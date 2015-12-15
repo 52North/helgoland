@@ -158,15 +158,15 @@ angular.module('listSelectionModule_mobile', [])
                             },
                             radius: 5,
                             color: '#FF0000',
-                            message: phenomenon + ': ' + value + ' ' + uom + ' | ' + moment.unix(time/1000).format('DD.MM.YY HH:mm')
+                            message: phenomenon + ': ' + value + ' ' + uom + ' | ' + moment.unix(time / 1000).format('DD.MM.YY HH:mm')
                         });
                     });
                 };
 
                 $scope.openNext(0);
             }])
-        .service('mobileInterfaceService', ['$http', '$q', 'statusService', 'settingsService', 'styleService', 'utils',
-            function ($http, $q, statusService, settingsService, styleService, utils) {
+        .service('mobileInterfaceService', ['$http', '$q',
+            function ($http, $q) {
 
                 var _createRequestConfigs = function (params) {
 //                    if (angular.isUndefined(params)) {
@@ -189,7 +189,7 @@ angular.module('listSelectionModule_mobile', [])
                         params = {};
                     params.type = 'mobile';
                     return $q(function (resolve, reject) {
-                        $http.get(apiUrl + 'platforms' + _createIdString(id), _createRequestConfigs(params)).then(function(response){
+                        $http.get(apiUrl + 'platforms' + _createIdString(id), _createRequestConfigs(params)).then(function (response) {
                             resolve(response.data.platforms);
                         });
                     });
@@ -197,22 +197,9 @@ angular.module('listSelectionModule_mobile', [])
 
                 this.getTracks = function (id, apiUrl, params) {
                     return $q(function (resolve, reject) {
-                        $http.get(apiUrl + 'features' + _createIdString(id), _createRequestConfigs(params)).then(function(response){
+                        $http.get(apiUrl + 'features' + _createIdString(id), _createRequestConfigs(params)).then(function (response) {
                             resolve(response.data.features);
                         });
                     });
                 };
-
-//                this.getTsData = function (id, apiUrl, timespan, extendedData) {
-//                    var params = {
-//                        timespan: timespan,
-//                        generalize: statusService.status.generalizeData || false,
-//                        expanded: true,
-//                        format: 'flot'
-//                    };
-//                    if (extendedData) {
-//                        angular.extend(params, extendedData);
-//                    }
-//                    return $http.get(apiUrl + 'timeseries' + _createIdString(id) + "/getData", _createRequestConfigs(params));
-//                };
             }]);
