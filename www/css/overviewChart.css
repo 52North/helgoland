@@ -9,6 +9,10 @@
     width: 100%;
 }
 
+#overviewChart .loading {
+    position: absolute;
+}
+
 #overviewChart flot {
     position: absolute; 
     height: 100px; 
