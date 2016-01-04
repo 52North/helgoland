@@ -77,15 +77,15 @@ module.exports = function (grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/flotlib/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/parameterServices/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/services/**/*.js'
+            'www/bower_components/n52-sensorweb-client-core/src/js/services/**/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/helper/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/helper/controller/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/*.js'
         ],
         app_js: [
             'www/app.js',
