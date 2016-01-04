@@ -158,5 +158,7 @@ function bootstrapApp() {
             'SetLanguageService'
         ]);
         startupService.checkServices();
+        // init mapService to have load stations directly
+        injector.get('mapService');
     });
 }
