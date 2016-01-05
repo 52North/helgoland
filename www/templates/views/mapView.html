@@ -7,13 +7,15 @@
                     <button type="button" class="btn btn-primary btn-xs" ng-show="status.showPhenomena" ng-click="togglePhenomena()">X</button>
                 </div>
                 <div id ="map" ng-controller="SwcBasicMapCtrl as mapCtrl">
-                    <leaflet bounds="map.bounds" 
+                    <leaflet id='stationMap'
+                             bounds="map.bounds" 
                              markers="map.markers" 
                              layers="map.layers" 
                              paths="map.paths" 
                              center="map.center"
                              width="100%" height="100%"></leaflet>
                 </div>
+                <swc-modal-station-opener mapid="'stationMap'" controller="'SwcModalStationCtrl'"></swc-modal-station-opener>
                 <div class="map-buttons">
                     <button class="btn btn-default" 
                             ng-controller="SwcProviderButtonCtrl" 
@@ -21,7 +23,7 @@
                         <span class="glyphicon glyphicon-folder-open"></span>
                     </button>
                     <a class="btn btn-default"
-                       ng-controller="SwcLocateButtonCtrl" 
+                       swc-locate-user="stationMap" 
                        ng-click="locateUser()"
                        ng-class="{'btn-primary': isToggled}">
                         <span class="glyphicon glyphicon-map-marker"></span>

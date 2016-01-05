@@ -15,7 +15,7 @@
         "angular-bootstrap": "~0.14.0",
         "angular-translate-loader-static-files": "~2.7.2",
         "bootstrap": "~3.3.5",
-        "angular-leaflet-directive": "~0.8.5",
+        "ui-leaflet": "~1.0.0",
         "leaflet.markercluster": "0.4.0",
         "ng-table": "0.7.0",
         "angular-local-storage": "0.2.2",
