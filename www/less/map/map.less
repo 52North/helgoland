@@ -1,0 +1,22 @@
+@import "../variables.less";
+
+.map-buttons {
+    position: absolute;
+    z-index: 11;
+    bottom: 0;
+    width: 50%;
+    margin: 0 25% 17px;
+    text-align: center;
+    .btn {
+        padding: 4px 10px;
+    }
+}
+
+@media screen and (max-width: @responsive-mobile-width) {
+    .phenomena {
+        z-index: 9999;
+        &.active {
+            background-color: white;            
+        }
+    }
+}

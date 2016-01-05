@@ -1,0 +1,21 @@
+@import "../variables.less";
+
+.provider-list {
+    color: @text-color;
+    .provider-item {
+        padding: 5px;
+        border-radius: 8px;
+        &+.provider-item {
+            margin-top: 5px;
+        }
+        &:hover {
+            cursor: pointer;
+            background-color: @hover-background-color;
+            color: @hover-color;
+        }
+        &.selected {
+            background-color: @selection-background-color;
+            color: @selection-color;
+        }
+    }
+}

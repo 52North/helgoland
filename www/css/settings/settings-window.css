@@ -1,0 +1,47 @@
+/* colors */
+/* mobile */
+#collapseSettings {
+  text-align: center;
+}
+#collapseSettings .btn {
+  word-break: break-word;
+  white-space: normal;
+  margin-bottom: 5px;
+}
+.permalink .panel-heading {
+  padding: 3px;
+}
+.permalink .panel-body {
+  padding: 5px;
+}
+.permalink .item:hover {
+  cursor: pointer;
+  background-color: rgba(102, 197, 228, 0.2);
+}
+.permalink .item + .item {
+  margin-top: 8px;
+}
+.panel .permalink {
+  margin-bottom: 5px;
+}
+.language-chooser {
+  margin: 5px;
+}
+.language-chooser .language-chooser-box .dropdown-menu {
+  width: 100%;
+}
+.language-chooser .language-chooser-box .dropdown-menu li {
+  cursor: pointer;
+  margin-right: 4px;
+}
+.language-chooser .language-chooser-box .dropdown-menu li:hover {
+  background-color: #3276b1;
+}
+.language-chooser .language-chooser-box .dropdown-menu img {
+  margin-top: 4px;
+}
+.language-chooser .language-chooser-box .scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}

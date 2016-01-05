@@ -1,0 +1,30 @@
+@import "../variables.less";
+
+.btn {
+    color: @text-color;
+    &:hover {
+        background-color: @hover-background-color;
+        color: @hover-color;
+        border-color: @hover-background-color;        
+    }
+}
+
+.btn-subtitle {
+    font-size: 70%;
+}
+
+.btn-primary {
+    background-color: @color-primary;
+    border-color: @color-primary;
+    &:hover {
+        background-color: @hover-background-color;
+        border-color: @hover-background-color;
+    }
+}
+
+.btn-default {
+    &:hover {
+        background-color: @hover-background-color;
+        color: @hover-color;
+    }
+}

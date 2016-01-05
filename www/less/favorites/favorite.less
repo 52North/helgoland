@@ -1,0 +1,54 @@
+@import "../variables.less";
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        //font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+}
+
+.favorites {
+    height: inherit;
+    overflow: auto;
+    .favorite-header {
+        font-size: 120%;
+    }
+    .favorite-icons {
+        font-size: 120%;
+        span {
+            margin-left: 3px;
+            cursor: pointer;
+        }
+    }
+    .favorite-entry,
+    .import-export-btns {
+        padding: 7px;
+        margin: 15px 15px 0px 15px;
+    }
+    .favorite-entry {
+        border: 1px solid #AAA;
+        border-bottom: 3px solid #BBB;
+        word-break: break-all;
+    }
+    .favorite-group-entry {
+        margin: 0px 10px;
+    }
+}
+
+.star {
+    margin-left: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,39 @@
+/* colors */
+/* mobile */
+.diagram .axisTarget {
+  cursor: pointer;
+}
+.diagram .axisTarget:hover {
+  background-color: rgba(102, 197, 228, 0.2);
+}
+.diagram .axisTarget.selected {
+  background-color: #66c5e4;
+  opacity: 0.4;
+}
+.diagram .axisLabel {
+  position: absolute;
+  font-size: 90%;
+  text-align: center;
+}
+.diagram .yaxisLabel {
+  top: 50%;
+  transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  z-index: -9999;
+  padding-bottom: 8px;
+}
+.diagram .yaxisLabel.selected {
+  font-weight: bold;
+}
+.diagram .labelColorMarker {
+  font-size: 150%;
+}
+.diagram .chart-annotation {
+  position: absolute;
+  bottom: 40px;
+  right: 15px;
+  color: red;
+}

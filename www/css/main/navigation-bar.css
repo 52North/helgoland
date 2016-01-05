@@ -1,0 +1,15 @@
+/* colors */
+/* mobile */
+.navbar-header {
+  float: none;
+}
+.navbar-header .navbar-brand {
+  cursor: default;
+}
+.navbar-header .navbar-header-text {
+  margin-left: 10px;
+}
+.navbar-header .button-right {
+  float: right;
+  margin-right: 10px;
+}

@@ -1,0 +1,21 @@
+/* colors */
+/* mobile */
+.map-buttons {
+  position: absolute;
+  z-index: 11;
+  bottom: 0;
+  width: 50%;
+  margin: 0 25% 17px;
+  text-align: center;
+}
+.map-buttons .btn {
+  padding: 4px 10px;
+}
+@media screen and (max-width: 768px) {
+  .phenomena {
+    z-index: 9999;
+  }
+  .phenomena.active {
+    background-color: white;
+  }
+}

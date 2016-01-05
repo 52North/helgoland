@@ -7,7 +7,6 @@
                     <button type="button" class="btn btn-primary btn-xs" ng-show="status.showLegend" ng-click="toggleLegend()">X</button>
                 </div>
                 <div class="fullHeight" ng-controller="SwcToggleCtrl">
-                    <div id="loadingDiagram"></div>
                     <div ng-if="!isToggled">
                         <div ng-controller="SwcChartCtrl">
                             <flot class="diagram" options="options" dataset="dataset"></flot>

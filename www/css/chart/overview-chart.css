@@ -1,0 +1,19 @@
+/* colors */
+/* mobile */
+.diagram {
+  bottom: 145px !important;
+}
+#overviewChart {
+  position: absolute;
+  bottom: 45px;
+  height: 100px;
+  width: 100%;
+}
+#overviewChart .loading {
+  position: absolute;
+}
+#overviewChart flot {
+  position: absolute;
+  height: 100px;
+  width: 100%;
+}
