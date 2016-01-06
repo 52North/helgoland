@@ -13,7 +13,9 @@
                         </div>
                         <div id="overviewChart">
                             <div ng-controller="SwcOverviewChartCtrl">
-                                <div class="loading" ng-show="options.loading">loading</div>
+                                <div class="loading-overlay" ng-show="options.loading">
+                                    <div class="glyphicon glyphicon-refresh icon-spin"></div>
+                                </div>
                                 <flot options="options" dataset="dataset"></flot>
                             </div>
                         </div>
