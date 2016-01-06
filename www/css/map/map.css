@@ -11,6 +11,17 @@
 .map-buttons .btn {
   padding: 4px 10px;
 }
+.leaflet-control-zoom,
+.leaflet-control-layers {
+  display: none;
+}
+.map-controls a {
+  color: #626250;
+}
+.map-controls:hover {
+  background-color: #bde6f3;
+  opacity: 1;
+}
 @media screen and (max-width: 768px) {
   .phenomena {
     z-index: 9999;

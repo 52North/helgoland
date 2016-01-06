@@ -4,7 +4,7 @@
   cursor: pointer;
 }
 .diagram .axisTarget:hover {
-  background-color: rgba(102, 197, 228, 0.2);
+  background-color: #bde6f3;
 }
 .diagram .axisTarget.selected {
   background-color: #66c5e4;

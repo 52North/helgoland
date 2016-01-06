@@ -38,7 +38,7 @@
 }
 .favorites .favorite-container .favorite-entry:hover {
   cursor: pointer;
-  background-color: rgba(102, 197, 228, 0.2);
+  background-color: #bde6f3;
 }
 .favorites .favorite-container .favorite-entry .favorite-header {
   padding: 5px;

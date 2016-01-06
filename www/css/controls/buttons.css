@@ -4,9 +4,9 @@
   color: #626250;
 }
 .btn:hover {
-  background-color: rgba(102, 197, 228, 0.2);
+  background-color: #bde6f3;
   color: #626250;
-  border-color: rgba(102, 197, 228, 0.2);
+  border-color: #bde6f3;
 }
 .btn-subtitle {
   font-size: 70%;
@@ -16,10 +16,10 @@
   border-color: #66c5e4;
 }
 .btn-primary:hover {
-  background-color: rgba(102, 197, 228, 0.2);
-  border-color: rgba(102, 197, 228, 0.2);
+  background-color: #bde6f3;
+  border-color: #bde6f3;
 }
 .btn-default:hover {
-  background-color: rgba(102, 197, 228, 0.2);
+  background-color: #bde6f3;
   color: #626250;
 }

@@ -1,0 +1,10 @@
+/* colors */
+/* mobile */
+.zoom-controls {
+  position: absolute;
+  z-index: 100;
+  left: 10px;
+  top: 10px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.8) 1px 1px 5px;
+}

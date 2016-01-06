@@ -12,7 +12,7 @@
 }
 .provider-list .provider-item:hover {
   cursor: pointer;
-  background-color: rgba(102, 197, 228, 0.2);
+  background-color: #bde6f3;
   color: #626250;
 }
 .provider-list .provider-item.selected {

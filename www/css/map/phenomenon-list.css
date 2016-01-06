@@ -11,7 +11,7 @@
   color: #626250;
 }
 .phenomena .item:hover {
-  background-color: rgba(102, 197, 228, 0.2);
+  background-color: #bde6f3;
   color: #626250;
   cursor: pointer;
 }
