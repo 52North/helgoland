@@ -17,6 +17,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.favorite',
     'n52.core.favoriteUi',
     'n52.core.flot',
+    'n52.core.helper',
     'n52.core.interface', 
     'n52.core.legend',
     'n52.core.listSelection',

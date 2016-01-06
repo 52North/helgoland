@@ -6,18 +6,22 @@
                     <button type="button" class="btn btn-primary btn-xs" ng-hide="status.showLegend" ng-click="toggleLegend()" translate="main.legend"></button>
                     <button type="button" class="btn btn-primary btn-xs" ng-show="status.showLegend" ng-click="toggleLegend()">X</button>
                 </div>
-                <div class="fullHeight" ng-controller="SwcToggleCtrl">
+                <div class="fullHeight" 
+                     ng-controller="SwcToggleCtrl">
                     <div ng-if="!isToggled">
                         <div ng-controller="SwcChartCtrl">
                             <flot class="diagram" options="options" dataset="dataset"></flot>
                         </div>
-                        <div id="overviewChart">
-                            <div ng-controller="SwcOverviewChartCtrl">
-                                <div class="loading-overlay" ng-show="options.loading">
-                                    <div class="glyphicon glyphicon-refresh icon-spin"></div>
+                        <div ng-controller="IsMobileCtrl">
+                            <div id="overviewChart"
+                                 ng-if="!isMobile">
+                                <div ng-controller="SwcOverviewChartCtrl">
+                                    <div class="loading-overlay" ng-show="options.loading">
+                                        <div class="glyphicon glyphicon-refresh icon-spin"></div>
+                                    </div>
+                                    <flot options="options" dataset="dataset"></flot>
                                 </div>
-                                <flot options="options" dataset="dataset"></flot>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
                     <div id="tableView" ng-if="isToggled">

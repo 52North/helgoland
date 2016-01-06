@@ -3,6 +3,14 @@
 .diagram {
   bottom: 145px !important;
 }
+@media screen and (max-width: 768px) {
+  .diagram {
+    bottom: 45px !important;
+  }
+  #overviewChart {
+    display: none;
+  }
+}
 #overviewChart {
   position: absolute;
   bottom: 45px;
