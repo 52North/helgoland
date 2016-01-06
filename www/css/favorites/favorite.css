@@ -22,28 +22,51 @@
   height: inherit;
   overflow: auto;
 }
-.favorites .favorite-header {
-  font-size: 120%;
+.favorites .import-export-btns {
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
-.favorites .favorite-icons {
-  font-size: 120%;
+.favorites .favorite-container {
+  color: #626250;
+  padding: 5px;
 }
-.favorites .favorite-icons span {
+.favorites .favorite-container .favorite-entry {
+  border: 1px solid #626250;
+  word-break: break-all;
+}
+.favorites .favorite-container .favorite-entry:hover {
+  cursor: pointer;
+  background-color: rgba(102, 197, 228, 0.2);
+}
+.favorites .favorite-container .favorite-entry .favorite-header {
+  padding: 5px;
+  font-size: 120%;
+  background-color: rgba(102, 197, 228, 0.5);
+}
+.favorites .favorite-container .favorite-entry .favorite-header .header-label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.favorites .favorite-container .favorite-entry .favorite-header .header-label:hover {
+  cursor: text;
+}
+.favorites .favorite-container .favorite-entry .favorite-header .favorite-icons {
+  float: right;
+}
+.favorites .favorite-container .favorite-entry .favorite-header .favorite-icons span {
   margin-left: 3px;
   cursor: pointer;
 }
-.favorites .favorite-entry,
-.favorites .import-export-btns {
-  padding: 7px;
-  margin: 15px 15px 0px 15px;
+.favorites .favorite-container .favorite-entry .favorite-body-entry {
+  font-size: 80%;
+  margin: 5px;
 }
-.favorites .favorite-entry {
-  border: 1px solid #AAA;
-  border-bottom: 3px solid #BBB;
-  word-break: break-all;
-}
-.favorites .favorite-group-entry {
-  margin: 0px 10px;
+.favorites .favorite-container .favorite-entry .favorite-body-entry + .favorite-body-entry {
+  border-top: 1px solid rgba(98, 98, 80, 0.3);
+  padding-top: 5px;
 }
 .star {
   margin-left: 5px;

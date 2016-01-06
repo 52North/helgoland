@@ -23,28 +23,51 @@
 .favorites {
     height: inherit;
     overflow: auto;
-    .favorite-header {
-        font-size: 120%;
-    }
-    .favorite-icons {
-        font-size: 120%;
-        span {
-            margin-left: 3px;
-            cursor: pointer;
-        }
-    }
-    .favorite-entry,
     .import-export-btns {
-        padding: 7px;
-        margin: 15px 15px 0px 15px;
+        padding-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
     }
-    .favorite-entry {
-        border: 1px solid #AAA;
-        border-bottom: 3px solid #BBB;
-        word-break: break-all;
-    }
-    .favorite-group-entry {
-        margin: 0px 10px;
+    .favorite-container {
+        color: @text-color;
+        padding: 5px;
+        .favorite-entry {
+            border: 1px solid @color-secondary;
+            word-break: break-all;
+            &:hover{
+                cursor: pointer;
+                background-color: @hover-background-color;
+            }
+            .favorite-header {
+                padding: 5px;
+                font-size: 120%;
+                background-color: fade(@color-primary, 50%);
+                .header-label {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    &:hover {
+                        cursor: text;
+                    }
+                }
+                .favorite-icons {
+                    float: right;
+                    span {
+                        margin-left: 3px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .favorite-body-entry {
+                font-size: 80%;
+                margin: 5px;
+                &+.favorite-body-entry {
+                    border-top: 1px solid fade(@color-secondary, 30%);
+                    padding-top: 5px;
+                }
+            }    
+        }
     }
 }
 
