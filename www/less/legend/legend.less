@@ -42,6 +42,27 @@
         border-radius: 2px;
         margin: 2px 0px;
     }
+
+    .loading-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 5px;
+        opacity: 0.8;
+        z-index: 1;
+        .icon-spin {
+            @icon-size: 25px;
+            font-size: @icon-size;
+            width: @icon-size;
+            height: @icon-size;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -@icon-size/2 0 0 -@icon-size/2;
+        }
+    }
 }
 
 /* don't display the hide diagram button on small screens*/
