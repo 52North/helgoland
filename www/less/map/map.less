@@ -1,6 +1,6 @@
 @import "../variables.less";
 
-.map-buttons {
+/*.map-buttons {
     position: absolute;
     z-index: 11;
     bottom: 0;
@@ -10,28 +10,13 @@
     .btn {
         padding: 4px 10px;
     }
-}
+}*/
 
 // hide layer selector and zoom control
 .leaflet-control-zoom,
 .leaflet-control-layers
 {
     display: none;
-}
-
-.map-control {
-    z-index: 100;
-    box-shadow: 1px 1px 5px #333;
-    .btn {
-        border-width: 0px;        
-    }
-    a {
-        color: @text-color; 
-    }
-    &:hover {
-        background-color: @hover-background-color;
-        opacity: 1;
-    }
 }
 
 @media screen and (max-width: @responsive-mobile-width) {
