@@ -16,6 +16,7 @@
   display: none;
 }
 .map-control {
+  z-index: 100;
   box-shadow: 1px 1px 5px #333;
 }
 .map-control .btn {

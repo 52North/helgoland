@@ -1,37 +1,39 @@
 /* colors */
 /* mobile */
-.angular-leaflet-control-layers {
+.layers-control {
   position: absolute;
-  background: white;
-  z-index: 100;
   left: 10px;
   top: 120px;
+  border-radius: 5px;
+}
+.layers-control .angular-leaflet-control-layers {
+  background: white;
   border-radius: 5px;
   box-shadow: 1px 1px 5px #333;
   padding: 5px;
 }
-.angular-leaflet-control-layers .lf-overlays {
+.layers-control .angular-leaflet-control-layers .lf-overlays {
   border-top: lightgray solid 1px;
   padding-top: 5px;
 }
-.angular-leaflet-control-layers .lf-row label {
+.layers-control .angular-leaflet-control-layers .lf-row label {
   cursor: pointer;
   margin: 0px;
   font-weight: normal;
 }
-.angular-leaflet-control-layers .lf-row label .lf-text {
+.layers-control .angular-leaflet-control-layers .lf-row label .lf-text {
   float: left;
 }
-.angular-leaflet-control-layers .lf-row .lf-icon-ol-group {
+.layers-control .angular-leaflet-control-layers .lf-row .lf-icon-ol-group {
   color: #00650a;
 }
-.angular-leaflet-control-layers .lf-row .lf-icon {
+.layers-control .angular-leaflet-control-layers .lf-row .lf-icon {
   cursor: pointer;
   float: left;
   margin-right: 5px;
   padding-top: 2px;
 }
-.angular-leaflet-control-layers .lf-row .lf-icons {
+.layers-control .angular-leaflet-control-layers .lf-row .lf-icons {
   float: right;
   display: none;
 }
