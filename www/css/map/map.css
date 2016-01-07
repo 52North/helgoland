@@ -15,10 +15,16 @@
 .leaflet-control-layers {
   display: none;
 }
-.map-controls a {
+.map-control {
+  box-shadow: 1px 1px 5px #333;
+}
+.map-control .btn {
+  border-width: 0px;
+}
+.map-control a {
   color: #626250;
 }
-.map-controls:hover {
+.map-control:hover {
   background-color: #bde6f3;
   opacity: 1;
 }
