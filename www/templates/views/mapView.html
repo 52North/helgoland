@@ -22,24 +22,6 @@
                     <div ng-include="'templates/map/zoom-control.html'"/>
                     <div ng-include="'templates/map/locate-control.html'"/>
                 </div>
-                <div class="map-buttons">
-                    <button class="btn btn-default" 
-                            ng-controller="SwcProviderButtonCtrl" 
-                            ng-click="selectProvider()">
-                        <span class="glyphicon glyphicon-folder-open"></span>
-                    </button>
-                    <a class="btn btn-default"
-                       swc-locate-user="stationMap" 
-                       ng-click="locateUser()"
-                       ng-class="{'btn-primary': isToggled}">
-                        <span class="glyphicon glyphicon-map-marker"></span>
-                    </a>
-                    <a class="btn btn-default"
-                       ng-controller="SwcListSelectionButtonCtrl"
-                       ng-click="openListSelection()">
-                        <span class="glyphicon glyphicon-list-alt"></span>
-                    </a>
-                </div>
             </div>
             <div ng-controller="SwcPhenomenaButtonController">
                 <div class="col-xs-8 col-sm-4 col-lg-3 phenomena rightPanel" ng-class="{active:status.showPhenomena}">

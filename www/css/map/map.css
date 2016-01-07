@@ -1,16 +1,5 @@
 /* colors */
 /* mobile */
-/*.map-buttons {
-    position: absolute;
-    z-index: 11;
-    bottom: 0;
-    width: 50%;
-    margin: 0 25% 17px;
-    text-align: center;
-    .btn {
-        padding: 4px 10px;
-    }
-}*/
 .leaflet-control-zoom,
 .leaflet-control-layers {
   display: none;
