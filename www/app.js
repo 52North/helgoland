@@ -49,7 +49,8 @@ var mainApp = angular.module('jsClient', [
     'n52.core.utils',
     'n52.core.yAxisHide',
     
-    'n52.client.menu'
+    'n52.client.menu',
+    'n52.client.map'
 ]);
 
 mainApp.config(['$routeProvider', 'MenuProvider', function ($routeProvider, MenuProvider) {
