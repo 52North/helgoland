@@ -1,4 +1,4 @@
-angular.module('n52.client.map')
+angular.module('n52.client.map', [])
         .controller('LayerControlCtrl', ['$scope', function ($scope) {
                 angular.extend($scope, {
                     layercontrol: {
