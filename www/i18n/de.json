@@ -3,10 +3,6 @@
     "ok": "OK",
     "main": {
         "legend": "Legende",
-        "diagram": "Diagramm",
-        "mapView": "Kartenansicht",
-        "favoriteView": "Favoriten",
-        "settings": "Einstellungen",
         "stationSelection": "Wähle eine Station aus",
         "chartView": "Diagrammansicht",
         "allPhenomena": "Alle Phänomene",
@@ -17,6 +13,14 @@
         "importExportHelp": "Zum Import wählen sie eine zuvor exportierten JSON-Datei.",
         "noFileSelected": "Keine Datei ausgewählt"
     },
+    "navigation": {
+        "diagram": "Diagramm",
+        "map": "Karte",
+        "favorite": "Favoriten",
+        "provider": "Anbieter",
+        "listSelection": "Listenauswahl",
+        "settings": "Einstellungen"
+    },
     "chart": {
         "noTimeseriesSelected": "Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.",
         "outsideOfDataRange": "Außerhalb des Datenbereichs!",
@@ -24,11 +28,11 @@
         "monthNames": ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
     },
     "providerList": {
-      "provider": "Datenanbieter",
-      "stations": "Stationen",
-      "timeseries": "Zeitreihen",
-      "phenomena": "Phänomene",
-      "selectAll": "Zeige alle Anbieter an"
+        "provider": "Datenanbieter",
+        "stations": "Stationen",
+        "timeseries": "Zeitreihen",
+        "phenomena": "Phänomene",
+        "selectAll": "Zeige alle Anbieter an"
     },
     "map": {
         "userLocation": "Hier ist ihr Standort",

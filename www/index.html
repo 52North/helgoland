@@ -45,7 +45,7 @@
         <link href="css/legend/legend-entry-settings.css" rel="stylesheet" type="text/css"/>
         <link href="css/legend/legend.css" rel="stylesheet" type="text/css"/>
         <link href="css/main/main.css" rel="stylesheet" type="text/css"/>
-        <link href="css/main/navigation-bar.css" rel="stylesheet" type="text/css"/>
+        <link href="css/main/navigation.css" rel="stylesheet" type="text/css"/>
         <link href="css/main/offcanvas.css" rel="stylesheet" type="text/css"/>
         <link href="css/map/controls.css" rel="stylesheet" type="text/css"/>
         <link href="css/map/layers-control.css" rel="stylesheet" type="text/css"/>
@@ -97,7 +97,7 @@
         <!-- start client script tags -->
         <script src="app.js" type="text/javascript"></script>
         <script src="js/map.js" type="text/javascript"></script>
-        <script src="js/menu.js" type="text/javascript"></script>
+        <script src="js/navigation.js" type="text/javascript"></script>
         <!-- end client script tags -->
         <!-- /build -->
 
@@ -251,20 +251,7 @@
 
     </head>
     <body class="jsc-main">
-        <div class="navbar navbar-fixed-top" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header chart">
-                    <div class="navbar-brand">
-                        <span class="glyphicon glyphicon-stats"></span>
-                        <div class="navbar-header-text hidden-xs pull-right">
-                            <span translate="main.diagram"></span>
-                        </div>
-                    </div>
-                    <n52-menu></n52-menu>
-                </div>
-            </div>
-        </div>
-
+        <navigation></navigation>
         <div ng-view></div>
     </body>
 </html>
