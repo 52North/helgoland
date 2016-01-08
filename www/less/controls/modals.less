@@ -1,8 +1,21 @@
 @import "../variables.less";
 
-.modal-title {
-    color: @text-color;
-    text-align: center;
-    background-repeat: no-repeat;
-    background-image: url("../images/favicon.ico");
+.modal-content {
+    border: 0px solid white;
+    .modal-header {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        background-color: @color-secondary;
+        .close {
+            color: @text-color-on-secondary-background;
+            opacity: 1;
+        }
+        .modal-title {
+            color: @text-color-on-secondary-background;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-image: url("../images/favicon.ico");
+        }    
+    }
 }
+
