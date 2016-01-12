@@ -28,7 +28,7 @@
             </div>
             <div class="small">{{timeseries.parameters.phenomenon.label}} ({{timeseries.uom}})</div>
             <div class="small">{{timeseries.parameters.procedure.label}}</div>
-            <div class="small" ng-show="{{timeseries.parameters.category.label}}">{{timeseries.parameters.category.label}}</div>
+            <div class="small" ng-show="{{timeseries.parameters.category.label !== undefined }}">{{timeseries.parameters.category.label}}</div>
         </div>
         <div class="legendicons">
             <span class="glyphicon glyphicon-eye-close"
