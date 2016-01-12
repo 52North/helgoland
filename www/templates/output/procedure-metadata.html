@@ -1,0 +1,12 @@
+<div>
+    <span uib-dropdown dropdown-append-to-body ng-click="toggled($event)">
+        <a href id="simple-dropdown" uib-dropdown-toggle>
+            select raw format for procedure
+        </a>
+        <ul uib-dropdown-menu aria-labelledby="simple-dropdown">
+            <li ng-repeat="choice in formatsList">
+                <a ng-click="select(choice)">{{choice}}</a>
+            </li>
+        </ul>
+    </span>
+</div>
