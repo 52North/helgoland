@@ -12,11 +12,12 @@
                         <div ng-controller="SwcChartCtrl">
                             <flot class="diagram" options="options" dataset="dataset"></flot>
                         </div>
-                        <!--<div id="overviewChart">
+                        <div id="overviewChart">
                             <div ng-controller="SwcOverviewChartCtrl">
+                                <div class="loading" ng-show="options.loading">loading</div>
                                 <flot options="options" dataset="dataset"></flot>
                             </div>
-                        </div>-->
+                        </div>
                     </div>
                     <div id="tableView" ng-if="isToggled">
                         <div ng-include="'templates/table/table.html'">
