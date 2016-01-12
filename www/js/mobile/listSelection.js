@@ -5,13 +5,13 @@ angular.module('listSelectionModule_mobile', [])
                     $modal.open({
                         animation: true,
                         templateUrl: 'templates/mobile/modal-list-selection-mobile.html',
-                        controller: 'ModalListSelectionMobileCtrl'
+                        controller: 'ModalListSelectionMobileCtrl',
                     });
                 };
             }])
-        .controller('ModalListSelectionMobileCtrl', ['$scope', '$modalInstance',
-            function ($scope, $modalInstance) {
-                $scope.modalInstance = $modalInstance;
+        .controller('ModalListSelectionMobileCtrl', ['$scope', '$uibModalInstance',
+            function ($scope, $uibModalInstance) {
+                $scope.modalInstance = $uibModalInstance;
                 $scope.shipParams = [
                     {
                         type: 'platform',
@@ -38,9 +38,22 @@ angular.module('listSelectionModule_mobile', [])
                 ];
 
                 $scope.close = function () {
-                    $modalInstance.close();
+                    $uibModalInstance.close();
                 };
             }])
+        .controller('SwcProviderListCtrl', ['$scope', 'providerService',
+            function ($scope, providerService) {
+                $scope.providerselected = false;
+                
+                $scope.providerList = providerService.providerList;
+
+                $scope.selectProvider = function (provider) {
+                    $scope.providerselected = true;
+                    providerService.selectProvider(provider);
+                    $scope.providerList = providerService.providerList;
+                };
+            }])
+
         .directive('swcListSelectionMobile', [
             function () {
                 return {

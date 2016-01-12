@@ -1,9 +1,9 @@
 <div>
-    <accordion close-others="true">
-        <accordion-group ng-repeat="param in parameters" 
+    <uib-accordion close-others="true">
+        <uib-accordion-group ng-repeat="param in parameters" 
                          is-open="param.isOpen" 
                          is-disabled="param.isDisabled">
-            <accordion-heading>
+            <uib-accordion-heading>
                 <span ng-class="{'text-muted' : param.isDisabled}">
                     <span>{{param.header | translate}}</span>
                     <span ng-show=param.headerAddition> - </span>
@@ -20,10 +20,10 @@
                             </button>
                         </div>-->
                 </span>
-            </accordion-heading>
+            </uib-accordion-heading>
             <div ng-repeat="item in param.items" ng-click="openItem(item)">
                 <span>{{item.label}}</span>
             </div>
-        </accordion-group>
-    </accordion>
+        </uib-accordion-group>
+    </uib-accordion>
 </div>

@@ -5,6 +5,7 @@
         "legend": "Legende",
         "diagram": "Diagramm",
         "mapView": "Kartenansicht",
+        "mobileView": "Mobileansicht",
         "favoriteView": "Favoriten",
         "settings": "Einstellungen",
         "stationSelection": "Wähle eine Station aus",
@@ -64,6 +65,14 @@
         },
         "warning": {
             "moreThanOneTimeseries": "Mehr als eine Zeitreihe gefunden"
+        }
+    },
+    "listSelection_mobile": {
+        "header": "Listenbasierte Fahrtenauswahl",
+        "headers": {
+            "ship": "Schiff",
+            "track": "Fahrt",
+            "phenomenon": "Phänomen"
         }
     },
     "legend": {
