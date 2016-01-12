@@ -1,11 +1,11 @@
 angular.module('listSelectionModule_mobile', [])
-        .controller('ListSelectionMobileButtonCtrl', ['$scope', '$modal',
-            function ($scope, $modal) {
+        .controller('ListSelectionMobileButtonCtrl', ['$scope', '$uibModal',
+            function ($scope, $uibModal) {
                 $scope.openListSelectionMobile = function () {
-                    $modal.open({
+                    $uibModal.open({
                         animation: true,
                         templateUrl: 'templates/mobile/modal-list-selection-mobile.html',
-                        controller: 'ModalListSelectionMobileCtrl',
+                        controller: 'ModalListSelectionMobileCtrl'
                     });
                 };
             }])
