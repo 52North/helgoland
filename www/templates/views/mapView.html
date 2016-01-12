@@ -13,26 +13,14 @@
                              layers="map.layers" 
                              paths="map.paths" 
                              center="map.center"
-                             width="100%" height="100%"></leaflet>
-                </div>
-                <swc-modal-station-opener mapid="'stationMap'" controller="'SwcModalStationCtrl'"></swc-modal-station-opener>
-                <div class="map-buttons">
-                    <button class="btn btn-default" 
-                            ng-controller="SwcProviderButtonCtrl" 
-                            ng-click="selectProvider()">
-                        <span class="glyphicon glyphicon-folder-open"></span>
-                    </button>
-                    <a class="btn btn-default"
-                       swc-locate-user="stationMap" 
-                       ng-click="locateUser()"
-                       ng-class="{'btn-primary': isToggled}">
-                        <span class="glyphicon glyphicon-map-marker"></span>
-                    </a>
-                    <a class="btn btn-default"
-                       ng-controller="SwcListSelectionButtonCtrl"
-                       ng-click="openListSelection()">
-                        <span class="glyphicon glyphicon-list-alt"></span>
-                    </a>
+                             controls="map.controls"
+                             width="100%" height="100%">
+                        <swc-modal-station-opener mapid="'stationMap'" controller="'SwcModalStationCtrl'"></swc-modal-station-opener>
+                        <div ng-include="'templates/map/layers-control.html'"/>
+                    </leaflet>
+                    <div ng-include="'templates/map/search-control.html'"/>
+                    <div ng-include="'templates/map/zoom-control.html'"/>
+                    <div ng-include="'templates/map/locate-control.html'"/>
                 </div>
             </div>
             <div ng-controller="SwcPhenomenaButtonController">

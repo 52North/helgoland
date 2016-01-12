@@ -1,0 +1,43 @@
+@import "../variables.less";
+
+.layers-control {
+    position: absolute;
+    left: 10px;
+    top: 120px;
+    border-radius: 5px;
+
+    .angular-leaflet-control-layers {
+        background: white;
+        border-radius: 5px;
+        box-shadow: 1px 1px 5px #333;
+        padding: 5px;
+        .lf-overlays {
+            border-top: lightgray solid 1px;
+            padding-top: 5px;
+        }
+        .lf-row {
+            label {
+                cursor: pointer;
+                margin: 0px;
+                font-weight: normal;
+                .lf-text {
+                    float: left;
+                }
+            }
+            .lf-icon-ol-group {
+                color: #00650a;
+            }
+            .lf-icon {
+                cursor: pointer;
+                float: left;
+                margin-right: 5px;
+                padding-top: 2px;
+            }
+            .lf-icons {
+                float: right;
+                display: none;
+            }
+
+        }
+    }
+}

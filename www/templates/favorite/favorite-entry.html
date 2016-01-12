@@ -1,9 +1,7 @@
-<span class="favorite-header">{{favorite.label}}</span>
-<span ng-include="'templates/favorite/favorite-entry-icons.html'"/>
-<div>
-    <small>{{favorite.timeseries.parameters.service.label}}</small>
-</div>
-<div>
-    <span translate='favorite.lastValueAt'></span>
-    <span>{{favorite.timeseries.lastValue.value}} {{favorite.timeseries.uom}} ({{favorite.timeseries.lastValue.timestamp | date: 'dd.MM.yy HH:mm'}})</span>
+<div class="favorite-body-entry">
+    <div>{{favorite.timeseries.parameters.service.label}}</div>
+    <div>
+        <span translate='favorite.lastValueAt'></span>
+        <span>{{favorite.timeseries.lastValue.value}} {{favorite.timeseries.uom}} ({{favorite.timeseries.lastValue.timestamp | date: 'dd.MM.yy HH:mm'}})</span>
+    </div>
 </div>

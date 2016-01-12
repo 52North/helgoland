@@ -1,0 +1,14 @@
+/* colors */
+/* mobile */
+.leaflet-control-zoom,
+.leaflet-control-layers {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .phenomena {
+    z-index: 9999;
+  }
+  .phenomena.active {
+    background-color: white;
+  }
+}

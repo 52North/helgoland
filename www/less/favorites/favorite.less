@@ -1,0 +1,77 @@
+@import "../variables.less";
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        //font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+}
+
+.favorites {
+    height: inherit;
+    overflow: auto;
+    .import-export-btns {
+        padding-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    .favorite-container {
+        color: @text-color;
+        padding: 5px;
+        .favorite-entry {
+            border: 1px solid @color-secondary;
+            word-break: break-all;
+            &:hover{
+                cursor: pointer;
+                background-color: @hover-background-color;
+            }
+            .favorite-header {
+                padding: 5px;
+                font-size: 120%;
+                background-color: fade(@color-primary, 50%);
+                .header-label {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    &:hover {
+                        cursor: text;
+                    }
+                }
+                .favorite-icons {
+                    float: right;
+                    span {
+                        margin-left: 3px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .favorite-body-entry {
+                font-size: 80%;
+                margin: 5px;
+                &+.favorite-body-entry {
+                    border-top: 1px solid fade(@color-secondary, 30%);
+                    padding-top: 5px;
+                }
+            }    
+        }
+    }
+}
+
+.star {
+    margin-left: 5px;
+    cursor: pointer;
+}

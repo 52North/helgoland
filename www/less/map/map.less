@@ -1,0 +1,17 @@
+@import "../variables.less";
+
+// hide layer selector and zoom control
+.leaflet-control-zoom,
+.leaflet-control-layers
+{
+    display: none;
+}
+
+@media screen and (max-width: @responsive-mobile-width) {
+    .phenomena {
+        z-index: 9999;
+        &.active {
+            background-color: white;            
+        }
+    }
+}

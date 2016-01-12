@@ -1,7 +1,7 @@
-<span class="favorite-header">{{favorite.label}}</span>
-<span ng-include="'templates/favorite/favorite-entry-icons.html'"/>
-<div class="favorite-group-entry" ng-repeat="timeseries in favorite.collection">
+<div class="favorite-body-entry" ng-repeat="timeseries in favorite.collection">
     <div>{{timeseries.label}}</div>
-    <span translate='favorite.lastValueAt'></span>
-    <span>{{timeseries.lastValue.value}} {{timeseries.uom}} ({{timeseries.lastValue.timestamp | date: 'dd.MM.yy HH:mm'}})</span>
+    <div>
+        <span translate='favorite.lastValueAt'></span>
+        <span>{{timeseries.lastValue.value}} {{timeseries.uom}} ({{timeseries.lastValue.timestamp| date: 'dd.MM.yy HH:mm'}})</span>
+    </div>
 </div>

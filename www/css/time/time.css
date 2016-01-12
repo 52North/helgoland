@@ -1,0 +1,24 @@
+/* colors */
+/* mobile */
+.time-content {
+  /* show datepicker dropdown menu in modal window */
+  /* resize datepicker pop-up to make all days selectable on all screen sizes */
+}
+.time-content swc-predefined-time-range-button .preset-btn {
+  margin: 3px;
+}
+.time-content swc-custom-date-time-selection .time-entry {
+  padding: 3px;
+}
+.time-content swc-custom-date-time-selection .confirm {
+  float: right;
+}
+.time-content .datepicker.dropdown-menu {
+  z-index: 2000 !important;
+}
+.time-content .datepicker.dropdown-menu.above {
+  position: absolute !important;
+  left: 10% !important;
+  width: 594px !important;
+  max-width: 80%;
+}

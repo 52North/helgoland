@@ -1,0 +1,15 @@
+/* colors */
+/* mobile */
+.timeseries-styling .colorButton {
+  height: 30px;
+  width: 50px;
+}
+.timeseries-styling .colorButton + .colorButton {
+  margin-left: 10px;
+}
+.timeseries-styling .style-block + .style-block {
+  margin-top: 10px;
+}
+.timeseries-styling .barIntervalButton + .barIntervalButton {
+  margin-left: 10px;
+}
