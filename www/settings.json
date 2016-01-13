@@ -11,8 +11,8 @@
         "http://insitu.webservice-energy.org/52n-sos-webapp/api/v1/": "minesParistech"
     },
     "defaultProvider": {
-        "serviceID": "srv_1a5bde0a6d702f193f7be463402ec12f",
-        "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+        "serviceID": "srv_3dec8ce040d9506c5aba685c9d134156",
+        "url": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
     },
     "chartOptions": {
         "yaxis": {
