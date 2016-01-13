@@ -255,7 +255,7 @@ module.exports = function (grunt) {
         war: {
             target: {
                 options: {
-                    war_dist_folder: 'war/',
+                    war_dist_folder: 'build/',
                     war_name: '<%= context_name %>',
                     webxml_welcome: 'index.html',
                     webxml_display_name: '<%= name %> - version <%= pkg.version %> - build at <%= grunt.template.today("yyyy-mm-dd HH:MM") %>',
