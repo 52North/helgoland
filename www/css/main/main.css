@@ -1,0 +1,67 @@
+/* colors */
+/* mobile */
+body,
+html,
+.container,
+.row-offcanvas,
+.mainPanel {
+  height: 100%;
+}
+#map {
+  height: 100%;
+  width: 100%;
+}
+.diagram,
+#tableView {
+  position: absolute;
+  top: 0px;
+  bottom: 45px;
+  width: 100%;
+  -ms-touch-action: none;
+}
+#tableView {
+  bottom: 45px;
+}
+.buttonFooter {
+  position: absolute;
+  bottom: 0;
+  height: 45px;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+}
+.fullHeight {
+  height: 100%;
+  position: relative;
+  padding: 0px;
+}
+.content {
+  height: 100%;
+  padding-top: 53px;
+}
+.leftPanelButton {
+  position: absolute;
+  z-index: 10000;
+  right: 20px;
+  top: 5px;
+}
+.noChart {
+  text-align: center;
+  margin: 30px;
+}
+/* fix to support windows phone 8 */
+@-webkit-viewport {
+  width: device-width;
+}
+@-moz-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@viewport {
+  width: device-width;
+}

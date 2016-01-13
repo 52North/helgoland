@@ -1,0 +1,38 @@
+@import "../variables.less";
+
+.phenomena {
+    a:hover {
+        text-decoration: none;        
+    }
+    .item {
+        padding: 4px;
+        border-radius: 8px;
+        margin: 3px 0px 3px 0px;
+        word-break: break-all;
+        color: @text-color;
+        &:hover {
+            background-color: @hover-background-color;
+            color: @hover-color;
+            cursor: pointer;    
+        }
+        &.selected {
+            background-color: @selection-background-color;
+            color: @selection-color;
+        }
+    }
+    .phenomena-entry {
+        hr {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        &> a:nth-child(1) div {
+            margin-top: 20px;
+        }
+        .loadPhen .loading {
+            display: inline;
+        }
+        .loading {
+            display: none;
+        }
+    }
+}

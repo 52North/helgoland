@@ -3,10 +3,6 @@
     "ok": "OK",
     "main": {
         "legend": "Legend",
-        "diagram": "Diagram",
-        "mapView": "Map view",
-        "favoriteView": "Favorites",
-        "settings": "Settings",
         "stationSelection": "Select a station",
         "chartView": "Chart view",
         "allPhenomena": "All Phenomena",
@@ -16,6 +12,14 @@
         "exportFavorites": "Export",
         "importExportHelp": "To import a file, please choose a file you exported before.",
         "noFileSelected": "No file selected"
+    },
+    "navigation": {
+        "diagram": "Diagram",
+        "map": "Map",
+        "favorite": "Favorites",
+        "provider": "Provider",
+        "listSelection": "List selection",
+        "settings": "Settings"
     },
     "chart": {
         "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",

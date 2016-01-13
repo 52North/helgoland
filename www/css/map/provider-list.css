@@ -1,0 +1,21 @@
+/* colors */
+/* mobile */
+.provider-list {
+  color: #626250;
+}
+.provider-list .provider-item {
+  padding: 5px;
+  border-radius: 8px;
+}
+.provider-list .provider-item + .provider-item {
+  margin-top: 5px;
+}
+.provider-list .provider-item:hover {
+  cursor: pointer;
+  background-color: #bde6f3;
+  color: #626250;
+}
+.provider-list .provider-item.selected {
+  background-color: #66c5e4;
+  color: #626250;
+}

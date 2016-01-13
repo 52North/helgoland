@@ -3,11 +3,10 @@ var mainApp = angular.module('jsClient', [
     'ui.bootstrap',
     'ui-notification',
     'LocalStorageModule',
-    'ui-leaflet', 
+    'ui-leaflet',
     'pascalprecht.translate',
     'ngTable',
     'ngResource',
-    
     'n52.core.alert',
     'n52.core.barChart',
     'n52.core.color',
@@ -17,7 +16,8 @@ var mainApp = angular.module('jsClient', [
     'n52.core.favorite',
     'n52.core.favoriteUi',
     'n52.core.flot',
-    'n52.core.interface', 
+    'n52.core.helper',
+    'n52.core.interface',
     'n52.core.legend',
     'n52.core.listSelection',
     'n52.core.locate',
@@ -31,7 +31,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.modal',
     'n52.core.overviewDiagram',
     'n52.core.permalinkEval',
-    'n52.core.permalinkGen', 
+    'n52.core.permalinkGen',
     'n52.core.phenomena',
     'n52.core.provider',
     'n52.core.userSettings',
@@ -47,41 +47,56 @@ var mainApp = angular.module('jsClient', [
     'n52.core.translateSelector',
     'n52.core.utils',
     'n52.core.yAxisHide',
-    
-    'n52.client.menu'
+    'n52.client.navigation',
+    'n52.client.map'
 ]);
 
-mainApp.config(['$routeProvider', 'MenuProvider', function ($routeProvider, MenuProvider) {
+mainApp.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-                .when('/', {templateUrl: 'templates/views/diagramView.html', reloadOnSearch: false})
-                .when('/diagram', {templateUrl: 'templates/views/diagramView.html', reloadOnSearch: false})
-                .when('/map', {templateUrl: 'templates/views/mapView.html', reloadOnSearch: false})
-                .when('/favorite', {templateUrl: 'templates/views/favoriteView.html', reloadOnSearch: false})
+                .when('/', {
+                    templateUrl: 'templates/views/diagramView.html',
+                    reloadOnSearch: false
+                })
+                .when('/diagram', {
+                    templateUrl: 'templates/views/diagramView.html',
+                    name: 'navigation.diagram',
+                    reloadOnSearch: false
+                })
+                .when('/map', {
+                    templateUrl: 'templates/views/mapView.html',
+                    name: 'navigation.map',
+                    reloadOnSearch: false
+                })
+                .when('/favorite', {
+                    templateUrl: 'templates/views/favoriteView.html',
+                    name: 'navigation.favorite',
+                    reloadOnSearch: false
+                })
+                .when('/map/provider', {
+                    name: 'navigation.provider',
+                    modal: {
+                        controller: 'SwcProviderListModalCtrl',
+                        templateUrl: 'templates/map/provider-list-modal.html'
+                    },
+                    reloadOnSearch: false
+                })
+                .when('/diagram/listSelection', {
+                    name: 'navigation.listSelection',
+                    modal: {
+                        controller: 'ModalWindowCtrl',
+                        templateUrl: 'templates/listSelection/modal-list-selection.html'
+                    },
+                    reloadOnSearch: false
+                })
+                .when('/diagram/settings', {
+                    name: 'navigation.settings',
+                    modal: {
+                        controller: 'SwcUserSettingsWindowCtrl',
+                        templateUrl: 'templates/settings/user-settings-modal.html'
+                    },
+                    reloadOnSearch: false
+                })
                 .otherwise({redirectTo: '/'});
-        MenuProvider.add({
-            url: '/map',
-            title: 'main.mapView',
-            target: '#map',
-            icon: 'glyphicon-globe'
-        });
-        MenuProvider.add({
-            url: '/diagram',
-            title: 'main.chartView',
-            target: '#diagram',
-            icon: 'glyphicon-stats'
-        });
-        MenuProvider.add({
-            title: 'main.settings',
-            icon: 'glyphicon-cog',
-            controller: 'SwcUserSettingsCtrl',
-            click: 'open()'
-        });
-        MenuProvider.add({
-            url: '/favorite',
-            title: 'main.favoriteView',
-            target: '#favorite',
-            icon: 'glyphicon-star'
-        });
     }]);
 
 mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($translateProvider, settingsServiceProvider) {
