@@ -14,7 +14,7 @@
 }
 .modal-content .modal-header .modal-title {
   color: white;
-  text-align: center;
-  background-repeat: no-repeat;
-  background-image: url("../images/favicon.ico");
+  /*            text-align: center;
+            background-repeat: no-repeat;
+            background-image: url("../images/favicon.ico");*/
 }
