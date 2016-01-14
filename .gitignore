@@ -2,4 +2,4 @@
 /node_modules/
 /www/bower_components/
 /dist/
-/war/
+/build/

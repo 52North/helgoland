@@ -6,10 +6,6 @@
         "http://www.fluggs.de/sos2/api/v1/": "fluggs",
         "http://192.168.52.117:8080/timeseries-webapp/api/v2/": "testInstanz"
     },
-    "_defaultProvider": {
-        "serviceID": "1",
-        "url": "http://www.fluggs.de/sos2/api/v1/"
-    },
     "defaultProvider": {
         "serviceID": "1",
         "url": "http://192.168.52.117:8080/timeseries-webapp/api/v2/"
