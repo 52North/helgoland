@@ -4,7 +4,7 @@ angular.module('n52.core.profile')
 
                 var profiles = {};
                 var profileData = {};
-
+                
                 function _addData(data, profile) {
                     profileData[profile.internalId] = data[profile.id].values;
                     $rootScope.$emit('profilesDataChanged', profile.internalId);
@@ -19,7 +19,9 @@ angular.module('n52.core.profile')
                 }
 
                 function _addProfile(profile) {
-//                    styleService.createStylesInTs(ts);
+                    profile.style = {
+                        hidden : false
+                    };
                     profiles[profile.internalId] = profile;
                     statusService.addTimeseries(profile);
                     _loadData(profile);
@@ -28,25 +30,33 @@ angular.module('n52.core.profile')
                 function addProfiles(profile) {
                     _addProfile(angular.copy(profile));
                 }
-                
-                function getData(internalId) {
-                    return profileData[internalId];
+
+                function getData(id) {
+                    return profileData[id];
                 }
-                
+
                 function getAllProfiles() {
                     return profiles;
                 }
-                
-                function getProfile(internalId) {
-                    return profiles[internalId];
+
+                function getProfile(id) {
+                    return profiles[id];
+                }
+
+                function removeProfile(id) {
+                    delete profiles[id];
+                    delete profileData[id];
+                    statusService.removeTimeseries(id);
+                    $rootScope.$emit('profilesDataChanged', id);
+                }
+
+                function isProfileToggled(id) {
+                    return profiles[id].style.hidden;
                 }
                 
-                function removeProfile(internalId) {
-//                    styleService.deleteStyle(timeseries[internalId]);
-                    delete profiles[internalId];
-                    delete profileData[internalId];
-                    statusService.removeTimeseries(internalId);
-                    $rootScope.$emit('profilesDataChanged', internalId);
+                function toggleProfile(id) {
+                    profiles[id].style.hidden = !profiles[id].style.hidden;
+                    $rootScope.$emit('profilesDataChanged', id);
                 }
 
                 return {
@@ -55,6 +65,8 @@ angular.module('n52.core.profile')
                     getProfile: getProfile,
                     getData: getData,
                     removeProfile: removeProfile,
+                    isProfileToggled: isProfileToggled,
+                    toggleProfile: toggleProfile,
                     profiles: profiles
                 };
             }]);

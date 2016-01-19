@@ -32,9 +32,9 @@
         </div>
         <div class="legendicons">
             <span class="glyphicon glyphicon-eye-close"
-                  ng-controller="SwcToggleVisibilityCtrl"
-                  ng-class="{'glyphicon-eye-close' : series.styles.visible, 'glyphicon-eye-open': !series.styles.visible}" 
-                  ng-click="$event.stopPropagation(); toggleVisibility(series)"></span>
+                  ng-controller="SwcToggleProfileLegendEntryCtrl"
+                  ng-class="{'glyphicon-eye-close' : !isToggled, 'glyphicon-eye-open': isToggled}" 
+                  ng-click="$event.stopPropagation(); toggleProfile(series)"></span>
             <span class="glyphicon glyphicon-map-marker inMap" 
                   ng-controller="SwcShowInMapCtrl"
                   ng-click="$event.stopPropagation(); showInMap(series)"></span>
@@ -46,7 +46,7 @@
                   ng-click="$event.stopPropagation(); showInformation()"></span>
             <span class="glyphicon glyphicon-remove delete" 
                   ng-controller="SwcDeleteProfileLegendEntryCtrl"
-                  ng-click="$event.stopPropagation(); removeTs(series)"></span>
+                  ng-click="$event.stopPropagation(); removeProfile(series)"></span>
         </div>
         <div class="collapseLegendEntry small"> <!-- ng-show="infoVisible" -->
             <div class="firstLastEntry additionalLegendEntry"

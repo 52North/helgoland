@@ -20,7 +20,15 @@ angular.module('n52.core.profile')
         })
         .controller('SwcDeleteProfileLegendEntryCtrl', ['$scope', 'profilesService',
             function ($scope, profilesService) {
-                $scope.removeTs = function (series) {
+                $scope.removeProfile = function (series) {
                     profilesService.removeProfile(series.internalId);
+                };
+            }])
+        .controller('SwcToggleProfileLegendEntryCtrl', ['$scope', 'profilesService',
+            function ($scope, profilesService) {
+                $scope.isToggled = profilesService.isProfileToggled($scope.series.internalId);
+                $scope.toggleProfile = function (series) {
+                    profilesService.toggleProfile(series.internalId);
+                    $scope.isToggled = profilesService.isProfileToggled(series.internalId);
                 };
             }]);

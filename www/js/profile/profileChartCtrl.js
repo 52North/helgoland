@@ -194,7 +194,7 @@ angular.module('n52.core.profile')
                 };
                 updateDataSet = function (dataset, renderOptions, internalId) {
                     var profile = profilesService.getProfile(internalId);
-                    if (profile) {
+                    if (profile && !profile.style.hidden) {
                         var timestamp = profile.selectedTime;
                         var data = _createProfileData(profilesService.getData(internalId), timestamp);
                         _updateEntryData(_getEntry(dataset, internalId, renderOptions), data);
