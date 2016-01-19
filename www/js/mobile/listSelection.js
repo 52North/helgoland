@@ -131,7 +131,10 @@ angular.module('listSelectionModule_mobile', [])
                     } else {
                         interfaceService.getTimeseries(null, url, $scope.createParams()).then(function (s) {
                             var series = s[0];
-                            var timespan = utils.createRequestTimespan(series.firstValue.timestamp, series.lastValue.timestamp);
+                            var timespan = {
+                                start: series.firstValue.timestamp,
+                                end: series.lastValue.timestamp
+                            };
                             interfaceService.getTsData(series.id, url, timespan, $scope.createParams()).then(function (data) {
                                 mobilemapService.clearPaths();
                                 mobilemapService.clearMarker();
