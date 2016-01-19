@@ -7,6 +7,7 @@ var mainApp = angular.module('jsClient', [
     'pascalprecht.translate',
     'ngTable',
     'ngResource',
+    'rzModule',
     'n52.core.alert',
     'n52.core.barChart',
     'n52.core.color',
@@ -48,7 +49,8 @@ var mainApp = angular.module('jsClient', [
     'n52.core.utils',
     'n52.core.yAxisHide',
     'n52.client.navigation',
-    'n52.client.map'
+    'n52.client.map',
+    'n52.core.profile'
 ]);
 
 mainApp.config(['$routeProvider', function ($routeProvider) {
@@ -70,6 +72,11 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
                 .when('/favorite', {
                     templateUrl: 'templates/views/favoriteView.html',
                     name: 'navigation.favorite',
+                    reloadOnSearch: false
+                })
+                .when('/profiles', {
+                    templateUrl: 'templates/profile/profileView.html',
+                    name: 'navigation.profile',
                     reloadOnSearch: false
                 })
                 .when('/map/provider', {

@@ -1,0 +1,21 @@
+{
+    "services": [
+        {
+            "id": "1",
+            "label": "MOCK SERVICE",
+            "extras": ["license"],
+            "version": "2.0.0",
+            "type": "Thin DB access layer service.",
+            "supportsFirstLatest": true,
+            "filters": ["features, procedures, phenomena, categories, services, platforms"],
+            "quantities": {
+                "categories": 6,
+                "series": 16,
+                "platforms": 8,
+                "phenomena": 6,
+                "features": 24,
+                "procedures": 16
+            }
+        }
+    ]
+}

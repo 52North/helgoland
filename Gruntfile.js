@@ -28,7 +28,8 @@ module.exports = function (grunt) {
             'www/bower_components/qr-js/qr.min.js',
             'www/bower_components/ui-leaflet/dist/ui-leaflet.js',
             'www/bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js',
-            'www/bower_components/ng-table/dist/ng-table.js'
+            'www/bower_components/ng-table/dist/ng-table.js',
+            'www/bower_components/angularjs-slider/dist/rzslider.min.js'
         ],
         lib_ie9_scripts: [
             'www/bower_components/n52-sensorweb-client-core/dist/IE9/*.min.js'
@@ -41,7 +42,8 @@ module.exports = function (grunt) {
             'www/bower_components/leaflet/dist/leaflet.css',
             'www/bower_components/leaflet.markercluster/dist/MarkerCluster.css',
             'www/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css',
-            'www/bower_components/angular-ui-notification/dist/angular-ui-notification.min.css'
+            'www/bower_components/angular-ui-notification/dist/angular-ui-notification.min.css',
+            'www/bower_components/angularjs-slider/dist/rzslider.min.css'
         ],
         core_scripts: [
             'www/bower_components/n52-sensorweb-client-core/src/js/Map/*.js',
@@ -85,11 +87,14 @@ module.exports = function (grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/services/**/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/helper/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/helper/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/*.js'
+            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/objects/**/*.js'
         ],
         app_js: [
             'www/app.js',
-            'www/js/*.js'
+            'www/js/*.js',
+            'www/js/profile/profile.js',
+            'www/js/profile/**/*.js'
         ],
         app_styles: [
             'www/css/*/*.css'

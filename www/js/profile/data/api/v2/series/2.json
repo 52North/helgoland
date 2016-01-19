@@ -1,0 +1,49 @@
+{
+    "id": "2",
+    "label": "",
+    "type": "profile",
+    "uom": "°C",
+    "referenceValues": [],
+    "firstValue": {
+        "timestamp": 1401937200000,
+        "value": 0.0
+    },
+    "lastValue": {
+        "timestamp": 1449442800000,
+        "value": 0.0
+    },
+    "parameters": {
+        "service": {
+            "id": "1",
+            "label": "COLABIS CKAN Data.",
+            "filters": ["features, procedures, phenomena, categories, services, platforms"]
+        },
+        "platform": {
+            "id": "1",
+            "domainId": "1050",
+            "label": "Helgoland",
+            "type": "stationary"
+        },
+        "procedure": {
+            "id": "1",
+            "label": "Helgoland"
+        },
+        "phenomenon": {
+            "id": "1",
+            "label": "wassertemperatur"
+        },
+        "category": {
+            "id": "1",
+            "label": "wassertemperatur"
+        }
+    },
+    "featureOutput": {
+        "features": [{
+                "id": "site_1",
+                "platform": 1,
+                "domainId": "1050",
+                "label": "Helgoland",
+                "type": "site"
+            }]
+    }
+}
