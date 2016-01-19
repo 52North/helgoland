@@ -37,7 +37,6 @@ angular.module('n52.core.profile')
                         mode: 'x'
                     },
                     xaxis: {
-//                        timezone: "browser",
                         position: "top"
                     },
                     yaxis: {
@@ -195,8 +194,8 @@ angular.module('n52.core.profile')
                 };
                 updateDataSet = function (dataset, renderOptions, internalId) {
                     var profile = profilesService.getProfile(internalId);
-                    var timestamp = profile.selectedTime;
                     if (profile) {
+                        var timestamp = profile.selectedTime;
                         var data = _createProfileData(profilesService.getData(internalId), timestamp);
                         _updateEntryData(_getEntry(dataset, internalId, renderOptions), data);
                     } else {

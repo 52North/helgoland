@@ -10,16 +10,18 @@ angular.module('n52.core.profile')
                     function ($scope, timeSliderService, $rootScope) {
                         initValues = function () {
                             var steps = timeSliderService.getTimeSteps($scope.series.internalId);
-                            debugger;
                             $scope.options = {
                                 stepsArray: steps,
                                 keyboardSupport: false,
-                                onEnd: function () {
-                                    $scope.series.selectedTime = timeSliderService.getTimestamp($scope.series.internalId, $scope.value);
-                                    $rootScope.$emit('profilesTimestampChanged', $scope.series.internalId);
-                                }
+                                onEnd: setSelectedTime
                             };
                             $scope.value = timeSliderService.getIdxForTimestamp($scope.series.internalId, $scope.series.selectedTime) || 0;
+                            setSelectedTime();
+                        };
+
+                        setSelectedTime = function () {
+                            $scope.series.selectedTime = timeSliderService.getTimestamp($scope.series.internalId, $scope.value);
+                            $rootScope.$emit('profilesTimestampChanged', $scope.series.internalId);
                         };
 
                         $rootScope.$on('profilesDataChanged', function () {
@@ -41,7 +43,9 @@ angular.module('n52.core.profile')
                 };
                 this.getTimestamp = function (internalId, idx) {
                     var data = profilesService.getData(internalId);
-                    return data[idx].timestamp;
+                    if (data && data.length >= idx) {
+                        return data[idx].timestamp;
+                    }
                 };
                 this.getIdxForTimestamp = function (internalId, timestamp) {
                     var idx;
