@@ -12,10 +12,10 @@ angular.module('listSelectionModule_mobile', [])
         .controller('ModalListSelectionMobileCtrl', ['$scope', '$uibModalInstance',
             function ($scope, $uibModalInstance) {
                 $scope.modalInstance = $uibModalInstance;
-                $scope.shipParams = [
+                $scope.platformParams = [
                     {
                         type: 'platform',
-                        header: 'listSelection_mobile.headers.ship'
+                        header: 'listSelection_mobile.headers.platform'
                     },
                     {
                         type: 'track',

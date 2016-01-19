@@ -20,7 +20,7 @@
         "provider": "Anbieter",
         "listSelection": "Listenauswahl",
         "settings": "Einstellungen",
-        "mobile": "Mobileansicht"
+        "mobile": "Mobile Daten"
     },
     "chart": {
         "noTimeseriesSelected": "Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.",
@@ -74,8 +74,8 @@
     "listSelection_mobile": {
         "header": "Listenbasierte Fahrtenauswahl",
         "headers": {
-            "ship": "Schiff",
-            "track": "Fahrt",
+            "platform": "Mobile Platform",
+            "track": "Pfad",
             "phenomenon": "Phänomen"
         }
     },

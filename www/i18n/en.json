@@ -20,7 +20,7 @@
         "provider": "Provider",
         "listSelection": "List selection",
         "settings": "Settings",
-        "mobile": "Track view"
+        "mobile": "Mobile"
     },
     "chart": {
         "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",
@@ -71,7 +71,7 @@
     "listSelection_mobile": {
         "header": "Track selection by list",
         "headers": {
-            "ship": "Ships",
+            "platform": "Mobile platform",
             "track": "Tracks",
             "phenomenon": "Phenomenon"
         }
