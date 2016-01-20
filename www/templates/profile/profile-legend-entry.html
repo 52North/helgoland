@@ -1,7 +1,7 @@
 <div class="legendItem" style="position: relative;" 
-     ng-controller="SwcToggleSelectionCtrl"
+     ng-controller="SwcToggleSelectionProfileLegendEntryCtrl"
      ng-style="{'border-color': series.styles.color}"
-     ng-class="{'selected': series.styles.selected}"
+     ng-class="{'selected': isSelectionToggled}"
      ng-click="toggleSelection(series)">
     <div class="loading-overlay"
          ng-show="series.loadingData"

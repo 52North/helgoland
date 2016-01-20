@@ -31,4 +31,12 @@ angular.module('n52.core.profile')
                     profilesService.toggleProfile(series.internalId);
                     $scope.isToggled = profilesService.isProfileToggled(series.internalId);
                 };
+            }])
+        .controller('SwcToggleSelectionProfileLegendEntryCtrl', ['$scope', 'profilesService',
+            function ($scope, profilesService) {
+                $scope.isSelectionToggled = profilesService.isProfileSelectionToggled($scope.series.internalId);
+                $scope.toggleSelection = function (series) {
+                    profilesService.toggleProfileSelection(series.internalId);
+                    $scope.isSelectionToggled = profilesService.isProfileSelectionToggled(series.internalId);
+                };
             }]);

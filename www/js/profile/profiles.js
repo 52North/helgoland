@@ -58,6 +58,15 @@ angular.module('n52.core.profile')
                     profiles[id].style.hidden = !profiles[id].style.hidden;
                     $rootScope.$emit('profilesDataChanged', id);
                 }
+                
+                function isProfileSelectionToggled(id) {
+                    return profiles[id].style.selection;
+                }
+                
+                function toggleProfileSelection(id) {
+                    profiles[id].style.selection = !profiles[id].style.selection;
+                    $rootScope.$emit('profilesDataChanged', id);
+                }
 
                 return {
                     addProfiles: addProfiles,
@@ -67,6 +76,8 @@ angular.module('n52.core.profile')
                     removeProfile: removeProfile,
                     isProfileToggled: isProfileToggled,
                     toggleProfile: toggleProfile,
+                    isProfileSelectionToggled: isProfileSelectionToggled,
+                    toggleProfileSelection: toggleProfileSelection,
                     profiles: profiles
                 };
             }]);
