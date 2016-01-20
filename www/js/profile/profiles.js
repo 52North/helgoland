@@ -1,6 +1,6 @@
 angular.module('n52.core.profile')
-        .factory('profilesService', ['$rootScope', 'interfaceService', 'statusService', 'timeService', 'styleService', 'settingsService',
-            function ($rootScope, interfaceService, statusService, timeService, styleService, settingsService) {
+        .factory('profilesService', ['$rootScope', 'interfaceService', 'statusService', 'colorService',
+            function ($rootScope, interfaceService, statusService, colorService) {
 
                 var profiles = {};
                 var profileData = {};
@@ -20,7 +20,9 @@ angular.module('n52.core.profile')
 
                 function _addProfile(profile) {
                     profile.style = {
-                        hidden : false
+                        hidden : false,
+                        selected: false,
+                        color: colorService.getColor(profile.id)
                     };
                     profiles[profile.internalId] = profile;
                     statusService.addTimeseries(profile);
@@ -60,11 +62,16 @@ angular.module('n52.core.profile')
                 }
                 
                 function isProfileSelectionToggled(id) {
-                    return profiles[id].style.selection;
+                    return profiles[id].style.selected;
                 }
                 
                 function toggleProfileSelection(id) {
-                    profiles[id].style.selection = !profiles[id].style.selection;
+                    profiles[id].style.selected = !profiles[id].style.selected;
+                    $rootScope.$emit('profilesDataChanged', id);
+                }
+                
+                function setColor(id, color) {
+                    profiles[id].style.color = color;
                     $rootScope.$emit('profilesDataChanged', id);
                 }
 
@@ -78,6 +85,7 @@ angular.module('n52.core.profile')
                     toggleProfile: toggleProfile,
                     isProfileSelectionToggled: isProfileSelectionToggled,
                     toggleProfileSelection: toggleProfileSelection,
+                    setColor: setColor,
                     profiles: profiles
                 };
             }]);

@@ -144,8 +144,8 @@ angular.module('n52.core.profile')
                     options: options
                 };
             }])
-        .factory('flotProfileDataHelperServ', ['profilesService',
-            function (profilesService) {
+        .factory('flotProfileDataHelperServ', ['profilesService', 'settingsService',
+            function (profilesService, settingsService) {
                 _createProfileData = function (values, timestamp) {
                     var data = [];
                     angular.forEach(values, function (value) {
@@ -187,6 +187,19 @@ angular.module('n52.core.profile')
                 _updateEntryData = function (entry, data) {
                     entry.data = data;
                 };
+                _updateEntry = function (entry, profile, renderOptions) {
+                    var lineWidth = settingsService.commonLineWidth,
+                            selected = profile.style.selected && renderOptions.showSelection;
+                    if (selected)
+                        lineWidth = settingsService.selectedLineWidth;
+                    angular.merge(entry, {
+                        selected : selected,
+                        color: profile.style.color,
+                        lines: {
+                            lineWidth: lineWidth
+                        }
+                    });
+                };
                 updateAllDataSet = function (dataset, renderOptions) {
                     angular.forEach(profilesService.getAllProfiles(), function (profile) {
                         updateDataSet(dataset, renderOptions, profile.internalId);
@@ -197,7 +210,9 @@ angular.module('n52.core.profile')
                     if (profile && !profile.style.hidden) {
                         var timestamp = profile.selectedTime;
                         var data = _createProfileData(profilesService.getData(internalId), timestamp);
-                        _updateEntryData(_getEntry(dataset, internalId, renderOptions), data);
+                        var entry = _getEntry(dataset, internalId, renderOptions);
+                        _updateEntryData(entry, data);
+                        _updateEntry(entry, profile, renderOptions);
                     } else {
                         _removeEntry(dataset, internalId);
                     }

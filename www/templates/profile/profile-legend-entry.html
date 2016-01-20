@@ -1,16 +1,16 @@
 <div class="legendItem" style="position: relative;" 
      ng-controller="SwcToggleSelectionProfileLegendEntryCtrl"
-     ng-style="{'border-color': series.styles.color}"
+     ng-style="{'border-color': series.style.color}"
      ng-class="{'selected': isSelectionToggled}"
      ng-click="toggleSelection(series)">
     <div class="loading-overlay"
          ng-show="series.loadingData"
-         ng-style="{'background-color': series.styles.color}">
+         ng-style="{'background-color': series.style.color}">
         <div class="glyphicon glyphicon-refresh icon-spin"></div>
     </div>
     <div ng-controller="SwcToggleInformationCtrl">
         <div class="legendItemheader">
-            <div class="legendItemLabel" ng-style="{color: series.styles.color}">
+            <div class="legendItemLabel" ng-style="{color: series.style.color}">
                 <span>{{series.parameters.platform.label}}</span>
                 <!--<swc-favorite-add-star timeseries="timeseries"></swc-favorite-add-star>-->
             </div>
@@ -40,7 +40,7 @@
                   ng-click="$event.stopPropagation(); showInMap(series)"></span>
             <span class="glyphicon glyphicon-pencil changeStyle" 
                   ng-controller="SwcOpenStyleModalCtrl"
-                  ng-style="{color: series.styles.color}" 
+                  ng-style="{color: series.style.color}" 
                   ng-click="$event.stopPropagation(); openStyling(series)"></span>
             <span class="glyphicon glyphicon-info-sign showInfo" 
                   ng-click="$event.stopPropagation(); showInformation()"></span>
