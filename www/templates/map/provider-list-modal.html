@@ -10,10 +10,22 @@
             <div class="small">{{provider.type}}, {{provider.version}}</div>
             <div class="small">{{provider.url}}</div>
             <div class="small">
+                <span ng-if="provider.quantities.stations">
                 <span translate="map.providerList.stations"></span>
                 <span>: {{provider.quantities.stations}}</span>
+                </span>
+                <span ng-if="provider.quantities.platforms">
+                    <span translate="map.providerList.platforms"></span>
+                    <span>: {{provider.quantities.platforms}}</span>
+                </span>
+                <span ng-if="provider.quantities.series">
                 <span translate="map.providerList.timeseries"></span>
+                    <span>: {{provider.quantities.series}}</span>
+                </span>
+                <span ng-if="provider.quantities.timeseries">
+                    <span translate="map.providerList.timeseries"></span>
                 <span>: {{provider.quantities.timeseries}}</span>
+                </span>
                 <span translate="map.providerList.phenomena"></span>
                 <span>: {{provider.quantities.phenomena}}</span>
             </div>
