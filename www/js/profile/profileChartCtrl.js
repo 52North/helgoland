@@ -61,7 +61,6 @@ angular.module('n52.core.profile')
                     showActive: true
                 };
                 var dataset = createDataSet();
-//                setTimeExtent();
 
                 $rootScope.$on('profilesDataChanged', function (evt, internalId) {
                     flotProfileDataHelperServ.updateDataSet(dataset, renderOptions, internalId);
@@ -71,69 +70,7 @@ angular.module('n52.core.profile')
                     flotProfileDataHelperServ.updateDataSet(dataset, renderOptions, internalId);
                 });
 
-//                $rootScope.$on('timeseriesChanged', function (evt, id) {
-//                    createYAxis();
-//                    flotDataHelperServ.updateTimeseriesInDataSet(dataset, renderOptions, id, timeseriesService.getData(id));
-//                });
-
-//                $rootScope.$on('allTimeseriesChanged', function () {
-//                    createYAxis();
-//                    flotDataHelperServ.updateAllTimeseriesToDataSet(dataset, renderOptions, timeseriesService.getAllTimeseries());
-//                });
-
-//                $rootScope.$on('timeseriesDataChanged', function (evt, id) {
-//                    createYAxis();
-//                    flotDataHelperServ.updateTimeseriesInDataSet(dataset, renderOptions, id, timeseriesService.getData(id));
-//                });
-
-//                $rootScope.$on('timeExtentChanged', function () {
-//                    setTimeExtent();
-//                });
-
-//                function setTimeExtent() {
-//                    options.xaxis.min = timeService.time.start.toDate().getTime();
-//                    options.xaxis.max = timeService.time.end.toDate().getTime();
-//                }
-
-//                function createYAxis() {
-//                    var axesList = {};
-//                    angular.forEach(timeseriesService.getAllTimeseries(), function (elem) {
-//                        if (elem.styles.groupedAxis === undefined || elem.styles.groupedAxis) {
-//                            if (!axesList.hasOwnProperty(elem.uom)) {
-//                                axesList[elem.uom] = {
-//                                    id: ++Object.keys(axesList).length,
-//                                    uom: elem.uom,
-//                                    tsColors: [elem.styles.color],
-//                                    zeroScaled: elem.styles.zeroScaled
-//                                };
-//                                elem.styles.yaxis = axesList[elem.uom].id;
-//                            } else {
-//                                axesList[elem.uom].tsColors.push(elem.styles.color);
-//                                elem.styles.yaxis = axesList[elem.uom].id;
-//                            }
-//                        } else {
-//                            axesList[elem.id] = {
-//                                id: ++Object.keys(axesList).length,
-//                                uom: elem.uom + " @ " + elem.station.properties.label,
-//                                tsColors: [elem.styles.color],
-//                                zeroScaled: elem.styles.zeroScaled
-//                            };
-//                            elem.yaxis = axesList[elem.id].id;
-//                        }
-//                    });
-//                    var axes = [];
-//                    angular.forEach(axesList, function (elem) {
-//                        axes.splice(elem.id - 1, 0, {
-//                            uom: elem.uom,
-//                            tsColors: elem.tsColors,
-//                            min: elem.zeroScaled ? 0 : options.yaxis.min
-//                        });
-//                    });
-//                    options.yaxes = axes;
-//                }
-
                 function createDataSet() {
-//                    createYAxis();
                     var dataset = [];
                     flotProfileDataHelperServ.updateAllDataSet(dataset, renderOptions);
                     return dataset;
@@ -201,7 +138,6 @@ angular.module('n52.core.profile')
                     });
                 };
                 _updatePermaEntries = function (dataset, profile) {
-                    // TODO remove old permaProfiles.
                     angular.forEach(profile.permaProfiles, function (permaProfile, timestamp) {
                         var exists = false;
                         angular.forEach(dataset, function (data) {
@@ -224,7 +160,6 @@ angular.module('n52.core.profile')
                     var removeData;
                     angular.forEach(dataset, function (data, idx) {
                         if (data.id.indexOf(profile.internalId) >= 0 && data.id.indexOf('@time:') > 0) {
-                            debugger;
                             var timestamp = data.id.substring(data.id.indexOf('@time:') + 6, data.id.length);
                             if (!profile.permaProfiles[timestamp])
                                 removeData = idx;

@@ -33,7 +33,7 @@ angular.module('n52.core.profile')
                                 });
                                 angular.forEach(profilesService.getAllProfiles(), function (elem) {
                                     ids.push(elem.internalId);
-                                })
+                                });
                             } else {
                                 ids.push(timeseriesId);
                             }
