@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        name: 'client',
+        name: 'client-profiles',
         context_name: '<%= name %>##<%= pkg.version %>',
         lib_scripts: [
             'www/bower_components/jquery/dist/jquery.js',
@@ -104,7 +104,8 @@ module.exports = function (grunt) {
             'templates/**/*.html',
             'i18n/*.json',
             'images/*',
-            'css/images/*'
+            'css/images/*',
+            'data/**/*'
         ],
         dist: {
             js: {

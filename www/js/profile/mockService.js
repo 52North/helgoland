@@ -3,7 +3,7 @@ angular.module('n52.core.profile')
             function ($provide) {
                 $provide.decorator('interfaceService', ['$delegate', '$q', 'statusService', '$http', 'settingsService', 'utils',
                     function ($delegate, $q, statusService, $http, settingsService, utils) {
-                        var mockServiceUrl = "js/profile/data/api/v2/";
+                        var mockServiceUrl = "data/api/v2/";
 
                         _isMockService = function (url) {
                             return url === mockServiceUrl;

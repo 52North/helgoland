@@ -6,11 +6,11 @@
         "http://geo.irceline.be/sos/api/v1/": "ircelineNew",
         "http://www.fluggs.de/sos2/api/v1/": "fluggs",
         "http://ows.dev.52north.org:8080/ckan-sos-webapp/api/v2/": "owsTestV2",
-        "js/profile/data/api/v2/": "localTestInstanz"
+        "data/api/v2/": "localTestInstanz"
     },
     "defaultProvider": {
         "serviceID": "srv_3dec8ce040d9506c5aba685c9d134156",
-        "url": "js/profile/data/api/v2/"
+        "url": "data/api/v2/"
     },
     "chartOptions": {
         "yaxis": {
