@@ -1,0 +1,12 @@
+<div>
+    <button type="button" class="btn btn-default"
+            ng-click="makePermaProfile(series)"
+            translate="profile.selectCurrentTimestamp">
+    </button>
+    <div ng-repeat="(timestamp, perma) in series.permaProfiles">
+        <div ng-style="{'color': perma.color}">
+            {{timestamp | date: 'dd.MM.yy HH:mm'}}
+            <span class="glyphicon glyphicon-remove" ng-click="removePermaProfile(timestamp)"></span>
+        </div>
+    </div>
+</div>

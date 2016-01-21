@@ -447,47 +447,47 @@
                 "profile": [
                     {
                         "vertical": -2.0,
-                        "value": 9
-                    },
-                    {
-                        "vertical": -4.0,
-                        "value": 6
-                    },
-                    {
-                        "vertical": -6.0,
                         "value": 8
                     },
                     {
+                        "vertical": -4.0,
+                        "value": 8.1
+                    },
+                    {
+                        "vertical": -6.0,
+                        "value": 8.5
+                    },
+                    {
                         "vertical": -8.0,
-                        "value": 9
+                        "value": 8.7
                     },
                     {
                         "vertical": -10.0,
-                        "value": 9.5
+                        "value": 8.9
                     },
                     {
                         "vertical": -20.0,
-                        "value": 9.8
+                        "value": 9.1
                     },
                     {
                         "vertical": -30.0,
-                        "value": 9.9
+                        "value": 9.3
                     },
                     {
                         "vertical": -40.0,
-                        "value": 10
+                        "value": 9.5
                     },
                     {
                         "vertical": -60.0,
-                        "value": 10
+                        "value": 9.7
                     },
                     {
                         "vertical": -80.0,
-                        "value": 10
+                        "value": 9.8
                     },
                     {
                         "vertical": -100.0,
-                        "value": 10
+                        "value": 9.9
                     }
                 ]
             },
@@ -500,39 +500,39 @@
                     },
                     {
                         "vertical": -4.0,
-                        "value": 6
+                        "value": 9.1
                     },
                     {
                         "vertical": -6.0,
-                        "value": 8
+                        "value": 9.2
                     },
                     {
                         "vertical": -8.0,
-                        "value": 9
+                        "value": 9.3
                     },
                     {
                         "vertical": -10.0,
-                        "value": 9.5
+                        "value": 9.4
                     },
                     {
                         "vertical": -20.0,
-                        "value": 9.8
+                        "value": 9.5
                     },
                     {
                         "vertical": -30.0,
-                        "value": 9.9
+                        "value": 9.6
                     },
                     {
                         "vertical": -40.0,
-                        "value": 10
+                        "value": 9.7
                     },
                     {
                         "vertical": -60.0,
-                        "value": 10
+                        "value": 9.8
                     },
                     {
                         "vertical": -80.0,
-                        "value": 10
+                        "value": 9.9
                     },
                     {
                         "vertical": -100.0,
@@ -549,43 +549,43 @@
                     },
                     {
                         "vertical": -4.0,
-                        "value": 6
+                        "value": 11
                     },
                     {
                         "vertical": -6.0,
-                        "value": 8
+                        "value": 11
                     },
                     {
                         "vertical": -8.0,
-                        "value": 9
+                        "value": 11
                     },
                     {
                         "vertical": -10.0,
-                        "value": 9.5
+                        "value": 11
                     },
                     {
                         "vertical": -20.0,
-                        "value": 9.8
+                        "value": 11
                     },
                     {
                         "vertical": -30.0,
-                        "value": 9.9
+                        "value": 11
                     },
                     {
                         "vertical": -40.0,
-                        "value": 10
+                        "value": 11
                     },
                     {
                         "vertical": -60.0,
-                        "value": 10
+                        "value": 11
                     },
                     {
                         "vertical": -80.0,
-                        "value": 10
+                        "value": 11
                     },
                     {
                         "vertical": -100.0,
-                        "value": 10
+                        "value": 11
                     }
                 ]
             }

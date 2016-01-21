@@ -66,7 +66,7 @@ angular.module('n52.core.profile')
                 $rootScope.$on('profilesDataChanged', function (evt, internalId) {
                     flotProfileDataHelperServ.updateDataSet(dataset, renderOptions, internalId);
                 });
-                
+
                 $rootScope.$on('profilesTimestampChanged', function (evt, internalId) {
                     flotProfileDataHelperServ.updateDataSet(dataset, renderOptions, internalId);
                 });
@@ -193,12 +193,46 @@ angular.module('n52.core.profile')
                     if (selected)
                         lineWidth = settingsService.selectedLineWidth;
                     angular.merge(entry, {
-                        selected : selected,
+                        selected: selected,
                         color: profile.style.color,
                         lines: {
                             lineWidth: lineWidth
                         }
                     });
+                };
+                _updatePermaEntries = function (dataset, profile) {
+                    // TODO remove old permaProfiles.
+                    angular.forEach(profile.permaProfiles, function (permaProfile, timestamp) {
+                        var exists = false;
+                        angular.forEach(dataset, function (data) {
+                            if (data.id === profile.internalId + '@time:' + timestamp) {
+                                exists = true;
+                                data.color = permaProfile.color;
+                            }
+                        });
+                        if (!exists) {
+                            dataset.push({
+                                id: profile.internalId + '@time:' + timestamp,
+                                data: _createProfileData(profilesService.getData(profile.internalId), parseInt(timestamp)),
+                                color: permaProfile.color
+                            });
+                        }
+                    });
+                    _removePermaEntry(dataset, profile);
+                };
+                _removePermaEntry = function (dataset, profile) {
+                    var removeData;
+                    angular.forEach(dataset, function (data, idx) {
+                        if (data.id.indexOf(profile.internalId) >= 0 && data.id.indexOf('@time:') > 0) {
+                            debugger;
+                            var timestamp = data.id.substring(data.id.indexOf('@time:') + 6, data.id.length);
+                            if (!profile.permaProfiles[timestamp])
+                                removeData = idx;
+                        }
+                    });
+                    if (removeData) {
+                        dataset.splice(removeData, 1);
+                    }
                 };
                 updateAllDataSet = function (dataset, renderOptions) {
                     angular.forEach(profilesService.getAllProfiles(), function (profile) {
@@ -213,6 +247,7 @@ angular.module('n52.core.profile')
                         var entry = _getEntry(dataset, internalId, renderOptions);
                         _updateEntryData(entry, data);
                         _updateEntry(entry, profile, renderOptions);
+                        _updatePermaEntries(dataset, profile);
                     } else {
                         _removeEntry(dataset, internalId);
                     }

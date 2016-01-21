@@ -251,5 +251,8 @@
     "inform": {
         "error": "Ein Fehler ist aufgetreten: ",
         "warn": "Bitte beachten Sie: "
+    },
+    "profile": {   
+        "selectCurrentTimestamp": "Zeige als extra Profil"
     }
 }

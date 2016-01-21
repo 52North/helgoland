@@ -249,5 +249,8 @@
     "inform": {
         "error": "An error occured: ",
         "warn": "Please remember that: "
+    },
+    "profile": {   
+        "selectCurrentTimestamp": "show as extra profile"
     }
 }

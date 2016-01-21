@@ -58,4 +58,22 @@ angular.module('n52.core.profile')
                     }
                     return idx;
                 };
-            }]);
+            }])
+        .directive('swcPermaProfile', function () {
+            return {
+                restrict: 'E',
+                templateUrl: 'templates/profile/profile-perma-creator.html',
+                scope: {
+                    series: '='
+                },
+                controller: ['$scope', 'colorService', '$rootScope', 'profilesService',
+                    function ($scope, colorService, $rootScope, profilesService) {
+                        $scope.makePermaProfile = function() {
+                            profilesService.createPermaProfile($scope.series.internalId);
+                        };
+                        $scope.removePermaProfile = function(timestamp) {
+                            profilesService.removePermaProfile($scope.series.internalId, timestamp);
+                        };
+                    }]
+            };
+        });

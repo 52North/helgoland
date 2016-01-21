@@ -24,6 +24,7 @@ angular.module('n52.core.profile')
                         selected: false,
                         color: colorService.getColor(profile.id)
                     };
+                    profile.permaProfiles = {};
                     profiles[profile.internalId] = profile;
                     statusService.addTimeseries(profile);
                     _loadData(profile);
@@ -74,6 +75,19 @@ angular.module('n52.core.profile')
                     profiles[id].style.color = color;
                     $rootScope.$emit('profilesDataChanged', id);
                 }
+                
+                function createPermaProfile(id) {
+                    var profile = profiles[id];
+                    profile.permaProfiles[profile.selectedTime] = {
+                        color: colorService.getColor(profile.internalId + profile.selectedTime)
+                    };
+                    $rootScope.$emit('profilesDataChanged', id);
+                }
+                
+                function removePermaProfile(id, timestamp) {
+                    delete profiles[id].permaProfiles[timestamp];
+                    $rootScope.$emit('profilesDataChanged', id);
+                }
 
                 return {
                     addProfiles: addProfiles,
@@ -86,6 +100,8 @@ angular.module('n52.core.profile')
                     isProfileSelectionToggled: isProfileSelectionToggled,
                     toggleProfileSelection: toggleProfileSelection,
                     setColor: setColor,
+                    createPermaProfile: createPermaProfile,
+                    removePermaProfile: removePermaProfile,
                     profiles: profiles
                 };
             }]);
