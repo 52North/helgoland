@@ -3,8 +3,13 @@
         <div class="row fullHeight">
             <div class="col-xs-12 col-sm-8 col-lg-9 fullHeight">
                 <div class="visible-xs leftPanelButton" ng-controller="SwcPhenomenaButtonController">
-                    <button type="button" class="btn btn-primary btn-xs" ng-hide="status.showPhenomena" ng-click="togglePhenomena()" translate="main.allPhenomena"></button>
-                    <button type="button" class="btn btn-primary btn-xs" ng-show="status.showPhenomena" ng-click="togglePhenomena()">X</button>
+                    <button type="button" class="btn btn-primary btn-xs" 
+                            ng-hide="status.showPhenomena" 
+                            ng-click="$event.stopPropagation(); togglePhenomena()" 
+                            translate="main.allPhenomena"></button>
+                    <button type="button" class="btn btn-primary btn-xs" 
+                            ng-show="status.showPhenomena" 
+                            ng-click="$event.stopPropagation(); togglePhenomena()">X</button>
                 </div>
                 <div id ="map" ng-controller="SwcBasicMapCtrl as mapCtrl">
                     <leaflet id='stationMap'
@@ -23,25 +28,25 @@
                     <div ng-include="'templates/map/locate-control.html'"/>
                 </div>
             </div>
-            <div class="col-xs-8 col-sm-4 col-lg-3 fullHeight" ng-controller="SwcPhenomenaButtonController">
-                <div class="phenomena rightPanel" ng-class="{active:status.showPhenomena}">
-                    <div ng-controller="SwcPhenomenonListCtrl as phenomena">
-                        <div class="phenomena-entry">
-                            <a class="phenomenonItem" ng-click="showAllPhenomenons()" >
-                                <div class="item" ng-class="{selected:isSelected(null)}">
+            <div class="col-xs-8 col-sm-4 col-lg-3 fullHeight phenomena rightPanel" 
+                 ng-controller="SwcPhenomenaButtonController"
+                 ng-class="{active:status.showPhenomena}">
+                <div ng-controller="SwcPhenomenonListCtrl as phenomena">
+                    <div class="phenomena-entry">
+                        <a class="phenomenonItem" ng-click="showAllPhenomenons()" >
+                            <div class="item" ng-class="{selected:isSelected(null)}">
+                                <span class="glyphicon glyphicon-refresh loading icon-spin"></span>
+                                <span translate="main.allPhenomena"></span>
+                            </div>
+                        </a>
+                        <hr>
+                        <div ng-repeat="phenomenon in phenomena.items">
+                            <a class="phenomenonItem" data-id="{{id}}">
+                                <div class="item" ng-click="showSpecificPhenomenon(phenomenon)" ng-class="{selected:isSelected(phenomenon)}">
                                     <span class="glyphicon glyphicon-refresh loading icon-spin"></span>
-                                    <span translate="main.allPhenomena"></span>
+                                    <span>{{phenomenon.label}}</span>
                                 </div>
                             </a>
-                            <hr>
-                            <div ng-repeat="phenomenon in phenomena.items">
-                                <a class="phenomenonItem" data-id="{{id}}">
-                                    <div class="item" ng-click="showSpecificPhenomenon(phenomenon)" ng-class="{selected:isSelected(phenomenon)}">
-                                        <span class="glyphicon glyphicon-refresh loading icon-spin"></span>
-                                        <span>{{phenomenon.label}}</span>
-                                    </div>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
