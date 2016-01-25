@@ -21,14 +21,9 @@
 }
 
 .favorites {
-    height: inherit;
+    /*    height: inherit;*/
+    position: relative;
     overflow: auto;
-    .import-export-btns {
-        padding-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-    }
     .favorite-container {
         color: @text-color;
         padding: 5px;
@@ -69,6 +64,13 @@
             }    
         }
     }
+}
+
+.import-export-btns {
+    padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .star {

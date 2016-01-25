@@ -19,14 +19,9 @@
   display: block;
 }
 .favorites {
-  height: inherit;
+  /*    height: inherit;*/
+  position: relative;
   overflow: auto;
-}
-.favorites .import-export-btns {
-  padding-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
 }
 .favorites .favorite-container {
   color: #626250;
@@ -67,6 +62,12 @@
 .favorites .favorite-container .favorite-entry .favorite-body-entry + .favorite-body-entry {
   border-top: 1px solid rgba(98, 98, 80, 0.3);
   padding-top: 5px;
+}
+.import-export-btns {
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 .star {
   margin-left: 5px;
