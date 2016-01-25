@@ -5,8 +5,10 @@
                 <div class="visible-xs leftPanelButton" ng-controller="SwcPhenomenaButtonController">
                     <button type="button" class="btn btn-primary btn-xs" 
                             ng-hide="status.showPhenomena" 
-                            ng-click="$event.stopPropagation(); togglePhenomena()" 
-                            translate="main.allPhenomena"></button>
+                            ng-click="$event.stopPropagation(); togglePhenomena()">
+                        <span ng-hide="selectedPhenomenon.selection.label" translate="main.allPhenomena"></span>
+                        <span>{{selectedPhenomenon.selection.label}}</span>
+                    </button>
                     <button type="button" class="btn btn-primary btn-xs" 
                             ng-show="status.showPhenomena" 
                             ng-click="$event.stopPropagation(); togglePhenomena()">X</button>
@@ -33,7 +35,7 @@
                  ng-class="{active:status.showPhenomena}">
                 <div ng-controller="SwcPhenomenonListCtrl as phenomena">
                     <div class="phenomena-entry">
-                        <a class="phenomenonItem" ng-click="showAllPhenomenons()" >
+                        <a class="phenomenonItem" ng-click="showAllPhenomenons(); togglePhenomena();" >
                             <div class="item" ng-class="{selected:isSelected(null)}">
                                 <span class="glyphicon glyphicon-refresh loading icon-spin"></span>
                                 <span translate="main.allPhenomena"></span>
@@ -42,7 +44,7 @@
                         <hr>
                         <div ng-repeat="phenomenon in phenomena.items">
                             <a class="phenomenonItem" data-id="{{id}}">
-                                <div class="item" ng-click="showSpecificPhenomenon(phenomenon)" ng-class="{selected:isSelected(phenomenon)}">
+                                <div class="item" ng-click="showSpecificPhenomenon(phenomenon); togglePhenomena();" ng-class="{selected:isSelected(phenomenon)}">
                                     <span class="glyphicon glyphicon-refresh loading icon-spin"></span>
                                     <span>{{phenomenon.label}}</span>
                                 </div>
