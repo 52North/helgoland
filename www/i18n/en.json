@@ -20,6 +20,7 @@
         "provider": "Provider",
         "listSelection": "List selection",
         "settings": "Settings",
+        "mobileDiagramm": "Combi-View",
         "mobile": "Track view"
     },
     "chart": {

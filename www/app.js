@@ -73,6 +73,11 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
                     name: 'navigation.mobile',
                     reloadOnSearch: false
                 })
+                .when('/mobileDiagram', {
+                    templateUrl: 'templates/views/combiView.html',
+                    name: 'navigation.mobileDiagramm',
+                    reloadOnSearch: false
+                })
                 .when('/favorite', {
                     templateUrl: 'templates/views/favoriteView.html',
                     name: 'navigation.favorite',

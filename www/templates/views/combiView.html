@@ -1,0 +1,74 @@
+<div class="swc-page swc-page-current" id="map-page">
+    <div class="container-fluid content">
+        <div style="height:50%;">
+            <div class="col-xs-12 col-sm-12 col-lg-12 fullHeight">
+                <div id ="map" ng-controller="MobileMapController as mapCtrl">
+                    <leaflet id="mobileMap" 
+                             bounds="map.bounds" 
+                             markers="map.markers" 
+                             layers="map.layers" 
+                             paths="map.paths" 
+                             width="100%" height="100%"></leaflet>
+                </div>
+                <div class="map-buttons">
+
+                    <a class="btn btn-default" data-action="locate" 
+                       swc-locate-user="mobileMap"
+                       ng-click="locateUser()"
+                       ng-class="{'btn-primary': isToggled}">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                    </a>
+                    <a class="btn btn-default" data-action="listSelection_mobile" ng-controller="ListSelectionMobileButtonCtrl" ng-click="openListSelectionMobile()">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="height:50%;">
+            <div class="col-xs-12 col-sm-8 col-lg-9 fullHeight">
+                <div class="visible-xs leftPanelButton" ng-controller="SwcLegendButtonCtrl">
+                    <button type="button" class="btn btn-primary btn-xs" ng-hide="status.showLegend" ng-click="toggleLegend()" translate="main.legend"></button>
+                    <button type="button" class="btn btn-primary btn-xs" ng-show="status.showLegend" ng-click="toggleLegend()">X</button>
+                </div>
+                <div class="fullHeight" ng-controller="SwcToggleCtrl">
+                    <div ng-if="!isToggled">
+                        <div ng-controller="SwcChartCtrl">
+                            <flot class="diagram" options="options" dataset="dataset"></flot>
+                        </div>
+                        <div ng-controller="IsMobileCtrl">
+                            <div id="overviewChart"
+                                 ng-if="!isMobile">
+                                <div ng-controller="SwcOverviewChartCtrl">
+                                    <div class="loading-overlay" ng-show="options.loading">
+                                        <div class="glyphicon glyphicon-refresh icon-spin"></div>
+                                    </div>
+                                    <flot options="options" dataset="dataset"></flot>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div id="tableView" ng-if="isToggled">
+                        <div ng-include="'templates/table/table.html'">
+                        </div>
+                    </div>
+                    <div class="buttonFooter">
+                        <!--<y-axis-hide-button></y-axis-hide-button>-->
+                        <swc-time-selector-buttons></swc-time-selector-buttons>
+                        <a class="btn btn-default" data-action="dataTable" ng-click="toggle()">
+                            <span class="glyphicon glyphicon-list"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div ng-controller="SwcLegendButtonCtrl">
+                <div class="col-xs-10 col-sm-4 col-lg-3 legend rightPanel" ng-class="{active:status.showLegend}">
+                    <h3 class="header" translate="main.legend"></h3>
+                    <swc-legend></swc-legend>
+                </div>
+            </div>
+            <!--<swc-data-loading></swv-data-loading>-->
+        </div>
+    </div>
+</div>

@@ -20,6 +20,7 @@
         "provider": "Anbieter",
         "listSelection": "Listenauswahl",
         "settings": "Einstellungen",
+        "mobileDiagramm": "Combi-Ansicht",
         "mobile": "Mobileansicht"
     },
     "chart": {
