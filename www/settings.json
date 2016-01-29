@@ -27,6 +27,9 @@
             "label": "English"
         }
     ],
+    "selectColorFromList": true,
+    "colorList": ["#078D53", "#00F3FF", "#0043FF", "#E22985", "#8D00A9", "#FF783D", "#AD3500", "#FFCB00", "#927711", "#53EA42"],
+    "refColorList": ["#668B7B", "#A6D5D7", "#7C90C8", "#D48DB0", "#84518E", "#DA9B7F", "#9D7D6F", "#D7C57E", "#BAA760", "#A1BE9D"],
     "baselayer": {
         "mapbox": {
             "name": "Mapbox",
