@@ -67,9 +67,11 @@
                 <span>{{timeseries.lastValue.timestamp| date: 'dd.MM.yy HH:mm'}}</span>
                 <span class="hidden-medium">({{timeseries.lastValue.value}} {{timeseries.uom}})</span> 
             </div>
-            <div class="refEntry additionalLegendEntry" ng-repeat="refValue in timeseries.referenceValues" 
+            <div class="refEntry additionalLegendEntry" 
+                 ng-repeat="refValue in timeseries.referenceValues" 
                  ng-class="{selected : refValue.visible}" 
                  ng-style="{'border-color': refValue.color}"
+                 ng-controller="SwcToggleRefValueCtrl"
                  ng-click="$event.stopPropagation(); selectRefValue(refValue, timeseries)">
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span>{{refValue.label}}</span>
