@@ -2,7 +2,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         name: 'client',
-        context_name: '<%= name %>##<%= pkg.version %>',
+        context_name: '<%= name %>##<%= pkg.version %>-<%= grunt.template.today("yyyymmddHHMM")%>',
         lib_scripts: [
             'www/bower_components/jquery/dist/jquery.js',
             'www/bower_components/angular/angular.js',
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
             'www/bower_components/ng-table/dist/ng-table.js'
         ],
         lib_ie9_scripts: [
-            'www/bower_components/n52-sensorweb-client-core/dist/IE9/*.min.js'
+            'www/bower_components/n52-sensorweb-client-core/src/js/IE9/*.js'
         ],
         lib_styles: [
             'www/bower_components/L.GeoSearch/src/css/l.geosearch.css',
@@ -101,12 +101,6 @@ module.exports = function (grunt) {
             'images/*',
             'css/images/*'
         ],
-        dist: {
-            js: {
-                lib: {
-                }
-            }
-        },
         tags: {
             options: {
                 scriptTemplate: '<script src="{{ path }}" type="text/javascript"></script>',
