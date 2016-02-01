@@ -10,4 +10,9 @@ angular.module('n52.client.map', [])
                         }
                     }
                 });
+            }])
+        .controller('ToDiagramCtrl', ['$scope', '$location', function ($scope, $location) {
+                $scope.toDiagram = function () {
+                    $location.url('/diagram');
+                };
             }]);

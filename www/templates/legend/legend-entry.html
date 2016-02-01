@@ -28,7 +28,7 @@
             </div>
             <div class="small">{{timeseries.parameters.phenomenon.label}} ({{timeseries.uom}})</div>
             <div class="small">{{timeseries.parameters.procedure.label}}</div>
-            <div class="small" ng-show="{{timeseries.parameters.category.label}}">{{timeseries.parameters.category.label}}</div>
+            <div class="small" ng-show="{{timeseries.parameters.category.label !== undefined }}">{{timeseries.parameters.category.label}}</div>
         </div>
         <div class="legendicons">
             <span class="glyphicon glyphicon-eye-close"
@@ -67,9 +67,11 @@
                 <span>{{timeseries.lastValue.timestamp| date: 'dd.MM.yy HH:mm'}}</span>
                 <span class="hidden-medium">({{timeseries.lastValue.value}} {{timeseries.uom}})</span> 
             </div>
-            <div class="refEntry additionalLegendEntry" ng-repeat="refValue in timeseries.referenceValues" 
+            <div class="refEntry additionalLegendEntry" 
+                 ng-repeat="refValue in timeseries.referenceValues" 
                  ng-class="{selected : refValue.visible}" 
                  ng-style="{'border-color': refValue.color}"
+                 ng-controller="SwcToggleRefValueCtrl"
                  ng-click="$event.stopPropagation(); selectRefValue(refValue, timeseries)">
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span>{{refValue.label}}</span>
