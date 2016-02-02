@@ -14,7 +14,7 @@
                 <span>{{timeseries.station.properties.label}}</span>
                 <swc-favorite-add-star timeseries="timeseries"></swc-favorite-add-star>
             </div>
-            <div class="noDataWarning firstLastEntry" ng-show="timeseries.hasDataInCurrentExtent">
+            <div class="noDataWarning firstLastEntry" ng-show="timeseries.hasNoDataInCurrentExtent">
                 <div>
                     <span class="glyphicon glyphicon-warning-sign red"></span>
                     <span class="small" translate="legend.entry.noData"></span>
