@@ -49,7 +49,8 @@ var mainApp = angular.module('jsClient', [
     'n52.core.yAxisHide',
     'n52.client.navigation',
     'n52.client.map',
-    'n52.client.mobileMap'
+    'n52.client.mobileMap',
+    'n52.core.combiMobile'
 ]);
 
 mainApp.config(['$routeProvider', function ($routeProvider) {

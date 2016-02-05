@@ -28,7 +28,8 @@ module.exports = function (grunt) {
             'www/bower_components/qr-js/qr.min.js',
             'www/bower_components/ui-leaflet/dist/ui-leaflet.js',
             'www/bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js',
-            'www/bower_components/ng-table/dist/ng-table.js'
+            'www/bower_components/ng-table/dist/ng-table.js',
+            'www/bower_components/d3/d3.min.js'
         ],
         lib_ie9_scripts: [
             'www/bower_components/n52-sensorweb-client-core/src/js/IE9/*.js'
@@ -91,7 +92,8 @@ module.exports = function (grunt) {
         app_js: [
             'www/app.js',
             'www/js/*.js',
-            'www/js/mobile/*.js'
+            'www/js/mobile/*.js',
+            'www/js/combinedMobile/*.js'
         ],
         app_styles: [
             'www/css/*/*.css'
