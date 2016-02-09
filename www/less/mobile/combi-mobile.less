@@ -1,5 +1,7 @@
 @import "../variables.less";
 
+@drag-color: fade(blue,40%);;
+
 .combi-mobile {
     height: 100%;
     .map,
@@ -20,9 +22,10 @@
             stroke-width: 1px;
             stroke: black;
         }
-        path {
-            stroke: red;
-            stroke-width: 2px;
+        .mouse-drag{
+            fill:@drag-color;
+            pointer-events: all;
+            cursor: move;
         }
     }
 }

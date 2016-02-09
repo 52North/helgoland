@@ -14,22 +14,67 @@ angular.module('n52.core.combiMobile', [])
                                 }
                             };
                             $scope.geojson = combinedSrvc.geojson;
-                            $scope.selection = combinedSrvc.selection;
+                            $scope.highlight = combinedSrvc.highlight;
+                            $scope.selectedSection = combinedSrvc.selectedSection;
+                            $scope.paths = {
+                                section: {
+                                    color: 'blue',
+                                    weight: 4,
+                                    latlngs: []
+                                }
+                            };
 
-                            $scope.$watch('selection', function (selection) {
-                                console.info(selection.latlng);
-                                if (selection.latlng) {
-                                    drawMapMarker(selection.latlng, selection.altitude);
+                            $scope.$watch('geojson', function (geojson) {
+                                if (geojson && geojson.data && geojson.data.features[0].geometry.coordinates) {
+                                    centerMap();
+                                }
+                            }, true);
+
+                            $scope.$watch('highlight', function (hl) {
+                                if (hl.latlng) {
+                                    drawMapMarker(hl.latlng, hl.altitude);
                                 } else {
                                     hideMapMarker();
                                 }
                             }, true);
 
+                            $scope.$watchCollection('selectedSection', function (selection) {
+                                if (selection && selection.values && selection.values.length > 0) {
+                                    $scope.paths.section.latlngs = [];
+                                    var ll = [];
+                                    angular.forEach(selection.values, function (value) {
+                                        $scope.paths.section.latlngs.push({
+                                            lat: value.latlng.lat,
+                                            lng: value.latlng.lng
+                                        });
+                                        ll.push(value.latlng);
+                                    });
+                                    leafletData.getMap('mobileCombiMap').then(function (map) {
+                                        map.fitBounds(ll);
+                                    });
+                                } else {
+                                    centerMap();
+                                    $scope.paths.section.latlngs = [];
+                                }
+                            }, true);
+
                             $scope.$on('leafletDirectiveGeoJson.mobileCombiMap.mouseover', function (event, path) {
                                 if (path && path.leafletEvent && path.leafletEvent.latlng) {
-                                    combinedSrvc.showSelectedItem(path.leafletEvent.latlng);
+                                    combinedSrvc.showHighlightedItem(path.leafletEvent.latlng);
                                 }
                             });
+
+                            var centerMap = function () {
+                                if ($scope.geojson && $scope.geojson.data) {
+                                    leafletData.getMap('mobileCombiMap').then(function (map) {
+                                        var latlngs = [];
+                                        angular.forEach($scope.geojson.data.features[0].geometry.coordinates, function (coords) {
+                                            latlngs.push(L.GeoJSON.coordsToLatLng(coords));
+                                        });
+                                        map.fitBounds(latlngs);
+                                    });
+                                }
+                            };
 
                             function drawMapMarker(point, value) {
                                 leafletData.getMap('mobileCombiMap').then(function (map) {
@@ -79,7 +124,7 @@ angular.module('n52.core.combiMobile', [])
                     restrict: 'EA',
                     link: function (scope, elem, attrs) {
                         scope.data = combinedSrvc.data;
-                        scope.selection = combinedSrvc.selection;
+                        scope.highlight = combinedSrvc.highlight;
 
                         var margin = {
                             top: 10,
@@ -90,7 +135,8 @@ angular.module('n52.core.combiMobile', [])
                         var background,
                                 pathClass = "path",
                                 xScale, yScale, xAxisGen, yAxisGen, lineFun,
-                                focusG, highlightFocus, focuslabelX, focuslabelY;
+                                focusG, highlightFocus, focuslabelX, focuslabelY,
+                                dragging, dragStart, dragCurrent, dragRect, dragRectG;
 
                         var d3 = $window.d3;
 
@@ -113,10 +159,9 @@ angular.module('n52.core.combiMobile', [])
                             }
                         });
 
-                        scope.$watchCollection('selection', function (newVal, oldVal) {
-                            console.info(scope.selection.altitude);
-                            if (scope.selection.xDiagCoord) {
-                                showDiagramIndicator(scope.selection, scope.selection.xDiagCoord);
+                        scope.$watchCollection('highlight', function () {
+                            if (scope.highlight.xDiagCoord) {
+                                showDiagramIndicator(scope.highlight, scope.highlight.xDiagCoord);
                             }
                         });
 
@@ -176,7 +221,7 @@ angular.module('n52.core.combiMobile', [])
                             graph.append("svg:g")
                                     .attr("class", "y axis")
                                     .call(yAxisGen);
-                            
+
                             graph.append("svg:path")
                                     .attr({
                                         d: lineFun(scope.data.values),
@@ -194,9 +239,10 @@ angular.module('n52.core.combiMobile', [])
                                         "pointer-events": "all"
                                     })
                                     .on("mousemove.focus", mousemoveHandler)
-                                    .on("mouseout.focus", mouseoutHandler);
-//                                    .on("mousedown.drag", dragStartHandler)
-//                                    .on("mousemove.drag", dragHandler);
+                                    .on("mouseout.focus", mouseoutHandler)
+                                    .on("mousedown.drag", dragStartHandler)
+                                    .on("mousemove.drag", dragHandler)
+                                    .on("mouseup.drag", dragEndHandler);
 
                             focusG = graph.append("g");
                             highlightFocus = focusG.append('svg:line')
@@ -218,14 +264,76 @@ angular.module('n52.core.combiMobile', [])
                                 return;
                             }
                             var coords = d3.mouse(background.node());
-                            combinedSrvc.selectByIdx(getItemForX(coords[0]));
+                            combinedSrvc.highlightByIdx(getItemForX(coords[0]));
                             scope.$apply();
                         }
 
                         function mouseoutHandler() {
                             hideDiagramIndicator();
                         }
-                        
+
+                        function dragStartHandler() {
+                            d3.event.preventDefault();
+                            d3.event.stopPropagation();
+                            dragging = false;
+                            dragStart = d3.mouse(background.node());
+                        }
+
+                        function dragHandler() {
+                            d3.event.preventDefault();
+                            d3.event.stopPropagation();
+                            dragging = true;
+                            drawDragRectangle();
+                        }
+
+                        function dragEndHandler() {
+                            if (!dragStart || !dragging) {
+                                dragStart = null;
+                                dragging = false;
+                                resetDrag();
+                            } else {
+                                combinedSrvc.setSelection(getItemForX(dragStart[0]), getItemForX(dragCurrent[0]));
+                                dragStart = null;
+                                dragging = false;
+                            }
+                            scope.$apply();
+                        }
+
+                        function drawDragRectangle() {
+                            if (!dragStart) {
+                                return;
+                            }
+
+                            var dragEndCoords = dragCurrent = d3.mouse(background.node());
+
+                            var x1 = Math.min(dragStart[0], dragEndCoords[0]),
+                                    x2 = Math.max(dragStart[0], dragEndCoords[0]);
+
+                            if (!dragRect && !dragRectG) {
+
+                                dragRectG = graph.append("g");
+
+                                dragRect = dragRectG.append("rect")
+                                        .attr("width", x2 - x1)
+                                        .attr("height", height())
+                                        .attr("x", x1)
+                                        .attr('class', 'mouse-drag')
+                                        .style("pointer-events", "none");
+                            } else {
+                                dragRect.attr("width", x2 - x1)
+                                        .attr("x", x1);
+                            }
+                        }
+
+                        function resetDrag() {
+                            combinedSrvc.resetSelection();
+                            if (dragRectG !== null) {
+                                dragRectG.remove();
+                                dragRectG = null;
+                                dragRect = null;
+                            }
+                        }
+
                         function getItemForX(x) {
                             var bisect = d3.bisector(function (d) {
                                 return d.dist;
@@ -248,11 +356,8 @@ angular.module('n52.core.combiMobile', [])
 
                             var alt = item.altitude,
                                     dist = item.dist,
-                                    ll = item.latlng,
                                     numY = alt,
                                     numX = dist;
-//                                    numY = opts.hoverNumber.formatter(alt, opts.hoverNumber.decimalsY),
-//                                    numX = opts.hoverNumber.formatter(dist, opts.hoverNumber.decimalsX);
 
                             focuslabelX
                                     .attr("x", xCoordinate + 2)
@@ -266,9 +371,12 @@ angular.module('n52.core.combiMobile', [])
                     }
                 };
             }])
-        .factory('combinedSrvc', ['$http', 'leafletData',
-            function ($http, leafletData) {
-                var selection = {};
+        .factory('combinedSrvc', ['$http',
+            function ($http) {
+                var highlight = {};
+                var selectedSection = {
+                    values: []
+                };
                 var geojson = {
                     style: {
                         weight: 2,
@@ -289,7 +397,6 @@ angular.module('n52.core.combiMobile', [])
 
                 $http.get('js/combinedMobile/nuerburgRing.json').then(function (response) {
                     geojson.data = response.data;
-                    centerMap();
                     createData(getCoords(geojson.data));
                 });
 
@@ -327,17 +434,6 @@ angular.module('n52.core.combiMobile', [])
                     }
                 };
 
-                var centerMap = function () {
-                    leafletData.getMap('mobileCombiMap').then(function (map) {
-                        var latlngs = [];
-                        for (var i in geojson.data.features[0].geometry.coordinates) {
-                            var points = geojson.data.features[0].geometry.coordinates[i];
-                            latlngs.push(L.GeoJSON.coordsToLatLng(points));
-                        }
-                        map.fitBounds(latlngs);
-                    });
-                };
-
                 var findItemForLatLng = function (latlng) {
                     var result = null,
                             d = Infinity;
@@ -351,18 +447,31 @@ angular.module('n52.core.combiMobile', [])
                     return result;
                 };
 
-                var selectByIdx = function (idx) {
-                    angular.extend(selection, data.values[idx]);
+                var highlightByIdx = function (idx) {
+                    angular.extend(highlight, data.values[idx]);
                 };
 
-                var showSelectedItem = function (latlng) {
-                    angular.extend(selection, findItemForLatLng(latlng));
+                var showHighlightedItem = function (latlng) {
+                    angular.extend(highlight, findItemForLatLng(latlng));
+                };
+
+                var setSelection = function (startIdx, endIdx) {
+                    var start = Math.min(startIdx, endIdx),
+                            end = Math.max(startIdx, endIdx);
+                    selectedSection.values = data.values.slice(start, end);
+                };
+
+                var resetSelection = function () {
+                    selectedSection.values = [];
                 };
 
                 return {
-                    showSelectedItem: showSelectedItem,
-                    selectByIdx: selectByIdx,
-                    selection: selection,
+                    showHighlightedItem: showHighlightedItem,
+                    highlightByIdx: highlightByIdx,
+                    setSelection: setSelection,
+                    resetSelection: resetSelection,
+                    selectedSection: selectedSection,
+                    highlight: highlight,
                     geojson: geojson,
                     data: data
                 };

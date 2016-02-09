@@ -24,8 +24,9 @@
   stroke-width: 1px;
   stroke: black;
 }
-.combi-mobile .map path,
-.combi-mobile .chart path {
-  stroke: red;
-  stroke-width: 2px;
+.combi-mobile .map .mouse-drag,
+.combi-mobile .chart .mouse-drag {
+  fill: rgba(0, 0, 255, 0.4);
+  pointer-events: all;
+  cursor: move;
 }
