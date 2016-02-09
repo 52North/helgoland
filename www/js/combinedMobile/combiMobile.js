@@ -8,7 +8,6 @@ angular.module('n52.core.combiMobile', [])
                     controller: ['$scope', 'combinedSrvc', 'leafletData',
                         function ($scope, combinedSrvc, leafletData) {
                             var mouseHeightFocus, mouseHeightFocusLabel, pointG;
-
                             $scope.events = {
                                 geojson: {
                                     enable: ['mouseover']
@@ -36,40 +35,21 @@ angular.module('n52.core.combiMobile', [])
                                 leafletData.getMap('mobileCombiMap').then(function (map) {
                                     var layerpoint = map.latLngToLayerPoint(point);
 
-                                    var opts = {
-                                        "theme": "test"
-                                    };
-
-                                    if (!mouseHeightFocus) {
-                                        var heightG = d3.select(".leaflet-overlay-pane svg")
+                                    if (!pointG) {
+                                        var g = d3.select(".leaflet-overlay-pane svg")
                                                 .append("g");
-                                        mouseHeightFocus = heightG.append('svg:line')
-                                                .attr("class", " height-focus line")
-                                                .attr("x2", 0)
-                                                .attr("y2", 0)
-                                                .attr("x1", 0)
-                                                .attr("y1", 0);
 
-                                        pointG = heightG.append("g");
+                                        pointG = g.append("g");
                                         pointG.append("svg:circle")
                                                 .attr("r", 6)
                                                 .attr("cx", 0)
                                                 .attr("cy", 0)
-                                                .attr("class", opts.theme + " height-focus circle-lower");
+                                                .attr("class", "height-focus circle-lower");
 
-                                        mouseHeightFocusLabel = heightG.append("svg:text")
-                                                .attr("class", opts.theme + " height-focus-label")
+                                        mouseHeightFocusLabel = g.append("svg:text")
+                                                .attr("class", "height-focus-label")
                                                 .style("pointer-events", "none");
                                     }
-
-//                                    var normalizedAlt = 200 / scope.data.elevation.max * value;
-//                                    var normalizedY = layerpoint.y - normalizedAlt;
-                                    mouseHeightFocus.attr("x1", layerpoint.x)
-                                            .attr("x2", layerpoint.x)
-                                            .attr("y1", layerpoint.y)
-//                                            .attr("y2", normalizedY)
-                                            .style("visibility", "visible");
-
                                     pointG.attr("transform", "translate(" + layerpoint.x + "," + layerpoint.y + ")")
                                             .style("visibility", "visible");
 
@@ -196,7 +176,7 @@ angular.module('n52.core.combiMobile', [])
                             graph.append("svg:g")
                                     .attr("class", "y axis")
                                     .call(yAxisGen);
-
+                            
                             graph.append("svg:path")
                                     .attr({
                                         d: lineFun(scope.data.values),
@@ -242,16 +222,16 @@ angular.module('n52.core.combiMobile', [])
                             scope.$apply();
                         }
 
+                        function mouseoutHandler() {
+                            hideDiagramIndicator();
+                        }
+                        
                         function getItemForX(x) {
                             var bisect = d3.bisector(function (d) {
                                 return d.dist;
                             }).left;
                             var xinvert = xScale.invert(x);
                             return bisect(scope.data.values, xinvert);
-                        }
-
-                        function mouseoutHandler() {
-                            hideDiagramIndicator();
                         }
 
                         function hideDiagramIndicator() {
@@ -286,8 +266,8 @@ angular.module('n52.core.combiMobile', [])
                     }
                 };
             }])
-        .factory('combinedSrvc', ['$http', 'leafletData', '$interval',
-            function ($http, leafletData, $interval) {
+        .factory('combinedSrvc', ['$http', 'leafletData',
+            function ($http, leafletData) {
                 var selection = {};
                 var geojson = {
                     style: {
@@ -306,6 +286,7 @@ angular.module('n52.core.combiMobile', [])
                     },
                     dist: 0
                 };
+
                 $http.get('js/combinedMobile/nuerburgRing.json').then(function (response) {
                     geojson.data = response.data;
                     centerMap();
