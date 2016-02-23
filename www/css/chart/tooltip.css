@@ -1,0 +1,10 @@
+/* colors */
+/* mobile */
+#tooltip {
+  position: absolute;
+  display: none;
+  padding: 1px;
+  background-color: #66c5e4;
+  color: #626250;
+  z-index: 9999;
+}
