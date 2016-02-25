@@ -5,6 +5,7 @@
 }
 .diagram .axisTarget:hover {
   background-color: #bde6f3;
+  opacity: 0.4;
 }
 .diagram .axisTarget.selected {
   background-color: #66c5e4;
