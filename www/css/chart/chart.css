@@ -37,3 +37,8 @@
   right: 15px;
   color: red;
 }
+.empty-diagram {
+  text-align: center;
+  font-size: 20px;
+  padding: 50px;
+}

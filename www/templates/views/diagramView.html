@@ -1,6 +1,12 @@
 <div class="swc-page swc-page-current" id="chart-page">
-    <div class="container-fluid content">
-        <div class="row fullHeight">
+    <div class="container-fluid content" ng-controller="SwcTimeseriesCtrl">
+        <div ng-if="!hasTimeseries()">
+            <div class="empty-diagram">
+                <span translate="chart.noTimeseriesSelected"></span>
+            </div>
+        </div>
+        <div class="row fullHeight"
+             ng-if="hasTimeseries()">
             <div class="col-xs-12 col-sm-8 col-lg-9 fullHeight">
                 <div class="visible-xs leftPanelButton" ng-controller="SwcLegendButtonCtrl">
                     <button type="button" class="btn btn-primary btn-xs" 
