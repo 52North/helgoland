@@ -8,16 +8,16 @@
   border-radius: 8px;
   margin: 3px 0px 3px 0px;
   word-break: break-all;
-  color: #626250;
+  color: #004890;
 }
 .phenomena .item:hover {
-  background-color: #bde6f3;
-  color: #626250;
+  background-color: #ff9f00;
+  color: #004890;
   cursor: pointer;
 }
 .phenomena .item.selected {
-  background-color: #66c5e4;
-  color: #626250;
+  background-color: #004890;
+  color: #ffffff;
 }
 .phenomena .phenomena-list {
   margin-top: 30px;

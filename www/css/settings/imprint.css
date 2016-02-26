@@ -1,0 +1,10 @@
+/* colors */
+/* mobile */
+.eu-logo {
+  width: 81px;
+  background: url('../../images/set_nexos_new2.svg') -580px -12px;
+  background-size: 1120px;
+  display: block;
+  height: 55px;
+  margin: 20px auto 20px auto;
+}
