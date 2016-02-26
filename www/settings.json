@@ -3,34 +3,54 @@
     "commonLineWidth": 1,
     "undefinedUomString": "-",
     "restApiUrls": {
-        "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
-        "http://sosrest.irceline.be/api/v1/": "irceline",
-        "http://geo.irceline.be/sos/api/v1/": "ircelineNew",
-        "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-        "http://sensors.geonovum.nl/sos/api/v1/": "geonovum",
         "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
-        "http://insitu.webservice-energy.org/52n-sos-webapp/api/v1/": "minesParistech"
+        "http://nexos.dev.52north.org/proxy/api/v1/": "trios",
+        "http://esonet.epsevg.upc.es:8082/obsea-sos-webapp/api/v1/": "esonet"
     },
     "defaultProvider": {
-        "serviceID": "srv_3dec8ce040d9506c5aba685c9d134156",
-        "url": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+        "serviceID": "1",
+        "url": "http://esonet.epsevg.upc.es:8082/obsea-sos-webapp/api/v1/"
     },
     "chartOptions": {
         "yaxis": {
             "tickDecimals": 2
         }
     },
-    "supportedLanguages": [{
+    "supportedLanguages": [
+        {
             "code": "de",
             "label": "Deutsch"
-        }, {
+        },
+        {
             "code": "en",
             "label": "English"
         }
     ],
     "selectColorFromList": true,
-    "colorList": ["#078D53", "#00F3FF", "#0043FF", "#E22985", "#8D00A9", "#FF783D", "#AD3500", "#FFCB00", "#927711", "#53EA42"],
-    "refColorList": ["#668B7B", "#A6D5D7", "#7C90C8", "#D48DB0", "#84518E", "#DA9B7F", "#9D7D6F", "#D7C57E", "#BAA760", "#A1BE9D"],
+    "colorList": [
+        "#078D53",
+        "#00F3FF",
+        "#0043FF",
+        "#E22985",
+        "#8D00A9",
+        "#FF783D",
+        "#AD3500",
+        "#FFCB00",
+        "#927711",
+        "#53EA42"
+    ],
+    "refColorList": [
+        "#668B7B",
+        "#A6D5D7",
+        "#7C90C8",
+        "#D48DB0",
+        "#84518E",
+        "#DA9B7F",
+        "#9D7D6F",
+        "#D7C57E",
+        "#BAA760",
+        "#A1BE9D"
+    ],
     "baselayer": {
         "mapbox": {
             "name": "Mapbox",
@@ -53,7 +73,11 @@
             "type": "xyz",
             "url": "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
             "layerOptions": {
-                "subdomains": ["a", "b", "c"],
+                "subdomains": [
+                    "a",
+                    "b",
+                    "c"
+                ],
                 "attribution": "&copy; <a href='http://www.opencyclemap.org/copyright'>OpenCycleMap</a> contributors - &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
                 "continuousWorld": true
             }
