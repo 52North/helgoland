@@ -2,6 +2,7 @@
     "selectedLineWidth": 4,
     "commonLineWidth": 1,
     "undefinedUomString": "-",
+    "saveStatus": true,
     "restApiUrls": {
         "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
         "http://nexos.dev.52north.org/proxy/api/v1/": "trios",
