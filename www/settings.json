@@ -99,5 +99,6 @@
             "group": "Raster"
         }
     },
-    "showScale": true
+    "showScale": true,
+    "refreshDataInterval": 5000
 }
