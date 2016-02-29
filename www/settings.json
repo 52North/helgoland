@@ -2,6 +2,7 @@
     "selectedLineWidth": 4,
     "commonLineWidth": 1,
     "undefinedUomString": "-",
+    "saveStatus": true,
     "restApiUrls": {
         "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
         "http://sosrest.irceline.be/api/v1/": "irceline",
