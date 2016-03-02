@@ -8,9 +8,9 @@
   border-width: 0px;
 }
 .map-control a {
-  color: #626250;
+  color: #444433;
 }
 .map-control:hover {
-  background-color: #bde6f3;
+  background-color: #dadada;
   opacity: 1;
 }

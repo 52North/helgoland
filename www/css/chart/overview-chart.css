@@ -27,7 +27,7 @@
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+0&0.65+0,0.65+0,0.65+0,0.65+4,0.65+4,0.65+5,0.65+5,0.65+9,0.65+11,0+73 */
   /*background: -moz-radial-gradient(center, cirle,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 4%, rgba(0,0,0,0.65) 5%, rgba(0,0,0,0.65) 9%, rgba(0,0,0,0.65) 11%, rgba(0,0,0,0) 73%);  FF3.6-15 */
   /*background: -webkit-radial-gradient(center, circle,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 4%,rgba(0,0,0,0.65) 5%,rgba(0,0,0,0.65) 9%,rgba(0,0,0,0.65) 11%,rgba(0,0,0,0) 73%);  Chrome10-25,Safari5.1-6 */
-  background: radial-gradient(#66c5e4 0%, rgba(102, 197, 228, 0) 60%);
+  background: radial-gradient(#dadada 0%, rgba(218, 218, 218, 0) 60%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 );  IE6-9 fallback on horizontal gradient */
 }
@@ -39,7 +39,7 @@
   top: 50%;
   left: 50%;
   margin: -15px 0 0 -15px;
-  color: #626250;
+  color: #444433;
 }
 #overviewChart flot {
   position: absolute;

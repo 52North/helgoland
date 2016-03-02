@@ -16,7 +16,7 @@
 }
 .permalink .item:hover {
   cursor: pointer;
-  background-color: #bde6f3;
+  background-color: #dadada;
 }
 .permalink .item + .item {
   margin-top: 8px;

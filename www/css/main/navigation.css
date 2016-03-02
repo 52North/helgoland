@@ -2,11 +2,11 @@
 /* mobile */
 .navbar-default {
   border-color: white;
-  background-color: #626250;
+  background-color: #f1f1f1;
 }
 .navbar-default .navbar-header .navbar-brand {
   cursor: default;
-  color: white;
+  color: #444433;
 }
 .navbar-default .navbar-header .navbar-header-text {
   margin-left: 10px;
@@ -16,28 +16,52 @@
   margin-right: 10px;
 }
 .navbar-default .navbar-nav > li > a {
-  color: white;
+  color: #444433;
 }
 .navbar-default .navbar-nav > li > a:hover {
-  color: white;
-  background-color: #66c5e4;
+  color: #444433;
+  background-color: #dadada;
   cursor: pointer;
 }
 .navbar-default .navbar-nav > .active > a {
-  color: white;
-  background-color: #66c5e4;
+  color: #444433;
+  background-color: #dadada;
 }
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: white;
-  background-color: #66c5e4;
+  color: #444433;
+  background-color: #dadada;
 }
 .navbar-default .navbar-toggle {
   border: none;
-  background-color: white;
+  background-color: #444433;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus,
 .navbar-default .navbar-toggle collapsed {
-  background-color: white;
+  background-color: #444433;
+}
+@media screen and (min-width: 768px) {
+  .navbar-header {
+    float: none;
+    background-color: white;
+  }
+  .navbar-header .navbar-brand {
+    cursor: default;
+    color: #444433;
+    background: url('../images/Logo_En.png') no-repeat;
+    width: 362px;
+    height: 150px;
+    background-size: contain;
+  }
+}
+@media screen and (max-width: 767px) {
+  .navbar-default {
+    background-color: white;
+  }
+  .navbar-default .navbar-header .navbar-brand {
+    background: url('../images/Logo_En.png') no-repeat;
+    width: 120px;
+    background-size: contain;
+  }
 }

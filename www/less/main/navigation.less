@@ -49,3 +49,31 @@
         }
     }
 }
+
+@media screen and (min-width: (@responsive-mobile-width)) {
+    .navbar-header {
+        float: none;
+        background-color: white;
+        .navbar-brand {
+            cursor: default;
+            color: @menu-text-color;
+            background: url('../@{image-path}Logo_En.png') no-repeat;
+            width: 362px;
+            height: 150px;
+            background-size: contain;
+        }
+    }
+}
+
+@media screen and (max-width: (@responsive-mobile-width - 1)) {
+    .navbar-default {
+        background-color: white;
+        .navbar-header {
+            .navbar-brand {
+                background: url('../@{image-path}Logo_En.png') no-repeat;
+                width: 120px;
+                background-size: contain;
+            }
+        }
+    }
+}

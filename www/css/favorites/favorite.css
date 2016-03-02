@@ -24,21 +24,21 @@
   overflow: auto;
 }
 .favorites .favorite-container {
-  color: #626250;
+  color: #444433;
   padding: 5px;
 }
 .favorites .favorite-container .favorite-entry {
-  border: 1px solid #626250;
+  border: 1px solid #444433;
   word-break: break-all;
 }
 .favorites .favorite-container .favorite-entry:hover {
   cursor: pointer;
-  background-color: #bde6f3;
+  background-color: #dadada;
 }
 .favorites .favorite-container .favorite-entry .favorite-header {
   padding: 5px;
   font-size: 120%;
-  background-color: rgba(102, 197, 228, 0.5);
+  background-color: rgba(218, 218, 218, 0.5);
 }
 .favorites .favorite-container .favorite-entry .favorite-header .header-label {
   overflow: hidden;
@@ -60,7 +60,7 @@
   margin: 5px;
 }
 .favorites .favorite-container .favorite-entry .favorite-body-entry + .favorite-body-entry {
-  border-top: 1px solid rgba(98, 98, 80, 0.3);
+  border-top: 1px solid rgba(68, 68, 51, 0.3);
   padding-top: 5px;
 }
 .import-export-btns {

@@ -1,12 +1,17 @@
 /* colors */
-@color-primary: rgba(102, 197, 228, 1.0);
-@color-secondary: rgba(98, 98, 80, 1.0);
-@color-red: red; 
+@color-grey: rgb(241, 241, 241);
+@color-blue: rgb(10, 97, 166);
+@color-selected-grey: rgb(218, 218, 218);
+@color-black-text: rgb(68, 68, 51);
 
-@text-color: @color-secondary;
+@color-primary: @color-selected-grey;
+@color-secondary: @text-color;
+@color-red: red;
+
+@text-color: @color-black-text;
 @text-color-on-secondary-background: white;
 
-@hover-background-color: lighten(@color-primary, 20%);
+@hover-background-color: @color-selected-grey;
 @hover-color: @color-secondary;
 
 @selection-background-color: @color-primary;
@@ -15,10 +20,10 @@
 @color-chart-annotation: @color-red;
 
 // main menu
-@menu-selected-background-color: @color-primary;
-@menu-selected-text-color: white;
-@menu-background-color: @color-secondary;
-@menu-text-color: white;
+@menu-selected-background-color: @color-selected-grey;
+@menu-selected-text-color: @color-black-text;
+@menu-background-color: @color-grey;
+@menu-text-color: @color-black-text;
 
 /* mobile */
 @responsive-mobile-width: 768px;

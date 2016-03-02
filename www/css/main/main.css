@@ -39,6 +39,11 @@ html,
   height: 100%;
   padding-top: 53px;
 }
+@media screen and (min-width: 768px) {
+  .content {
+    padding-top: 200px;
+  }
+}
 .leftPanelButton {
   position: absolute;
   z-index: 10000;
