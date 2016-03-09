@@ -13,6 +13,7 @@
         "angular-resource": "~1.x",
         "angular-translate": "~2.7.2",
         "angular-bootstrap": "~0.14.0",
+        "angular-sanitize": "^1.5.0",
         "angular-translate-loader-static-files": "~2.7.2",
         "bootstrap": "~3.3.5",
         "ui-leaflet": "~1.0.0",
@@ -30,7 +31,6 @@
         "n52-sensorweb-client-core": "52North/sensorweb-client-core"
     },
     "resolutions": {
-        "angular": "1.4.3",
-        "bootstrap": "~3.3.5"
+        "angular": "1.5.0"
     }
 }

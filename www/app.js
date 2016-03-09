@@ -5,6 +5,7 @@ var mainApp = angular.module('jsClient', [
     'LocalStorageModule',
     'ui-leaflet',
     'pascalprecht.translate',
+    'ngSanitize',
     'ngTable',
     'ngResource',
     'n52.core.alert',
@@ -111,6 +112,7 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($tran
         });
         $translateProvider.registerAvailableLanguageKeys(suppLang);
         $translateProvider.determinePreferredLanguage();
+        $translateProvider.useSanitizeValueStrategy('sanitize');        
     }]);
 
 mainApp.filter('objectCount', function () {
