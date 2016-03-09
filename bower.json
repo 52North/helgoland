@@ -31,6 +31,7 @@
     "n52-sensorweb-client-core": "52North/sensorweb-client-core"
   },
   "resolutions": {
-    "angular": "1.5.0"
+    "angular": "1.5.0",
+    "angular-translate": "~2.10.0"
   }
 }
