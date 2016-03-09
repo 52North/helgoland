@@ -112,7 +112,11 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($tran
         });
         $translateProvider.registerAvailableLanguageKeys(suppLang);
         $translateProvider.determinePreferredLanguage();
-        $translateProvider.useSanitizeValueStrategy('sanitize');        
+        if ($translateProvider.preferredLanguage() === '' 
+                || suppLang.indexOf($translateProvider.preferredLanguage()) === -1) {
+            $translateProvider.preferredLanguage('en');
+        }
+        $translateProvider.useSanitizeValueStrategy('sanitize');
     }]);
 
 mainApp.filter('objectCount', function () {
