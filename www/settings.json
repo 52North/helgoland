@@ -4,7 +4,8 @@
     "undefinedUomString": "-",
     "saveStatus": true,
     "restApiUrls": {
-        "http://nexos.dev.52north.org/proxy/api/v1/": "nexos"
+        "http://nexos.dev.52north.org/proxy/api/v1/": "nexos",
+        "http://www.fluggs.de/sos2/api/v1/": "fluggs"
     },
     "defaultProvider": {
         "serviceID": "srv_e53ced203ab2f0b4652a1a288d66a1df",

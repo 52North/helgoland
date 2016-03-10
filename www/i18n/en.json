@@ -260,5 +260,10 @@
     "inform": {
         "error": "An error occured: ",
         "warn": "Please remember that: "
+    },
+    "metadataOutput": {
+        "selectRawProcedureFormat": "Select raw format for procedure",
+        "selectTimeseriesDataFormat" : "Select raw format for timeseries data",
+        "showCapabilities": "Show Capabilities of the SOS"
     }
 }

@@ -39,6 +39,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.rawDataOutput',
     'n52.core.userSettings',
     'n52.core.settings',
+    'n52.core.sosMetadata',
     'n52.core.startup',
     'n52.core.status',
     'n52.core.style',

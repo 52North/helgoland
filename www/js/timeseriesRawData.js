@@ -15,7 +15,7 @@ angular.module('n52.core.rawDataOutput', [])
                 $scope.formatsList = [];
 
                 $scope.select = function (choice) {
-                    var timespan = timeService.getCurrentTimespan();
+                    var timespan = timeService.time;
                     var timespanString = utils.createRequestTimespan(timespan.start, timespan.end);
                     var url = $scope.timeseries.apiUrl + "timeseries/" + $scope.timeseries.id + "/getData?rawFormat=" + choice + "&timespan=" + encodeURIComponent(timespanString);
                     $window.open(url);
