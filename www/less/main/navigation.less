@@ -1,16 +1,12 @@
 @import "../variables.less";
 
-@selected-background-color: @color-primary;
-@background-color: @color-secondary;
-@text-color: @text-color-on-secondary-background;
-
 .navbar-default {
-    border-color: none;
-    background-color: @background-color;
+    border-color: white;
+    background-color: @menu-background-color; 
     .navbar-header {
         .navbar-brand {
             cursor: default;
-            color: @text-color;
+            color: @menu-text-color;
         }
         .navbar-header-text {
             margin-left: 10px;
@@ -23,33 +19,33 @@
     .navbar-nav{
         &>li {
             &>a {
-                color: @text-color;
+                color: @menu-text-color;
                 &:hover{
-                    color: @text-color;
-                    background-color: @selected-background-color;
+                    color: @menu-selected-text-color;
+                    background-color: @menu-selected-background-color;
                     cursor: pointer;
                 }
             }
         }
         &>.active {
             &>a {
-                color: @text-color;
-                background-color: @selected-background-color;
+                color: @menu-selected-text-color;
+                background-color: @menu-selected-background-color;
                 &:hover,
                     &:focus {
-                    color: @text-color;
-                    background-color: @selected-background-color;
+                    color: @menu-selected-text-color;
+                    background-color: @menu-selected-background-color;
                 }
             }
         }
     }
     .navbar-toggle{
         border: none;
-        background-color: @text-color;
+        background-color: @menu-text-color;
         &:hover,
             &:focus,
             collapsed {
-            background-color: @text-color;
+            background-color: @menu-text-color;
         }
     }
 }

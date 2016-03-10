@@ -35,6 +35,7 @@
         <!-- start client style tags -->
         <link href="css/chart/chart.css" rel="stylesheet" type="text/css"/>
         <link href="css/chart/overview-chart.css" rel="stylesheet" type="text/css"/>
+        <link href="css/chart/tooltip.css" rel="stylesheet" type="text/css"/>
         <link href="css/controls/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css"/>
         <link href="css/controls/buttons.css" rel="stylesheet" type="text/css"/>
         <link href="css/controls/flags.css" rel="stylesheet" type="text/css"/>
@@ -73,6 +74,7 @@
         <script src="bower_components/angular-translate/angular-translate.js" type="text/javascript"></script>
         <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js" type="text/javascript"></script>
         <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js" type="text/javascript"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js" type="text/javascript"></script>
         <script src="bower_components/moment/min/moment.min.js" type="text/javascript"></script>
         <script src="bower_components/xhr-xdr-adapter/src/xhr-xdr-adapter.js" type="text/javascript"></script>
         <script src="bower_components/flot/jquery.flot.js" type="text/javascript"></script>
@@ -116,6 +118,7 @@
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/controller/zoomControlsCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/directives/locateStation.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/directives/modalStationOpener.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/Map/directives/stationLoading.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Phenomenon/phenomenaModule.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Phenomenon/controller/phenomenaButtonCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Phenomenon/controller/phenomenaCountCtrl.js" type="text/javascript"></script>
@@ -162,9 +165,13 @@
         <script src="bower_components/n52-sensorweb-client-core/src/js/Chart/controller/chartCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Chart/controller/noDataWarningCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Chart/controller/overviewChartCtrl.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/Chart/controller/timeseriesExistenceCtrl.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/Chart/controller/tooltip.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Chart/directives/flot.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/Chart/directives/reloadChartData.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Chart/directives/yAxisHideButton.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Chart/flotlib/jquery.flot.navigate.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/Chart/flotlib/jquery.flot.touch.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Favorite/favoriteModule.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Favorite/controller/addFavoriteCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Favorite/controller/addFavoriteGroupCtrl.js" type="text/javascript"></script>
@@ -233,10 +240,10 @@
         <script src="bower_components/n52-sensorweb-client-core/src/js/helper/modal.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/helper/controller/ie9Ctrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/helper/controller/mobile.js" type="text/javascript"></script>
-        <script src="bower_components/n52-sensorweb-client-core/src/js/helper/service/extendedGetTsData.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/helper/service/languageSetter.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/helper/service/logNotifier.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/helper/service/mapHelper.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js" type="text/javascript"></script>
         <!-- end core script tags -->
         <!-- /build -->
 

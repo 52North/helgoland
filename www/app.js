@@ -5,6 +5,7 @@ var mainApp = angular.module('jsClient', [
     'LocalStorageModule',
     'ui-leaflet',
     'pascalprecht.translate',
+    'ngSanitize',
     'ngTable',
     'ngResource',
     'n52.core.alert',
@@ -46,6 +47,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.time',
     'n52.core.timeUi',
     'n52.core.timeseries',
+    'n52.core.tooltip',
     'n52.core.translateSelector',
     'n52.core.utils',
     'n52.core.yAxisHide',
@@ -112,6 +114,11 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($tran
         });
         $translateProvider.registerAvailableLanguageKeys(suppLang);
         $translateProvider.determinePreferredLanguage();
+        if ($translateProvider.preferredLanguage() === '' 
+                || suppLang.indexOf($translateProvider.preferredLanguage()) === -1) {
+            $translateProvider.preferredLanguage('en');
+        }
+        $translateProvider.useSanitizeValueStrategy('sanitize');
     }]);
 
 mainApp.filter('objectCount', function () {

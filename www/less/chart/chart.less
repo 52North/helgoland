@@ -5,6 +5,7 @@
         cursor: pointer;
         &:hover {
             background-color: @hover-background-color;
+            opacity: 0.4;
         }
         &.selected {
             background-color: @selection-background-color;
@@ -38,4 +39,10 @@
         right: 15px;
         color: @color-chart-annotation;
     }
+}
+
+.empty-diagram {
+    text-align: center;
+    font-size: 20px;
+    padding: 50px;
 }

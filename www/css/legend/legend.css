@@ -24,6 +24,9 @@
 .legendItem .legendicons span:hover {
   cursor: pointer;
 }
+.legendItem .legendicons .delete {
+  z-index: 5;
+}
 .legendItem .noDataWarning {
   border: red solid 2px;
   border-radius: 5px;

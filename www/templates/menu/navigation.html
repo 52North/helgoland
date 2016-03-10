@@ -7,7 +7,7 @@
         </button>
         <a class="navbar-brand">Helgoland</a>
     </div>
-    <div class="collapse navbar-collapse" ng-class="{in: showMobileNav}">
+    <div class="collapse navbar-collapse" ng-class="{in: showMobileNav}" ng-click="showMobileNav = !showMobileNav">
         <ul class="nav navbar-nav">
             <li ng-repeat="route in routes" ng-class="{active: activeRoute(route)}">
                 <a ng-if="!route.modal" href="#{{route.path}}">{{route.name | translate}}</a>

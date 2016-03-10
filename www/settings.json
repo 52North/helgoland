@@ -1,6 +1,8 @@
 {
     "selectedLineWidth": 4,
     "commonLineWidth": 1,
+    "undefinedUomString": "-",
+    "saveStatus": true,
     "restApiUrls": {
         "http://nexos.dev.52north.org/proxy/api/v1/": "nexos"
     },
@@ -13,13 +15,40 @@
             "tickDecimals": 2
         }
     },
-    "supportedLanguages": [{
+    "supportedLanguages": [
+        {
             "code": "de",
             "label": "Deutsch"
-        }, {
+        },
+        {
             "code": "en",
-            "label": "english"
+            "label": "English"
         }
+    ],
+    "selectColorFromList": true,
+    "colorList": [
+        "#078D53",
+        "#00F3FF",
+        "#0043FF",
+        "#E22985",
+        "#8D00A9",
+        "#FF783D",
+        "#AD3500",
+        "#FFCB00",
+        "#927711",
+        "#53EA42"
+    ],
+    "refColorList": [
+        "#668B7B",
+        "#A6D5D7",
+        "#7C90C8",
+        "#D48DB0",
+        "#84518E",
+        "#DA9B7F",
+        "#9D7D6F",
+        "#D7C57E",
+        "#BAA760",
+        "#A1BE9D"
     ],
     "baselayer": {
         "mapbox": {
@@ -43,7 +72,11 @@
             "type": "xyz",
             "url": "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
             "layerOptions": {
-                "subdomains": ["a", "b", "c"],
+                "subdomains": [
+                    "a",
+                    "b",
+                    "c"
+                ],
                 "attribution": "&copy; <a href='http://www.opencyclemap.org/copyright'>OpenCycleMap</a> contributors - &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
                 "continuousWorld": true
             }

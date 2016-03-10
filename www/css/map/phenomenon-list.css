@@ -19,16 +19,19 @@
   background-color: #66c5e4;
   color: #626250;
 }
-.phenomena .phenomena-entry hr {
+.phenomena .phenomena-list {
+  margin-top: 30px;
+}
+.phenomena .phenomena-list hr {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.phenomena .phenomena-entry > a:nth-child(1) div {
+.phenomena .phenomena-list > a:nth-child(1) div {
   margin-top: 20px;
 }
-.phenomena .phenomena-entry .loadPhen .loading {
+.phenomena .phenomena-list .loadPhen .loading {
   display: inline;
 }
-.phenomena .phenomena-entry .loading {
+.phenomena .phenomena-list .loading {
   display: none;
 }
