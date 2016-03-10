@@ -1,0 +1,14 @@
+<div uib-dropdown dropdown-append-to-body 
+     ng-hide="formatsList.length === 0" 
+     ng-click="toggled($event)">
+    <a uib-dropdown-toggle y
+       id="raw-procedure-dropdown" 
+       translate="metadataOutput.selectRawProcedureFormat">
+    </a>
+    <ul uib-dropdown-menu aria-labelledby="raw-procedure-dropdown"
+        class="dropdown-menu-right">
+        <li ng-repeat="choice in formatsList">
+            <a ng-click="select(choice)">{{choice}}</a>
+        </li>
+    </ul>
+</div>

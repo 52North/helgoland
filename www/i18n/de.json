@@ -263,5 +263,10 @@
     "inform": {
         "error": "Ein Fehler ist aufgetreten: ",
         "warn": "Bitte beachten Sie: "
+    },
+    "metadataOutput": {
+        "selectRawProcedureFormat": "Procedure als Rohdata",
+        "selectTimeseriesDataFormat" : "Zeitreihendaten als Rohdaten",
+        "showCapabilities": "Zeige SOS-Capabilities"
     }
 }
