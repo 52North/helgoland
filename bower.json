@@ -28,7 +28,7 @@
     "smalot-bootstrap-datetimepicker": "2.3.4",
     "angular-ui-notification": "0.0.11",
     "qr-js": "1.1.3",
-    "n52-sensorweb-client-core": "52North/sensorweb-client-core"
+    "n52-sensorweb-client-core": "52North/sensorweb-client-core#develop"
   },
   "resolutions": {
     "angular": "1.5.0",
