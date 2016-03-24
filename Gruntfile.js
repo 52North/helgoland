@@ -108,6 +108,7 @@ module.exports = function (grunt) {
             'images/*',
             'css/images/*'
         ],
+        clean: ["dist/"],
         tags: {
             options: {
                 scriptTemplate: '<script src="{{ path }}" type="text/javascript"></script>',
@@ -284,13 +285,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-script-link-tags');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-war');
 
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('env-build', ['tags']);
-    grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
+    grunt.registerTask('default', ['clean', 'concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
 
     grunt.registerTask('buildWar', ['test', 'default', 'war']);
 };
