@@ -23,6 +23,7 @@ angular.module('n52.core.metadata')
                                     },
                                     controller: ['$scope', '$uibModalInstance', 'timeseries', '$http',
                                         function ($scope, $uibModalInstance, timeseries, $http) {
+                                            $scope.timeseries = timeseries;
                                             var procedureURL = timeseries.apiUrl + "procedures/" + timeseries.parameters.procedure.id + "?rawFormat=http://www.opengis.net/sensorml/2.0";
                                             $http.get(procedureURL).then(function (response) {
                                                 var xml = response.data;

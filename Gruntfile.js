@@ -106,7 +106,8 @@ module.exports = function (grunt) {
             'templates/**/*.html',
             'i18n/*.json',
             'images/*',
-            'css/images/*'
+            'css/images/*',
+            'xslt/**.*'
         ],
         tags: {
             options: {

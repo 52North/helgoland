@@ -6,22 +6,24 @@
     <xsl:output method="html"/>
     <xsl:template match="/">
         <div>
-            <h3>
+            <h4>
                 Keywords
-            </h3>
-            <ul>
+            </h4>
+            <table class="table table-hover">
                 <xsl:for-each select="sml:PhysicalComponent/sml:keywords/sml:KeywordList/sml:keyword">
-                    <li>
+                <tr>
+                    <td>
                         <xsl:value-of select="."/>
-                    </li>
+                    </td>
+                </tr>
                 </xsl:for-each>
-            </ul>
+            </table>
         </div>
         <div>
-            <h3>
+            <h4>
                 Identifier
-            </h3>
-            <table border="0">
+            </h4>
+            <table class="table table-hover">
                 <xsl:for-each select="sml:PhysicalComponent/sml:identification/sml:IdentifierList/sml:identifier">
                     <tr>
                         <td>
@@ -35,14 +37,14 @@
             </table>
         </div>
         <div>
-            <h3>
+            <h4>
                 Contact
-            </h3>
-            <table border="0">
+            </h4>
+            <table class="table table-hover">
                 <xsl:for-each select="sml:PhysicalComponent/sml:contacts/sml:ContactList/sml:contact">
                     <tr>
                         <td>
-                            Role: <xsl:value-of select="gmd:CI_ResponsibleParty/gmd:role"/>
+                            <xsl:value-of select="gmd:CI_ResponsibleParty/gmd:role"/>
                         </td>
                         <td>
                             <xsl:value-of select="gmd:CI_ResponsibleParty/gmd:organisationName"/>
@@ -55,9 +57,9 @@
             </table>
         </div>
         <div>
-            <h3>
+            <h4>
                 Description
-            </h3>
+            </h4>
             <xsl:element name="a">
                 <xsl:attribute name="href">
                     <xsl:value-of select="sml:PhysicalComponent/sml:documentation/sml:DocumentList/sml:document/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
