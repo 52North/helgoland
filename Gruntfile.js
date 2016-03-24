@@ -29,7 +29,8 @@ module.exports = function (grunt) {
             'www/bower_components/qr-js/qr.min.js',
             'www/bower_components/ui-leaflet/dist/ui-leaflet.js',
             'www/bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js',
-            'www/bower_components/ng-table/dist/ng-table.js'
+            'www/bower_components/ng-table/dist/ng-table.js',
+            'www/bower_components/xslt/dist/xslt.js'
         ],
         lib_ie9_scripts: [
             'www/bower_components/n52-sensorweb-client-core/src/js/IE9/*.js'
@@ -81,9 +82,9 @@ module.exports = function (grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/flotlib/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Output/directives/procedureMetadata.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Output/directives/sosUrl.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Output/directives/timeseriesRawData.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/procedureRawData.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/sosUrl.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/timeseriesRawData.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/parameterServices/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/**/*.js',
@@ -94,7 +95,8 @@ module.exports = function (grunt) {
         ],
         app_js: [
             'www/app.js',
-            'www/js/*.js'
+            'www/js/*.js',
+            'www/js/*/*.js'
         ],
         app_styles: [
             'www/css/*/*.css'
