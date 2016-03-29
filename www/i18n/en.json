@@ -88,6 +88,12 @@
             "lastValueAt": "Last value at"
         }
     },
+    "metadata": {
+        "procedure": {
+            "button": "Show sensor metadata",
+            "header": "Sensor metadata"
+        }
+    },
     "export": {
         "label": "Data as CSV (Zip Archive)"
     },

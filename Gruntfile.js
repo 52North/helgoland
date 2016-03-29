@@ -82,7 +82,9 @@ module.exports = function (grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/flotlib/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/controller/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/metadata.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/procedureRawData.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/procedureMetadata.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/sosUrl.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/timeseriesRawData.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/*.js',
@@ -106,7 +108,8 @@ module.exports = function (grunt) {
             'templates/**/*.html',
             'i18n/*.json',
             'images/*',
-            'css/images/*'
+            'css/images/*',
+            'xslt/**.*'
         ],
         clean: ["dist/"],
         tags: {

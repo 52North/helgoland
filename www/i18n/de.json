@@ -85,6 +85,12 @@
             "lastValueAt": "Letzter Wert bei"
         }
     },
+    "metadata": {
+        "procedure": {
+            "button": "Zeige Sensor-Metadaten",
+            "header": "Sensor-Metadaten"
+        }
+    },
     "export": {
         "label": "Daten als CSV (Zip-Archiv)"
     },

@@ -58,6 +58,7 @@
         <link href="css/map/search-control.css" rel="stylesheet" type="text/css"/>
         <link href="css/map/station-window.css" rel="stylesheet" type="text/css"/>
         <link href="css/map/zoom-control.css" rel="stylesheet" type="text/css"/>
+        <link href="css/metadata/procedure.css" rel="stylesheet" type="text/css"/>
         <link href="css/selectionList/selection-list.css" rel="stylesheet" type="text/css"/>
         <link href="css/settings/settings-window.css" rel="stylesheet" type="text/css"/>
         <link href="css/table/table.css" rel="stylesheet" type="text/css"/>
@@ -95,14 +96,6 @@
         <script src="bower_components/ng-table/dist/ng-table.js" type="text/javascript"></script>
         <script src="bower_components/xslt/dist/xslt.js" type="text/javascript"></script>
         <!-- end lib script tags -->
-        <!-- /build -->
-
-        <!-- build:js app.js -->
-        <!-- start client script tags -->
-        <script src="app.js" type="text/javascript"></script>
-        <script src="js/map.js" type="text/javascript"></script>
-        <script src="js/navigation.js" type="text/javascript"></script>
-        <!-- end client script tags -->
         <!-- /build -->
 
         <!-- build:remove -->
@@ -217,7 +210,9 @@
         <script src="bower_components/n52-sensorweb-client-core/src/js/Menu/menuModule.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Menu/controller/menuCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Menu/controller/toggleCtrl.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/Metadata/metadata.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/procedureRawData.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/procedureMetadata.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/sosUrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/timeseriesRawData.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/services/startup/startup.js" type="text/javascript"></script>
@@ -249,6 +244,14 @@
         <script src="bower_components/n52-sensorweb-client-core/src/js/helper/service/servicesHelper.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js" type="text/javascript"></script>
         <!-- end core script tags -->
+        <!-- /build -->
+        
+        <!-- build:js app.js -->
+        <!-- start client script tags -->
+        <script src="app.js" type="text/javascript"></script>
+        <script src="js/map.js" type="text/javascript"></script>
+        <script src="js/navigation.js" type="text/javascript"></script>
+        <!-- end client script tags -->
         <!-- /build -->
 
         <!--[if lte IE 10]>
