@@ -45,10 +45,11 @@
         "stations": "Stationen",
         "timeseries": "Zeitreihen",
         "phenomena": "Phänomene",
-        "selectAll": "Zeige alle Anbieter an"
+        "selectAll": "Selektiere alle Anbieter"
     },
     "map": {
         "userLocation": "Hier ist ihr Standort",
+        "loading": "Stationen werden geladen",
         "stationSelection": {
             "station": "Station",
             "selectAllTimeseries": "wähle alle Zeitreihen"
@@ -58,12 +59,6 @@
             "timeseries": "Zeitreihe",
             "provider": "Datenanbieter",
             "jumpBackToChart": "zurück zum Diagramm"
-        },
-        "providerList": {
-            "provider": "Datenanbieter",
-            "stations": "Stationen",
-            "timeseries": "Zeitreihen",
-            "phenomena": "Phänomene"
         },
         "search": {
             "label": "suche Addresse ...",

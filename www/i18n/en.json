@@ -43,8 +43,16 @@
     "table": {
         "time": "Time"
     },
+    "providerList": {
+        "provider": "Provider",
+        "stations": "Stations",
+        "timeseries": "Timeseries",
+        "phenomena": "Phenomena",
+        "selectAll": "Select all provider"
+    },
     "map": {
         "userLocation": "Here is your current location",
+        "loading": "Stations will be loaded",
         "stationSelection": {
             "station": "Station",
             "selectAllTimeseries": "select all timeseries"
@@ -54,13 +62,6 @@
             "timeseries": "Timeseries",
             "provider": "Provider",
             "jumpBackToChart": "back to chart"
-        },
-        "providerList": {
-            "provider": "Provider",
-            "stations": "Stations",
-            "timeseries": "Timeseries",
-            "phenomena": "Phenomena",
-            "selectAll": "Show all provider"
         },
         "search": {
             "label": "search for address ...",
@@ -263,7 +264,7 @@
     },
     "metadataOutput": {
         "selectRawProcedureFormat": "Select raw format for procedure",
-        "selectTimeseriesDataFormat" : "Select raw format for timeseries data",
+        "selectTimeseriesDataFormat": "Select raw format for timeseries data",
         "showCapabilities": "Show Capabilities of the SOS"
     }
 }
