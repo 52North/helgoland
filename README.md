@@ -1,5 +1,5 @@
 ## Content
-This is a frontend component of the repository [sensorweb-client-core] (https://github.com/52North/sensorweb-client-core). 
+This is a frontend component of the repository [sensorweb-client-core](https://github.com/52North/sensorweb-client-core). 
 
 It comprise:
 
@@ -10,9 +10,9 @@ It comprise:
 ## Requirements to develop or build the client
 
 * git
-* [nodejs] (https://nodejs.org)
-* [npm] (https://www.npmjs.com/)
-* [grunt] (http://gruntjs.com/)
+* [nodejs](https://nodejs.org)
+* [npm](https://www.npmjs.com/)
+* [grunt](http://gruntjs.com/)
 
 ## Get ready to start
 
@@ -29,11 +29,11 @@ It comprise:
 
 ### How to develop
 
-See [here] (https://github.com/52North/sensorweb-client-core#how-to-develop) for more informations.
+See [here](https://github.com/52North/sensorweb-client-core#how-to-develop) for more informations.
 
 ## Configuration
 
-See [here] (https://github.com/52North/sensorweb-client-core#configuration) 
+See [here](https://github.com/52North/sensorweb-client-core#configuration) 
 
 ## License
 
