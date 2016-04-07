@@ -47,6 +47,7 @@ module.exports = function (grunt) {
         ],
         core_scripts: [
             'www/bower_components/n52-sensorweb-client-core/src/js/Map/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Map/markerRenderer/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Map/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Map/directives/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Phenomenon/*.js',
