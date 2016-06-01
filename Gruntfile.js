@@ -12,6 +12,7 @@ module.exports = function (grunt) {
             'www/bower_components/angular-translate/angular-translate.js',
             'www/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
             'www/bower_components/angular-simple-logger/dist/angular-simple-logger.js',
+            'www/bower_components/angular-sanitize/angular-sanitize.js',
             'www/bower_components/moment/min/moment.min.js',
             'www/bower_components/xhr-xdr-adapter/src/xhr-xdr-adapter.js',
             'www/bower_components/flot/jquery.flot.js',
@@ -28,7 +29,8 @@ module.exports = function (grunt) {
             'www/bower_components/qr-js/qr.min.js',
             'www/bower_components/ui-leaflet/dist/ui-leaflet.js',
             'www/bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js',
-            'www/bower_components/ng-table/dist/ng-table.js'
+            'www/bower_components/ng-table/dist/ng-table.js',
+            'www/bower_components/xslt/dist/xslt.js'
         ],
         lib_ie9_scripts: [
             'www/bower_components/n52-sensorweb-client-core/src/js/IE9/*.js'
@@ -45,6 +47,7 @@ module.exports = function (grunt) {
         ],
         core_scripts: [
             'www/bower_components/n52-sensorweb-client-core/src/js/Map/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Map/markerRenderer/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Map/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Map/directives/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Phenomenon/*.js',
@@ -80,20 +83,23 @@ module.exports = function (grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/flotlib/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/controller/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/metadata.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/procedureRawData.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/procedureMetadata.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/sosUrl.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/timeseriesRawData.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/parameterServices/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/**/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/helper/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/helper/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/languageSetter.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/logNotifier.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/mapHelper.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/objects/**/*.js'
+            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js'
         ],
         app_js: [
             'www/app.js',
             'www/js/*.js',
-            'www/js/mobile/*.js'
+            'www/js/*/*.js'
         ],
         app_styles: [
             'www/css/*/*.css'
@@ -103,14 +109,10 @@ module.exports = function (grunt) {
             'templates/**/*.html',
             'i18n/*.json',
             'images/*',
-            'css/images/*'
+            'css/images/*',
+            'xslt/**.*'
         ],
-        dist: {
-            js: {
-                lib: {
-                }
-            }
-        },
+        clean: ["dist/"],
         tags: {
             options: {
                 scriptTemplate: '<script src="{{ path }}" type="text/javascript"></script>',
@@ -287,13 +289,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-script-link-tags');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-war');
 
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('env-build', ['tags']);
-    grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
+    grunt.registerTask('default', ['clean', 'concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
 
     grunt.registerTask('buildWar', ['test', 'default', 'war']);
 };

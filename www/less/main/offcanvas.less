@@ -33,7 +33,7 @@ footer {
 }
 
 /* small screens */
-@media screen and (max-width: @responsive-mobile-width) {
+@media screen and (max-width: (@responsive-mobile-width - 1)) {
     .row-offcanvas {
         position: relative;
         -webkit-transition: all 0.25s ease-out;
@@ -90,7 +90,8 @@ footer {
 
 .rightPanel {
     overflow: auto;
-    padding-right: 30px;
+    padding-right: 15px;
+    padding-left: 15px;
     height: 100% !important; /* to make overflow-y possible on all screen sizes */
     &.active {
         visibility: visible;

@@ -5,6 +5,7 @@ var mainApp = angular.module('jsClient', [
     'LocalStorageModule',
     'ui-leaflet',
     'pascalprecht.translate',
+    'ngSanitize',
     'ngTable',
     'ngResource',
     'n52.core.alert',
@@ -28,14 +29,17 @@ var mainApp = angular.module('jsClient', [
     'n52.core.table',
     'n52.core.exportTs',
     'n52.core.timeUi',
+    'n52.core.metadata',
     'n52.core.modal',
     'n52.core.overviewDiagram',
     'n52.core.permalinkEval',
     'n52.core.permalinkGen',
     'n52.core.phenomena',
     'n52.core.provider',
+    'n52.core.rawDataOutput',
     'n52.core.userSettings',
     'n52.core.settings',
+    'n52.core.sosMetadata',
     'n52.core.startup',
     'n52.core.status',
     'n52.core.style',
@@ -44,6 +48,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.time',
     'n52.core.timeUi',
     'n52.core.timeseries',
+    'n52.core.tooltip',
     'n52.core.translateSelector',
     'n52.core.utils',
     'n52.core.yAxisHide',
@@ -116,6 +121,11 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($tran
         });
         $translateProvider.registerAvailableLanguageKeys(suppLang);
         $translateProvider.determinePreferredLanguage();
+        if ($translateProvider.preferredLanguage() === '' 
+                || suppLang.indexOf($translateProvider.preferredLanguage()) === -1) {
+            $translateProvider.preferredLanguage('en');
+        }
+        $translateProvider.useSanitizeValueStrategy('sanitize');
     }]);
 
 mainApp.filter('objectCount', function () {
@@ -127,6 +137,32 @@ mainApp.filter('objectCount', function () {
         }
     };
 });
+
+mainApp.config(["$provide", function ($provide)
+    {
+        // Use the `decorator` solution to substitute or attach behaviors to
+        // original service instance; @see angular-mocks for more examples....
+
+        $provide.decorator('$log', ["$delegate", function ($delegate)
+            {
+                // Save the original $log.debug()
+                var debugFn = $delegate.debug;
+
+                $delegate.info = function ( )
+                {
+                    var args = [].slice.call(arguments),
+                            now = moment().format('HH:mm:ss.SSS');
+
+                    // Prepend timestamp
+                    args[0] = now + " - " + args[0];
+
+                    // Call the original with the output prepended with formatted timestamp
+                    debugFn.apply(null, args);
+                };
+
+                return $delegate;
+            }]);
+    }]);
 
 // start the app after loading the settings.json
 fetchData().then(bootstrapApp);

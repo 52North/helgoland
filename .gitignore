@@ -3,3 +3,4 @@
 /www/bower_components/
 /dist/
 /build/
+/*.sh

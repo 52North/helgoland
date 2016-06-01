@@ -1,10 +1,20 @@
 <div class="swc-page swc-page-current" id="chart-page">
-    <div class="container-fluid content">
-        <div class="row fullHeight">
+    <div class="container-fluid content" ng-controller="SwcTimeseriesCtrl">
+        <div ng-if="!hasTimeseries()">
+            <div class="empty-diagram">
+                <span translate="chart.noTimeseriesSelected"></span>
+            </div>
+        </div>
+        <div class="row fullHeight"
+             ng-if="hasTimeseries()">
             <div class="col-xs-12 col-sm-8 col-lg-9 fullHeight">
                 <div class="visible-xs leftPanelButton" ng-controller="SwcLegendButtonCtrl">
-                    <button type="button" class="btn btn-primary btn-xs" ng-hide="status.showLegend" ng-click="toggleLegend()" translate="main.legend"></button>
-                    <button type="button" class="btn btn-primary btn-xs" ng-show="status.showLegend" ng-click="toggleLegend()">X</button>
+                    <button type="button" class="btn btn-primary btn-xs" 
+                            ng-hide="status.showLegend" 
+                            ng-click="$event.stopPropagation(); toggleLegend()" translate="main.legend"></button>
+                    <button type="button" class="btn btn-primary btn-xs" 
+                            ng-show="status.showLegend" 
+                            ng-click="$event.stopPropagation(); toggleLegend()">X</button>
                 </div>
                 <div class="fullHeight" 
                      ng-controller="SwcToggleCtrl">
@@ -29,7 +39,9 @@
                         </div>
                     </div>
                     <div class="buttonFooter">
-                        <!--<y-axis-hide-button></y-axis-hide-button>-->
+                        <swc-refresh-time></swc-refresh-time>
+                        <swc-reload-button></swc-reload-button>
+                        <swc-yaxis-hide-button></swc-yaxis-hide-button>
                         <swc-time-selector-buttons></swc-time-selector-buttons>
                         <a class="btn btn-default" data-action="dataTable" ng-click="toggle()">
                             <span class="glyphicon glyphicon-list"></span>
@@ -37,11 +49,11 @@
                     </div>
                 </div>
             </div>
-            <div ng-controller="SwcLegendButtonCtrl">
-                <div class="col-xs-10 col-sm-4 col-lg-3 legend rightPanel" ng-class="{active:status.showLegend}">
-                    <h3 class="header" translate="main.legend"></h3>
-                    <swc-legend></swc-legend>
-                </div>
+            <div class="col-xs-10 col-sm-4 col-lg-3 fullHeight legend rightPanel" 
+                 ng-controller="SwcLegendButtonCtrl" 
+                 ng-class="{active:status.showLegend}">
+                <h3 class="header" translate="main.legend"></h3>
+                <swc-legend></swc-legend>
             </div>
             <!--<swc-data-loading></swv-data-loading>-->
         </div>

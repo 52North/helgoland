@@ -5,6 +5,7 @@
 }
 .diagram .axisTarget:hover {
   background-color: #bde6f3;
+  opacity: 0.4;
 }
 .diagram .axisTarget.selected {
   background-color: #66c5e4;
@@ -36,4 +37,9 @@
   bottom: 40px;
   right: 15px;
   color: red;
+}
+.empty-diagram {
+  text-align: center;
+  font-size: 20px;
+  padding: 50px;
 }

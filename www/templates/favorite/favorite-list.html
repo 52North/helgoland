@@ -5,9 +5,7 @@
              ng-click="addToChart(favorite)">
             <div class="favorite-header">
                 <span ng-include="'templates/favorite/favorite-entry-icons.html'"/>
-                <div class="header-label"
-                     ng-controller="SwcEditFavoriteLabelModalCtrl" 
-                     ng-click="$event.stopPropagation(); edit(favorite)">{{favorite.label}}</div>
+                <div class="header-label">{{favorite.label}}</div>
             </div>
             <div ng-switch-when="single">
                 <span ng-include="'templates/favorite/favorite-entry.html'"/>

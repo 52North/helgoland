@@ -26,13 +26,34 @@
         "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",
         "outsideOfDataRange": "Outside of data range!",
         "annotation": "Data without warranty!",
-        "monthNames": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        "monthNames": {
+            "jan": "Jan",
+            "feb": "Feb",
+            "mar": "Mar",
+            "apr": "Apr",
+            "may": "May",
+            "jun": "Jun",
+            "jul": "Jul",
+            "aug": "Aug",
+            "sep": "Sep",
+            "oct": "Oct",
+            "nov": "Nov",
+            "dec": "Dec"
+        }
     },
     "table": {
         "time": "Time"
     },
+    "providerList": {
+        "provider": "Provider",
+        "stations": "Stations",
+        "timeseries": "Timeseries",
+        "phenomena": "Phenomena",
+        "selectAll": "Select all provider"
+    },
     "map": {
         "userLocation": "Here is your current location",
+        "loading": "Stations will be loaded",
         "stationSelection": {
             "station": "Station",
             "selectAllTimeseries": "select all timeseries"
@@ -42,14 +63,6 @@
             "timeseries": "Timeseries",
             "provider": "Provider",
             "jumpBackToChart": "back to chart"
-        },
-        "providerList": {
-            "provider": "Provider",
-            "stations": "Stations",
-            "timeseries": "Timeseries",
-            "platforms": "Platforms",
-            "phenomena": "Phenomena",
-            "selectAll": "Show all provider"
         },
         "search": {
             "label": "search for address ...",
@@ -82,6 +95,12 @@
             "jumpToLastValue": "jump to last value",
             "firstValueAt": "First value at",
             "lastValueAt": "Last value at"
+        }
+    },
+    "metadata": {
+        "procedure": {
+            "button": "Show sensor metadata",
+            "header": "Sensor metadata"
         }
     },
     "export": {
@@ -257,5 +276,10 @@
     "inform": {
         "error": "An error occured: ",
         "warn": "Please remember that: "
+    },
+    "metadataOutput": {
+        "selectRawProcedureFormat": "Select raw format for procedure",
+        "selectTimeseriesDataFormat": "Select raw format for timeseries data",
+        "showCapabilities": "Show Capabilities of the SOS"
     }
 }

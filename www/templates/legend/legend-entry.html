@@ -11,10 +11,10 @@
     <div ng-controller="SwcToggleInformationCtrl">
         <div class="legendItemheader">
             <div class="legendItemLabel" ng-style="{color: timeseries.styles.color}">
-                <span>{{timeseries.getStationLabel()}}</span>
+                <span>{{timeseries.station.properties.label}}</span>
                 <swc-favorite-add-star timeseries="timeseries"></swc-favorite-add-star>
             </div>
-            <div class="noDataWarning firstLastEntry" ng-show="timeseries.hasDataInCurrentExtent">
+            <div class="noDataWarning firstLastEntry" ng-show="timeseries.hasNoDataInCurrentExtent">
                 <div>
                     <span class="glyphicon glyphicon-warning-sign red"></span>
                     <span class="small" translate="legend.entry.noData"></span>
@@ -26,9 +26,12 @@
                     <span class="small" translate="legend.entry.jumpToLastValue"></span>
                 </div>
             </div>
-            <div class="small">{{timeseries.parameters.phenomenon.label}} ({{timeseries.uom}})</div>
+            <div class="small">
+                <span>{{timeseries.parameters.phenomenon.label}}</span>
+                <span ng-if="timeseries.uom">({{timeseries.uom}})</span>
+            </div>
             <div class="small">{{timeseries.parameters.procedure.label}}</div>
-            <div class="small" ng-show="{{timeseries.parameters.category.label !== undefined }}">{{timeseries.parameters.category.label}}</div>
+            <div class="small" ng-show="{{timeseries.parameters.category.label !== undefined}}">{{timeseries.parameters.category.label}}</div>
         </div>
         <div class="legendicons">
             <span class="glyphicon glyphicon-eye-close"
@@ -67,9 +70,11 @@
                 <span>{{timeseries.lastValue.timestamp| date: 'dd.MM.yy HH:mm'}}</span>
                 <span class="hidden-medium">({{timeseries.lastValue.value}} {{timeseries.uom}})</span> 
             </div>
-            <div class="refEntry additionalLegendEntry" ng-repeat="refValue in timeseries.referenceValues" 
+            <div class="refEntry additionalLegendEntry" 
+                 ng-repeat="refValue in timeseries.referenceValues" 
                  ng-class="{selected : refValue.visible}" 
                  ng-style="{'border-color': refValue.color}"
+                 ng-controller="SwcToggleRefValueCtrl"
                  ng-click="$event.stopPropagation(); selectRefValue(refValue, timeseries)">
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span>{{refValue.label}}</span>
@@ -79,6 +84,11 @@
                  ng-click="$event.stopPropagation(); createExportCsv(timeseries)">
                 <span class="glyphicon glyphicon-download"></span>
                 <span translate="export.label"></span>
+            </div>
+            <div class="additionalLegendEntry">
+                <swc-procedure-metadata timeseries='timeseries'></swc-procedure-metadata>
+                <swc-timeseries-raw-data-output timeseries='timeseries'></swc-timeseries-raw-data-output>
+                <swc-sos-url timeseries='timeseries'></swc-sos-url>
             </div>
         </div>
     </div>

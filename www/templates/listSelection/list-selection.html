@@ -5,12 +5,12 @@
                          is-disabled="param.isDisabled">
             <uib-accordion-heading>
                 <span ng-class="{'text-muted' : param.isDisabled}">
-                    <span>{{param.header | translate}}</span>
+                    <span ng-bind-html="param.header | translate"></span>
                     <span ng-show=param.headerAddition> - </span>
                     <span>{{param.headerAddition}}</span>
                 </span>
             </uib-accordion-heading>
-            <div ng-repeat="item in param.items" ng-click="openItem(item)">
+            <div ng-repeat="item in param.items | orderBy:'+label'" ng-click="openItem(item)">
                 <span>{{item.label}}</span>
             </div>
         </uib-accordion-group>
