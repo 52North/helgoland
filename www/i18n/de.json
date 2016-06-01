@@ -83,7 +83,8 @@
         "headers": {
             "platform": "Mobile Platform",
             "track": "Pfad",
-            "phenomenon": "Phänomen"
+            "phenomenon": "Phänomen",
+            "series": "Serie"
         }
     },
     "legend": {

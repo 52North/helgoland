@@ -32,7 +32,7 @@
   },
   "defaultProvider": {
     "serviceID": "1",
-    "url": "http://192.168.52.117:8080/timeseries-webapp/api/v2/"
+    "url": "http://192.168.52.117:8080/series-dao-webapp/api/v1/"
   },
   "chartOptions": {
     "yaxis": {

@@ -86,7 +86,8 @@
         "headers": {
             "platform": "Mobile platform",
             "track": "Tracks",
-            "phenomenon": "Phenomenon"
+            "phenomenon": "Phenomenon",
+            "series": "Series"
         }
     },
     "legend": {
