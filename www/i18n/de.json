@@ -47,10 +47,11 @@
         "stations": "Stationen",
         "timeseries": "Zeitreihen",
         "phenomena": "Phänomene",
-        "selectAll": "Zeige alle Anbieter an"
+        "selectAll": "Selektiere alle Anbieter"
     },
     "map": {
         "userLocation": "Hier ist ihr Standort",
+        "loading": "Stationen werden geladen",
         "stationSelection": {
             "station": "Station",
             "selectAllTimeseries": "wähle alle Zeitreihen"
@@ -60,13 +61,6 @@
             "timeseries": "Zeitreihe",
             "provider": "Datenanbieter",
             "jumpBackToChart": "zurück zum Diagramm"
-        },
-        "providerList": {
-            "provider": "Datenanbieter",
-            "stations": "Stationen",
-            "platforms": "Platformen",
-            "timeseries": "Zeitreihen",
-            "phenomena": "Phänomene"
         },
         "search": {
             "label": "suche Addresse ...",
@@ -88,9 +82,10 @@
     "listSelection_mobile": {
         "header": "Listenbasierte Fahrtenauswahl",
         "headers": {
-            "ship": "Schiff",
-            "track": "Fahrt",
-            "phenomenon": "Phänomen"
+            "platform": "Mobile Platform",
+            "track": "Pfad",
+            "phenomenon": "Phänomen",
+            "series": "Serie"
         }
     },
     "legend": {
@@ -99,6 +94,12 @@
             "jumpToLastValue": "Springe zur letzten Messung",
             "firstValueAt": "Erster Wert bei",
             "lastValueAt": "Letzter Wert bei"
+        }
+    },
+    "metadata": {
+        "procedure": {
+            "button": "Zeige Sensor-Metadaten",
+            "header": "Sensor-Metadaten"
         }
     },
     "export": {
@@ -274,5 +275,10 @@
     "inform": {
         "error": "Ein Fehler ist aufgetreten: ",
         "warn": "Bitte beachten Sie: "
+    },
+    "metadataOutput": {
+        "selectRawProcedureFormat": "Procedure als Rohdata",
+        "selectTimeseriesDataFormat" : "Zeitreihendaten als Rohdaten",
+        "showCapabilities": "Zeige SOS-Capabilities"
     }
 }

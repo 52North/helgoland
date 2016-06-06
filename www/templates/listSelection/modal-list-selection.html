@@ -5,23 +5,23 @@
     </div>
     <div class="modal-body"
          ng-controller="SwcListSelectionParametersCtrl">
-        <tabset class="selectionListContent">
-            <tab>
-                <tab-heading>
+        <uib-tabset class="selectionListContent">
+            <uib-tab>
+                <uib-tab-heading>
                     <span translate="listSelection.headers.category"></span>
-                </tab-heading>
+                </uib-tab-heading>
                 <swc-modal-list-selection parameters="categoryParams" listselectionid="'category'"></swc-modal-list-selection>
             </uib-tab>
             <uib-tab>
-                <tab-heading>
+                <uib-tab-heading>
                     <span translate="listSelection.headers.station"></span>
-                </tab-heading>
+                </uib-tab-heading>
                 <swc-modal-list-selection parameters="stationParams" listselectionid="'station'"></swc-modal-list-selection>
             </uib-tab>
             <uib-tab>
-                <tab-heading>
+                <uib-tab-heading>
                     <span translate="listSelection.headers.phenomenon"></span>
-                </tab-heading>
+                </uib-tab-heading>
                 <swc-modal-list-selection parameters="phenomenonParams" listselectionid="'phenomenon'"></swc-modal-list-selection>
             </uib-tab>
         </uib-tabset>

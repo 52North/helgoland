@@ -25,6 +25,7 @@
                         <swc-modal-station-opener mapid="'stationMap'" controller="'SwcModalStationCtrl'"></swc-modal-station-opener>
                         <div ng-include="'templates/map/layers-control.html'"/>
                     </leaflet>
+                    <swc-station-loading></swc-station-loading>
                     <div ng-include="'templates/map/search-control.html'"/>
                     <div ng-include="'templates/map/zoom-control.html'"/>
                     <div ng-include="'templates/map/locate-control.html'"/>
@@ -34,7 +35,7 @@
                  ng-controller="SwcPhenomenaButtonController"
                  ng-class="{active:status.showPhenomena}">
                 <div ng-controller="SwcPhenomenonListCtrl as phenomena">
-                    <div class="phenomena-entry">
+                    <div class="phenomena-list">
                         <a class="phenomenonItem" ng-click="showAllPhenomenons(); togglePhenomena();" >
                             <div class="item" ng-class="{selected:isSelected(null)}">
                                 <span class="glyphicon glyphicon-refresh loading icon-spin"></span>
@@ -42,7 +43,7 @@
                             </div>
                         </a>
                         <hr>
-                        <div ng-repeat="phenomenon in phenomena.items">
+                        <div ng-repeat="phenomenon in phenomena.items | orderBy:'+label'">
                             <a class="phenomenonItem" data-id="{{id}}">
                                 <div class="item" ng-click="showSpecificPhenomenon(phenomenon); togglePhenomena();" ng-class="{selected:isSelected(phenomenon)}">
                                     <span class="glyphicon glyphicon-refresh loading icon-spin"></span>

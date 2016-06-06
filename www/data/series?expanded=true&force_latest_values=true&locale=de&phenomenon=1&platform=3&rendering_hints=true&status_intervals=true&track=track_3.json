@@ -1,0 +1,62 @@
+{
+    "series": [{
+            "id": "5",
+            "label": "temperature ship 1, Feature 3",
+            "extras": ["license"],
+            "uom": "C",
+            "referenceValues": [],
+            "firstValue": {
+                "timestamp": 1437386400000,
+                "value": 2.5,
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [7.64345, 51.946]
+                }
+            },
+            "lastValue": {
+                "timestamp": 1437473340000,
+                "value": 3.1,
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [7.64345, 51.946]
+                }
+            },
+            "parameters": {
+                "service": {
+                    "id": "1",
+                    "label": "My Timeseries Service.",
+                    "filters": ["features, procedures, phenomena, categories, services, platforms"]
+                },
+                "platform": {
+                    "id": "3",
+                    "label": "Feature 3",
+                    "type": "mobile"
+                },
+                "procedure": {
+                    "id": "3",
+                    "label": "ship 1"
+                },
+                "phenomenon": {
+                    "id": "1",
+                    "label": "temperature"
+                },
+                "category": {
+                    "id": "1",
+                    "label": "temperature"
+                }
+            },
+            "featureOutput": {
+                "features": [{
+                        "id": "track_3",
+                        "platform": 3,
+                        "label": "offeringID_3",
+                        "type": "track"
+                    }, {
+                        "id": "track_4",
+                        "platform": 3,
+                        "label": "offeringID_4",
+                        "type": "track"
+                    }]
+            }
+        }]
+}

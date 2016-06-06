@@ -32,7 +32,7 @@ html,
 }
 .fullHeight {
   height: 100%;
-  /* position: absolute; */
+  position: relative;
   padding: 0px;
 }
 .content {
