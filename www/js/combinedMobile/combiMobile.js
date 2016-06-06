@@ -9,11 +9,12 @@ angular.module('n52.core.combiMobile', [])
                 function ($scope, combinedSrvc, leafletData) {
                   var mouseHeightFocus, mouseHeightFocusLabel, pointG;
                   $scope.events = {
-                    geojson: {
+                    geometry: {
                       enable: ['mouseover']
                     }
                   };
-                  $scope.geojson = combinedSrvc.geojson;
+                  $scope.geometry = combinedSrvc.geometry;
+                  $scope.series = combinedSrvc.series;
                   $scope.highlight = combinedSrvc.highlight;
                   $scope.selectedSection = combinedSrvc.selectedSection;
                   $scope.paths = {
@@ -24,8 +25,8 @@ angular.module('n52.core.combiMobile', [])
                     }
                   };
 
-                  $scope.$watch('geojson', function (geojson) {
-                    if (geojson && geojson.data && geojson.data.features[0].geometry.coordinates) {
+                  $scope.$watch('geometry', function (geometry) {
+                    if (geometry && geometry.data && geometry.data.coordinates.length > 0) {
                       centerMap();
                     }
                   }, true);
@@ -65,10 +66,10 @@ angular.module('n52.core.combiMobile', [])
                   });
 
                   var centerMap = function () {
-                    if ($scope.geojson && $scope.geojson.data) {
+                    if ($scope.geometry && $scope.geometry.data.coordinates.length > 0) {
                       leafletData.getMap('mobileCombiMap').then(function (map) {
                         var latlngs = [];
-                        angular.forEach($scope.geojson.data.features[0].geometry.coordinates, function (coords) {
+                        angular.forEach($scope.geometry.data.coordinates, function (coords) {
                           latlngs.push(L.GeoJSON.coordsToLatLng(coords));
                         });
                         map.fitBounds(latlngs);
@@ -99,7 +100,7 @@ angular.module('n52.core.combiMobile', [])
                               .style("visibility", "visible");
                       mouseHeightFocusLabel.attr("x", layerpoint.x + 7)
                               .attr("y", layerpoint.y)
-                              .text(value + " m")
+                              .text(value + $scope.series.uom)
                               .style("visibility", "visible");
                     });
                   }
@@ -123,6 +124,7 @@ angular.module('n52.core.combiMobile', [])
               restrict: 'EA',
               link: function (scope, elem, attrs) {
                 scope.data = combinedSrvc.data;
+                scope.series = combinedSrvc.series;
                 scope.highlight = combinedSrvc.highlight;
 
                 var margin = {
@@ -182,7 +184,7 @@ angular.module('n52.core.combiMobile', [])
                           .range([0, width()]);
 
                   yScale = d3.scale.linear()
-                          .domain([scope.data.elevation.min, scope.data.elevation.max])
+                          .domain([scope.data.range.min, scope.data.range.max])
                           .range([height(), 0]);
 
                   xAxisGen = d3.svg.axis()
@@ -291,7 +293,7 @@ angular.module('n52.core.combiMobile', [])
                     dragging = false;
                     resetDrag();
                   } else {
-                    combinedSrvc.setSelection(getItemForX(dragStart[0]), getItemForX(dragEndCoords[0]));
+                    combinedSrvc.setSelection(getItemForX(dragStart[0]), getItemForX(dragCurrent[0]));
                     dragStart = null;
                     dragging = false;
                   }
@@ -361,7 +363,7 @@ angular.module('n52.core.combiMobile', [])
                   focuslabelX
                           .attr("x", xCoordinate + 2)
                           .attr("y", 10)
-                          .text(numY + " m");
+                          .text(numY + scope.series.uom);
                   focuslabelY
                           .attr("y", height() - 5)
                           .attr("x", xCoordinate + 2)
@@ -376,84 +378,79 @@ angular.module('n52.core.combiMobile', [])
             var selectedSection = {
               values: []
             };
-            var geojson = {
+            var geometry = {
               style: {
                 weight: 2,
                 opacity: 1,
                 color: 'red',
                 dashArray: '10, 5',
                 clickable: true
+              },
+              data: {
+                coordinates: [],
+                type: 'LineString'
               }
             };
             var data = {
               values: [],
-              elevation: {
+              range: {
                 max: 0,
                 min: Infinity
               },
               dist: 0
             };
+            var series = {
+              uom: "°C"
+            };
 
             var timespan = {start: 1360114237000, end: 1360211238000};
             interfaceV2Service.getSeriesData('measurement/113976', 'http://192.168.52.117:8080/series-dao-webapp/api/v1/', timespan)
                     .then(function (data) {
-                      geojson.data = createLineString(data);
-                      createData(getCoords(geojson.data));
+                      var start = new Date();
+                      console.log("start processing values");
+                      processData(data.values);
+                      var end = new Date();
+                      console.log("end processing values in " + (end.getTime() - start.getTime()) + "ms");
                     });
 
-            var getCoords = function (data) {
-              if (data && data.features && angular.isArray(data.features) && data.features.length > 0) {
-                var feature = data.features[0];
-                var geom = feature && feature.geometry;
-                if (geom && geom.type === 'LineString') {
-                  return geom.coordinates;
-                }
+            var processData = function (data) {
+              resetGeometry();
+              resetData();
+              for (var i = 0; i < data.length; i++) {
+                addToGeometry(data[i]);
+                addToData(data[i], data[i ? i - 1 : 0]);
               }
             };
 
-            var createData = function (coords) {
-              if (coords) {
-                data.values = [];
-                data.dist = 0;
-                data.elevation.max = 0;
-                data.elevation.min = Infinity;
-                for (var i = 0; i < coords.length; i++) {
-                  var s = new L.LatLng(coords[i][1], coords[i][0]);
-                  var e = new L.LatLng(coords[i ? i - 1 : 0][1], coords[i ? i - 1 : 0][0]);
-                  var newdist = s.distanceTo(e);
-                  data.dist = data.dist + Math.round(newdist / 1000 * 100000) / 100000;
-                  data.elevation.max = data.elevation.max < coords[i][2] ? coords[i][2] : data.elevation.max;
-                  data.elevation.min = data.elevation.min > coords[i][2] ? coords[i][2] : data.elevation.min;
-                  data.values.push({
-                    dist: data.dist,
-                    value: coords[i][2],
-                    x: coords[i][0],
-                    y: coords[i][1],
-                    latlng: s
-                  });
-                }
-              }
+            var addToGeometry = function (entry) {
+              geometry.data.coordinates.push(entry.geometry.coordinates);
             };
 
-            var createLineString = function (data) {
-              var lineString = {
-                type: 'FeatureCollection',
-                features: [
-                  {
-                    geometry: {
-                      coordinates: [],
-                      type: 'LineString'
-                    },
-                    type: 'Feature'
-                  }
-                ]
-              };
-              for (var i = 0; i < data.values.length; i++) {
-                var temp = data.values[i].geometry.coordinates;
-                temp.push(data.values[i].value);
-                lineString.features[0].geometry.coordinates.push(temp);
-              }
-              return lineString;
+            var addToData = function (entry, previous) {
+              var s = new L.LatLng(entry.geometry.coordinates[1], entry.geometry.coordinates[0]);
+              var e = new L.LatLng(previous.geometry.coordinates[1], previous.geometry.coordinates[0]);
+              var newdist = s.distanceTo(e);
+              data.dist = data.dist + Math.round(newdist / 1000 * 100000) / 100000;
+              data.range.max = data.range.max < entry.value ? entry.value : data.range.max;
+              data.range.min = data.range.min > entry.value ? entry.value : data.range.min;
+              data.values.push({
+                dist: data.dist,
+                value: entry.value,
+                x: entry.geometry.coordinates[0],
+                y: entry.geometry.coordinates[1],
+                latlng: s
+              });
+            };
+
+            var resetGeometry = function () {
+              geometry.data.coordinates = [];
+            };
+
+            var resetData = function () {
+              data.values = [];
+              data.dist = 0;
+              data.range.max = 0;
+              data.range.min = Infinity;
             };
 
             var findItemForLatLng = function (latlng) {
@@ -494,7 +491,8 @@ angular.module('n52.core.combiMobile', [])
               resetSelection: resetSelection,
               selectedSection: selectedSection,
               highlight: highlight,
-              geojson: geojson,
+              geometry: geometry,
+              series: series,
               data: data
             };
           }]);
