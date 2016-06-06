@@ -1,5 +1,36 @@
 /* colors */
 /* mobile */
+.combi-mobile {
+  height: 100%;
+}
+.combi-mobile .map,
+.combi-mobile .chart {
+  position: relative;
+  height: 50%;
+}
+.combi-mobile .map .axis text,
+.combi-mobile .chart .axis text {
+  font-size: 12px;
+}
+.combi-mobile .map .axis path,
+.combi-mobile .chart .axis path,
+.combi-mobile .map .axis line,
+.combi-mobile .chart .axis line {
+  fill: none;
+  stroke: black;
+}
+.combi-mobile .map .mouse-focus-line,
+.combi-mobile .chart .mouse-focus-line {
+  pointer-events: none;
+  stroke-width: 1px;
+  stroke: black;
+}
+.combi-mobile .map .mouse-drag,
+.combi-mobile .chart .mouse-drag {
+  fill: rgba(0, 0, 255, 0.4);
+  pointer-events: all;
+  cursor: move;
+}
 .map-buttons {
   position: absolute;
   z-index: 11;

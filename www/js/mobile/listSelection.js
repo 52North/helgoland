@@ -1,4 +1,4 @@
-angular.module('listSelectionModule_mobile', [])
+angular.module('n52.client.mobile')
         .controller('ListSelectionMobileButtonCtrl', ['$scope', '$uibModal',
           function ($scope, $uibModal) {
             $scope.openListSelectionMobile = function () {
@@ -72,8 +72,8 @@ angular.module('listSelectionModule_mobile', [])
               controller: 'ListSelectionMobileCtrl'
             };
           }])
-        .controller('ListSelectionMobileCtrl', ['$scope', 'interfaceV2Service', 'mobilemapService', 'colorService', 'statusService',
-          function ($scope, interfaceV2Service, mobilemapService, colorService, statusService) {
+        .controller('ListSelectionMobileCtrl', ['$scope', 'interfaceV2Service', 'colorService', 'statusService', 'combinedSrvc',
+          function ($scope, interfaceV2Service, colorService, statusService, combinedSrvc) {
             var url = statusService.status.apiProvider.url;
             angular.forEach($scope.parameters, function (param, openedIdx) {
               $scope.$watch('parameters[' + openedIdx + '].isOpen', function (newVal, oldVal) {
@@ -140,55 +140,9 @@ angular.module('listSelectionModule_mobile', [])
               if ($scope.selectedParameterIndex < $scope.parameters.length - 1) {
                 $scope.openNext($scope.selectedParameterIndex + 1);
               } else {
-                interfaceV2Service.getSeries(item.id, url, $scope.createParams())
-                        .then(function (series) {
-                          var timespan = {
-                            start: series.firstValue.timestamp,
-                            end: series.lastValue.timestamp
-                          };
-                          interfaceV2Service.getSeriesData(series.id, url, timespan)
-                                  .then(function (data) {
-                                    mobilemapService.clearPaths();
-                                    mobilemapService.clearMarker();
-                                    createPath(series, data);
-                                    createMarkers(series, data);
-                                  });
-                        });
+                combinedSrvc.loadSeries(item.id, url);
                 $scope.$parent.modalInstance.close();
               }
-            };
-
-            createPath = function (series, data) {
-              var latlngs = [];
-              angular.forEach(data.values, function (entry) {
-                latlngs.push({
-                  lat: entry.geometry.coordinates[1],
-                  lng: entry.geometry.coordinates[0]
-                });
-              });
-              mobilemapService.addPath(series.id, {
-                color: colorService.getColor(series.id),
-                weight: 4,
-                latlngs: latlngs
-              }, true);
-            };
-
-            createMarkers = function (series, data) {
-              angular.forEach(data.values, function (entry, idx) {
-                var time = entry.timestamp;
-                var value = entry.value;
-                var uom = series.uom;
-                var phenomenon = series.seriesParameters.phenomenon.label;
-                mobilemapService.addMarker('marker' + idx, {
-                  latlngs: {
-                    lat: entry.geometry.coordinates[1],
-                    lng: entry.geometry.coordinates[0]
-                  },
-                  radius: 5,
-                  color: '#FF0000',
-                  message: phenomenon + ': ' + value + ' ' + uom + ' | ' + moment.unix(time / 1000).format('DD.MM.YY HH:mm')
-                });
-              });
             };
 
             $scope.openNext(0);

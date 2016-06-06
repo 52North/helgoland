@@ -20,8 +20,7 @@
         "provider": "Anbieter",
         "listSelection": "Listenauswahl",
         "settings": "Einstellungen",
-        "mobileDiagramm": "Combi-Ansicht",
-        "mobile": "Mobileansicht"
+        "trajectories": "Trajektorien"
     },
     "chart": {
         "noTimeseriesSelected": "Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.",
@@ -86,6 +85,9 @@
             "track": "Pfad",
             "phenomenon": "Phänomen",
             "series": "Serie"
+        },
+        "map": {
+          "loading": "Daten werden geladen"
         }
     },
     "legend": {

@@ -20,8 +20,7 @@
         "provider": "Provider",
         "listSelection": "List selection",
         "settings": "Settings",
-        "mobileDiagramm": "Combi-View",
-        "mobile": "Mobile"
+        "trajectories": "Trajectories"
     },
     "chart": {
         "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",
@@ -88,6 +87,9 @@
             "ship": "Ships",
             "track": "Tracks",
             "phenomenon": "Phenomenon"
+        },
+        "map": {
+          "loading": "Daten werden geladen"
         }
     },
     "listSelection_mobile": {

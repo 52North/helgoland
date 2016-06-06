@@ -1,9 +1,9 @@
-angular.module('n52.core.combiMobile', [])
+angular.module('n52.client.mobile', [])
         .directive('swcCombiMobile', [
           function () {
             return {
               restrict: 'E',
-              templateUrl: 'templates/combiMobile/combi-mobile.html',
+              templateUrl: 'templates/mobile/combi-mobile.html',
               replace: true,
               controller: ['$scope', 'combinedSrvc', 'leafletData',
                 function ($scope, combinedSrvc, leafletData) {
@@ -13,6 +13,7 @@ angular.module('n52.core.combiMobile', [])
                       enable: ['mouseover']
                     }
                   };
+                  $scope.loading = combinedSrvc.loading;
                   $scope.geometry = combinedSrvc.geometry;
                   $scope.series = combinedSrvc.series;
                   $scope.highlight = combinedSrvc.highlight;
@@ -399,34 +400,41 @@ angular.module('n52.core.combiMobile', [])
               },
               dist: 0
             };
-            var series = {
-              uom: "°C"
-            };
+            var series = {};
 
-            var timespan = {start: 1360114237000, end: 1360211238000};
-            interfaceV2Service.getSeriesData('measurement/113976', 'http://192.168.52.117:8080/series-dao-webapp/api/v1/', timespan)
-                    .then(function (data) {
-                      var start = new Date();
-                      console.log("start processing values");
-                      processData(data.values);
-                      var end = new Date();
-                      console.log("end processing values in " + (end.getTime() - start.getTime()) + "ms");
-                    });
+            loadSeries('measurement/113235', 'http://192.168.52.117:8080/series-dao-webapp/api/v1/');
 
-            var processData = function (data) {
+            function loadSeries(id, url) {
+              series.loading = true;
+              interfaceV2Service.getSeries(id, url)
+                      .then(function (s) {
+                        angular.extend(series, s);
+                        var timespan = {
+                          start: s.firstValue.timestamp,
+                          end: s.lastValue.timestamp
+                        };
+                        interfaceV2Service.getSeriesData(s.id, url, timespan)
+                                .then(function (data) {
+                                  processData(data.values);
+                                  series.loading = false;
+                                });
+                      });
+            }
+
+            function processData(data) {
               resetGeometry();
               resetData();
               for (var i = 0; i < data.length; i++) {
                 addToGeometry(data[i]);
                 addToData(data[i], data[i ? i - 1 : 0]);
               }
-            };
+            }
 
-            var addToGeometry = function (entry) {
+            function addToGeometry(entry) {
               geometry.data.coordinates.push(entry.geometry.coordinates);
-            };
+            }
 
-            var addToData = function (entry, previous) {
+            function addToData(entry, previous) {
               var s = new L.LatLng(entry.geometry.coordinates[1], entry.geometry.coordinates[0]);
               var e = new L.LatLng(previous.geometry.coordinates[1], previous.geometry.coordinates[0]);
               var newdist = s.distanceTo(e);
@@ -434,26 +442,26 @@ angular.module('n52.core.combiMobile', [])
               data.range.max = data.range.max < entry.value ? entry.value : data.range.max;
               data.range.min = data.range.min > entry.value ? entry.value : data.range.min;
               data.values.push({
-                dist: data.dist,
+                dist: Math.round(data.dist * 10) / 10,
                 value: entry.value,
                 x: entry.geometry.coordinates[0],
                 y: entry.geometry.coordinates[1],
                 latlng: s
               });
-            };
+            }
 
-            var resetGeometry = function () {
+            function resetGeometry() {
               geometry.data.coordinates = [];
-            };
+            }
 
-            var resetData = function () {
+            function resetData() {
               data.values = [];
               data.dist = 0;
               data.range.max = 0;
               data.range.min = Infinity;
-            };
+            }
 
-            var findItemForLatLng = function (latlng) {
+            function findItemForLatLng(latlng) {
               var result = null,
                       d = Infinity;
               angular.forEach(data.values, function (item) {
@@ -464,31 +472,32 @@ angular.module('n52.core.combiMobile', [])
                 }
               });
               return result;
-            };
+            }
 
-            var highlightByIdx = function (idx) {
+            function highlightByIdx(idx) {
               angular.extend(highlight, data.values[idx]);
-            };
+            }
 
-            var showHighlightedItem = function (latlng) {
+            function showHighlightedItem(latlng) {
               angular.extend(highlight, findItemForLatLng(latlng));
-            };
+            }
 
-            var setSelection = function (startIdx, endIdx) {
+            function setSelection(startIdx, endIdx) {
               var start = Math.min(startIdx, endIdx),
                       end = Math.max(startIdx, endIdx);
               selectedSection.values = data.values.slice(start, end);
-            };
+            }
 
-            var resetSelection = function () {
+            function resetSelection() {
               selectedSection.values = [];
-            };
+            }
 
             return {
               showHighlightedItem: showHighlightedItem,
               highlightByIdx: highlightByIdx,
               setSelection: setSelection,
               resetSelection: resetSelection,
+              loadSeries: loadSeries,
               selectedSection: selectedSection,
               highlight: highlight,
               geometry: geometry,
