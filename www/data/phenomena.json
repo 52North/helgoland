@@ -1,9 +1,0 @@
-{
-    "phenomena": [{
-            "id": "1",
-            "label": "temperature"
-        }, {
-            "id": "2",
-            "label": "windspeed"
-        }]
-}
