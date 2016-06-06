@@ -11,10 +11,10 @@
     <div ng-controller="SwcToggleInformationCtrl">
         <div class="legendItemheader">
             <div class="legendItemLabel" ng-style="{color: timeseries.styles.color}">
-                <span>{{timeseries.getStationLabel()}}</span>
+                <span>{{timeseries.station.properties.label}}</span>
                 <swc-favorite-add-star timeseries="timeseries"></swc-favorite-add-star>
             </div>
-            <div class="noDataWarning firstLastEntry" ng-show="timeseries.hasDataInCurrentExtent">
+            <div class="noDataWarning firstLastEntry" ng-show="timeseries.hasNoDataInCurrentExtent">
                 <div>
                     <span class="glyphicon glyphicon-warning-sign red"></span>
                     <span class="small" translate="legend.entry.noData"></span>
