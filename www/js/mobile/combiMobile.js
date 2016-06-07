@@ -7,7 +7,7 @@ angular.module('n52.client.mobile', [])
               replace: true,
               controller: ['$scope', 'combinedSrvc', 'leafletData',
                 function ($scope, combinedSrvc, leafletData) {
-                  var mouseHeightFocus, mouseHeightFocusLabel, pointG;
+                  var mouseValueLabel, mouseTimeLabel, pointG, mouseRect;
                   $scope.events = {
                     geometry: {
                       enable: ['mouseover']
@@ -34,7 +34,7 @@ angular.module('n52.client.mobile', [])
 
                   $scope.$watch('highlight', function (hl) {
                     if (hl.latlng) {
-                      drawMapMarker(hl.latlng, hl.value);
+                      drawMapMarker(hl);
                     } else {
                       hideMapMarker();
                     }
@@ -78,9 +78,9 @@ angular.module('n52.client.mobile', [])
                     }
                   };
 
-                  function drawMapMarker(point, value) {
+                  function drawMapMarker(highlighted) {
                     leafletData.getMap('mobileCombiMap').then(function (map) {
-                      var layerpoint = map.latLngToLayerPoint(point);
+                      var layerpoint = map.latLngToLayerPoint(highlighted.latlng);
 
                       if (!pointG) {
                         var g = d3.select(".leaflet-overlay-pane svg")
@@ -93,23 +93,38 @@ angular.module('n52.client.mobile', [])
                                 .attr("cy", 0)
                                 .attr("class", "height-focus circle-lower");
 
-                        mouseHeightFocusLabel = g.append("svg:text")
-                                .attr("class", "height-focus-label")
+                        mouseRect = g.append('svg:rect')
+                                .attr('class', 'map-highlight-label');
+                        mouseValueLabel = g.append("svg:text")
+                                .attr("class", "focus-label")
                                 .style("pointer-events", "none");
+                        mouseTimeLabel = g.append("svg:text")
+                                .attr("class", "focus-label")
+                                .style("pointer-events", "none");
+
                       }
                       pointG.attr("transform", "translate(" + layerpoint.x + "," + layerpoint.y + ")")
                               .style("visibility", "visible");
-                      mouseHeightFocusLabel.attr("x", layerpoint.x + 7)
+                      mouseValueLabel.attr("x", layerpoint.x + 10)
                               .attr("y", layerpoint.y)
-                              .text(value + $scope.series.uom)
+                              .text(highlighted.value + $scope.series.uom)
                               .style("visibility", "visible");
+                      mouseTimeLabel.attr("x", layerpoint.x + 10)
+                              .attr("y", layerpoint.y + 13)
+                              .text(moment(highlighted.timestamp).format('DD.MM.YY HH:mm'))
+                              .style("visibility", "visible");
+                      mouseRect.attr('x', layerpoint.x + 8)
+                              .attr('y', layerpoint.y - 11)
+                              .attr('width', 100)
+                              .attr('height', 28);
                     });
                   }
 
                   function hideMapMarker() {
-                    if (mouseHeightFocus) {
-                      mouseHeightFocus.style("visibility", "hidden");
-                      mouseHeightFocusLabel.style("visibility", "hidden");
+                    if (mouseRect) {
+                      mouseTimeLabel.style("visibility", "hidden");
+                      mouseValueLabel.style("visibility", "hidden");
+                      mouseRect.style("visibility", "hidden");
                     }
                     if (pointG) {
                       pointG.style("visibility", "hidden");
@@ -137,7 +152,7 @@ angular.module('n52.client.mobile', [])
                 var background,
                         pathClass = "path",
                         xScale, yScale, xAxisGen, yAxisGen, lineFun,
-                        focusG, highlightFocus, focuslabelX, focuslabelY,
+                        focusG, highlightFocus, focuslabelValue,focuslabelTime, focuslabelY,
                         dragging, dragStart, dragCurrent, dragRect, dragRectG;
 
                 var d3 = $window.d3;
@@ -183,9 +198,11 @@ angular.module('n52.client.mobile', [])
                   xScale = d3.scale.linear()
                           .domain([scope.data.values[0].dist, scope.data.values[scope.data.values.length - 1].dist])
                           .range([0, width()]);
-
+                  
+                  var range = scope.data.range.max - scope.data.range.min;
+                  var rangeOffset = range * 0.05;
                   yScale = d3.scale.linear()
-                          .domain([scope.data.range.min, scope.data.range.max])
+                          .domain([scope.data.range.min - rangeOffset, scope.data.range.max + rangeOffset])
                           .range([height(), 0]);
 
                   xAxisGen = d3.svg.axis()
@@ -232,6 +249,15 @@ angular.module('n52.client.mobile', [])
                             "fill": "none",
                             "class": pathClass
                           });
+                  graph.append("svg:area")
+                          .attr({
+                            d: lineFun(scope.data.values),
+                            "stroke": "red",
+                            "stroke-width": 2,
+                            "fill": "none",
+                            "class": "area"
+                          });
+
                   background = graph.append("svg:rect")
                           .attr({
                             "width": width(),
@@ -253,7 +279,10 @@ angular.module('n52.client.mobile', [])
                           .attr('y2', '0')
                           .attr('x1', '0')
                           .attr('y1', '0');
-                  focuslabelX = focusG.append("svg:text")
+                  focuslabelValue = focusG.append("svg:text")
+                          .style("pointer-events", "none")
+                          .attr("class", "mouse-focus-label-x");
+                  focuslabelTime = focusG.append("svg:text")
                           .style("pointer-events", "none")
                           .attr("class", "mouse-focus-label-x");
                   focuslabelY = focusG.append("svg:text")
@@ -361,10 +390,14 @@ angular.module('n52.client.mobile', [])
                           numY = alt,
                           numX = dist;
 
-                  focuslabelX
+                  focuslabelValue
                           .attr("x", xCoordinate + 2)
                           .attr("y", 10)
                           .text(numY + scope.series.uom);
+                  focuslabelTime
+                          .attr('x', xCoordinate - 95)
+                          .attr('y', 10)
+                          .text(moment(item.timestamp).format('DD.MM.YY HH:mm'));
                   focuslabelY
                           .attr("y", height() - 5)
                           .attr("x", xCoordinate + 2)
@@ -443,6 +476,7 @@ angular.module('n52.client.mobile', [])
               data.range.min = data.range.min > entry.value ? entry.value : data.range.min;
               data.values.push({
                 dist: Math.round(data.dist * 10) / 10,
+                timestamp: entry.timestamp,
                 value: entry.value,
                 x: entry.geometry.coordinates[0],
                 y: entry.geometry.coordinates[1],

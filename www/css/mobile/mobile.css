@@ -3,30 +3,47 @@
 .combi-mobile {
   height: 100%;
 }
-.combi-mobile .map,
-.combi-mobile .chart {
+.combi-mobile .combi-header {
+  height: 30px;
+  background-color: red;
+}
+.combi-mobile .combi-body {
+  height: 100%;
+}
+.combi-mobile .combi-body .map,
+.combi-mobile .combi-body .chart {
   position: relative;
   height: 50%;
 }
-.combi-mobile .map .axis text,
-.combi-mobile .chart .axis text {
+.combi-mobile .combi-body .map .axis text,
+.combi-mobile .combi-body .chart .axis text {
   font-size: 12px;
 }
-.combi-mobile .map .axis path,
-.combi-mobile .chart .axis path,
-.combi-mobile .map .axis line,
-.combi-mobile .chart .axis line {
+.combi-mobile .combi-body .map .axis path,
+.combi-mobile .combi-body .chart .axis path,
+.combi-mobile .combi-body .map .axis line,
+.combi-mobile .combi-body .chart .axis line {
   fill: none;
   stroke: black;
 }
-.combi-mobile .map .mouse-focus-line,
-.combi-mobile .chart .mouse-focus-line {
+.combi-mobile .combi-body .map .area,
+.combi-mobile .combi-body .chart .area {
+  fill: lightsteelblue;
+  stroke-width: 0;
+}
+.combi-mobile .combi-body .map .map-highlight-label,
+.combi-mobile .combi-body .chart .map-highlight-label {
+  fill: white;
+  fill-opacity: 0.7;
+}
+.combi-mobile .combi-body .map .mouse-focus-line,
+.combi-mobile .combi-body .chart .mouse-focus-line {
   pointer-events: none;
   stroke-width: 1px;
   stroke: black;
 }
-.combi-mobile .map .mouse-drag,
-.combi-mobile .chart .mouse-drag {
+.combi-mobile .combi-body .map .mouse-drag,
+.combi-mobile .combi-body .chart .mouse-drag {
   fill: rgba(0, 0, 255, 0.4);
   pointer-events: all;
   cursor: move;
