@@ -29,6 +29,7 @@ angular.module('n52.client.mobile', [])
                   $scope.$watch('geometry', function (geometry) {
                     if (geometry && geometry.data && geometry.data.coordinates.length > 0) {
                       centerMap();
+                      resetHighlighter();
                     }
                   }, true);
 
@@ -39,6 +40,12 @@ angular.module('n52.client.mobile', [])
                       hideMapMarker();
                     }
                   }, true);
+
+                  $scope.$on('leafletDirectiveMap.mobileCombiMap.zoomend', function (temp) {
+                    if ($scope.highlight.value != null) {
+                      drawMapMarker($scope.highlight);
+                    }
+                  });
 
                   $scope.$watchCollection('selectedSection', function (selection) {
                     if (selection && selection.values && selection.values.length > 0) {
@@ -77,6 +84,15 @@ angular.module('n52.client.mobile', [])
                       });
                     }
                   };
+
+                  function resetHighlighter() {
+                    if (pointG) {
+                      pointG.remove();
+                      mouseRect.remove();
+                      mouseValueLabel.remove();
+                      mouseTimeLabel.remove();
+                    }
+                  }
 
                   function drawMapMarker(highlighted) {
                     leafletData.getMap('mobileCombiMap').then(function (map) {
@@ -415,7 +431,7 @@ angular.module('n52.client.mobile', [])
 
                 function resetDrag() {
                   combinedSrvc.resetSelection();
-                  if (dragRectG !== null) {
+                  if (dragRectG != null) {
                     dragRectG.remove();
                     dragRectG = null;
                     dragRect = null;
