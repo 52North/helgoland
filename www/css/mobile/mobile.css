@@ -2,13 +2,17 @@
 /* mobile */
 .combi-mobile {
   height: 100%;
+  position: relative;
 }
 .combi-mobile .combi-header {
-  height: 30px;
-  background-color: red;
+  height: 50px;
+  text-align: center;
 }
 .combi-mobile .combi-body {
-  height: 100%;
+  position: absolute;
+  width: 100%;
+  top: 50px;
+  bottom: 0px;
 }
 .combi-mobile .combi-body .map,
 .combi-mobile .combi-body .chart {

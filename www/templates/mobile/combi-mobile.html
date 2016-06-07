@@ -1,7 +1,12 @@
 <div class="combi-mobile">
-  <!--<div class="combi-header">
-    {{series.label}}
-  </div>-->
+  <div class="combi-header">
+    <div>
+      <span>{{series.label}}</span>
+    </div>
+    <div>
+      <span>{{series.seriesParameters.phenomenon.label}} ({{series.uom}})</span>
+    </div>
+  </div>
   <div class="combi-body">
     <div class="map">
       <leaflet id="mobileCombiMap"

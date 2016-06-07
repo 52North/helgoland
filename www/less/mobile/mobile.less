@@ -1,15 +1,20 @@
 @import "../variables.less";
 
-@drag-color: fade(blue,40%);;
+@drag-color: fade(blue,40%);
+@combi-header-height: 50px;
 
 .combi-mobile {
   height: 100%;
+  position: relative;
   .combi-header {
-    height: 30px;
-    background-color: red;
+    height: @combi-header-height;
+    text-align: center;
   }
   .combi-body {
-    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: @combi-header-height;
+    bottom: 0px;
     .map,
     .chart {
       position: relative;
