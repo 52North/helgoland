@@ -151,8 +151,8 @@ angular.module('n52.client.mobile', [])
                 };
                 var background,
                         pathClass = "path",
-                        xScale, yScale, xAxisGen, yAxisGen, lineFun,
-                        focusG, highlightFocus, focuslabelValue,focuslabelTime, focuslabelY,
+                        xScale, yScale, xAxisGen, yAxisGen, lineFun, area,
+                        focusG, highlightFocus, focuslabelValue, focuslabelTime, focuslabelY,
                         dragging, dragStart, dragCurrent, dragRect, dragRectG;
 
                 var d3 = $window.d3;
@@ -198,7 +198,7 @@ angular.module('n52.client.mobile', [])
                   xScale = d3.scale.linear()
                           .domain([scope.data.values[0].dist, scope.data.values[scope.data.values.length - 1].dist])
                           .range([0, width()]);
-                  
+
                   var range = scope.data.range.max - scope.data.range.min;
                   var rangeOffset = range * 0.05;
                   yScale = d3.scale.linear()
@@ -225,6 +225,30 @@ angular.module('n52.client.mobile', [])
                             return yScale(d.value);
                           })
                           .interpolate("basis");
+                  area = d3.svg.area()
+                          .x(function (d) {
+                            var xDiagCoord = xScale(d.dist);
+                            d.xDiagCoord = xDiagCoord;
+                            return xDiagCoord;
+                          })
+                          .y0(height())
+                          .y1(function (d) {
+                            return yScale(d.value);
+                          })
+                }
+
+                function make_x_axis() {
+                  return d3.svg.axis()
+                          .scale(xScale)
+                          .orient("bottom")
+                          .ticks(10)
+                }
+
+                function make_y_axis() {
+                  return d3.svg.axis()
+                          .scale(yScale)
+                          .orient("left")
+                          .ticks(5)
                 }
 
                 function drawLineChart() {
@@ -232,15 +256,56 @@ angular.module('n52.client.mobile', [])
 
                   setChartParameters();
 
+                  // draw the x grid lines
+                  graph.append("svg:g")
+                          .attr("class", "grid")
+                          .attr("transform", "translate(0," + height() + ")")
+                          .call(make_x_axis().tickSize(-height(), 0, 0).tickFormat(''))
+
+                  // draw the y grid lines
+                  graph.append("svg:g")
+                          .attr("class", "grid")
+                          .call(make_y_axis().tickSize(-width(), 0, 0).tickFormat(''))
+
+                  // draw filled area
+                  graph.append("svg:path")
+                          .datum(scope.data.values)
+                          .attr({
+                            d: area,
+                            "class": "graphArea"
+                          });
+
+                  // draw x axis
                   graph.append("svg:g")
                           .attr("class", "x axis")
                           .attr("transform", "translate(0," + height() + ")")
                           .call(xAxisGen);
 
+                  // draw right axis as border
+                  graph.append("svg:g")
+                          .attr("class", "x axis")
+                          .call(d3.svg.axis()
+                                  .scale(xScale)
+                                  .orient("top")
+                                  .tickSize(0)
+                                  .tickFormat(''));
+
+                  // draw y axis
                   graph.append("svg:g")
                           .attr("class", "y axis")
                           .call(yAxisGen);
 
+                  // draw right axis as border
+                  graph.append("svg:g")
+                          .attr("class", "y axis")
+                          .attr("transform", "translate(" + width() + ", 0)")
+                          .call(d3.svg.axis()
+                                  .scale(yScale)
+                                  .orient("right")
+                                  .tickSize(0)
+                                  .tickFormat(''));
+
+                  // draw the value line
                   graph.append("svg:path")
                           .attr({
                             d: lineFun(scope.data.values),
@@ -248,14 +313,6 @@ angular.module('n52.client.mobile', [])
                             "stroke-width": 2,
                             "fill": "none",
                             "class": pathClass
-                          });
-                  graph.append("svg:area")
-                          .attr({
-                            d: lineFun(scope.data.values),
-                            "stroke": "red",
-                            "stroke-width": 2,
-                            "fill": "none",
-                            "class": "area"
                           });
 
                   background = graph.append("svg:rect")
@@ -392,11 +449,11 @@ angular.module('n52.client.mobile', [])
 
                   focuslabelValue
                           .attr("x", xCoordinate + 2)
-                          .attr("y", 10)
+                          .attr("y", 13)
                           .text(numY + scope.series.uom);
                   focuslabelTime
                           .attr('x', xCoordinate - 95)
-                          .attr('y', 10)
+                          .attr('y', 13)
                           .text(moment(item.timestamp).format('DD.MM.YY HH:mm'));
                   focuslabelY
                           .attr("y", height() - 5)

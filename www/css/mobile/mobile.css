@@ -26,10 +26,16 @@
   fill: none;
   stroke: black;
 }
-.combi-mobile .combi-body .map .area,
-.combi-mobile .combi-body .chart .area {
+.combi-mobile .combi-body .map .graphArea,
+.combi-mobile .combi-body .chart .graphArea {
   fill: lightsteelblue;
-  stroke-width: 0;
+  fill-opacity: 0.7;
+}
+.combi-mobile .combi-body .map .grid .tick,
+.combi-mobile .combi-body .chart .grid .tick {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
 }
 .combi-mobile .combi-body .map .map-highlight-label,
 .combi-mobile .combi-body .chart .map-highlight-label {
