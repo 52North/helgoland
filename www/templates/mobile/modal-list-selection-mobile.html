@@ -12,8 +12,7 @@
 
     <div class="provider-item" 
          ng-repeat="provider in providerList"
-         ng-click="selectProvider(provider)"
-         ng-if="provider.url.indexOf('series-dao-webapp/api/v1/') > -1">
+         ng-click="selectProvider(provider)">
       <div>{{provider.label}}</div>
       <div class="small">{{provider.type}}, {{provider.version}}</div>
       <div class="small">{{provider.url}}</div>
@@ -40,19 +39,19 @@
     </div>
   </div>
 
-  <div class="modal-body" ng-if="providerselected" >
+  <div class="modal-body" ng-if="providerselected">
     <uib-tabset class="selectionListContent">
       <uib-tab>
         <uib-tab-heading>
           <span translate="listSelection_mobile.headers.platform"></span>
         </uib-tab-heading>
-        <swc-list-selection-mobile parameters="platformParams"></swc-list-selection>
+        <swc-list-selection-mobile parameters="platformParams" provider="providerselected"></swc-list-selection>
       </uib-tab>
       <uib-tab>
         <uib-tab-heading>
           <span translate="listSelection_mobile.headers.phenomenon"></span>
         </uib-tab-heading>
-        <swc-list-selection-mobile parameters="phenomenonParams"></swc-list-selection>
+        <swc-list-selection-mobile parameters="phenomenonParams" provider="providerselected"></swc-list-selection>
       </uib-tab>
     </uib-tabset>
   </div>

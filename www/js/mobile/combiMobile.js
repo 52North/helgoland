@@ -42,7 +42,7 @@ angular.module('n52.client.mobile', [])
                   }, true);
 
                   $scope.$on('leafletDirectiveMap.mobileCombiMap.zoomend', function (temp) {
-                    if ($scope.highlight.value != null) {
+                    if ($scope.highlight.latlng !== undefined) {
                       drawMapMarker($scope.highlight);
                     }
                   });
@@ -250,21 +250,21 @@ angular.module('n52.client.mobile', [])
                           .y0(height())
                           .y1(function (d) {
                             return yScale(d.value);
-                          })
+                          });
                 }
 
                 function make_x_axis() {
                   return d3.svg.axis()
                           .scale(xScale)
                           .orient("bottom")
-                          .ticks(10)
+                          .ticks(10);
                 }
 
                 function make_y_axis() {
                   return d3.svg.axis()
                           .scale(yScale)
                           .orient("left")
-                          .ticks(5)
+                          .ticks(5);
                 }
 
                 function drawLineChart() {
@@ -276,12 +276,12 @@ angular.module('n52.client.mobile', [])
                   graph.append("svg:g")
                           .attr("class", "grid")
                           .attr("transform", "translate(0," + height() + ")")
-                          .call(make_x_axis().tickSize(-height(), 0, 0).tickFormat(''))
+                          .call(make_x_axis().tickSize(-height(), 0, 0).tickFormat(''));
 
                   // draw the y grid lines
                   graph.append("svg:g")
                           .attr("class", "grid")
-                          .call(make_y_axis().tickSize(-width(), 0, 0).tickFormat(''))
+                          .call(make_y_axis().tickSize(-width(), 0, 0).tickFormat(''));
 
                   // draw filled area
                   graph.append("svg:path")
@@ -431,7 +431,7 @@ angular.module('n52.client.mobile', [])
 
                 function resetDrag() {
                   combinedSrvc.resetSelection();
-                  if (dragRectG != null) {
+                  if (dragRectG !== null) {
                     dragRectG.remove();
                     dragRectG = null;
                     dragRect = null;
@@ -507,8 +507,6 @@ angular.module('n52.client.mobile', [])
               dist: 0
             };
             var series = {};
-
-            loadSeries('measurement/113235', 'http://192.168.52.117:8080/series-dao-webapp/api/v1/');
 
             function loadSeries(id, url) {
               series.loading = true;

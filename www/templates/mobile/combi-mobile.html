@@ -1,5 +1,5 @@
 <div class="combi-mobile">
-  <div class="combi-header">
+  <div class="combi-header" ng-hide="series.label === undefined">
     <div>
       <span>{{series.label}}</span>
     </div>
@@ -26,6 +26,7 @@
       <div class="map-buttons">
         <a class="btn btn-default" data-action="listSelection_mobile" ng-controller="ListSelectionMobileButtonCtrl" ng-click="openListSelectionMobile()">
           <span class="glyphicon glyphicon-list-alt"></span>
+          <span ng-if="series.label === undefined" ng-init="openListSelectionMobile()"></span>
         </a>
       </div>
     </div>

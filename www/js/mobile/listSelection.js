@@ -51,14 +51,12 @@ angular.module('n52.client.mobile')
           }])
         .controller('SwcProviderListCtrl', ['$scope', 'providerService',
           function ($scope, providerService) {
-            $scope.providerselected = false;
+            $scope.providerselected = null;
 
             $scope.providerList = providerService.getAllProviders();
 
             $scope.selectProvider = function (provider) {
-              $scope.providerselected = true;
-              providerService.selectProvider(provider);
-              $scope.providerList = providerService.providerList;
+              $scope.providerselected = provider;
             };
           }])
         .directive('swcListSelectionMobile', [
@@ -67,14 +65,15 @@ angular.module('n52.client.mobile')
               restrict: 'E',
               templateUrl: 'templates/mobile/accordion-list-selection.html',
               scope: {
-                parameters: '='
+                parameters: '=',
+                provider: '='
               },
               controller: 'ListSelectionMobileCtrl'
             };
           }])
-        .controller('ListSelectionMobileCtrl', ['$scope', 'interfaceV2Service', 'colorService', 'statusService', 'combinedSrvc',
-          function ($scope, interfaceV2Service, colorService, statusService, combinedSrvc) {
-            var url = statusService.status.apiProvider.url;
+        .controller('ListSelectionMobileCtrl', ['$scope', 'interfaceV2Service', 'combinedSrvc',
+          function ($scope, interfaceV2Service, combinedSrvc) {
+            var url = $scope.provider.url;
             angular.forEach($scope.parameters, function (param, openedIdx) {
               $scope.$watch('parameters[' + openedIdx + '].isOpen', function (newVal, oldVal) {
                 if (newVal) {
