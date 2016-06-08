@@ -15,33 +15,33 @@ angular.module('n52.client.mobile')
             $scope.platformParams = [
               {
                 type: 'platform',
-                header: 'listSelection_mobile.headers.platform'
+                header: 'trajectories.headers.platform'
               },
               {
                 type: 'features',
-                header: 'listSelection_mobile.headers.track'
+                header: 'trajectories.headers.track'
               },
               {
                 type: 'phenomenon',
-                header: 'listSelection_mobile.headers.phenomenon'
+                header: 'trajectories.headers.phenomenon'
               },
               {
                 type: 'series',
-                header: 'listSelection_mobile.headers.series'
+                header: 'trajectories.headers.series'
               }
             ];
             $scope.phenomenonParams = [
               {
                 type: 'phenomenon',
-                header: 'listSelection_mobile.headers.phenomenon'
+                header: 'trajectories.headers.phenomenon'
               },
               {
                 type: 'features',
-                header: 'listSelection_mobile.headers.track'
+                header: 'trajectories.headers.track'
               },
               {
                 type: 'series',
-                header: 'listSelection_mobile.headers.series'
+                header: 'trajectories.headers.series'
               }
             ];
 
@@ -107,21 +107,33 @@ angular.module('n52.client.mobile')
                 interfaceV2Service.getMobilePlatforms(null, url, $scope.createParams())
                         .then(function (data) {
                           currParam.items = data;
+                        })
+                        .catch(function () {
+                          currParam.error = true;
                         });
               } else if (currParam.type === 'features') {
                 interfaceV2Service.getFeatures(null, url, $scope.createParams())
                         .then(function (data) {
                           currParam.items = data;
+                        })
+                        .catch(function () {
+                          currParam.error = true;
                         });
               } else if (currParam.type === 'phenomenon') {
                 interfaceV2Service.getPhenomena(null, url, $scope.createParams())
                         .then(function (data) {
                           currParam.items = data;
+                        })
+                        .catch(function () {
+                          currParam.error = true;
                         });
               } else if (currParam.type === 'series') {
                 interfaceV2Service.getSeries(null, url, $scope.createParams())
                         .then(function (data) {
                           currParam.items = data;
+                        })
+                        .catch(function () {
+                          currParam.error = true;
                         });
               }
             };

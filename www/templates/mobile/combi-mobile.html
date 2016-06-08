@@ -20,11 +20,11 @@
            ng-if="series.loading">
         <div>
           <div class="glyphicon glyphicon-refresh icon-spin"></div>
-          <div translate="listSelection_mobile.map.loading"></div>
+          <div translate="trajectories.map.loading"></div>
         </div>
       </div>
       <div class="map-buttons">
-        <a class="btn btn-default" data-action="listSelection_mobile" ng-controller="ListSelectionMobileButtonCtrl" ng-click="openListSelectionMobile()">
+        <a class="btn btn-default" ng-controller="ListSelectionMobileButtonCtrl" ng-click="openListSelectionMobile()">
           <span class="glyphicon glyphicon-list-alt"></span>
           <span ng-if="series.label === undefined" ng-init="openListSelectionMobile()"></span>
         </a>

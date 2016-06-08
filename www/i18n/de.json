@@ -78,7 +78,7 @@
             "moreThanOneTimeseries": "Mehr als eine Zeitreihe gefunden"
         }
     },
-    "listSelection_mobile": {
+    "trajectories": {
         "header": "Listenbasierte Fahrtenauswahl",
         "headers": {
             "platform": "Mobile Platform",
@@ -86,6 +86,7 @@
             "phenomenon": "Phänomen",
             "series": "Serie"
         },
+        "noSupport": "Anbieter liefert keine Trajektorien",
         "map": {
           "loading": "Daten werden geladen"
         }

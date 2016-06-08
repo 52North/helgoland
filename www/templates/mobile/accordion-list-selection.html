@@ -8,21 +8,13 @@
           <span ng-bind-html="param.header | translate"></span>
           <span ng-show=param.headerAddition> - </span>
           <span>{{param.headerAddition}}</span>
-          <!--<div class="btn-group timeSelection" style="left:370px" ng-show="param.header=='listSelection_mobile.headers.track' && param.isOpen">
-              <button class="btn btn-default" ng-click="back()">
-                  <span class="glyphicon glyphicon-chevron-left"></span>
-              </button>
-              <button class="btn btn-default" ng-controller="TimeRangeCtrl" ng-click="open()">
-                  {{time.start.toDate() | date : 'dd.MM.yy'}} - {{time.end.toDate() | date : 'dd.MM.yy'}}
-              </button>
-              <button type="button" class="btn btn-default" ng-click="forward()">
-                  <span class="glyphicon glyphicon-chevron-right"></span>
-              </button>
-          </div>-->
         </span>
       </uib-accordion-heading>
       <div ng-repeat="item in param.items" ng-click="openItem(item)">
         <span>{{item.label}}</span>
+      </div>
+      <div ng-if="param.error">
+        <span translate='trajectories.noSupport'></span>
       </div>
     </uib-accordion-group>
   </uib-accordion>
