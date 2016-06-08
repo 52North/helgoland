@@ -6,7 +6,7 @@ angular.module('n52.core.interface')
               return $q(function (resolve, reject) {
                 $http.get(apiUrl + 'platforms/' + interfaceServiceUtils.createIdString(id), interfaceServiceUtils.createRequestConfigs(params))
                         .then(function (response) {
-                          resolve(response.data.items);
+                          resolve(response.data);
                         }, function (error) {
                           interfaceServiceUtils.errorCallback(error, reject);
                         });
@@ -39,11 +39,7 @@ angular.module('n52.core.interface')
               return $q(function (resolve, reject) {
                 $http.get(apiUrl + 'series/' + interfaceServiceUtils.createIdString(id), interfaceServiceUtils.createRequestConfigs(params))
                         .then(function (response) {
-                          if (response.data.items) {
-                            resolve(response.data.items);
-                          } else {
-                            resolve(response.data);
-                          }
+                          resolve(response.data);
                         }, function (error) {
                           interfaceServiceUtils.errorCallback(error, reject);
                         });
