@@ -240,7 +240,7 @@ angular.module('n52.client.mobile', [])
                           .y(function (d) {
                             return yScale(d.value);
                           })
-                          .interpolate("basis");
+                          .interpolate("linear");
                   area = d3.svg.area()
                           .x(function (d) {
                             var xDiagCoord = xScale(d.dist);
@@ -250,7 +250,8 @@ angular.module('n52.client.mobile', [])
                           .y0(height())
                           .y1(function (d) {
                             return yScale(d.value);
-                          });
+                          })
+                          .interpolate("linear");
                 }
 
                 function make_x_axis() {
