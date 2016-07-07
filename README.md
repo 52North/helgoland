@@ -23,8 +23,8 @@ Features:
 
 The following main frameworks are used to provide this application:
 
-* [AngularJS](https://angularjs.org/) 
-* [Leaflet](http://leafletjs.com/) 
+* [AngularJS](https://angularjs.org/)
+* [Leaflet](http://leafletjs.com/)
 * [Bootstrap](http://getbootstrap.com/)
 * [momentJs](http://momentjs.com/)
 * [flot](http://www.flotcharts.org/)
@@ -53,19 +53,15 @@ Licensed under [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
 Try out/test [Helgoland](http://sensorweb.demo.52north.org/client/#/)
 
 ## Changelog
-TBD
 
 ## References
-TBD
 
 ## Contact
-<img src="https://avatars1.githubusercontent.com/u/3830314?v=3&s=140" alt="Webpack and Angular 2" width="48" height="48"/>
-
-Jan Schulte
+<!--<img src="https://avatars1.githubusercontent.com/u/3830314?v=3&s=140" alt="Webpack and Angular 2" width="48" height="48"/>-->
 
 j.schulte@52north.org
 
-## Credits 
+## Credits
 
 ## How to contribute
 
@@ -104,9 +100,9 @@ See [here](https://github.com/52North/sensorweb-client-core#how-to-develop) for 
 
 #### Configuration
 
-See [here](https://github.com/52North/sensorweb-client-core#configuration) 
+See [here](https://github.com/52North/sensorweb-client-core#configuration)
 
-## Extensions (Backends, etc., z.B. SOS )
+<!--## Extensions (Backends, etc., z.B. SOS )
 ## Road Map/development plans (features, focus…)
 ## Architecture/Design
 ## JavaDoc
@@ -115,4 +111,4 @@ not needed
 ## contributor
 see Github...
 
-## Requirements
+## Requirements-->
