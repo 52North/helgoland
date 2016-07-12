@@ -79,14 +79,6 @@
     "#A1BE9D"
   ],
   "baselayer": {
-    "mapbox": {
-      "name": "Mapbox",
-      "type": "xyz",
-      "url": "http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg",
-      "layerOptions": {
-        "attribution": "&copy; <a href='http://www.mapquest.com/' target='_blank'>MapQuest</a> <img src='http://developer.mapquest.com/content/osm/mq_logo.png'/>"
-      }
-    },
     "osm": {
       "name": "Open Street Map",
       "type": "xyz",
