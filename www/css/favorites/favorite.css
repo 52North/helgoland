@@ -24,16 +24,17 @@
   overflow: auto;
 }
 .favorites .favorite-container {
-  color: #626250;
+  color: #0f426a;
   padding: 5px;
 }
 .favorites .favorite-container .favorite-entry {
-  border: 1px solid #626250;
+  border: 1px solid #0f426a;
   word-break: break-all;
 }
 .favorites .favorite-container .favorite-entry:hover {
   cursor: pointer;
-  background-color: #bde6f3;
+  background-color: #125080;
+  color: white;
 }
 .favorites .favorite-container .favorite-entry .favorite-header {
   padding: 5px;

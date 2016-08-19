@@ -4,11 +4,11 @@
   cursor: pointer;
 }
 .diagram .axisTarget:hover {
-  background-color: #bde6f3;
+  background-color: #125080;
   opacity: 0.4;
 }
 .diagram .axisTarget.selected {
-  background-color: #66c5e4;
+  background-color: #125080;
   opacity: 0.4;
 }
 .diagram .axisLabel {

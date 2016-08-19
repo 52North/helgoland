@@ -1,26 +1,26 @@
 /* colors */
 /* mobile */
 .btn {
-  color: #626250;
+  color: #0f426a;
 }
 .btn:hover {
-  background-color: #bde6f3;
-  color: #626250;
-  border-color: #bde6f3;
+  background-color: #125080;
+  color: white;
+  border-color: #125080;
 }
 .btn-subtitle {
   font-size: 70%;
 }
 .btn-primary {
-  background-color: #66c5e4;
-  border-color: #66c5e4;
-  color: #626250;
+  background-color: #125080;
+  border-color: white;
+  color: white;
 }
 .btn-primary:hover {
-  background-color: #bde6f3;
-  border-color: #bde6f3;
+  background-color: #125080;
+  border-color: #125080;
 }
 .btn-default:hover {
-  background-color: #bde6f3;
-  color: #626250;
+  background-color: #125080;
+  color: white;
 }

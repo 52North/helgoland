@@ -1,7 +1,7 @@
 /* colors */
 /* mobile */
 .provider-list {
-  color: #626250;
+  color: #0f426a;
 }
 .provider-list .provider-item {
   padding: 5px;
@@ -12,10 +12,10 @@
 }
 .provider-list .provider-item:hover {
   cursor: pointer;
-  background-color: #bde6f3;
-  color: #626250;
+  background-color: #125080;
+  color: white;
 }
 .provider-list .provider-item.selected {
-  background-color: #66c5e4;
-  color: #626250;
+  background-color: #125080;
+  color: white;
 }
