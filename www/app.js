@@ -77,14 +77,14 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
                     name: 'navigation.favorite',
                     reloadOnSearch: false
                 })
-                .when('/map/provider', {
-                    name: 'navigation.provider',
-                    modal: {
-                        controller: 'SwcProviderListModalCtrl',
-                        templateUrl: 'templates/map/provider-list-modal.html'
-                    },
-                    reloadOnSearch: false
-                })
+                // .when('/map/provider', {
+                //     name: 'navigation.provider',
+                //     modal: {
+                //         controller: 'SwcProviderListModalCtrl',
+                //         templateUrl: 'templates/map/provider-list-modal.html'
+                //     },
+                //     reloadOnSearch: false
+                // })
                 .when('/diagram/listSelection', {
                     name: 'navigation.listSelection',
                     modal: {
@@ -115,7 +115,7 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', function ($tran
         });
         $translateProvider.registerAvailableLanguageKeys(suppLang);
         $translateProvider.determinePreferredLanguage();
-        if ($translateProvider.preferredLanguage() === '' 
+        if ($translateProvider.preferredLanguage() === ''
                 || suppLang.indexOf($translateProvider.preferredLanguage()) === -1) {
             $translateProvider.preferredLanguage('en');
         }
