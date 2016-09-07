@@ -235,6 +235,7 @@ module.exports = function (grunt) {
         jshint: {
             files: ['gruntfile.js', 'www/js/**/*.js', 'test/**/*.js'],
             options: {
+              reporterOutput: "",
                 globals: {
                     jQuery: true,
                     console: true,
@@ -296,7 +297,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('env-build', ['tags']);
-    grunt.registerTask('default', ['clean', 'concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
+    grunt.registerTask('default', ['test', 'clean', 'concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
 
-    grunt.registerTask('buildWar', ['test', 'default', 'war']);
+    grunt.registerTask('buildWar', ['default', 'war']);
 };
