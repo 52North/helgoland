@@ -5,12 +5,12 @@
     <div class="modal-title" translate="trajectories.header"></div>
   </div>
 
-  <div class="modal-body provider-list" 
+  <div class="modal-body provider-list"
        ng-if="!providerselected" >
 
     <span>Provider Auswählen</span>
 
-    <div class="provider-item" 
+    <div class="provider-item"
          ng-repeat="provider in providerList"
          ng-click="selectProvider(provider)">
       <div>{{provider.label}}</div>
@@ -18,23 +18,23 @@
       <div class="small">{{provider.url}}</div>
       <div class="small">
         <span ng-if="provider.quantities.stations">
-          <span translate="map.providerList.stations"></span>
-          <span>: {{provider.quantities.stations}}</span>
+          <span translate="providerList.stations"></span>:
+          <span>{{provider.quantities.stations}}</span>
         </span>
         <span ng-if="provider.quantities.platforms">
-          <span translate="map.providerList.platforms"></span>
-          <span>: {{provider.quantities.platforms}}</span>
+          <span translate="providerList.platforms"></span>:
+          <span>{{provider.quantities.platforms}}</span>
         </span>
         <span ng-if="provider.quantities.series">
-          <span translate="map.providerList.timeseries"></span>
-          <span>: {{provider.quantities.series}}</span>
+          <span translate="providerList.timeseries"></span>:
+          <span>{{provider.quantities.series}}</span>
         </span>
         <span ng-if="provider.quantities.timeseries">
-          <span translate="map.providerList.timeseries"></span>
-          <span>: {{provider.quantities.timeseries}}</span>
+          <span translate="providerList.timeseries"></span>:
+          <span>{{provider.quantities.timeseries}}</span>
         </span>
-        <span translate="map.providerList.phenomena"></span>
-        <span>: {{provider.quantities.phenomena}}</span>
+        <span translate="providerList.phenomena"></span>:
+        <span>{{provider.quantities.phenomena}}</span>
       </div>
     </div>
   </div>

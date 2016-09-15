@@ -45,6 +45,7 @@
         "provider": "Datenanbieter",
         "serviceUrl": "Service-URL",
         "stations": "Stationen",
+        "platforms": "Platformen",
         "timeseries": "Zeitreihen",
         "phenomena": "Phänomene",
         "selectAll": "Selektiere alle Anbieter"
@@ -89,7 +90,7 @@
         },
         "noSupport": "Anbieter liefert keine Trajektorien",
         "map": {
-          "loading": "Daten werden geladen"
+            "loading": "Daten werden geladen"
         }
     },
     "legend": {
@@ -282,7 +283,7 @@
     },
     "metadataOutput": {
         "selectRawProcedureFormat": "Procedure als Rohdata",
-        "selectTimeseriesDataFormat" : "Zeitreihendaten als Rohdaten",
+        "selectTimeseriesDataFormat": "Zeitreihendaten als Rohdaten",
         "showCapabilities": "Zeige SOS-Capabilities"
     }
 }
