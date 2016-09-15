@@ -29,9 +29,6 @@ The following main frameworks are used to provide this application:
 * [momentJs](http://momentjs.com/)
 * [flot](http://www.flotcharts.org/)
 
-Software Release:  1.0
-Download Flyer (link to pdf)
-
 ## Quick Start (Getting started -> configuration)
 
 * Download the latest Version here (link)

@@ -16,7 +16,7 @@
     "angular-sanitize": "^1.5.0",
     "angular-translate-loader-static-files": "~2.10.0",
     "bootstrap": "~3.3.5",
-    "ui-leaflet": "janschulte/ui-leaflet#master",
+    "ui-leaflet": "1.0.0",
     "leaflet.markercluster": "0.4.0",
     "ng-table": "0.7.0",
     "angular-local-storage": "0.2.2",
@@ -33,6 +33,8 @@
     "xslt": "^0.7.0"
   },
   "resolutions": {
-    "angular": "~1.5"
+    "angular": "~1.5",
+    "xslt": "^0.7.0",
+    "angular-translate": "~2.10.0"
   }
 }

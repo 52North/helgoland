@@ -46,6 +46,7 @@
   },
   "providerList": {
     "provider": "Provider",
+    "serviceUrl": "Service-URL",
     "stations": "Stations",
     "timeseries": "Timeseries",
     "phenomena": "Phenomena",
