@@ -86,7 +86,7 @@
             "platform": "Mobile Platform",
             "track": "Pfad",
             "phenomenon": "Phänomen",
-            "series": "Serie"
+            "dataset": "Dataset"
         },
         "noSupport": "Anbieter liefert keine Trajektorien",
         "map": {

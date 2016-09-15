@@ -89,7 +89,7 @@
             "platform": "Mobile platform",
             "track": "Tracks",
             "phenomenon": "Phenomenon",
-            "series": "Series"
+            "dataset": "Dataset"
         },
         "noSupport": "Provider doesn't deliver trajectories",
         "map": {

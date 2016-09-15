@@ -514,14 +514,14 @@ angular.module('n52.client.mobile', [])
 
             function loadSeries(id, url) {
                 series.loading = true;
-                interfaceV2Service.getSeries(id, url)
+                interfaceV2Service.getDatasets(id, url)
                     .then(function(s) {
                         angular.extend(series, s);
                         var timespan = {
                             start: s.firstValue.timestamp,
                             end: s.lastValue.timestamp
                         };
-                        interfaceV2Service.getSeriesData(s.id, url, timespan)
+                        interfaceV2Service.getDatasetData(s.id, url, timespan)
                             .then(function(data) {
                                 processData(data.values);
                                 series.loading = false;

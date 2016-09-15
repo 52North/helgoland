@@ -23,8 +23,8 @@ angular.module('n52.client.mobile')
                 type: 'phenomenon',
                 header: 'trajectories.headers.phenomenon'
             }, {
-                type: 'series',
-                header: 'trajectories.headers.series'
+                type: 'dataset',
+                header: 'trajectories.headers.dataset'
             }];
             $scope.phenomenonParams = [{
                 type: 'phenomenon',
@@ -33,8 +33,8 @@ angular.module('n52.client.mobile')
                 type: 'features',
                 header: 'trajectories.headers.track'
             }, {
-                type: 'series',
-                header: 'trajectories.headers.series'
+                type: 'dataset',
+                header: 'trajectories.headers.dataset'
             }];
 
             $scope.close = function() {
@@ -122,8 +122,8 @@ angular.module('n52.client.mobile')
                         .catch(function() {
                             currParam.error = true;
                         });
-                } else if (currParam.type === 'series') {
-                    interfaceV2Service.getSeries(null, url, $scope.createParams())
+                } else if (currParam.type === 'dataset') {
+                    interfaceV2Service.getDatasets(null, url, $scope.createParams())
                         .then(function(data) {
                             currParam.items = data;
                         })

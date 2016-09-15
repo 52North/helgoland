@@ -15,7 +15,7 @@ angular.module('n52.core.interface')
 
             this.getFeatures = function(id, apiUrl, params) {
                 return $q(function(resolve, reject) {
-                    $http.get(apiUrl + 'ext/features/' + interfaceServiceUtils.createIdString(id), interfaceServiceUtils.createRequestConfigs(params))
+                    $http.get(apiUrl + 'features/' + interfaceServiceUtils.createIdString(id), interfaceServiceUtils.createRequestConfigs(params))
                         .then(function(response) {
                             resolve(response.data);
                         }, function(error) {
@@ -26,7 +26,7 @@ angular.module('n52.core.interface')
 
             this.getPhenomena = function(id, apiUrl, params) {
                 return $q(function(resolve, reject) {
-                    $http.get(apiUrl + 'ext/phenomena/' + interfaceServiceUtils.createIdString(id), interfaceServiceUtils.createRequestConfigs(params))
+                    $http.get(apiUrl + 'phenomena/' + interfaceServiceUtils.createIdString(id), interfaceServiceUtils.createRequestConfigs(params))
                         .then(function(response) {
                             resolve(response.data);
                         }, function(error) {
@@ -35,9 +35,9 @@ angular.module('n52.core.interface')
                 });
             };
 
-            this.getSeries = function(id, apiUrl, params) {
+            this.getDatasets = function(id, apiUrl, params) {
                 return $q(function(resolve, reject) {
-                    $http.get(apiUrl + 'series/' + interfaceServiceUtils.createIdString(id), interfaceServiceUtils.createRequestConfigs(params))
+                    $http.get(apiUrl + 'datasets/' + interfaceServiceUtils.createIdString(id), interfaceServiceUtils.createRequestConfigs(params))
                         .then(function(response) {
                             resolve(response.data);
                         }, function(error) {
@@ -46,7 +46,7 @@ angular.module('n52.core.interface')
                 });
             };
 
-            this.getSeriesData = function(id, apiUrl, timespan, extendedParams) {
+            this.getDatasetData = function(id, apiUrl, timespan, extendedParams) {
                 var params = {
                     timespan: utils.createRequestTimespan(timespan.start, timespan.end)
                 };
@@ -54,7 +54,7 @@ angular.module('n52.core.interface')
                     angular.extend(params, extendedParams);
                 }
                 return $q(function(resolve, reject) {
-                    $http.get(apiUrl + 'series/' + interfaceServiceUtils.createIdString(id) + '/data', interfaceServiceUtils.createRequestConfigs(params))
+                    $http.get(apiUrl + 'datasets/' + interfaceServiceUtils.createIdString(id) + '/data', interfaceServiceUtils.createRequestConfigs(params))
                         .then(function(response) {
                             resolve(response.data);
                         }, function(error) {
