@@ -2,49 +2,58 @@
 
 .navbar-default {
     border-color: white;
-    background-color: @menu-background-color; 
+    background-color: @menu-background-color;
+
     .navbar-header {
         .navbar-brand {
-            cursor: default;
+            cursor: pointer;
             color: @menu-text-color;
         }
+
         .navbar-header-text {
             margin-left: 10px;
         }
+
         .button-right {
             float: right;
             margin-right: 10px;
-        }   
+        }
     }
-    .navbar-nav{
-        &>li {
-            &>a {
+
+    .navbar-nav {
+        & > li {
+            & > a {
                 color: @menu-text-color;
-                &:hover{
+
+                &:hover {
                     color: @menu-selected-text-color;
                     background-color: @menu-selected-background-color;
                     cursor: pointer;
                 }
             }
         }
-        &>.active {
-            &>a {
+
+        & > .active {
+            & > a {
                 color: @menu-selected-text-color;
                 background-color: @menu-selected-background-color;
-                &:hover,
-                    &:focus {
+
+                &:focus,
+                &:hover {
                     color: @menu-selected-text-color;
                     background-color: @menu-selected-background-color;
                 }
             }
         }
     }
-    .navbar-toggle{
+
+    .navbar-toggle {
         border: none;
         background-color: @menu-text-color;
+
+        &:focus,
         &:hover,
-            &:focus,
-            collapsed {
+        collapsed {
             background-color: @menu-text-color;
         }
     }

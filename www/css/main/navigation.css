@@ -5,7 +5,7 @@
   background-color: #0f426a;
 }
 .navbar-default .navbar-header .navbar-brand {
-  cursor: default;
+  cursor: pointer;
   color: white;
 }
 .navbar-default .navbar-header .navbar-header-text {
