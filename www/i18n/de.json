@@ -42,6 +42,7 @@
     },
     "providerList": {
         "provider": "Datenanbieter",
+        "serviceUrl": "Service-URL",
         "stations": "Stationen",
         "timeseries": "Zeitreihen",
         "phenomena": "Phänomene",
