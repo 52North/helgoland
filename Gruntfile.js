@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         name: 'client',
@@ -208,8 +208,7 @@ module.exports = function (grunt) {
             }
         },
         cssmin: {
-            options: {
-            },
+            options: {},
             styles: {
                 files: {
                     'dist/css/<%= name %>.min.css': ['<%= concat.styles.dest %>']
@@ -223,20 +222,29 @@ module.exports = function (grunt) {
         },
         copy: {
             depStyles: {
-                files: [
-                    {expand: true, flatten: true, src: ['www/bower_components/bootstrap/dist/fonts/*'], dest: 'dist/fonts/', filter: 'isFile'}
-                ]
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: ['www/bower_components/bootstrap/dist/fonts/*'],
+                    dest: 'dist/fonts/',
+                    filter: 'isFile'
+                }]
             },
             locals: {
-                files: [
-                    {expand: true, flatten: false, cwd: 'www/', src: '<%= copy_files %>', dest: 'dist/', filter: 'isFile'}
-                ]
+                files: [{
+                    expand: true,
+                    flatten: false,
+                    cwd: 'www/',
+                    src: '<%= copy_files %>',
+                    dest: 'dist/',
+                    filter: 'isFile'
+                }]
             }
         },
         jshint: {
             files: ['gruntfile.js', 'www/js/**/*.js', 'test/**/*.js'],
             options: {
-              reporterOutput: "",
+                reporterOutput: "",
                 globals: {
                     jQuery: true,
                     console: true,
@@ -267,20 +275,17 @@ module.exports = function (grunt) {
                     war_name: '<%= context_name %>',
                     webxml_welcome: 'index.html',
                     webxml_display_name: '<%= name %> - version <%= pkg.version %> - build at <%= grunt.template.today("yyyy-mm-dd HH:MM") %>',
-                    webxml_mime_mapping: [
-                        {
-                            extension: 'woff',
-                            mime_type: 'application/font-woff'
-                        }]
+                    webxml_mime_mapping: [{
+                        extension: 'woff',
+                        mime_type: 'application/font-woff'
+                    }]
                 },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'dist/',
-                        src: ['**'],
-                        dest: ''
-                    }
-                ]
+                files: [{
+                    expand: true,
+                    cwd: 'dist/',
+                    src: ['**'],
+                    dest: ''
+                }]
             }
         }
     });
