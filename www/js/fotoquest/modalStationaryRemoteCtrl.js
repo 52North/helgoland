@@ -40,7 +40,7 @@ angular.module('n52.core.map')
             function(interfaceV2Service) {
                 var ctrl = this;
                 interfaceV2Service.getDatasets(ctrl.datasetid, ctrl.providerurl)
-                    .then(function(result) {
+                    .then(result => {
                         ctrl.dataset = result;
                         if (result.firstValue.timestamp === result.lastValue.timestamp) {
                             createImageArray(result.firstValue.value);
@@ -52,7 +52,7 @@ angular.module('n52.core.map')
                 createImageArray = function(value) {
                     ctrl.images = [];
                     var keys = Object.keys(value);
-                    keys.forEach(function(key) {
+                    keys.forEach(key => {
                         ctrl.images.push({
                             label: key,
                             url: value[key].properties.href

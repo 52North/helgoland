@@ -182,6 +182,20 @@ module.exports = function(grunt) {
                 dest: 'dist/css/deps.<%= name %>.css'
             }
         },
+        babel: {
+            options: {
+                sourceMap: false,
+                presets: ['es2015-script']
+            },
+            libs: {
+                src: '<%= concat.libs.dest %>',
+                dest: 'dist/js/deps.<%= name %>.min.js'
+            },
+            app: {
+                src: '<%= concat.app.dest %>',
+                dest: 'dist/app.js'
+            }
+        },
         uglify: {
             options: {
                 banner: '/*! <%= name %> <%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n'
@@ -198,12 +212,12 @@ module.exports = function(grunt) {
             },
             libs: {
                 files: {
-                    'dist/js/deps.<%= name %>.min.js': ['<%= concat.libs.dest %>']
+                    'dist/js/deps.<%= name %>.min.js': ['<%= babel.libs.dest %>']
                 }
             },
             appJs: {
                 files: {
-                    'dist/app.js': ['<%= concat.app.dest %>']
+                    'dist/app.js': ['<%= babel.app.dest %>']
                 }
             }
         },
@@ -315,13 +329,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-script-link-tags');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-war');
 
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('env-build', ['tags']);
-    grunt.registerTask('default', ['test', 'clean', 'less', 'concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
+    grunt.registerTask('default', ['test', 'clean', 'less', 'concat', 'babel', 'uglify', 'cssmin', 'copy', 'processhtml']);
 
     grunt.registerTask('buildWar', ['default', 'war']);
 };
