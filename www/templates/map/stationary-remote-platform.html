@@ -1,0 +1,22 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close();">&times;</button>
+        <div class="modal-title">
+            <span>{{'map.stationSelection.station' | translate}}</span>:
+            <span>{{platform.label}}</span>
+        </div>
+    </div>
+    <div class="modal-body stationContent">
+        <div ng-if="!platform">
+            loading platform datasets...
+        </div>
+        <div ng-if="platform">
+            There are
+            {{platform.datasets.length}}
+            create at this location. Select one to see the informations.
+        </div>
+        <div ng-repeat="dataset in platform.datasets">
+            <a ng-click="showDataset(dataset.id);">{{dataset.label}}</a>
+        </div>
+    </div>
+</div>

@@ -20,7 +20,8 @@
         "provider": "Provider",
         "listSelection": "List selection",
         "settings": "Settings",
-        "trajectories": "Trajectories"
+        "trajectories": "Trajectories",
+        "fotoquest": "Fotoquest"
     },
     "chart": {
         "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",

@@ -20,7 +20,8 @@
         "provider": "Anbieter",
         "listSelection": "Listenauswahl",
         "settings": "Einstellungen",
-        "trajectories": "Trajektorien"
+        "trajectories": "Trajektorien",
+        "fotoquest": "Fotoquest"
     },
     "chart": {
         "noTimeseriesSelected": "Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.",

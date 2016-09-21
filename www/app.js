@@ -72,11 +72,11 @@ mainApp.config(['$routeProvider', function($routeProvider) {
             name: 'navigation.map',
             reloadOnSearch: false
         })
-        // .when('/mobileDiagram', {
-        //     templateUrl: 'templates/views/combiView.html',
-        //     name: 'navigation.trajectories',
-        //     reloadOnSearch: false
-        // })
+        .when('/fotoquest', {
+            templateUrl: 'templates/views/fotoquestView.html',
+            name: 'navigation.fotoquest',
+            reloadOnSearch: false
+        })
         .when('/favorite', {
             templateUrl: 'templates/views/favoriteView.html',
             name: 'navigation.favorite',

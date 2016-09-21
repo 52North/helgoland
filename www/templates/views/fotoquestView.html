@@ -1,0 +1,14 @@
+<div class="swc-page swc-page-current" id="map-page">
+    <div class="container-fluid content">
+        <div class="row fullHeight">
+            <div ng-controller="fotoquestViewCtrl as ctrl">
+                <div ng-if="!datasetId" class="empty-diagram">
+                    Please select a fotoquest sample.
+                </div>
+                <div ng-if="datasetId">
+                    <fotoquest-image-carousel datasetid="datasetId" providerurl="providerUrl"></fotoquest-image-carousel>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
