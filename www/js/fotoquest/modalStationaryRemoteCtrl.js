@@ -15,7 +15,7 @@ angular.module('n52.core.map')
                 fotoquestSrvc.selectedProviderUrl = selection.url;
                 $location.url('/fotoquest');
                 $scope.close();
-            }
+            };
         }
     ])
     .service('fotoquestSrvc', [
@@ -56,9 +56,9 @@ angular.module('n52.core.map')
                         ctrl.images.push({
                             label: key,
                             url: value[key].properties.href
-                        })
+                        });
                     });
-                }
+                };
             }
         ]
     });

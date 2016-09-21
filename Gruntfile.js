@@ -245,6 +245,7 @@ module.exports = function(grunt) {
             files: ['gruntfile.js', 'www/js/**/*.js', 'test/**/*.js'],
             options: {
                 reporterOutput: "",
+                esnext: true,
                 globals: {
                     jQuery: true,
                     console: true,
@@ -265,8 +266,24 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            files: ['<%= jshint.files %>'],
-            tasks: ['jshint']
+            jshint: {
+                files: ['<%= jshint.files %>'],
+                tasks: ['jshint']
+            },
+            less: {
+                files: ['www/less/**/*.less'],
+                tasks: ['less']
+            }
+        },
+        less: {
+            development: {
+                options: {
+                    paths: ['www/less/**/*.less']
+                },
+                files: {
+                    'www/css/app.css': ['www/less/**/*.less']
+                }
+            }
         },
         war: {
             target: {
@@ -297,13 +314,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-script-link-tags');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-war');
 
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('env-build', ['tags']);
-    grunt.registerTask('default', ['test', 'clean', 'concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
+    grunt.registerTask('default', ['test', 'clean', 'less', 'concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
 
     grunt.registerTask('buildWar', ['default', 'war']);
 };
