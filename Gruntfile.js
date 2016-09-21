@@ -103,7 +103,7 @@ module.exports = function(grunt) {
             'www/js/*/*.js'
         ],
         app_styles: [
-            'www/css/*/*.css'
+            'www/css/**/*.css'
         ],
         copy_files: [
             'settings.json',
