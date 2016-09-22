@@ -1,8 +1,8 @@
 angular.module('n52.core.map')
-    .controller('SwcModalStationaryRemoteCtrl', ['$scope', '$uibModalInstance', 'selection', '$location', 'fotoquestSrvc', 'interfaceV2Service',
-        function($scope, $uibModalInstance, selection, $location, fotoquestSrvc, interfaceV2Service) {
+    .controller('SwcModalStationaryRemoteCtrl', ['$scope', '$uibModalInstance', 'selection', '$location', 'fotoquestSrvc', 'interfaceService',
+        function($scope, $uibModalInstance, selection, $location, fotoquestSrvc, interfaceService) {
 
-            interfaceV2Service.getStationaryPlatforms(selection.id, selection.url).then(res => {
+            interfaceService.getStationaryPlatforms(selection.id, selection.url).then(res => {
                 $scope.platform = res;
             });
 
@@ -36,10 +36,10 @@ angular.module('n52.core.map')
             datasetid: '<',
             providerurl: '<'
         },
-        controller: ['interfaceV2Service',
-            function(interfaceV2Service) {
+        controller: ['interfaceService',
+            function(interfaceService) {
                 var ctrl = this;
-                interfaceV2Service.getDatasets(ctrl.datasetid, ctrl.providerurl)
+                interfaceService.getDatasets(ctrl.datasetid, ctrl.providerurl)
                     .then(result => {
                         ctrl.dataset = result;
                         if (result.firstValue.timestamp === result.lastValue.timestamp) {
