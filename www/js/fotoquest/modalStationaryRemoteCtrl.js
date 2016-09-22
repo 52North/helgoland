@@ -20,7 +20,7 @@ angular.module('n52.core.map')
     ])
     .service('fotoquestSrvc', [
         function() {
-            this.selectedDatasetId = '';
+            this.selectedDatasetId = ''; // record_8012712
             this.selectedProviderUrl = 'http://localhost:8080/api/v1/';
         }
     ])
