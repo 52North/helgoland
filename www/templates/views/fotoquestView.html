@@ -1,12 +1,23 @@
 <div class="swc-page swc-page-current" id="map-page">
     <div class="container content">
-        <div class="row fullHeight">
+        <div class="row fullHeight fotoquest-view">
             <div ng-controller="fotoquestViewCtrl as ctrl">
-                <div ng-if="!datasetId" class="empty-diagram">
+                <div ng-if="!platformId" class="empty-diagram">
                     Please select a fotoquest sample.
                 </div>
-                <div ng-if="datasetId">
-                    <fotoquest-image-carousel datasetid="datasetId" providerurl="providerUrl"></fotoquest-image-carousel>
+                <div ng-if="platformId">
+                    <div class="header">
+                        <h2>{{platform.label}}</h2>
+                        <div class="header">
+                            <h4>
+                                <span ng-if="platform.datasets.length > 1" ng-click="showPreviousImagery();" class="glyphicon glyphicon-arrow-left"></span>
+                                <span>{{dataset.label}}</span>
+                                <span ng-if="platform.datasets.length > 1" ng-click="showNextImagery();" class="glyphicon glyphicon-arrow-right"></span>
+                            </h4>
+                            <div>{{dataset.firstValue.timestamp | date: 'dd.MM.yy HH:mm'}}</div>
+                        </div>
+                    </div>
+                    <fotoquest-image-carousel dataset="dataset"></fotoquest-image-carousel>
                 </div>
             </div>
         </div>

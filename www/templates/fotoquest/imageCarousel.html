@@ -1,8 +1,4 @@
 <div class="fotoquest-image-carousel">
-    <div class="header">
-        <h2>{{$ctrl.label}}</h2>
-        <h4>{{$ctrl.timestamp | date: 'dd.MM.yy HH:mm'}}</h4>
-    </div>
     <div id="fotoquest-image-carousel" class="carousel" data-ride="carousel" data-interval="false">
         <ol class="carousel-indicators">
             <li data-target="#fotoquest-image-carousel" data-slide-to="{{$index}}" ng-class="{'active': $index === 0}" ng-repeat="image in $ctrl.images"></li>
