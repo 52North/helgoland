@@ -13,7 +13,7 @@
         <div ng-if="platform">
             There are
             {{platform.datasets.length}}
-            create at this location. Select one to see the informations.
+            datasets at this location. Select one to see the images.
         </div>
         <div ng-repeat="dataset in platform.datasets">
             <a href="" ng-click="showDataset(dataset.id);">{{dataset.label}}</a>
