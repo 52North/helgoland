@@ -99,4 +99,14 @@ angular.module('n52.core.map')
                 };
             }
         ]
-    });
+    })
+    .service('fotoquestPresentDataset', ['fotoquestSrvc', '$location',
+        function(fotoquestSrvc, $location) {
+            this.presentDataset = function(dataset, providerUrl) {
+                fotoquestSrvc.selectedPlatformId = dataset.seriesParameters.platform.id;
+                fotoquestSrvc.selectedDatasetId = dataset.id;
+                fotoquestSrvc.selectedProviderUrl = providerUrl;
+                $location.url('/fotoquest');
+            };
+        }
+    ]);

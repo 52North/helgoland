@@ -88,5 +88,10 @@
       "group": "Raster"
     }
   },
-  "showScale": true
+  "showScale": true,
+  "presentDataset": {
+    "record": [{
+      "service": "fotoquestPresentDataset"
+    }]
+  }
 }
