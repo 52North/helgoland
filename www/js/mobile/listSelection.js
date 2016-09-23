@@ -57,17 +57,17 @@ angular.module('n52.client.mobile')
         function() {
             return {
                 restrict: 'E',
-                templateUrl: 'templates/mobile/accordion-list-selection.html',
+                templateUrl: 'templates/listSelection/list-selection.html',
                 scope: {
                     parameters: '=',
                     provider: '='
                 },
-                controller: 'ListSelectionMobileCtrl'
+                controller: 'SwcListSelectionCtrl'
             };
         }
     ])
-    .controller('ListSelectionMobileCtrl', ['$scope', 'interfaceV2Service', 'combinedSrvc',
-        function($scope, interfaceV2Service, combinedSrvc) {
+    .controller('ListSelectionMobileCtrl', ['$scope', 'interfaceService', 'combinedSrvc',
+        function($scope, interfaceService, combinedSrvc) {
             var url = $scope.provider.url;
             angular.forEach($scope.parameters, function(param, openedIdx) {
                 $scope.$watch('parameters[' + openedIdx + '].isOpen', function(newVal, oldVal) {
@@ -99,7 +99,7 @@ angular.module('n52.client.mobile')
 
             $scope.getItems = function(currParam) {
                 if (currParam.type === 'platform') {
-                    interfaceV2Service.getMobilePlatforms(null, url, $scope.createParams())
+                    interfaceService.getMobilePlatforms(null, url, $scope.createParams())
                         .then(function(data) {
                             currParam.items = data;
                         })
@@ -107,7 +107,7 @@ angular.module('n52.client.mobile')
                             currParam.error = true;
                         });
                 } else if (currParam.type === 'features') {
-                    interfaceV2Service.getFeatures(null, url, $scope.createParams())
+                    interfaceService.getFeatures(null, url, $scope.createParams())
                         .then(function(data) {
                             currParam.items = data;
                         })
@@ -115,7 +115,7 @@ angular.module('n52.client.mobile')
                             currParam.error = true;
                         });
                 } else if (currParam.type === 'phenomenon') {
-                    interfaceV2Service.getPhenomena(null, url, $scope.createParams())
+                    interfaceService.getPhenomena(null, url, $scope.createParams())
                         .then(function(data) {
                             currParam.items = data;
                         })
@@ -123,7 +123,7 @@ angular.module('n52.client.mobile')
                             currParam.error = true;
                         });
                 } else if (currParam.type === 'dataset') {
-                    interfaceV2Service.getDatasets(null, url, $scope.createParams())
+                    interfaceService.getDatasets(null, url, $scope.createParams())
                         .then(function(data) {
                             currParam.items = data;
                         })

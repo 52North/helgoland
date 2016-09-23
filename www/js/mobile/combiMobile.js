@@ -483,8 +483,8 @@ angular.module('n52.client.mobile', [])
             };
         }
     ])
-    .factory('combinedSrvc', ['interfaceV2Service',
-        function(interfaceV2Service) {
+    .factory('combinedSrvc', ['interfaceService',
+        function(interfaceService) {
             var highlight = {};
             var selectedSection = {
                 values: []
@@ -514,14 +514,14 @@ angular.module('n52.client.mobile', [])
 
             function loadSeries(id, url) {
                 series.loading = true;
-                interfaceV2Service.getDatasets(id, url)
+                interfaceService.getDatasets(id, url)
                     .then(function(s) {
                         angular.extend(series, s);
                         var timespan = {
                             start: s.firstValue.timestamp,
                             end: s.lastValue.timestamp
                         };
-                        interfaceV2Service.getDatasetData(s.id, url, timespan)
+                        interfaceService.getDatasetData(s.id, url, timespan)
                             .then(function(data) {
                                 processData(data.values);
                                 series.loading = false;
