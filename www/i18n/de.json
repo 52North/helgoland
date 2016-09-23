@@ -19,6 +19,7 @@
     "favorite": "Favoriten",
     "provider": "Anbieter",
     "listSelection": "Listenauswahl",
+    "trajectories": "Trajektories",
     "settings": "Einstellungen"
   },
   "chart": {
@@ -47,7 +48,7 @@
     "provider": "Anbieter",
     "listSelection": "Listenauswahl",
     "settings": "Einstellungen",
-    "trajectories": "Trajektorien"
+    "selectAll": "Alle Provider"
   },
   "map": {
     "userLocation": "Hier ist ihr Standort",
