@@ -92,5 +92,10 @@
       "group": "Raster"
     }
   },
-  "showScale": true
+  "showScale": true,
+  "presentDataset": {
+    "measurement": [{
+      "service": "mobilePresentDataset"
+    }]
+  }
 }

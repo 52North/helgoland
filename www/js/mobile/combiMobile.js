@@ -521,9 +521,11 @@ angular.module('n52.client.mobile', [])
                             start: s.firstValue.timestamp,
                             end: s.lastValue.timestamp
                         };
-                        interfaceService.getDatasetData(s.id, url, timespan)
+                        interfaceService.getDatasetData(s.id, url, timespan, {
+                                expanded: true
+                            })
                             .then(function(data) {
-                                processData(data.values);
+                                processData(data[id].values);
                                 series.loading = false;
                             });
                     });
@@ -612,6 +614,14 @@ angular.module('n52.client.mobile', [])
                 geometry: geometry,
                 series: series,
                 data: data
+            };
+        }
+    ])
+    .service('mobilePresentDataset', ['$location', 'combinedSrvc',
+        function($location, combinedSrvc) {
+            this.presentDataset = function(dataset, providerUrl) {
+                combinedSrvc.loadSeries(dataset.id, providerUrl);
+                $location.url('/mobileDiagram');
             };
         }
     ]);
