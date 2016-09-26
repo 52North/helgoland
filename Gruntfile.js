@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         name: 'client',
@@ -47,6 +47,7 @@ module.exports = function (grunt) {
         ],
         core_scripts: [
             'www/bower_components/n52-sensorweb-client-core/src/js/Map/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Map/markerRenderer/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Map/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Map/directives/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Phenomenon/*.js',
@@ -180,6 +181,20 @@ module.exports = function (grunt) {
                 dest: 'dist/css/deps.<%= name %>.css'
             }
         },
+        babel: {
+            options: {
+                sourceMap: false,
+                presets: ['es2015-script']
+            },
+            libs: {
+                src: '<%= concat.libs.dest %>',
+                dest: 'dist/js/deps.<%= name %>.min.js'
+            },
+            app: {
+                src: '<%= concat.app.dest %>',
+                dest: 'dist/app.js'
+            }
+        },
         uglify: {
             options: {
                 banner: '/*! <%= name %> <%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n'
@@ -196,18 +211,17 @@ module.exports = function (grunt) {
             },
             libs: {
                 files: {
-                    'dist/js/deps.<%= name %>.min.js': ['<%= concat.libs.dest %>']
+                    'dist/js/deps.<%= name %>.min.js': ['<%= babel.libs.dest %>']
                 }
             },
             appJs: {
                 files: {
-                    'dist/app.js': ['<%= concat.app.dest %>']
+                    'dist/app.js': ['<%= babel.app.dest %>']
                 }
             }
         },
         cssmin: {
-            options: {
-            },
+            options: {},
             styles: {
                 files: {
                     'dist/css/<%= name %>.min.css': ['<%= concat.styles.dest %>']
@@ -221,19 +235,29 @@ module.exports = function (grunt) {
         },
         copy: {
             depStyles: {
-                files: [
-                    {expand: true, flatten: true, src: ['www/bower_components/bootstrap/dist/fonts/*'], dest: 'dist/fonts/', filter: 'isFile'}
-                ]
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: ['www/bower_components/bootstrap/dist/fonts/*'],
+                    dest: 'dist/fonts/',
+                    filter: 'isFile'
+                }]
             },
             locals: {
-                files: [
-                    {expand: true, flatten: false, cwd: 'www/', src: '<%= copy_files %>', dest: 'dist/', filter: 'isFile'}
-                ]
+                files: [{
+                    expand: true,
+                    flatten: false,
+                    cwd: 'www/',
+                    src: '<%= copy_files %>',
+                    dest: 'dist/',
+                    filter: 'isFile'
+                }]
             }
         },
         jshint: {
             files: ['gruntfile.js', 'www/js/**/*.js', 'test/**/*.js'],
             options: {
+                reporterOutput: "",
                 globals: {
                     jQuery: true,
                     console: true,
@@ -254,8 +278,24 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            files: ['<%= jshint.files %>'],
-            tasks: ['jshint']
+            jshint: {
+                files: ['<%= jshint.files %>'],
+                tasks: ['jshint']
+            },
+            less: {
+                files: ['www/less/**/*.less'],
+                tasks: ['less']
+            }
+        },
+        less: {
+            development: {
+                options: {
+                    paths: ['www/less/**/*.less']
+                },
+                files: {
+                    'www/css/app.css': ['www/less/**/*.less']
+                }
+            }
         },
         war: {
             target: {
@@ -264,20 +304,17 @@ module.exports = function (grunt) {
                     war_name: '<%= context_name %>',
                     webxml_welcome: 'index.html',
                     webxml_display_name: '<%= name %> - version <%= pkg.version %> - build at <%= grunt.template.today("yyyy-mm-dd HH:MM") %>',
-                    webxml_mime_mapping: [
-                        {
-                            extension: 'woff',
-                            mime_type: 'application/font-woff'
-                        }]
+                    webxml_mime_mapping: [{
+                        extension: 'woff',
+                        mime_type: 'application/font-woff'
+                    }]
                 },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'dist/',
-                        src: ['**'],
-                        dest: ''
-                    }
-                ]
+                files: [{
+                    expand: true,
+                    cwd: 'dist/',
+                    src: ['**'],
+                    dest: ''
+                }]
             }
         }
     });
@@ -289,13 +326,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-script-link-tags');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-war');
 
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('env-build', ['tags']);
-    grunt.registerTask('default', ['clean', 'concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
+    grunt.registerTask('default', ['test', 'clean', 'less', 'concat', 'babel', 'uglify', 'cssmin', 'copy', 'processhtml']);
 
-    grunt.registerTask('buildWar', ['test', 'default', 'war']);
+    grunt.registerTask('buildWar', ['default', 'war']);
 };
