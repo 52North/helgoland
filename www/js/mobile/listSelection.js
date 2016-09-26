@@ -1,6 +1,6 @@
 angular.module('n52.client.mobile')
-    .controller('ListSelectionMobileButtonCtrl', ['$scope', '$uibModal',
-        function($scope, $uibModal) {
+    .controller('ListSelectionMobileButtonCtrl', ['$scope', '$uibModal', 'combinedSrvc',
+        function($scope, $uibModal, combinedSrvc) {
             $scope.openListSelectionMobile = function() {
                 $uibModal.open({
                     animation: true,
@@ -8,6 +8,10 @@ angular.module('n52.client.mobile')
                     controller: 'ModalListSelectionMobileCtrl'
                 });
             };
+
+            if (Object.keys(combinedSrvc.series).length === 0) {
+                $scope.openListSelectionMobile();
+            }
         }
     ])
     .controller('ModalListSelectionMobileCtrl', ['$scope', '$uibModalInstance',
