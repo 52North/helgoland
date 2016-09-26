@@ -91,6 +91,7 @@ angular.module('n52.client.mobile', [])
                                 mouseRect.remove();
                                 mouseValueLabel.remove();
                                 mouseTimeLabel.remove();
+                                pointG = undefined;
                             }
                         }
 
