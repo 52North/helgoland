@@ -95,7 +95,8 @@
   "showScale": true,
   "presentDataset": {
     "measurement": [{
-      "service": "mobilePresentDataset"
+      "service": "mobilePresentDataset",
+      "platformType": "mobile_insitu"
     }]
   }
 }
