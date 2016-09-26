@@ -106,25 +106,25 @@ angular.module('n52.client.mobile')
                 if (currParam.type === 'platform') {
                     interfaceService.getMobilePlatforms(null, url, $scope.createParams())
                         .then(data => {
-                            updateParams(currParam, data)
+                            updateParams(currParam, data);
                         })
                         .catch(errorOnGetData);
                 } else if (currParam.type === 'features') {
                     interfaceService.getFeatures(null, url, $scope.createParams())
                         .then(data => {
-                            updateParams(currParam, data)
+                            updateParams(currParam, data);
                         })
                         .catch(errorOnGetData);
                 } else if (currParam.type === 'phenomenon') {
                     interfaceService.getPhenomena(null, url, $scope.createParams())
                         .then(data => {
-                            updateParams(currParam, data)
+                            updateParams(currParam, data);
                         })
                         .catch(errorOnGetData);
                 } else if (currParam.type === 'dataset') {
                     interfaceService.getDatasets(null, url, $scope.createParams())
                         .then(data => {
-                            updateParams(currParam, data)
+                            updateParams(currParam, data);
                         })
                         .catch(errorOnGetData);
                 }
@@ -137,7 +137,7 @@ angular.module('n52.client.mobile')
 
             errorOnGetData = function() {
                 currParam.error = true;
-            }
+            };
 
             $scope.openNext = function(idx) {
                 $scope.parameters[idx].isDisabled = false;

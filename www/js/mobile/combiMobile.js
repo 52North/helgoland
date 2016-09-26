@@ -547,7 +547,7 @@ angular.module('n52.client.mobile', [])
                                 this.series.loading = false;
                             });
                     });
-            }
+            };
 
             this.processData = function(data) {
                 this.resetGeometry();
@@ -556,11 +556,11 @@ angular.module('n52.client.mobile', [])
                     this.addToGeometry(data[i]);
                     this.addToData(data[i], data[i ? i - 1 : 0]);
                 }
-            }
+            };
 
             this.addToGeometry = function(entry) {
                 this.geometry.data.coordinates.push(entry.geometry.coordinates);
-            }
+            };
 
             this.addToData = function(entry, previous) {
                 var s = new L.LatLng(entry.geometry.coordinates[1], entry.geometry.coordinates[0]);
@@ -577,18 +577,18 @@ angular.module('n52.client.mobile', [])
                     y: entry.geometry.coordinates[1],
                     latlng: s
                 });
-            }
+            };
 
             this.resetGeometry = function() {
                 this.geometry.data.coordinates = [];
-            }
+            };
 
             this.resetData = function() {
                 this.data.values = [];
                 this.data.dist = 0;
                 this.data.range.max = 0;
                 this.data.range.min = Infinity;
-            }
+            };
 
             this.findItemForLatLng = function(latlng) {
                 var result = null,
@@ -601,25 +601,25 @@ angular.module('n52.client.mobile', [])
                     }
                 });
                 return result;
-            }
+            };
 
             this.highlightByIdx = function(idx) {
                 angular.extend(this.highlight, this.data.values[idx]);
-            }
+            };
 
             this.showHighlightedItem = function(latlng) {
                 angular.extend(this.highlight, this.findItemForLatLng(latlng));
-            }
+            };
 
             this.setSelection = function(startIdx, endIdx) {
                 var start = Math.min(startIdx, endIdx),
                     end = Math.max(startIdx, endIdx);
                 this.selectedSection.values = this.data.values.slice(start, end);
-            }
+            };
 
             this.resetSelection = function() {
                 this.selectedSection.values = [];
-            }
+            };
 
             if (statusService.status.mobile) {
                 let lastEntry = statusService.status.mobile;
