@@ -164,8 +164,8 @@ angular.module('n52.client.mobile', [])
                     var margin = {
                         top: 10,
                         right: 20,
-                        bottom: 30,
-                        left: 50
+                        bottom: 40,
+                        left: 40
                     };
                     var background,
                         pathClass = "path",
@@ -281,10 +281,24 @@ angular.module('n52.client.mobile', [])
                             .attr("transform", "translate(0," + height() + ")")
                             .call(make_x_axis().tickSize(-height(), 0, 0).tickFormat(''));
 
+                        graph.append("text") // text label for the x axis
+                            .attr("x", width() / 2)
+                            .attr("y", height() + margin.bottom - 5)
+                            .style("text-anchor", "middle")
+                            .text("Distance");
+
                         // draw the y grid lines
                         graph.append("svg:g")
                             .attr("class", "grid")
                             .call(make_y_axis().tickSize(-width(), 0, 0).tickFormat(''));
+
+                        graph.append("text")
+                            .attr("transform", "rotate(-90)")
+                            .attr("y", 0 - margin.left)
+                            .attr("x", 0 - (height() / 2))
+                            .attr("dy", "1em")
+                            .style("text-anchor", "middle")
+                            .text(scope.series.uom);
 
                         // draw filled area
                         graph.append("svg:path")
