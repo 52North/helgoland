@@ -13,7 +13,6 @@ angular.module('n52.client.mobile', [])
                                 enable: ['mouseover']
                             }
                         };
-                        $scope.loading = combinedSrvc.loading;
                         $scope.geometry = combinedSrvc.geometry;
                         $scope.series = combinedSrvc.series;
                         $scope.highlight = combinedSrvc.highlight;
@@ -484,13 +483,13 @@ angular.module('n52.client.mobile', [])
             };
         }
     ])
-    .factory('combinedSrvc', ['interfaceService',
+    .service('combinedSrvc', ['interfaceService',
         function(interfaceService) {
-            var highlight = {};
-            var selectedSection = {
+            this.highlight = {};
+            this.selectedSection = {
                 values: []
             };
-            var geometry = {
+            this.geometry = {
                 style: {
                     weight: 2,
                     opacity: 1,
@@ -503,7 +502,7 @@ angular.module('n52.client.mobile', [])
                     type: 'LineString'
                 }
             };
-            var data = {
+            this.data = {
                 values: [],
                 range: {
                     max: 0,
@@ -511,13 +510,13 @@ angular.module('n52.client.mobile', [])
                 },
                 dist: 0
             };
-            var series = {};
+            this.series = {};
 
-            function loadSeries(id, url) {
-                series.loading = true;
+            this.loadSeries = function(id, url) {
+                this.series.loading = true;
                 interfaceService.getDatasets(id, url)
-                    .then(function(s) {
-                        angular.extend(series, s);
+                    .then(s => {
+                        angular.extend(this.series, s);
                         var timespan = {
                             start: s.firstValue.timestamp,
                             end: s.lastValue.timestamp
@@ -525,35 +524,35 @@ angular.module('n52.client.mobile', [])
                         interfaceService.getDatasetData(s.id, url, timespan, {
                                 expanded: true
                             })
-                            .then(function(data) {
-                                processData(data[id].values);
-                                series.loading = false;
+                            .then(data => {
+                                this.processData(data[id].values);
+                                this.series.loading = false;
                             });
                     });
             }
 
-            function processData(data) {
-                resetGeometry();
-                resetData();
+            this.processData = function(data) {
+                this.resetGeometry();
+                this.resetData();
                 for (var i = 0; i < data.length; i++) {
-                    addToGeometry(data[i]);
-                    addToData(data[i], data[i ? i - 1 : 0]);
+                    this.addToGeometry(data[i]);
+                    this.addToData(data[i], data[i ? i - 1 : 0]);
                 }
             }
 
-            function addToGeometry(entry) {
-                geometry.data.coordinates.push(entry.geometry.coordinates);
+            this.addToGeometry = function(entry) {
+                this.geometry.data.coordinates.push(entry.geometry.coordinates);
             }
 
-            function addToData(entry, previous) {
+            this.addToData = function(entry, previous) {
                 var s = new L.LatLng(entry.geometry.coordinates[1], entry.geometry.coordinates[0]);
                 var e = new L.LatLng(previous.geometry.coordinates[1], previous.geometry.coordinates[0]);
                 var newdist = s.distanceTo(e);
-                data.dist = data.dist + Math.round(newdist / 1000 * 100000) / 100000;
-                data.range.max = data.range.max < entry.value ? entry.value : data.range.max;
-                data.range.min = data.range.min > entry.value ? entry.value : data.range.min;
-                data.values.push({
-                    dist: Math.round(data.dist * 10) / 10,
+                this.data.dist = this.data.dist + Math.round(newdist / 1000 * 100000) / 100000;
+                this.data.range.max = this.data.range.max < entry.value ? entry.value : this.data.range.max;
+                this.data.range.min = this.data.range.min > entry.value ? entry.value : this.data.range.min;
+                this.data.values.push({
+                    dist: Math.round(this.data.dist * 10) / 10,
                     timestamp: entry.timestamp,
                     value: entry.value,
                     x: entry.geometry.coordinates[0],
@@ -562,21 +561,21 @@ angular.module('n52.client.mobile', [])
                 });
             }
 
-            function resetGeometry() {
-                geometry.data.coordinates = [];
+            this.resetGeometry = function() {
+                this.geometry.data.coordinates = [];
             }
 
-            function resetData() {
-                data.values = [];
-                data.dist = 0;
-                data.range.max = 0;
-                data.range.min = Infinity;
+            this.resetData = function() {
+                this.data.values = [];
+                this.data.dist = 0;
+                this.data.range.max = 0;
+                this.data.range.min = Infinity;
             }
 
-            function findItemForLatLng(latlng) {
+            this.findItemForLatLng = function(latlng) {
                 var result = null,
                     d = Infinity;
-                angular.forEach(data.values, function(item) {
+                angular.forEach(this.data.values, function(item) {
                     var dist = latlng.distanceTo(item.latlng);
                     if (dist < d) {
                         d = dist;
@@ -586,36 +585,23 @@ angular.module('n52.client.mobile', [])
                 return result;
             }
 
-            function highlightByIdx(idx) {
-                angular.extend(highlight, data.values[idx]);
+            this.highlightByIdx = function(idx) {
+                angular.extend(this.highlight, this.data.values[idx]);
             }
 
-            function showHighlightedItem(latlng) {
-                angular.extend(highlight, findItemForLatLng(latlng));
+            this.showHighlightedItem = function(latlng) {
+                angular.extend(this.highlight, this.findItemForLatLng(latlng));
             }
 
-            function setSelection(startIdx, endIdx) {
+            this.setSelection = function(startIdx, endIdx) {
                 var start = Math.min(startIdx, endIdx),
                     end = Math.max(startIdx, endIdx);
-                selectedSection.values = data.values.slice(start, end);
+                this.selectedSection.values = this.data.values.slice(start, end);
             }
 
-            function resetSelection() {
-                selectedSection.values = [];
+            this.resetSelection = function() {
+                this.selectedSection.values = [];
             }
-
-            return {
-                showHighlightedItem: showHighlightedItem,
-                highlightByIdx: highlightByIdx,
-                setSelection: setSelection,
-                resetSelection: resetSelection,
-                loadSeries: loadSeries,
-                selectedSection: selectedSection,
-                highlight: highlight,
-                geometry: geometry,
-                series: series,
-                data: data
-            };
         }
     ])
     .service('mobilePresentDataset', ['$location', 'combinedSrvc',
