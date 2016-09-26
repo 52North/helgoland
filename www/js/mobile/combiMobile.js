@@ -497,8 +497,8 @@ angular.module('n52.client.mobile', [])
             };
         }
     ])
-    .service('combinedSrvc', ['interfaceService',
-        function(interfaceService) {
+    .service('combinedSrvc', ['interfaceService', 'statusService',
+        function(interfaceService, statusService) {
             this.highlight = {};
             this.selectedSection = {
                 values: []
@@ -527,6 +527,10 @@ angular.module('n52.client.mobile', [])
             this.series = {};
 
             this.loadSeries = function(id, url) {
+                statusService.status.mobile = {
+                    id: id,
+                    url: url
+                };
                 this.series.loading = true;
                 interfaceService.getDatasets(id, url)
                     .then(s => {
@@ -615,6 +619,13 @@ angular.module('n52.client.mobile', [])
 
             this.resetSelection = function() {
                 this.selectedSection.values = [];
+            }
+
+            if (statusService.status.mobile) {
+                let lastEntry = statusService.status.mobile;
+                if (lastEntry.id && lastEntry.url) {
+                    this.loadSeries(lastEntry.id, lastEntry.url);
+                }
             }
         }
     ])
