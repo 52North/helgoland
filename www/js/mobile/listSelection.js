@@ -62,7 +62,7 @@ angular.module('n52.client.mobile')
                     parameters: '=',
                     provider: '='
                 },
-                controller: 'SwcListSelectionCtrl'
+                controller: 'ListSelectionMobileCtrl'
             };
         }
     ])
@@ -98,40 +98,42 @@ angular.module('n52.client.mobile')
             };
 
             $scope.getItems = function(currParam) {
+                currParam.loading = 1;
                 if (currParam.type === 'platform') {
                     interfaceService.getMobilePlatforms(null, url, $scope.createParams())
-                        .then(function(data) {
-                            currParam.items = data;
+                        .then(data => {
+                            updateParams(currParam, data)
                         })
-                        .catch(function() {
-                            currParam.error = true;
-                        });
+                        .catch(errorOnGetData);
                 } else if (currParam.type === 'features') {
                     interfaceService.getFeatures(null, url, $scope.createParams())
-                        .then(function(data) {
-                            currParam.items = data;
+                        .then(data => {
+                            updateParams(currParam, data)
                         })
-                        .catch(function() {
-                            currParam.error = true;
-                        });
+                        .catch(errorOnGetData);
                 } else if (currParam.type === 'phenomenon') {
                     interfaceService.getPhenomena(null, url, $scope.createParams())
-                        .then(function(data) {
-                            currParam.items = data;
+                        .then(data => {
+                            updateParams(currParam, data)
                         })
-                        .catch(function() {
-                            currParam.error = true;
-                        });
+                        .catch(errorOnGetData);
                 } else if (currParam.type === 'dataset') {
                     interfaceService.getDatasets(null, url, $scope.createParams())
-                        .then(function(data) {
-                            currParam.items = data;
+                        .then(data => {
+                            updateParams(currParam, data)
                         })
-                        .catch(function() {
-                            currParam.error = true;
-                        });
+                        .catch(errorOnGetData);
                 }
             };
+
+            updateParams = function(currParam, data) {
+                currParam.items = data;
+                currParam.loading--;
+            };
+
+            errorOnGetData = function() {
+                currParam.error = true;
+            }
 
             $scope.openNext = function(idx) {
                 $scope.parameters[idx].isDisabled = false;
