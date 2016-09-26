@@ -42,13 +42,12 @@
     }
   },
   "providerList": {
-    "diagram": "Diagramm",
-    "map": "Karte",
-    "favorite": "Favoriten",
-    "provider": "Anbieter",
-    "listSelection": "Listenauswahl",
-    "settings": "Einstellungen",
-    "selectAll": "Alle Provider"
+    "provider": "Datenanbieter",
+    "serviceUrl": "Service-URL",
+    "stations": "Stationen",
+    "timeseries": "Zeitreihen",
+    "phenomena": "Phänomene",
+    "selectAll": "Selektiere alle Anbieter"
   },
   "map": {
     "userLocation": "Hier ist ihr Standort",
