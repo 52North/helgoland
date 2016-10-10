@@ -23,7 +23,7 @@ angular.module('n52.core.map')
         function() {
             this.selectedPlatformId = '';
             this.selectedDatasetId = '';
-            this.selectedProviderUrl = 'http://localhost:8080/api/v1/';
+            this.selectedProviderUrl = '';
         }
     ])
     .controller('fotoquestViewCtrl', ['$scope', 'fotoquestSrvc', 'interfaceService',
