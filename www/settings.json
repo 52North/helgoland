@@ -9,8 +9,7 @@
     "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
   }],
   "restApiUrls": {
-    "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-    "http://192.168.52.116:8080/api/v1/": "localhost"
+    "http://colabis.dev.52north.org/fotoquest/api/v1/": "fotoquest"
   },
   "chartOptions": {
     "yaxis": {
