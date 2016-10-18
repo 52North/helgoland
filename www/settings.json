@@ -88,9 +88,14 @@
     }
   },
   "showScale": true,
-  "presentDataset": {
+  "datasetPresenter": {
     "record": [{
       "service": "fotoquestPresentDataset"
+    }]
+  },
+  "platformPresenter": {
+    "stationary_remote": [{
+      "service": "fotoquestPlatformPresenter"
     }]
   }
 }

@@ -109,4 +109,32 @@ angular.module('n52.core.map')
                 $location.url('/fotoquest');
             };
         }
+    ])
+    .service('fotoquestPlatformPresenter', ['$uibModal', 'mapService',
+        function($uibModal, mapService) {
+            this.presentPlatform = function(platform) {
+                $uibModal.open({
+                    animation: true,
+                    templateUrl: 'templates/map/stationary-remote-platform.html',
+                    resolve: {
+                        selection: function() {
+                            var url = platform.url;
+                            var phenomenonId;
+                            if (mapService.map.selectedPhenomenon) {
+                                angular.forEach(mapService.map.selectedPhenomenon.provider, function(provider) {
+                                    if (url === provider.url)
+                                        phenomenonId = provider.phenomenonID;
+                                });
+                            }
+                            return {
+                                id: platform.id,
+                                phenomenonId: phenomenonId,
+                                url: url
+                            };
+                        }
+                    },
+                    controller: 'SwcModalStationaryRemoteCtrl'
+                });
+            };
+        }
     ]);
