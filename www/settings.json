@@ -6,7 +6,19 @@
   "saveStatus": true,
   "preselectedFirstTimeseriesInStationView": true,
   "providerBlackList": [{
-    "serviceID": "xyz",
+    "serviceID": "srv_6d9ccea8d609ecb74d4a512922bb7cee",
+    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  }, {
+    "serviceID": "srv_98727b23c202a50f15d4681bb4b961bd",
+    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  }, {
+    "serviceID": "srv_5174ab6feff1caf74f92a4f12d2b773e",
+    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  }, {
+    "serviceID": "srv_738111ed219f738cfc85be0c8d87843c",
+    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  }, {
+    "serviceID": "srv_9d58c5df42e02e2a533ca2ce3c0096f5",
     "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
   }],
   "restApiUrls": {
