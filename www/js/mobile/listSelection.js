@@ -21,6 +21,9 @@ angular.module('n52.client.mobile')
                 type: 'platform',
                 header: 'trajectories.headers.platform'
             }, {
+                type: 'offering',
+                header: 'trajectories.headers.offering'
+            }, {
                 type: 'features',
                 header: 'trajectories.headers.track'
             }, {
@@ -33,6 +36,9 @@ angular.module('n52.client.mobile')
             $scope.phenomenonParams = [{
                 type: 'phenomenon',
                 header: 'trajectories.headers.phenomenon'
+            }, {
+                type: 'offering',
+                header: 'trajectories.headers.offering'
             }, {
                 type: 'features',
                 header: 'trajectories.headers.track'
@@ -50,7 +56,7 @@ angular.module('n52.client.mobile')
         function($scope, providerService) {
             $scope.providerselected = null;
 
-            $scope.providerList = providerService.getAllProviders();
+            $scope.providerList = providerService.getAllProviders('mobile');
 
             $scope.selectProvider = function(provider) {
                 $scope.providerselected = provider;
@@ -92,7 +98,9 @@ angular.module('n52.client.mobile')
             });
 
             $scope.createParams = function() {
-                var params = {};
+                var params = {
+                    platformTypes: 'mobile'
+                };
                 angular.forEach($scope.parameters, function(parameter) {
                     if (parameter.selectedId) {
                         params[parameter.type] = parameter.selectedId;
@@ -104,7 +112,7 @@ angular.module('n52.client.mobile')
             $scope.getItems = function(currParam) {
                 currParam.loading = 1;
                 if (currParam.type === 'platform') {
-                    interfaceService.getMobilePlatforms(null, url, $scope.createParams())
+                    interfaceService.getPlatforms(null, url, $scope.createParams())
                         .then(data => {
                             updateParams(currParam, data);
                         })
@@ -123,6 +131,12 @@ angular.module('n52.client.mobile')
                         .catch(errorOnGetData);
                 } else if (currParam.type === 'dataset') {
                     interfaceService.getDatasets(null, url, $scope.createParams())
+                        .then(data => {
+                            updateParams(currParam, data);
+                        })
+                        .catch(errorOnGetData);
+                } else if (currParam.type === 'offering') {
+                    interfaceService.getOfferings(null, url, $scope.createParams())
                         .then(data => {
                             updateParams(currParam, data);
                         })
