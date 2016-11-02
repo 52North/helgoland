@@ -41,10 +41,14 @@
       "dec": "Dez"
     }
   },
+  "table": {
+    "time": "Zeit"
+  },
   "providerList": {
     "provider": "Datenanbieter",
     "serviceUrl": "Service-URL",
     "stations": "Stationen",
+    "platforms": "Platformen",
     "timeseries": "Zeitreihen",
     "phenomena": "Phänomene",
     "selectAll": "Selektiere alle Anbieter"
@@ -55,6 +59,10 @@
     "stationSelection": {
       "station": "Station",
       "selectAllTimeseries": "wähle alle Zeitreihen"
+    },
+    "platformSelection": {
+      "platform": "Platform",
+      "datasetType": "Datentyp"
     },
     "stationLocation": {
       "station": "Station",

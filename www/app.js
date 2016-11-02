@@ -126,7 +126,7 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', function($trans
         suppLang.indexOf($translateProvider.preferredLanguage()) === -1) {
         $translateProvider.preferredLanguage('en');
     }
-    $translateProvider.useSanitizeValueStrategy('sanitize');
+    $translateProvider.useSanitizeValueStrategy(null);
 }]);
 
 mainApp.filter('objectCount', function() {
