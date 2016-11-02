@@ -40,6 +40,9 @@
       "dec": "Dez"
     }
   },
+  "table": {
+    "time": "Zeit"
+  },
   "providerList": {
     "provider": "Datenanbieter",
     "serviceUrl": "Service-URL",
