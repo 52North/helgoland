@@ -28,8 +28,11 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "prestart": "npm install",
+    "prestart": "npm install && grunt less && grunt env-build",
     "start": "http-server www -a localhost -p 8000 -c-1",
-    "prod": "http-server dist -p 8000 -c-1"
+    "prod": "http-server dist -p 8000 -c-1",
+    "docker": "grunt && npm run docker:build && npm run docker:run",
+    "docker:build": "docker build -t helgoland:latest -f Dockerfile-local .",
+    "docker:run": "docker run -p 8001:80 helgoland"
   }
 }
