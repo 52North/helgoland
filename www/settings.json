@@ -93,7 +93,7 @@
     }
   },
   "showScale": true,
-  "presentDataset": {
+  "datasetPresenter": {
     "measurement": [{
       "service": "mobilePresentDataset",
       "platformType": "mobile_insitu"
