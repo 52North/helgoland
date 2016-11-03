@@ -43,9 +43,9 @@ angular.module('n52.client.navigation', [])
         function($provide) {
             $provide.decorator('providerService', ['$delegate', '$location',
                 function($delegate, $location) {
-                    var oldSelectProvider = $delegate.selectProvider;
+                    $delegate.oldSelectProvider = $delegate.selectProvider;
                     $delegate.selectProvider = function(selection) {
-                        oldSelectProvider(selection);
+                        $delegate.oldSelectProvider(selection);
                         $location.url('/map');
                     };
                     return $delegate;
