@@ -19,7 +19,8 @@
     "favorite": "Favorites",
     "provider": "Provider",
     "listSelection": "List selection",
-    "settings": "Settings"
+    "settings": "Settings",
+    "trajectories": "Trajectories"
   },
   "chart": {
     "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",
@@ -47,6 +48,7 @@
     "provider": "Provider",
     "serviceUrl": "Service-URL",
     "stations": "Stations",
+    "platforms": "Platforms",
     "timeseries": "Timeseries",
     "phenomena": "Phenomena",
     "selectAll": "Select all provider"
@@ -278,5 +280,19 @@
     "selectRawProcedureFormat": "Select raw format for procedure",
     "selectTimeseriesDataFormat": "Select raw format for timeseries data",
     "showCapabilities": "Show Capabilities of the SOS"
+  },
+  "trajectories": {
+    "header": "Track selection by list",
+    "headers": {
+      "platform": "Mobile platform",
+      "offering": "Offering",
+      "track": "Tracks",
+      "phenomenon": "Phenomenon",
+      "dataset": "Dataset"
+    },
+    "noSupport": "Provider doesn't deliver trajectories",
+    "map": {
+      "loading": "Daten werden geladen"
+    }
   }
 }

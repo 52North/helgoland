@@ -1,19 +1,19 @@
-<div class="modal-content">
+<div class="modal-content" ng-controller="SwcProviderListCtrl">
+
     <div class="modal-header">
         <button type="button" class="close" ng-click="close()">&times;</button>
-        <div class="modal-title" translate="providerList.provider"></div>
+        <div class="modal-title" translate="trajectories.header"></div>
     </div>
-    <div class="modal-body provider-list">
-        <div class="provider-item" ng-repeat="provider in providerList | orderBy:'+label'" ng-class="{selected : provider.selected}" ng-click="selectProvider(provider)">
-            <span ng-if="provider.isUserAdded" class="glyphicon glyphicon-remove delete-user-added" ng-click="$event.stopPropagation(); deleteProvider(provider);"></span>
+
+    <div class="modal-body provider-list" ng-if="!providerselected">
+
+        <span>Provider Auswählen</span>
+
+        <div class="provider-item" ng-repeat="provider in providerList" ng-click="selectProvider(provider)" ng-if="provider.quantities.platforms > -1">
             <div>{{provider.label}}</div>
             <div class="small">{{provider.type}},
                 {{provider.version}}</div>
             <div class="small">{{provider.url}}</div>
-            <div class="small" ng-if="provider.serviceUrl">
-                <span translate="providerList.serviceUrl"></span>:
-                <span>{{provider.serviceUrl}}</span>
-            </div>
             <div class="small">
                 <span ng-if="provider.quantities.stations">
                     <span translate="providerList.stations"></span>:
@@ -35,11 +35,22 @@
                 <span>{{provider.quantities.phenomena}}</span>
             </div>
         </div>
-        <div class="add-provider">
-            <swc-add-provider></swc-add-provider>
-        </div>
-        <div class="btn btn-block btn-default" ng-controller="SwcProviderDeselectProviderCtrl" ng-click="deselectAll(); close();">
-            <div translate="providerList.selectAll"></div>
-        </div>
+    </div>
+
+    <div class="modal-body" ng-if="providerselected">
+        <uib-tabset class="selectionListContent">
+            <uib-tab>
+                <uib-tab-heading>
+                    <span translate="trajectories.headers.platform"></span>
+                </uib-tab-heading>
+                <swc-list-selection-mobile parameters="platformParams" provider="providerselected"></swc-list-selection>
+            </uib-tab>
+            <uib-tab>
+                <uib-tab-heading>
+                    <span translate="trajectories.headers.phenomenon"></span>
+                </uib-tab-heading>
+                <swc-list-selection-mobile parameters="phenomenonParams" provider="providerselected"></swc-list-selection>
+            </uib-tab>
+        </uib-tabset>
     </div>
 </div>

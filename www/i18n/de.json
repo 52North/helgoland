@@ -19,6 +19,7 @@
     "favorite": "Favoriten",
     "provider": "Anbieter",
     "listSelection": "Listenauswahl",
+    "trajectories": "Trajektories",
     "settings": "Einstellungen"
   },
   "chart": {
@@ -47,6 +48,7 @@
     "provider": "Datenanbieter",
     "serviceUrl": "Service-URL",
     "stations": "Stationen",
+    "platforms": "Platformen",
     "timeseries": "Zeitreihen",
     "phenomena": "Phänomene",
     "selectAll": "Selektiere alle Anbieter"
@@ -278,5 +280,19 @@
     "selectRawProcedureFormat": "Procedure als Rohdata",
     "selectTimeseriesDataFormat": "Zeitreihendaten als Rohdaten",
     "showCapabilities": "Zeige SOS-Capabilities"
+  },
+  "trajectories": {
+    "header": "Listenbasierte Fahrtenauswahl",
+    "headers": {
+      "platform": "Mobile Platform",
+      "offering": "Offering",
+      "track": "Pfad",
+      "phenomenon": "Phänomen",
+      "dataset": "Dataset"
+    },
+    "noSupport": "Anbieter liefert keine Trajektorien",
+    "map": {
+      "loading": "Daten werden geladen"
+    }
   }
 }

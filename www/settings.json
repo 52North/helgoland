@@ -27,7 +27,8 @@
     "http://esonet.epsevg.upc.es:8082/obsea-sos-webapp/api/v1/": "esonet",
     "http://www.fluggs.de/sos2/api/v1/": "wv",
     "http://geo.irceline.be/sos/api/v1/": "irceline",
-    "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb"
+    "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
+    "http://192.168.52.117:8080/52n-sos-webapp/api/v1/": "testInstanz"
   },
   "defaultProvider": {
     "serviceID": "1",
@@ -97,5 +98,11 @@
   },
   "showScale": true,
   "refreshDataInterval": 60000,
-  "defaultGroupedAxis": false
+  "defaultGroupedAxis": false,
+  "presentDataset": {
+    "measurement": [{
+      "service": "mobilePresentDataset",
+      "platformType": "mobile_insitu"
+    }]
+  }
 }

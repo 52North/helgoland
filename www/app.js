@@ -53,7 +53,8 @@ var mainApp = angular.module('jsClient', [
     'n52.core.utils',
     'n52.core.yAxisHide',
     'n52.client.navigation',
-    'n52.client.map'
+    'n52.client.map',
+    'n52.client.mobile'
 ]);
 
 mainApp.config(['$routeProvider', function($routeProvider) {
@@ -70,6 +71,11 @@ mainApp.config(['$routeProvider', function($routeProvider) {
         .when('/map', {
             templateUrl: 'templates/views/mapView.html',
             name: 'navigation.map',
+            reloadOnSearch: false
+        })
+        .when('/mobileDiagram', {
+            templateUrl: 'templates/views/combiView.html',
+            name: 'navigation.trajectories',
             reloadOnSearch: false
         })
         .when('/favorite', {

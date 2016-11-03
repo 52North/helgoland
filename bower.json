@@ -29,10 +29,12 @@
     "angular-ui-notification": "0.0.11",
     "qr-js": "1.1.3",
     "n52-sensorweb-client-core": "52North/sensorweb-client-core#develop",
+    "d3": "^3.5.14",
     "xslt": "^0.7.0"
   },
   "resolutions": {
     "angular": "~1.5",
+    "xslt": "^0.7.0",
     "angular-translate": "~2.10.0"
   }
 }
