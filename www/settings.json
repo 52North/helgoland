@@ -99,7 +99,7 @@
   "showScale": true,
   "refreshDataInterval": 60000,
   "defaultGroupedAxis": false,
-  "presentDataset": {
+  "datasetPresenter": {
     "measurement": [{
       "service": "mobilePresentDataset",
       "platformType": "mobile_insitu"
