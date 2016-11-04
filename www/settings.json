@@ -10,11 +10,11 @@
   }],
   "restApiUrls": {
     "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-    "http://192.168.52.117:8080/52n-sos-webapp/api/v1/": "testInstanz"
+    "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg"
   },
   "defaultProvider": {
     "serviceID": "1",
-    "url": "http://192.168.52.117:8080/52n-sos-webapp/api/v1/"
+    "url": "http://codm.hzg.de/52n-sos-webapp/api/v1/"
   },
   "chartOptions": {
     "yaxis": {
