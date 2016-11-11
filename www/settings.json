@@ -22,9 +22,6 @@
     }
   },
   "supportedLanguages": [{
-    "code": "de",
-    "label": "Deutsch"
-  }, {
     "code": "en",
     "label": "English"
   }],

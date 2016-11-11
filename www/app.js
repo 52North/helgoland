@@ -59,56 +59,56 @@ var mainApp = angular.module('jsClient', [
 
 mainApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-        .when('/', {
-            templateUrl: 'templates/views/diagramView.html',
-            reloadOnSearch: false
-        })
-        .when('/diagram', {
-            templateUrl: 'templates/views/diagramView.html',
-            name: 'navigation.diagram',
-            reloadOnSearch: false
-        })
-        .when('/map', {
-            templateUrl: 'templates/views/mapView.html',
-            name: 'navigation.map',
-            reloadOnSearch: false
-        })
+    // .when('/', {
+    //     templateUrl: 'templates/views/diagramView.html',
+    //     reloadOnSearch: false
+    // })
+    // .when('/diagram', {
+    //     templateUrl: 'templates/views/diagramView.html',
+    //     name: 'navigation.diagram',
+    //     reloadOnSearch: false
+    // })
+    // .when('/map', {
+    //     templateUrl: 'templates/views/mapView.html',
+    //     name: 'navigation.map',
+    //     reloadOnSearch: false
+    // })
         .when('/mobileDiagram', {
             templateUrl: 'templates/views/combiView.html',
             name: 'navigation.trajectories',
             reloadOnSearch: false
         })
-        .when('/favorite', {
-            templateUrl: 'templates/views/favoriteView.html',
-            name: 'navigation.favorite',
-            reloadOnSearch: false
-        })
-        .when('/map/provider', {
-            name: 'navigation.provider',
-            modal: {
-                controller: 'SwcProviderListModalCtrl',
-                templateUrl: 'templates/map/provider-list-modal.html'
-            },
-            reloadOnSearch: false
-        })
-        .when('/diagram/listSelection', {
-            name: 'navigation.listSelection',
-            modal: {
-                controller: 'ModalWindowCtrl',
-                templateUrl: 'templates/listSelection/modal-list-selection.html'
-            },
-            reloadOnSearch: false
-        })
-        .when('/diagram/settings', {
-            name: 'navigation.settings',
-            modal: {
-                controller: 'SwcUserSettingsWindowCtrl',
-                templateUrl: 'templates/settings/user-settings-modal.html'
-            },
-            reloadOnSearch: false
-        })
+        // .when('/favorite', {
+        //     templateUrl: 'templates/views/favoriteView.html',
+        //     name: 'navigation.favorite',
+        //     reloadOnSearch: false
+        // })
+        // .when('/map/provider', {
+        //     name: 'navigation.provider',
+        //     modal: {
+        //         controller: 'SwcProviderListModalCtrl',
+        //         templateUrl: 'templates/map/provider-list-modal.html'
+        //     },
+        //     reloadOnSearch: false
+        // })
+        // .when('/diagram/listSelection', {
+        //     name: 'navigation.listSelection',
+        //     modal: {
+        //         controller: 'ModalWindowCtrl',
+        //         templateUrl: 'templates/listSelection/modal-list-selection.html'
+        //     },
+        //     reloadOnSearch: false
+        // })
+        // .when('/diagram/settings', {
+        //     name: 'navigation.settings',
+        //     modal: {
+        //         controller: 'SwcUserSettingsWindowCtrl',
+        //         templateUrl: 'templates/settings/user-settings-modal.html'
+        //     },
+        //     reloadOnSearch: false
+        // })
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/mobileDiagram'
         });
 }]);
 
