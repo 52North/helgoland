@@ -9,10 +9,13 @@
 
 ## Build Client as WAR-File
 
+1. adjust the URL to the Fotoquest REST API in the property `restApiUrls` of the
+file `www/settings.json` to `http://<server>:<port>/fotoquest-webapp/api/v1/`
+(see above)
 1. `$ grunt buildWar` to get a deployable `war`-file
 1. Deploy `build/client##***.war` to `${CATALINA_HOME}/webapps/` folder
 
-## Build Client as folder with static files
+## Or: Build Client as folder with static files
 
 1. `$ grunt` to get the client in a static filed structure in the `dist` folder
 1. Deploy the content of the folder in an apache oder nginx
