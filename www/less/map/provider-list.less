@@ -2,20 +2,39 @@
 
 .provider-list {
     color: @text-color;
+
     .provider-item {
         padding: 5px;
         border-radius: 8px;
+
+        &+.add-provider,
         &+.provider-item {
-            margin-top: 5px;
+            margin-top: 10px;
         }
+
         &:hover {
             cursor: pointer;
             background-color: @hover-background-color;
             color: @color-primary;
         }
+
         &.selected {
             background-color: @selection-background-color;
             color: @color-primary;
         }
+
+        .delete-user-added {
+            float: right;
+        }
+    }
+
+    .add-provider {
+        &+.provider-item {
+            margin-top: 5px;
+        }
+    }
+
+    .input-group {
+        margin-bottom: 10px;
     }
 }

@@ -4,38 +4,41 @@
   "undefinedUomString": "-",
   "aggregateServices": true,
   "saveStatus": true,
-  "providerBlackList": [
-    {
-      "serviceID": "xyz",
-      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-    }
-  ],
+  "providerBlackList": [{
+    "serviceID": "srv_6d9ccea8d609ecb74d4a512922bb7cee",
+    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  }, {
+    "serviceID": "srv_98727b23c202a50f15d4681bb4b961bd",
+    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  }, {
+    "serviceID": "srv_5174ab6feff1caf74f92a4f12d2b773e",
+    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  }, {
+    "serviceID": "srv_738111ed219f738cfc85be0c8d87843c",
+    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  }, {
+    "serviceID": "srv_9d58c5df42e02e2a533ca2ce3c0096f5",
+    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  }],
   "restApiUrls": {
-    "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
-    "http://geo.irceline.be/sos/api/v1/": "irceline",
-    "http://www.fluggs.de/sos2/api/v1/": "fluggs",
+    "http://nodc.ogs.trieste.it/sos/api/v1/": "nodcOgsTrieste",
+    "http://esonet.epsevg.upc.es:8082/obsea-sos-webapp/api/v1/": "upc",
+    "http://nexos.dev.52north.org/52n-sos-upc/api/v1/": "nexos",
     "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
-    "http://inspire.rivm.nl/sos/eaq/api/v1/": "RIVM_inspire"
-  },
-  "defaultProvider": {
-    "serviceID": "srv_3dec8ce040d9506c5aba685c9d134156",
-    "url": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+    "http://sos-server.hcmr.gr/webapp/api/v1/": "hcmr"
   },
   "chartOptions": {
     "yaxis": {
       "tickDecimals": 2
     }
   },
-  "supportedLanguages": [
-    {
-      "code": "de",
-      "label": "Deutsch"
-    },
-    {
-      "code": "en",
-      "label": "English"
-    }
-  ],
+  "supportedLanguages": [{
+    "code": "de",
+    "label": "Deutsch"
+  }, {
+    "code": "en",
+    "label": "English"
+  }],
   "selectColorFromList": true,
   "colorList": [
     "#078D53",

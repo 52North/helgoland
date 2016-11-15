@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 
-        <!-- build:remove -->        
+        <!-- build:remove -->
         <title>AngularJS Client</title>
         <!--/build -->
         <!-- build:template
@@ -33,36 +33,7 @@
 
         <!-- build:css css/client.min.css -->
         <!-- start client style tags -->
-        <link href="css/chart/chart.css" rel="stylesheet" type="text/css"/>
-        <link href="css/chart/overview-chart.css" rel="stylesheet" type="text/css"/>
-        <link href="css/chart/tooltip.css" rel="stylesheet" type="text/css"/>
-        <link href="css/controls/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css"/>
-        <link href="css/controls/buttons.css" rel="stylesheet" type="text/css"/>
-        <link href="css/controls/flags.css" rel="stylesheet" type="text/css"/>
-        <link href="css/controls/loading-spinner.css" rel="stylesheet" type="text/css"/>
-        <link href="css/controls/loadingNotifier.css" rel="stylesheet" type="text/css"/>
-        <link href="css/controls/modals.css" rel="stylesheet" type="text/css"/>
-        <link href="css/controls/panel-group.css" rel="stylesheet" type="text/css"/>
-        <link href="css/favorites/favorite.css" rel="stylesheet" type="text/css"/>
-        <link href="css/legend/legend-entry-settings.css" rel="stylesheet" type="text/css"/>
-        <link href="css/legend/legend.css" rel="stylesheet" type="text/css"/>
-        <link href="css/main/main.css" rel="stylesheet" type="text/css"/>
-        <link href="css/main/navigation.css" rel="stylesheet" type="text/css"/>
-        <link href="css/main/offcanvas.css" rel="stylesheet" type="text/css"/>
-        <link href="css/map/controls.css" rel="stylesheet" type="text/css"/>
-        <link href="css/map/layers-control.css" rel="stylesheet" type="text/css"/>
-        <link href="css/map/locate-control.css" rel="stylesheet" type="text/css"/>
-        <link href="css/map/map.css" rel="stylesheet" type="text/css"/>
-        <link href="css/map/phenomenon-list.css" rel="stylesheet" type="text/css"/>
-        <link href="css/map/provider-list.css" rel="stylesheet" type="text/css"/>
-        <link href="css/map/search-control.css" rel="stylesheet" type="text/css"/>
-        <link href="css/map/station-window.css" rel="stylesheet" type="text/css"/>
-        <link href="css/map/zoom-control.css" rel="stylesheet" type="text/css"/>
-        <link href="css/metadata/procedure.css" rel="stylesheet" type="text/css"/>
-        <link href="css/selectionList/selection-list.css" rel="stylesheet" type="text/css"/>
-        <link href="css/settings/settings-window.css" rel="stylesheet" type="text/css"/>
-        <link href="css/table/table.css" rel="stylesheet" type="text/css"/>
-        <link href="css/time/time.css" rel="stylesheet" type="text/css"/>
+        <link href="css/app.css" rel="stylesheet" type="text/css"/>
         <!-- end client style tags -->
         <!-- /build -->
 
@@ -108,6 +79,7 @@
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/controller/basicMapCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/controller/locateButtonCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/controller/mapLayerCtrl.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/Map/controller/modalPlatformCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/controller/modalStationCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/controller/overlayCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Map/controller/searchCtrl.js" type="text/javascript"></script>
@@ -120,6 +92,7 @@
         <script src="bower_components/n52-sensorweb-client-core/src/js/Phenomenon/controller/phenomenaCountCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Phenomenon/controller/phenomenaListCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Provider/providerModule.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/Provider/controller/additionalProvider.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Provider/controller/providerButtonCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Provider/controller/providerDeselectCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Provider/controller/providerLabelCtrl.js" type="text/javascript"></script>
@@ -129,6 +102,7 @@
         <script src="bower_components/n52-sensorweb-client-core/src/js/Time/controller/backForwardButtonsCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Time/controller/centerTimeCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Time/controller/customDateTimeRangeCtrl.js" type="text/javascript"></script>
+        <script src="bower_components/n52-sensorweb-client-core/src/js/Time/controller/customDateTimeRangeWithMaxTimeperiodCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Time/controller/predefinedTimeRangeControlsCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Time/controller/timeRangeCtrl.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/Time/controller/timeRangeWindowCtrl.js" type="text/javascript"></script>
@@ -244,11 +218,10 @@
         <script src="bower_components/n52-sensorweb-client-core/src/js/helper/service/languageSetter.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/helper/service/logNotifier.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/helper/service/mapHelper.js" type="text/javascript"></script>
-        <script src="bower_components/n52-sensorweb-client-core/src/js/helper/service/servicesHelper.js" type="text/javascript"></script>
         <script src="bower_components/n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js" type="text/javascript"></script>
         <!-- end core script tags -->
         <!-- /build -->
-        
+
         <!-- build:js app.js -->
         <!-- start client script tags -->
         <script src="app.js" type="text/javascript"></script>
@@ -262,7 +235,7 @@
         <!-- /build -->
         <![endif]-->
 
-        <!-- build:remove -->        
+        <!-- build:remove -->
         <!--[if lt IE 10]>
         <script src="bower_components/n52-sensorweb-client-core/src/js/IE9/favoriteIE9ImExportCore.js"></script>
         <![endif]-->
