@@ -1,5 +1,8 @@
 <div class="combi-mobile">
     <div class="combi-header" ng-hide="series.label === undefined">
+        <div style="float:right">
+            <swc-mobile-permalink datasetid="series.id" providerurl="providerUrl"></swc-mobile-permalink>
+        </div>
         <div>
             <span>{{series.label}}</span>
         </div>
