@@ -269,7 +269,8 @@ module.exports = function(grunt) {
         processhtml: {
             options: {
                 data: {
-                    message: '<%= name %> - version <%= pkg.version %> - build at <%= grunt.template.today("yyyy-mm-dd HH:MM") %>'
+                    message: '<%= name %> - version <%= pkg.version %> - build at <%= grunt.template.today("yyyy-mm-dd HH:MM") %>',
+                    buildTime: '<%= grunt.template.today() %>'
                 }
             },
             index: {
