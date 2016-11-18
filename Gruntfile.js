@@ -258,12 +258,7 @@ module.exports = function(grunt) {
             files: ['gruntfile.js', 'www/js/**/*.js', 'test/**/*.js'],
             options: {
                 reporterOutput: "",
-                esnext: true,
-                globals: {
-                    jQuery: true,
-                    console: true,
-                    module: true
-                }
+                jshintrc: true
             }
         },
         processhtml: {
