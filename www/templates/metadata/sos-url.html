@@ -1,4 +1,3 @@
-<div ng-hide="!sos.url">
-    <a ng-click="$event.stopPropagation(); openCapabilities();"
-       translate="metadataOutput.showCapabilities"></span>
+<div ng-hide="!$ctrl.sos.url">
+    <a ng-click="$event.stopPropagation(); $ctrl.openCapabilities();" translate="metadataOutput.showCapabilities"/>
 </div>
