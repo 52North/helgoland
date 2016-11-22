@@ -277,6 +277,7 @@
   "metadataOutput": {
     "selectRawProcedureFormat": "Procedure als Rohdata",
     "selectTimeseriesDataFormat": "Zeitreihendaten als Rohdaten",
-    "showCapabilities": "Zeige SOS-Capabilities"
+    "showCapabilities": "Zeige SOS-Capabilities",
+    "editProcedure": "Procedure editieren"
   }
 }

@@ -9,15 +9,7 @@
     "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
   }],
   "restApiUrls": {
-    "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
-    "http://geo.irceline.be/sos/api/v1/": "irceline",
-    "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-    "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
-    "http://inspire.rivm.nl/sos/eaq/api/v1/": "RIVM_inspire"
-  },
-  "defaultProvider": {
-    "serviceID": "srv_3dec8ce040d9506c5aba685c9d134156",
-    "url": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+    "http://localhost:8081/52n-sos-webapp/api/v1/": "localhost"
   },
   "chartOptions": {
     "yaxis": {
@@ -95,5 +87,13 @@
       "group": "Raster"
     }
   },
-  "showScale": true
+  "showScale": true,
+  "editor": {
+    "url": "http://localhost:3000/#/editor",
+    "editableServices": {
+      "http://localhost:8081/52n-sos-webapp/api/v1/": {
+        "1": "http://localhost:8081/52n-sos-webapp/service"
+      }
+    }
+  }
 }

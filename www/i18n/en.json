@@ -277,6 +277,7 @@
   "metadataOutput": {
     "selectRawProcedureFormat": "Select raw format for procedure",
     "selectTimeseriesDataFormat": "Select raw format for timeseries data",
-    "showCapabilities": "Show Capabilities of the SOS"
+    "showCapabilities": "Show Capabilities of the SOS",
+    "editProcedure": "Edit procedure"
   }
 }
