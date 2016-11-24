@@ -9,7 +9,7 @@
     "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
   }],
   "restApiUrls": {
-    "http://localhost:8081/52n-sos-webapp/api/v1/": "localhost"
+    "http://nexos.dev.52north.org/tasking-sos/api/v1/": "localhost"
   },
   "chartOptions": {
     "yaxis": {
@@ -91,8 +91,8 @@
   "editor": {
     "url": "http://localhost:3000/#/editor",
     "editableServices": {
-      "http://localhost:8081/52n-sos-webapp/api/v1/": {
-        "1": "http://localhost:8081/52n-sos-webapp/service"
+      "http://nexos.dev.52north.org/tasking-sos/api/v1/": {
+        "1": "http://nexos.dev.52north.org/tasking-sos/service"
       }
     }
   }
