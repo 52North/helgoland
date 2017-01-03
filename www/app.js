@@ -106,23 +106,26 @@ mainApp.config(['$routeProvider', function($routeProvider) {
         });
 }]);
 
-mainApp.config(['$translateProvider', 'settingsServiceProvider', function($translateProvider, settingsServiceProvider) {
-    $translateProvider.useStaticFilesLoader({
-        prefix: 'i18n/',
-        suffix: '.json'
-    });
-    var suppLang = [];
-    angular.forEach(settingsServiceProvider.$get().supportedLanguages, function(lang) {
-        suppLang.push(lang.code);
-    });
-    $translateProvider.registerAvailableLanguageKeys(suppLang);
-    $translateProvider.determinePreferredLanguage();
-    if ($translateProvider.preferredLanguage() === '' ||
-        suppLang.indexOf($translateProvider.preferredLanguage()) === -1) {
-        $translateProvider.preferredLanguage('en');
+mainApp.config(['$translateProvider', 'settingsServiceProvider', '$locationProvider',
+    function($translateProvider, settingsServiceProvider, $locationProvider) {
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'i18n/',
+            suffix: '.json'
+        });
+        $locationProvider.hashPrefix('');
+        var suppLang = [];
+        angular.forEach(settingsServiceProvider.$get().supportedLanguages, function(lang) {
+            suppLang.push(lang.code);
+        });
+        $translateProvider.registerAvailableLanguageKeys(suppLang);
+        $translateProvider.determinePreferredLanguage();
+        if ($translateProvider.preferredLanguage() === '' ||
+            suppLang.indexOf($translateProvider.preferredLanguage()) === -1) {
+            $translateProvider.preferredLanguage('en');
+        }
+        $translateProvider.useSanitizeValueStrategy(null);
     }
-    $translateProvider.useSanitizeValueStrategy(null);
-}]);
+]);
 
 mainApp.filter('objectCount', function() {
     return function(item) {
