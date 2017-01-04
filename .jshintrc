@@ -1,5 +1,5 @@
 {
-  "globalstrict": true,
+  "globalstrict": false,
   "globals": {
     "angular": false,
     "describe": false,
