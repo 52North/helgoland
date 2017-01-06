@@ -20,7 +20,7 @@
                      ng-controller="SwcToggleCtrl">
                     <div ng-if="!isToggled">
                         <div ng-controller="SwcChartCtrl">
-                            <flot class="diagram" options="options" dataset="dataset" on-time-change="timeChanged(time)"></flot>
+                            <flot class="diagram" options="options" dataset="dataset" on-time-change="timeChanged(time)" on-series-selection-change="seriesSelectionChanged(selection)"></flot>
                         </div>
                         <div ng-controller="IsMobileCtrl">
                             <div id="overviewChart"
