@@ -2,9 +2,9 @@
 
 ## Description
 
-**visual exploration and analysis of sensor web data**
+**Visual Exploration and Analysis of Sensor Web Data**
 
-*This lightweight web application enables the exploration, analysis and visualization of sensor web data in various fields of use, e.g. hydrology, meteorology, environmental monitoring, traffic management....*
+*This lightweight web application enables the exploration, analysis and visualization of sensor web data in various fields of use, e.g. hydrology, meteorology, environmental monitoring, traffic management.*
 
 Helgoland is a lightweight web application to explore, analyze and visualize a broad range of sensor data. You can:
 
@@ -66,7 +66,7 @@ j.schulte@52north.org
 
 This is a frontend component of the repository [sensorweb-client-core](https://github.com/52North/sensorweb-client-core).
 
-It comprise:
+It comprises:
 
 * the styling files for the client
 * the templates to define the html structure
