@@ -31,25 +31,31 @@ The following main frameworks are used to provide this application:
 * [momentJs](http://momentjs.com/)
 * [flot](http://www.flotcharts.org/)
 
-## Quick Start (Getting started -> configuration)
+## Quick Start (Configuration)
 
-* Download the latest Version here (link)
-  * deploy the war-file of the client in your favorite web container (e.g. tomcat)
-  * deploy as a static web page in a web server (e.g. apache)
-* Configure your client in the settings.json in the root folder. Check this(link) site for the different configuration parameter in the settings.json. The main parameters are:
-  * `defaultProvider` - this is the default selected provider, when the user starts the client
-  * `restApiUrls` - this is a list of all supported providers by the client
+Download the latest version of [Helgoland](https://github.com/52North/helgoland/releases). 
+
+* Deploy the war-file of the client in your favorite web container (e.g. tomcat)
+* Deploy as a static web page in a web server (e.g. apache)
+
+Configure your client in the settings.json in the root folder. Check this(link) site for the different configuration parameter in the settings.json. The main parameters are:
+
+* `defaultProvider` - this is the default selected provider, when the user starts the client
+* `restApiUrls` - this is a list of all supported providers by the client
+  
 
 ## License
 
-Licensed under [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
+Helgoland is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
 
 ## User guide/tutorial
 
 ## Demo
-<img src="https://cloud.githubusercontent.com/assets/3830314/15780576/ae8cf458-29a2-11e6-89ef-bc6f1453e38b.png" alt="Helgoland map view" width="100%"/>
-<img src="https://cloud.githubusercontent.com/assets/3830314/15780591/bdb9a4a8-29a2-11e6-9938-1717a0e7bb7a.png" alt="Helgoland diagram view" width="100%"/>
-Try out/test [Helgoland](http://sensorweb.demo.52north.org/client/#/)
+Explore, analyze and visualize sensor web data with our [Helgoland](http://sensorweb.demo.52north.org/client/#/) demo.
+
+<img src="https://cloud.githubusercontent.com/assets/3830314/15780576/ae8cf458-29a2-11e6-89ef-bc6f1453e38b.png" alt="Helgoland map view" width="50%"/>
+<img src="https://cloud.githubusercontent.com/assets/3830314/15780591/bdb9a4a8-29a2-11e6-9938-1717a0e7bb7a.png" alt="Helgoland diagram view" width="50%"/>
+
 
 ## Changelog
 
