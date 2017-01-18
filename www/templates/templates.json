@@ -41,6 +41,9 @@
     "url": "templates/listSelection/modal-list-selection.html",
     "id": "n52.core.listSelection.modal-list-selection"
 }, {
+    "url": "templates/listSelection/tabbed-list-selection.html",
+    "id": "n52.core.listSelection.tabbed-list-selection"
+}, {
     "url": "templates/legend/legend-entry.html",
     "id": "n52.core.legend.legend-entry"
 }, {
