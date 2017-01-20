@@ -64,9 +64,8 @@ module.exports = function(grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/Styling/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Styling/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Styling/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Chart/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Chart/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Chart/flotlib/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Chart/*/*Mdul.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/Chart/*/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Favorite/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Favorite/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Favorite/directives/*.js',
@@ -81,6 +80,7 @@ module.exports = function(grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/controller/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/directives/*.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/components/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/flotlib/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/mobile/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Menu/*.js',
@@ -90,6 +90,8 @@ module.exports = function(grunt) {
             'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/procedureMetadata.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/sosUrl.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/Metadata/directives/timeseriesRawData.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/SeriesInterface/*MDUL.js',
+            'www/bower_components/n52-sensorweb-client-core/src/js/SeriesInterface/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/parameterServices/*.js',
             'www/bower_components/n52-sensorweb-client-core/src/js/services/**/*.js',
@@ -260,18 +262,14 @@ module.exports = function(grunt) {
             files: ['gruntfile.js', 'www/js/**/*.js', 'test/**/*.js'],
             options: {
                 reporterOutput: "",
-                esnext: true,
-                globals: {
-                    jQuery: true,
-                    console: true,
-                    module: true
-                }
+                jshintrc: true
             }
         },
         processhtml: {
             options: {
                 data: {
-                    message: '<%= name %> - version <%= pkg.version %> - build at <%= grunt.template.today("yyyy-mm-dd HH:MM") %>'
+                    message: '<%= name %> - version <%= pkg.version %> - build at <%= grunt.template.today("yyyy-mm-dd HH:MM") %>',
+                    buildTime: '<%= grunt.template.today() %>'
                 }
             },
             index: {

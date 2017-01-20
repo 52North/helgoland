@@ -6,17 +6,17 @@
   "license": "Apache2",
   "private": true,
   "dependencies": {
-    "angular": "~1.5",
-    "angular-route": "~1.5",
-    "angular-loader": "~1.5",
-    "angular-mocks": "~1.5",
-    "angular-resource": "~1.5",
+    "angular": "~1.6",
+    "angular-route": "~1.6",
+    "angular-loader": "~1.6",
+    "angular-mocks": "~1.6",
+    "angular-resource": "~1.6",
+    "angular-sanitize": "~1.6",
     "angular-translate": "2.12.1",
     "angular-bootstrap": "^1.2.x",
-    "angular-sanitize": "^1.5.0",
     "angular-translate-loader-static-files": "~2.10.0",
     "bootstrap": "~3.3.5",
-    "ui-leaflet": "1.0.0",
+    "ui-leaflet": "janschulte/ui-leaflet#master",
     "leaflet.markercluster": "0.4.0",
     "ng-table": "0.7.0",
     "angular-local-storage": "0.2.2",
@@ -24,7 +24,6 @@
     "xhr-xdr-adapter": "intuit/xhr-xdr-adapter",
     "flot": "0.8.2",
     "flot-downsample": "1.0.0",
-    "L.GeoSearch": "smeijer/L.GeoSearch",
     "smalot-bootstrap-datetimepicker": "2.3.4",
     "angular-ui-notification": "0.0.11",
     "qr-js": "1.1.3",
@@ -33,8 +32,7 @@
     "xslt": "^0.7.0"
   },
   "resolutions": {
-    "angular": "~1.5",
-    "xslt": "^0.7.0",
+    "angular": "~1.6",
     "angular-translate": "~2.10.0"
   }
 }
