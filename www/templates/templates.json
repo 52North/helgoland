@@ -53,6 +53,9 @@
     "url": "templates/map/station-loading.html",
     "id": "n52.core.map.station-loading"
 }, {
+    "url": "templates/map/selectable-station-entry.html",
+    "id": "n52.core.map.selectable-station-entry"
+}, {
     "url": "templates/map/station.html",
     "id": "n52.core.map.station"
 }, {
