@@ -19,7 +19,8 @@
     "favorite": "Favoriten",
     "provider": "Anbieter",
     "listSelection": "Listenauswahl",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "ticker": "Ticker"
   },
   "chart": {
     "noTimeseriesSelected": "Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.",

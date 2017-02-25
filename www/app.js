@@ -67,6 +67,14 @@ mainApp.config(['$routeProvider', function($routeProvider) {
                 templates: 'templates'
             }
         })
+        .when('/ticker', {
+            templateUrl: 'templates/views/tickerView.html',
+            name: 'navigation.ticker',
+            reloadOnSearch: false,
+            resolve: {
+                templates: 'templates'
+            }
+        })
         .when('/favorite', {
             templateUrl: 'templates/views/favoriteView.html',
             name: 'navigation.favorite',

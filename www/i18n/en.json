@@ -19,7 +19,8 @@
     "favorite": "Favorites",
     "provider": "Provider",
     "listSelection": "List selection",
-    "settings": "Settings"
+    "settings": "Settings",
+    "ticker": "Ticker"
   },
   "chart": {
     "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",
