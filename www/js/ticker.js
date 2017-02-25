@@ -4,7 +4,7 @@ angular.module('n52.client.map')
             $scope.messages = [];
 
             printMessage = function(message) {
-                $scope.messages.push(message);
+                $scope.messages.push(JSON.parse(message));
                 $scope.$apply();
             };
 
@@ -41,7 +41,9 @@ angular.module('n52.client.map')
                 console.log("connection lost: " + responseObject.errorMessage);
             };
             client.onMessageArrived = (message) => {
-                messageCb(message.destinationName + ' -- ' + message.payloadString);
+                debugger;
+                console.log(message);
+                messageCb(message.payloadString);
                 // messages.push(message.destinationName + ' -- ' + message.payloadString);
             };
             var options = {
