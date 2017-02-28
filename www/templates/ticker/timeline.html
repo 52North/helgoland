@@ -1,3 +1,9 @@
 <div ng-repeat="message in $ctrl.messages">
   {{message}}
+  <div ng-if="$even" style="background-color: red;">
+    {{message.offering}}
+  </div>
+  <div ng-if="!$odd" style="background-color: blue;">
+    {{message.offering}}
+  </div>
 </div>
