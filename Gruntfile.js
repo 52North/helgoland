@@ -107,6 +107,7 @@ module.exports = function(grunt) {
         copy_files: [
             'settings.json',
             'templates/**/*.html',
+            'templates/*.json',
             'i18n/*.json',
             'images/*',
             'css/images/*',
