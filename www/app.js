@@ -8,13 +8,11 @@ var mainApp = angular.module('jsClient', [
     'ngSanitize',
     'ngTable',
     'ngResource',
-    'n52.core.alert',
     'n52.core.barChart',
-    'n52.core.color',
+    'n52.core.base',
     'n52.core.dataLoading',
     'n52.core.diagram',
     'n52.core.exportTs',
-    'n52.core.favorite',
     'n52.core.favoriteUi',
     'n52.core.flot',
     'n52.core.helper',
@@ -32,26 +30,14 @@ var mainApp = angular.module('jsClient', [
     'n52.core.metadata',
     'n52.core.modal',
     'n52.core.overviewDiagram',
-    'n52.core.permalinkEval',
-    'n52.core.permalinkGen',
     'n52.core.phenomena',
     'n52.core.provider',
-    'n52.core.rawDataOutput',
     'n52.core.userSettings',
-    'n52.core.settings',
-    'n52.core.sosMetadata',
     'n52.core.startup',
-    'n52.core.status',
     'n52.core.style',
-    'n52.core.styleTs',
     'n52.core.table',
-    'n52.core.time',
     'n52.core.timeUi',
-    'n52.core.timeseries',
-    'n52.core.tooltip',
-    'n52.core.translateSelector',
-    'n52.core.utils',
-    'n52.core.yAxisHide',
+    'n52.core.translate',
     'n52.client.navigation',
     'n52.client.map'
 ]);
@@ -60,22 +46,34 @@ mainApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'templates/views/diagramView.html',
-            reloadOnSearch: false
+            reloadOnSearch: false,
+            resolve: {
+                templates: 'templates'
+            }
         })
         .when('/diagram', {
             templateUrl: 'templates/views/diagramView.html',
             name: 'navigation.diagram',
-            reloadOnSearch: false
+            reloadOnSearch: false,
+            resolve: {
+                templates: 'templates'
+            }
         })
         .when('/map', {
             templateUrl: 'templates/views/mapView.html',
             name: 'navigation.map',
-            reloadOnSearch: false
+            reloadOnSearch: false,
+            resolve: {
+                templates: 'templates'
+            }
         })
         .when('/favorite', {
             templateUrl: 'templates/views/favoriteView.html',
             name: 'navigation.favorite',
-            reloadOnSearch: false
+            reloadOnSearch: false,
+            resolve: {
+                templates: 'templates'
+            }
         })
         .when('/map/provider', {
             name: 'navigation.provider',
@@ -83,7 +81,10 @@ mainApp.config(['$routeProvider', function($routeProvider) {
                 controller: 'SwcProviderListModalCtrl',
                 templateUrl: 'templates/map/provider-list-modal.html'
             },
-            reloadOnSearch: false
+            reloadOnSearch: false,
+            resolve: {
+                templates: 'templates'
+            }
         })
         .when('/diagram/listSelection', {
             name: 'navigation.listSelection',
@@ -91,7 +92,10 @@ mainApp.config(['$routeProvider', function($routeProvider) {
                 controller: 'ModalWindowCtrl',
                 templateUrl: 'templates/listSelection/modal-list-selection.html'
             },
-            reloadOnSearch: false
+            reloadOnSearch: false,
+            resolve: {
+                templates: 'templates'
+            }
         })
         .when('/diagram/settings', {
             name: 'navigation.settings',
@@ -99,12 +103,30 @@ mainApp.config(['$routeProvider', function($routeProvider) {
                 controller: 'SwcUserSettingsWindowCtrl',
                 templateUrl: 'templates/settings/user-settings-modal.html'
             },
-            reloadOnSearch: false
+            reloadOnSearch: false,
+            resolve: {
+                templates: 'templates'
+            }
         })
         .otherwise({
             redirectTo: '/'
         });
 }]);
+
+mainApp.service('templates', ['$templateCache', '$http', '$q',
+    function($templateCache, $http, $q) {
+        var promises = [];
+        promises.push($http.get("templates/templates.json").then(response => {
+            return $q.all(response.data.map(template => {
+                return $http.get(template.url).then((response) => {
+                    $templateCache.put(template.id, response.data);
+                });
+            }));
+        }));
+
+        return $q.all(promises);
+    }
+]);
 
 mainApp.config(['$translateProvider', 'settingsServiceProvider', '$locationProvider',
     function($translateProvider, settingsServiceProvider, $locationProvider) {
