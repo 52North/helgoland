@@ -1,7 +1,6 @@
-<h4>{{$ctrl.timeseries.phenomenon.label}}</h4>
+<h4><div class="glyphicon glyphicon-refresh loading icon-spin" ng-hide="$ctrl.timeseries.id"></div>{{$ctrl.timeseries.label}}</h4>
 <div class="tsItem" ng-class="{selected : selected}">
     <div class="checkbox">
-        <div class="glyphicon glyphicon-refresh loading icon-spin" ng-hide="$ctrl.timeseries.id"></div>
         <label>
             <input type="checkbox" ng-disabled="!$ctrl.timeseries.id" ng-model="$ctrl.timeseries.selected" ng-change="$ctrl.toggled()">
             <span>{{$ctrl.timeseries.procedure.label}}</span>

@@ -2,9 +2,9 @@
 
 ## Description
 
-**visual exploration and analysis of sensor web data**
+**Visual Exploration and Analysis of Sensor Web Data**
 
-*This lightweight web application enables the exploration, analysis and visualization of sensor web data in various fields of use, e.g. hydrology, meteorology, environmental monitoring, traffic management....*
+*This lightweight web application enables the exploration, analysis and visualization of sensor web data in various fields of use, e.g. hydrology, meteorology, environmental monitoring, traffic management.*
 
 Helgoland is a lightweight web application to explore, analyze and visualize a broad range of sensor data. You can:
 
@@ -31,25 +31,32 @@ The following main frameworks are used to provide this application:
 * [momentJs](http://momentjs.com/)
 * [flot](http://www.flotcharts.org/)
 
-## Quick Start (Getting started -> configuration)
+## Quick Start (Configuration)
 
-* Download the latest Version here (link)
-  * deploy the war-file of the client in your favorite web container (e.g. tomcat)
-  * deploy as a static web page in a web server (e.g. apache)
-* Configure your client in the settings.json in the root folder. Check this(link) site for the different configuration parameter in the settings.json. The main parameters are:
-  * `defaultProvider` - this is the default selected provider, when the user starts the client
-  * `restApiUrls` - this is a list of all supported providers by the client
+Download the latest version of [Helgoland](https://github.com/52North/helgoland/releases). 
+
+* Deploy the war-file of the client in your favorite web container (e.g. tomcat)
+* Deploy as a static web page in a web server (e.g. apache)
+
+Configure your client in the settings.json in the root folder. Check this(link) site for the different configuration parameter in the settings.json. The main parameters are:
+
+* `defaultProvider` - this is the default selected provider, when the user starts the client
+* `restApiUrls` - this is a list of all supported providers by the client
+  
 
 ## License
 
-Licensed under [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
+Helgoland is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
 
 ## User guide/tutorial
 
 ## Demo
-<img src="https://cloud.githubusercontent.com/assets/3830314/15780576/ae8cf458-29a2-11e6-89ef-bc6f1453e38b.png" alt="Helgoland map view" width="100%"/>
-<img src="https://cloud.githubusercontent.com/assets/3830314/15780591/bdb9a4a8-29a2-11e6-9938-1717a0e7bb7a.png" alt="Helgoland diagram view" width="100%"/>
-Try out/test [Helgoland](http://sensorweb.demo.52north.org/client/#/)
+Explore, analyze and visualize sensor web data with our [Helgoland](http://sensorweb.demo.52north.org/client/#/) demo.
+
+<p align="center">
+  <img src="https://cloud.githubusercontent.com/assets/3830314/15780576/ae8cf458-29a2-11e6-89ef-bc6f1453e38b.png" alt="Helgoland map view" width="75%"/>
+  <img src="https://cloud.githubusercontent.com/assets/3830314/15780591/bdb9a4a8-29a2-11e6-9938-1717a0e7bb7a.png" alt="Helgoland diagram view" width="75%"/>
+</p>
 
 ## Changelog
 
@@ -66,7 +73,7 @@ j.schulte@52north.org
 
 This is a frontend component of the repository [sensorweb-client-core](https://github.com/52North/sensorweb-client-core).
 
-It comprise:
+It comprises:
 
 * the styling files for the client
 * the templates to define the html structure
