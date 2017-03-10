@@ -1,6 +1,6 @@
 {
   "name": "helgoland",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "visual exploration and analysis of sensor web data",
   "repository": "https://github.com/52North/sensorweb-thin-client",
   "license": "Apache2",
