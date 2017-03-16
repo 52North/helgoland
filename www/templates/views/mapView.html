@@ -47,7 +47,7 @@
                             <a class="phenomenonItem" data-id="{{id}}">
                                 <div class="item" ng-click="showSpecificPhenomenon(phenomenon); togglePhenomena();" ng-class="{selected:isSelected(phenomenon)}">
                                     <span class="glyphicon glyphicon-refresh loading icon-spin"></span>
-                                    <span>{{phenomenon.label}}</span>
+                                    <swc-label-mapper label="phenomenon.label"></swc-label-mapper>
                                 </div>
                             </a>
                         </div>

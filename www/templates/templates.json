@@ -35,6 +35,9 @@
     "url": "templates/legend/legend-entry.html",
     "id": "n52.core.legend.legend-entry"
 }, {
+    "url": "templates/legend/label-mapper.html",
+    "id": "n52.core.legend.label-mapper"
+}, {
     "url": "templates/listSelection/list-selection.html",
     "id": "n52.core.listSelection.list-selection"
 }, {
