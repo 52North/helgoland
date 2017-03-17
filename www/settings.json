@@ -10,7 +10,7 @@
   }],
   "restApiUrls": {
     "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-    "http://localhost:8080/api/v1/": "localhost"
+    "http://colabis.dev.52north.org/ecmwf-webapp/api/v1/": "ecmwf"
   },
   "defaultProvider": {
     "serviceID": "srv_3dec8ce040d9506c5aba685c9d134156",
@@ -94,5 +94,10 @@
   },
   "showScale": true,
   "solveLabels": true,
-  "proxyUrl": "https://cors-anywhere.herokuapp.com/"
+  "proxyUrl": "https://cors-anywhere.herokuapp.com/",
+  "platformPresenter": {
+    "stationary_remote": [{
+      "service": "fotoquestPlatformPresenter"
+    }]
+  }
 }
