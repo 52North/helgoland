@@ -3,7 +3,7 @@
         <button type="button" class="close" ng-click="close();">&times;</button>
         <div class="modal-title">
             <span>{{'map.stationSelection.station' | translate}}</span>:
-            <span>{{station.entry.properties.label}}</span>
+            <swc-label-mapper ng-if="station.entry.properties.label" label="station.entry.properties.label"></swc-label-mapper>
         </div>
     </div>
     <div class="modal-body stationContent">
