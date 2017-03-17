@@ -97,5 +97,7 @@
     "stationary_remote": [{
       "service": "fotoquestPlatformPresenter"
     }]
-  }
+  },
+  "solveLabels": true,
+  "proxyUrl": "https://cors-anywhere.herokuapp.com/"
 }

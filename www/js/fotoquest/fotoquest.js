@@ -1,8 +1,8 @@
 angular.module('n52.core.map')
-    .controller('SwcModalStationaryRemoteCtrl', ['$scope', '$uibModalInstance', 'selection', '$location', 'fotoquestSrvc', 'interfaceService',
-        function($scope, $uibModalInstance, selection, $location, fotoquestSrvc, interfaceService) {
+    .controller('SwcModalStationaryRemoteCtrl', ['$scope', '$uibModalInstance', 'selection', '$location', 'fotoquestSrvc', 'seriesApiInterface',
+        function($scope, $uibModalInstance, selection, $location, fotoquestSrvc, seriesApiInterface) {
 
-            interfaceService.getStationaryPlatforms(selection.id, selection.url).then(res => {
+            seriesApiInterface.getStationaryPlatforms(selection.id, selection.url).then(res => {
                 $scope.platform = res;
             });
 
@@ -26,13 +26,13 @@ angular.module('n52.core.map')
             this.selectedProviderUrl = '';
         }
     ])
-    .controller('fotoquestViewCtrl', ['$scope', 'fotoquestSrvc', 'interfaceService',
-        function($scope, fotoquestSrvc, interfaceService) {
+    .controller('fotoquestViewCtrl', ['$scope', 'fotoquestSrvc', 'seriesApiInterface',
+        function($scope, fotoquestSrvc, seriesApiInterface) {
             $scope.datasetId = fotoquestSrvc.selectedDatasetId;
             $scope.providerUrl = fotoquestSrvc.selectedProviderUrl;
             $scope.platformId = fotoquestSrvc.selectedPlatformId;
 
-            interfaceService.getStationaryPlatforms($scope.platformId, $scope.providerUrl).then(platform => {
+            seriesApiInterface.getStationaryPlatforms($scope.platformId, $scope.providerUrl).then(platform => {
                 $scope.platform = platform;
             });
 
@@ -51,7 +51,7 @@ angular.module('n52.core.map')
             };
 
             function requestDataset(id) {
-                interfaceService.getDatasets(id, $scope.providerUrl).then(dataset => {
+                seriesApiInterface.getDatasets(id, $scope.providerUrl).then(dataset => {
                     $scope.dataset = dataset;
                 });
             }
@@ -72,8 +72,8 @@ angular.module('n52.core.map')
         bindings: {
             dataset: '<'
         },
-        controller: ['interfaceService', '$scope',
-            function(interfaceService, $scope) {
+        controller: ['$scope',
+            function($scope) {
                 var ctrl = this;
 
                 this.$onChanges = function(changesObj) {
