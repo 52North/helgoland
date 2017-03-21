@@ -96,8 +96,9 @@
   "solveLabels": true,
   "proxyUrl": "https://cors-anywhere.herokuapp.com/",
   "platformPresenter": {
-    "stationary_remote": [{
-      "service": "fotoquestPlatformPresenter"
+    "stationary_insitu": [{
+      "service": "ecmwfPlatformPresenter",
+      "url": "http://colabis.dev.52north.org/ecmwf-webapp/api/v1/"
     }]
   }
 }

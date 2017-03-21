@@ -124,4 +124,16 @@
 }, {
     "url": "templates/time/custom-time-range-selection.html",
     "id": "n52.core.timeUi.custom-time-range-selection"
+}, {
+    "url": "templates/ecmwf/procedure-selection.html",
+    "id": "n52.ecmwf.map.procedure-selection"
+}, {
+    "url": "templates/ecmwf/result-time-selection.html",
+    "id": "n52.ecmwf.map.result-time-selection"
+}, {
+    "url": "templates/ecmwf/legend.html",
+    "id": "n52.ecmwf.legend"
+}, {
+    "url": "templates/ecmwf/legend-entry.html",
+    "id": "n52.ecmwf.legend-entry"
 }]
