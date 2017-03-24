@@ -11,7 +11,7 @@
     <div ng-controller="SwcToggleInformationCtrl">
         <div class="legendItemheader">
             <div class="legendItemLabel" ng-style="{color: timeseries.styles.color}">
-                <swc-label-mapper label="timeseries.station.properties.label"></swc-label-mapper>
+                <swc-label-mapper label="timeseries.station.properties.label || timeseries.seriesParameters.platform.label"></swc-label-mapper>
                 <swc-favorite-add-star timeseries="timeseries"></swc-favorite-add-star>
             </div>
             <div class="noDataWarning firstLastEntry" ng-show="timeseries.hasNoDataInCurrentExtent">
@@ -27,10 +27,10 @@
                 </div>
             </div>
             <div class="small">
-                <swc-label-mapper label="timeseries.parameters.phenomenon.label"></swc-label-mapper>
+                <swc-label-mapper label="timeseries.parameters.phenomenon.label || timeseries.seriesParameters.phenomenon.label"></swc-label-mapper>
                 <span>(<swc-label-mapper ng-if="timeseries.uom" label="timeseries.uom"></swc-label-mapper>)</span>
             </div>
-            <div class="small"><swc-label-mapper label="timeseries.parameters.procedure.label"></swc-label-mapper></div>
+            <div class="small"><swc-label-mapper label="timeseries.parameters.procedure.label || timeseries.seriesParameters.procedure.label"></swc-label-mapper></div>
             <div class="small" ng-if="timeseries.parameters.category.label"><swc-label-mapper label="timeseries.parameters.category.label"></swc-label-mapper></div>
         </div>
         <div class="legendicons">
