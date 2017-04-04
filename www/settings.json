@@ -106,5 +106,7 @@
       "service": "mobilePresentDataset",
       "platformType": "mobile_insitu"
     }]
-  }
+  },
+  "solveLabels": false,
+  "proxyUrl": "https://cors-anywhere.herokuapp.com/"
 }

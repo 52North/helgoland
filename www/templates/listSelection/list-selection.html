@@ -13,7 +13,7 @@
                 <span translate="listSelection.loading" translate-values="{ countProvider: param.loading }"></span>
             </div>
             <div ng-repeat="item in param.items | orderBy:'+label'" ng-click="openItem(item)">
-                <span>{{item.label}}</span>
+                <swc-label-mapper label="item.label"></swc-label-mapper>
             </div>
         </uib-accordion-group>
     </uib-accordion>
