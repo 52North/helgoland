@@ -15,10 +15,22 @@
                 <span>{{provider.serviceUrl}}</span>
             </div>
             <div class="small">
-                <span translate="providerList.stations"></span>:
-                <span>{{provider.quantities.stations}}</span>
-                <span translate="providerList.timeseries"></span>:
-                <span>{{provider.quantities.timeseries}}</span>
+                <span ng-if="provider.quantities.stations">
+                  <span translate="providerList.stations"></span>:
+                  <span>{{provider.quantities.stations}}</span>
+                </span>
+                <span ng-if="provider.quantities.platforms">
+                  <span translate="providerList.platforms"></span>:
+                  <span>{{provider.quantities.platforms}}</span>
+                </span>
+                <span ng-if="provider.quantities.timeseries">
+                  <span translate="providerList.timeseries"></span>:
+                  <span>{{provider.quantities.timeseries}}</span>
+                </span>
+                <span ng-if="provider.quantities.datasets">
+                  <span translate="providerList.datasets"></span>:
+                  <span>{{provider.quantities.datasets}}</span>
+                </span>
                 <span translate="providerList.phenomena"></span>:
                 <span>{{provider.quantities.phenomena}}</span>
             </div>
