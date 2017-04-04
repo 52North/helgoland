@@ -53,6 +53,7 @@ module.exports = function(grunt) {
             'node_modules/n52-sensorweb-client-core/src/js/Time/controller/*.js',
             'node_modules/n52-sensorweb-client-core/src/js/Time/directives/*.js',
             'node_modules/n52-sensorweb-client-core/src/js/Legend/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Legend/components/*.js',
             'node_modules/n52-sensorweb-client-core/src/js/Legend/controller/*.js',
             'node_modules/n52-sensorweb-client-core/src/js/Legend/directives/*.js',
             'node_modules/n52-sensorweb-client-core/src/js/Styling/*.js',

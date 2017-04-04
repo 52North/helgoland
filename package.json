@@ -1,6 +1,6 @@
 {
   "name": "helgoland",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "visual exploration and analysis of sensor web data",
   "repository": "https://github.com/52North/sensorweb-thin-client",
   "license": "Apache2",
@@ -49,7 +49,7 @@
     "jquery": "^3.1.1",
     "leaflet.markercluster": "0.4.0",
     "moment": "^2.17.1",
-    "n52-sensorweb-client-core": "^2.0.0",
+    "n52-sensorweb-client-core": "52North/sensorweb-client-core#develop",
     "ng-table": "0.8.3",
     "qr-js": "1.1.4",
     "ui-leaflet": "janschulte/ui-leaflet#master",
