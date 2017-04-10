@@ -89,7 +89,7 @@ It comprises:
 ### Get ready to start
 
 * `git clone` this repository
-* run `npm install` to get all dependencies
+* run `npm install` to get all dependencies (the client uses a qr-code tool to show a permalink of the client status, for this you need to check if the following packages are installed: https://github.com/Automattic/node-canvas#installation)
 
 #### Get a static files folder which can be added to a web-server
 
