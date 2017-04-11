@@ -14,6 +14,11 @@
             </div>
         </div>
         <div class="small">
+          <span translate="ecmwf.modelcreationtime"></span>
+          <span>:</span>
+          <span>{{$ctrl.item.items[0].filter.resultTime| date: 'dd.MM.yy HH:mm'}}</span>
+        </div>
+        <div class="small">
             <swc-label-mapper label="$ctrl.item.items[0].seriesParameters.phenomenon.label"></swc-label-mapper>
             <span>(<swc-label-mapper ng-if="$ctrl.item.items[0].uom" label="$ctrl.item.items[0].uom"></swc-label-mapper>)</span>
         </div>

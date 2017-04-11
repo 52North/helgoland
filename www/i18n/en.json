@@ -280,5 +280,8 @@
     "selectRawProcedureFormat": "Select raw format for procedure",
     "selectTimeseriesDataFormat": "Select raw format for timeseries data",
     "showCapabilities": "Show Capabilities of the SOS"
+  },
+  "ecmwf": {
+    "modelcreationtime": "Model creation"
   }
 }

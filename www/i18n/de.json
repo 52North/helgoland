@@ -280,5 +280,8 @@
     "selectRawProcedureFormat": "Procedure als Rohdata",
     "selectTimeseriesDataFormat": "Zeitreihendaten als Rohdaten",
     "showCapabilities": "Zeige SOS-Capabilities"
+  },
+  "ecmwf": {
+    "modelcreationtime": "Modelberechnung"
   }
 }
