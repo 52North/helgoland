@@ -4,10 +4,12 @@
   "undefinedUomString": "-",
   "aggregateServices": true,
   "saveStatus": true,
-  "providerBlackList": [{
-    "serviceID": "xyz",
-    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-  }],
+  "providerBlackList": [
+    {
+      "serviceID": "xyz",
+      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+    }
+  ],
   "restApiUrls": {
     "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
     "http://geo.irceline.be/sos/api/v1/": "irceline",
@@ -25,13 +27,16 @@
       "tickDecimals": 2
     }
   },
-  "supportedLanguages": [{
-    "code": "de",
-    "label": "Deutsch"
-  }, {
-    "code": "en",
-    "label": "English"
-  }],
+  "supportedLanguages": [
+    {
+      "code": "de",
+      "label": "Deutsch"
+    },
+    {
+      "code": "en",
+      "label": "English"
+    }
+  ],
   "selectColorFromList": true,
   "colorList": [
     "#078D53",
@@ -98,5 +103,6 @@
   },
   "showScale": true,
   "solveLabels": false,
+  "timebufferFactor": 0.1,
   "proxyUrl": "https://cors-anywhere.herokuapp.com/"
 }
