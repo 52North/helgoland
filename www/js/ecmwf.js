@@ -168,7 +168,8 @@ angular.module('n52.core.map')
                         if (this.items.hasOwnProperty(key)) {
                             if (this.items[key].apiUrl.startsWith('http://colabis.dev.52north.org/ecmwf-webapp/api/v1/')) {
                                 var platformID = this.items[key].seriesParameters.platform.id;
-                                this.addToEntries(this.items[key], platformID);
+                                var resultTime = this.items[key].filter.resultTime;
+                                this.addToEntries(this.items[key], platformID, resultTime);
                             } else {
                                 this.entries.push(this.items[key]);
                             }
@@ -176,7 +177,7 @@ angular.module('n52.core.map')
                     }
                 };
 
-                this.addToEntries = function(item, platformID) {
+                this.addToEntries = function(item, platformID, resultTime) {
                   seriesApiInterface.getProcedures(item.seriesParameters.procedure.id, item.apiUrl)
                       .then((procedure) => {
                           var parentProcedureLabel = procedure.parents[0].label;
@@ -185,6 +186,7 @@ angular.module('n52.core.map')
                           this.entries.forEach((entry) => {
                               if (entry.ecmwfGroup &&
                                   entry.platformID === platformID &&
+                                  entry.resultTime === resultTime &&
                                   entry.parentProcedureLabel === parentProcedureLabel) {
                                   entry.items.push(item);
                                   added = true;
@@ -195,6 +197,7 @@ angular.module('n52.core.map')
                               this.entries.push({
                                   ecmwfGroup: true,
                                   platformID: platformID,
+                                  resultTime: resultTime,
                                   parentProcedureLabel: parentProcedureLabel,
                                   items: [item]
                               });
