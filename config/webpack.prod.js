@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const DeployToWar = require('webpack-deploy2war');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'production';
 
@@ -25,11 +26,10 @@ module.exports = function(options) {
                 // Compiles ES6 and ES7 into ES5 code
                 test: /\.js$/,
                 loader: 'babel-loader',
-                // exclude: /node_modules/,
-                exclude: /node_modules\/(?!(n52-sensorweb-client-core)\/).*/
-                // options: {
-                //     presets: ['es2015']
-                // }
+                exclude: /node_modules\/(?!(n52-sensorweb-client-core)\/).*/,
+                options: {
+                    presets: [require.resolve('babel-preset-es2015')]
+                }
             }]
         },
         plugins: [
@@ -43,7 +43,10 @@ module.exports = function(options) {
             }, {
                 from: 'www/templates',
                 to: 'templates'
-            }])
+            }]),
+            new DeployToWar({
+                fileName: "build/helgoland.war"
+            })
         ]
     });
 };
