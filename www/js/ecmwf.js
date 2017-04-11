@@ -178,31 +178,31 @@ angular.module('n52.core.map')
                 };
 
                 this.addToEntries = function(item, platformID, resultTime) {
-                  seriesApiInterface.getProcedures(item.seriesParameters.procedure.id, item.apiUrl)
-                      .then((procedure) => {
-                          var parentProcedureLabel = procedure.parents[0].label;
-                          // find entry
-                          var added = false;
-                          this.entries.forEach((entry) => {
-                              if (entry.ecmwfGroup &&
-                                  entry.platformID === platformID &&
-                                  entry.resultTime === resultTime &&
-                                  entry.parentProcedureLabel === parentProcedureLabel) {
-                                  entry.items.push(item);
-                                  added = true;
-                              }
-                          });
-                          // create new entry
-                          if (!added) {
-                              this.entries.push({
-                                  ecmwfGroup: true,
-                                  platformID: platformID,
-                                  resultTime: resultTime,
-                                  parentProcedureLabel: parentProcedureLabel,
-                                  items: [item]
-                              });
-                          }
-                      });
+                    seriesApiInterface.getProcedures(item.seriesParameters.procedure.id, item.apiUrl)
+                        .then((procedure) => {
+                            var parentProcedureLabel = procedure.parents[0].label;
+                            // find entry
+                            var added = false;
+                            this.entries.forEach((entry) => {
+                                if (entry.ecmwfGroup &&
+                                    entry.platformID === platformID &&
+                                    entry.resultTime === resultTime &&
+                                    entry.parentProcedureLabel === parentProcedureLabel) {
+                                    entry.items.push(item);
+                                    added = true;
+                                }
+                            });
+                            // create new entry
+                            if (!added) {
+                                this.entries.push({
+                                    ecmwfGroup: true,
+                                    platformID: platformID,
+                                    resultTime: resultTime,
+                                    parentProcedureLabel: parentProcedureLabel,
+                                    items: [item]
+                                });
+                            }
+                        });
                 };
             }
         ]
@@ -243,4 +243,20 @@ angular.module('n52.core.map')
                 };
             }
         ]
-    });
+    })
+    .config(['$provide',
+        function($provide) {
+            $provide.decorator('utils', ['$delegate', '$q', '$http',
+                function($delegate, $q, $http) {
+                    $delegate.oldCreateInternalId = $delegate.createInternalId;
+                    $delegate.createInternalId = function(ts) {
+                        if (ts.filter && ts.filter.resultTime) {
+                            return $delegate.oldCreateInternalId(ts) + ts.filter.resultTime;
+                        }
+                        return $delegate.oldCreateInternalId(ts);
+                    };
+                    return $delegate;
+                }
+            ]);
+        }
+    ]);
