@@ -14,8 +14,8 @@ module.exports = function(options) {
         module: {
             rules: [{
                 test: /\.js$/,
-                loader: ['babel-loader', 'eslint-loader'],
-                exclude: /node_modules\/(?!(n52-sensorweb-client-core)\/).*/
+                loader: 'eslint-loader',
+                exclude: /node_modules\/(?!(n52-sensorweb-client-core)\/).*/,
             }]
         },
         plugins: [

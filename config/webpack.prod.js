@@ -18,20 +18,6 @@ module.exports = function(options) {
             sourceMapFilename: '[name].[chunkhash].bundle.map',
             chunkFilename: '[id].[chunkhash].chunk.js'
         },
-        module: {
-            rules: [{
-                // JS LOADER
-                // Reference: https://github.com/babel/babel-loader
-                // Transpile .js files using babel-loader
-                // Compiles ES6 and ES7 into ES5 code
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules\/(?!(n52-sensorweb-client-core)\/).*/,
-                options: {
-                    presets: [require.resolve('babel-preset-es2015')]
-                }
-            }]
-        },
         plugins: [
             new webpack.optimize.UglifyJsPlugin(),
             new CopyWebpackPlugin([{

@@ -12,6 +12,13 @@ module.exports = function(options) {
         },
         module: {
             rules: [{
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules\/(?!(n52-sensorweb-client-core)\/).*/,
+                options: {
+                    presets: [require.resolve('babel-preset-es2015')]
+                }
+            }, {
                 // CSS LOADER
                 // Reference: https://github.com/webpack/css-loader
                 // Allow loading css through js
