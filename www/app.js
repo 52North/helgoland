@@ -67,36 +67,36 @@ mainApp.config(['$routeProvider', function($routeProvider) {
                 templates: 'templates'
             }
         })
-        .when('/favorite', {
-            templateUrl: 'templates/views/favoriteView.html',
-            name: 'navigation.favorite',
-            reloadOnSearch: false,
-            resolve: {
-                templates: 'templates'
-            }
-        })
-        .when('/map/provider', {
-            name: 'navigation.provider',
-            modal: {
-                controller: 'SwcProviderListModalCtrl',
-                templateUrl: 'templates/map/provider-list-modal.html'
-            },
-            reloadOnSearch: false,
-            resolve: {
-                templates: 'templates'
-            }
-        })
-        .when('/diagram/listSelection', {
-            name: 'navigation.listSelection',
-            modal: {
-                controller: 'ModalWindowCtrl',
-                templateUrl: 'templates/listSelection/modal-list-selection.html'
-            },
-            reloadOnSearch: false,
-            resolve: {
-                templates: 'templates'
-            }
-        })
+        // .when('/favorite', {
+        //     templateUrl: 'templates/views/favoriteView.html',
+        //     name: 'navigation.favorite',
+        //     reloadOnSearch: false,
+        //     resolve: {
+        //         templates: 'templates'
+        //     }
+        // })
+        // .when('/map/provider', {
+        //     name: 'navigation.provider',
+        //     modal: {
+        //         controller: 'SwcProviderListModalCtrl',
+        //         templateUrl: 'templates/map/provider-list-modal.html'
+        //     },
+        //     reloadOnSearch: false,
+        //     resolve: {
+        //         templates: 'templates'
+        //     }
+        // })
+        // .when('/diagram/listSelection', {
+        //     name: 'navigation.listSelection',
+        //     modal: {
+        //         controller: 'ModalWindowCtrl',
+        //         templateUrl: 'templates/listSelection/modal-list-selection.html'
+        //     },
+        //     reloadOnSearch: false,
+        //     resolve: {
+        //         templates: 'templates'
+        //     }
+        // })
         .when('/diagram/settings', {
             name: 'navigation.settings',
             modal: {
