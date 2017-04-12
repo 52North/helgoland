@@ -1,9 +1,10 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const helpers = require('./helpers');
+
+const clientTitle = 'Helgoland';
 
 module.exports = function(options) {
-    isProd = options.env === 'production';
-    console.log('Start common');
 
     return {
         entry: './www/app.js',
@@ -55,7 +56,8 @@ module.exports = function(options) {
                 // Reference: https://github.com/webpack/raw-loader
                 // Allow loading html through js
                 test: /\.html$/,
-                loader: 'raw-loader'
+                loader: 'raw-loader',
+                exclude: [helpers.root('./www/index.html')]
             }]
         },
         plugins: [
@@ -67,7 +69,8 @@ module.exports = function(options) {
             }),
             new HtmlWebpackPlugin({
                 template: './www/index.html',
-                inject: 'body'
+                title: clientTitle,
+                lastBuildTime: options.buildTime
             })
         ]
     };

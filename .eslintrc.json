@@ -9,9 +9,11 @@
   "extends": "eslint:recommended",
   "globals": {
     "angular": true,
-    "require": true,
-    "moment": true,
-    "document": true
+    "moment": true
+  },
+  "env": {
+    "browser": true,
+    "node": true
   },
   "rules": {
     "semi": 2

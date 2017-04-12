@@ -6,11 +6,11 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8000;
 
-module.exports = function(options) {
+module.exports = function() {
     return webpackMerge(commonConfig({
-        env: ENV
+        env: ENV,
     }), {
-        // devtool: 'eval-source-map',
+        devtool: 'eval-source-map',
         module: {
             rules: [{
                 test: /\.js$/,
@@ -21,7 +21,6 @@ module.exports = function(options) {
         plugins: [
             new ExtractTextPlugin({
                 filename: 'css/[name].css',
-                disable: !isProd,
                 allChunks: true
             })
         ],

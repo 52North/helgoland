@@ -7,9 +7,12 @@ const helpers = require('./helpers');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'production';
 
-module.exports = function(options) {
+const buildTime = helpers.getBuildDate();
+
+module.exports = function() {
     return webpackMerge(commonConfig({
-        env: ENV
+        env: ENV,
+        buildTime: buildTime
     }), {
         devtool: 'source-map',
         output: {
@@ -31,7 +34,7 @@ module.exports = function(options) {
                 to: 'templates'
             }]),
             new DeployToWar({
-                fileName: 'build/client##' + helpers.getVersion() + '-' + helpers.getBuildDate() + '.war'
+                fileName: 'build/client##' + helpers.getVersion() + '-' + buildTime + '.war'
             })
         ]
     });
