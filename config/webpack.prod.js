@@ -3,11 +3,11 @@ const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DeployToWar = require('webpack-deploy2war');
+const helpers = require('./helpers');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'production';
 
 module.exports = function(options) {
-    console.log('run prod config');
     return webpackMerge(commonConfig({
         env: ENV
     }), {
@@ -31,7 +31,7 @@ module.exports = function(options) {
                 to: 'templates'
             }]),
             new DeployToWar({
-                fileName: "build/helgoland.war"
+                fileName: 'build/client##' + helpers.getVersion() + '-' + helpers.getBuildDate() + '.war'
             })
         ]
     });
