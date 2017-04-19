@@ -118,7 +118,7 @@
       }
     ]
   },
-  "timebufferFactor": 0.1,
+  "timebufferFactor": 0.3,
   "solveLabels": false,
   "proxyUrl": "https://cors-anywhere.herokuapp.com/"
 }

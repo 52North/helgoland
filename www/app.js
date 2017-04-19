@@ -55,14 +55,14 @@ mainApp.config(['$routeProvider',
         name: 'navigation.diagram',
         reloadOnSearch: false
       })
-      .when('/mobileDiagram', {
-        templateUrl: 'templates/views/combiView.html',
-        name: 'navigation.trajectories',
-        reloadOnSearch: false
-      })
       .when('/map', {
         templateUrl: 'templates/views/mapView.html',
         name: 'navigation.map',
+        reloadOnSearch: false
+      })
+      .when('/mobileDiagram', {
+        templateUrl: 'templates/views/combiView.html',
+        name: 'navigation.trajectories',
         reloadOnSearch: false
       })
       .when('/favorite', {
