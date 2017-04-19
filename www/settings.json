@@ -117,5 +117,8 @@
         "platformType": "mobile_insitu"
       }
     ]
-  }
+  },
+  "timebufferFactor": 0.1,
+  "solveLabels": false,
+  "proxyUrl": "https://cors-anywhere.herokuapp.com/"
 }
