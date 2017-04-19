@@ -4,10 +4,12 @@
   "undefinedUomString": "-",
   "aggregateServices": true,
   "saveStatus": true,
-  "providerBlackList": [{
-    "serviceID": "xyz",
-    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-  }],
+  "providerBlackList": [
+    {
+      "serviceID": "xyz",
+      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+    }
+  ],
   "restApiUrls": {
     "http://www.fluggs.de/sos2/api/v1/": "fluggs",
     "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg"
@@ -21,13 +23,16 @@
       "tickDecimals": 2
     }
   },
-  "supportedLanguages": [{
-    "code": "de",
-    "label": "Deutsch"
-  }, {
-    "code": "en",
-    "label": "English"
-  }],
+  "supportedLanguages": [
+    {
+      "code": "de",
+      "label": "Deutsch"
+    },
+    {
+      "code": "en",
+      "label": "English"
+    }
+  ],
   "selectColorFromList": true,
   "colorList": [
     "#078D53",
@@ -94,11 +99,14 @@
   },
   "showScale": true,
   "datasetPresenter": {
-    "measurement": [{
-      "service": "mobilePresentDataset",
-      "platformType": "mobile_insitu"
-    }]
+    "measurement": [
+      {
+        "service": "mobilePresentDataset",
+        "platformType": "mobile_insitu"
+      }
+    ]
   },
+  "timebufferFactor": 0.3,
   "solveLabels": false,
   "proxyUrl": "https://cors-anywhere.herokuapp.com/"
 }
