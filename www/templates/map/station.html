@@ -3,27 +3,13 @@
         <button type="button" class="close" ng-click="close();">&times;</button>
         <div class="modal-title">
             <span>{{'map.stationSelection.station' | translate}}</span>:
-            <span>{{station.entry.properties.label}}</span>
+            <swc-label-mapper ng-if="station.entry.properties.label" label="station.entry.properties.label"></swc-label-mapper>
         </div>
     </div>
     <div class="modal-body stationContent">
-        <div ng-repeat="timeseries in station.entry.properties.timeseries"
+        <div ng-repeat="(id, timeseries) in station.entry.properties.timeseries"
              ng-if="phenomenonId == null || timeseries.phenomenon.id === phenomenonId">
-            <h4>{{timeseries.phenomenon.label}}</h4>
-            <div class="tsItem" ng-class="{selected : selected}">
-                <div class="checkbox">
-                    <div class="glyphicon glyphicon-refresh loading icon-spin" ng-hide="timeseries.id"></div>
-                    <label> 
-                        <input type="checkbox" ng-disabled="!timeseries.id" ng-model="timeseries.selected" ng-change="toggled()">
-                        <span>{{timeseries.procedure.label}}</span>
-                        <span ng-show="timeseries.category.label">({{timeseries.category.label}})</span>
-                    </label>
-                    <swc-favorite-add-star timeseries="timeseries"></swc-favorite-add-star>
-                    <div class="additionalInfo" ng-show="timeseries.lastValue">
-                        <span>{{timeseries.lastValue.value}} {{timeseries.uom}} ({{timeseries.lastValue.timestamp| date: 'dd.MM.yy HH:mm'}})</span>
-                    </div>
-                </div>
-            </div>
+            <swc-selectable-station-entry timeseries-id="id" timeseries="timeseries" service-url="serviceUrl"></swc-selectable-station-entry>
         </div>
         <div class="selectAllOption" ng-show="(station.entry.properties.timeseries | objectCount) > 1">
             <hr>

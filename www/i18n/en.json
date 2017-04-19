@@ -47,7 +47,9 @@
     "provider": "Provider",
     "serviceUrl": "Service-URL",
     "stations": "Stations",
+    "platforms": "Platforms",
     "timeseries": "Timeseries",
+    "datasets": "Datasets",
     "phenomena": "Phenomena",
     "selectAll": "Select all provider"
   },

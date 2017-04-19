@@ -4,25 +4,34 @@
   "undefinedUomString": "-",
   "aggregateServices": true,
   "saveStatus": true,
-  "providerBlackList": [{
-    "serviceID": "xyz",
-    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-  }],
+  "providerBlackList": [
+    {
+      "serviceID": "xyz",
+      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+    }
+  ],
   "restApiUrls": {
     "http://nexos.dev.52north.org/tasking-sos/api/v1/": "localhost"
+  },
+  "defaultProvider": {
+    "serviceID": "1",
+    "url": "http://nexos.dev.52north.org/tasking-sos/api/v1/"
   },
   "chartOptions": {
     "yaxis": {
       "tickDecimals": 2
     }
   },
-  "supportedLanguages": [{
-    "code": "de",
-    "label": "Deutsch"
-  }, {
-    "code": "en",
-    "label": "English"
-  }],
+  "supportedLanguages": [
+    {
+      "code": "de",
+      "label": "Deutsch"
+    },
+    {
+      "code": "en",
+      "label": "English"
+    }
+  ],
   "selectColorFromList": true,
   "colorList": [
     "#078D53",
@@ -95,5 +104,8 @@
         "1": "http://nexos.dev.52north.org/tasking-sos/service"
       }
     }
-  }
+  },
+  "timebufferFactor": 0.1,
+  "solveLabels": false,
+  "proxyUrl": "https://cors-anywhere.herokuapp.com/"
 }

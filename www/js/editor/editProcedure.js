@@ -8,9 +8,12 @@ angular.module('n52.core.metadata')
     })
     .controller('SwcEditProcedureCtrl', ['sosUrlSrv', '$window', 'settingsService',
         function(sosUrlSrv, $window, settingsService) {
-            this.editorUrl = getEditorUrl();
-            this.sosUrl = getSosUrl(this.timeseries);
-            this.isEnabled = !!this.editorUrl && !!this.sosUrl;
+
+            this.$onInit = function () {
+                this.editorUrl = getEditorUrl();
+                this.sosUrl = getSosUrl(this.timeseries);
+                this.isEnabled = !!this.editorUrl && !!this.sosUrl;
+            }
 
             function getSosUrl(series) {
                 var apiUrl = series.apiUrl;
