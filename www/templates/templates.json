@@ -42,5 +42,6 @@
   "n52.core.timeUi.custom-time-range-selection": "templates/time/custom-time-range-selection.html",
   "n52.core.mobile.combi-mobile": "templates/mobile/combi-mobile.html",
   "n52.core.mobile.modal-list-selection-mobile": "templates/mobile/modal-list-selection-mobile.html",
-  "n52.core.mobile.permalink": "templates/mobile/permalink.html"
+  "n52.core.mobile.permalink": "templates/mobile/permalink.html",
+  "n52.core.mobile.reload": "templates/mobile/reload.html"
 }

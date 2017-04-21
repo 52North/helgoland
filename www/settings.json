@@ -12,7 +12,8 @@
   ],
   "restApiUrls": {
     "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-    "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg"
+    "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg",
+    "http://nexos.demo.52north.org/52n-sos-nexos-test/api/v1/": "test"
   },
   "defaultProvider": {
     "serviceID": "1",
