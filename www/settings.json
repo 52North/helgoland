@@ -1,72 +1,109 @@
 {
-    "selectedLineWidth": 4,
-    "commonLineWidth": 1,
-    "restApiUrls": {
-        "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
-        "http://geo.irceline.be/sos/api/v1/": "ircelineNew",
-        "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-        "http://ows.dev.52north.org:8080/ckan-sos-webapp/api/v2/": "owsTestV2",
-        "data/api/v2/": "localTestInstanz"
+  "selectedLineWidth": 4,
+  "commonLineWidth": 1,
+  "undefinedUomString": "-",
+  "aggregateServices": true,
+  "saveStatus": true,
+  "providerBlackList": [
+    {
+      "serviceID": "xyz",
+      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+    }
+  ],
+  "restApiUrls": {
+    "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
+    "http://geo.irceline.be/sos/api/v1/": "irceline",
+    "http://www.fluggs.de/sos2/api/v1/": "fluggs",
+    "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
+    "http://inspire.rivm.nl/sos/eaq/api/v1/": "RIVM_inspire",
+    "http://monalisasos.eurac.edu/sos/api/v1/": "monalisasos",
+    "data/api/v2/": "localTestInstanz"
+  },
+  "defaultProvider": {
+    "serviceID": "srv_3dec8ce040d9506c5aba685c9d134156",
+    "url": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  },
+  "chartOptions": {
+    "yaxis": {
+      "tickDecimals": 2
+    }
+  },
+  "supportedLanguages": [
+    {
+      "code": "de",
+      "label": "Deutsch"
     },
-    "defaultProvider": {
-        "serviceID": "srv_3dec8ce040d9506c5aba685c9d134156",
-        "url": "data/api/v2/"
+    {
+      "code": "en",
+      "label": "English"
+    }
+  ],
+  "selectColorFromList": true,
+  "colorList": [
+    "#078D53",
+    "#00F3FF",
+    "#0043FF",
+    "#E22985",
+    "#8D00A9",
+    "#FF783D",
+    "#AD3500",
+    "#FFCB00",
+    "#927711",
+    "#53EA42"
+  ],
+  "refColorList": [
+    "#668B7B",
+    "#A6D5D7",
+    "#7C90C8",
+    "#D48DB0",
+    "#84518E",
+    "#DA9B7F",
+    "#9D7D6F",
+    "#D7C57E",
+    "#BAA760",
+    "#A1BE9D"
+  ],
+  "baselayer": {
+    "osm": {
+      "name": "Open Street Map",
+      "type": "xyz",
+      "url": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "layerOptions": {
+        "showOnSelector": true
+      }
     },
-    "chartOptions": {
-        "yaxis": {
-            "tickDecimals": 2
-        }
-    },
-    "supportedLanguages": [{
-            "code": "de",
-            "label": "Deutsch"
-        }, {
-            "code": "en",
-            "label": "english"
-        }
-    ],
-    "baselayer": {
-        "mapbox": {
-            "name": "Mapbox",
-            "type": "xyz",
-            "url": "http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg",
-            "layerOptions": {
-                "attribution": "&copy; <a href='http://www.mapquest.com/' target='_blank'>MapQuest</a> <img src='http://developer.mapquest.com/content/osm/mq_logo.png'/>"
-            }
-        },
-        "osm": {
-            "name": "Open Street Map",
-            "type": "xyz",
-            "url": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            "layerOptions": {
-                "showOnSelector": true
-            }
-        },
-        "cycle": {
-            "name": "OpenCycleMap",
-            "type": "xyz",
-            "url": "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
-            "layerOptions": {
-                "subdomains": ["a", "b", "c"],
-                "attribution": "&copy; <a href='http://www.opencyclemap.org/copyright'>OpenCycleMap</a> contributors - &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
-                "continuousWorld": true
-            }
-        }
-    },
-    "overlays": {
-        "hillshade": {
-            "name": "Hillshade Europa",
-            "type": "wms",
-            "url": "http://129.206.228.72/cached/hillshade",
-            "visible": false,
-            "layerOptions": {
-                "layers": "europe_wms:hs_srtm_europa",
-                "format": "image/png",
-                "opacity": 0.25,
-                "attribution": "Hillshade layer by GIScience http://www.osm-wms.de"
-            },
-            "group": "Raster"
-        }
-    },
-    "showScale": true
+    "cycle": {
+      "name": "OpenCycleMap",
+      "type": "xyz",
+      "url": "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
+      "layerOptions": {
+        "subdomains": [
+          "a",
+          "b",
+          "c"
+        ],
+        "attribution": "&copy; <a href='http://www.opencyclemap.org/copyright'>OpenCycleMap</a> contributors - &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
+        "continuousWorld": true
+      }
+    }
+  },
+  "overlays": {
+    "hillshade": {
+      "name": "Hillshade Europa",
+      "type": "wms",
+      "url": "http://129.206.228.72/cached/hillshade",
+      "visible": false,
+      "layerOptions": {
+        "layers": "europe_wms:hs_srtm_europa",
+        "format": "image/png",
+        "opacity": 0.25,
+        "attribution": "Hillshade layer by GIScience http://www.osm-wms.de"
+      },
+      "group": "Raster"
+    }
+  },
+  "showScale": true,
+  "timebufferFactor": 0.1,
+  "solveLabels": false,
+  "proxyUrl": "https://cors-anywhere.herokuapp.com/"
 }

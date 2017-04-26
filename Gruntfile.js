@@ -1,118 +1,131 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         name: 'client-profiles',
-        context_name: '<%= name %>##<%= pkg.version %>',
+        context_name: '<%= name %>##<%= pkg.version %>-<%= grunt.template.today("yyyymmddHHMM")%>',
         lib_scripts: [
-            'www/bower_components/jquery/dist/jquery.js',
-            'www/bower_components/angular/angular.js',
-            'www/bower_components/angular-route/angular-route.js',
-            'www/bower_components/angular-resource/angular-resource.js',
-            'www/bower_components/angular-local-storage/dist/angular-local-storage.js',
-            'www/bower_components/angular-translate/angular-translate.js',
-            'www/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-            'www/bower_components/angular-simple-logger/dist/angular-simple-logger.js',
-            'www/bower_components/moment/min/moment.min.js',
-            'www/bower_components/xhr-xdr-adapter/src/xhr-xdr-adapter.js',
-            'www/bower_components/flot/jquery.flot.js',
-            'www/bower_components/flot/jquery.flot.time.js',
-            'www/bower_components/flot/jquery.flot.crosshair.js',
-            'www/bower_components/flot-downsample/jquery.flot.downsample.js',
-            'www/bower_components/leaflet/dist/leaflet.js',
-            'www/bower_components/leaflet.markercluster/dist/leaflet.markercluster.js',
-            'www/bower_components/L.GeoSearch/src/js/l.control.geosearch.js',
-            'www/bower_components/L.GeoSearch/src/js/l.geosearch.provider.openstreetmap.js',
-            'www/bower_components/bootstrap/dist/js/bootstrap.js',
-            'www/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-            'www/bower_components/angular-ui-notification/dist/angular-ui-notification.min.js',
-            'www/bower_components/qr-js/qr.min.js',
-            'www/bower_components/ui-leaflet/dist/ui-leaflet.js',
-            'www/bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js',
-            'www/bower_components/ng-table/dist/ng-table.js',
+            'node_modules/jquery/dist/jquery.js',
+            'node_modules/angular/angular.js',
+            'node_modules/angular-route/angular-route.js',
+            'node_modules/angular-resource/angular-resource.js',
+            'node_modules/angular-local-storage/dist/angular-local-storage.js',
+            'node_modules/angular-translate/dist/angular-translate.js',
+            'node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+            'node_modules/angular-simple-logger/dist/angular-simple-logger.js',
+            'node_modules/angular-sanitize/angular-sanitize.js',
+            'node_modules/moment/min/moment.min.js',
+            'node_modules/Flot/jquery.flot.js',
+            'node_modules/Flot/jquery.flot.time.js',
+            'node_modules/Flot/jquery.flot.crosshair.js',
+            'node_modules/flot-downsample/jquery.flot.downsample.js',
+            'node_modules/leaflet/dist/leaflet.js',
+            'node_modules/leaflet.markercluster/dist/leaflet.markercluster.js',
+            'node_modules/bootstrap/dist/js/bootstrap.js',
+            'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+            'node_modules/angular-ui-notification/dist/angular-ui-notification.min.js',
+            'node_modules/qr-js/qr.js',
+            'node_modules/ui-leaflet/dist/ui-leaflet.js',
+            'node_modules/bootstrap-datetime-picker/js/bootstrap-datetimepicker.js',
+            'node_modules/ng-table/dist/ng-table.js',
+            'node_modules/xslt/dist/xslt.js',
             'www/bower_components/angularjs-slider/dist/rzslider.min.js'
         ],
         lib_ie9_scripts: [
-            'www/bower_components/n52-sensorweb-client-core/dist/IE9/*.min.js'
+            'node_modules/n52-sensorweb-client-core/src/js/IE9/*.js'
         ],
         lib_styles: [
-            'www/bower_components/L.GeoSearch/src/css/l.geosearch.css',
-            'www/bower_components/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.css',
-            'www/bower_components/ng-table/dist/ng-table.css',
-            'www/bower_components/bootstrap/dist/css/bootstrap.min.css',
-            'www/bower_components/leaflet/dist/leaflet.css',
-            'www/bower_components/leaflet.markercluster/dist/MarkerCluster.css',
-            'www/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css',
-            'www/bower_components/angular-ui-notification/dist/angular-ui-notification.min.css',
+            'node_modules/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css',
+            'node_modules/ng-table/dist/ng-table.css',
+            'node_modules/bootstrap/dist/css/bootstrap.min.css',
+            'node_modules/leaflet/dist/leaflet.css',
+            'node_modules/leaflet.markercluster/dist/MarkerCluster.css',
+            'node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css',
+            'node_modules/angular-ui-notification/dist/angular-ui-notification.min.css',
             'www/bower_components/angularjs-slider/dist/rzslider.min.css'
         ],
         core_scripts: [
-            'www/bower_components/n52-sensorweb-client-core/src/js/Map/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Map/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Map/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Phenomenon/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Phenomenon/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Provider/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Provider/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Time/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Time/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Time/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Legend/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Legend/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Legend/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Styling/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Styling/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Styling/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Chart/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Chart/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Chart/flotlib/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Favorite/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Favorite/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Favorite/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Loading/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Loading/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Table/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Table/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Table/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Settings/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Settings/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Settings/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/ListSelection/directives/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/flotlib/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Menu/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/Menu/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/services/startup/parameterServices/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/services/**/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/controller/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/helper/service/*.js',
-            'www/bower_components/n52-sensorweb-client-core/src/js/objects/**/*.js'
+            'node_modules/n52-sensorweb-client-core/src/js/Map/mapModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Map/components/**/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Map/controller/**/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Map/directives/**/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Map/markerRenderer/**/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Phenomenon/phenomenaModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Phenomenon/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Provider/providerModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Provider/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Time/bootstrap-datetimepicker.de.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Time/timeRangeModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Time/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Time/directives/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Legend/exportTsModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Legend/legendModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Legend/components/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Legend/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Legend/directives/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Styling/styleModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Styling/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Styling/directives/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Chart/*/*Mdul.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Chart/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Chart/directives/flotDrtv.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Chart/directives/reloadChartDataDrtv.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Chart/directives/yAxisHideButtonDrtv.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Chart/flotlib/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Chart/services/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Favorite/favoriteModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Favorite/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Favorite/directives/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Loading/dataLoadingModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Loading/directives/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Table/tableModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Table/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Table/directives/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Settings/userSettingsModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Settings/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Settings/directives/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/ListSelection/listSelectionModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/ListSelection/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/ListSelection/directives/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/ListSelection/components/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Menu/menuModule.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Menu/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Metadata/metadata.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Metadata/directives/procedureRawData.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Metadata/directives/procedureMetadata.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Metadata/directives/sosUrl.js',
+            'node_modules/n52-sensorweb-client-core/src/js/Metadata/directives/timeseriesRawData.js',
+            'node_modules/n52-sensorweb-client-core/src/js/SeriesInterface/*MDUL.js',
+            'node_modules/n52-sensorweb-client-core/src/js/SeriesInterface/*SERV.js',
+            'node_modules/n52-sensorweb-client-core/src/js/base/module.js',
+            'node_modules/n52-sensorweb-client-core/src/js/base/services/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/startup/module.js',
+            'node_modules/n52-sensorweb-client-core/src/js/startup/services/**/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/helper/helper.js',
+            'node_modules/n52-sensorweb-client-core/src/js/helper/modal.js',
+            'node_modules/n52-sensorweb-client-core/src/js/helper/controller/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/helper/service/*.js',
+            'node_modules/n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js'
         ],
         app_js: [
             'www/app.js',
             'www/js/*.js',
             'www/js/profile/profile.js',
-            'www/js/profile/**/*.js'
+            'www/js/profile/*.js'
         ],
         app_styles: [
-            'www/css/*/*.css'
+            'www/css/**/*.css'
         ],
         copy_files: [
             'settings.json',
             'templates/**/*.html',
+            'templates/*.json',
             'i18n/*.json',
             'images/*',
             'css/images/*',
-            'data/**/*'
+            'data/**/*',
+            'xslt/**.*'
         ],
-        dist: {
-            js: {
-                lib: {
-                }
-            }
-        },
+        clean: ["dist/"],
         tags: {
             options: {
                 scriptTemplate: '<script src="{{ path }}" type="text/javascript"></script>',
@@ -181,6 +194,20 @@ module.exports = function (grunt) {
                 dest: 'dist/css/deps.<%= name %>.css'
             }
         },
+        babel: {
+            options: {
+                sourceMap: false,
+                presets: ['es2015-script']
+            },
+            libs: {
+                src: '<%= concat.libs.dest %>',
+                dest: 'dist/js/deps.<%= name %>.min.js'
+            },
+            app: {
+                src: '<%= concat.app.dest %>',
+                dest: 'dist/app.js'
+            }
+        },
         uglify: {
             options: {
                 banner: '/*! <%= name %> <%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n'
@@ -197,18 +224,17 @@ module.exports = function (grunt) {
             },
             libs: {
                 files: {
-                    'dist/js/deps.<%= name %>.min.js': ['<%= concat.libs.dest %>']
+                    'dist/js/deps.<%= name %>.min.js': ['<%= babel.libs.dest %>']
                 }
             },
             appJs: {
                 files: {
-                    'dist/app.js': ['<%= concat.app.dest %>']
+                    'dist/app.js': ['<%= babel.app.dest %>']
                 }
             }
         },
         cssmin: {
-            options: {
-            },
+            options: {},
             styles: {
                 files: {
                     'dist/css/<%= name %>.min.css': ['<%= concat.styles.dest %>']
@@ -222,30 +248,37 @@ module.exports = function (grunt) {
         },
         copy: {
             depStyles: {
-                files: [
-                    {expand: true, flatten: true, src: ['www/bower_components/bootstrap/dist/fonts/*'], dest: 'dist/fonts/', filter: 'isFile'}
-                ]
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: ['node_modules/bootstrap/dist/fonts/*'],
+                    dest: 'dist/fonts/',
+                    filter: 'isFile'
+                }]
             },
             locals: {
-                files: [
-                    {expand: true, flatten: false, cwd: 'www/', src: '<%= copy_files %>', dest: 'dist/', filter: 'isFile'}
-                ]
+                files: [{
+                    expand: true,
+                    flatten: false,
+                    cwd: 'www/',
+                    src: '<%= copy_files %>',
+                    dest: 'dist/',
+                    filter: 'isFile'
+                }]
             }
         },
         jshint: {
             files: ['gruntfile.js', 'www/js/**/*.js', 'test/**/*.js'],
             options: {
-                globals: {
-                    jQuery: true,
-                    console: true,
-                    module: true
-                }
+                reporterOutput: "",
+                jshintrc: true
             }
         },
         processhtml: {
             options: {
                 data: {
-                    message: '<%= name %> - version <%= pkg.version %> - build at <%= grunt.template.today("yyyy-mm-dd HH:MM") %>'
+                    message: '<%= name %> - version <%= pkg.version %> - build at <%= grunt.template.today("yyyy-mm-dd HH:MM") %>',
+                    buildTime: '<%= grunt.template.today() %>'
                 }
             },
             index: {
@@ -255,8 +288,24 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            files: ['<%= jshint.files %>'],
-            tasks: ['jshint']
+            jshint: {
+                files: ['<%= jshint.files %>'],
+                tasks: ['jshint']
+            },
+            less: {
+                files: ['www/less/**/*.less'],
+                tasks: ['less']
+            }
+        },
+        less: {
+            development: {
+                options: {
+                    paths: ['www/less/**/*.less']
+                },
+                files: {
+                    'www/css/app.css': ['www/less/**/*.less']
+                }
+            }
         },
         war: {
             target: {
@@ -265,20 +314,17 @@ module.exports = function (grunt) {
                     war_name: '<%= context_name %>',
                     webxml_welcome: 'index.html',
                     webxml_display_name: '<%= name %> - version <%= pkg.version %> - build at <%= grunt.template.today("yyyy-mm-dd HH:MM") %>',
-                    webxml_mime_mapping: [
-                        {
-                            extension: 'woff',
-                            mime_type: 'application/font-woff'
-                        }]
+                    webxml_mime_mapping: [{
+                        extension: 'woff',
+                        mime_type: 'application/font-woff'
+                    }]
                 },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'dist/',
-                        src: ['**'],
-                        dest: ''
-                    }
-                ]
+                files: [{
+                    expand: true,
+                    cwd: 'dist/',
+                    src: ['**'],
+                    dest: ''
+                }]
             }
         }
     });
@@ -289,13 +335,16 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-script-link-tags');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-war');
 
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('env-build', ['tags']);
-    grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'copy', 'processhtml']);
+    grunt.registerTask('default', ['test', 'clean', 'less', 'concat', 'babel', 'uglify', 'cssmin', 'copy', 'processhtml']);
 
-    grunt.registerTask('buildWar', ['test', 'default', 'war']);
+    grunt.registerTask('buildWar', ['default', 'war']);
 };

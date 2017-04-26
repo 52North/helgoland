@@ -1,29 +1,9 @@
 <div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" ng-click="close()">&times;</button>
-        <div class="modal-title" translate="listSelection.header"></div>
-    </div>
-    <div class="modal-body"
-         ng-controller="SwcListSelectionParametersCtrl">
-        <uib-tabset class="selectionListContent">
-            <uib-tab>
-                <tab-heading>
-                    <span translate="listSelection.headers.category"></span>
-                </tab-heading>
-                <swc-modal-list-selection parameters="categoryParams"></swc-modal-list-selection>
-            </uib-tab>
-            <uib-tab>
-                <tab-heading>
-                    <span translate="listSelection.headers.station"></span>
-                </tab-heading>
-                <swc-modal-list-selection parameters="stationParams"></swc-modal-list-selection>
-            </uib-tab>
-            <uib-tab>
-                <tab-heading>
-                    <span translate="listSelection.headers.phenomenon"></span>
-                </tab-heading>
-                <swc-modal-list-selection parameters="phenomenonParams"></swc-modal-list-selection>
-            </uib-tab>
-        </uib-tabset>
-    </div>
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="close()">&times;</button>
+    <div class="modal-title" translate="listSelection.header"></div>
+  </div>
+  <div class="modal-body">
+    <swc-tabbed-list-selection on-selection-finished="close()"></swc-tabbed-list-selection>
+  </div>
 </div>

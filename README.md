@@ -1,107 +1,120 @@
-## Content
-This is a frontend component of the repository [sensorweb-client-core] (https://github.com/52North/sensorweb-client-core). 
+# Helgoland
 
-It comprise:
+## Description
+
+**Visual Exploration and Analysis of Sensor Web Data**
+
+*This lightweight web application enables the exploration, analysis and visualization of sensor web data in various fields of use, e.g. hydrology, meteorology, environmental monitoring, traffic management.*
+
+Helgoland is a lightweight web application to explore, analyze and visualize a broad range of sensor data. You can:
+
+* explore stations or mobile sensor platforms in a map,
+* select time series by a list selection,
+* visualize time series data,
+* or create favorites of selected time series.
+
+The application is based on HTML, JavaScript and CSS and can connect to different Sensor Web endpoints (REST-APIs). These Sensor Web REST-APIs provide a thin access layer to sensor data via RESTful Web binding with different output formats.
+
+Features:
+
+* access to SOS instances (supports OGC SOS spec...)
+* diagram view of multiple time series, temporal zooming & panning...
+* data export (pdf, Excel, CSV)
+* Combination w/ R...
+* Architectural basis: HTML, JavaScript, CSS
+
+The following main frameworks are used to provide this application:
+
+* [AngularJS](https://angularjs.org/)
+* [Leaflet](http://leafletjs.com/)
+* [Bootstrap](http://getbootstrap.com/)
+* [momentJs](http://momentjs.com/)
+* [flot](http://www.flotcharts.org/)
+
+## Quick Start (Configuration)
+
+Download the latest version of [Helgoland](https://github.com/52North/helgoland/releases). 
+
+* Deploy the war-file of the client in your favorite web container (e.g. tomcat)
+* Deploy as a static web page in a web server (e.g. apache)
+
+Configure your client in the settings.json in the root folder. Check this(link) site for the different configuration parameter in the settings.json. The main parameters are:
+
+* `defaultProvider` - this is the default selected provider, when the user starts the client
+* `restApiUrls` - this is a list of all supported providers by the client
+  
+
+## License
+
+Helgoland is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
+
+## User guide/tutorial
+
+## Demo
+Explore, analyze and visualize sensor web data with our [Helgoland](http://sensorweb.demo.52north.org/client/#/) demo.
+
+<p align="center">
+  <img src="https://cloud.githubusercontent.com/assets/3830314/15780576/ae8cf458-29a2-11e6-89ef-bc6f1453e38b.png" alt="Helgoland map view" width="75%"/>
+  <img src="https://cloud.githubusercontent.com/assets/3830314/15780591/bdb9a4a8-29a2-11e6-9938-1717a0e7bb7a.png" alt="Helgoland diagram view" width="75%"/>
+</p>
+
+## Changelog
+
+## References
+
+## Contact
+<!--<img src="https://avatars1.githubusercontent.com/u/3830314?v=3&s=140" alt="Webpack and Angular 2" width="48" height="48"/>-->
+
+j.schulte@52north.org
+
+## Credits
+
+## How to contribute
+
+This is a frontend component of the repository [sensorweb-client-core](https://github.com/52North/sensorweb-client-core).
+
+It comprises:
 
 * the styling files for the client
 * the templates to define the html structure
 * the images and fonts which are used in this client
 
-## Get the client as war-file
+### Requirements to develop or build the client
 
-Get a runnable client as war-file of the current development status with the following steps:
+* git
+* [nodejs](https://nodejs.org)
+* [npm](https://www.npmjs.com/)
+* [grunt](http://gruntjs.com/)
+
+### Get ready to start
 
 * `git clone` this repository
-* run `npm install` to get all dependencies
+* run `npm install` to get all dependencies (the client uses a qr-code tool to show a permalink of the client status, for this you need to check if the following packages are installed: https://github.com/Automattic/node-canvas#installation)
+
+#### Get a static files folder which can be added to a web-server
+
+* with `grunt` all files are collected and build in a `dist` folder. The content of this folder can be deployed on a web server.
+
+
+#### Get the client as war-file
+
 * with `grunt buildWar` you get a war-file in the `build`-directory
 
-## Configuration
+#### How to develop
 
-You can change the configuration for the client in the `settings.json` in the `www`-folder of the repository. The following configuration are available:
+See [here](https://github.com/52North/sensorweb-client-core#how-to-develop) for more informations.
 
-##### `defaultProvider`
+#### Configuration
 
-```json
-"defaultProvider": {
-    "serviceID": "srv_3dec8ce040d9506c5aba685c9d134156",
-    "url": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-}
-```
-The default selected provider to show stations in the map.
+See [here](https://github.com/52North/sensorweb-client-core#configuration)
 
-##### `restApiUrls`
+<!--## Extensions (Backends, etc., z.B. SOS )
+## Road Map/development plans (features, focus…)
+## Architecture/Design
+## JavaDoc
+not needed
+## XML Schemata
+## contributor
+see Github...
 
-```json
-"restApiUrls": {
-    "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
-    "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
-}
-```
-A list of timeseries-API urls and an appropriate identifier to create internal timeseries ids.
-
-##### `supportedLanguages`
-
-```json
-"supportedLanguages": [{
-        "code": "de",
-        "label": "Deutsch"
-    }, {
-        "code": "en",
-        "label": "english"
-    }
-]
-```
-These are the supported languages in the client. For every language there must exist a translation file in the i18n folder.
-
-##### `baselayer`
-
-```json
-"baselayer": {
-    "mapbox": {
-        "name": "Mapbox",
-        "type": "xyz",
-        "url": "http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg",
-        "layerOptions": {
-            "attribution": "&copy; <a href='http://www.mapquest.com/' target='_blank'>MapQuest</a> <img src='http://developer.mapquest.com/content/osm/mq_logo.png'/>"
-        }
-    }
-}
-```
-All configured baselayer can be selected in the map.
-
-##### `overlay`
-
-```json
-"overlay": {
-}
-```
-Same effect as the baselayer configuration.
-
-##### `showScale`
-
-```json
-"showScale": true
-```
-Show the scale bar in the map.
-
-##### `commonLineWidth`
-
-```json
-"commonLineWidth": 1
-```
-Common line width of a timeseries in the chart.
-
-##### `selectedLineWidth`
-
-```json
-"selectedLineWidth": 4,
-```
-Line width of a selected timeseries in the chart.
-
-## How to develop
-
-To develop the [sensorweb-client-core] (https://github.com/52North/sensorweb-client-core) and this frontend client components parallel you can use `bower link` as described [here] (https://oncletom.io/2013/live-development-bower-component/)
-
-## License
-
-Licensed under Apache License 2.0
+## Requirements-->
