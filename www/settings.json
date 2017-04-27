@@ -4,6 +4,12 @@
   "undefinedUomString": "-",
   "aggregateServices": true,
   "saveStatus": true,
+  "providerBlackList": [
+    {
+      "serviceID": "xyz",
+      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+    }
+  ],
   "restApiUrls": {
     "http://colabis.dev.52north.org/ecmwf-webapp/api/v1/": "ecmwf"
   },
@@ -91,6 +97,7 @@
     }
   },
   "showScale": true,
+  "timebufferFactor": 0.1,
   "solveLabels": false,
   "proxyUrl": "https://cors-anywhere.herokuapp.com/",
   "platformPresenter": {
