@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        name: 'client-profiles',
+        name: 'client',
         context_name: '<%= name %>##<%= pkg.version %>-<%= grunt.template.today("yyyymmddHHMM")%>',
         lib_scripts: [
             'node_modules/jquery/dist/jquery.js',

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "stationary_insitu_1",
+    "domainId": "123",
+    "label": "Münster",
+    "extras": [
+      "license",
+      "parents"
+    ],
+    "parameters": [
+      {
+        "name": "test param",
+        "value": "hello world"
+      }
+    ],
+    "platformType": "stationary_insitu",
+    "datasets": [
+      {
+        "id": "quantity_profile_113703",
+        "label": "quantityProfile",
+        "platformType": "stationary_insitu",
+        "valueType": "quantity_profile"
+      }
+    ],
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        7.62,
+        51.96,
+        52
+      ]
+    }
+  }
+]
