@@ -1,11 +1,11 @@
-// angular.module('n52.core.profile')
-//     .controller('SwcProfileCtrl', ['$scope', 'profileFlotChartServ', 'profilesService',
-//         function($scope, profileFlotChartService, profilesService) {
-//             $scope.options = profileFlotChartService.options;
-//             $scope.datasets = profilesService.profiles;
-//             $scope.data = profilesService.profileData;
-//         }
-//     ])
+angular.module('n52.core.profile')
+    .controller('SwcProfileCtrl', ['$scope', 'profilesService',
+        function($scope, profilesService) {
+            // $scope.options = profileFlotChartService.options;
+            $scope.datasets = profilesService.profiles;
+            $scope.data = profilesService.profileData;
+        }
+    ]);
 //     .factory('profileFlotChartServ', ['timeseriesService', 'timeService', 'settingsService', 'flotProfileDataHelperServ', '$rootScope', 'profilesService',
 //         function(timeseriesService, timeService, settingsService, flotProfileDataHelperServ, $rootScope, profilesService) {
 //             var options = {

@@ -1,34 +1,40 @@
 [
-  {
-    "id": "stationary_insitu_1",
-    "domainId": "123",
-    "label": "Münster",
-    "extras": [
-      "license",
-      "parents"
-    ],
-    "parameters": [
-      {
-        "name": "test param",
-        "value": "hello world"
-      }
-    ],
-    "platformType": "stationary_insitu",
-    "datasets": [
-      {
-        "id": "quantity_profile_113703",
-        "label": "quantityProfile",
+    {
+        "id": "stationary_insitu_1",
+        "domainId": "123",
+        "label": "Münster",
+        "extras": [
+            "license",
+            "parents"
+        ],
+        "parameters": [
+            {
+                "name": "test param",
+                "value": "hello world"
+            }
+        ],
         "platformType": "stationary_insitu",
-        "valueType": "quantity_profile"
-      }
-    ],
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        7.62,
-        51.96,
-        52
-      ]
+        "datasets": [
+            {
+                "id": "quantity_profile_1",
+                "label": "profile 1",
+                "platformType": "stationary_insitu",
+                "valueType": "quantity_profile"
+            },
+            {
+                "id": "quantity_profile_2",
+                "label": "profile 2",
+                "platformType": "stationary_insitu",
+                "valueType": "quantity_profile"
+            }
+        ],
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                7.62,
+                51.96,
+                52
+            ]
+        }
     }
-  }
 ]

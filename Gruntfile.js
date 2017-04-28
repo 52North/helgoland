@@ -28,7 +28,7 @@ module.exports = function(grunt) {
             'node_modules/bootstrap-datetime-picker/js/bootstrap-datetimepicker.js',
             'node_modules/ng-table/dist/ng-table.js',
             'node_modules/xslt/dist/xslt.js',
-            'node_modules/d3/build/d3.min.js'
+            'node_modules/plotly.js/dist/plotly-basic.min.js'
         ],
         lib_ie9_scripts: [
             'node_modules/n52-sensorweb-client-core/src/js/IE9/*.js'

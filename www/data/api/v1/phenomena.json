@@ -1,26 +1,26 @@
 [
-  {
-    "id": "1",
-    "domainId": "bodentemperatur",
-    "label": "bodentemperatur",
-    "extras": [
-      "license"
-    ],
-    "service": {
-      "id": "1",
-      "label": "COLABIS CKAN Data."
+    {
+        "id": "1",
+        "domainId": "bodentemperatur",
+        "label": "bodentemperatur",
+        "extras": [
+            "license"
+        ],
+        "service": {
+            "id": "1",
+            "label": "COLABIS CKAN Data."
+        }
+    },
+    {
+        "id": "2",
+        "domainId": "wassertemperatur",
+        "label": "wassertemperatur",
+        "extras": [
+            "license"
+        ],
+        "service": {
+            "id": "1",
+            "label": "COLABIS CKAN Data."
+        }
     }
-  },
-  {
-    "id": "2",
-    "domainId": "wassertemperatur",
-    "label": "wassertemperatur",
-    "extras": [
-      "license"
-    ],
-    "service": {
-      "id": "1",
-      "label": "COLABIS CKAN Data."
-    }
-  }
 ]

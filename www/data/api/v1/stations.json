@@ -1,16 +1,16 @@
 [
-  {
-    "type": "Feature",
-    "properties": {
-      "id": "platform_1",
-      "label": "Münster"
-    },
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        7.62,
-        51.96
-      ]
+    {
+        "type": "Feature",
+        "properties": {
+            "id": "platform_1",
+            "label": "Münster"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                7.62,
+                51.96
+            ]
+        }
     }
-  }
 ]

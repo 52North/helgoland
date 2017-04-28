@@ -15,7 +15,13 @@
     "platformType": "stationary_insitu",
     "datasets": [
         {
-            "id": "quantity_profile_113703",
+            "id": "quantity_profile_1",
+            "label": "quantityProfile",
+            "platformType": "stationary_insitu",
+            "valueType": "quantity_profile"
+        },
+        {
+            "id": "quantity_profile_2",
             "label": "quantityProfile",
             "platformType": "stationary_insitu",
             "valueType": "quantity_profile"
