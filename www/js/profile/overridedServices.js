@@ -26,7 +26,7 @@ angular.module('n52.core.profile')
             ]);
             $provide.decorator('permalinkGenerationService', ['$delegate', 'timeService', '$location', 'timeseriesService', 'profilesService', 'utils',
                 function($delegate, timeService, $location, timeseriesService, profilesService, utils) {
-                    createTimeseriesParam = function(timeseriesId) {
+                    var createTimeseriesParam = function(timeseriesId) {
                         var ids = [];
                         if (angular.isUndefined(timeseriesId)) {
                             angular.forEach(timeseriesService.getAllTimeseries(), function(elem) {
@@ -40,7 +40,7 @@ angular.module('n52.core.profile')
                         }
                         return "ts=" + encodeURIComponent(ids.join());
                     };
-                    createTimeParam = function() {
+                    var createTimeParam = function() {
                         var timespan = timeService.getCurrentTimespan();
                         return "timespan=" + encodeURIComponent(utils.createRequestTimespan(timespan.start, timespan.end));
                     };

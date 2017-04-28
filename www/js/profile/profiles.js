@@ -1,108 +1,106 @@
 angular.module('n52.core.profile')
-    .factory('profilesService', ['$rootScope', 'seriesApiInterface', 'statusService', 'colorService',
-        function($rootScope, seriesApiInterface, statusService, colorService) {
+    .service('profilesService', ['seriesApiInterface', 'statusService', 'colorService',
+        function(seriesApiInterface, statusService, colorService) {
 
-            var profiles = {};
-            var profileData = {};
+            this.profiles = {};
+            this.profileData = {};
 
-            function _addData(data, profile) {
-                profileData[profile.internalId] = data[profile.id].values;
-                $rootScope.$emit('profilesDataChanged', profile.internalId);
+            var init = () => {
+                if (statusService.status.profiles) {
+                    for (var profile in statusService.status.profiles) {
+                        if (statusService.status.profiles.hasOwnProperty(profile)) {
+                            _addToProfile(statusService.status.profiles[profile]);
+                        }
+                    }
+                } else {
+                    statusService.status.profiles = {};
+                }
+            };
+
+            var _addData = (data, profile) => {
+                this.profileData[profile.internalId] = data.values;
                 profile.loadingData = false;
-            }
+            };
 
-            function _loadData(profile) {
+            var _loadData = (profile) => {
                 profile.loadingData = true;
-                seriesApiInterface.getTsData(profile.id, profile.apiUrl).then(function(data) {
+                seriesApiInterface.getDatasetData(profile.id, profile.apiUrl).then((data) => {
                     _addData(data, profile);
                 });
-            }
+            };
 
-            function _addProfile(profile) {
+            var saveProfile = (profile) => {
+                statusService.status.profiles[profile.internalId] = profile;
+            };
+
+            var deleteProfile = (id) => {
+                if (statusService.status.profiles.hasOwnProperty(id)) {
+                    delete statusService.status.profiles[id];
+                }
+            };
+
+            var _addToProfile = (profile) => {
                 profile.style = {
                     hidden: false,
                     selected: false,
                     color: colorService.getColor(profile.id)
                 };
+                profile.internalId = profile.apiUrl + 'datasets/' + profile.id;
                 profile.permaProfiles = {};
-                profiles[profile.internalId] = profile;
-                statusService.addTimeseries(profile);
+                this.profiles[profile.internalId] = profile;
+                saveProfile(profile);
                 _loadData(profile);
-            }
+            };
 
-            function addProfiles(profile) {
-                _addProfile(angular.copy(profile));
-            }
+            this.addProfiles = (profile) => {
+                _addToProfile(angular.copy(profile), this.profiles);
+            };
 
-            function getData(id) {
-                return profileData[id];
-            }
+            this.getData = (id) => {
+                return this.profileData[id];
+            };
 
-            function getAllProfiles() {
-                return profiles;
-            }
+            this.getProfile = (id) => {
+                return this.profiles[id];
+            };
 
-            function getProfile(id) {
-                return profiles[id];
-            }
+            this.removeProfile = (id) => {
+                delete this.profiles[id];
+                delete this.profileData[id];
+                deleteProfile(id);
+            };
 
-            function removeProfile(id) {
-                delete profiles[id];
-                delete profileData[id];
-                statusService.removeTimeseries(id);
-                $rootScope.$emit('profilesDataChanged', id);
-            }
+            this.isProfileToggled = (id) => {
+                return this.profiles[id].style.hidden;
+            };
 
-            function isProfileToggled(id) {
-                return profiles[id].style.hidden;
-            }
+            this.toggleProfile = (id) => {
+                this.profiles[id].style.hidden = !this.profiles[id].style.hidden;
+            };
 
-            function toggleProfile(id) {
-                profiles[id].style.hidden = !profiles[id].style.hidden;
-                $rootScope.$emit('profilesDataChanged', id);
-            }
+            this.isProfileSelectionToggled = (id) => {
+                return this.profiles[id].style.selected;
+            };
 
-            function isProfileSelectionToggled(id) {
-                return profiles[id].style.selected;
-            }
+            this.toggleProfileSelection = (id) => {
+                this.profiles[id].style.selected = !this.profiles[id].style.selected;
+            };
 
-            function toggleProfileSelection(id) {
-                profiles[id].style.selected = !profiles[id].style.selected;
-                $rootScope.$emit('profilesDataChanged', id);
-            }
+            this.setColor = (id, color) => {
+                this.profiles[id].style.color = color;
+            };
 
-            function setColor(id, color) {
-                profiles[id].style.color = color;
-                $rootScope.$emit('profilesDataChanged', id);
-            }
-
-            function createPermaProfile(id) {
-                var profile = profiles[id];
+            this.createPermaProfile = (id) => {
+                var profile = this.profiles[id];
                 profile.permaProfiles[profile.selectedTime] = {
                     color: colorService.getColor(profile.internalId + profile.selectedTime)
                 };
-                $rootScope.$emit('profilesDataChanged', id);
-            }
-
-            function removePermaProfile(id, timestamp) {
-                delete profiles[id].permaProfiles[timestamp];
-                $rootScope.$emit('profilesDataChanged', id);
-            }
-
-            return {
-                addProfiles: addProfiles,
-                getAllProfiles: getAllProfiles,
-                getProfile: getProfile,
-                getData: getData,
-                removeProfile: removeProfile,
-                isProfileToggled: isProfileToggled,
-                toggleProfile: toggleProfile,
-                isProfileSelectionToggled: isProfileSelectionToggled,
-                toggleProfileSelection: toggleProfileSelection,
-                setColor: setColor,
-                createPermaProfile: createPermaProfile,
-                removePermaProfile: removePermaProfile,
-                profiles: profiles
             };
+
+            this.removePermaProfile = (id, timestamp) => {
+                delete this.profiles[id].permaProfiles[timestamp];
+            };
+
+            init();
         }
     ]);

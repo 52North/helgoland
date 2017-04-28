@@ -17,8 +17,8 @@
         "data/api/v1/": "localTestInstanz"
     },
     "defaultProvider": {
-        "serviceID": "srv_3dec8ce040d9506c5aba685c9d134156",
-        "url": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+        "serviceID": "1",
+        "url": "data/api/v1/"
     },
     "chartOptions": {
         "yaxis": {

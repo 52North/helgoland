@@ -28,7 +28,7 @@ module.exports = function(grunt) {
             'node_modules/bootstrap-datetime-picker/js/bootstrap-datetimepicker.js',
             'node_modules/ng-table/dist/ng-table.js',
             'node_modules/xslt/dist/xslt.js',
-            'www/bower_components/angularjs-slider/dist/rzslider.min.js'
+            'node_modules/d3/build/d3.min.js'
         ],
         lib_ie9_scripts: [
             'node_modules/n52-sensorweb-client-core/src/js/IE9/*.js'
@@ -40,8 +40,7 @@ module.exports = function(grunt) {
             'node_modules/leaflet/dist/leaflet.css',
             'node_modules/leaflet.markercluster/dist/MarkerCluster.css',
             'node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css',
-            'node_modules/angular-ui-notification/dist/angular-ui-notification.min.css',
-            'www/bower_components/angularjs-slider/dist/rzslider.min.css'
+            'node_modules/angular-ui-notification/dist/angular-ui-notification.min.css'
         ],
         core_scripts: [
             'node_modules/n52-sensorweb-client-core/src/js/Map/mapModule.js',

@@ -7,8 +7,8 @@
                     <button type="button" class="btn btn-primary btn-xs" ng-show="status.showLegend" ng-click="toggleLegend()">X</button>
                 </div>
                 <div class="fullHeight">
-                    <div ng-controller="SwcProfileCtrl">
-                        <flot class="diagram" options="options" dataset="dataset" horizontalpanhandler="'flotProfilePanHandler'"></flot>
+                    <div ng-controller="SwcProfileCtrl" style="height:100%;">
+                        <profile-chart datasets="datasets" options="options" data="data"></profile-chart>
                     </div>
                 </div>
             </div>
