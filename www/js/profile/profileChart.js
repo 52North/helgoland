@@ -31,6 +31,8 @@ angular.module('n52.core.profile')
                     for (var id in this.data) {
                         if (this.data.hasOwnProperty(id) && !this.datasets[id].style.hidden) {
                             this.chartData[id] = this.data[id][0];
+                            this.chartData[id].color = this.datasets[id].style.color;
+                            this.chartData[id].selected = this.datasets[id].style.selected;
                         }
                     }
                 };
@@ -54,21 +56,30 @@ angular.module('n52.core.profile')
                         redrawChart();
                     });
 
-                    scope.$watchCollection('data', () => {
+                    scope.$watch('data', () => {
                         drawChart();
-                    });
+                    }, true);
 
                     var processData = () => {
                         var data = [];
                         for (var id in scope.data) {
                             if (scope.data.hasOwnProperty(id)) {
+                                debugger;
+                                var dataEntry = scope.data[id];
                                 var trace = {
                                     x: [],
                                     y: [],
                                     type: 'scatter',
-                                    name: 'Horst'
+                                    name: 'Horst',
+                                    line: {
+                                      color: dataEntry.color,
+                                      width: dataEntry.selected ? 5 : 2
+                                    },
+                                    marker: {
+                                      size: dataEntry.selected ? 10 : 6
+                                    }
                                 };
-                                scope.data[id].value.forEach((entry) => {
+                                dataEntry.value.forEach((entry) => {
                                     trace.x.push(entry.value);
                                     trace.y.push(entry.vertical);
                                 });
