@@ -69,14 +69,9 @@ angular.module('n52.core.profile')
                             t: 40
                             // pad: 100
                         },
-                        hovermode: 'y',
-                        counterYaxis: 0,
-                        xaxis: {
-                            zeroline: false,
-                            hoverformat: '.2f',
-                            showline: true,
-                            fixedrange: false
-                        }
+                        hovermode: 'closest',
+                        counterYAxis: 0,
+                        counterXAxis: 0
                     };
 
                     var settings = {
@@ -108,8 +103,9 @@ angular.module('n52.core.profile')
                                     y: [],
                                     type: 'scatter',
                                     name: dataEntry.label,
-                                    // yaxis: 'y1',
                                     yaxis: createYAxis(dataEntry),
+                                    xaxis: createXAxis(dataEntry),
+                                    hovertext: 'test',
                                     line: {
                                         color: dataEntry.color,
                                         width: dataEntry.selected ? 5 : 2
@@ -135,48 +131,76 @@ angular.module('n52.core.profile')
                     var clearLayout = () => {
                         // todo remove yaxis
                         for (var key in layout) {
-                            if (layout.hasOwnProperty(key) && key.startsWith('yaxis')) {
+                            if (layout.hasOwnProperty(key) && (key.startsWith('yaxis') || key.startsWith('xaxis'))) {
                                 delete layout[key];
                             }
                         }
                         // reset counter
-                        layout.counterYaxis = 0;
+                        layout.counterYAxis = 0;
+                        layout.counterXAxis = 0;
                     };
 
                     var createYAxis = (dataEntry) => {
                         var axis;
                         // find axis
                         for (var key in layout) {
-                            if (layout.hasOwnProperty(key) && key.startsWith('yaxis')) {
-                                if (layout[key].title === dataEntry.verticalUnit) {
-                                    axis = layout[key];
-                                }
+                            if (layout.hasOwnProperty(key) &&
+                                key.startsWith('yaxis') &&
+                                layout[key].title === dataEntry.verticalUnit) {
+                                axis = layout[key];
                             }
                         }
                         if (!axis) {
                             // add axis
-                            layout.counterYaxis = layout.counterYaxis + 1;
-                            axis = layout[('yaxis' + layout.counterYaxis)] = {
-                                id: 'y' + layout.counterYaxis,
+                            layout.counterYAxis = layout.counterYAxis + 1;
+                            axis = layout[('yaxis' + layout.counterYAxis)] = {
+                                id: 'y' + layout.counterYAxis,
                                 // zeroline: true,
                                 anchor: 'free',
                                 hoverformat: '.2r',
                                 side: 'left',
+                                showline: false,
                                 title: dataEntry.verticalUnit,
                                 fixedrange: true
                             };
-                            if (layout.counterYaxis !== 1) {
+                            if (layout.counterYAxis !== 1) {
                                 axis.overlaying = 'y';
                             }
                         }
                         return axis.id;
                     };
 
+                    var createXAxis = (dataEntry) => {
+                        var axis;
+                        for (var key in layout) {
+                            if (layout.hasOwnProperty(key) && key.startsWith('xaxis') && layout[key].title === dataEntry.horizontalUnit) {
+                                axis = layout[key];
+                            }
+                        }
+                        if (!axis) {
+                            layout.counterXAxis = layout.counterXAxis + 1;
+                            axis = layout['xaxis' + layout.counterXAxis] = {
+                                id: 'x' + layout.counterXAxis,
+                                anchor: 'free',
+                                title: dataEntry.horizontalUnit,
+                                zeroline: true,
+                                hoverformat: '.2f',
+                                showline: false,
+                                rangemode: 'tozero',
+                                fixedrange: false
+                            };
+                            if (layout.counterXAxis !== 1) {
+                                axis.overlaying = 'x';
+                            }
+                        }
+                        return axis.id;
+                    };
+
                     var updateAxis = () => {
-                        if (layout.counterYaxis > 1) {
+                        if (layout.counterYAxis > 1) {
                             for (var key in layout) {
                                 if (layout.hasOwnProperty(key) && key.startsWith('xaxis')) {
-                                    layout[key].domain = [0.1, 1];
+                                    layout[key].domain = [(0.1 * layout.counterYAxis) - 0.1 , 1];
                                 }
                             }
                             var yaxisCount = 0;
@@ -184,6 +208,20 @@ angular.module('n52.core.profile')
                                 if (layout.hasOwnProperty(key) && key.startsWith('yaxis')) {
                                     layout[key].position = 0.1 * yaxisCount;
                                     yaxisCount += 1;
+                                }
+                            }
+                        }
+                        if (layout.counterXAxis > 1) {
+                            for (key in layout) {
+                                if (layout.hasOwnProperty(key) && key.startsWith('yaxis')) {
+                                    layout[key].domain = [(0.06 * layout.counterXAxis) - 0.06, 1];
+                                }
+                            }
+                            var xaxisCount = 0;
+                            for (key in layout) {
+                                if (layout.hasOwnProperty(key) && key.startsWith('xaxis')) {
+                                    layout[key].position = 0.06 * xaxisCount;
+                                    xaxisCount += 1;
                                 }
                             }
                         }
@@ -197,6 +235,8 @@ angular.module('n52.core.profile')
                     var redrawChart = () => {
                         $window.Plotly.relayout(scope.uniqueId, {});
                     };
+
+
                 }
             };
         }
