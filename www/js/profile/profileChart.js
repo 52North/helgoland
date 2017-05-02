@@ -33,6 +33,7 @@ angular.module('n52.core.profile')
                             this.chartData[id] = this.data[id][0];
                             this.chartData[id].color = this.datasets[id].style.color;
                             this.chartData[id].selected = this.datasets[id].style.selected;
+                            this.chartData[id].label = this.datasets[id].label;
                         }
                     }
                 };
@@ -64,13 +65,12 @@ angular.module('n52.core.profile')
                         var data = [];
                         for (var id in scope.data) {
                             if (scope.data.hasOwnProperty(id)) {
-                                debugger;
                                 var dataEntry = scope.data[id];
                                 var trace = {
                                     x: [],
                                     y: [],
                                     type: 'scatter',
-                                    name: 'Horst',
+                                    name: dataEntry.label,
                                     line: {
                                       color: dataEntry.color,
                                       width: dataEntry.selected ? 5 : 2

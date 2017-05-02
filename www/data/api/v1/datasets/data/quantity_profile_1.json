@@ -6,43 +6,43 @@
             "value": [
                 {
                     "vertical": 0,
-                    "value": 20
-                },
-                {
-                    "vertical": -10,
-                    "value": 15
-                },
-                {
-                    "vertical": -20,
-                    "value": 12
-                },
-                {
-                    "vertical": -30,
                     "value": 10
                 },
                 {
-                    "vertical": -40,
+                    "vertical": -10,
                     "value": 9
                 },
                 {
-                    "vertical": -50,
+                    "vertical": -20,
                     "value": 8
                 },
                 {
-                    "vertical": -100,
+                    "vertical": -30,
                     "value": 7
                 },
                 {
-                    "vertical": -200,
+                    "vertical": -40,
                     "value": 6
                 },
                 {
+                    "vertical": -50,
+                    "value": 5
+                },
+                {
+                    "vertical": -100,
+                    "value": 4
+                },
+                {
+                    "vertical": -200,
+                    "value": 3
+                },
+                {
                     "vertical": -300,
-                    "value": 5.5
+                    "value": 2
                 },
                 {
                     "vertical": -500,
-                    "value": 5
+                    "value": 1
                 }
             ]
         },
