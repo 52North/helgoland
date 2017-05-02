@@ -30,10 +30,13 @@ angular.module('n52.core.profile')
                     this.chartData = {};
                     for (var id in this.data) {
                         if (this.data.hasOwnProperty(id) && !this.datasets[id].style.hidden) {
-                            this.chartData[id] = this.data[id][0];
-                            this.chartData[id].color = this.datasets[id].style.color;
-                            this.chartData[id].selected = this.datasets[id].style.selected;
-                            this.chartData[id].label = this.datasets[id].label;
+                            var data = this.data[id][0];
+                            var datasets = this.datasets[id];
+                            this.chartData[id] = data;
+                            this.chartData[id].color = datasets.style.color;
+                            this.chartData[id].selected = datasets.style.selected;
+                            this.chartData[id].label = datasets.label;
+                            this.chartData[id].horizontalUnit = datasets.uom;
                         }
                     }
                 };
@@ -53,41 +56,7 @@ angular.module('n52.core.profile')
 
                     scope.uniqueId = 'item' + uniqueId++;
 
-                    angular.element($window).bind('resize', () => {
-                        redrawChart();
-                    });
-
-                    scope.$watch('data', () => {
-                        drawChart();
-                    }, true);
-
-                    var processData = () => {
-                        var data = [];
-                        for (var id in scope.data) {
-                            if (scope.data.hasOwnProperty(id)) {
-                                var dataEntry = scope.data[id];
-                                var trace = {
-                                    x: [],
-                                    y: [],
-                                    type: 'scatter',
-                                    name: dataEntry.label,
-                                    line: {
-                                      color: dataEntry.color,
-                                      width: dataEntry.selected ? 5 : 2
-                                    },
-                                    marker: {
-                                      size: dataEntry.selected ? 10 : 6
-                                    }
-                                };
-                                dataEntry.value.forEach((entry) => {
-                                    trace.x.push(entry.value);
-                                    trace.y.push(entry.vertical);
-                                });
-                                data.push(trace);
-                            }
-                        }
-                        return data;
-                    };
+                    var data = [];
 
                     var layout = {
                         autosize: true,
@@ -101,19 +70,12 @@ angular.module('n52.core.profile')
                             // pad: 100
                         },
                         hovermode: 'y',
-                        // title: 'Formatting X & Y Hover Values',
+                        counterYaxis: 0,
                         xaxis: {
                             zeroline: false,
                             hoverformat: '.2f',
                             showline: true,
                             fixedrange: false
-                            // title: 'Rounded: 2 values after the decimal point on hover'
-                        },
-                        yaxis: {
-                            zeroline: true,
-                            hoverformat: '.2r',
-                            title: 'm',
-                            fixedrange: true
                         }
                     };
 
@@ -127,8 +89,109 @@ angular.module('n52.core.profile')
                         showTips: false
                     };
 
+                    angular.element($window).bind('resize', () => {
+                        redrawChart();
+                    });
+
+                    scope.$watch('data', () => {
+                        drawChart();
+                    }, true);
+
+                    var processData = () => {
+                        clearLayout();
+                        clearData();
+                        for (var id in scope.data) {
+                            if (scope.data.hasOwnProperty(id)) {
+                                var dataEntry = scope.data[id];
+                                var trace = {
+                                    x: [],
+                                    y: [],
+                                    type: 'scatter',
+                                    name: dataEntry.label,
+                                    // yaxis: 'y1',
+                                    yaxis: createYAxis(dataEntry),
+                                    line: {
+                                        color: dataEntry.color,
+                                        width: dataEntry.selected ? 5 : 2
+                                    },
+                                    marker: {
+                                        size: dataEntry.selected ? 10 : 6
+                                    }
+                                };
+                                dataEntry.value.forEach((entry) => {
+                                    trace.x.push(entry.value);
+                                    trace.y.push(entry.vertical);
+                                });
+                                data.push(trace);
+                            }
+                        }
+                        updateAxis();
+                    };
+
+                    var clearData = () => {
+                        data = [];
+                    };
+
+                    var clearLayout = () => {
+                        // todo remove yaxis
+                        for (var key in layout) {
+                            if (layout.hasOwnProperty(key) && key.startsWith('yaxis')) {
+                                delete layout[key];
+                            }
+                        }
+                        // reset counter
+                        layout.counterYaxis = 0;
+                    };
+
+                    var createYAxis = (dataEntry) => {
+                        var axis;
+                        // find axis
+                        for (var key in layout) {
+                            if (layout.hasOwnProperty(key) && key.startsWith('yaxis')) {
+                                if (layout[key].title === dataEntry.verticalUnit) {
+                                    axis = layout[key];
+                                }
+                            }
+                        }
+                        if (!axis) {
+                            // add axis
+                            layout.counterYaxis = layout.counterYaxis + 1;
+                            axis = layout[('yaxis' + layout.counterYaxis)] = {
+                                id: 'y' + layout.counterYaxis,
+                                // zeroline: true,
+                                anchor: 'free',
+                                hoverformat: '.2r',
+                                side: 'left',
+                                title: dataEntry.verticalUnit,
+                                fixedrange: true
+                            };
+                            if (layout.counterYaxis !== 1) {
+                                axis.overlaying = 'y';
+                            }
+                        }
+                        return axis.id;
+                    };
+
+                    var updateAxis = () => {
+                        if (layout.counterYaxis > 1) {
+                            for (var key in layout) {
+                                if (layout.hasOwnProperty(key) && key.startsWith('xaxis')) {
+                                    layout[key].domain = [0.1, 1];
+                                }
+                            }
+                            var yaxisCount = 0;
+                            for (key in layout) {
+                                if (layout.hasOwnProperty(key) && key.startsWith('yaxis')) {
+                                    layout[key].position = 0.1 * yaxisCount;
+                                    yaxisCount += 1;
+                                }
+                            }
+                        }
+                    };
+
                     var drawChart = () => {
-                        $window.Plotly.newPlot(scope.uniqueId, processData(), layout, settings);
+                        processData();
+                        $window.Plotly.newPlot(scope.uniqueId, data, layout, settings);
                     };
 
                     var redrawChart = () => {
