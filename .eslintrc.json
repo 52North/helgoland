@@ -1,21 +1,21 @@
 {
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+        "angular": true,
+        "moment": true
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "rules": {
+        "semi": 2
     }
-  },
-  "extends": "eslint:recommended",
-  "globals": {
-    "angular": true,
-    "moment": true
-  },
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "rules": {
-    "semi": 2
-  }
 }
