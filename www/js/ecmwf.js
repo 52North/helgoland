@@ -119,11 +119,11 @@ angular.module('n52.core.map')
             onSelect: '&'
         },
         templateUrl: 'n52.ecmwf.map.procedure-selection',
-        controller: ['seriesApiInterface', 'utils',
-            function(seriesApiInterface, utils) {
+        controller: [
+            function() {
                 this.$onInit = function() {};
 
-                this.onChange = function(item) {
+                this.onChange = function() {
                     this.onSelect({
                         item: this.selection
                     });
@@ -139,7 +139,7 @@ angular.module('n52.core.map')
         templateUrl: 'n52.ecmwf.map.result-time-selection',
         controller: [
             function() {
-                this.onChange = function(item) {
+                this.onChange = function() {
                     this.onSelect({
                         item: this.selection
                     });
@@ -246,8 +246,8 @@ angular.module('n52.core.map')
     })
     .config(['$provide',
         function($provide) {
-            $provide.decorator('utils', ['$delegate', '$q', '$http',
-                function($delegate, $q, $http) {
+            $provide.decorator('utils', ['$delegate',
+                function($delegate) {
                     $delegate.oldCreateInternalId = $delegate.createInternalId;
                     $delegate.createInternalId = function(ts) {
                         if (ts.filter && ts.filter.resultTime) {

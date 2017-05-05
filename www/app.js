@@ -1,3 +1,59 @@
+import angular from 'angular';
+import 'angular-route';
+import 'angular-ui-bootstrap';
+import 'angular-ui-notification';
+import 'angular-ui-notification/dist/angular-ui-notification.min.css';
+import 'angular-local-storage';
+import 'ui-leaflet';
+import 'angular-simple-logger';
+import 'angular-translate';
+import 'angular-translate-loader-static-files';
+import 'angular-sanitize';
+import 'ng-table';
+import 'ng-table/dist/ng-table.css';
+import 'angular-resource';
+import 'Flot/jquery.flot.js';
+import 'Flot/jquery.flot.time.js';
+import 'Flot/jquery.flot.crosshair.js';
+import 'bootstrap-datetime-picker';
+import 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap-datetime-picker';
+import 'angular-ui-bootstrap/dist/ui-bootstrap-tpls.js';
+import 'bootstrap-datetime-picker/css/bootstrap-datetimepicker.css';
+import 'leaflet.markercluster';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+// import 'qr-js/qr.js';
+
+import 'n52-sensorweb-client-core/src/js/base';
+import 'n52-sensorweb-client-core/src/js/Chart';
+import 'n52-sensorweb-client-core/src/js/Favorite';
+import 'n52-sensorweb-client-core/src/js/helper';
+import 'n52-sensorweb-client-core/src/js/Legend';
+import 'n52-sensorweb-client-core/src/js/ListSelection';
+import 'n52-sensorweb-client-core/src/js/Loading';
+import 'n52-sensorweb-client-core/src/js/Map';
+import 'n52-sensorweb-client-core/src/js/Menu';
+import 'n52-sensorweb-client-core/src/js/Metadata';
+import 'n52-sensorweb-client-core/src/js/Phenomenon';
+import 'n52-sensorweb-client-core/src/js/Provider';
+import 'n52-sensorweb-client-core/src/js/SeriesInterface';
+import 'n52-sensorweb-client-core/src/js/Settings';
+import 'n52-sensorweb-client-core/src/js/startup';
+import 'n52-sensorweb-client-core/src/js/Styling';
+import 'n52-sensorweb-client-core/src/js/Table';
+import 'n52-sensorweb-client-core/src/js/Time';
+import 'n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js';
+
+import './js/ecmwf.js';
+import './js/navigation.js';
+import './js/map.js';
+
+import './less';
+
 var mainApp = angular.module('jsClient', [
     'ngRoute',
     'ui.bootstrap',
