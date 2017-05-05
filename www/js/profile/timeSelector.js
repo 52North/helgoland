@@ -8,7 +8,7 @@ angular.module('n52.core.profile')
             },
             controller: ['$scope', 'timeSliderService', '$rootScope',
                 function($scope, timeSliderService, $rootScope) {
-                    initValues = function() {
+                    var initValues = function() {
                         var steps = timeSliderService.getTimeSteps($scope.series.internalId);
                         $scope.options = {
                             stepsArray: steps,
@@ -19,7 +19,7 @@ angular.module('n52.core.profile')
                         setSelectedTime();
                     };
 
-                    setSelectedTime = function() {
+                    var setSelectedTime = function() {
                         $scope.series.selectedTime = timeSliderService.getTimestamp($scope.series.internalId, $scope.value);
                         $rootScope.$emit('profilesTimestampChanged', $scope.series.internalId);
                     };
