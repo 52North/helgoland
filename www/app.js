@@ -26,6 +26,7 @@ import 'bootstrap-datetime-picker/css/bootstrap-datetimepicker.css';
 import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import 'font-awesome/css/font-awesome.min.css';
 import 'd3/d3';
 // import 'qr-js/qr.js';
 
