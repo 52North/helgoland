@@ -78,6 +78,7 @@
         "bootstrap-datetime-picker": "^2.4.4",
         "flot": "flot/flot",
         "flot-downsample": "janschulte/flot-downsample",
+        "font-awesome": "^4.7.0",
         "leaflet.markercluster": "0.4.0",
         "n52-sensorweb-client-core": "52North/sensorweb-client-core#develop",
         "ng-table": "0.8.3",
