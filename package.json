@@ -78,6 +78,7 @@
         "bootstrap": "^3.3.7",
         "bootstrap-datetime-picker": "^2.4.4",
         "d3": "^3.5.14",
+        "d3-extended": "^1.2.10",
         "flot": "flot/flot",
         "flot-downsample": "janschulte/flot-downsample",
         "font-awesome": "^4.7.0",

@@ -3,108 +3,109 @@
 @combi-header-height: 50px;
 
 .combi-mobile {
-  height: 100%;
-  position: relative;
+    height: 100%;
+    position: relative;
 
-  .combi-header {
-    height: @combi-header-height;
-    text-align: center;
+    .combi-header {
+        height: @combi-header-height;
+        text-align: center;
 
-    .header-button {
-      float: right;
+        .header-button {
+            float: right;
 
-      +.header-button {
-        margin-right: 10px;
-      }
-    }
-  }
-
-  .combi-body {
-    position: absolute;
-    width: 100%;
-    top: @combi-header-height;
-    bottom: 0;
-
-    .chart-container,
-    .map {
-      position: relative;
-      height: 50%;
-
-      .axis {
-        text {
-          font-size: 12px;
+            +.header-button {
+                margin-right: 10px;
+            }
         }
-
-        line,
-        path {
-          fill: none;
-          stroke: black;
-        }
-      }
-
-      .graphArea {
-        fill: lightsteelblue;
-        fill-opacity: 0.7;
-      }
-
-      .grid .tick {
-        stroke: lightgrey;
-        stroke-opacity: 0.7;
-        shape-rendering: crispEdges;
-      }
-
-      .map-highlight-label {
-        fill: white;
-        fill-opacity: 0.7;
-      }
-
-      .mouse-focus-line {
-        pointer-events: none;
-        stroke-width: 1px;
-        stroke: black;
-      }
-
-      .mouse-drag {
-        fill: @drag-color;
-        pointer-events: all;
-        cursor: move;
-      }
     }
 
-    .chart-container {
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-flex-flow: row wrap;
-      flex-flow: row wrap;
+    .combi-body {
+        position: absolute;
+        width: 100%;
+        top: @combi-header-height;
+        bottom: 0;
 
-      > * {
-        flex: 1 100%;
-        height: 100%;
-      }
+        .chart-container,
+        .map {
+            position: relative;
+            height: 50%;
 
-      .chart-buttons {
-        padding: 5px 0px;
-        flex: 0 0 30px;
-        div {
-          margin: 5px 0px;
+            .axis {
+                text {
+                    font-size: 12px;
+                }
+
+                line,
+                path {
+                    fill: none;
+                    stroke: black;
+                }
+            }
+
+            .graphArea {
+                fill: lightsteelblue;
+                fill-opacity: 0.7;
+            }
+
+            .grid .tick {
+                stroke: lightgrey;
+                stroke-opacity: 0.7;
+                shape-rendering: crispEdges;
+            }
+
+            .map-highlight-label {
+                fill: white;
+                fill-opacity: 0.7;
+            }
+
+            .mouse-focus-line {
+                pointer-events: none;
+                stroke-width: 1px;
+                stroke: black;
+            }
+
+            .mouse-drag {
+                fill: @drag-color;
+                pointer-events: all;
+                cursor: move;
+            }
         }
-      }
 
-      .chart {
-        flex: 14 0;
-      }
+        .chart-container {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+
+            > * {
+                flex: 1 100%;
+                height: 100%;
+            }
+
+            .chart-buttons {
+                padding: 5px 0;
+                flex: 0 0 30px;
+
+                div {
+                    margin: 5px 0;
+                }
+            }
+
+            .chart {
+                flex: 14 0;
+            }
+        }
     }
-  }
 }
 
 .map-buttons {
-  position: absolute;
-  z-index: 11;
-  bottom: 0;
-  width: 50%;
-  margin: 0 25% 17px;
-  text-align: center;
+    position: absolute;
+    z-index: 11;
+    bottom: 0;
+    width: 50%;
+    margin: 0 25% 17px;
+    text-align: center;
 }
