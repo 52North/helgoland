@@ -33,7 +33,7 @@ The following main frameworks are used to provide this application:
 
 ## Quick Start (Configuration)
 
-Download the latest version of [Helgoland](https://github.com/52North/helgoland/releases). 
+Download the latest version of [Helgoland](https://github.com/52North/helgoland/releases).
 
 * Deploy the war-file of the client in your favorite web container (e.g. tomcat)
 * Deploy as a static web page in a web server (e.g. apache)
@@ -42,7 +42,7 @@ Configure your client in the settings.json in the root folder. Check this(link) 
 
 * `defaultProvider` - this is the default selected provider, when the user starts the client
 * `restApiUrls` - this is a list of all supported providers by the client
-  
+
 
 ## License
 
@@ -83,22 +83,21 @@ It comprises:
 
 * git
 * [nodejs](https://nodejs.org)
-* [npm](https://www.npmjs.com/)
-* [grunt](http://gruntjs.com/)
+* [webpack](https://webpack.js.org/)
 
 ### Get ready to start
 
 * `git clone` this repository
 * run `npm install` to get all dependencies (the client uses a qr-code tool to show a permalink of the client status, for this you need to check if the following packages are installed: https://github.com/Automattic/node-canvas#installation)
 
-#### Get a static files folder which can be added to a web-server
+#### Start the client in the development mode
 
-* with `grunt` all files are collected and build in a `dist` folder. The content of this folder can be deployed on a web server.
+* `npm start` starts the client on http://localhost:8000.
 
+#### Build the client
 
-#### Get the client as war-file
-
-* with `grunt buildWar` you get a war-file in the `build`-directory
+* `npm run build` bundles the client to the `dist` folder. The content of this folder can be deployed on a web server.
+* `npm run build` will also generates a war-file in `build`-folder.
 
 #### How to develop
 
