@@ -16,6 +16,9 @@
         "node": true
     },
     "rules": {
-        "semi": 2
+        "semi": 2,
+        "no-console": 0,
+        "no-debugger": 1,
+        "no-unused-vars": 1
     }
 }

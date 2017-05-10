@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const DeployToWar = require('webpack-deploy2war');
 const helpers = require('./helpers');
 
@@ -35,6 +36,12 @@ module.exports = function() {
             }]),
             new DeployToWar({
                 fileName: 'build/client##' + helpers.getVersion() + '-' + buildTime + '.war'
+            }),
+            new BundleAnalyzerPlugin({
+                analyzerMode: 'server',
+                analyzerHost: '127.0.0.1',
+                analyzerPort: 9999,
+                openAnalyzer: false
             })
         ]
     });
