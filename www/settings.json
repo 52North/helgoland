@@ -14,6 +14,7 @@
         "http://geo.irceline.be/sos/api/v1/": "irceline",
         "http://www.fluggs.de/sos2/api/v1/": "fluggs",
         "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
+        "http://localhost:8080/api/": "localhost",
         "data/api/v1/": "localTestInstanz"
     },
     "defaultProvider": {
@@ -104,7 +105,7 @@
     "solveLabels": false,
     "proxyUrl": "https://cors-anywhere.herokuapp.com/",
     "datasetPresenter": {
-        "quantity_profile": [
+        "quantity-profile": [
             {
                 "platformType": "stationary_insitu",
                 "service": "profilePresentDataset"

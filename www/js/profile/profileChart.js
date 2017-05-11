@@ -186,7 +186,7 @@ angular.module('n52.core.profile')
                                 zeroline: true,
                                 hoverformat: '.2f',
                                 showline: false,
-                                rangemode: 'tozero',
+                                // rangemode: 'tozero',
                                 fixedrange: false
                             };
                             if (layout.counterXAxis !== 1) {
