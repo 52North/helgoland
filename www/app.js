@@ -106,26 +106,26 @@ mainApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'templates/views/diagramView.html',
+                template: require('./templates/views/diagramView.html'),
                 reloadOnSearch: false
             })
             .when('/diagram', {
-                templateUrl: 'templates/views/diagramView.html',
+                template: require('./templates/views/diagramView.html'),
                 name: 'navigation.diagram',
                 reloadOnSearch: false
             })
             .when('/map', {
-                templateUrl: 'templates/views/mapView.html',
+                template: require('./templates/views/mapView.html'),
                 name: 'navigation.map',
                 reloadOnSearch: false
             })
             .when('/favorite', {
-                templateUrl: 'templates/views/favoriteView.html',
+                template: require('./templates/views/favoriteView.html'),
                 name: 'navigation.favorite',
                 reloadOnSearch: false
             })
             .when('/profiles', {
-                templateUrl: 'templates/profile/profileView.html',
+                template: require('./templates/profile/profileView.html'),
                 name: 'navigation.profile',
                 reloadOnSearch: false
             })
@@ -133,7 +133,7 @@ mainApp.config(['$routeProvider',
                 name: 'navigation.provider',
                 modal: {
                     controller: 'SwcProviderListModalCtrl',
-                    templateUrl: 'templates/map/provider-list-modal.html'
+                    template: require('./templates/map/provider-list-modal.html')
                 },
                 reloadOnSearch: false
             })
@@ -141,7 +141,7 @@ mainApp.config(['$routeProvider',
                 name: 'navigation.listSelection',
                 modal: {
                     controller: 'ModalWindowCtrl',
-                    templateUrl: 'templates/listSelection/modal-list-selection.html'
+                    template: require('./templates/listSelection/modal-list-selection.html')
                 },
                 reloadOnSearch: false
             })
@@ -149,7 +149,7 @@ mainApp.config(['$routeProvider',
                 name: 'navigation.settings',
                 modal: {
                     controller: 'SwcUserSettingsWindowCtrl',
-                    templateUrl: 'templates/settings/user-settings-modal.html'
+                    template: require('./templates/settings/user-settings-modal.html')
                 },
                 reloadOnSearch: false
             })
