@@ -15,10 +15,10 @@
                 </div>
                 <div id="map" ng-controller="SwcBasicMapCtrl as mapCtrl">
                     <leaflet id="stationMap"
-                             bounds="map.bounds" 
-                             markers="map.markers" 
-                             layers="map.layers" 
-                             paths="map.paths" 
+                             bounds="map.bounds"
+                             markers="map.markers"
+                             layers="map.layers"
+                             paths="map.paths"
                              center="map.center"
                              controls="map.controls"
                              width="100%" height="100%">
@@ -26,7 +26,7 @@
                       <div ng-include="'templates/map/layers-control.html'"/>
                     </leaflet>
                     <swc-station-loading></swc-station-loading>
-                    <div ng-include="'templates/map/search-control.html'"/>
+                    <!-- <div ng-include="'templates/map/search-control.html'"/> -->
                     <div ng-include="'templates/map/zoom-control.html'"/>
                     <div ng-include="'templates/map/locate-control.html'"/>
                 </div>
