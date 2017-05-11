@@ -1,74 +1,57 @@
-<div class="legendItem" style="position: relative;" 
-     ng-controller="SwcToggleSelectionProfileLegendEntryCtrl"
-     ng-style="{'border-color': series.style.color}"
-     ng-class="{'selected': isSelectionToggled}"
-     ng-click="toggleSelection(series)">
-    <div class="loading-overlay"
-         ng-show="series.loadingData"
-         ng-style="{'background-color': series.style.color}">
-        <div class="glyphicon glyphicon-refresh icon-spin"></div>
-    </div>
-    <div ng-controller="SwcToggleInformationCtrl">
+<div ng-if="$ctrl.series">
+    <div class="legendItem" style="position: relative;" ng-style="{'border-color': $ctrl.series.style.color}" ng-class="{'selected': $ctrl.isSelectionToggled}" ng-click="$ctrl.toggleSelection($ctrl.series)">
+        <div class="loading-overlay" ng-show="$ctrl.series.loadingData" ng-style="{'background-color': $ctrl.series.style.color}">
+            <div class="glyphicon glyphicon-refresh icon-spin"></div>
+        </div>
+
         <div class="legendItemheader">
-            <div class="legendItemLabel" ng-style="{color: series.style.color}">
-                <span>{{series.parameters.platform.label}}</span>
+            <div class="legendItemLabel" ng-style="{color: $ctrl.series.style.color}">
+                <span>{{$ctrl.series.label}}</span>
                 <!--<swc-favorite-add-star timeseries="timeseries"></swc-favorite-add-star>-->
             </div>
-            <div class="noDataWarning firstLastEntry" ng-show="series.hasDataInCurrentExtent">
+            <div class="noDataWarning firstLastEntry" ng-show="$ctrl.series.hasDataInCurrentExtent">
                 <div>
                     <span class="glyphicon glyphicon-warning-sign red"></span>
                     <span class="small" translate="legend.entry.noData"></span>
                 </div>
-                <div class="additionalLegendEntry" 
-                     ng-controller="SwcJumpToFirstLatestValuesCtrl"
-                     ng-click="$event.stopPropagation(); jumpToLastTimeStamp(series.lastValue)">
+                <div class="additionalLegendEntry" ng-controller="SwcJumpToFirstLatestValuesCtrl" ng-click="$event.stopPropagation(); jumpToLastTimeStamp($ctrl.series.lastValue)">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     <span class="small" translate="legend.entry.jumpToLastValue"></span>
                 </div>
             </div>
-            <div class="small">{{series.parameters.phenomenon.label}} ({{series.uom}})</div>
-            <!--<div class="small">{{series.parameters.procedure.label}}</div>
-            <div class="small" ng-show="{{series.parameters.category.label !== undefined }}">{{series.parameters.category.label}}</div>-->
+            <div class="small" ng-if="$ctrl.data[0].timestamp">{{$ctrl.data[0].timestamp | date: 'dd.MM.yy HH:mm'}}</div>
+            <div class="small">{{$ctrl.series.seriesParameters.phenomenon.label}} ({{$ctrl.series.uom}})</div>
+            <div class="small">{{$ctrl.series.seriesParameters.procedure.label}}</div>
+            <div class="small" ng-show="{{$ctrl.series.seriesParameters.category.label !== undefined }}">{{$ctrl.series.seriesParameters.category.label}}</div>
         </div>
         <div class="legendicons">
-            <span class="glyphicon glyphicon-eye-close"
-                  ng-controller="SwcToggleProfileLegendEntryCtrl"
-                  ng-class="{'glyphicon-eye-close' : !isToggled, 'glyphicon-eye-open': isToggled}" 
-                  ng-click="$event.stopPropagation(); toggleProfile(series)"></span>
-            <span class="glyphicon glyphicon-map-marker inMap" 
-                  ng-controller="SwcShowInMapCtrl"
-                  ng-click="$event.stopPropagation(); showInMap(series)"></span>
-            <span class="glyphicon glyphicon-pencil changeStyle" 
-                  ng-controller="SwcOpenStyleModalCtrl"
-                  ng-style="{color: series.style.color}" 
-                  ng-click="$event.stopPropagation(); openStyling(series)"></span>
-            <span class="glyphicon glyphicon-info-sign showInfo" 
-                  ng-click="$event.stopPropagation(); showInformation()"></span>
-            <span class="glyphicon glyphicon-remove delete" 
-                  ng-controller="SwcDeleteProfileLegendEntryCtrl"
-                  ng-click="$event.stopPropagation(); removeProfile(series)"></span>
+            <span class="glyphicon glyphicon-eye-close" ng-class="{'glyphicon-eye-close' : !$ctrl.isToggled, 'glyphicon-eye-open': $ctrl.isToggled}" ng-click="$event.stopPropagation(); $ctrl.toggleProfile($ctrl.series)"></span>
+            <!-- <span class="glyphicon glyphicon-map-marker inMap" ng-controller="SwcShowInMapCtrl" ng-click="$event.stopPropagation(); showInMap($ctrl.series)"></span> -->
+            <!-- <span class="glyphicon glyphicon-pencil changeStyle" ng-controller="SwcOpenStyleModalCtrl" ng-style="{color: $ctrl.series.style.color}" ng-click="$event.stopPropagation(); openStyling($ctrl.series)"></span> -->
+            <!-- <span class="glyphicon glyphicon-info-sign showInfo" ng-click="$event.stopPropagation(); showInformation()"></span> -->
+            <span class="glyphicon glyphicon-remove delete" ng-click="$event.stopPropagation(); $ctrl.removeProfile($ctrl.series)"></span>
         </div>
-        <div class="collapseLegendEntry small"> <!-- ng-show="infoVisible" -->
-            <div class="firstLastEntry additionalLegendEntry"
-                 ng-controller="SwcJumpToFirstLatestValuesCtrl"
-                 ng-show="series.firstValue" 
-                 ng-click="$event.stopPropagation(); jumpToFirstTimeStamp(series.firstValue)">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span translate="legend.entry.firstValueAt"></span>
-                <span>{{series.firstValue.timestamp| date: 'dd.MM.yy HH:mm'}}</span>
-                <span class="hidden-medium">({{series.firstValue.value}} {{series.uom}})</span>
-            </div>
-            <div class="firstLastEntry additionalLegendEntry" 
-                 ng-controller="SwcJumpToFirstLatestValuesCtrl"
-                 ng-show="series.lastValue" 
-                 ng-click="$event.stopPropagation(); jumpToLastTimeStamp(series.lastValue)">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span translate="legend.entry.lastValueAt"></span>
-                <span>{{series.lastValue.timestamp| date: 'dd.MM.yy HH:mm'}}</span>
-                <span class="hidden-medium">({{series.lastValue.value}} {{series.uom}})</span> 
-            </div>
-            <swc-profile-time-selector series="series" ng-click="$event.stopPropagation();"></swc-profile-time-selector>
-            <swc-perma-profile series="series" ng-click="$event.stopPropagation();"></swc-perma-profile>
-        </div>
+        <!-- <div class="collapseLegendEntry small">
+                <div class="firstLastEntry additionalLegendEntry"
+                     ng-controller="SwcJumpToFirstLatestValuesCtrl"
+                     ng-show="series.firstValue"
+                     ng-click="$event.stopPropagation(); jumpToFirstTimeStamp(series.firstValue)">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span translate="legend.entry.firstValueAt"></span>
+                    <span>{{series.firstValue.timestamp| date: 'dd.MM.yy HH:mm'}}</span>
+                    <span class="hidden-medium">({{series.firstValue.value}} {{series.uom}})</span>
+                </div>
+                <div class="firstLastEntry additionalLegendEntry"
+                     ng-controller="SwcJumpToFirstLatestValuesCtrl"
+                     ng-show="series.lastValue"
+                     ng-click="$event.stopPropagation(); jumpToLastTimeStamp(series.lastValue)">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span translate="legend.entry.lastValueAt"></span>
+                    <span>{{series.lastValue.timestamp| date: 'dd.MM.yy HH:mm'}}</span>
+                    <span class="hidden-medium">({{series.lastValue.value}} {{series.uom}})</span>
+                </div>
+                <swc-profile-time-selector series="series" ng-click="$event.stopPropagation();"></swc-profile-time-selector>
+                <swc-perma-profile series="series" ng-click="$event.stopPropagation();"></swc-perma-profile>
+            </div> -->
     </div>
 </div>

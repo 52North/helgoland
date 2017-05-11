@@ -1,4 +1,10 @@
 angular.module('n52.core.profile')
+    .controller('SwcProfileCtrl', ['$scope', 'profilesService',
+        function($scope, profilesService) {
+            $scope.datasets = profilesService.profiles;
+            $scope.data = profilesService.profileData;
+        }
+    ])
     .component('profileChart', {
         bindings: {
             datasets: '<',
@@ -29,7 +35,7 @@ angular.module('n52.core.profile')
                 var prepareData = () => {
                     this.chartData = {};
                     for (var id in this.data) {
-                        if (this.data.hasOwnProperty(id) && !this.datasets[id].style.hidden) {
+                        if (this.data.hasOwnProperty(id) && this.data[id].length > 0 && !this.datasets[id].style.hidden) {
                             var data = this.data[id][0];
                             var datasets = this.datasets[id];
                             this.chartData[id] = data;
@@ -102,10 +108,10 @@ angular.module('n52.core.profile')
                                     x: [],
                                     y: [],
                                     type: 'scatter',
-                                    name: dataEntry.label,
+                                    name: '',
                                     yaxis: createYAxis(dataEntry),
                                     xaxis: createXAxis(dataEntry),
-                                    hovertext: 'test',
+                                    hovertext: dataEntry.label,
                                     line: {
                                         color: dataEntry.color,
                                         width: dataEntry.selected ? 5 : 2
@@ -159,6 +165,7 @@ angular.module('n52.core.profile')
                                 anchor: 'free',
                                 hoverformat: '.2r',
                                 side: 'left',
+                                autorange: 'reversed',
                                 showline: false,
                                 title: dataEntry.verticalUnit,
                                 fixedrange: true
@@ -177,6 +184,7 @@ angular.module('n52.core.profile')
                                 axis = layout[key];
                             }
                         }
+                        var range = $window.d3.extent(dataEntry.value, (d) => d.value);
                         if (!axis) {
                             layout.counterXAxis = layout.counterXAxis + 1;
                             axis = layout['xaxis' + layout.counterXAxis] = {
@@ -186,12 +194,15 @@ angular.module('n52.core.profile')
                                 zeroline: true,
                                 hoverformat: '.2f',
                                 showline: false,
+                                range: [range[0], range[1]],
                                 // rangemode: 'tozero',
                                 fixedrange: false
                             };
                             if (layout.counterXAxis !== 1) {
                                 axis.overlaying = 'x';
                             }
+                        } else {
+                            axis.range = $window.d3.extent([range[0], range[1], axis.range[0], axis.range[1]]);
                         }
                         return axis.id;
                     };
@@ -200,7 +211,7 @@ angular.module('n52.core.profile')
                         if (layout.counterYAxis > 1) {
                             for (var key in layout) {
                                 if (layout.hasOwnProperty(key) && key.startsWith('xaxis')) {
-                                    layout[key].domain = [(0.1 * layout.counterYAxis) - 0.1 , 1];
+                                    layout[key].domain = [(0.1 * layout.counterYAxis) - 0.1, 1];
                                 }
                             }
                             var yaxisCount = 0;
@@ -225,6 +236,14 @@ angular.module('n52.core.profile')
                                 }
                             }
                         }
+                        // add offset to xaxis ranges
+                        for (key in layout) {
+                            if (layout.hasOwnProperty(key) && key.startsWith('xaxis')) {
+                                var range = layout[key].range;
+                                var rangeOffset = (range[1] - range[0]) * 0.05;
+                                layout[key].range = [range[0] - rangeOffset, range[1] + rangeOffset];
+                            }
+                        }
                     };
 
                     var drawChart = () => {
@@ -235,7 +254,6 @@ angular.module('n52.core.profile')
                     var redrawChart = () => {
                         $window.Plotly.relayout(scope.uniqueId, {});
                     };
-
 
                 }
             };
