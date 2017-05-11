@@ -21,7 +21,7 @@ angular.module('n52.client.navigation', [])
         return {
             restrict: "E",
             replace: true,
-            templateUrl: "templates/menu/navigation.html",
+            template: require("../templates/menu/navigation.html"),
             controller: ['$scope', '$location', '$uibModal', function($scope, $location, $uibModal) {
                 $scope.routes = routeNavigation.routes;
                 $scope.activeRoute = routeNavigation.activeRoute;
@@ -30,7 +30,7 @@ angular.module('n52.client.navigation', [])
                         $location.url($location.url());
                         $uibModal.open({
                             animation: true,
-                            templateUrl: modal.templateUrl,
+                            template: modal.template,
                             controller: modal.controller
                         });
                     }
