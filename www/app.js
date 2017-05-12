@@ -1,5 +1,5 @@
 import angular from 'angular';
-import 'angular-route';
+import uirouter from 'angular-ui-router';
 import 'angular-ui-bootstrap';
 import 'angular-ui-notification';
 import 'angular-ui-notification/dist/angular-ui-notification.min.css';
@@ -55,7 +55,7 @@ import './js/map.js';
 import './less';
 
 var mainApp = angular.module('jsClient', [
-    'ngRoute',
+    uirouter,
     'ui.bootstrap',
     'ui-notification',
     'LocalStorageModule',
@@ -98,55 +98,47 @@ var mainApp = angular.module('jsClient', [
     'n52.client.map'
 ]);
 
-mainApp.config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider
-            .when('/', {
-                template: require('./templates/views/diagramView.html'),
-                reloadOnSearch: false
-            })
-            .when('/diagram', {
-                template: require('./templates/views/diagramView.html'),
-                name: 'navigation.diagram',
-                reloadOnSearch: false
-            })
-            .when('/map', {
-                template: require('./templates/views/mapView.html'),
-                name: 'navigation.map',
-                reloadOnSearch: false
-            })
-            .when('/favorite', {
-                template: require('./templates/views/favoriteView.html'),
-                name: 'navigation.favorite',
-                reloadOnSearch: false
-            })
-            .when('/map/provider', {
-                name: 'navigation.provider',
-                modal: {
-                    controller: 'SwcProviderListModalCtrl',
-                    template: require('./templates/map/provider-list-modal.html')
-                },
-                reloadOnSearch: false
-            })
-            .when('/diagram/listSelection', {
-                name: 'navigation.listSelection',
-                modal: {
-                    controller: 'ModalWindowCtrl',
-                    template: require('./templates/listSelection/modal-list-selection.html')
-                },
-                reloadOnSearch: false
-            })
-            .when('/diagram/settings', {
-                name: 'navigation.settings',
-                modal: {
-                    controller: 'SwcUserSettingsWindowCtrl',
-                    template: require('./templates/settings/user-settings-modal.html')
-                },
-                reloadOnSearch: false
-            })
-            .otherwise({
-                redirectTo: '/'
-            });
+mainApp.config(['$stateProvider',
+    function($stateProvider) {
+        $stateProvider.state('diagram', {
+            label: 'navigation.diagram',
+            url: '/diagram',
+            template: require('./templates/views/diagramView.html')
+        });
+        $stateProvider.state('map', {
+            label: 'navigation.map',
+            url: '/map',
+            template: require('./templates/views/mapView.html')
+        });
+        $stateProvider.state('favorite', {
+            label: 'navigation.favorite',
+            url: '/favorite',
+            template: require('./templates/views/favoriteView.html')
+        });
+        $stateProvider.state('provider', {
+            label: 'navigation.provider',
+            url: '/provider',
+            modal: {
+                controller: 'SwcProviderListModalCtrl',
+                template: require('./templates/map/provider-list-modal.html')
+            }
+        });
+        $stateProvider.state('listSelection', {
+            label: 'navigation.listSelection',
+            url: '/list-selection',
+            modal: {
+                controller: 'ModalWindowCtrl',
+                template: require('./templates/listSelection/modal-list-selection.html')
+            }
+        });
+        $stateProvider.state('settings', {
+            label: 'navigation.settings',
+            url: '/settings',
+            modal: {
+                controller: 'SwcUserSettingsWindowCtrl',
+                template: require('./templates/settings/user-settings-modal.html')
+            }
+        });
     }
 ]);
 
