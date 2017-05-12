@@ -98,8 +98,10 @@ var mainApp = angular.module('jsClient', [
     'n52.client.map'
 ]);
 
-mainApp.config(['$stateProvider',
-    function($stateProvider) {
+mainApp.config(['$stateProvider', '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
+        // default state
+        $urlRouterProvider.otherwise('/diagram');
         $stateProvider.state('diagram', {
             label: 'navigation.diagram',
             url: '/diagram',
