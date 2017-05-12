@@ -202,18 +202,14 @@ mainApp.config(["$provide", function($provide) {
     }]);
 }]);
 
+mainApp.constant("templatesMapping", require('./templates/templates.json'));
+
 // start the app after loading the settings.json
-angular.injector(["ng"]).get("$q").all([fetchConfig(), fetchTemplates()]).then(bootstrapApp);
+angular.injector(["ng"]).get("$q").all([fetchConfig()]).then(bootstrapApp);
 
 function fetchConfig() {
     return angular.injector(["ng"]).get("$http").get("settings.json").then(function(response) {
         mainApp.constant("config", response.data);
-    });
-}
-
-function fetchTemplates() {
-    return angular.injector(["ng"]).get("$http").get('templates/templates.json').then(response => {
-        mainApp.constant("templatesMapping", response.data);
     });
 }
 

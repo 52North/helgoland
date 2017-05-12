@@ -16,6 +16,7 @@ require('./main/icon.less');
 require('./main/main.less');
 require('./main/navigation.less');
 require('./main/offcanvas.less');
+require('./main/sub-menu.less');
 require('./map/controls.less');
 require('./map/layers-control.less');
 require('./map/locate-control.less');

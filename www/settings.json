@@ -110,5 +110,14 @@
                 "service": "profilePresentDataset"
             }
         ]
-    }
+    },
+    "menuItems": [
+        "diagram",
+        "profiles",
+        "map",
+        "favorite",
+        "provider",
+        "listSelection",
+        "settings"
+    ]
 }
