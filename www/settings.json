@@ -104,5 +104,13 @@
     "showScale": true,
     "timebufferFactor": 0.1,
     "solveLabels": false,
-    "proxyUrl": "https://cors-anywhere.herokuapp.com/"
+    "proxyUrl": "https://cors-anywhere.herokuapp.com/",
+    "menuItems": [
+        "diagram",
+        "map",
+        "favorite",
+        "provider",
+        "listSelection",
+        "settings"
+    ]
 }
