@@ -116,11 +116,6 @@ mainApp.config(['$stateProvider', '$urlRouterProvider',
             url: '/map',
             template: require('./templates/views/mapView.html')
         });
-        $stateProvider.state('profiles', {
-            label: 'navigation.profile',
-            url: '/profiles',
-            template: require('./templates/profile/profileView.html')
-        });
         $stateProvider.state('favorite', {
             label: 'navigation.favorite',
             url: '/favorite',

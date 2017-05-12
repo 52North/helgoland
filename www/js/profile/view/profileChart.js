@@ -70,9 +70,9 @@ angular.module('n52.core.profile')
                         dragmode: 'pan',
                         margin: {
                             l: 40,
-                            r: 50,
+                            r: 10,
                             b: 40,
-                            t: 40
+                            t: 10
                             // pad: 100
                         },
                         hovermode: 'closest',
