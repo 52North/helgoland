@@ -1,0 +1,3 @@
+<div ng-repeat="item in $ctrl.items | orderBy:'+label'" ng-click="$ctrl.selectItem(item)">
+    <swc-label-mapper label="item.label"></swc-label-mapper>
+</div>

@@ -64,6 +64,10 @@ angular.module('n52.core.profile')
                 return this.profiles[id];
             };
 
+            this.hasProfiles = () => {
+                return Object.keys(this.profiles).length > 0;
+            };
+
             this.removeProfile = (id) => {
                 delete this.profiles[id];
                 delete this.profileData[id];

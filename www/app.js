@@ -50,7 +50,10 @@ import 'n52-sensorweb-client-core/src/js/Table';
 import 'n52-sensorweb-client-core/src/js/Time';
 import 'n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js';
 
-import './js/profile/index.js';
+import './js/profile';
+import './js/provider/selector';
+import './js/selection/service-filter-selector';
+import './js/selection/platform-map-selector';
 import './js/navigation.js';
 import './js/map.js';
 

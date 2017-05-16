@@ -40,5 +40,8 @@
     "n52.core.timeUi.time-range-modal": "templates/time/time-range-modal.html",
     "n52.core.timeUi.predefined-time-range-button": "templates/time/predefined-time-range-button.html",
     "n52.core.timeUi.custom-time-range-selection": "templates/time/custom-time-range-selection.html",
-    "n52.core.profile.profile-chart": "templates/profile/profile-chart.html"
+    "n52.core.profile.profile-chart": "templates/profile/profile-chart.html",
+    "n52.core.provider.provider-selector": "templates/provider/provider-selector.html",
+    "n52.core.selection.service-filter-selector": "templates/selection/service-filter-selector.html",
+    "n52.core.selection.platform-map-selector": "templates/selection/platform-map-selector.html"
 }
