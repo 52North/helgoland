@@ -1,16 +1,34 @@
 {
     "name": "helgoland",
-    "version": "1.0.0",
     "description": "visual exploration and analysis of sensor web data",
+    "version": "1.0.0",
     "author": "Jan Schulte",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/52North/sensorweb-thin-client"
-    },
     "bugs": {
         "url": "https://github.com/52North/sensorweb-thin-client/issues"
     },
-    "license": "Apache2",
+    "dependencies": {
+        "angular": "^1.6.3",
+        "angular-loader": "^1.6.3",
+        "angular-local-storage": "0.2.2",
+        "angular-resource": "^1.6.3",
+        "angular-sanitize": "^1.6.3",
+        "angular-translate": "^2.15.1",
+        "angular-translate-loader-static-files": "^2.15.1",
+        "angular-ui-bootstrap": "^1.2.0",
+        "angular-ui-notification": "^0.3.5",
+        "angular-ui-router": "^1.0.0-rc.1",
+        "bootstrap": "^3.3.7",
+        "bootstrap-datetime-picker": "^2.4.4",
+        "flot": "flot/flot#v0.8.3",
+        "flot-downsample": "janschulte/flot-downsample",
+        "font-awesome": "^4.7.0",
+        "leaflet.markercluster": "0.4.0",
+        "n52-sensorweb-client-core": "52North/sensorweb-client-core#develop",
+        "ng-table": "0.8.3",
+        "qr-js": "1.1.4",
+        "ui-leaflet": "janschulte/ui-leaflet#master",
+        "xslt": "^0.7.0"
+    },
     "devDependencies": {
         "angular-mocks": "^1.5.0",
         "archiver": "^0.12.0",
@@ -53,38 +71,20 @@
         "webpack-dev-server": "2.2.0",
         "webpack-merge": "^4.1.0"
     },
+    "license": "Apache2",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/52North/sensorweb-thin-client"
+    },
     "scripts": {
         "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
-        "server": "webpack-dev-server --history-api-fallback --inline --progress",
-        "test": "karma start",
-        "test-watch": "karma start --auto-watch --no-single-run",
-        "start": "npm run server",
-        "prod": "http-server dist -p 8000 -c-1",
         "docker": "npm run docker:build && npm run docker:run",
         "docker:build": "docker build -t helgoland:latest -f Dockerfile-local .",
-        "docker:run": "docker run -p 8001:80 helgoland"
-    },
-    "dependencies": {
-        "angular": "^1.6.3",
-        "angular-loader": "^1.6.3",
-        "angular-local-storage": "0.2.2",
-        "angular-resource": "^1.6.3",
-        "angular-sanitize": "^1.6.3",
-        "angular-translate": "^2.15.1",
-        "angular-translate-loader-static-files": "^2.15.1",
-        "angular-ui-bootstrap": "^1.2.0",
-        "angular-ui-notification": "^0.3.5",
-        "angular-ui-router": "^1.0.0-rc.1",
-        "bootstrap": "^3.3.7",
-        "bootstrap-datetime-picker": "^2.4.4",
-        "flot": "flot/flot",
-        "flot-downsample": "janschulte/flot-downsample",
-        "font-awesome": "^4.7.0",
-        "leaflet.markercluster": "0.4.0",
-        "n52-sensorweb-client-core": "52North/sensorweb-client-core#develop",
-        "ng-table": "0.8.3",
-        "qr-js": "1.1.4",
-        "ui-leaflet": "janschulte/ui-leaflet#master",
-        "xslt": "^0.7.0"
+        "docker:run": "docker run -p 8001:80 helgoland",
+        "prod": "http-server dist -p 8000 -c-1",
+        "server": "webpack-dev-server --history-api-fallback --inline --progress",
+        "start": "npm run server",
+        "test": "karma start",
+        "test-watch": "karma start --auto-watch --no-single-run"
     }
 }
