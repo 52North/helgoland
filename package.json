@@ -14,7 +14,7 @@
     "angular-sanitize": "^1.6.3",
     "angular-translate": "^2.15.1",
     "angular-translate-loader-static-files": "^2.15.1",
-    "angular-ui-bootstrap": "^1.2.0",
+    "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-notification": "^0.3.5",
     "angular-ui-router": "^1.0.0-rc.1",
     "bootstrap": "^3.3.7",
