@@ -21,7 +21,6 @@ import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap-datetime-picker';
-import 'angular-ui-bootstrap/dist/ui-bootstrap-tpls.js';
 import 'bootstrap-datetime-picker/css/bootstrap-datetimepicker.css';
 import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
