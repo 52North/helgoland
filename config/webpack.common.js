@@ -1,3 +1,9 @@
+require('style-loader');
+require('raw-loader');
+require('less-loader');
+require('css-loader');
+require('file-loader');
+require('autoprefixer');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const helpers = require('./helpers');
