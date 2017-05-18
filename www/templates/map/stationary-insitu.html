@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="modal-body stationContent">
-        <div ng-repeat="dataset in platform.datasets" ng-if="phenomenonId == null || dataset.seriesParameters.phenomenon.id === phenomenonId">
+        <div ng-repeat="dataset in platform.datasets" ng-if="phenomenonId == null || dataset.seriesParameters.phenomenon.id == phenomenonId">
             <h4>{{dataset.label}}</h4>
             <div class="tsItem" ng-class="{selected : selected}">
                 <div class="checkbox">

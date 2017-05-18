@@ -103,11 +103,10 @@ angular.module('n52.core.profile')
                         templateUrl: 'n52.core.map.stationary-insitu',
                         resolve: {
                             selection: () => {
-                                var url = this.selectedProvider.providerUrl;
                                 return {
                                     stationId: platform.id,
-                                    phenomenonId: this.selectedPhenomenon,
-                                    url: url
+                                    phenomenonId: this.selectedPhenomenon.id,
+                                    url: this.selectedProvider.providerUrl
                                 };
                             }
                         },
