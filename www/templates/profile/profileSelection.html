@@ -1,19 +1,59 @@
-<provider-selector provider-list="$ctrl.providerList" provider-blacklist="$ctrl.providerBlacklist" filter="$ctrl.providerFilter" on-provider-selected="$ctrl.providerSelected(provider)"></provider-selector>
-<div ng-if="$ctrl.selectedProviderUrl">
-    <hr>
-    <service-filter-selector endpoint="'offering'" filter="$ctrl.offeringFilter" service-url="$ctrl.selectedProviderUrl" on-item-selected="$ctrl.offeringSelected(item)"></service-filter-selector>
+<div class="profile-selection">
+    <uib-tabset active="$ctrl.tabActive">
+        <uib-tab index="0">
+            <uib-tab-heading>
+                Select Provider
+                <br/>
+                <span ng-if="$ctrl.selectedProvider">{{$ctrl.selectedProvider.label}}</span>
+                <span ng-if="!$ctrl.selectedProvider">-</span>
+            </uib-tab-heading>
+            <provider-selector provider-list="$ctrl.providerList" provider-blacklist="$ctrl.providerBlacklist" filter="$ctrl.providerFilter" on-provider-selected="$ctrl.providerSelected(provider)"></provider-selector>
+        </uib-tab>
+        <uib-tab index="1" disable="!$ctrl.selectedProvider">
+            <uib-tab-heading>
+                Select Offering
+                <br/>
+                <span ng-if="$ctrl.selectedOffering">{{$ctrl.selectedOffering.label}}</span>
+                <span ng-if="!$ctrl.selectedOffering">-</span>
+            </uib-tab-heading>
+            <div ng-if="$ctrl.selectedProvider">
+                <service-filter-selector endpoint="'offering'" filter="$ctrl.offeringFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedOffering.id" on-item-selected="$ctrl.offeringSelected(item)"></service-filter-selector>
+            </div>
+        </uib-tab>
+        <uib-tab index="2" disable="!$ctrl.selectedOffering">
+            <uib-tab-heading>
+                Select Phenomenony
+                <br/>
+                <span ng-if="$ctrl.selectedPhenomenon">{{$ctrl.selectedPhenomenon.label}}</span>
+                <span ng-if="!$ctrl.selectedPhenomenon">-</span>
+            </uib-tab-heading>
+            <div ng-if="$ctrl.selectedOffering">
+                <service-filter-selector endpoint="'phenomenon'" filter="$ctrl.phenomenonFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedPhenomenon.id" on-item-selected="$ctrl.phenomenonSelected(item)"></service-filter-selector>
+            </div>
+        </uib-tab>
+        <uib-tab index="3" disable="!$ctrl.selectedPhenomenon">
+            <uib-tab-heading>
+                Select Procedure
+                <br/>
+                <span ng-if="$ctrl.selectedProcedure">{{$ctrl.selectedProcedure.label}}</span>
+                <span ng-if="!$ctrl.selectedProcedure">-</span>
+            </uib-tab-heading>
+            <div class="map-selector" ng-if="$ctrl.selectedPhenomenon">
+                <service-filter-selector endpoint="'procedure'" filter="$ctrl.procedureFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedProcedure.id" on-item-selected="$ctrl.procedureSelected(item)"></service-filter-selector>
+            </div>
+        </uib-tab>
+        <uib-tab index="4" disable="!$ctrl.selectedProcedure">
+            <uib-tab-heading>
+                Select Station
+                <br/>
+                <span>&nbsp;</span>
+            </uib-tab-heading>
+            <div ng-if="$ctrl.selectedProcedure">
+                <platform-map-selector map-id="profile" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.platformFilter" on-platform-selected="$ctrl.platformSelected(platform)" map-layers="$ctrl.layers" cluster="$ctrl.cluster"></platform-map-selector>
+            </div>
+        </uib-tab>
+        <!-- <div ng-if="$ctrl.selectedPlatform">
+            {{$ctrl.selectedPlatform}}
+        </div> -->
+    </uib-tabset>
 </div>
-<div ng-if="$ctrl.selectedOffering">
-    <hr>
-    <service-filter-selector endpoint="'phenomenon'" filter="$ctrl.phenomenonFilter" service-url="$ctrl.selectedProviderUrl" on-item-selected="$ctrl.phenomenonSelected(item)"></service-filter-selector>
-</div>
-<div ng-if="$ctrl.selectedPhenomenon">
-    <hr>
-    <service-filter-selector endpoint="'procedure'" filter="$ctrl.procedureFilter" service-url="$ctrl.selectedProviderUrl" on-item-selected="$ctrl.procedureSelected(item)"></service-filter-selector>
-</div>
-<div ng-if="$ctrl.selectedProcedure">
-    <platform-map-selector map-id="profile" service-url="$ctrl.selectedProviderUrl" filter="$ctrl.platformFilter" on-platform-selected="$ctrl.platformSelected(platform)" map-layers="$ctrl.layers" cluster="$ctrl.cluster"></platform-map-selector>
-</div>
-<!-- <div ng-if="$ctrl.selectedPlatform">
-    {{$ctrl.selectedPlatform}}
-</div> -->

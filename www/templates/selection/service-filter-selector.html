@@ -1,3 +1,3 @@
-<div ng-repeat="item in $ctrl.items | orderBy:'+label'" ng-click="$ctrl.selectItem(item)">
+<div class="service-filter-selector-entry" ng-repeat="item in $ctrl.items | orderBy:'+label'" ng-click="$ctrl.selectItem(item)" ng-class="{'selected': $ctrl.selectionId === item.id}">
     <swc-label-mapper label="item.label"></swc-label-mapper>
 </div>

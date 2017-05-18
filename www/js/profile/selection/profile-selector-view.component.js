@@ -6,6 +6,7 @@ angular.module('n52.core.profile')
         template: require('../../../templates/profile/profileSelection.html'),
         controller: ['providerService', 'settingsService', '$uiRouterGlobals', '$location', '$uibModal',
             function(providerService, settingsService, $uiRouterGlobals, $location, $uibModal) {
+                this.tabActive = 0;
                 var valueType = 'quantity-profile';
 
                 this.layers = {
@@ -18,10 +19,10 @@ angular.module('n52.core.profile')
                     var filter = {
                         valueTypes: valueType
                     };
-                    if (this.selectedOffering) filter.offering = this.selectedOffering;
-                    if (this.selectedPhenomenon) filter.phenomenon = this.selectedPhenomenon;
+                    if (this.selectedOffering) filter.offering = this.selectedOffering.id;
+                    if (this.selectedPhenomenon) filter.phenomenon = this.selectedPhenomenon.id;
                     if (this.selectedProcedure) {
-                        filter.procedure = this.selectedProcedure;
+                        filter.procedure = this.selectedProcedure.id;
                         filter.expanded = true;
                     }
                     return filter;
@@ -63,32 +64,35 @@ angular.module('n52.core.profile')
                     this.providerList = settingsService.restApiUrls;
                     this.providerBlacklist = settingsService.providerBlackList;
                     this.providerFilter = createFilter();
-                    this.selectedPlatform({id: 'stationary_insitu_146'});
                 };
 
                 this.providerSelected = (provider) => {
+                    this.tabActive = 1;
                     this.selectedOffering = null;
                     this.selectedPhenomenon = null;
                     this.selectedProcedure = null;
-                    this.selectedProviderUrl = provider.providerUrl;
+                    this.selectedProvider = provider;
                     this.offeringFilter = createFilter();
                 };
 
                 this.offeringSelected = (offering) => {
+                    this.tabActive = 2;
                     this.selectedPhenomenon = null;
                     this.selectedProcedure = null;
-                    this.selectedOffering = offering.id;
+                    this.selectedOffering = offering;
                     this.phenomenonFilter = createFilter();
                 };
 
                 this.phenomenonSelected = (phenomenon) => {
+                    this.tabActive = 3;
                     this.selectedProcedure = null;
-                    this.selectedPhenomenon = phenomenon.id;
+                    this.selectedPhenomenon = phenomenon;
                     this.procedureFilter = createFilter();
                 };
 
                 this.procedureSelected = (procedure) => {
-                    this.selectedProcedure = procedure.id;
+                    this.tabActive = 4;
+                    this.selectedProcedure = procedure;
                     this.platformFilter = createFilter();
                 };
 
@@ -99,7 +103,7 @@ angular.module('n52.core.profile')
                         templateUrl: 'n52.core.map.stationary-insitu',
                         resolve: {
                             selection: () => {
-                                var url = this.selectedProviderUrl;
+                                var url = this.selectedProvider.providerUrl;
                                 return {
                                     stationId: platform.id,
                                     phenomenonId: this.selectedPhenomenon,

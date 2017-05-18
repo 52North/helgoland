@@ -45,6 +45,11 @@ angular.module('n52.core.profile')
                 this.$onInit = () => {
                     createEventListener();
                     createLayer();
+                    setTimeout(() => {
+                        leafletData.getMap(this.mapId).then((map) => {
+                            map.invalidateSize();
+                        });
+                    }, 10);
                 };
 
                 this.$onChanges = () => {

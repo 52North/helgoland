@@ -4,6 +4,7 @@ angular.module('n52.core.profile')
             endpoint: '<',
             serviceUrl: '<',
             filter: '<',
+            selectionId: '<',
             itemSelected: "&onItemSelected",
         },
         templateUrl: 'n52.core.selection.service-filter-selector',
