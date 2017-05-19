@@ -4,8 +4,8 @@ angular.module('n52.core.profile')
             series: '<'
         },
         template: require('../../../templates/profile/profileSelection.html'),
-        controller: ['providerService', 'settingsService', '$uiRouterGlobals', '$location', '$uibModal',
-            function(providerService, settingsService, $uiRouterGlobals, $location, $uibModal) {
+        controller: ['settingsService', '$location', '$uibModal', 'swcProfileSelectorViewStateSrvc',
+            function(settingsService, $location, $uibModal, swcProfileSelectorViewStateSrvc) {
                 this.tabActive = 0;
                 var valueType = 'quantity-profile';
 
@@ -32,6 +32,7 @@ angular.module('n52.core.profile')
                     if (url) this.providerSelected({
                         providerUrl: url
                     });
+                    if (swcProfileSelectorViewStateSrvc.selectedProvider) this.providerSelected(swcProfileSelectorViewStateSrvc.selectedProvider);
                 };
 
                 var initOffering = (id) => {
@@ -39,6 +40,7 @@ angular.module('n52.core.profile')
                     if (Number.isInteger(id)) this.offeringSelected({
                         id: id
                     });
+                    if (swcProfileSelectorViewStateSrvc.selectedOffering) this.offeringSelected(swcProfileSelectorViewStateSrvc.selectedOffering);
                 };
 
                 var initPhenomenon = (id) => {
@@ -46,6 +48,7 @@ angular.module('n52.core.profile')
                     if (Number.isInteger(id)) this.phenomenonSelected({
                         id: id
                     });
+                    if (swcProfileSelectorViewStateSrvc.selectedPhenomenon) this.phenomenonSelected(swcProfileSelectorViewStateSrvc.selectedPhenomenon);
                 };
 
                 var initProcedure = (id) => {
@@ -53,7 +56,13 @@ angular.module('n52.core.profile')
                     if (Number.isInteger(id)) this.procedureSelected({
                         id: id
                     });
+                    if (swcProfileSelectorViewStateSrvc.selectedProcedure) this.procedureSelected(swcProfileSelectorViewStateSrvc.selectedProcedure);
                 };
+
+                var setSelectedProvider = (provider) => this.selectedProvider = swcProfileSelectorViewStateSrvc.selectedProvider = provider;
+                var setSelectedOffering = (offering) => this.selectedOffering = swcProfileSelectorViewStateSrvc.selectedOffering = offering;
+                var setSelectedPhenomenon = (phenomenon) => this.selectedPhenomenon = swcProfileSelectorViewStateSrvc.selectedPhenomenon = phenomenon;
+                var setSelectedProcedure = (procedure) => this.selectedProcedure = swcProfileSelectorViewStateSrvc.selectedProcedure = procedure;
 
                 this.$onInit = () => {
                     initProvider($location.search().url);
@@ -66,33 +75,39 @@ angular.module('n52.core.profile')
                     this.providerFilter = createFilter();
                 };
 
-                this.providerSelected = (provider) => {
+                this.providerSelected = (provider, clearPrevious) => {
                     this.tabActive = 1;
-                    this.selectedOffering = null;
-                    this.selectedPhenomenon = null;
-                    this.selectedProcedure = null;
-                    this.selectedProvider = provider;
+                    if (clearPrevious) {
+                        setSelectedOffering(null);
+                        setSelectedPhenomenon(null);
+                        setSelectedProcedure(null);
+                    }
+                    setSelectedProvider(provider);
                     this.offeringFilter = createFilter();
                 };
 
-                this.offeringSelected = (offering) => {
+                this.offeringSelected = (offering, clearPrevious) => {
                     this.tabActive = 2;
-                    this.selectedPhenomenon = null;
-                    this.selectedProcedure = null;
-                    this.selectedOffering = offering;
+                    if (clearPrevious) {
+                        setSelectedPhenomenon(null);
+                        setSelectedProcedure(null);
+                    }
+                    setSelectedOffering(offering);
                     this.phenomenonFilter = createFilter();
                 };
 
-                this.phenomenonSelected = (phenomenon) => {
+                this.phenomenonSelected = (phenomenon, clearPrevious) => {
                     this.tabActive = 3;
-                    this.selectedProcedure = null;
-                    this.selectedPhenomenon = phenomenon;
+                    if (clearPrevious) {
+                        setSelectedProcedure(null);
+                    }
+                    setSelectedPhenomenon(phenomenon);
                     this.procedureFilter = createFilter();
                 };
 
                 this.procedureSelected = (procedure) => {
                     this.tabActive = 4;
-                    this.selectedProcedure = procedure;
+                    setSelectedProcedure(procedure);
                     this.platformFilter = createFilter();
                 };
 
@@ -106,7 +121,7 @@ angular.module('n52.core.profile')
                                 return {
                                     stationId: platform.id,
                                     phenomenonId: this.selectedPhenomenon.id,
-                                    url: this.selectedProvider.providerUrl
+                                    url: swcProfileSelectorViewStateSrvc.selectedProvider.providerUrl
                                 };
                             }
                         },
@@ -115,4 +130,7 @@ angular.module('n52.core.profile')
                 };
             }
         ]
-    });
+    })
+    .service('swcProfileSelectorViewStateSrvc', [
+        function() {}
+    ]);
