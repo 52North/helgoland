@@ -19,6 +19,7 @@ angular.module('n52.core.profile')
                     var filter = {
                         valueTypes: valueType
                     };
+                    if (this.selectedProvider) filter.service = this.selectedProvider.id;
                     if (this.selectedOffering) filter.offering = this.selectedOffering.id;
                     if (this.selectedPhenomenon) filter.phenomenon = this.selectedPhenomenon.id;
                     if (this.selectedProcedure) {

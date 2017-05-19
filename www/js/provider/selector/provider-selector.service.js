@@ -16,12 +16,13 @@ angular.module('n52.core.profile')
                 return $q((resolve) => {
                     seriesApiInterface.getServices(url, null, filter)
                         .then(providers => {
-                            providers.forEach(provider => {
+                            var usableProviders = providers.map((provider) => {
                                 if (!isServiceBlacklisted(provider.id, url, blacklist)) {
                                     provider.providerUrl = url;
-                                    resolve(provider);
+                                    return provider;
                                 }
                             });
+                            resolve(usableProviders);
                         });
                 });
             };

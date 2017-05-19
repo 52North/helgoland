@@ -18,9 +18,11 @@ angular.module('n52.core.profile')
                         providerSelectorService.fetchProvidersOfAPI(url, this.providerBlacklist, this.filter)
                             .then(res => {
                                 this.loadingCount--;
-                                if (res.quantities.platforms > 0) {
-                                    this.providers.push(res);
-                                }
+                                res.forEach(entry => {
+                                    if (entry.quantities.platforms > 0) {
+                                        this.providers.push(entry);
+                                    }
+                                });
                             });
                     });
                 };
