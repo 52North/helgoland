@@ -13,6 +13,7 @@ angular.module('n52.core.profile')
             function(seriesApiInterface, $scope, leafletData) {
 
                 this.markers = {};
+                var clickHandler;
 
                 var createLayer = () => {
                         this.mapLayers.overlays.platforms = {
@@ -32,7 +33,7 @@ angular.module('n52.core.profile')
                         }
                     };
                     var eventNam = 'leafletDirectiveMarker.' + this.mapId + '.' + 'click';
-                    $scope.$on(eventNam, (event, item) => {
+                    clickHandler = $scope.$on(eventNam, (event, item) => {
                         seriesApiInterface.getPlatforms(item.modelName, this.serviceUrl)
                             .then(entry => {
                                 this.platformSelected({
@@ -52,11 +53,18 @@ angular.module('n52.core.profile')
                     }, 10);
                 };
 
+                this.$onDestroy = () => {
+                    clickHandler();
+                };
+
                 this.$onChanges = () => {
                     this.loading = true;
+                    var markers = {};
+                    leafletData.getLayers(this.mapId).then((layers) => {
+                        layers.overlays.platforms.clearLayers();
+                    });
                     seriesApiInterface.getPlatforms(null, this.serviceUrl, this.filter)
                         .then((res) => {
-                            var markers = {};
                             res.forEach(entry => {
                                 markers[entry.id] = {
                                     lat: entry.geometry.coordinates[1],
