@@ -90,8 +90,12 @@ angular.module('n52.core.profile')
                         showTips: false
                     };
 
-                    angular.element($window).bind('resize', () => {
+                    angular.element($window).on('resize', () => {
                         redrawChart();
+                    });
+
+                    scope.$on('$destroy', () => {
+                        angular.element($window).off('resize');
                     });
 
                     scope.$watch('data', () => {
