@@ -16,14 +16,19 @@ angular.module('n52.core.profile')
                     this.providers = [];
                     list.forEach(url => {
                         providerSelectorService.fetchProvidersOfAPI(url, this.providerBlacklist, this.filter)
-                            .then(res => {
-                                this.loadingCount--;
-                                res.forEach(entry => {
-                                    if (entry.quantities.platforms > 0) {
-                                        this.providers.push(entry);
-                                    }
-                                });
-                            });
+                            .then(
+                                res => {
+                                    this.loadingCount--;
+                                    res.forEach(entry => {
+                                        if (entry.quantities.platforms > 0) {
+                                            this.providers.push(entry);
+                                        }
+                                    });
+                                },
+                                () => {
+                                    this.loadingCount--;
+                                }
+                            );
                     });
                 };
                 this.selectProvider = function(provider) {

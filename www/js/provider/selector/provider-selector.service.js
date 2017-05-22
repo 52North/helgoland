@@ -13,17 +13,20 @@ angular.module('n52.core.profile')
             };
 
             this.fetchProvidersOfAPI = (url, blacklist, filter) => {
-                return $q((resolve) => {
+                return $q((resolve, reject) => {
                     seriesApiInterface.getServices(url, null, filter)
-                        .then(providers => {
-                            var usableProviders = providers.map((provider) => {
-                                if (!isServiceBlacklisted(provider.id, url, blacklist)) {
-                                    provider.providerUrl = url;
-                                    return provider;
-                                }
-                            });
-                            resolve(usableProviders);
-                        });
+                        .then(
+                            providers => {
+                                var usableProviders = providers.map((provider) => {
+                                    if (!isServiceBlacklisted(provider.id, url, blacklist)) {
+                                        provider.providerUrl = url;
+                                        return provider;
+                                    }
+                                });
+                                resolve(usableProviders);
+                            },
+                            error => reject(error)
+                        );
                 });
             };
         }
