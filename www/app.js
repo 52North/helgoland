@@ -48,11 +48,13 @@ import 'n52-sensorweb-client-core/src/js/Styling';
 import 'n52-sensorweb-client-core/src/js/Table';
 import 'n52-sensorweb-client-core/src/js/Time';
 import 'n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js';
+import 'n52-sensorweb-client-core/src/js/series/selection/list-selection.component';
+import 'n52-sensorweb-client-core/src/js/selection/multi-service-filter-selector/component';
+import 'n52-sensorweb-client-core/src/js/selection/platform-map-selector/component';
+import 'n52-sensorweb-client-core/src/js/selection/service-filter-selector/component';
 
 import './js/profile';
 import './js/provider/selector';
-import './js/selection/service-filter-selector';
-import './js/selection/platform-map-selector';
 import './js/navigation.js';
 import './js/map.js';
 
@@ -94,6 +96,8 @@ var mainApp = angular.module('jsClient', [
     'n52.core.phenomena',
     'n52.core.provider',
     'n52.core.userSettings',
+    'n52.core.selection',
+    'n52.core.series',
     'n52.core.startup',
     'n52.core.style',
     'n52.core.table',
