@@ -1,3 +1,5 @@
+require('eslint-loader');
+require('eslint');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');

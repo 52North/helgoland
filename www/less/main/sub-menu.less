@@ -1,0 +1,54 @@
+@import "../variables.less";
+
+.sub-menu {
+    .navbar {
+        color: @menu-selected-text-color;
+        background-color: @menu-selected-background-color;
+        border: none;
+        border-radius: 0;
+        min-height: 30px !important;
+    }
+
+    .navbar-brand,
+    .navbar-nav > li > a {
+        padding-top: 5px !important;
+        padding-bottom: 0 !important;
+        height: 30px;
+    }
+
+    .navbar-nav {
+        & > li {
+            & > a {
+                color: @menu-selected-text-color;
+
+                &:hover {
+                    color: @menu-text-color;
+                    background-color: @menu-background-color;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        & > .active {
+            & > a {
+                color: @menu-text-color;
+                background-color: @menu-background-color;
+
+                &:focus,
+                &:hover {
+                    color: @menu-text-color;
+                    background-color: @menu-background-color;
+                }
+            }
+        }
+    }
+}
+
+.sub-menu-content {
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    padding: 5px;
+}

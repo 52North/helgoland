@@ -33,14 +33,16 @@ module.exports = function() {
             }, {
                 from: 'www/templates',
                 to: 'templates'
+            }, {
+                from: 'www/images',
+                to: 'images'
             }]),
             new DeployToWar({
                 fileName: 'build/client##' + helpers.getVersion() + '-' + buildTime + '.war'
             }),
             new BundleAnalyzerPlugin({
-                analyzerMode: 'server',
-                analyzerHost: '127.0.0.1',
-                analyzerPort: 9999,
+                analyzerMode: 'static',
+                reportFilename: './report.html',
                 openAnalyzer: false
             })
         ]

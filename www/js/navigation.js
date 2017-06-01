@@ -1,22 +1,35 @@
 angular.module('n52.client.navigation', [])
-    .factory('routeNavigation', ['$route', '$location', function($route, $location) {
-        var routes = [];
-        angular.forEach($route.routes, function(route, path) {
-            if (route.name) {
-                routes.push({
-                    path: path,
-                    name: route.name,
-                    modal: route.modal
+    .factory('routeNavigation', ['$location', '$state', 'settingsService',
+        function($location, $state, settingsService) {
+            var addRoute = (route) => {
+                if (route.label) {
+                    routes.push({
+                        path: route.url,
+                        label: route.label,
+                        modal: route.modal
+                    });
+                }
+            };
+
+            var routes = [];
+            if (settingsService.menuItems) {
+                settingsService.menuItems.forEach(entry => {
+                    addRoute($state.get(entry));
+                });
+            } else {
+                angular.forEach($state.get(), function(route) {
+                    addRoute(route);
                 });
             }
-        });
-        return {
-            routes: routes,
-            activeRoute: function(route) {
-                return route.path === $location.path();
-            }
-        };
-    }])
+
+            return {
+                routes: routes,
+                activeRoute: function(route) {
+                    return $location.path().startsWith(route.path);
+                }
+            };
+        }
+    ])
     .directive('navigation', ['routeNavigation', function(routeNavigation) {
         return {
             restrict: "E",
