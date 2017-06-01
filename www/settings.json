@@ -108,6 +108,7 @@
   "menuItems": [
     "diagram",
     "map",
+    "mobileDiagram",
     "favorite",
     "provider",
     "listSelection",
