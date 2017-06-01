@@ -7,6 +7,7 @@
     "url": "https://github.com/52North/sensorweb-thin-client/issues"
   },
   "dependencies": {
+    "Flot": "github:flot/flot",
     "angular": "^1.6.3",
     "angular-loader": "^1.6.3",
     "angular-local-storage": "^0.5.2",
@@ -19,7 +20,6 @@
     "angular-ui-router": "^1.0.0-rc.1",
     "bootstrap": "^3.3.7",
     "bootstrap-datetime-picker": "^2.4.4",
-    "flot": "flot/flot#v0.8.3",
     "flot-downsample": "janschulte/flot-downsample",
     "font-awesome": "^4.7.0",
     "leaflet": "^0.7.7",
