@@ -1,6 +1,6 @@
 <div>
     <uib-accordion close-others="true">
-        <uib-accordion-group ng-repeat="param in parameters" is-open="param.isOpen" is-disabled="param.isDisabled">
+        <div uib-accordion-group class="panel-default" ng-repeat="param in parameters" is-open="param.isOpen" is-disabled="param.isDisabled">
             <uib-accordion-heading>
                 <span ng-class="{'text-muted' : param.isDisabled}">
                     <span ng-bind-html="param.header | translate"></span>
@@ -15,6 +15,6 @@
             <div ng-repeat="item in param.items | orderBy:'+label'" ng-click="openItem(item)">
                 <swc-label-mapper label="item.label"></swc-label-mapper>
             </div>
-        </uib-accordion-group>
+        </div uib-accordion-group>
     </uib-accordion>
 </div>
