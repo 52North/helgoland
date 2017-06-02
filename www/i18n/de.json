@@ -20,7 +20,8 @@
     "provider": "Anbieter",
     "listSelection": "Listenauswahl",
     "trajectories": "Trajektorien",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "profile": "Profile"
   },
   "chart": {
     "noTimeseriesSelected": "Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.",
@@ -276,6 +277,9 @@
   "inform": {
     "error": "Ein Fehler ist aufgetreten: ",
     "warn": "Bitte beachten Sie: "
+  },
+  "profile": {
+    "selectCurrentTimestamp": "Zeige als extra Profil"
   },
   "metadataOutput": {
     "selectRawProcedureFormat": "Procedure als Rohdata",

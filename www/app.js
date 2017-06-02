@@ -28,6 +28,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import 'font-awesome/css/font-awesome.min.css';
 var d3 = require('d3');
 require('d3-extended')(d3);
+window.Plotly = require('plotly.js/lib/core');
 // import 'qr-js/qr.js';
 
 import 'n52-sensorweb-client-core/src/js/base';
@@ -51,8 +52,12 @@ import 'n52-sensorweb-client-core/src/js/Table';
 import 'n52-sensorweb-client-core/src/js/Time';
 import 'n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js';
 import 'n52-sensorweb-client-core/src/js/series/selection/list-selection.component';
+import 'n52-sensorweb-client-core/src/js/selection/provider-selector/component';
 import 'n52-sensorweb-client-core/src/js/selection/multi-service-filter-selector/component';
+import 'n52-sensorweb-client-core/src/js/selection/platform-map-selector/component';
+import 'n52-sensorweb-client-core/src/js/selection/service-filter-selector/component';
 
+import './js/profile';
 import './js/navigation.js';
 import './js/map.js';
 
@@ -68,6 +73,7 @@ var mainApp = angular.module('jsClient', [
     'ngSanitize',
     'ngTable',
     'ngResource',
+    // 'rzModule',
     'n52.core.barChart',
     'n52.core.base',
     'n52.core.dataLoading',
@@ -102,7 +108,8 @@ var mainApp = angular.module('jsClient', [
     'n52.core.translate',
     'n52.client.navigation',
     'n52.client.map',
-    'n52.core.mobile'
+    'n52.core.mobile',
+    'n52.core.profile'
 ]);
 
 mainApp.config(['$stateProvider', '$urlRouterProvider',

@@ -28,6 +28,7 @@
     "leaflet.markercluster": "0.4.0",
     "n52-sensorweb-client-core": "52North/sensorweb-client-core#develop",
     "ng-table": "0.8.3",
+    "plotly.js": "^1.27.0",
     "qr-js": "1.1.4",
     "ui-leaflet": "janschulte/ui-leaflet#master"
   },

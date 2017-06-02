@@ -126,6 +126,10 @@
     "measurement": [{
       "service": "mobilePresentDataset",
       "platformType": "mobile_insitu"
+    }],
+    "quantity-profile": [{
+      "platformType": "stationary_insitu",
+      "service": "profilePresentDataset"
     }]
   },
   "timebufferFactor": 0.3,
@@ -134,6 +138,30 @@
   "menuItems": [
     "diagram",
     "map",
+    "profiles",
+    "mobileDiagram",
+    "favorite",
+    "provider",
+    "listSelection",
+    "settings"
+  ],
+  "datasetPresenter": {
+    "measurement": [{
+      "service": "mobilePresentDataset",
+      "platformType": "mobile_insitu"
+    }],
+    "quantity-profile": [{
+      "platformType": "stationary_insitu",
+      "service": "profilePresentDataset"
+    }]
+  },
+  "timebufferFactor": 0.3,
+  "solveLabels": false,
+  "proxyUrl": "https://cors-anywhere.herokuapp.com/",
+  "menuItems": [
+    "diagram",
+    "map",
+    "profiles",
     "mobileDiagram",
     "favorite",
     "provider",

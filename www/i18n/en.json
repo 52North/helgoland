@@ -20,7 +20,8 @@
     "provider": "Provider",
     "listSelection": "List selection",
     "settings": "Settings",
-    "trajectories": "Trajectories"
+    "trajectories": "Trajectories",
+    "profile": "Profiles"
   },
   "chart": {
     "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",
@@ -276,6 +277,9 @@
   "inform": {
     "error": "An error occured: ",
     "warn": "Please remember that: "
+  },
+  "profile": {
+    "selectCurrentTimestamp": "show as extra profile"
   },
   "metadataOutput": {
     "selectRawProcedureFormat": "Select raw format for procedure",
