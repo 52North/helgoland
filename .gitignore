@@ -4,3 +4,4 @@
 /dist/
 /build/
 /*.sh
+package-lock.json
