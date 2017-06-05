@@ -4,6 +4,9 @@ require('less-loader');
 require('css-loader');
 require('file-loader');
 require('autoprefixer');
+require('awesome-typescript-loader');
+require('angular2-template-loader');
+
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const helpers = require('./helpers');
@@ -13,7 +16,11 @@ const clientTitle = 'Helgoland';
 module.exports = function(options) {
 
     return {
-        entry: './www/app.js',
+        entry: './www/main.ts',
+        resolve: {
+            extensions: ['.ts', '.js', '.json']
+            // modules: [helpers.root('www')]
+        },
         externals: {
             jquery: 'jQuery'
         },
@@ -64,6 +71,19 @@ module.exports = function(options) {
                 test: /\.html$/,
                 loader: 'raw-loader',
                 exclude: [helpers.root('./www/index.html')]
+            }, {
+                test: /\.ts$/,
+                use: [{
+                        loader: 'awesome-typescript-loader',
+                        options: {
+                            configFileName: 'tsconfig.json'
+                        }
+                    },
+                    {
+                        loader: 'angular2-template-loader'
+                    }
+                ],
+                exclude: [/\.(spec|e2e)\.ts$/, /node_modules/]
             }]
         },
         plugins: [
@@ -77,7 +97,13 @@ module.exports = function(options) {
                 template: './www/index.html',
                 title: clientTitle,
                 lastBuildTime: options.buildTime
-            })
+            }),
+            new webpack.ContextReplacementPlugin(
+                // The (\\|\/) piece accounts for path separators in *nix and Windows
+                /angular(\\|\/)core(\\|\/)@angular/,
+                helpers.root('www'), // location of your src
+                {} // a map of your routes
+            )
         ]
     };
 };
