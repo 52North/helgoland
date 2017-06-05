@@ -5,7 +5,8 @@ import * as angular from 'angular';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { UpgradeModule } from '@angular/upgrade/static';
 
-import { AppModule } from './appModule';
+import { AppModule } from './app.module';
+require('./app.upgrade');
 
 import { mainApp } from './app';
 

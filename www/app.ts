@@ -203,38 +203,3 @@ mainApp.config(["$provide", function($provide) {
 }]);
 
 mainApp.constant("templatesMapping", require('./templates/templates.json'));
-
-// // start the app after loading the settings.json
-// angular.injector(["ng"]).get("$q").all([fetchConfig()]).then(bootstrapApp);
-//
-// function fetchConfig() {
-//     return angular.injector(["ng"]).get("$http").get("settings.json").then(function(response) {
-//         mainApp.constant("config", response.data);
-//     });
-// }
-//
-// function bootstrapApp() {
-//     angular.element(document).ready(function() {
-//         var injector = angular.bootstrap(document, ["jsClient"], {
-//             strictDi: true
-//         });
-//         // initilize parameter reader
-//         var startupService = injector.get('startupService');
-//         startupService.registerServices([
-//             'SetTimeseriesOfStatusService',
-//             'SetTimeParameterService',
-//             'SetInternalTimeseriesService',
-//             'SetConstellationService',
-//             'SetConstellationServiceHack',
-//             'SetLanguageService'
-//         ]);
-//         startupService.checkServices();
-//         // init mapService to have load stations directly
-//         injector.get('mapService');
-//     });
-// }
-//
-import { TestComponent } from './src/test.component';
-import { downgradeComponent } from '@angular/upgrade/static';
-
-mainApp.directive('test', downgradeComponent({component: TestComponent}) as angular.IDirectiveFactory);
