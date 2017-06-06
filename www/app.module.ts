@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static';
 
-import { TestComponent } from './src/test.component';
+import { MultiServiceFilterSelectorComponent } from './src/components/selection/multi-service-filter-selector.component';
 
 @NgModule({
     imports: [
@@ -10,10 +10,10 @@ import { TestComponent } from './src/test.component';
         UpgradeModule
     ],
     declarations: [
-        TestComponent
+        MultiServiceFilterSelectorComponent
     ],
     entryComponents: [
-        TestComponent
+        MultiServiceFilterSelectorComponent
     ]
 })
 

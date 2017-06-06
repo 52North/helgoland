@@ -1,5 +1,7 @@
 import 'core-js/client/shim.min';
 import 'zone.js/dist/zone';
+// import 'jquery';
+
 import * as angular from 'angular';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

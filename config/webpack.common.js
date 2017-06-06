@@ -22,7 +22,7 @@ module.exports = function(options) {
             // modules: [helpers.root('www')]
         },
         externals: {
-            jquery: 'jQuery'
+            jQuery: 'jquery'
         },
         module: {
             rules: [{
