@@ -27,15 +27,11 @@
     }
   ],
   "restApiUrls": {
-    "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
-    "http://nexos.dev.52north.org/proxy/api/v1/": "trios",
     "http://esonet.epsevg.upc.es:8082/obsea-sos-webapp/api/v1/": "esonet",
-    "http://www.fluggs.de/sos2/api/v1/": "wvFluggs",
-    "http://geo.irceline.be/sos/api/v1/": "irceline",
-    "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/": "52nSensorweb",
-    "http://nexos.dev.52north.org/52n-sos-upc/api/v1/": "52nupc",
+    "http://nexos.dev.52north.org/52n-sos-upc/api/": "52nupc",
+    "http://nexos.demo.52north.org/52n-sos-nexos-test/api/": "nexosTest",
     "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg",
-    "http://sos-server.hcmr.gr/webapp/api/v1/": "hcmr"
+    "https://nexos.demo.52north.org/series-sos-proxy/api/": "sosProxy"
   },
   "defaultProvider": {
     "serviceID": "1",
