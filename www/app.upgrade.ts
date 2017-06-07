@@ -7,4 +7,8 @@ import { mainApp } from './app';
 import { downgradeComponent } from '@angular/upgrade/static';
 
 mainApp
-    .directive('multiServiceFilterSelector', downgradeComponent({ component: MultiServiceFilterSelectorComponent }) as angular.IDirectiveFactory);
+    .directive('multiServiceFilterSelector', downgradeComponent({
+        component: MultiServiceFilterSelectorComponent,
+        inputs: ['endpoint', 'filterList'],
+        outputs: ['itemSelected']
+    }) as angular.IDirectiveFactory);
