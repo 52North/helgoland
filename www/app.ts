@@ -103,7 +103,7 @@ export const mainApp = angular.module('jsClient', [
 ]);
 
 mainApp.config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+    ($stateProvider, $urlRouterProvider) => {
         // default state
         $urlRouterProvider.otherwise('/diagram');
         $stateProvider.state('diagram', {
@@ -149,14 +149,14 @@ mainApp.config(['$stateProvider', '$urlRouterProvider',
 ]);
 
 mainApp.config(['$translateProvider', 'settingsServiceProvider', '$locationProvider',
-    function($translateProvider, settingsServiceProvider, $locationProvider) {
+    ($translateProvider, settingsServiceProvider, $locationProvider) => {
         $translateProvider.useStaticFilesLoader({
             prefix: 'i18n/',
             suffix: '.json'
         });
         $locationProvider.hashPrefix('');
-        var suppLang = [];
-        angular.forEach(settingsServiceProvider.$get().supportedLanguages, function(lang) {
+        const suppLang = [];
+        angular.forEach(settingsServiceProvider.$get().supportedLanguages, (lang) => {
             suppLang.push(lang.code);
         });
         $translateProvider.registerAvailableLanguageKeys(suppLang);
@@ -169,8 +169,8 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', '$locationProvi
     }
 ]);
 
-mainApp.filter('objectCount', function() {
-    return function(item) {
+mainApp.filter('objectCount', () => {
+    return (item) => {
         if (item) {
             return Object.keys(item).length;
         } else {
@@ -179,20 +179,20 @@ mainApp.filter('objectCount', function() {
     };
 });
 
-mainApp.config(["$provide", function($provide) {
+mainApp.config(['$provide', ($provide) => {
     // Use the `decorator` solution to substitute or attach behaviors to
     // original service instance; @see angular-mocks for more examples....
 
-    $provide.decorator('$log', ["$delegate", function($delegate) {
+    $provide.decorator('$log', ['$delegate', ($delegate) => {
         // Save the original $log.debug()
-        var debugFn = $delegate.debug;
+        const debugFn = $delegate.debug;
 
-        $delegate.info = function() {
-            var args = [].slice.call(arguments),
-                now = moment().format('HH:mm:ss.SSS');
+        $delegate.info = () => {
+            const args = [].slice.call(arguments);
+            const now = moment().format('HH:mm:ss.SSS');
 
             // Prepend timestamp
-            args[0] = now + " - " + args[0];
+            args[0] = now + ' - ' + args[0];
 
             // Call the original with the output prepended with formatted timestamp
             debugFn.apply(null, args);
@@ -202,4 +202,4 @@ mainApp.config(["$provide", function($provide) {
     }]);
 }]);
 
-mainApp.constant("templatesMapping", require('./templates/templates.json'));
+mainApp.constant('templatesMapping', require('./templates/templates.json'));

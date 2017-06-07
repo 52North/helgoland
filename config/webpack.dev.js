@@ -1,5 +1,8 @@
 require('eslint-loader');
 require('eslint');
+require('tslint');
+require('tslint-loader');
+require('tslib');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -18,6 +21,14 @@ module.exports = function() {
                 test: /\.js$/,
                 loader: 'eslint-loader',
                 exclude: /node_modules\/(?!(n52-sensorweb-client-core)\/).*/,
+            }, {
+                test: /\.ts$/,
+                loader: 'tslint-loader',
+                options: {
+                    configFile: 'tslint.json',
+                    typeCheck: true
+                },
+                exclude: [/node_modules\/\.(spec|e2e)\.ts$/]
             }]
         },
         plugins: [

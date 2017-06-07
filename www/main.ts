@@ -12,17 +12,17 @@ require('./app.upgrade');
 
 import { mainApp } from './app';
 
-angular.injector(["ng"]).get("$q").all([fetchConfig()]).then(bootstrapApp);
+angular.injector(['ng']).get('$q').all([fetchConfig()]).then(bootstrapApp);
 
 function fetchConfig() {
-    return angular.injector(["ng"]).get("$http").get("settings.json").then(function(response) {
-        mainApp.constant("config", response.data);
+    return angular.injector(['ng']).get('$http').get('settings.json').then((response) => {
+        mainApp.constant('config', response.data);
     });
 }
 
 function bootstrapApp() {
-    angular.element(document).ready(function() {
-        platformBrowserDynamic().bootstrapModule(AppModule).then(platformRef => {
+    angular.element(document).ready(() => {
+        platformBrowserDynamic().bootstrapModule(AppModule).then((platformRef) => {
             const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
             upgrade.bootstrap(document.documentElement, ['jsClient']);
             // var temp = angular.injector(["jsClient"]);
