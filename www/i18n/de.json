@@ -291,6 +291,8 @@
       "phenomenon": "Phänomen",
       "dataset": "Dataset"
     },
+    "permalinkTooltip": "Erstelle ein Permalink für die gewählte Trajektorie",
+    "reloadTooltip": "Wiederholendes Laden der Trajektorie",
     "noSupport": "Anbieter liefert keine Trajektorien",
     "map": {
       "loading": "Daten werden geladen"

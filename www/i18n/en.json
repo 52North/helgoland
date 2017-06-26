@@ -291,6 +291,8 @@
       "phenomenon": "Phenomenon",
       "dataset": "Dataset"
     },
+    "permalinkTooltip": "Create a permalink for the selected trajectory",
+    "reloadTooltip": "Refresh trajectory data",
     "noSupport": "Provider doesn't deliver trajectories",
     "map": {
       "loading": "Daten werden geladen"
