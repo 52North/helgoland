@@ -283,7 +283,7 @@
     "showCapabilities": "Show Capabilities of the SOS"
   },
   "trajectories": {
-    "header": "Track selection by list",
+    "header": "Trajectory selection",
     "headers": {
       "platform": "Mobile platform",
       "offering": "Offering",

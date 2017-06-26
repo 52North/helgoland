@@ -283,7 +283,7 @@
     "showCapabilities": "Zeige SOS-Capabilities"
   },
   "trajectories": {
-    "header": "Listenbasierte Fahrtenauswahl",
+    "header": "Trajektorienauswahl",
     "headers": {
       "platform": "Mobile Platform",
       "offering": "Offering",
