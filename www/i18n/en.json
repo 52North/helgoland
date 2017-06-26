@@ -294,6 +294,12 @@
     "noSupport": "Provider doesn't deliver trajectories",
     "map": {
       "loading": "Daten werden geladen"
+    },
+    "diagram": {
+      "distanceTooltip": "x-axis figures the disatance",
+      "timeTooltip": "x-axis figures the timeframe",
+      "ticksTooltip": "x-axis figures the measurement ticks linear",
+      "lineDotsTooltip": "Timeseries as line/dots"
     }
   }
 }
