@@ -20,14 +20,14 @@
     "angular-ui-router": "^1.0.0-rc.1",
     "bootstrap": "^3.3.7",
     "bootstrap-datetime-picker": "^2.4.4",
-    "flot-downsample": "janschulte/flot-downsample",
+    "flot-downsample": "github:janschulte/flot-downsample",
     "font-awesome": "^4.7.0",
     "leaflet": "^0.7.7",
     "leaflet.markercluster": "0.4.0",
-    "n52-sensorweb-client-core": "52North/sensorweb-client-core#develop",
+    "n52-sensorweb-client-core": "github:52North/sensorweb-client-core#develop",
     "ng-table": "0.8.3",
     "qr-js": "1.1.4",
-    "ui-leaflet": "janschulte/ui-leaflet#master"
+    "ui-leaflet": "github:janschulte/ui-leaflet#master"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.0",
