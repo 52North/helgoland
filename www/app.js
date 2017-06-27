@@ -12,6 +12,7 @@ import 'angular-sanitize';
 import 'ng-table';
 import 'ng-table/dist/ng-table.css';
 import 'angular-resource';
+import 'jquery';
 import 'Flot/jquery.flot.js';
 import 'Flot/jquery.flot.time.js';
 import 'Flot/jquery.flot.crosshair.js';
