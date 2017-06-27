@@ -15,7 +15,7 @@ module.exports = function(options) {
     return {
         entry: './www/app.js',
         externals: {
-            jquery: 'jQuery'
+            jQuery: 'jquery'
         },
         module: {
             rules: [{
