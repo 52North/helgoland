@@ -295,7 +295,8 @@
     "reloadTooltip": "Refresh trajectory data",
     "noSupport": "Provider doesn't deliver trajectories",
     "map": {
-      "loading": "Daten werden geladen"
+      "loading": "Daten werden geladen",
+      "lineDotsTooltip": "Display trajectory as points/line"
     },
     "diagram": {
       "distanceTooltip": "x-axis figures the disatance",

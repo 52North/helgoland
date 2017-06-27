@@ -295,7 +295,8 @@
     "reloadTooltip": "Wiederholendes Laden der Trajektorie",
     "noSupport": "Anbieter liefert keine Trajektorien",
     "map": {
-      "loading": "Daten werden geladen"
+      "loading": "Daten werden geladen",
+      "lineDotsTooltip": "Trajektoriendarstellung durch Punkte/Linie"
     },
     "diagram": {
       "distanceTooltip": "X-Achse bildet die Distanz ab",
