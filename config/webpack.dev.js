@@ -20,6 +20,9 @@ module.exports = function() {
                 exclude: /node_modules\/(?!(n52-sensorweb-client-core)\/).*/,
             }]
         },
+        resolve: {
+            symlinks: false
+        },
         plugins: [
             new ExtractTextPlugin({
                 filename: 'css/[name].css',
