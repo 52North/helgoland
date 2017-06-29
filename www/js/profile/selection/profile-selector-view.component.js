@@ -1,11 +1,9 @@
 angular.module('n52.core.profile')
     .component('swcProfileSelectorView', {
-        bindings: {
-            series: '<'
-        },
-        template: require('../../../templates/profile/profileSelection.html'),
-        controller: ['settingsService', '$location', '$uibModal', 'swcProfileSelectorViewStateSrvc',
-            function(settingsService, $location, $uibModal, swcProfileSelectorViewStateSrvc) {
+        template: require('../../../templates/profile/profile-selection-view.html'),
+        controller: ['settingsService', 'profileSelectorPermalinkSrvc', '$uibModal', 'swcProfileSelectorViewStateSrvc',
+            function(settingsService, profileSelectorPermalinkSrvc, $uibModal, swcProfileSelectorViewStateSrvc) {
+
                 this.tabActive = 0;
                 var valueType = 'quantity-profile';
 
@@ -29,48 +27,29 @@ angular.module('n52.core.profile')
                     return filter;
                 };
 
-                var initProvider = (url) => {
-                    if (url) this.providerSelected({
-                        providerUrl: url
-                    });
-                    if (swcProfileSelectorViewStateSrvc.selectedProvider) this.providerSelected(swcProfileSelectorViewStateSrvc.selectedProvider);
+                var setSelectedProvider = (provider) => {
+                    this.selectedProvider = swcProfileSelectorViewStateSrvc.selectedProvider = provider;
                 };
 
-                var initOffering = (id) => {
-                    id = parseInt(id);
-                    if (Number.isInteger(id)) this.offeringSelected({
-                        id: id
-                    });
-                    if (swcProfileSelectorViewStateSrvc.selectedOffering) this.offeringSelected(swcProfileSelectorViewStateSrvc.selectedOffering);
+                var setSelectedOffering = (offering) => {
+                    this.selectedOffering = swcProfileSelectorViewStateSrvc.selectedOffering = offering;
                 };
 
-                var initPhenomenon = (id) => {
-                    id = parseInt(id);
-                    if (Number.isInteger(id)) this.phenomenonSelected({
-                        id: id
-                    });
-                    if (swcProfileSelectorViewStateSrvc.selectedPhenomenon) this.phenomenonSelected(swcProfileSelectorViewStateSrvc.selectedPhenomenon);
+                var setSelectedPhenomenon = (phenomenon) => {
+                    this.selectedPhenomenon = swcProfileSelectorViewStateSrvc.selectedPhenomenon = phenomenon;
                 };
 
-                var initProcedure = (id) => {
-                    id = parseInt(id);
-                    if (Number.isInteger(id)) this.procedureSelected({
-                        id: id
-                    });
-                    if (swcProfileSelectorViewStateSrvc.selectedProcedure) this.procedureSelected(swcProfileSelectorViewStateSrvc.selectedProcedure);
+                var setSelectedProcedure = (procedure) => {
+                    this.selectedProcedure = swcProfileSelectorViewStateSrvc.selectedProcedure = procedure;
                 };
-
-                var setSelectedProvider = (provider) => this.selectedProvider = swcProfileSelectorViewStateSrvc.selectedProvider = provider;
-                var setSelectedOffering = (offering) => this.selectedOffering = swcProfileSelectorViewStateSrvc.selectedOffering = offering;
-                var setSelectedPhenomenon = (phenomenon) => this.selectedPhenomenon = swcProfileSelectorViewStateSrvc.selectedPhenomenon = phenomenon;
-                var setSelectedProcedure = (procedure) => this.selectedProcedure = swcProfileSelectorViewStateSrvc.selectedProcedure = procedure;
 
                 this.$onInit = () => {
-                    initProvider($location.search().url);
-                    initOffering($location.search().offering);
-                    initPhenomenon($location.search().phenomenon);
-                    initProcedure($location.search().procedure);
-                    $location.params;
+                    profileSelectorPermalinkSrvc.validatePermalink().then(() => {
+                        if (swcProfileSelectorViewStateSrvc.selectedProvider) this.providerSelected(swcProfileSelectorViewStateSrvc.selectedProvider);
+                        if (swcProfileSelectorViewStateSrvc.selectedOffering) this.offeringSelected(swcProfileSelectorViewStateSrvc.selectedOffering);
+                        if (swcProfileSelectorViewStateSrvc.selectedPhenomenon) this.phenomenonSelected(swcProfileSelectorViewStateSrvc.selectedPhenomenon);
+                        if (swcProfileSelectorViewStateSrvc.selectedProcedure) this.procedureSelected(swcProfileSelectorViewStateSrvc.selectedProcedure);
+                    });
                     this.providerList = settingsService.restApiUrls;
                     this.providerBlacklist = settingsService.providerBlackList;
                     this.providerFilter = createFilter();
@@ -132,6 +111,86 @@ angular.module('n52.core.profile')
             }
         ]
     })
+    .component('swcProfileSelectorPermalink', {
+        template: require('../../../templates/menu/permalink.html'),
+        controller: ['profileSelectorPermalinkSrvc', 'permalinkOpener',
+            function(profileSelectorPermalinkSrvc, permalinkOpener) {
+                this.permalink = () => {
+                    permalinkOpener.openPermalink(profileSelectorPermalinkSrvc.createPermalink());
+                };
+            }
+        ]
+    })
+    .service('profileSelectorPermalinkSrvc', ['$location', 'seriesApiInterface', 'swcProfileSelectorViewStateSrvc', '$q',
+        function($location, seriesApiInterface, swcProfileSelectorViewStateSrvc, $q) {
+            var providerUrlParam = 'url';
+            var providerIdParam = 'id';
+            var offeringParam = 'offering';
+            var phenomenonParam = 'phenomenon';
+            var procedureParam = 'procedure';
+
+            this.createPermalink = () => {
+                var parameter = '';
+                if (swcProfileSelectorViewStateSrvc.selectedProvider) {
+                    parameter += providerUrlParam + '=' + swcProfileSelectorViewStateSrvc.selectedProvider.providerUrl;
+                    parameter += '&' + providerIdParam + '=' + swcProfileSelectorViewStateSrvc.selectedProvider.id;
+                    if (swcProfileSelectorViewStateSrvc.selectedOffering) {
+                        parameter += '&' + offeringParam + '=' + swcProfileSelectorViewStateSrvc.selectedOffering.id;
+                        if (swcProfileSelectorViewStateSrvc.selectedPhenomenon) {
+                            parameter += '&' + phenomenonParam + '=' + swcProfileSelectorViewStateSrvc.selectedPhenomenon.id;
+                            if (swcProfileSelectorViewStateSrvc.selectedProcedure) {
+                                parameter += '&' + procedureParam + '=' + swcProfileSelectorViewStateSrvc.selectedProcedure.id;
+                            }
+                        }
+                    }
+                }
+                if (parameter) {
+                    return $location.absUrl() + '?' + parameter;
+                } else {
+                    return $location.absUrl();
+                }
+            };
+
+            this.validatePermalink = () => {
+                return $q((resolve) => {
+                    if ($location.search()[providerUrlParam] && $location.search()[providerIdParam]) {
+                        var url = $location.search()[providerUrlParam];
+                        seriesApiInterface.getServices(url, $location.search()[providerIdParam])
+                            .then(res => {
+                                res.providerUrl = url;
+                                swcProfileSelectorViewStateSrvc.selectedProvider = res;
+                                if ($location.search()[offeringParam]) {
+                                    seriesApiInterface.getOfferings($location.search()[offeringParam], url)
+                                        .then(offering => {
+                                            swcProfileSelectorViewStateSrvc.selectedOffering = offering;
+                                            if ($location.search()[phenomenonParam]) {
+                                                seriesApiInterface.getPhenomena($location.search()[phenomenonParam], url)
+                                                    .then(phenomenon => {
+                                                        swcProfileSelectorViewStateSrvc.selectedPhenomenon = phenomenon;
+                                                        if ($location.search()[procedureParam]) {
+                                                            seriesApiInterface.getProcedures($location.search()[procedureParam], url)
+                                                                .then(procedure => {
+                                                                    swcProfileSelectorViewStateSrvc.selectedProcedure = procedure;
+                                                                });
+                                                        } else {
+                                                            resolve();
+                                                        }
+                                                    });
+                                            } else {
+                                                resolve();
+                                            }
+                                        });
+                                } else {
+                                    resolve();
+                                }
+                            });
+                    } else {
+                        resolve();
+                    }
+                });
+            };
+        }
+    ])
     .service('swcProfileSelectorViewStateSrvc', [
         function() {}
     ]);
