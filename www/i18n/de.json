@@ -23,6 +23,9 @@
     "settings": "Einstellungen",
     "profile": "Profile"
   },
+  "contacts": {
+    "header": "Kontakte"
+  },
   "chart": {
     "noTimeseriesSelected": "Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.",
     "outsideOfDataRange": "Außerhalb des Datenbereichs!",

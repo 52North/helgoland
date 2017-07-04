@@ -60,6 +60,7 @@ import 'n52-sensorweb-client-core/src/js/selection/service-filter-selector/compo
 
 import './js/profile';
 import './js/navigation.js';
+import './js/contact';
 import './js/map.js';
 
 import './less';

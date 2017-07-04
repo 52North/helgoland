@@ -23,6 +23,9 @@
     "trajectories": "Trajectories",
     "profile": "Profiles"
   },
+  "contacts": {
+    "header": "Contacts"
+  },
   "chart": {
     "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",
     "outsideOfDataRange": "Outside of data range!",
