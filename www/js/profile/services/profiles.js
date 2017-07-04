@@ -33,12 +33,6 @@ angular.module('n52.core.profile')
                 statusService.status.profiles[profile.internalId] = profile;
             };
 
-            var deleteProfile = (id) => {
-                if (statusService.status.profiles.hasOwnProperty(id)) {
-                    delete statusService.status.profiles[id];
-                }
-            };
-
             var _addToProfile = (profile) => {
                 profile.style = {
                     hidden: false,
@@ -48,6 +42,7 @@ angular.module('n52.core.profile')
                 profile.internalId = profile.apiUrl + 'datasets/' + profile.id;
                 profile.permaProfiles = {};
                 this.profiles[profile.internalId] = profile;
+                notifyProfileObservers();
                 saveProfile(profile);
                 _loadData(profile);
             };
@@ -71,7 +66,18 @@ angular.module('n52.core.profile')
             this.removeProfile = (id) => {
                 delete this.profiles[id];
                 delete this.profileData[id];
-                deleteProfile(id);
+                if (statusService.status.profiles.hasOwnProperty(id)) {
+                    delete statusService.status.profiles[id];
+                }
+                notifyProfileObservers();
+            };
+
+            this.clearAllProfiles = () => {
+                for (var key in this.profiles) {
+                    if (this.profiles.hasOwnProperty(key)) {
+                        this.removeProfile(key);
+                    }
+                }
             };
 
             this.isProfileToggled = (id) => {
@@ -103,6 +109,17 @@ angular.module('n52.core.profile')
 
             this.removePermaProfile = (id, timestamp) => {
                 delete this.profiles[id].permaProfiles[timestamp];
+            };
+
+            // observer for profiles
+            var observerCallbacksProfile = [];
+
+            this.registerProfileObserver = (cb) => {
+                observerCallbacksProfile.push(cb);
+            };
+
+            var notifyProfileObservers = () => {
+                observerCallbacksProfile.forEach(cb => cb());
             };
 
             init();

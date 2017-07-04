@@ -4,7 +4,6 @@
   "undefinedUomString": "-",
   "aggregateServices": true,
   "saveStatus": true,
-  "preselectedFirstTimeseriesInStationView": true,
   "providerBlackList": [{
       "serviceID": "srv_6d9ccea8d609ecb74d4a512922bb7cee",
       "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
@@ -32,10 +31,6 @@
     "http://nexos.demo.52north.org/52n-sos-nexos-test/api/": "nexosTest",
     "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg",
     "https://nexos.demo.52north.org/series-sos-proxy/api/": "sosProxy"
-  },
-  "defaultProvider": {
-    "serviceID": "1",
-    "url": "http://esonet.epsevg.upc.es:8082/obsea-sos-webapp/api/v1/"
   },
   "chartOptions": {
     "yaxis": {
@@ -116,8 +111,9 @@
     }
   },
   "showScale": true,
-  "refreshDataInterval": 60000,
-  "defaultGroupedAxis": false,
+  "timebufferFactor": 0.3,
+  "solveLabels": false,
+  "proxyUrl": "https://cors-anywhere.herokuapp.com/",
   "datasetPresenter": {
     "measurement": [{
       "service": "mobilePresentDataset",
@@ -128,32 +124,6 @@
       "service": "profilePresentDataset"
     }]
   },
-  "timebufferFactor": 0.3,
-  "solveLabels": false,
-  "proxyUrl": "https://cors-anywhere.herokuapp.com/",
-  "menuItems": [
-    "diagram",
-    "map",
-    "profiles",
-    "mobileDiagram",
-    "favorite",
-    "provider",
-    "listSelection",
-    "settings"
-  ],
-  "datasetPresenter": {
-    "measurement": [{
-      "service": "mobilePresentDataset",
-      "platformType": "mobile_insitu"
-    }],
-    "quantity-profile": [{
-      "platformType": "stationary_insitu",
-      "service": "profilePresentDataset"
-    }]
-  },
-  "timebufferFactor": 0.3,
-  "solveLabels": false,
-  "proxyUrl": "https://cors-anywhere.herokuapp.com/",
   "menuItems": [
     "diagram",
     "map",

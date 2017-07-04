@@ -8,11 +8,11 @@ angular.module('n52.core.profile', [])
                 redirectTo: function(trans) {
                     return trans.injector().get('profilesService').hasProfiles() ? 'profiles.view' : 'profiles.selection';
                 },
-                template: require('../../templates/profile/profileMenu.html')
+                template: require('../../templates/profile/profile-menu.html')
             });
             $stateProvider.state('profiles.view', {
                 url: '/view',
-                template: require('../../templates/profile/profileView.html')
+                component: 'swcProfileChartView'
             });
             $stateProvider.state('profiles.selection', {
                 url: '/selection',

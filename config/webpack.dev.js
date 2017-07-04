@@ -12,13 +12,16 @@ module.exports = function() {
     return webpackMerge(commonConfig({
         env: ENV,
     }), {
-        devtool: 'eval-source-map',
+        devtool: 'source-map',
         module: {
             rules: [{
                 test: /\.js$/,
                 loader: 'eslint-loader',
                 exclude: /node_modules\/(?!(n52-sensorweb-client-core)\/).*/,
             }]
+        },
+        resolve: {
+            symlinks: false
         },
         plugins: [
             new ExtractTextPlugin({
