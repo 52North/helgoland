@@ -12,7 +12,7 @@ module.exports = function() {
     return webpackMerge(commonConfig({
         env: ENV,
     }), {
-        devtool: 'eval-source-map',
+        devtool: 'source-map',
         module: {
             rules: [{
                 test: /\.js$/,
