@@ -25,7 +25,7 @@
     "jquery": "^3.2.1",
     "leaflet": "^0.7.7",
     "leaflet.markercluster": "0.4.0",
-    "n52-sensorweb-client-core": "github:52North/sensorweb-client-core#develop",
+    "n52-sensorweb-client-core": "github:52North/sensorweb-client-core#new-timeseries",
     "ng-table": "0.8.3",
     "qr-js": "1.1.4",
     "ui-leaflet": "github:janschulte/ui-leaflet#master"
