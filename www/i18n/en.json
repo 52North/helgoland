@@ -287,7 +287,7 @@
     "showCapabilities": "Show Capabilities of the SOS"
   },
   "trajectories": {
-    "header": "Track selection by list",
+    "header": "Trajectory selection",
     "headers": {
       "platform": "Mobile platform",
       "offering": "Offering",
@@ -295,9 +295,18 @@
       "phenomenon": "Phenomenon",
       "dataset": "Dataset"
     },
+    "permalinkTooltip": "Create a permalink for the selected trajectory",
+    "reloadTooltip": "Refresh trajectory data",
     "noSupport": "Provider doesn't deliver trajectories",
     "map": {
-      "loading": "Daten werden geladen"
+      "loading": "Daten werden geladen",
+      "lineDotsTooltip": "Display trajectory as points/line"
+    },
+    "diagram": {
+      "distanceTooltip": "x-axis figures the disatance",
+      "timeTooltip": "x-axis figures the timeframe",
+      "ticksTooltip": "x-axis figures the measurement ticks linear",
+      "lineDotsTooltip": "Timeseries as line/dots"
     }
   }
 }
