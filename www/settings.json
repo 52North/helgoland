@@ -17,10 +17,6 @@
     "http://nexos.demo.52north.org/52n-sos-nexos-test/api/": "nexosTest",
     "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg"
   },
-  "defaultProvider": {
-    "serviceID": "1",
-    "url": "data/api/v1/"
-  },
   "chartOptions": {
     "yaxis": {
       "tickDecimals": 2

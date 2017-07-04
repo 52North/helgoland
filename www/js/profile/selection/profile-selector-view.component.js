@@ -1,3 +1,5 @@
+import 'n52-sensorweb-client-core/src/js/selection/provider-selector/component';
+
 angular.module('n52.core.profile')
     .component('swcProfileSelectorView', {
         template: require('../../../templates/profile/profile-selection-view.html'),
