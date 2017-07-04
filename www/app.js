@@ -51,6 +51,7 @@ import 'n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js';
 import 'n52-sensorweb-client-core/src/js/series/selection/list-selection.component';
 import 'n52-sensorweb-client-core/src/js/selection/multi-service-filter-selector/component';
 
+import './js/timeseries';
 import './js/navigation.js';
 import './js/map.js';
 
@@ -98,6 +99,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.table',
     'n52.core.timeUi',
     'n52.core.translate',
+    'n52.core.timeseries',
     'n52.client.navigation',
     'n52.client.map'
 ]);
@@ -106,36 +108,10 @@ mainApp.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
         // default state
         $urlRouterProvider.otherwise('/diagram');
-        $stateProvider.state('diagram', {
-            label: 'navigation.diagram',
-            url: '/diagram',
-            template: require('./templates/views/diagramView.html')
-        });
-        $stateProvider.state('map', {
-            label: 'navigation.map',
-            url: '/map',
-            template: require('./templates/views/mapView.html')
-        });
         $stateProvider.state('favorite', {
             label: 'navigation.favorite',
             url: '/favorite',
             template: require('./templates/views/favoriteView.html')
-        });
-        $stateProvider.state('provider', {
-            label: 'navigation.provider',
-            url: '/provider',
-            modal: {
-                controller: 'SwcProviderListModalCtrl',
-                template: require('./templates/map/provider-list-modal.html')
-            }
-        });
-        $stateProvider.state('listSelection', {
-            label: 'navigation.listSelection',
-            url: '/list-selection',
-            modal: {
-                controller: 'ModalWindowCtrl',
-                template: require('./templates/listSelection/modal-list-selection.html')
-            }
         });
         $stateProvider.state('settings', {
             label: 'navigation.settings',

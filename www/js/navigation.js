@@ -50,19 +50,4 @@ angular.module('n52.client.navigation', [])
                 };
             }]
         };
-    }])
-    // switch to map view after new provider is selected
-    .config(['$provide',
-        function($provide) {
-            $provide.decorator('providerService', ['$delegate', '$location',
-                function($delegate, $location) {
-                    $delegate.oldSelectProvider = $delegate.selectProvider;
-                    $delegate.selectProvider = function(selection) {
-                        $delegate.oldSelectProvider(selection);
-                        $location.url('/map');
-                    };
-                    return $delegate;
-                }
-            ]);
-        }
-    ]);
+    }]);
