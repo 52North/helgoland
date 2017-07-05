@@ -27,6 +27,7 @@ require('./map/provider-list.less');
 require('./map/search-control.less');
 require('./map/station-window.less');
 require('./map/zoom-control.less');
+require('./mobile/mobile.less');
 require('./metadata/procedure.less');
 require('./profile/profile.less');
 require('./selection/service-filter-selection.less');

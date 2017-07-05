@@ -20,7 +20,8 @@
     "provider": "Provider",
     "listSelection": "List selection",
     "settings": "Settings",
-    "profile": "Profiles"
+    "profile": "Profiles",
+    "trajectories": "Trajectories"
   },
   "chart": {
     "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",
@@ -284,5 +285,28 @@
     "selectRawProcedureFormat": "Select raw format for procedure",
     "selectTimeseriesDataFormat": "Select raw format for timeseries data",
     "showCapabilities": "Show Capabilities of the SOS"
+  },
+  "trajectories": {
+    "header": "Trajectory selection",
+    "headers": {
+      "platform": "Mobile platform",
+      "offering": "Offering",
+      "track": "Tracks",
+      "phenomenon": "Phenomenon",
+      "dataset": "Dataset"
+    },
+    "permalinkTooltip": "Create a permalink for the selected trajectory",
+    "reloadTooltip": "Refresh trajectory data",
+    "noSupport": "Provider doesn't deliver trajectories",
+    "map": {
+      "loading": "Daten werden geladen",
+      "lineDotsTooltip": "Display trajectory as points/line"
+    },
+    "diagram": {
+      "distanceTooltip": "x-axis figures the disatance",
+      "timeTooltip": "x-axis figures the timeframe",
+      "ticksTooltip": "x-axis figures the measurement ticks linear",
+      "lineDotsTooltip": "Timeseries as line/dots"
+    }
   }
 }

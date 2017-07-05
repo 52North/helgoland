@@ -45,5 +45,12 @@
   "n52.core.provider.provider-selector": "templates/provider/provider-selector.html",
   "n52.core.selection.service-filter-selector": "templates/selection/service-filter-selector.html",
   "n52.core.selection.platform-map-selector": "templates/selection/platform-map-selector.html",
-  "n52.core.selection.multi-service-filter-selector": "templates/selection/multi-service-filter-selector.html"
+  "n52.core.selection.multi-service-filter-selector": "templates/selection/multi-service-filter-selector.html",
+  "n52.core.mobile.combi-mobile": "templates/mobile/combi-mobile.html",
+  "n52.core.mobile.modal-list-selection-mobile": "templates/mobile/modal-list-selection-mobile.html",
+  "n52.core.mobile.permalink": "templates/mobile/permalink.html",
+  "n52.core.mobile.reload": "templates/mobile/reload.html",
+  "n52.core.mobile.axis-toggler": "templates/mobile/axis-toggler.html",
+  "n52.core.mobile.chart-draw-line-toggler": "templates/mobile/chart-draw-line-toggler.html",
+  "n52.core.mobile.map-path-toggler": "templates/mobile/map-path-toggler.html"
 }

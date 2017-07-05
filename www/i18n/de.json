@@ -20,7 +20,8 @@
     "provider": "Anbieter",
     "listSelection": "Listenauswahl",
     "settings": "Einstellungen",
-    "profile": "Profile"
+    "profile": "Profile",
+    "trajectories": "Trajektorien"
   },
   "chart": {
     "noTimeseriesSelected": "Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.",
@@ -284,5 +285,28 @@
     "selectRawProcedureFormat": "Procedure als Rohdata",
     "selectTimeseriesDataFormat": "Zeitreihendaten als Rohdaten",
     "showCapabilities": "Zeige SOS-Capabilities"
+  },
+  "trajectories": {
+    "header": "Trajektorienauswahl",
+    "headers": {
+      "platform": "Mobile Platform",
+      "offering": "Offering",
+      "track": "Pfad",
+      "phenomenon": "Phänomen",
+      "dataset": "Dataset"
+    },
+    "permalinkTooltip": "Erstelle ein Permalink für die gewählte Trajektorie",
+    "reloadTooltip": "Wiederholendes Laden der Trajektorie",
+    "noSupport": "Anbieter liefert keine Trajektorien",
+    "map": {
+      "loading": "Daten werden geladen",
+      "lineDotsTooltip": "Trajektoriendarstellung durch Punkte/Linie"
+    },
+    "diagram": {
+      "distanceTooltip": "X-Achse bildet die Distanz ab",
+      "timeTooltip": "X-Achse bildet den Zeitraum ab",
+      "ticksTooltip": "X-Achse bildet die Messpunkte linear ab",
+      "lineDotsTooltip": "Zeitreihe als Linien-/Punktdarstellung"
+    }
   }
 }

@@ -28,6 +28,9 @@ import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import 'font-awesome/css/font-awesome.min.css';
 window.Plotly = require('plotly.js/lib/core');
+var d3 = require('d3');
+require('d3-extended')(d3);
+
 // import 'qr-js/qr.js';
 
 import 'n52-sensorweb-client-core/src/js/base';
@@ -40,6 +43,7 @@ import 'n52-sensorweb-client-core/src/js/Loading';
 import 'n52-sensorweb-client-core/src/js/Map';
 import 'n52-sensorweb-client-core/src/js/Menu';
 import 'n52-sensorweb-client-core/src/js/Metadata';
+import 'n52-sensorweb-client-core/src/js/mobile';
 import 'n52-sensorweb-client-core/src/js/Phenomenon';
 import 'n52-sensorweb-client-core/src/js/Provider';
 import 'n52-sensorweb-client-core/src/js/SeriesInterface';
@@ -106,7 +110,8 @@ var mainApp = angular.module('jsClient', [
     'n52.core.translate',
     'n52.client.navigation',
     'n52.client.map',
-    'n52.core.profile'
+    'n52.core.profile',
+    'n52.core.mobile'
 ]);
 
 mainApp.config(['$stateProvider', '$urlRouterProvider',
@@ -122,6 +127,11 @@ mainApp.config(['$stateProvider', '$urlRouterProvider',
             label: 'navigation.map',
             url: '/map',
             template: require('./templates/views/mapView.html')
+        });
+        $stateProvider.state('mobileDiagram', {
+            label: 'navigation.trajectories',
+            url: '/mobileDiagram',
+            template: require('./templates/views/combiView.html')
         });
         $stateProvider.state('favorite', {
             label: 'navigation.favorite',

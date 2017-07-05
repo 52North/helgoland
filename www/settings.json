@@ -9,13 +9,16 @@
     "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
   }],
   "restApiUrls": {
-    "http://geo.irceline.be/sos/api/v1/": "irceline",
-    "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-    "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
     "http://esonet.epsevg.upc.es:8082/obsea-sos-webapp/api/v1/": "esonet",
     "http://nexos.dev.52north.org/52n-sos-upc/api/": "52nupc",
     "http://nexos.demo.52north.org/52n-sos-nexos-test/api/": "nexosTest",
-    "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg"
+    "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg",
+    "http://nexos.demo.52north.org/series-sos-proxy/api/": "sosProxy",
+    "http://nexos.demo.52north.org/proxy/api/v1/": "triosSos"
+  },
+  "defaultProvider": {
+    "serviceID": "1",
+    "url": "http://codm.hzg.de/52n-sos-webapp/api/v1/"
   },
   "chartOptions": {
     "yaxis": {
@@ -96,20 +99,25 @@
     }
   },
   "showScale": true,
-  "timebufferFactor": 0.1,
+  "timebufferFactor": 0.3,
   "solveLabels": false,
   "proxyUrl": "https://cors-anywhere.herokuapp.com/",
   "datasetPresenter": {
     "quantity-profile": [{
       "platformType": "stationary_insitu",
       "service": "profilePresentDataset"
+    }],
+    "measurement": [{
+      "service": "mobilePresentDataset",
+      "platformType": "mobile_insitu"
     }]
   },
   "menuItems": [
     "diagram",
     "profiles",
-    "map",
+    "mobileDiagram",
     "favorite",
+    "map",
     "provider",
     "listSelection",
     "settings"
