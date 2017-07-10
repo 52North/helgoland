@@ -8,8 +8,7 @@ angular.module('n52.core.profile')
     .component('profileChart', {
         bindings: {
             datasets: '<',
-            data: '<',
-            options: '<'
+            data: '<'
         },
         templateUrl: 'n52.core.profile.profile-chart',
         controller: [
@@ -29,7 +28,7 @@ angular.module('n52.core.profile')
                         previousDatasets = angular.copy(this.datasets);
                         change = true;
                     }
-                    if (change) prepareData();
+                    if (change) prepareData(this.data);
                 };
 
                 var prepareData = () => {

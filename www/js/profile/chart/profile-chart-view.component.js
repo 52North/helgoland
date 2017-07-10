@@ -19,8 +19,8 @@ angular.module('n52.core.profile')
             }
         ]
     })
-    .service('profileChartPermalinkSrvc', ['profilesService', '$location', 'seriesApiInterface',
-        function(profilesService, $location, seriesApiInterface) {
+    .service('profileChartPermalinkSrvc', ['profilesService', '$location',
+        function(profilesService, $location) {
             var profilesParam = 'profiles';
             var paramSeperator = '|';
             var paramBlockSeperator = '!!';
@@ -49,10 +49,7 @@ angular.module('n52.core.profile')
                         if (profileParam.length == 2) {
                             var providerUrl = profileParam[0];
                             var datasetId = profileParam[1];
-                            seriesApiInterface.getDatasets(datasetId, providerUrl).then(res => {
-                                res.apiUrl = providerUrl;
-                                profilesService.addProfiles(res);
-                            });
+                            profilesService.addProfile(datasetId, providerUrl);
                         }
                     });
                 }
