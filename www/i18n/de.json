@@ -278,7 +278,28 @@
     "warn": "Bitte beachten Sie: "
   },
   "profile": {
-    "selectCurrentTimestamp": "Zeige als extra Profil"
+    "submenu": {
+      "diagram": "Diagramm",
+      "selection": "Auswahl"
+    },
+    "stationarySelector": {
+      "timestampSelection": "Selektiere ein Zeitpunkt um das Profile zu sehen:",
+      "loadingTimestamps": "Läd die verfügbaren Zeitpunkte..."
+    },
+    "mobileSelector": {
+      "addToDiagram": "Füge zur Diagramm-Ansicht",
+      "cancel": "Abbrechen"
+    },
+    "selection": {
+      "selectProvider": "Wähle Anbieter",
+      "selectOffering": "Wähle Offering",
+      "selectPhenomenon": "Wähle Phänomen",
+      "selectProcedure": "Wähle Sensor",
+      "selectPlatform": "Wähle Platform",
+      "selectStationaryPlatform": "Wähle stationäre Platform:",
+      "selectMobilePlatform": "Wähle mobile Platform:",
+      "selectTrack": "Wähle Profile"
+    }
   },
   "metadataOutput": {
     "selectRawProcedureFormat": "Procedure als Rohdata",

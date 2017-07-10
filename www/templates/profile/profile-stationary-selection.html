@@ -11,13 +11,9 @@
             <div class="">
                 {{dataset.label}}
             </div>
-            <div ng-if="dataset.loading">
-                loading time stamps...
-            </div>
+            <div ng-if="dataset.loading" translate="profile.stationarySelector.loadingTimestamps"></div>
             <div ng-if="!dataset.loading" style="padding: 10px;">
-                <div>
-                    Select a time stamp to view a profile:
-                </div>
+                <div translate="profile.stationarySelector.timestampSelection"></div>
                 <swc-time-list-selector time-list="dataset.dataTimestamps" on-time-selected="onTimeselected(dataset, time); close();"></swc-time-list-selector>
             </div>
         </div>

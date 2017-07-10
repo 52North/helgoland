@@ -9,13 +9,7 @@
     "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
   }],
   "restApiUrls": {
-    "http://geo.irceline.be/sos/api/v1/": "irceline",
-    "http://www.fluggs.de/sos2/api/v1/": "fluggs",
-    "http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/": "52nSensorwebTestbed",
-    "http://esonet.epsevg.upc.es:8082/obsea-sos-webapp/api/v1/": "esonet",
-    "http://nexos.dev.52north.org/52n-sos-upc/api/": "52nupc",
-    "http://nexos.demo.52north.org/52n-sos-nexos-test/api/": "nexosTest",
-    "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg"
+    "http://192.168.52.117:8080/52n-sos-nexos-test/api/": "localhost"
   },
   "chartOptions": {
     "yaxis": {
