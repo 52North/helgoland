@@ -30,7 +30,7 @@ angular.module('n52.core.profile')
                 for (var id in profilesService.profiles) {
                     if (profilesService.profiles.hasOwnProperty(id)) {
                         var profile = profilesService.getProfile(id);
-                        parameters.push(profile.apiUrl + paramSeperator + profile.id);
+                        parameters.push(profile.url + paramSeperator + profile.id + paramSeperator + profile.selectedTime);
                     }
                 }
                 if (parameters.length > 0) {
@@ -46,10 +46,11 @@ angular.module('n52.core.profile')
                     var parameters = $location.search()[profilesParam].split(paramBlockSeperator);
                     parameters.forEach(entry => {
                         var profileParam = entry.split(paramSeperator);
-                        if (profileParam.length == 2) {
+                        if (profileParam.length == 3) {
                             var providerUrl = profileParam[0];
                             var datasetId = profileParam[1];
-                            profilesService.addProfile(datasetId, providerUrl);
+                            var selectedTime = parseInt(profileParam[2]);
+                            profilesService.addProfile(datasetId, providerUrl, selectedTime);
                         }
                     });
                 }
