@@ -15,7 +15,12 @@ angular.module('n52.core.timeseries')
 
                 this.$onInit = () => {
                     this.selectedProvider = providerSelection.selectedProvider;
-                    this.stationFilter = {};
+                    this.stationFilter = {
+                        service : providerSelection.selectedProvider.id
+                    };
+                    this.phenomenonFilter = {
+                        service : providerSelection.selectedProvider.id
+                    };
                 };
 
                 this.phenomenonSelected = (phenomenon) => {
@@ -27,7 +32,9 @@ angular.module('n52.core.timeseries')
 
                 this.deselectPhenomenon = () => {
                     this.selectedPhenomenon = null;
-                    this.stationFilter = {};
+                    this.stationFilter = {
+                        service : providerSelection.selectedProvider.id
+                    };
                 };
 
                 this.stationSelected = (station) => {
