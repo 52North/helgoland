@@ -3,8 +3,8 @@ import 'n52-sensorweb-client-core/src/js/selection/provider-selector/component';
 angular.module('n52.core.timeseries')
     .component('swcProviderSelectionView', {
         template: require('../../../templates/timeseries/timeseries-provider-selection-view.html'),
-        controller: ['settingsService', 'providerSelection', '$location',
-            function(settingsService, providerSelection, $location) {
+        controller: ['settingsService', 'providerSelection', '$location', '$state', 'previousTimeseriesState',
+            function(settingsService, providerSelection, $location, $state, previousTimeseriesState) {
 
                 this.selectedProvider = providerSelection.selectedProvider;
 
@@ -23,7 +23,11 @@ angular.module('n52.core.timeseries')
 
                 this.providerSelected = (provider) => {
                     providerSelection.selectProvider(provider);
-                    $location.url('/timeseries/map-selection');
+                    if (previousTimeseriesState.state) {
+                        $state.go(previousTimeseriesState.state);
+                    } else {
+                        $state.go('timeseries.map-selection');
+                    }
                 };
             }
         ]
