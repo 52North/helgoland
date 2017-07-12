@@ -11,7 +11,7 @@
             color: @text-color;
             width: 240px;
             margin: 0 auto;
-            background: url(http://www.nexosproject.eu/sites/all/themes/nexosproject/images/set_nexos_new2.svg) 0 3px no-repeat;
+            background: url(../../images/set_nexos_new2.svg) 0 3px no-repeat;
             background-size: 600px;
             background-color: white;
             display: block;
@@ -67,5 +67,20 @@
         &:hover {
             cursor: pointer;
         }
+    }
+}
+
+.contact-view {
+    text-align: center;
+    .contact-block {
+        &+.contact-block {
+            margin-top: 15px;
+        }
+    }
+    .logo_eu {
+        width: 81px;
+        background: url(../../images/set_nexos_new2.svg) -580px -12px;
+        background-size: 1120px;
+        height: 55px;
     }
 }

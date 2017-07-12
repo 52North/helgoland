@@ -3,7 +3,7 @@ angular.module('n52.client.navigation')
         template: require('../templates/menu/contact.html'),
         controller: ['$uibModal',
             function($uibModal) {
-                this.openContacts = () => {
+                // this.openContacts = () => {
                     $uibModal.open({
                         animation: true,
                         template: require('../templates/menu/contact-window.html'),
@@ -14,7 +14,7 @@ angular.module('n52.client.navigation')
                                 };
                             }]
                     });
-                };
+                // };
             }
         ]
     });
