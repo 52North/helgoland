@@ -306,6 +306,7 @@
       "lineDotsTooltip": "Display trajectory as points/line"
     },
     "diagram": {
+      "hint": "The observation period can be shrinked by click and draw. A single click on the diagram represents the complete observation period.",
       "distanceTooltip": "x-axis figures the disatance",
       "timeTooltip": "x-axis figures the timeframe",
       "ticksTooltip": "x-axis figures the measurement ticks linear",
