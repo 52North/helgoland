@@ -108,7 +108,7 @@ var mainApp = angular.module('jsClient', [
 mainApp.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
         // default state
-        $urlRouterProvider.otherwise('/diagram');
+        $urlRouterProvider.otherwise('/timeseries/diagram');
         $stateProvider.state('favorite', {
             label: 'navigation.favorite',
             url: '/favorite',
