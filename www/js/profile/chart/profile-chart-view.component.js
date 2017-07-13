@@ -1,4 +1,7 @@
 import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
+import 'n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component';
+import 'n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component';
+import 'n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component';
 
 angular.module('n52.core.profile')
     .component('swcProfileChartView', {
