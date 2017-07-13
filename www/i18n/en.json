@@ -39,6 +39,9 @@
       "oct": "Oct",
       "nov": "Nov",
       "dec": "Dec"
+    },
+    "permalink": {
+      "useTimeParameter": "Use current selected time period in permalink"
     }
   },
   "table": {
@@ -176,7 +179,8 @@
     }
   },
   "permalink": {
-    "noMatchingTimeseriesFound": "No matching timeseries is found."
+    "noMatchingTimeseriesFound": "No matching timeseries is found.",
+    "optionsHeader": "Permalink options:"
   },
   "guide": {
     "start": {

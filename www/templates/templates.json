@@ -48,5 +48,10 @@
   "n52.core.mobile.reload": "templates/mobile/reload.html",
   "n52.core.mobile.axis-toggler": "templates/mobile/axis-toggler.html",
   "n52.core.mobile.chart-draw-line-toggler": "templates/mobile/chart-draw-line-toggler.html",
-  "n52.core.mobile.map-path-toggler": "templates/mobile/map-path-toggler.html"
+  "n52.core.mobile.map-path-toggler": "templates/mobile/map-path-toggler.html",
+  "n52.core.permalink.button": "templates/permalink/permalink-button.html",
+  "n52.core.permalink.simple-modal": "templates/permalink/simple-modal.html",
+  "n52.core.permalink.in-mail": "templates/permalink/in-mail.html",
+  "n52.core.permalink.new-window": "templates/permalink/new-window.html",
+  "n52.core.permalink.to-clipboard": "templates/permalink/to-clipboard.html"
 }
