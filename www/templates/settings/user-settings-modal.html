@@ -23,35 +23,6 @@
                            ng-controller="SwcResetStatusButtonCtrl"
                            ng-click="resetStatus()"></a>
                         <swc-language-selector></swc-language-selector>
-                        <div class="panel panel-default permalink">
-                            <div class="panel-heading" translate="settings.permalink.create">:</div>
-                            <div class="panel-body">
-                                <div class="item link"
-                                     ng-controller="SwcPermalinkInWindowCtrl"
-                                     ng-click="openInNewWindow()">
-                                    <span class="glyphicon glyphicon-link"></span>
-                                    <span translate="settings.permalink.inWindow"></span>
-                                </div>
-                                <div class="item mail"
-                                     ng-controller="SwcPermalinkInMailCtrl"
-                                     ng-click="openInMail()">
-                                    <span class="glyphicon glyphicon-envelope"></span>
-                                    <span translate="settings.permalink.inMail"></span>
-                                </div>
-                                <div class="item clipboard"
-                                     ng-controller="SwcPermalinkToClipboardCtrl"
-                                     ng-click="copyToClipboard()">
-                                    <span class="glyphicon glyphicon-paperclip"></span>
-                                    <span translate="settings.permalink.inClipboard"></span>
-                                </div>
-                                <div class="item">
-                                    <swc-qr-code></swc-qr-code>
-                                </div>
-                                <div class="item">
-                                    <swc-add-favorite-group></swc-add-favorite-group>
-                                </div>
-                            </div>
-                        </div>
                         <a class="btn btn-block btn-default" ng-class="{'btn-primary':status.clusterStations}" translate="settings.clusterMarker" ng-controller="SwcClusterMarkerCtrl" ng-click="toggle(); close();"></a>
                         <swc-settings-toggle-button
                             field="concentrationMarker"
