@@ -1,4 +1,7 @@
 import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
+import 'n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component';
+import 'n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component';
+import 'n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component';
 
 angular.module('n52.core.timeseries')
     .component('swcTimeseriesDiagramView', {
@@ -15,8 +18,8 @@ angular.module('n52.core.timeseries')
             }
         ]
     })
-    .service('timeseriesDiagramPermalinkSrvc', ['timeseriesService', 'timeService', '$location',
-        function(timeseriesService, timeService, $location) {
+    .service('timeseriesDiagramPermalinkSrvc', ['timeseriesService', 'timeService', '$location', '$state',
+        function(timeseriesService, timeService, $location, $state) {
             var seriesParam = 'series';
             var timeParam = 'time';
             var paramSeparator = '|';
@@ -24,6 +27,9 @@ angular.module('n52.core.timeseries')
 
             this.createPermalink = (withTime) => {
                 var parameters = [];
+                var location = $state.href('timeseries.diagram', null, {
+                    absolute: true
+                });
                 for (var id in timeseriesService.timeseries) {
                     if (timeseriesService.timeseries.hasOwnProperty(id)) {
                         var series = timeseriesService.getTimeseries(id);
@@ -31,13 +37,13 @@ angular.module('n52.core.timeseries')
                     }
                 }
                 if (parameters.length > 0) {
-                    var url = $location.absUrl() + '?' + seriesParam + '=' + encodeURIComponent(parameters.join(paramBlockSeparator));
+                    var url = location + '?' + seriesParam + '=' + encodeURIComponent(parameters.join(paramBlockSeparator));
                     if (withTime) {
                         url = url + '&' + timeParam + '=' + timeService.getStartInMillies() + paramSeparator + timeService.getEndInMillies();
                     }
                     return url;
                 } else {
-                    return $location.absUrl();
+                    return location;
                 }
             };
 
