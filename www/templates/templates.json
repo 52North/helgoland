@@ -47,5 +47,7 @@
   "n52.core.provider.provider-selector": "templates/provider/provider-selector.html",
   "n52.core.selection.service-filter-selector": "templates/selection/service-filter-selector.html",
   "n52.core.selection.multi-service-filter-selector": "templates/selection/multi-service-filter-selector.html",
-  "n52.core.selection.platform-map-selector": "templates/selection/platform-map-selector.html"
+  "n52.core.selection.platform-map-selector": "templates/selection/platform-map-selector.html",
+  "n52.core.series.list-selection": "templates/series/list-selection.html",
+  "n52.core.permalink.button": "templates/menu/permalink.html"
 }
