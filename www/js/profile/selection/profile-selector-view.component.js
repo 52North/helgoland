@@ -2,6 +2,7 @@ import 'n52-sensorweb-client-core/src/js/selection/provider-selector/component';
 import 'n52-sensorweb-client-core/src/js/selection/platform-map-selector/component';
 import 'n52-sensorweb-client-core/src/js/selection/trajectory-map-selector/component';
 import 'n52-sensorweb-client-core/src/js/selection/time-list-selector/component';
+import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
 
 angular.module('n52.core.profile')
     .component('swcProfileSelectorView', {
@@ -213,15 +214,9 @@ angular.module('n52.core.profile')
                         ]
                     });
                 };
-            }
-        ]
-    })
-    .component('swcProfileSelectorPermalink', {
-        template: require('../../../templates/menu/permalink.html'),
-        controller: ['profileSelectorPermalinkSrvc', 'permalinkOpener',
-            function(profileSelectorPermalinkSrvc, permalinkOpener) {
-                this.permalink = () => {
-                    permalinkOpener.openPermalink(profileSelectorPermalinkSrvc.createPermalink());
+
+                this.createPermalink = () => {
+                    return profileSelectorPermalinkSrvc.createPermalink();
                 };
             }
         ]

@@ -1,3 +1,5 @@
+import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
+
 angular.module('n52.core.profile')
     .component('swcProfileChartView', {
         template: require('../../../templates/profile/profile-chart-view.html'),
@@ -6,15 +8,9 @@ angular.module('n52.core.profile')
                 this.$onInit = () => {
                     profileChartPermalinkSrvc.validatePermalink();
                 };
-            }
-        ]
-    })
-    .component('swcProfileChartPermalink', {
-        template: require('../../../templates/menu/permalink.html'),
-        controller: ['profileChartPermalinkSrvc', 'permalinkOpener',
-            function(profileChartPermalinkSrvc, permalinkOpener) {
-                this.permalink = () => {
-                    permalinkOpener.openPermalink(profileChartPermalinkSrvc.createPermalink());
+
+                this.createPermalink = () => {
+                    return profileChartPermalinkSrvc.createPermalink();
                 };
             }
         ]
