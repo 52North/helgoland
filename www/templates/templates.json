@@ -46,5 +46,6 @@
   "n52.core.selection.service-filter-selector": "templates/selection/service-filter-selector.html",
   "n52.core.selection.platform-map-selector": "templates/selection/platform-map-selector.html",
   "n52.core.selection.multi-service-filter-selector": "templates/selection/multi-service-filter-selector.html",
-  "n52.core.selection.time-list-selector": "templates/selection/time-list-selector.html"
+  "n52.core.selection.time-list-selector": "templates/selection/time-list-selector.html",
+  "n52.core.permalink.button": "templates/menu/permalink.html"
 }
