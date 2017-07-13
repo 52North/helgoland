@@ -41,5 +41,6 @@
   "n52.core.timeUi.predefined-time-range-button": "templates/time/predefined-time-range-button.html",
   "n52.core.timeUi.custom-time-range-selection": "templates/time/custom-time-range-selection.html",
   "n52.core.series.list-selection": "templates/series/list-selection.html",
-  "n52.core.selection.multi-service-filter-selector": "templates/selection/multi-service-filter-selector.html"
+  "n52.core.selection.multi-service-filter-selector": "templates/selection/multi-service-filter-selector.html",
+  "n52.core.permalink.button": "templates/menu/permalink.html"
 }
