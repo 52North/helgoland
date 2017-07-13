@@ -23,12 +23,12 @@
                            ng-controller="SwcResetStatusButtonCtrl"
                            ng-click="resetStatus()"></a>
                         <swc-language-selector></swc-language-selector>
-                        <a class="btn btn-block btn-default" ng-class="{'btn-primary':status.clusterStations}" translate="settings.clusterMarker" ng-controller="SwcClusterMarkerCtrl" ng-click="toggle(); close();"></a>
-                        <swc-settings-toggle-button
+                        <!-- <a class="btn btn-block btn-default" ng-class="{'btn-primary':status.clusterStations}" translate="settings.clusterMarker" ng-controller="SwcClusterMarkerCtrl" ng-click="toggle(); close();"></a> -->
+                        <!-- <swc-settings-toggle-button
                             field="concentrationMarker"
                             caption="settings.markerWithLastInfo.header"
                             description="settings.markerWithLastInfo.label">
-                        </swc-settings-toggle-button>
+                        </swc-settings-toggle-button> -->
                         <a class="btn btn-block btn-default" ng-class="{'btn-primary':status.generalizeData}" translate="settings.generalizeData" ng-controller="SwcToggleGeneralizationCtrl" ng-click="toggleGeneralization(); close();"></a>
                     </div>
                 </div>
