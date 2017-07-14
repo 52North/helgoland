@@ -2,7 +2,7 @@
     <span>Requesting {{$ctrl.loadingCount}} services...</span>
 </div>
 <div class="provider-list">
-    <div class="provider-item" ng-repeat="provider in $ctrl.providers | orderBy:'+label'" ng-click="$ctrl.selectProvider(provider)">
+    <div class="provider-item" ng-repeat="provider in $ctrl.providers | orderBy:'+label'" ng-click="$ctrl.selectProvider(provider)" ng-class="{'selected': $ctrl.selectedProvider.id === provider.id && $ctrl.selectedProvider.providerUrl === provider.providerUrl}">
         <div>{{provider.label}}</div>
         <div class="small">{{provider.type}},
             {{provider.version}}</div>

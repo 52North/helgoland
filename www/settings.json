@@ -125,13 +125,10 @@
     }]
   },
   "menuItems": [
-    "diagram",
+    "timeseries",
     "profiles",
-    "map",
     "mobileDiagram",
     "favorite",
-    "provider",
-    "listSelection",
     "settings"
   ]
 }

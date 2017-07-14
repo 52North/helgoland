@@ -1,8 +1,5 @@
-<div class="btn-group-vertical btn-group-sm map-control locate-control" role="group" ng-controller="SwcZoomControlsCtrl">
-    <a class="btn btn-default"
-       ng-class="{'btn-primary':isToggled}"
-       swc-locate-user="stationMap"
-       ng-click="locateUser()">
+<div class="btn-group-vertical btn-group-sm map-control locate-control" role="group">
+    <a class="btn btn-default" ng-class="{'btn-primary':$ctrl.isToggled}" ng-click="$ctrl.locateUser()">
         <span class="glyphicon glyphicon-map-marker"></span>
     </a>
 </div>
