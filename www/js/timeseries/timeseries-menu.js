@@ -18,6 +18,7 @@ angular.module('n52.core.timeseries', [])
             $stateProvider.state({
                 name: 'timeseries',
                 label: 'navigation.timeseries.header',
+                redirectTo: 'timeseries.diagram',
                 url: '/timeseries',
                 template: require('../../templates/timeseries/timeseries-menu.html')
             });
