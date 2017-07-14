@@ -1,3 +1,8 @@
+import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
+import 'n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component';
+import 'n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component';
+import 'n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component';
+
 angular.module('n52.core.profile')
     .component('swcProfileChartView', {
         template: require('../../../templates/profile/profile-chart-view.html'),
@@ -6,21 +11,15 @@ angular.module('n52.core.profile')
                 this.$onInit = () => {
                     profileChartPermalinkSrvc.validatePermalink();
                 };
-            }
-        ]
-    })
-    .component('swcProfileChartPermalink', {
-        template: require('../../../templates/menu/permalink.html'),
-        controller: ['profileChartPermalinkSrvc', 'permalinkOpener',
-            function(profileChartPermalinkSrvc, permalinkOpener) {
-                this.permalink = () => {
-                    permalinkOpener.openPermalink(profileChartPermalinkSrvc.createPermalink());
+
+                this.createPermalink = () => {
+                    return profileChartPermalinkSrvc.createPermalink();
                 };
             }
         ]
     })
-    .service('profileChartPermalinkSrvc', ['profilesService', '$location', 'seriesApiInterface',
-        function(profilesService, $location, seriesApiInterface) {
+    .service('profileChartPermalinkSrvc', ['profilesService', '$location',
+        function(profilesService, $location) {
             var profilesParam = 'profiles';
             var paramSeperator = '|';
             var paramBlockSeperator = '!!';
@@ -30,7 +29,7 @@ angular.module('n52.core.profile')
                 for (var id in profilesService.profiles) {
                     if (profilesService.profiles.hasOwnProperty(id)) {
                         var profile = profilesService.getProfile(id);
-                        parameters.push(profile.apiUrl + paramSeperator + profile.id);
+                        parameters.push(profile.url + paramSeperator + profile.id + paramSeperator + profile.selectedTime);
                     }
                 }
                 if (parameters.length > 0) {
@@ -46,13 +45,11 @@ angular.module('n52.core.profile')
                     var parameters = $location.search()[profilesParam].split(paramBlockSeperator);
                     parameters.forEach(entry => {
                         var profileParam = entry.split(paramSeperator);
-                        if (profileParam.length == 2) {
+                        if (profileParam.length == 3) {
                             var providerUrl = profileParam[0];
                             var datasetId = profileParam[1];
-                            seriesApiInterface.getDatasets(datasetId, providerUrl).then(res => {
-                                res.apiUrl = providerUrl;
-                                profilesService.addProfiles(res);
-                            });
+                            var selectedTime = parseInt(profileParam[2]);
+                            profilesService.addProfile(datasetId, providerUrl, selectedTime);
                         }
                     });
                 }

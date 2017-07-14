@@ -24,7 +24,11 @@ angular.module('n52.core.profile')
 
             var _loadData = (profile) => {
                 profile.loadingData = true;
-                seriesApiInterface.getDatasetData(profile.id, profile.apiUrl).then((data) => {
+                var timespan = {
+                    start: profile.selectedTime,
+                    end: profile.selectedTime
+                };
+                seriesApiInterface.getDatasetData(profile.id, profile.url, timespan).then((data) => {
                     _addData(data, profile);
                 });
             };
@@ -39,7 +43,7 @@ angular.module('n52.core.profile')
                     selected: false,
                     color: colorService.getColor(profile.id)
                 };
-                profile.internalId = profile.apiUrl + 'datasets/' + profile.id;
+                profile.internalId = profile.url + 'datasets/' + profile.id;
                 profile.permaProfiles = {};
                 this.profiles[profile.internalId] = profile;
                 notifyProfileObservers();
@@ -47,8 +51,13 @@ angular.module('n52.core.profile')
                 _loadData(profile);
             };
 
-            this.addProfiles = (profile) => {
-                _addToProfile(angular.copy(profile), this.profiles);
+            this.addProfile = (profileId, url, time) => {
+                seriesApiInterface.getDatasets(profileId, url)
+                    .then(profile => {
+                        profile.url = url;
+                        profile.selectedTime = time;
+                        _addToProfile(profile, this.profiles);
+                    });
             };
 
             this.getData = (id) => {

@@ -126,8 +126,8 @@
   },
   "menuItems": [
     "diagram",
-    "map",
     "profiles",
+    "map",
     "mobileDiagram",
     "favorite",
     "provider",
