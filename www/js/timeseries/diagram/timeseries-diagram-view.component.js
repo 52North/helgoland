@@ -2,6 +2,7 @@ import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/compo
 import 'n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component';
 import 'n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component';
 import 'n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component';
+import 'n52-sensorweb-client-core/src/js/permalink/service/permalink-service';
 
 angular.module('n52.core.timeseries')
     .component('swcTimeseriesDiagramView', {
@@ -46,8 +47,8 @@ angular.module('n52.core.timeseries')
             }
         ]
     })
-    .service('timeseriesDiagramPermalinkSrvc', ['timeseriesService', 'timeService', '$location', '$state', '$q', 'seriesApiInterface',
-        function(timeseriesService, timeService, $location, $state, $q, seriesApiInterface) {
+    .service('timeseriesDiagramPermalinkSrvc', ['timeseriesService', 'timeService', '$location', '$q', 'seriesApiInterface', 'permalinkService',
+        function(timeseriesService, timeService, $location, $q, seriesApiInterface, permalinkService) {
             var seriesParam = 'series';
             var timeParam = 'time';
             var paramSeparator = '|';
@@ -55,9 +56,6 @@ angular.module('n52.core.timeseries')
 
             this.createPermalink = (withTime) => {
                 var parameters = [];
-                var location = $state.href('timeseries.diagram', null, {
-                    absolute: true
-                });
                 for (var id in timeseriesService.timeseries) {
                     if (timeseriesService.timeseries.hasOwnProperty(id)) {
                         var series = timeseriesService.getTimeseries(id);
@@ -65,13 +63,13 @@ angular.module('n52.core.timeseries')
                     }
                 }
                 if (parameters.length > 0) {
-                    var url = location + '?' + seriesParam + '=' + encodeURIComponent(parameters.join(paramBlockSeparator));
+                    var url = permalinkService.createBaseUrl() + '?' + seriesParam + '=' + encodeURIComponent(parameters.join(paramBlockSeparator));
                     if (withTime) {
                         url = url + '&' + timeParam + '=' + timeService.getStartInMillies() + paramSeparator + timeService.getEndInMillies();
                     }
                     return url;
                 } else {
-                    return location;
+                    return permalinkService.createBaseUrl();
                 }
             };
 
