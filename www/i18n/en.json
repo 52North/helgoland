@@ -300,8 +300,9 @@
       "selectPhenomenon": "Select phenomenon",
       "selectProcedure": "Select procedure",
       "selectPlatform": "Select platform",
-      "selectStationaryPlatform": "Select a stationary platform:",
-      "selectMobilePlatform": "Select a mobile platform:",
+      "selectPlatformType": "Select either a stationary or a mobile platforms:",
+      "selectStationaryPlatform": "Stationary platform:",
+      "selectMobilePlatform": "Mobile platform:",
       "selectTrack": "Select profile"
     }
   },
