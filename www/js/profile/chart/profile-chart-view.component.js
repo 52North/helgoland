@@ -1,8 +1,8 @@
-import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component';
-import 'n52-sensorweb-client-core/src/js/permalink/service/permalink-service';
+require('n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component');
+require('n52-sensorweb-client-core/src/js/permalink/service/permalink-service');
 
 angular.module('n52.core.profile')
     .component('swcProfileChartView', {

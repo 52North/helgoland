@@ -8,11 +8,11 @@ import 'n52-sensorweb-client-core/src/js/permalink/service/permalink-service';
 angular.module('n52.core.profile')
     .component('swcProfileSelectorView', {
         template: require('../../../templates/profile/profile-selection-view.html'),
-        controller: ['settingsService', 'profileSelectorPermalinkSrvc', '$uibModal', 'swcProfileSelectorViewStateSrvc', '$state',
-            function(settingsService, profileSelectorPermalinkSrvc, $uibModal, swcProfileSelectorViewStateSrvc, $state) {
+        controller: ['settingsService', 'profileSelectorPermalinkSrvc', '$uibModal', 'swcProfileSelectorViewStateSrvc', '$state', 'constants',
+            function(settingsService, profileSelectorPermalinkSrvc, $uibModal, swcProfileSelectorViewStateSrvc, $state, constants) {
 
                 this.tabActive = 0;
-                var valueType = 'quantity-profile';
+                var valueType = constants.valueType.quantityProfile;
 
                 this.layers = {
                     baselayers: settingsService.baselayer,
