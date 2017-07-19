@@ -323,6 +323,7 @@
   },
   "trajectories": {
     "header": "Trajectory selection",
+    "selectProvider": "Select provider",
     "headers": {
       "platform": "Mobile platform",
       "offering": "Offering",
