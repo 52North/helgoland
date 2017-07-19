@@ -12,6 +12,7 @@
   "n52.core.legend.legend": "templates/legend/legend.html",
   "n52.core.legend.legend-entry": "templates/legend/legend-entry.html",
   "n52.core.legend.label-mapper": "templates/legend/label-mapper.html",
+  "n52.core.legend.geometry-map-viewer": "templates/legend/geometry-map-viewer.html",
   "n52.core.listSelection.list-selection": "templates/listSelection/list-selection.html",
   "n52.core.listSelection.modal-list-selection": "templates/listSelection/modal-list-selection.html",
   "n52.core.listSelection.tabbed-list-selection": "templates/listSelection/tabbed-list-selection.html",
