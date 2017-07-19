@@ -6,7 +6,7 @@
     </div>
 
     <div class="modal-body provider-list" ng-if="!providerselected">
-        <span translate="trajectories.selectProvider"</span>
+        <span translate="trajectories.selectProvider"></span>
         <div class="provider-item" ng-repeat="provider in providerList" ng-click="selectProvider(provider)" ng-if="provider.quantities.platforms > 0">
             <div>{{provider.label}}</div>
             <div class="small">{{provider.type}},
