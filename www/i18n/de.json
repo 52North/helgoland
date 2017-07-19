@@ -288,6 +288,7 @@
   },
   "trajectories": {
     "header": "Trajektorienauswahl",
+    "selectProvider": "Provider Auswählen",
     "headers": {
       "platform": "Mobile Platform",
       "offering": "Offering",
