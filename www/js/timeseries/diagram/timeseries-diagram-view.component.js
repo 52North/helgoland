@@ -1,8 +1,9 @@
-import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component';
-import 'n52-sensorweb-client-core/src/js/permalink/service/permalink-service';
+require('n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component');
+require('n52-sensorweb-client-core/src/js/permalink/service/permalink-service');
+require('n52-sensorweb-client-core/src/js/Legend/geometry-map-viewer/component');
 
 angular.module('n52.core.timeseries')
     .component('swcTimeseriesDiagramView', {
@@ -31,7 +32,7 @@ angular.module('n52.core.timeseries')
                         animation: true,
                         template: require('../../../templates/timeseries/timeseries-diagram-permalink-window.html'),
                         controller: ['$scope', '$uibModalInstance', 'timeseriesDiagramPermalinkSrvc',
-                            function ($scope, $uibModalInstance, timeseriesDiagramPermalinkSrvc) {
+                            function($scope, $uibModalInstance, timeseriesDiagramPermalinkSrvc) {
                                 $scope.useTime = true;
 
                                 $scope.$watch('useTime', function() {
@@ -41,8 +42,56 @@ angular.module('n52.core.timeseries')
                                 $scope.close = () => {
                                     $uibModalInstance.close();
                                 };
-                            }]
+                            }
+                        ]
                     });
+                };
+            }
+        ]
+    })
+    .component('swcTimeseriesGeometryViewButton', {
+        bindings: {
+            series: '<'
+        },
+        template: require('../../../templates/legend/location-button.html'),
+        controller: ['$uibModal', 'constants', 'seriesApiInterface',
+            function($uibModal, constants, seriesApiInterface) {
+                var openModal = (header, geometry) => {
+                    $uibModal.open({
+                        animation: true,
+                        template: require('../../../templates/legend/location-modal.html'),
+                        resolve: {
+                            data: () => {
+                                return {
+                                    header: header,
+                                    geometry: geometry
+                                };
+                            }
+                        },
+                        controller: ['$scope', 'data', '$uibModalInstance',
+                            function($scope, data, $uibModalInstance) {
+                                $scope.header = data.header;
+                                $scope.geometry = data.geometry;
+
+                                $scope.close = () => {
+                                    $uibModalInstance.close();
+                                };
+                            }
+                        ]
+                    });
+                };
+
+                this.openGeometryView = () => {
+                    if (this.series.valueType === constants.valueType.quantity) {
+                        debugger;
+                        seriesApiInterface.getPlatforms(this.series.seriesParameters.platform.id, this.series.apiUrl)
+                            .then(platform => {
+                                debugger;
+                                openModal(platform.label, platform.geometry);
+                            });
+                    } else {
+                        openModal(this.series.station.properties.label, this.series.station.geometry);
+                    }
                 };
             }
         ]

@@ -38,9 +38,7 @@
                   ng-controller="SwcToggleVisibilityCtrl"
                   ng-class="{'glyphicon-eye-close' : timeseries.styles.visible, 'glyphicon-eye-open': !timeseries.styles.visible}"
                   ng-click="$event.stopPropagation(); toggleVisibility(timeseries)"></span>
-            <span class="glyphicon glyphicon-map-marker inMap"
-                  ng-controller="SwcShowInMapCtrl"
-                  ng-click="$event.stopPropagation(); showInMap(timeseries)"></span>
+            <swc-timeseries-geometry-view-button series="timeseries"></swc-timeseries-geometry-view-button>
             <span class="glyphicon glyphicon-pencil changeStyle"
                   ng-controller="SwcOpenStyleModalCtrl"
                   ng-style="{color: timeseries.styles.color}"
