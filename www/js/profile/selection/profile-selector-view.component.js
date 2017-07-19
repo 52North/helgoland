@@ -3,15 +3,16 @@ import 'n52-sensorweb-client-core/src/js/selection/platform-map-selector/compone
 import 'n52-sensorweb-client-core/src/js/selection/trajectory-map-selector/component';
 import 'n52-sensorweb-client-core/src/js/selection/time-list-selector/component';
 import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
+import 'n52-sensorweb-client-core/src/js/permalink/service/permalink-service';
 
 angular.module('n52.core.profile')
     .component('swcProfileSelectorView', {
         template: require('../../../templates/profile/profile-selection-view.html'),
-        controller: ['settingsService', 'profileSelectorPermalinkSrvc', '$uibModal', 'swcProfileSelectorViewStateSrvc', '$state',
-            function(settingsService, profileSelectorPermalinkSrvc, $uibModal, swcProfileSelectorViewStateSrvc, $state) {
+        controller: ['settingsService', 'profileSelectorPermalinkSrvc', '$uibModal', 'swcProfileSelectorViewStateSrvc', '$state', 'constants',
+            function(settingsService, profileSelectorPermalinkSrvc, $uibModal, swcProfileSelectorViewStateSrvc, $state, constants) {
 
                 this.tabActive = 0;
-                var valueType = 'quantity-profile';
+                var valueType = constants.valueType.quantityProfile;
 
                 this.layers = {
                     baselayers: settingsService.baselayer,
@@ -157,7 +158,7 @@ angular.module('n52.core.profile')
 
                                 $scope.onTimeselected = (dataset, time) => {
                                     profilesService.addProfile(dataset.id, selection.url, time);
-                                    $state.go('profiles.view');
+                                    $state.go('profiles.diagram');
                                 };
 
                                 $scope.close = () => {
@@ -203,7 +204,7 @@ angular.module('n52.core.profile')
 
                                 $scope.addToChart = () => {
                                     profilesService.addProfile(dataset.id, selection.url, selection.geometry.timestamp);
-                                    $state.go('profiles.view');
+                                    $state.go('profiles.diagram');
                                     $scope.close();
                                 };
 
@@ -221,8 +222,8 @@ angular.module('n52.core.profile')
             }
         ]
     })
-    .service('profileSelectorPermalinkSrvc', ['$location', 'seriesApiInterface', 'swcProfileSelectorViewStateSrvc', '$q', '$state',
-        function($location, seriesApiInterface, swcProfileSelectorViewStateSrvc, $q, $state) {
+    .service('profileSelectorPermalinkSrvc', ['$location', 'seriesApiInterface', 'swcProfileSelectorViewStateSrvc', '$q', 'permalinkService',
+        function($location, seriesApiInterface, swcProfileSelectorViewStateSrvc, $q, permalinkService) {
             var providerUrlParam = 'url';
             var providerIdParam = 'id';
             var offeringParam = 'offering';
@@ -231,9 +232,6 @@ angular.module('n52.core.profile')
             var featureParam = 'feature';
             this.createPermalink = () => {
                 var parameter = '';
-                var location = $state.href('profiles.selection', null, {
-                    absolute: true
-                });
                 if (swcProfileSelectorViewStateSrvc.selectedProvider) {
                     parameter += providerUrlParam + '=' + swcProfileSelectorViewStateSrvc.selectedProvider.providerUrl;
                     parameter += '&' + providerIdParam + '=' + swcProfileSelectorViewStateSrvc.selectedProvider.id;
@@ -251,9 +249,9 @@ angular.module('n52.core.profile')
                     }
                 }
                 if (parameter) {
-                    return location + '?' + parameter;
+                    return permalinkService.createBaseUrl() + '?' + parameter;
                 } else {
-                    return location;
+                    return permalinkService.createBaseUrl();
                 }
             };
 

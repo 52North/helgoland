@@ -1,7 +1,8 @@
-import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component';
+require('n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component');
+require('n52-sensorweb-client-core/src/js/permalink/service/permalink-service');
 
 angular.module('n52.core.profile')
     .component('swcProfileChartView', {
@@ -18,8 +19,8 @@ angular.module('n52.core.profile')
             }
         ]
     })
-    .service('profileChartPermalinkSrvc', ['profilesService', '$location',
-        function(profilesService, $location) {
+    .service('profileChartPermalinkSrvc', ['profilesService', '$location', 'permalinkService',
+        function(profilesService, $location, permalinkService) {
             var profilesParam = 'profiles';
             var paramSeperator = '|';
             var paramBlockSeperator = '!!';
@@ -33,9 +34,9 @@ angular.module('n52.core.profile')
                     }
                 }
                 if (parameters.length > 0) {
-                    return $location.absUrl() + '?' + profilesParam + '=' + encodeURIComponent(parameters.join(paramBlockSeperator));
+                    return permalinkService.createBaseUrl() + '?' + profilesParam + '=' + encodeURIComponent(parameters.join(paramBlockSeperator));
                 } else {
-                    return $location.absUrl();
+                    return permalinkService.createBaseUrl();
                 }
             };
 

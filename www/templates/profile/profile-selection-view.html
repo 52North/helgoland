@@ -53,15 +53,18 @@
                     <span ng-if="$ctrl.selectedFeature">{{$ctrl.selectedFeature.label}}</span>
                     <span ng-if="!$ctrl.selectedFeature">-</span>
                 </uib-tab-heading>
-                <div ng-if="$ctrl.selectedProcedure" class="hbox boxItem">
-                    <div class="vbox boxItem">
-                        <span translate="profile.selection.selectStationaryPlatform"></span>
-                        <swc-platform-map-selector map-id="profileStationary" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.stationaryPlatformFilter" on-platform-selected="$ctrl.platformSelected(platform)" map-layers="$ctrl.layers" cluster="$ctrl.cluster" class="vbox boxItem"></swc-platform-map-selector>
-                    </div>
-                    <div class="vbox boxItem">
-                        <div class="selection-list">
-                            <span translate="profile.selection.selectMobilePlatform"></span>
-                            <swc-service-filter-selector endpoint="'feature'" filter="$ctrl.mobilePlatformFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedFeature.id" on-item-selected="$ctrl.featureSelected(item, true)"></swc-service-filter-selector>
+                <div ng-if="$ctrl.selectedProcedure" class="vbox boxItem">
+                    <div class="center-header" translate="profile.selection.selectPlatformType"></div>
+                    <div class="hbox boxItem">
+                        <div class="vbox boxItem">
+                            <span class="center-header" translate="profile.selection.selectStationaryPlatform"></span>
+                            <swc-platform-map-selector map-id="profileStationary" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.stationaryPlatformFilter" on-platform-selected="$ctrl.platformSelected(platform)" map-layers="$ctrl.layers" cluster="$ctrl.cluster" class="vbox boxItem"></swc-platform-map-selector>
+                        </div>
+                        <div class="vbox boxItem">
+                            <span class="center-header" translate="profile.selection.selectMobilePlatform"></span>
+                            <div class="selection-list">
+                                <swc-service-filter-selector endpoint="'feature'" filter="$ctrl.mobilePlatformFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedFeature.id" on-item-selected="$ctrl.featureSelected(item, true)"></swc-service-filter-selector>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,7 +77,8 @@
                 </uib-tab-heading>
                 <div ng-if="$ctrl.selectedFeature" class="vbox boxItem">
                     <div class="vbox boxItem">
-                        <swc-trajectory-map-selector map-id="profileMobile" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.trajectoryFilter" on-marker-selected="$ctrl.mobileMarkerSelected(dataset, selectedGeometry)" map-layers="$ctrl.layers" cluster="$ctrl.cluster" class="vbox boxItem"></swc-platform-map-selector>
+                        <swc-trajectory-map-selector map-id="profileMobile" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.trajectoryFilter" on-marker-selected="$ctrl.mobileMarkerSelected(dataset, selectedGeometry)" map-layers="$ctrl.layers" cluster="$ctrl.cluster"
+                            class="vbox boxItem"></swc-platform-map-selector>
                     </div>
                 </div>
             </uib-tab>

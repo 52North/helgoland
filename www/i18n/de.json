@@ -310,8 +310,9 @@
       "selectPhenomenon": "Wähle Phänomen",
       "selectProcedure": "Wähle Sensor",
       "selectPlatform": "Wähle Platform",
-      "selectStationaryPlatform": "Wähle stationäre Platform:",
-      "selectMobilePlatform": "Wähle mobile Platform:",
+      "selectPlatformType": "Wähle entweder eine stationäre oder mobile Platform:",
+      "selectStationaryPlatform": "Stationäre Platform:",
+      "selectMobilePlatform": "Mobile Platform:",
       "selectTrack": "Wähle Profile"
     }
   },
