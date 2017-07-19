@@ -77,7 +77,7 @@
                 </uib-tab-heading>
                 <div ng-if="$ctrl.selectedFeature" class="vbox boxItem">
                     <div class="vbox boxItem">
-                        <swc-trajectory-map-selector map-id="profileMobile" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.trajectoryFilter" on-marker-selected="$ctrl.mobileMarkerSelected(dataset, selectedGeometry)" map-layers="$ctrl.layers" cluster="$ctrl.cluster"
+                        <swc-trajectory-map-selector map-id="profileMobile" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.trajectoryFilter" on-geometry-selected="$ctrl.mobileGeometrySelected(dataset, selectedGeometry)" map-layers="$ctrl.layers" cluster="$ctrl.cluster"
                             class="vbox boxItem"></swc-platform-map-selector>
                     </div>
                 </div>
