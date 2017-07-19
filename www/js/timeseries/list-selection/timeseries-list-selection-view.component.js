@@ -16,7 +16,7 @@ angular.module('n52.core.timeseries')
                     if (dataset[0].datasetType || dataset[0].valueType) {
                         seriesApiInterface.getDatasets(dataset[0].id, url).then(result => {
                             result.apiUrl = url;
-                            timeseriesService.addTimeseries(dataset[0]);
+                            timeseriesService.addTimeseries(result);
                             $state.go('timeseries.diagram');
                         });
                     } else {

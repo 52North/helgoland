@@ -1,7 +1,9 @@
-import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component';
-import 'n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component';
+require('n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-in-mail/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-new-window/component');
+require('n52-sensorweb-client-core/src/js/permalink/permalink-to-clipboard/component');
+require('n52-sensorweb-client-core/src/js/permalink/service/permalink-service');
+require('n52-sensorweb-client-core/src/js/Legend/geometry-map-viewer/component');
 
 angular.module('n52.core.timeseries')
     .component('swcTimeseriesDiagramView', {
@@ -30,7 +32,7 @@ angular.module('n52.core.timeseries')
                         animation: true,
                         template: require('../../../templates/timeseries/timeseries-diagram-permalink-window.html'),
                         controller: ['$scope', '$uibModalInstance', 'timeseriesDiagramPermalinkSrvc',
-                            function ($scope, $uibModalInstance, timeseriesDiagramPermalinkSrvc) {
+                            function($scope, $uibModalInstance, timeseriesDiagramPermalinkSrvc) {
                                 $scope.useTime = true;
 
                                 $scope.$watch('useTime', function() {
@@ -40,14 +42,62 @@ angular.module('n52.core.timeseries')
                                 $scope.close = () => {
                                     $uibModalInstance.close();
                                 };
-                            }]
+                            }
+                        ]
                     });
                 };
             }
         ]
     })
-    .service('timeseriesDiagramPermalinkSrvc', ['timeseriesService', 'timeService', '$location', '$state', '$q', 'seriesApiInterface',
-        function(timeseriesService, timeService, $location, $state, $q, seriesApiInterface) {
+    .component('swcTimeseriesGeometryViewButton', {
+        bindings: {
+            series: '<'
+        },
+        template: require('../../../templates/legend/location-button.html'),
+        controller: ['$uibModal', 'constants', 'seriesApiInterface',
+            function($uibModal, constants, seriesApiInterface) {
+                var openModal = (header, geometry) => {
+                    $uibModal.open({
+                        animation: true,
+                        template: require('../../../templates/legend/location-modal.html'),
+                        resolve: {
+                            data: () => {
+                                return {
+                                    header: header,
+                                    geometry: geometry
+                                };
+                            }
+                        },
+                        controller: ['$scope', 'data', '$uibModalInstance',
+                            function($scope, data, $uibModalInstance) {
+                                $scope.header = data.header;
+                                $scope.geometry = data.geometry;
+
+                                $scope.close = () => {
+                                    $uibModalInstance.close();
+                                };
+                            }
+                        ]
+                    });
+                };
+
+                this.openGeometryView = () => {
+                    if (this.series.valueType === constants.valueType.quantity) {
+                        debugger;
+                        seriesApiInterface.getPlatforms(this.series.seriesParameters.platform.id, this.series.apiUrl)
+                            .then(platform => {
+                                debugger;
+                                openModal(platform.label, platform.geometry);
+                            });
+                    } else {
+                        openModal(this.series.station.properties.label, this.series.station.geometry);
+                    }
+                };
+            }
+        ]
+    })
+    .service('timeseriesDiagramPermalinkSrvc', ['timeseriesService', 'timeService', '$location', '$q', 'seriesApiInterface', 'permalinkService',
+        function(timeseriesService, timeService, $location, $q, seriesApiInterface, permalinkService) {
             var seriesParam = 'series';
             var timeParam = 'time';
             var paramSeparator = '|';
@@ -55,9 +105,6 @@ angular.module('n52.core.timeseries')
 
             this.createPermalink = (withTime) => {
                 var parameters = [];
-                var location = $state.href('timeseries.diagram', null, {
-                    absolute: true
-                });
                 for (var id in timeseriesService.timeseries) {
                     if (timeseriesService.timeseries.hasOwnProperty(id)) {
                         var series = timeseriesService.getTimeseries(id);
@@ -65,13 +112,13 @@ angular.module('n52.core.timeseries')
                     }
                 }
                 if (parameters.length > 0) {
-                    var url = location + '?' + seriesParam + '=' + encodeURIComponent(parameters.join(paramBlockSeparator));
+                    var url = permalinkService.createBaseUrl() + '?' + seriesParam + '=' + encodeURIComponent(parameters.join(paramBlockSeparator));
                     if (withTime) {
                         url = url + '&' + timeParam + '=' + timeService.getStartInMillies() + paramSeparator + timeService.getEndInMillies();
                     }
                     return url;
                 } else {
-                    return location;
+                    return permalinkService.createBaseUrl();
                 }
             };
 

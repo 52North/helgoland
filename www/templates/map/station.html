@@ -7,9 +7,9 @@
         </div>
     </div>
     <div class="modal-body stationContent">
-        <div ng-repeat="(id, timeseries) in station.entry.properties.timeseries"
-             ng-if="phenomenonId == null || timeseries.phenomenon.id === phenomenonId">
-            <swc-selectable-station-entry timeseries-id="id" timeseries="timeseries" service-url="serviceUrl"></swc-selectable-station-entry>
+        <div ng-repeat="(id, timeseries) in station.entry.properties.timeseries">
+            <swc-selectable-station-entry ng-if="!timeseries.valueType" timeseries-id="id" timeseries="timeseries" service-url="serviceUrl"></swc-selectable-station-entry>
+            <swc-selectable-station-entry ng-if="timeseries.valueType" timeseries-id="timeseries.id" timeseries="timeseries" service-url="serviceUrl"></swc-selectable-station-entry>
         </div>
         <div class="selectAllOption" ng-show="(station.entry.properties.timeseries | objectCount) > 1">
             <hr>

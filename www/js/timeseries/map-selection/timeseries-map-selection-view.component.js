@@ -6,6 +6,24 @@ angular.module('n52.core.timeseries')
         template: require('../../../templates/timeseries/timeseries-map-selection-view.html'),
         controller: ['providerSelection', 'settingsService', '$uibModal',
             function(providerSelection, settingsService, $uibModal) {
+                var defaultPlatformTypes = 'stationary';
+                var defaultValueTypes = 'quantity';
+
+                var updateStationFilter = (serviceId, phenomenonId) => {
+                    this.stationFilter = {
+                        platformTypes: defaultPlatformTypes,
+                        valueTypes: defaultValueTypes,
+                        service: serviceId
+                    };
+                    if (phenomenonId) this.stationFilter.phenomenon = phenomenonId;
+                };
+
+                var updatePhenomenonFilter = () => {
+                    this.phenomenonFilter = {
+                        platformTypes: defaultPlatformTypes,
+                        valueTypes: defaultValueTypes
+                    };
+                };
 
                 this.layers = {
                     baselayers: settingsService.baselayer,
@@ -15,26 +33,18 @@ angular.module('n52.core.timeseries')
 
                 this.$onInit = () => {
                     this.selectedProvider = providerSelection.selectedProvider;
-                    this.stationFilter = {
-                        service : providerSelection.selectedProvider.id
-                    };
-                    this.phenomenonFilter = {
-                        service : providerSelection.selectedProvider.id
-                    };
+                    updateStationFilter(providerSelection.selectedProvider.id);
+                    updatePhenomenonFilter(providerSelection.selectedProvider.id);
                 };
 
                 this.phenomenonSelected = (phenomenon) => {
                     this.selectedPhenomenon = phenomenon;
-                    this.stationFilter = {
-                        phenomenon: phenomenon.id
-                    };
+                    updateStationFilter(providerSelection.selectedProvider.id, phenomenon.id);
                 };
 
                 this.deselectPhenomenon = () => {
                     this.selectedPhenomenon = null;
-                    this.stationFilter = {
-                        service : providerSelection.selectedProvider.id
-                    };
+                    updateStationFilter(providerSelection.selectedProvider.id);
                 };
 
                 this.stationSelected = (station) => {
@@ -51,43 +61,62 @@ angular.module('n52.core.timeseries')
                                 return params;
                             }
                         },
-                        controller: ['$scope', '$uibModalInstance', 'timeseriesService', '$state', 'stationService', 'selection',
-                            function ($scope, $uibModalInstance, timeseriesService, $state, stationService, selection) {
-                                stationService.determineTimeseries(selection.stationId, selection.url);
+                        controller: ['$scope', '$uibModalInstance', 'timeseriesService', '$state', 'stationService', 'selection', 'seriesApiInterface',
+                            function($scope, $uibModalInstance, timeseriesService, $state, stationService, selection, seriesApiInterface) {
+                                $scope.station = {};
+
+                                seriesApiInterface.getStations(selection.stationId, selection.url, {
+                                    phenomenon: selection.phenomenonId
+                                }).then(function(result) {
+                                    $scope.station.entry = result;
+                                    if (selection.phenomenonId) {
+                                        for (var entry in result.properties.timeseries) {
+                                            if (result.properties.timeseries.hasOwnProperty(entry)) {
+                                                if (result.properties.timeseries[entry].phenomenon
+                                                    && result.properties.timeseries[entry].phenomenon.id !== selection.phenomenonId) {
+                                                    delete result.properties.timeseries[entry];
+                                                }
+                                            }
+                                        }
+                                    }
+                                    angular.forEach(result.properties.timeseries, function(timeseries) {
+                                        timeseries.selected = true;
+                                    });
+                                });
+
                                 $scope.isAllSelected = !stationService.preselectFirstTimeseries;
-                                $scope.station = stationService.station;
-                                $scope.phenomenonId = selection.phenomenonId;
                                 $scope.serviceUrl = selection.url;
 
-                                $scope.toggleAll = function () {
-                                    angular.forEach($scope.station.entry.properties.timeseries, function (ts) {
+                                $scope.toggleAll = function() {
+                                    angular.forEach($scope.station.entry.properties.timeseries, function(ts) {
                                         ts.selected = $scope.isAllSelected;
                                     });
                                 };
 
-                                $scope.close = function () {
+                                $scope.close = function() {
                                     $uibModalInstance.close();
                                 };
 
-                                $scope.toggled = function () {
+                                $scope.toggled = function() {
                                     var allSelected = true;
-                                    angular.forEach($scope.station.entry.properties.timeseries, function (ts) {
+                                    angular.forEach($scope.station.entry.properties.timeseries, function(ts) {
                                         if (!ts.selected)
                                             allSelected = false;
                                     });
                                     $scope.isAllSelected = allSelected;
                                 };
 
-                                $scope.addTimeseriesSelection = function (phenomenonId) {
-                                    angular.forEach($scope.station.entry.properties.timeseries, function (timeseries) {
-                                        if (timeseries.selected && (!phenomenonId || timeseries.phenomenon.id === phenomenonId)) {
+                                $scope.addTimeseriesSelection = function() {
+                                    angular.forEach($scope.station.entry.properties.timeseries, function(timeseries) {
+                                        if (timeseries.selected) {
                                             timeseriesService.addTimeseriesById(timeseries.id, selection.url);
                                         }
                                     });
                                     $state.go('timeseries.diagram');
                                     $uibModalInstance.close();
                                 };
-                            }]
+                            }
+                        ]
                     });
                 };
             }
