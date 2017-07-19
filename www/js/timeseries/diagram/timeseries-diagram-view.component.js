@@ -83,10 +83,8 @@ angular.module('n52.core.timeseries')
 
                 this.openGeometryView = () => {
                     if (this.series.valueType === constants.valueType.quantity) {
-                        debugger;
                         seriesApiInterface.getPlatforms(this.series.seriesParameters.platform.id, this.series.apiUrl)
                             .then(platform => {
-                                debugger;
                                 openModal(platform.label, platform.geometry);
                             });
                     } else {
