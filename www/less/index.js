@@ -31,6 +31,7 @@ require('./map/station-window.less');
 require('./map/zoom-control.less');
 require('./metadata/procedure.less');
 require('./profile/profile.less');
+require('./selection/main.less');
 require('./selection/service-filter-selection.less');
 require('./selection/multi-service-filter-selector.less');
 require('./selection/service-filter-selection.less');
