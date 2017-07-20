@@ -2,13 +2,15 @@
     <div class="modal-header">
         <button type="button" class="close" ng-click="close();">&times;</button>
         <div class="modal-title">
-            <span>{{'map.platformSelection.platform' | translate}}</span>:
-            <span>{{platform.label}}</span>
+            <span>{{dataset.label}}</span>
         </div>
     </div>
     <div class="modal-body stationContent">
+        <div>
+            <span translate="profile.mobileSelector.atDate"></span>
+            <span>{{geometry.timestamp | date : 'medium'}}</span>
+        </div>
         <profile-chart datasets="datasets" data="data"></profile-chart>
-
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="addToChart()" translate="profile.mobileSelector.addToDiagram"></button>

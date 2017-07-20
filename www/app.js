@@ -27,6 +27,8 @@ import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap-slider/dist/bootstrap-slider';
+import 'bootstrap-slider/dist/css/bootstrap-slider.css';
 window.Plotly = require('plotly.js/lib/core');
 // import 'qr-js/qr.js';
 

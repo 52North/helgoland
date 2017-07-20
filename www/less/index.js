@@ -34,6 +34,7 @@ require('./profile/profile.less');
 require('./selection/service-filter-selection.less');
 require('./selection/multi-service-filter-selector.less');
 require('./selection/service-filter-selection.less');
+require('./selection/time-range-selection.less');
 require('./selectionList/selection-list.less');
 require('./settings/settings-window.less');
 require('./table/table.less');

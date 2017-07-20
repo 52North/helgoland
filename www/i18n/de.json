@@ -291,6 +291,7 @@
       "loadingTimestamps": "Läd die verfügbaren Zeitpunkte..."
     },
     "mobileSelector": {
+      "atDate": "Zeitpunkt:",
       "addToDiagram": "Füge zur Diagramm-Ansicht",
       "cancel": "Abbrechen"
     },

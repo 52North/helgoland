@@ -291,6 +291,7 @@
       "loadingTimestamps": "loading time stamps..."
     },
     "mobileSelector": {
+      "atDate": "Zeitpunkt:",
       "addToDiagram": "Add to diagram",
       "cancel": "Cancel"
     },

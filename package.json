@@ -20,6 +20,7 @@
     "angular-ui-router": "^1.0.0-rc.1",
     "bootstrap": "^3.3.7",
     "bootstrap-datetime-picker": "^2.4.4",
+    "bootstrap-slider": "^9.8.1",
     "d3": "3.5.17",
     "flot-downsample": "github:janschulte/flot-downsample",
     "font-awesome": "^4.7.0",
