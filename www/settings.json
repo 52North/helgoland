@@ -9,7 +9,7 @@
     "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
   }],
   "restApiUrls": {
-    "http://colabis.dev.52north.org/fotoquest/api/v1/": "fotoquest"
+    "http://colabis.dev.52north.org/fotoquest/api/": "fotoquest"
   },
   "chartOptions": {
     "yaxis": {
