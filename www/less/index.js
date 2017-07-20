@@ -30,6 +30,7 @@ require('./map/station-window.less');
 require('./map/zoom-control.less');
 require('./mobile/mobile.less');
 require('./metadata/procedure.less');
+require('./selection/main.less');
 require('./selection/multi-service-filter-selector.less');
 require('./selection/service-filter-selection.less');
 require('./selectionList/selection-list.less');
