@@ -25,7 +25,7 @@
     "favorite": "Favoriten",
     "provider": "Anbieter",
     "listSelection": "Listenauswahl",
-    "trajectories": "Trajektorien",
+    "trajectory": "Trajektorien",
     "settings": "Einstellungen",
     "profile": "Profile"
   },
@@ -322,8 +322,15 @@
     "showCapabilities": "Zeige SOS-Capabilities"
   },
   "trajectories": {
-    "header": "Trajektorienauswahl",
-    "selectProvider": "Provider Auswählen",
+    "submenu": {
+      "view": "Ansicht",
+      "selection": "Selektion"
+    },
+    "selection": {
+      "selectProvider": "Wähle Anbieter",
+      "selectByPlatform": "Wähle über Platform",
+      "selectByPhenomenon": "Wähle über Phänomen"
+    },
     "headers": {
       "platform": "Mobile Platform",
       "offering": "Offering",

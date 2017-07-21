@@ -26,7 +26,7 @@
     "provider": "Provider",
     "listSelection": "List selection",
     "settings": "Settings",
-    "trajectories": "Trajectories",
+    "trajectory": "Trajectories",
     "profile": "Profiles"
   },
   "contacts": {
@@ -322,6 +322,15 @@
     "showCapabilities": "Show Capabilities of the SOS"
   },
   "trajectories": {
+    "submenu": {
+      "view": "View",
+      "selection": "Selection"
+    },
+    "selection": {
+      "selectProvider": "Choose Provider",
+      "selectByPlatform": "Choose by platform",
+      "selectByPhenomenon": "Choose by phenomenon"
+    },
     "header": "Trajectory selection",
     "selectProvider": "Select provider",
     "headers": {

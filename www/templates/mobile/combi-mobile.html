@@ -1,6 +1,5 @@
 <div class="combi-mobile">
     <div class="combi-header" ng-hide="series.label === undefined">
-        <swc-mobile-permalink dataset-id="series.id" provider-url="series.providerUrl" class="header-button"></swc-mobile-permalink>
         <swc-mobile-reload dataset-id="series.id" provider-url="series.providerUrl" class="header-button"></swc-mobile-reload>
         <div>
             <span>{{series.label}}</span>
@@ -21,12 +20,6 @@
             </div>
             <div class="map-options">
                 <swc-mobile-map-path-toggler></swc-mobile-map-path-toggler>
-            </div>
-            <div class="map-buttons">
-                <a class="btn btn-default" ng-controller="ListSelectionMobileButtonCtrl" ng-click="openListSelectionMobile()">
-                    <span class="glyphicon glyphicon-list-alt"></span>
-                    <span translate="trajectories.header"></span>
-                </a>
             </div>
         </div>
         <div class="chart-container">

@@ -60,6 +60,7 @@ import 'n52-sensorweb-client-core/src/js/selection/service-filter-selector/compo
 
 import './js/profile';
 import './js/timeseries';
+import './js/trajectory';
 import './js/navigation.js';
 import './js/contact';
 import './js/map.js';
@@ -114,7 +115,8 @@ var mainApp = angular.module('jsClient', [
     'n52.client.navigation',
     'n52.client.map',
     'n52.core.mobile',
-    'n52.core.profile'
+    'n52.core.profile',
+    'n52.core.trajectory'
 ]);
 
 mainApp.config(['$stateProvider', '$urlRouterProvider',
@@ -133,11 +135,6 @@ mainApp.config(['$stateProvider', '$urlRouterProvider',
                 controller: 'SwcUserSettingsWindowCtrl',
                 template: require('./templates/settings/user-settings-modal.html')
             }
-        });
-        $stateProvider.state('mobileDiagram', {
-            label: 'navigation.trajectories',
-            url: '/mobileDiagram',
-            template: require('./templates/views/combiView.html')
         });
     }
 ]);

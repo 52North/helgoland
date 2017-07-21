@@ -127,7 +127,7 @@
   "menuItems": [
     "timeseries",
     "profiles",
-    "mobileDiagram",
+    "trajectory",
     "favorite",
     "settings"
   ]
