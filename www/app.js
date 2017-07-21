@@ -92,6 +92,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.metadata',
     'n52.core.modal',
     'n52.core.overviewDiagram',
+    'n52.core.permalink',
     'n52.core.phenomena',
     'n52.core.provider',
     'n52.core.userSettings',

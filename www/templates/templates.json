@@ -46,7 +46,6 @@
   "n52.core.selection.multi-service-filter-selector": "templates/selection/multi-service-filter-selector.html",
   "n52.core.mobile.combi-mobile": "templates/mobile/combi-mobile.html",
   "n52.core.mobile.modal-list-selection-mobile": "templates/mobile/modal-list-selection-mobile.html",
-  "n52.core.mobile.permalink": "templates/mobile/permalink.html",
   "n52.core.mobile.reload": "templates/mobile/reload.html",
   "n52.core.mobile.axis-toggler": "templates/mobile/axis-toggler.html",
   "n52.core.mobile.chart-draw-line-toggler": "templates/mobile/chart-draw-line-toggler.html",

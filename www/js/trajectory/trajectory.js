@@ -1,11 +1,12 @@
 angular.module('n52.core.trajectory', [])
     .config(['$stateProvider',
         function($stateProvider) {
+
             // default state
             $stateProvider.state('trajectory', {
                 label: 'navigation.trajectory',
                 url: '/trajectory',
-                redirectTo: function(trans) {
+                redirectTo: (trans) => {
                     return trans.injector().get('combinedSrvc').series.id ? 'trajectory.view' : 'trajectory.selection';
                 },
                 template: require('../../templates/trajectory/trajectory-submenu.html')
