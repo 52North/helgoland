@@ -13,6 +13,7 @@ require('./favorites/favorite.less');
 require('./legend/legend-entry-settings.less');
 require('./legend/legend.less');
 require('./legend/map-viewer.less');
+require('./main/flex-box.less');
 require('./main/icon.less');
 require('./main/main.less');
 require('./main/navigation.less');
