@@ -19,12 +19,10 @@
                 </div>
                 <div class="col-xs-8 col-sm-4 col-lg-3 fullHeight phenomena rightPanel" ng-controller="SwcPhenomenaButtonController" ng-class="{active:status.showPhenomena}">
                     <div class="phenomena-list">
-                        <a class="phenomenonItem" ng-click="$ctrl.deselectPhenomenon();">
-                            <div class="item" ng-class="{selected: $ctrl.selectedPhenomenon == null}">
-                                <span class="glyphicon glyphicon-refresh loading icon-spin"></span>
-                                <span translate="main.allPhenomena"></span>
-                            </div>
-                        </a>
+                        <div class="selector-entry" ng-class="{selected: $ctrl.selectedPhenomenon == null}" ng-click="$ctrl.deselectPhenomenon();">
+                            <span class="glyphicon glyphicon-refresh loading icon-spin"></span>
+                            <span translate="main.allPhenomena"></span>
+                        </div>
                         <hr>
                         <swc-service-filter-selector endpoint="'phenomenon'" filter="$ctrl.phenomenonFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedPhenomenon.id" on-item-selected="$ctrl.phenomenonSelected(item, true)"></swc-service-filter-selector>
                     </div>
