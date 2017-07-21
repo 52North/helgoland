@@ -1,0 +1,39 @@
+<div class="hbox viewport">
+    <div class="hbox boxItem">
+        <uib-tabset active="$ctrl.tabActive" class="vbox boxItem" template-url="templates/uib/tabs/tabset.html">
+            <uib-tab index="0" class="vbox boxItem">
+                <uib-tab-heading>
+                    <span translate="trajectories.selection.selectProvider"></span>
+                    <br/>
+                    <span ng-if="$ctrl.selectedProvider">{{$ctrl.selectedProvider.label}}</span>
+                    <span ng-if="!$ctrl.selectedProvider">-</span>
+                </uib-tab-heading>
+                <div class="vbox boxItem">
+                    <swc-provider-selector provider-list="$ctrl.providerList" provider-blacklist="$ctrl.providerBlacklist" filter="$ctrl.providerFilter" on-provider-selected="$ctrl.providerSelected(provider, true)"></swc-provider-selector>
+                </div>
+            </uib-tab>
+            <uib-tab index="1" disable="!$ctrl.selectedProvider" class="vbox boxItem">
+                <uib-tab-heading>
+                    <span translate="trajectories.selection.selectByPlatform"></span>
+                    <br/>
+                    <span ng-if="$ctrl.selectedOffering">{{$ctrl.selectedOffering.label}}</span>
+                    <span ng-if="!$ctrl.selectedOffering">-</span>
+                </uib-tab-heading>
+                <div ng-if="$ctrl.selectedProvider" class="vbox boxItem">
+                    <swc-list-selector parameters="$ctrl.platformParams" listselectionid="'trajectory-platform'" provider-list="[$ctrl.selectedProvider]" on-dataset-selection="$ctrl.datasetSelected(dataset, url)"></swc-list-selector>
+                </div>
+            </uib-tab>
+            <uib-tab index="2" disable="!$ctrl.selectedProvider" class="vbox boxItem">
+                <uib-tab-heading>
+                    <span translate="trajectories.selection.selectByPhenomenon"></span>
+                    <br/>
+                    <span ng-if="$ctrl.selectedPhenomenon">{{$ctrl.selectedPhenomenon.label}}</span>
+                    <span ng-if="!$ctrl.selectedPhenomenon">-</span>
+                </uib-tab-heading>
+                <div ng-if="$ctrl.selectedProvider" class="vbox boxItem">
+                    <swc-list-selector parameters="$ctrl.phenomenonParams" listselectionid="'trajectory-phenomenon'" provider-list="[$ctrl.selectedProvider]" on-dataset-selection="$ctrl.datasetSelected(dataset, url)"></swc-list-selector>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

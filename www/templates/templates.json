@@ -28,6 +28,7 @@
   "n52.core.metadata.procedure-button": "templates/metadata/procedure/button.html",
   "n52.core.metadata.procedure-modal": "templates/metadata/procedure/modal.html",
   "n52.core.provider.add-provider": "templates/provider/add-provider.html",
+  "n52.core.provider.provider-selector": "templates/provider/provider-selector.html",
   "n52.core.userSettings.settings-toggle-button": "templates/settings/settings-toggle-button.html",
   "n52.core.userSettings.qr-code-button": "templates/settings/qr-code-button.html",
   "n52.core.userSettings.user-settings-modal": "templates/settings/user-settings-modal.html",

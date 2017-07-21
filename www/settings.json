@@ -108,7 +108,7 @@
   "menuItems": [
     "diagram",
     "map",
-    "mobileDiagram",
+    "trajectory",
     "favorite",
     "provider",
     "listSelection",
