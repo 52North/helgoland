@@ -76,9 +76,12 @@
                     <span>&nbsp;</span>
                 </uib-tab-heading>
                 <div ng-if="$ctrl.selectedFeature" class="vbox boxItem">
+                    <div class="time-slider-wrapper">
+                        <swc-time-range-selector time-list="$ctrl.timestamps" on-timespan-selected="$ctrl.onMobileTimespanSelected(timespan);"></swc-time-range-selector>
+                    </div>
                     <div class="vbox boxItem">
-                        <swc-trajectory-map-selector map-id="profileMobile" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.trajectoryFilter" on-marker-selected="$ctrl.mobileMarkerSelected(dataset, selectedGeometry)" map-layers="$ctrl.layers" cluster="$ctrl.cluster"
-                            class="vbox boxItem"></swc-platform-map-selector>
+                        <swc-trajectory-map-selector map-id="profileMobile" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.trajectoryFilter" selected-timespan="$ctrl.selectedTimespan" on-geometry-selected="$ctrl.mobileGeometrySelected(dataset, selectedGeometry)"
+                            on-time-list-determined="$ctrl.mobileTimeList(timelist)" map-layers="$ctrl.layers" cluster="$ctrl.cluster" class="vbox boxItem" />
                     </div>
                 </div>
             </uib-tab>

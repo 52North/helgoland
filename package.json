@@ -22,6 +22,7 @@
     "bootstrap-datetime-picker": "^2.4.4",
     "d3": "^3.5.17",
     "d3-extended": "^1.2.10",
+    "bootstrap-slider": "^9.8.1",
     "flot-downsample": "github:janschulte/flot-downsample",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",

@@ -1,9 +1,10 @@
-import 'n52-sensorweb-client-core/src/js/selection/provider-selector/component';
-import 'n52-sensorweb-client-core/src/js/selection/platform-map-selector/component';
-import 'n52-sensorweb-client-core/src/js/selection/trajectory-map-selector/component';
-import 'n52-sensorweb-client-core/src/js/selection/time-list-selector/component';
-import 'n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component';
-import 'n52-sensorweb-client-core/src/js/permalink/service/permalink-service';
+require('n52-sensorweb-client-core/src/js/selection/provider-selector/component');
+require('n52-sensorweb-client-core/src/js/selection/platform-map-selector/component');
+require('n52-sensorweb-client-core/src/js/selection/trajectory-map-selector/component');
+require('n52-sensorweb-client-core/src/js/selection/time-list-selector/component');
+require('n52-sensorweb-client-core/src/js/permalink/simple-permalink-button/component');
+require('n52-sensorweb-client-core/src/js/permalink/service/permalink-service');
+require('n52-sensorweb-client-core/src/js/selection/time-range-selector/component');
 
 angular.module('n52.core.profile')
     .component('swcProfileSelectorView', {
@@ -169,7 +170,7 @@ angular.module('n52.core.profile')
                     });
                 };
 
-                this.mobileMarkerSelected = (dataset, selectedGeometry) => {
+                this.mobileGeometrySelected = (dataset, selectedGeometry) => {
                     $uibModal.open({
                         animation: true,
                         template: require('../../../templates/profile/profile-trajectory-preview.html'),
@@ -214,6 +215,14 @@ angular.module('n52.core.profile')
                             }
                         ]
                     });
+                };
+
+                this.mobileTimeList = (timelist) => {
+                    this.timestamps = timelist;
+                };
+
+                this.onMobileTimespanSelected = (timespan) => {
+                    this.selectedTimespan = timespan;
                 };
 
                 this.createPermalink = () => {
