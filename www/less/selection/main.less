@@ -1,0 +1,13 @@
+@import "../variables.less";
+
+.selector-entry {
+    padding:5px;
+    
+    &.selected {
+        background-color: @selection-background-color;
+    }
+    &:hover {
+        background-color: @hover-background-color;
+        cursor: pointer;
+    }
+}
