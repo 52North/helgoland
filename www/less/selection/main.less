@@ -2,12 +2,15 @@
 
 .selector-entry {
     padding:5px;
-    
+    word-wrap: break-word;
+
     &.selected {
         background-color: @selection-background-color;
+        color: @selection-color;
     }
     &:hover {
         background-color: @hover-background-color;
+        color: @hover-color;
         cursor: pointer;
     }
 }

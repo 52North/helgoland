@@ -33,7 +33,6 @@ require('./map/zoom-control.less');
 require('./mobile/mobile.less');
 require('./metadata/procedure.less');
 require('./profile/profile.less');
-require('./selection/service-filter-selection.less');
 require('./selection/main.less');
 require('./selection/multi-service-filter-selector.less');
 require('./selection/time-range-selection.less');
