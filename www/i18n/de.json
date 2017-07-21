@@ -289,7 +289,7 @@
   "trajectories": {
     "submenu": {
       "view": "Ansicht",
-      "selection": "Selektion"
+      "selection": "Auswahl"
     },
     "selection": {
       "selectProvider": "Wähle Anbieter",
