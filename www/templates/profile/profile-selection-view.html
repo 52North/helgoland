@@ -1,10 +1,10 @@
-<swc-profile-selector-permalink class="sub-menu-permalink-button"></swc-profile-selector-permalink>
+<swc-simple-permalink-button class="sub-menu-permalink-button" generated-url-function="$ctrl.createPermalink"></swc-simple-permalink-button>
 <div class="profile-selection hbox viewport">
     <div class="hbox boxItem">
         <uib-tabset active="$ctrl.tabActive" class="vbox boxItem" template-url="templates/uib/tabs/tabset.html">
             <uib-tab index="0" class="vbox boxItem">
                 <uib-tab-heading>
-                    Select Provider
+                    <span translate="profile.selection.selectProvider"></span>
                     <br/>
                     <span ng-if="$ctrl.selectedProvider">{{$ctrl.selectedProvider.label}}</span>
                     <span ng-if="!$ctrl.selectedProvider">-</span>
@@ -15,7 +15,7 @@
             </uib-tab>
             <uib-tab index="1" disable="!$ctrl.selectedProvider" class="vbox boxItem">
                 <uib-tab-heading>
-                    Select Offering
+                    <span translate="profile.selection.selectOffering"></span>
                     <br/>
                     <span ng-if="$ctrl.selectedOffering">{{$ctrl.selectedOffering.label}}</span>
                     <span ng-if="!$ctrl.selectedOffering">-</span>
@@ -26,7 +26,7 @@
             </uib-tab>
             <uib-tab index="2" disable="!$ctrl.selectedOffering" class="vbox boxItem">
                 <uib-tab-heading>
-                    Select Phenomenon
+                    <span translate="profile.selection.selectPhenomenon"></span>
                     <br/>
                     <span ng-if="$ctrl.selectedPhenomenon">{{$ctrl.selectedPhenomenon.label}}</span>
                     <span ng-if="!$ctrl.selectedPhenomenon">-</span>
@@ -37,7 +37,7 @@
             </uib-tab>
             <uib-tab index="3" disable="!$ctrl.selectedPhenomenon" class="vbox boxItem">
                 <uib-tab-heading>
-                    Select Procedure
+                    <span translate="profile.selection.selectProcedure"></span>
                     <br/>
                     <span ng-if="$ctrl.selectedProcedure">{{$ctrl.selectedProcedure.label}}</span>
                     <span ng-if="!$ctrl.selectedProcedure">-</span>
@@ -48,12 +48,41 @@
             </uib-tab>
             <uib-tab index="4" disable="!$ctrl.selectedProcedure" class="vbox boxItem">
                 <uib-tab-heading>
-                    Select Location
+                    <span translate="profile.selection.selectPlatform"></span>
+                    <br/>
+                    <span ng-if="$ctrl.selectedFeature">{{$ctrl.selectedFeature.label}}</span>
+                    <span ng-if="!$ctrl.selectedFeature">-</span>
+                </uib-tab-heading>
+                <div ng-if="$ctrl.selectedProcedure" class="vbox boxItem">
+                    <div class="center-header" translate="profile.selection.selectPlatformType"></div>
+                    <div class="hbox boxItem">
+                        <div class="vbox boxItem">
+                            <span class="center-header" translate="profile.selection.selectStationaryPlatform"></span>
+                            <swc-platform-map-selector map-id="profileStationary" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.stationaryPlatformFilter" on-platform-selected="$ctrl.platformSelected(platform)" map-layers="$ctrl.layers" cluster="$ctrl.cluster" class="vbox boxItem"></swc-platform-map-selector>
+                        </div>
+                        <div class="vbox boxItem">
+                            <span class="center-header" translate="profile.selection.selectMobilePlatform"></span>
+                            <div class="selection-list">
+                                <swc-service-filter-selector endpoint="'feature'" filter="$ctrl.mobilePlatformFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedFeature.id" on-item-selected="$ctrl.featureSelected(item, true)"></swc-service-filter-selector>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab index="5" disable="!$ctrl.selectedFeature" class="vbox boxItem">
+                <uib-tab-heading>
+                    <span translate="profile.selection.selectTrack"></span>
                     <br/>
                     <span>&nbsp;</span>
                 </uib-tab-heading>
-                <div ng-if="$ctrl.selectedProcedure" class="vbox boxItem">
-                    <swc-platform-map-selector map-id="profile" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.platformFilter" on-platform-selected="$ctrl.platformSelected(platform)" map-layers="$ctrl.layers" cluster="$ctrl.cluster" class="vbox boxItem"></swc-platform-map-selector>
+                <div ng-if="$ctrl.selectedFeature" class="vbox boxItem">
+                    <div class="time-slider-wrapper">
+                        <swc-time-range-selector time-list="$ctrl.timestamps" on-timespan-selected="$ctrl.onMobileTimespanSelected(timespan);"></swc-time-range-selector>
+                    </div>
+                    <div class="vbox boxItem">
+                        <swc-trajectory-map-selector map-id="profileMobile" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.trajectoryFilter" selected-timespan="$ctrl.selectedTimespan" on-geometry-selected="$ctrl.mobileGeometrySelected(dataset, selectedGeometry)"
+                            on-time-list-determined="$ctrl.mobileTimeList(timelist)" map-layers="$ctrl.layers" cluster="$ctrl.cluster" class="vbox boxItem" />
+                    </div>
                 </div>
             </uib-tab>
         </uib-tabset>

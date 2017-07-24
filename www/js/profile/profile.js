@@ -6,11 +6,11 @@ angular.module('n52.core.profile', [])
                 label: 'navigation.profile',
                 url: '/profiles',
                 redirectTo: function(trans) {
-                    return trans.injector().get('profilesService').hasProfiles() ? 'profiles.view' : 'profiles.selection';
+                    return trans.injector().get('profilesService').hasProfiles() ? 'profiles.diagram' : 'profiles.selection';
                 },
                 template: require('../../templates/profile/profile-menu.html')
             });
-            $stateProvider.state('profiles.view', {
+            $stateProvider.state('profiles.diagram', {
                 url: '/view',
                 component: 'swcProfileChartView'
             });

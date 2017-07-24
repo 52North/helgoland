@@ -27,6 +27,8 @@ import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap-slider/dist/bootstrap-slider';
+import 'bootstrap-slider/dist/css/bootstrap-slider.css';
 window.Plotly = require('plotly.js/lib/core');
 var d3 = require('d3');
 require('d3-extended')(d3);
@@ -98,6 +100,7 @@ var mainApp = angular.module('jsClient', [
     'n52.core.metadata',
     'n52.core.modal',
     'n52.core.overviewDiagram',
+    'n52.core.permalink',
     'n52.core.phenomena',
     'n52.core.provider',
     'n52.core.userSettings',

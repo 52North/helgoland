@@ -1,0 +1,24 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close();">&times;</button>
+        <div class="modal-title">
+            <span>{{'map.platformSelection.platform' | translate}}</span>:
+            <span>{{platform.label}}</span>
+        </div>
+    </div>
+    <div class="modal-body stationContent">
+        <div ng-repeat="dataset in platform.datasets">
+            <div class="">
+                {{dataset.label}}
+            </div>
+            <div ng-if="dataset.loading" translate="profile.stationarySelector.loadingTimestamps"></div>
+            <div ng-if="!dataset.loading" style="padding: 10px;">
+                <div translate="profile.stationarySelector.timestampSelection"></div>
+                <swc-time-list-selector time-list="dataset.dataTimestamps" on-time-selected="onTimeselected(dataset, time); close();"></swc-time-list-selector>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="close()" translate="ok"></button>
+    </div>
+</div>

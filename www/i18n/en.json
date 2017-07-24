@@ -40,6 +40,9 @@
       "oct": "Oct",
       "nov": "Nov",
       "dec": "Dec"
+    },
+    "permalink": {
+      "useTimeParameter": "Use current selected time period in permalink"
     }
   },
   "table": {
@@ -177,7 +180,8 @@
     }
   },
   "permalink": {
-    "noMatchingTimeseriesFound": "No matching timeseries is found."
+    "noMatchingTimeseriesFound": "No matching timeseries is found.",
+    "optionsHeader": "Permalink options:"
   },
   "guide": {
     "start": {
@@ -279,7 +283,30 @@
     "warn": "Please remember that: "
   },
   "profile": {
-    "selectCurrentTimestamp": "show as extra profile"
+    "submenu": {
+      "diagram": "Diagram",
+      "selection": "Selection"
+    },
+    "stationarySelector": {
+      "timestampSelection": "Select a time stamp to view a profile:",
+      "loadingTimestamps": "loading time stamps..."
+    },
+    "mobileSelector": {
+      "atDate": "Zeitpunkt:",
+      "addToDiagram": "Add to diagram",
+      "cancel": "Cancel"
+    },
+    "selection": {
+      "selectProvider": "Select provider",
+      "selectOffering": "Select offering",
+      "selectPhenomenon": "Select phenomenon",
+      "selectProcedure": "Select procedure",
+      "selectPlatform": "Select platform",
+      "selectPlatformType": "Select either a stationary or a mobile platforms:",
+      "selectStationaryPlatform": "Stationary platform:",
+      "selectMobilePlatform": "Mobile platform:",
+      "selectTrack": "Select profile"
+    }
   },
   "metadataOutput": {
     "selectRawProcedureFormat": "Select raw format for procedure",

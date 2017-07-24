@@ -40,6 +40,9 @@
       "oct": "Okt",
       "nov": "Nov",
       "dec": "Dez"
+    },
+    "permalink": {
+      "useTimeParameter": "Derzeitigen gewählten Zeitraum im Permalink verwenden"
     }
   },
   "table": {
@@ -177,7 +180,8 @@
     }
   },
   "permalink": {
-    "noMatchingTimeseriesFound": "Keine passende Zeitreihe gefunden."
+    "noMatchingTimeseriesFound": "Keine passende Zeitreihe gefunden.",
+    "optionsHeader": "Permalink Optionen:"
   },
   "guide": {
     "start": {
@@ -279,7 +283,30 @@
     "warn": "Bitte beachten Sie: "
   },
   "profile": {
-    "selectCurrentTimestamp": "Zeige als extra Profil"
+    "submenu": {
+      "diagram": "Diagramm",
+      "selection": "Auswahl"
+    },
+    "stationarySelector": {
+      "timestampSelection": "Selektiere ein Zeitpunkt um das Profile zu sehen:",
+      "loadingTimestamps": "Läd die verfügbaren Zeitpunkte..."
+    },
+    "mobileSelector": {
+      "atDate": "Zeitpunkt:",
+      "addToDiagram": "Füge zur Diagramm-Ansicht",
+      "cancel": "Abbrechen"
+    },
+    "selection": {
+      "selectProvider": "Wähle Anbieter",
+      "selectOffering": "Wähle Offering",
+      "selectPhenomenon": "Wähle Phänomen",
+      "selectProcedure": "Wähle Sensor",
+      "selectPlatform": "Wähle Platform",
+      "selectPlatformType": "Wähle entweder eine stationäre oder mobile Platform:",
+      "selectStationaryPlatform": "Stationäre Platform:",
+      "selectMobilePlatform": "Mobile Platform:",
+      "selectTrack": "Wähle Profile"
+    }
   },
   "metadataOutput": {
     "selectRawProcedureFormat": "Procedure als Rohdata",
