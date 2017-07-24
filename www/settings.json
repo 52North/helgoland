@@ -15,10 +15,6 @@
     "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg",
     "http://nexos.demo.52north.org/proxy/api/v1/": "triosSos"
   },
-  "defaultProvider": {
-    "serviceID": "1",
-    "url": "http://codm.hzg.de/52n-sos-webapp/api/v1/"
-  },
   "chartOptions": {
     "yaxis": {
       "tickDecimals": 2
@@ -112,14 +108,10 @@
     }]
   },
   "menuItems": [
-    "diagram",
+    "timeseries",
     "profiles",
-    "mobileDiagram",
     "trajectory",
     "favorite",
-    "map",
-    "provider",
-    "listSelection",
     "settings"
   ]
 }

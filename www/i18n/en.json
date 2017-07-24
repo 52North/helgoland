@@ -14,7 +14,13 @@
     "noFileSelected": "No file selected"
   },
   "navigation": {
-    "diagram": "Diagram",
+    "timeseries": {
+      "header": "Timeseries",
+      "diagram": "Diagram",
+      "map": "Map",
+      "list": "Listselection",
+      "provider": "Provider"
+    },
     "map": "Map",
     "favorite": "Favorites",
     "provider": "Provider",
