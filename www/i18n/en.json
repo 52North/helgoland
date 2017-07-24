@@ -19,9 +19,9 @@
     "favorite": "Favorites",
     "provider": "Provider",
     "listSelection": "List selection",
-    "settings": "Settings",
     "profile": "Profiles",
-    "trajectories": "Trajectories"
+    "trajectory": "Trajectories",
+    "settings": "Settings"
   },
   "chart": {
     "noTimeseriesSelected": "You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.",
@@ -314,7 +314,17 @@
     "showCapabilities": "Show Capabilities of the SOS"
   },
   "trajectories": {
+    "submenu": {
+      "view": "View",
+      "selection": "Selection"
+    },
+    "selection": {
+      "selectProvider": "Choose Provider",
+      "selectByPlatform": "Choose by platform",
+      "selectByPhenomenon": "Choose by phenomenon"
+    },
     "header": "Trajectory selection",
+    "selectProvider": "Select provider",
     "headers": {
       "platform": "Mobile platform",
       "offering": "Offering",
@@ -330,6 +340,7 @@
       "lineDotsTooltip": "Display trajectory as points/line"
     },
     "diagram": {
+      "hint": "The observation period can be shrinked by click and draw. A single click on the diagram represents the complete observation period.",
       "distanceTooltip": "x-axis figures the disatance",
       "timeTooltip": "x-axis figures the timeframe",
       "ticksTooltip": "x-axis figures the measurement ticks linear",

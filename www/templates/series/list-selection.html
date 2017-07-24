@@ -9,7 +9,7 @@
                 </span>
             </uib-accordion-heading>
             <div ng-if="!param.isDisabled">
-                <multi-service-filter-selector endpoint="param.type" filter-list="param.filterList" on-item-selected="$ctrl.itemSelected(item, $index)"></multi-service-filter-selector>
+                <swc-multi-service-filter-selector endpoint="param.type" filter-list="param.filterList" on-item-selected="$ctrl.itemSelected(item, $index)"></swc-multi-service-filter-selector>
             </div>
         </div uib-accordion-group>
     </uib-accordion>

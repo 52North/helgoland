@@ -19,9 +19,9 @@
     "favorite": "Favoriten",
     "provider": "Anbieter",
     "listSelection": "Listenauswahl",
-    "settings": "Einstellungen",
     "profile": "Profile",
-    "trajectories": "Trajektorien"
+    "trajectory": "Trajektorien",
+    "settings": "Einstellungen"
   },
   "chart": {
     "noTimeseriesSelected": "Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.",
@@ -314,7 +314,15 @@
     "showCapabilities": "Zeige SOS-Capabilities"
   },
   "trajectories": {
-    "header": "Trajektorienauswahl",
+    "submenu": {
+      "view": "Ansicht",
+      "selection": "Auswahl"
+    },
+    "selection": {
+      "selectProvider": "Wähle Anbieter",
+      "selectByPlatform": "Wähle über Platform",
+      "selectByPhenomenon": "Wähle über Phänomen"
+    },
     "headers": {
       "platform": "Mobile Platform",
       "offering": "Offering",
@@ -330,6 +338,7 @@
       "lineDotsTooltip": "Trajektoriendarstellung durch Punkte/Linie"
     },
     "diagram": {
+      "hint": "Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt.",
       "distanceTooltip": "X-Achse bildet die Distanz ab",
       "timeTooltip": "X-Achse bildet den Zeitraum ab",
       "ticksTooltip": "X-Achse bildet die Messpunkte linear ab",
