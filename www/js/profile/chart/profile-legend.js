@@ -81,4 +81,21 @@ angular.module('n52.core.profile')
                 this.$doCheck = function() {};
             }
         ]
+    })
+    .component('swcProfileCombiLink', {
+        bindings: {
+            profile: '<'
+        },
+        template: require('../../../templates/profile/profile-combi-view-link.html'),
+        controller: ['$state',
+            function($state) {
+                this.goToCombiView = () => {
+                    $state.go('profiles.combi', {
+                        url: this.profile.url,
+                        id: this.profile.id,
+                        time: this.profile.selectedTime
+                    });
+                };
+            }
+        ]
     });

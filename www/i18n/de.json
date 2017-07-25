@@ -294,7 +294,8 @@
   "profile": {
     "submenu": {
       "diagram": "Diagramm",
-      "selection": "Auswahl"
+      "selection": "Auswahl",
+      "combi": "Kombinierte Ansicht"
     },
     "stationarySelector": {
       "timestampSelection": "Selektiere ein Zeitpunkt um das Profile zu sehen:",
@@ -315,7 +316,8 @@
       "selectStationaryPlatform": "Stationäre Platform:",
       "selectMobilePlatform": "Mobile Platform:",
       "selectTrack": "Wähle Profile"
-    }
+    },
+    "showInCombiView": "Zeige in kombinierter Ansicht"
   },
   "metadataOutput": {
     "selectRawProcedureFormat": "Procedure als Rohdata",
