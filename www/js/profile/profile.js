@@ -18,5 +18,9 @@ angular.module('n52.core.profile', [])
                 url: '/selection',
                 component: 'swcProfileSelectorView'
             });
+            $stateProvider.state('profiles.combi', {
+                url: '/combi?url&id&time',
+                component: 'swcProfileCombiView'
+            });
         }
     ]);
