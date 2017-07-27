@@ -4,7 +4,7 @@ export * from './feature';
 export * from './identifiable';
 export * from './offering';
 export * from './parameter';
-export * from './phenomena';
+export * from './phenomenon';
 export * from './platform';
 export * from './procedure';
 export * from './service';

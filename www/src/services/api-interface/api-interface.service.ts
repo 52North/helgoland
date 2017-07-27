@@ -7,7 +7,7 @@ import { ApiV2 } from './interfaces/api-v2.interface';
 import {
     Service,
     Category,
-    Phenomena,
+    Phenomenon,
     Offering,
     Feature,
     Procedure,
@@ -59,13 +59,13 @@ export class ApiInterface implements ApiV2 {
         //     .map(this.extractData);
     }
 
-    public getPhenomena(apiUrl: string, params: any): Observable<Phenomena[]> {
+    public getPhenomena(apiUrl: string, params: any): Observable<Phenomenon[]> {
         const url = this.createRequestUrl(apiUrl, 'phenomena');
         return this.requestApi(url, params)
-            .map((res) => res.json() as Phenomena[]);
+            .map((res) => res.json() as Phenomenon[]);
     }
 
-    public getPhenomenon(id: string, apiUrl: string, params: any): Observable<Phenomena> {
+    public getPhenomenon(id: string, apiUrl: string, params: any): Observable<Phenomenon> {
         throw new Error('Not implemented');
     }
 

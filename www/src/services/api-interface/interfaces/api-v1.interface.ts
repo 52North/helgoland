@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import {
     Category,
     Service,
-    Phenomena,
+    Phenomenon,
     Offering,
     Feature,
     Procedure
@@ -27,8 +27,8 @@ export interface ApiV1 {
     getCategories(apiUrl: string, params: any): Observable<Category[]>;
     getCategory(id: string, apiUrl: string, params: any): Observable<Category>;
 
-    getPhenomena(apiUrl: string, params: any): Observable<Phenomena[]>;
-    getPhenomenon(id: string, apiUrl: string, params: any): Observable<Phenomena>;
+    getPhenomena(apiUrl: string, params: any): Observable<Phenomenon[]>;
+    getPhenomenon(id: string, apiUrl: string, params: any): Observable<Phenomenon>;
 
     getOfferings(apiUrl: string, params: any): Observable<Offering[]>;
     getOffering(id: string, apiUrl: string, params: any): Observable<Offering>;
