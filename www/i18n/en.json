@@ -291,7 +291,8 @@
   "profile": {
     "submenu": {
       "diagram": "Diagram",
-      "selection": "Selection"
+      "selection": "Selection",
+      "combi": "Combined View"
     },
     "stationarySelector": {
       "timestampSelection": "Select a time stamp to view a profile:",
@@ -312,7 +313,8 @@
       "selectStationaryPlatform": "Stationary platform:",
       "selectMobilePlatform": "Mobile platform:",
       "selectTrack": "Select profile"
-    }
+    },
+    "showInCombiView": "Show in combined View"
   },
   "metadataOutput": {
     "selectRawProcedureFormat": "Select raw format for procedure",

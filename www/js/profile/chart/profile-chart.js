@@ -8,7 +8,8 @@ angular.module('n52.core.profile')
     .component('profileChart', {
         bindings: {
             datasets: '<',
-            data: '<'
+            data: '<',
+            onChartHighlight: '&'
         },
         templateUrl: 'n52.core.profile.profile-chart',
         controller: [
@@ -29,6 +30,12 @@ angular.module('n52.core.profile')
                         change = true;
                     }
                     if (change) prepareData(this.data);
+                };
+
+                this.onHighlight = (highlight) => {
+                    this.onChartHighlight({
+                        highlight
+                    });
                 };
 
                 var prepareData = () => {
@@ -55,6 +62,7 @@ angular.module('n52.core.profile')
                 restrict: 'EA',
                 scope: {
                     data: '=',
+                    onHighlight: '&'
                 },
                 template: '<div id="{{::uniqueId}}" style="width: 100%; height:100%;"></div>',
                 link: function(scope) {
@@ -86,7 +94,8 @@ angular.module('n52.core.profile')
                             'hoverCompareCartesian'
                         ],
                         displaylogo: false,
-                        showTips: false
+                        showTips: false,
+                        scrollZoom: true
                     };
 
                     angular.element($window).on('resize', () => {
@@ -114,7 +123,7 @@ angular.module('n52.core.profile')
                                     name: '',
                                     yaxis: createYAxis(dataEntry),
                                     xaxis: createXAxis(dataEntry),
-                                    hovertext: dataEntry.label,
+                                    // hovertext: dataEntry.label,
                                     line: {
                                         color: dataEntry.color,
                                         width: dataEntry.selected ? 5 : 2
@@ -171,7 +180,7 @@ angular.module('n52.core.profile')
                                 autorange: 'reversed',
                                 showline: false,
                                 title: dataEntry.verticalUnit,
-                                fixedrange: true
+                                fixedrange: false
                             };
                             if (layout.counterYAxis !== 1) {
                                 axis.overlaying = 'y';
@@ -252,6 +261,15 @@ angular.module('n52.core.profile')
                     var drawChart = () => {
                         processData();
                         $window.Plotly.newPlot(scope.uniqueId, data, layout, settings);
+                        document.getElementById(scope.uniqueId).on('plotly_hover', (entry) => {
+                            if (entry.points.length === 1) {
+                                scope.onHighlight({
+                                    highlight: {
+                                        index: entry.points[0].pointNumber
+                                    }
+                                });
+                            }
+                        });
                     };
 
                     var redrawChart = () => {

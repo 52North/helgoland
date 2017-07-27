@@ -170,7 +170,7 @@ angular.module('n52.core.profile')
                     });
                 };
 
-                this.mobileGeometrySelected = (dataset, selectedGeometry) => {
+                this.mobileGeometrySelected = (dataset, selectedData) => {
                     $uibModal.open({
                         animation: true,
                         template: require('../../../templates/profile/profile-trajectory-preview.html'),
@@ -179,14 +179,15 @@ angular.module('n52.core.profile')
                                 return {
                                     dataset: dataset,
                                     url: this.selectedProvider.providerUrl,
-                                    geometry: selectedGeometry
+                                    data: selectedData
                                 };
                             }
                         },
-                        controller: ['$scope', 'selection', '$uibModalInstance', 'profilesService',
-                            function($scope, selection, $uibModalInstance, profilesService) {
-                                $scope.dataset = selection.dataset;
-                                $scope.geometry = selection.geometry;
+                        size: 'lg',
+                        controller: ['$scope', 'selection', '$uibModalInstance', 'profilesService', '$state',
+                            function($scope, selection, $uibModalInstance, profilesService, $state) {
+                                $scope.header = selection.dataset.label;
+                                $scope.timestamp = selection.data.timestamp;
 
                                 selection.dataset.style = {
                                     color: 'red'
@@ -196,16 +197,25 @@ angular.module('n52.core.profile')
                                     'preview': selection.dataset
                                 };
 
-                                $scope.data = {
+                                $scope.profileData = {
                                     'preview': [{
-                                        value: selection.geometry.value,
-                                        verticalUnit: selection.geometry.verticalUnit
+                                        value: selection.data.value,
+                                        verticalUnit: selection.data.verticalUnit
                                     }]
                                 };
 
                                 $scope.addToChart = () => {
-                                    profilesService.addProfile(dataset.id, selection.url, selection.geometry.timestamp);
+                                    profilesService.addProfile(dataset.id, selection.url, selection.data.timestamp);
                                     $state.go('profiles.diagram');
+                                    $scope.close();
+                                };
+
+                                $scope.goToCombiView = () => {
+                                    $state.go('profiles.combi', {
+                                        url: selection.url,
+                                        id: selection.dataset.id,
+                                        time: selection.data.timestamp
+                                    });
                                     $scope.close();
                                 };
 
