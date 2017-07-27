@@ -1,0 +1,18 @@
+<div class="container-fluid fullHeight">
+    <div class="row sub-menu">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+            </div>
+            <div class="collapse navbar-collapse" ng-class="{in: showMobileNav}" ng-click="showMobileNav = !showMobileNav">
+                <ul class="nav navbar-nav">
+                    <li ui-sref-active="active"><a ui-sref="profiles.diagram" translate="profile.submenu.diagram"></a></li>
+                    <li ui-sref-active="active"><a ui-sref="profiles.selection" translate="profile.submenu.selection"></a></li>
+                    <li ui-sref-active="active"><a ui-sref="profiles.combi" translate="profile.submenu.combi"></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="sub-menu-content">
+        <ui-view></ui-view>
+    </div>
+</div>

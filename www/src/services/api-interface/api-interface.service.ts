@@ -10,7 +10,8 @@ import {
     Phenomena,
     Offering,
     Feature,
-    Procedure
+    Procedure,
+    Parameter
 } from '../../model';
 
 @Injectable()
@@ -45,22 +46,20 @@ export class ApiInterface implements ApiV2 {
     }
 
     public getCategories(apiUrl: string, params: any): Observable<Category[]> {
-        debugger;
         const url = this.createRequestUrl(apiUrl, 'categories');
-        return this.requestApi(url, params)
-            .map(this.extractData);
+        return this.requestApi(url, params).map(this.extractDataArray);
     }
 
     public getCategory(id: string, apiUrl: string, params: any): Observable<Category> {
-        const url = this.createRequestUrl(apiUrl, 'categories', id);
-        return this.requestApi(url, params)
-            .map(this.extractData);
+        // const url = this.createRequestUrl(apiUrl, 'categories', id);
+        throw new Error('Not implemented');
+        // return this.requestApi(url, params)
+        //     .map(this.extractData);
     }
 
     public getPhenomena(apiUrl: string, params: any): Observable<Phenomena[]> {
         const url = this.createRequestUrl(apiUrl, 'phenomena');
-        return this.requestApi(url, params)
-            .map(this.extractData);
+        return this.requestApi(url, params).map(this.extractDataArray);
     }
 
     public getPhenomenon(id: string, apiUrl: string, params: any): Observable<Phenomena> {
@@ -77,8 +76,7 @@ export class ApiInterface implements ApiV2 {
 
     public getFeatures(apiUrl: string, params: any): Observable<Feature[]> {
         const url = this.createRequestUrl(apiUrl, 'features');
-        return this.requestApi(url, params)
-            .map(this.extractData);
+        return this.requestApi(url, params).map(this.extractDataArray);
     }
 
     public getFeature(id: string, apiUrl: string, params: any): Observable<Feature> {
@@ -87,8 +85,7 @@ export class ApiInterface implements ApiV2 {
 
     public getProcedures(apiUrl: string, params: any): Observable<Procedure[]> {
         const url = this.createRequestUrl(apiUrl, 'procedures');
-        return this.requestApi(url, params)
-            .map(this.extractData);
+        return this.requestApi(url, params).map(this.extractDataArray);
     }
 
     public getProcedure(id: string, apiUrl: string, params: any): Observable<Procedure> {
@@ -118,7 +115,8 @@ export class ApiInterface implements ApiV2 {
         return requestUrl;
     }
 
-    private extractData(res: Response) {
-        return res.json() || {};
+    private extractDataArray(res: Response): Parameter[] {
+        // return res.json() as Parameter[] || new Array<Parameter>();
+        return new Array<Parameter>();
     }
 }

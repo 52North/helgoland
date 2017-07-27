@@ -1,0 +1,19 @@
+<div class="container-fluid fullHeight">
+    <div class="row sub-menu">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+            </div>
+            <div class="collapse navbar-collapse" ng-class="{in: showMobileNav}" ng-click="showMobileNav = !showMobileNav">
+                <ul class="nav navbar-nav">
+                    <li ui-sref-active="active"><a ui-sref="timeseries.diagram" translate="navigation.timeseries.diagram"></a></li>
+                    <li ui-sref-active="active"><a ui-sref="timeseries.map-selection" translate="navigation.timeseries.map"></a></li>
+                    <li ui-sref-active="active"><a ui-sref="timeseries.list-selection" translate="navigation.timeseries.list"></a></li>
+                    <li ui-sref-active="active"><a ui-sref="timeseries.provider" translate="navigation.timeseries.provider"></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="sub-menu-content">
+        <ui-view></ui-view>
+    </div>
+</div>

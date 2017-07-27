@@ -1,0 +1,20 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close();">&times;</button>
+        <div class="modal-title">
+            <span>{{header}}</span>
+        </div>
+    </div>
+    <div class="modal-body profile-trajectory-preview">
+        <div class="time-at">
+            <span translate="profile.mobileSelector.atDate"></span>
+            <span>{{timestamp | date : 'medium'}}</span>
+        </div>
+        <profile-chart datasets="datasets" data="profileData"></profile-chart>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="goToCombiView()" translate="profile.showInCombiView"></button>
+        <button type="button" class="btn btn-primary" ng-click="addToChart()" translate="profile.mobileSelector.addToDiagram"></button>
+        <button type="button" class="btn btn-primary" ng-click="close()" translate="profile.mobileSelector.cancel"></button>
+    </div>
+</div>

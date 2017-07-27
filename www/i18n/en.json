@@ -14,11 +14,19 @@
     "noFileSelected": "No file selected"
   },
   "navigation": {
-    "diagram": "Diagram",
+    "timeseries": {
+      "header": "Timeseries",
+      "diagram": "Diagram",
+      "map": "Map",
+      "list": "Listselection",
+      "provider": "Provider"
+    },
     "map": "Map",
     "favorite": "Favorites",
     "provider": "Provider",
     "listSelection": "List selection",
+    "profile": "Profiles",
+    "trajectory": "Trajectories",
     "settings": "Settings"
   },
   "chart": {
@@ -280,9 +288,71 @@
     "error": "An error occured: ",
     "warn": "Please remember that: "
   },
+  "profile": {
+    "submenu": {
+      "diagram": "Diagram",
+      "selection": "Selection",
+      "combi": "Combined View"
+    },
+    "stationarySelector": {
+      "timestampSelection": "Select a time stamp to view a profile:",
+      "loadingTimestamps": "loading time stamps..."
+    },
+    "mobileSelector": {
+      "atDate": "Zeitpunkt:",
+      "addToDiagram": "Add to diagram",
+      "cancel": "Cancel"
+    },
+    "selection": {
+      "selectProvider": "Select provider",
+      "selectOffering": "Select offering",
+      "selectPhenomenon": "Select phenomenon",
+      "selectProcedure": "Select procedure",
+      "selectPlatform": "Select platform",
+      "selectPlatformType": "Select either a stationary or a mobile platforms:",
+      "selectStationaryPlatform": "Stationary platform:",
+      "selectMobilePlatform": "Mobile platform:",
+      "selectTrack": "Select profile"
+    },
+    "showInCombiView": "Show in combined View"
+  },
   "metadataOutput": {
     "selectRawProcedureFormat": "Select raw format for procedure",
     "selectTimeseriesDataFormat": "Select raw format for timeseries data",
     "showCapabilities": "Show Capabilities of the SOS"
+  },
+  "trajectories": {
+    "submenu": {
+      "view": "View",
+      "selection": "Selection"
+    },
+    "selection": {
+      "selectProvider": "Choose Provider",
+      "selectByPlatform": "Choose by platform",
+      "selectByPhenomenon": "Choose by phenomenon"
+    },
+    "header": "Trajectory selection",
+    "selectProvider": "Select provider",
+    "headers": {
+      "platform": "Mobile platform",
+      "offering": "Offering",
+      "track": "Tracks",
+      "phenomenon": "Phenomenon",
+      "dataset": "Dataset"
+    },
+    "permalinkTooltip": "Create a permalink for the selected trajectory",
+    "reloadTooltip": "Refresh trajectory data",
+    "noSupport": "Provider doesn't deliver trajectories",
+    "map": {
+      "loading": "Daten werden geladen",
+      "lineDotsTooltip": "Display trajectory as points/line"
+    },
+    "diagram": {
+      "hint": "The observation period can be shrinked by click and draw. A single click on the diagram represents the complete observation period.",
+      "distanceTooltip": "x-axis figures the disatance",
+      "timeTooltip": "x-axis figures the timeframe",
+      "ticksTooltip": "x-axis figures the measurement ticks linear",
+      "lineDotsTooltip": "Timeseries as line/dots"
+    }
   }
 }

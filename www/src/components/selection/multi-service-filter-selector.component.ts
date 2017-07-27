@@ -18,7 +18,7 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
     public filterList: any;
 
     @Output()
-    public itemSelected: EventEmitter<Parameter> = new EventEmitter<Parameter>();
+    public onItemSelected: EventEmitter<Parameter> = new EventEmitter<Parameter>();
 
     private items: Array<Parameter>;
     private loading: number = 0;
@@ -72,7 +72,7 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
     }
 
     onSelectItem(item): void {
-        this.itemSelected.emit(item);
+        this.onItemSelected.emit(item);
     }
 
     private errorOnLoading(): void {

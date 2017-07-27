@@ -28,6 +28,11 @@ import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap-slider/dist/bootstrap-slider';
+import 'bootstrap-slider/dist/css/bootstrap-slider.css';
+const d3 = require('d3');
+require('d3-extended')(d3);
+
 // import 'qr-js/qr.js';
 
 import 'n52-sensorweb-client-core/src/js/base';
@@ -40,6 +45,7 @@ import 'n52-sensorweb-client-core/src/js/Loading';
 import 'n52-sensorweb-client-core/src/js/Map';
 import 'n52-sensorweb-client-core/src/js/Menu';
 import 'n52-sensorweb-client-core/src/js/Metadata';
+import 'n52-sensorweb-client-core/src/js/mobile';
 import 'n52-sensorweb-client-core/src/js/Phenomenon';
 import 'n52-sensorweb-client-core/src/js/Provider';
 import 'n52-sensorweb-client-core/src/js/SeriesInterface';
@@ -50,8 +56,14 @@ import 'n52-sensorweb-client-core/src/js/Table';
 import 'n52-sensorweb-client-core/src/js/Time';
 import 'n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js';
 import 'n52-sensorweb-client-core/src/js/series/selection/list-selection.component';
+import 'n52-sensorweb-client-core/src/js/selection/provider-selector/component';
 // import 'n52-sensorweb-client-core/src/js/selection/multi-service-filter-selector/component';
+import 'n52-sensorweb-client-core/src/js/selection/platform-map-selector/component';
+import 'n52-sensorweb-client-core/src/js/selection/service-filter-selector/component';
 
+import './js/profile';
+import './js/trajectory';
+import './js/timeseries';
 import './js/navigation.js';
 import './js/map.js';
 
@@ -67,6 +79,7 @@ export const mainApp = angular.module('jsClient', [
     'ngSanitize',
     'ngTable',
     'ngResource',
+    // 'rzModule',
     'n52.core.barChart',
     'n52.core.base',
     'n52.core.dataLoading',
@@ -89,54 +102,33 @@ export const mainApp = angular.module('jsClient', [
     'n52.core.metadata',
     'n52.core.modal',
     'n52.core.overviewDiagram',
+    'n52.core.permalink',
     'n52.core.phenomena',
     'n52.core.provider',
     'n52.core.userSettings',
-    // 'n52.core.selection',
+    'n52.core.selection',
     'n52.core.series',
     'n52.core.startup',
     'n52.core.style',
     'n52.core.table',
     'n52.core.timeUi',
     'n52.core.translate',
+    'n52.core.timeseries',
     'n52.client.navigation',
-    'n52.client.map'
+    'n52.client.map',
+    'n52.core.profile',
+    'n52.core.mobile',
+    'n52.core.trajectory'
 ]);
 
 mainApp.config(['$stateProvider', '$urlRouterProvider',
     ($stateProvider, $urlRouterProvider) => {
         // default state
-        $urlRouterProvider.otherwise('/diagram');
-        $stateProvider.state('diagram', {
-            label: 'navigation.diagram',
-            url: '/diagram',
-            template: require('./templates/views/diagramView.html')
-        });
-        $stateProvider.state('map', {
-            label: 'navigation.map',
-            url: '/map',
-            template: require('./templates/views/mapView.html')
-        });
+        $urlRouterProvider.otherwise('/timeseries/diagram');
         $stateProvider.state('favorite', {
             label: 'navigation.favorite',
             url: '/favorite',
             template: require('./templates/views/favoriteView.html')
-        });
-        $stateProvider.state('provider', {
-            label: 'navigation.provider',
-            url: '/provider',
-            modal: {
-                controller: 'SwcProviderListModalCtrl',
-                template: require('./templates/map/provider-list-modal.html')
-            }
-        });
-        $stateProvider.state('listSelection', {
-            label: 'navigation.listSelection',
-            url: '/list-selection',
-            modal: {
-                controller: 'ModalWindowCtrl',
-                template: require('./templates/listSelection/modal-list-selection.html')
-            }
         });
         $stateProvider.state('settings', {
             label: 'navigation.settings',

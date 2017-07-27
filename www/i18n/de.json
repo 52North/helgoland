@@ -14,11 +14,19 @@
     "noFileSelected": "Keine Datei ausgewählt"
   },
   "navigation": {
-    "diagram": "Diagramm",
+    "timeseries": {
+      "header": "Zeitreihen",
+      "diagram": "Diagramm",
+      "map": "Karte",
+      "list": "Listenauswahl",
+      "provider": "Anbieter"
+    },
     "map": "Karte",
     "favorite": "Favoriten",
     "provider": "Anbieter",
     "listSelection": "Listenauswahl",
+    "profile": "Profile",
+    "trajectory": "Trajektorien",
     "settings": "Einstellungen"
   },
   "chart": {
@@ -280,9 +288,69 @@
     "error": "Ein Fehler ist aufgetreten: ",
     "warn": "Bitte beachten Sie: "
   },
+  "profile": {
+    "submenu": {
+      "diagram": "Diagramm",
+      "selection": "Auswahl",
+      "combi": "Kombinierte Ansicht"
+    },
+    "stationarySelector": {
+      "timestampSelection": "Selektiere ein Zeitpunkt um das Profile zu sehen:",
+      "loadingTimestamps": "Läd die verfügbaren Zeitpunkte..."
+    },
+    "mobileSelector": {
+      "atDate": "Zeitpunkt:",
+      "addToDiagram": "Füge zur Diagramm-Ansicht",
+      "cancel": "Abbrechen"
+    },
+    "selection": {
+      "selectProvider": "Wähle Anbieter",
+      "selectOffering": "Wähle Offering",
+      "selectPhenomenon": "Wähle Phänomen",
+      "selectProcedure": "Wähle Sensor",
+      "selectPlatform": "Wähle Platform",
+      "selectPlatformType": "Wähle entweder eine stationäre oder mobile Platform:",
+      "selectStationaryPlatform": "Stationäre Platform:",
+      "selectMobilePlatform": "Mobile Platform:",
+      "selectTrack": "Wähle Profile"
+    },
+    "showInCombiView": "Zeige in kombinierter Ansicht"
+  },
   "metadataOutput": {
     "selectRawProcedureFormat": "Procedure als Rohdata",
     "selectTimeseriesDataFormat": "Zeitreihendaten als Rohdaten",
     "showCapabilities": "Zeige SOS-Capabilities"
+  },
+  "trajectories": {
+    "submenu": {
+      "view": "Ansicht",
+      "selection": "Auswahl"
+    },
+    "selection": {
+      "selectProvider": "Wähle Anbieter",
+      "selectByPlatform": "Wähle über Platform",
+      "selectByPhenomenon": "Wähle über Phänomen"
+    },
+    "headers": {
+      "platform": "Mobile Platform",
+      "offering": "Offering",
+      "track": "Pfad",
+      "phenomenon": "Phänomen",
+      "dataset": "Dataset"
+    },
+    "permalinkTooltip": "Erstelle ein Permalink für die gewählte Trajektorie",
+    "reloadTooltip": "Wiederholendes Laden der Trajektorie",
+    "noSupport": "Anbieter liefert keine Trajektorien",
+    "map": {
+      "loading": "Daten werden geladen",
+      "lineDotsTooltip": "Trajektoriendarstellung durch Punkte/Linie"
+    },
+    "diagram": {
+      "hint": "Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt.",
+      "distanceTooltip": "X-Achse bildet die Distanz ab",
+      "timeTooltip": "X-Achse bildet den Zeitraum ab",
+      "ticksTooltip": "X-Achse bildet die Messpunkte linear ab",
+      "lineDotsTooltip": "Zeitreihe als Linien-/Punktdarstellung"
+    }
   }
 }
