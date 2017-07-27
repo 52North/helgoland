@@ -2,9 +2,9 @@
 
 ## Description
 
-**Visual Exploration and Analysis of Sensor Web Data**
+### Visual Exploration and Analysis of Sensor Web Data
 
-*This lightweight web application enables the exploration, analysis and visualization of sensor web data in various fields of use, e.g. hydrology, meteorology, environmental monitoring, traffic management.*
+**This lightweight web application enables the exploration, analysis and visualization of sensor web data in various fields of use, e.g. hydrology, meteorology, environmental monitoring, traffic management.**
 
 Helgoland is a lightweight web application to explore, analyze and visualize a broad range of sensor data. You can:
 
