@@ -64,6 +64,18 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
                         (error) => this.errorOnLoading
                     );
                     break;
+                case 'platform':
+                    this.apiInterface.getPlatforms(entry.url, filter).subscribe(
+                        (res) => this.setItems(res, filter, entry.url, entry.serviceID),
+                        (error) => this.errorOnLoading
+                    );
+                    break;
+                case 'dataset':
+                    this.apiInterface.getDatasets(entry.url, filter).subscribe(
+                        (res) => this.setItems(res, filter, entry.url, entry.serviceID),
+                        (error) => this.errorOnLoading
+                    );
+                    break;
                 default:
                     console.error('Wrong endpoint: ' + this.endpoint);
                     this.loading--;
@@ -100,20 +112,3 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
         });
     }
 }
-
-// require('../selection');
-// angular.module('n52.core.selection')
-//     .component('multiServiceFilterSelector', {
-//         controller: ['seriesApiInterface',
-//             function(seriesApiInterface) {
-//                 this.items = [];
-//                 this.loading = 0;
-//
-//                 this.selectItem = (item) => {
-//                     this.itemSelected({
-//                         item: item
-//                     });
-//                 };
-//             }
-//         ]
-//     });

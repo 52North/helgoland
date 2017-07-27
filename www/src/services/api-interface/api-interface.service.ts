@@ -11,7 +11,8 @@ import {
     Offering,
     Feature,
     Procedure,
-    Parameter
+    Platform,
+    Dataset
 } from '../../model';
 
 @Injectable()
@@ -47,7 +48,8 @@ export class ApiInterface implements ApiV2 {
 
     public getCategories(apiUrl: string, params: any): Observable<Category[]> {
         const url = this.createRequestUrl(apiUrl, 'categories');
-        return this.requestApi(url, params).map(this.extractDataArray);
+        return this.requestApi(url, params)
+            .map((res) => res.json() as Category[]);
     }
 
     public getCategory(id: string, apiUrl: string, params: any): Observable<Category> {
@@ -59,7 +61,8 @@ export class ApiInterface implements ApiV2 {
 
     public getPhenomena(apiUrl: string, params: any): Observable<Phenomena[]> {
         const url = this.createRequestUrl(apiUrl, 'phenomena');
-        return this.requestApi(url, params).map(this.extractDataArray);
+        return this.requestApi(url, params)
+            .map((res) => res.json() as Phenomena[]);
     }
 
     public getPhenomenon(id: string, apiUrl: string, params: any): Observable<Phenomena> {
@@ -76,7 +79,8 @@ export class ApiInterface implements ApiV2 {
 
     public getFeatures(apiUrl: string, params: any): Observable<Feature[]> {
         const url = this.createRequestUrl(apiUrl, 'features');
-        return this.requestApi(url, params).map(this.extractDataArray);
+        return this.requestApi(url, params)
+            .map((res) => res.json() as Feature[]);
     }
 
     public getFeature(id: string, apiUrl: string, params: any): Observable<Feature> {
@@ -85,18 +89,31 @@ export class ApiInterface implements ApiV2 {
 
     public getProcedures(apiUrl: string, params: any): Observable<Procedure[]> {
         const url = this.createRequestUrl(apiUrl, 'procedures');
-        return this.requestApi(url, params).map(this.extractDataArray);
+        return this.requestApi(url, params)
+            .map((res) => res.json() as Procedure[]);
     }
 
     public getProcedure(id: string, apiUrl: string, params: any): Observable<Procedure> {
         throw new Error('Not implemented');
     }
 
-    public getPlatforms(id: string, apiUrl: string, params: any): Observable<any> {
+    public getPlatforms(apiUrl: string, params: any): Observable<Platform[]> {
+        const url = this.createRequestUrl(apiUrl, 'platforms');
+        return this.requestApi(url, params)
+            .map((res) => res.json() as Platform[]);
+    }
+
+    public getPlatform(id: string, apiUrl: string, params: any): Observable<Platform> {
         throw new Error('Not implemented');
     }
 
-    public getDatasets(id: string, apiUrl: string, params: any): Observable<any> {
+    public getDatasets(apiUrl: string, params: any): Observable<Dataset[]> {
+        const url = this.createRequestUrl(apiUrl, 'datasets');
+        return this.requestApi(url, params)
+            .map((res) => res.json() as Dataset[]);
+    }
+
+    public getDataset(id: string, apiUrl: string, params: any): Observable<Dataset> {
         throw new Error('Not implemented');
     }
 
@@ -105,7 +122,7 @@ export class ApiInterface implements ApiV2 {
     }
 
     private requestApi(requestUrl: string, params: any): Observable<any> {
-        return this.http.get(requestUrl, params);
+        return this.http.get(requestUrl, {params});
     }
 
     private createRequestUrl(apiUrl: string, endpoint: string, id?: string) {
@@ -115,8 +132,4 @@ export class ApiInterface implements ApiV2 {
         return requestUrl;
     }
 
-    private extractDataArray(res: Response): Parameter[] {
-        // return res.json() as Parameter[] || new Array<Parameter>();
-        return new Array<Parameter>();
-    }
 }

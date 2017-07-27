@@ -1,5 +1,5 @@
 import { Parameter } from './parameter';
 
-export class Platform extends Parameter {
+export class Dataset extends Parameter {
 
 }
