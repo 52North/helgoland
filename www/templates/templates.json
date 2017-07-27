@@ -12,6 +12,7 @@
   "n52.core.legend.legend": "templates/legend/legend.html",
   "n52.core.legend.legend-entry": "templates/legend/legend-entry.html",
   "n52.core.legend.label-mapper": "templates/legend/label-mapper.html",
+  "n52.core.legend.geometry-map-viewer": "templates/legend/geometry-map-viewer.html",
   "n52.core.listSelection.list-selection": "templates/listSelection/list-selection.html",
   "n52.core.listSelection.modal-list-selection": "templates/listSelection/modal-list-selection.html",
   "n52.core.listSelection.tabbed-list-selection": "templates/listSelection/tabbed-list-selection.html",
@@ -41,5 +42,10 @@
   "n52.core.timeUi.predefined-time-range-button": "templates/time/predefined-time-range-button.html",
   "n52.core.timeUi.custom-time-range-selection": "templates/time/custom-time-range-selection.html",
   "n52.core.series.list-selection": "templates/series/list-selection.html",
-  "n52.core.selection.multi-service-filter-selector": "templates/selection/multi-service-filter-selector.html"
+  "n52.core.selection.multi-service-filter-selector": "templates/selection/multi-service-filter-selector.html",
+  "n52.core.permalink.button": "templates/permalink/permalink-button.html",
+  "n52.core.permalink.simple-modal": "templates/permalink/simple-modal.html",
+  "n52.core.permalink.in-mail": "templates/permalink/in-mail.html",
+  "n52.core.permalink.new-window": "templates/permalink/new-window.html",
+  "n52.core.permalink.to-clipboard": "templates/permalink/to-clipboard.html"
 }

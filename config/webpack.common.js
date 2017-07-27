@@ -21,9 +21,6 @@ module.exports = function(options) {
             extensions: ['.ts', '.js', '.json']
             // modules: [helpers.root('www')]
         },
-        externals: {
-            jQuery: 'jquery'
-        },
         module: {
             rules: [{
                 test: /\.js$/,

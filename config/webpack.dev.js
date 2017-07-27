@@ -15,7 +15,7 @@ module.exports = function() {
     return webpackMerge(commonConfig({
         env: ENV,
     }), {
-        devtool: 'eval-source-map',
+        devtool: 'source-map',
         module: {
             rules: [{
                 test: /\.js$/,
@@ -30,6 +30,9 @@ module.exports = function() {
                 },
                 exclude: [/node_modules\/\.(spec|e2e)\.ts$/]
             }]
+        },
+        resolve: {
+            symlinks: false
         },
         plugins: [
             new ExtractTextPlugin({
