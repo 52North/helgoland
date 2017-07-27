@@ -14,9 +14,6 @@ module.exports = function(options) {
 
     return {
         entry: './www/app.js',
-        externals: {
-            jQuery: 'jquery'
-        },
         module: {
             rules: [{
                 test: /\.js$/,
