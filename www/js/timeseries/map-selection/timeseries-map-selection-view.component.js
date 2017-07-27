@@ -21,7 +21,8 @@ angular.module('n52.core.timeseries')
                 var updatePhenomenonFilter = () => {
                     this.phenomenonFilter = {
                         platformTypes: defaultPlatformTypes,
-                        valueTypes: defaultValueTypes
+                        valueTypes: defaultValueTypes,
+                        service: providerSelection.selectedProvider.id
                     };
                 };
 
