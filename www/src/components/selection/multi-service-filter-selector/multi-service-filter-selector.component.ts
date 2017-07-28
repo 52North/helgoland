@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { ApiInterface } from '../../services/api-interface';
-import { Parameter } from '../../model';
+import { ApiInterface } from '../../../services/api-interface';
+import { Parameter } from '../../../model';
 
 /**
  * Component to select an item out of a list of provider with a given filter combination.
  */
 @Component({
-    selector: 'multi-service-filter-selector',
+    selector: 'n52-multi-service-filter-selector',
     template: require('./multi-service-filter-selector.component.html')
 })
 export class MultiServiceFilterSelectorComponent implements OnChanges {

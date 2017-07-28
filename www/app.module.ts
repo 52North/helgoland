@@ -5,7 +5,7 @@ import { ApiInterfaceModule } from './src/services/api-interface/api-interface.m
 
 import {
     MultiServiceFilterSelectorComponent
-} from './src/components/selection/multi-service-filter-selector.component';
+} from './src/components/selection/multi-service-filter-selector/multi-service-filter-selector.component';
 
 @NgModule({
     imports: [
