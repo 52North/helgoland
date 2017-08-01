@@ -43,9 +43,6 @@
   }, {
     "code": "en",
     "label": "English"
-  }, {
-    "code": "pt",
-    "label": "Portuguese"
   }],
   "selectColorFromList": true,
   "colorList": [
