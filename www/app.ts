@@ -56,8 +56,6 @@ import 'n52-sensorweb-client-core/src/js/Table';
 import 'n52-sensorweb-client-core/src/js/Time';
 import 'n52-sensorweb-client-core/src/js/plugins/extendedGetTsData.js';
 import 'n52-sensorweb-client-core/src/js/series/selection/list-selection.component';
-import 'n52-sensorweb-client-core/src/js/selection/provider-selector/component';
-// import 'n52-sensorweb-client-core/src/js/selection/multi-service-filter-selector/component';
 import 'n52-sensorweb-client-core/src/js/selection/platform-map-selector/component';
 import 'n52-sensorweb-client-core/src/js/selection/service-filter-selector/component';
 

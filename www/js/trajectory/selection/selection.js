@@ -1,5 +1,3 @@
-import 'n52-sensorweb-client-core/src/js/selection/provider-selector/component';
-
 angular.module('n52.core.trajectory')
     .component('swcTrajectorySelectorView', {
         bindings: {

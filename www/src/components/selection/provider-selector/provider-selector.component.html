@@ -1,0 +1,35 @@
+<div *ngIf="loadingCount > 0">
+    <span>Requesting {{loadingCount}} services...</span>
+</div>
+<div class="provider-list">
+    <div class="provider-item" *ngFor="let provider of providers" (click)="selectProvider(provider)" [ngClass]="{'selected': isSelected(provider)}">
+        <div>{{provider.label}}</div>
+        <div class="small">{{provider.type}},
+            {{provider.version}}</div>
+        <div class="small">{{provider.url}}</div>
+        <div class="small" *ngIf="provider.serviceUrl">
+            <span translate="providerList.serviceUrl"></span>:
+            <span>{{provider.serviceUrl}}</span>
+        </div>
+        <div class="small">
+            <span *ngIf="provider.quantities.stations">
+              <span translate="providerList.stations"></span>:
+              <span>{{provider.quantities.stations}}</span>
+            </span>
+            <span *ngIf="provider.quantities.platforms">
+              <span translate="providerList.platforms"></span>:
+              <span>{{provider.quantities.platforms}}</span>
+            </span>
+            <span *ngIf="provider.quantities.timeseries">
+              <span translate="providerList.timeseries"></span>:
+              <span>{{provider.quantities.timeseries}}</span>
+            </span>
+            <span *ngIf="provider.quantities.datasets">
+              <span translate="providerList.datasets"></span>:
+              <span>{{provider.quantities.datasets}}</span>
+            </span>
+            <span translate="providerList.phenomena"></span>:
+            <span>{{provider.quantities.phenomena}}</span>
+        </div>
+    </div>
+</div>

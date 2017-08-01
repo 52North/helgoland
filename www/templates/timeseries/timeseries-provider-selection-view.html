@@ -1,3 +1,3 @@
 <div class="container">
-    <swc-provider-selector provider-list="$ctrl.providerList" provider-blacklist="$ctrl.providerBlacklist" selected-provider="$ctrl.selectedProvider" support-stations="true" filter="$ctrl.providerFilter" on-provider-selected="$ctrl.providerSelected(provider, true)"></swc-provider-selector>
+    <n52-provider-selector [provider-list]="$ctrl.providerList" [provider-blacklist]="$ctrl.providerBlacklist" [selected-provider]="$ctrl.selectedProvider" [support-stations]="true" [filter]="$ctrl.providerFilter" (on-provider-selected)="$ctrl.providerSelected($event, true)"></n52-provider-selector>
 </div>

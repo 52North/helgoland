@@ -1,7 +1,8 @@
 /* tslint:disable:max-line-length */
 import {
-    MultiServiceFilterSelectorComponent
-} from './src/components/selection/multi-service-filter-selector/multi-service-filter-selector.component';
+    MultiServiceFilterSelectorComponent,
+    ProviderSelectorComponent
+} from './src/components/selection';
 
 import { mainApp } from './app';
 import { downgradeComponent } from '@angular/upgrade/static';
@@ -11,4 +12,9 @@ mainApp
         component: MultiServiceFilterSelectorComponent,
         inputs: ['endpoint', 'filterList'],
         outputs: ['itemSelected']
+    }) as angular.IDirectiveFactory)
+    .directive('n52ProviderSelector', downgradeComponent({
+        component: ProviderSelectorComponent,
+        inputs: ['providerList', 'providerBlacklist', 'supportStations', 'selectedProvider', 'filter'],
+        outputs: ['providerSelected']
     }) as angular.IDirectiveFactory);

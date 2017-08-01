@@ -4,8 +4,10 @@ import { UpgradeModule } from '@angular/upgrade/static';
 import { ApiInterfaceModule } from './src/services/api-interface/api-interface.module';
 
 import {
-    MultiServiceFilterSelectorComponent
-} from './src/components/selection/multi-service-filter-selector/multi-service-filter-selector.component';
+    MultiServiceFilterSelectorComponent,
+    ProviderSelectorComponent,
+    ProviderSelectorService
+} from './src/components/selection';
 
 @NgModule({
     imports: [
@@ -14,10 +16,15 @@ import {
         ApiInterfaceModule
     ],
     declarations: [
-        MultiServiceFilterSelectorComponent
+        MultiServiceFilterSelectorComponent,
+        ProviderSelectorComponent
     ],
     entryComponents: [
-        MultiServiceFilterSelectorComponent
+        MultiServiceFilterSelectorComponent,
+        ProviderSelectorComponent
+    ],
+    providers: [
+        ProviderSelectorService
     ]
 })
 export class AppModule {

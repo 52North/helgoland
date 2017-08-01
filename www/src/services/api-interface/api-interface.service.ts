@@ -23,7 +23,10 @@ export class ApiInterface implements ApiV2 {
     ) { }
 
     public getServices(apiUrl: string, params: any): Observable<Service[]> {
-        throw new Error('Not implemented');
+        const url = this.createRequestUrl(apiUrl, 'services');
+        params.expanded = true;
+        return this.requestApi(url, params)
+            .map((res) => res.json() as Service[]);
     }
 
     public getService(id: string, apiUrl: string, params: any): Observable<Service> {

@@ -1,4 +1,3 @@
-require('n52-sensorweb-client-core/src/js/selection/provider-selector/component');
 require('n52-sensorweb-client-core/src/js/selection/platform-map-selector/component');
 require('n52-sensorweb-client-core/src/js/selection/trajectory-map-selector/component');
 require('n52-sensorweb-client-core/src/js/selection/time-list-selector/component');

@@ -26,7 +26,6 @@ function bootstrapApp() {
             const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
             upgrade.bootstrap(document.documentElement, ['jsClient']);
             // var temp = angular.injector(["jsClient"]);
-            // debugger;
 
             // var injector = angular.bootstrap(document, ["jsClient"], {
             //     strictDi: true
