@@ -30,7 +30,8 @@
     "http://nexos.dev.52north.org/52n-sos-upc/api/": "52nupc",
     "http://nexos.demo.52north.org/52n-sos-nexos-test/api/": "nexosTest",
     "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg",
-    "http://nexos.demo.52north.org/nexos-sos-proxy/api/": "sosProxy"
+    "http://nexos.demo.52north.org/nexos-sos-proxy/api/": "sosProxy",
+    "http://nexos.demo.52north.org/proxy/api/v1/": "proxy"
   },
   "chartOptions": {
     "yaxis": {
