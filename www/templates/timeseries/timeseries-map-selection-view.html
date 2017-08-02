@@ -24,7 +24,7 @@
                             <span translate="main.allPhenomena"></span>
                         </div>
                         <hr>
-                        <swc-service-filter-selector endpoint="'phenomenon'" filter="$ctrl.phenomenonFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedPhenomenon.id" on-item-selected="$ctrl.phenomenonSelected(item, true)"></swc-service-filter-selector>
+                        <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="$ctrl.phenomenonFilter" [service-url]="$ctrl.selectedProvider.providerUrl" [selection-id]="$ctrl.selectedPhenomenon.id" (on-item-selected)="$ctrl.phenomenonSelected($event, true)"></n52-service-filter-selector>
                     </div>
                 </div>
             </div>

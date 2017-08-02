@@ -6,7 +6,8 @@ import { ApiInterfaceModule } from './src/services/api-interface/api-interface.m
 import {
     MultiServiceFilterSelectorComponent,
     ProviderSelectorComponent,
-    ProviderSelectorService
+    ProviderSelectorService,
+    ServiceFilterSelectorComponent
 } from './src/components/selection';
 
 @NgModule({
@@ -17,11 +18,13 @@ import {
     ],
     declarations: [
         MultiServiceFilterSelectorComponent,
-        ProviderSelectorComponent
+        ProviderSelectorComponent,
+        ServiceFilterSelectorComponent
     ],
     entryComponents: [
         MultiServiceFilterSelectorComponent,
-        ProviderSelectorComponent
+        ProviderSelectorComponent,
+        ServiceFilterSelectorComponent
     ],
     providers: [
         ProviderSelectorService

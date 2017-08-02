@@ -10,7 +10,7 @@
                     <span ng-if="!$ctrl.selectedProvider">-</span>
                 </uib-tab-heading>
                 <div class="vbox boxItem">
-                    <n52-provider-selector [provider-list]="$ctrl.providerList" [provider-blacklist]="$ctrl.providerBlacklist" [filter]="$ctrl.providerFilter" (on-provider-selected)="$ctrl.providerSelected(provider, true)"></n52-provider-selector>
+                    <n52-provider-selector [provider-list]="$ctrl.providerList" [provider-blacklist]="$ctrl.providerBlacklist" [filter]="$ctrl.providerFilter" (on-provider-selected)="$ctrl.providerSelected($event, true)"></n52-provider-selector>
                 </div>
             </uib-tab>
             <uib-tab index="1" disable="!$ctrl.selectedProvider" class="vbox boxItem">
@@ -21,7 +21,7 @@
                     <span ng-if="!$ctrl.selectedOffering">-</span>
                 </uib-tab-heading>
                 <div ng-if="$ctrl.selectedProvider" class="vbox boxItem">
-                    <swc-service-filter-selector endpoint="'offering'" filter="$ctrl.offeringFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedOffering.id" on-item-selected="$ctrl.offeringSelected(item, true)"></swc-service-filter-selector>
+                    <n52-service-filter-selector [endpoint]="'offering'" [filter]="$ctrl.offeringFilter" [service-url]="$ctrl.selectedProvider.providerUrl" [selection-id]="$ctrl.selectedOffering.id" (on-item-selected)="$ctrl.offeringSelected($event, true)"></n52-service-filter-selector>
                 </div>
             </uib-tab>
             <uib-tab index="2" disable="!$ctrl.selectedOffering" class="vbox boxItem">
@@ -32,7 +32,7 @@
                     <span ng-if="!$ctrl.selectedPhenomenon">-</span>
                 </uib-tab-heading>
                 <div ng-if="$ctrl.selectedOffering" class="vbox boxItem">
-                    <swc-service-filter-selector endpoint="'phenomenon'" filter="$ctrl.phenomenonFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedPhenomenon.id" on-item-selected="$ctrl.phenomenonSelected(item, true)"></swc-service-filter-selector>
+                    <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="$ctrl.phenomenonFilter" [service-url]="$ctrl.selectedProvider.providerUrl" [selection-id]="$ctrl.selectedPhenomenon.id" (on-item-selected)="$ctrl.phenomenonSelected($event, true)"></n52-service-filter-selector>
                 </div>
             </uib-tab>
             <uib-tab index="3" disable="!$ctrl.selectedPhenomenon" class="vbox boxItem">
@@ -43,7 +43,7 @@
                     <span ng-if="!$ctrl.selectedProcedure">-</span>
                 </uib-tab-heading>
                 <div class="map-selector" ng-if="$ctrl.selectedPhenomenon" class="vbox boxItem">
-                    <swc-service-filter-selector endpoint="'procedure'" filter="$ctrl.procedureFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedProcedure.id" on-item-selected="$ctrl.procedureSelected(item, true)"></swc-service-filter-selector>
+                    <n52-service-filter-selector [endpoint]="'procedure'" [filter]="$ctrl.procedureFilter" [service-url]="$ctrl.selectedProvider.providerUrl" [selection-id]="$ctrl.selectedProcedure.id" (on-item-selected)="$ctrl.procedureSelected($event, true)"></n52-service-filter-selector>
                 </div>
             </uib-tab>
             <uib-tab index="4" disable="!$ctrl.selectedProcedure" class="vbox boxItem">
@@ -63,7 +63,7 @@
                         <div class="vbox boxItem">
                             <span class="center-header" translate="profile.selection.selectMobilePlatform"></span>
                             <div class="selection-list">
-                                <swc-service-filter-selector endpoint="'feature'" filter="$ctrl.mobilePlatformFilter" service-url="$ctrl.selectedProvider.providerUrl" selection-id="$ctrl.selectedFeature.id" on-item-selected="$ctrl.featureSelected(item, true)"></swc-service-filter-selector>
+                                <n52-service-filter-selector [endpoint]="'feature'" [filter]="$ctrl.mobilePlatformFilter" [service-url]="$ctrl.selectedProvider.providerUrl" [selection-id]="$ctrl.selectedFeature.id" (on-item-selected)="$ctrl.featureSelected($event, true)"></n52-service-filter-selector>
                             </div>
                         </div>
                     </div>

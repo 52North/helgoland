@@ -73,7 +73,9 @@ export class ApiInterface implements ApiV2 {
     }
 
     public getOfferings(apiUrl: string, params: any): Observable<Offering[]> {
-        throw new Error('Not implemented');
+        const url = this.createRequestUrl(apiUrl, 'offerings');
+        return this.requestApi(url, params)
+            .map((res) => res.json() as Offering[]);
     }
 
     public getOffering(id: string, apiUrl: string, params: any): Observable<Offering> {

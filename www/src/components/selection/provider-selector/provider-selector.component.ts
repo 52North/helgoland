@@ -63,7 +63,7 @@ export class ProviderSelectorComponent implements OnInit {
     }
 
     public isSelected(provider: any) {
-        if (this.selectProvider) return false;
+        if (!this.selectedProvider) return false;
         return this.selectedProvider.id === provider.id && this.selectedProvider.providerUrl === provider.providerUrl;
     }
 
