@@ -8,6 +8,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { UpgradeModule } from '@angular/upgrade/static';
 
 import { AppModule } from './app.module';
+import { getTranslationProviders } from './src/i18n-providers';
 require('./app.upgrade');
 
 import { mainApp } from './app';
@@ -22,27 +23,30 @@ function fetchConfig() {
 
 function bootstrapApp() {
     angular.element(document).ready(() => {
-        platformBrowserDynamic().bootstrapModule(AppModule).then((platformRef) => {
-            const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
-            upgrade.bootstrap(document.documentElement, ['jsClient']);
-            // var temp = angular.injector(["jsClient"]);
+        document['locale'] = 'en';
+        getTranslationProviders().then((providers) => {
+            platformBrowserDynamic().bootstrapModule(AppModule, { providers }).then((platformRef) => {
+                const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
+                upgrade.bootstrap(document.documentElement, ['jsClient']);
+                // var temp = angular.injector(["jsClient"]);
 
-            // var injector = angular.bootstrap(document, ["jsClient"], {
-            //     strictDi: true
-            // });
-            // initilize parameter reader
-            // let startupService:any = injector.get('startupService');
-            // startupService.registerServices([
-            //     'SetTimeseriesOfStatusService',
-            //     'SetTimeParameterService',
-            //     'SetInternalTimeseriesService',
-            //     'SetConstellationService',
-            //     'SetConstellationServiceHack',
-            //     'SetLanguageService'
-            // ]);
-            // startupService.checkServices();
-            // // init mapService to have load stations directly
-            // injector.get('mapService');
+                // var injector = angular.bootstrap(document, ["jsClient"], {
+                //     strictDi: true
+                // });
+                // initilize parameter reader
+                // let startupService:any = injector.get('startupService');
+                // startupService.registerServices([
+                //     'SetTimeseriesOfStatusService',
+                //     'SetTimeParameterService',
+                //     'SetInternalTimeseriesService',
+                //     'SetConstellationService',
+                //     'SetConstellationServiceHack',
+                //     'SetLanguageService'
+                // ]);
+                // startupService.checkServices();
+                // // init mapService to have load stations directly
+                // injector.get('mapService');
+            });
         });
     });
 }

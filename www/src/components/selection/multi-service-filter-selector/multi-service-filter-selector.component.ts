@@ -7,7 +7,7 @@ import { Parameter } from '../../../model';
  */
 @Component({
     selector: 'n52-multi-service-filter-selector',
-    template: require('./multi-service-filter-selector.component.html')
+    templateUrl: './multi-service-filter-selector.component.html'
 })
 export class MultiServiceFilterSelectorComponent implements OnChanges {
 
@@ -20,8 +20,8 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
     @Output()
     public onItemSelected: EventEmitter<Parameter> = new EventEmitter<Parameter>();
 
-    private items: Array<Parameter>;
-    private loading: number = 0;
+    public loading: number = 0;
+    public items: Array<Parameter>;
 
     constructor(
         private apiInterface: ApiInterface

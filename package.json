@@ -107,6 +107,7 @@
     "docker": "npm run docker:build && npm run docker:run",
     "docker:build": "docker build -t helgoland:latest -f Dockerfile-local .",
     "docker:run": "docker run -p 8001:80 helgoland",
+    "i18n": "ng-xi18n --i18nFormat=xlf --outFile=www/src/locale/messages.de.xlf -p tsconfig.json",
     "prod": "http-server dist -p 8000 -c-1",
     "server": "webpack-dev-server --history-api-fallback --inline --progress",
     "start": "npm run server",

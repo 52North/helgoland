@@ -6,7 +6,7 @@ import { ProviderSelectorService } from './provider-selector.service';
  */
 @Component({
     selector: 'n52-provider-selector',
-    template: require('./provider-selector.component.html')
+    templateUrl: './provider-selector.component.html'
 })
 export class ProviderSelectorComponent implements OnInit {
 
@@ -28,8 +28,8 @@ export class ProviderSelectorComponent implements OnInit {
     @Output()
     public onProviderSelected: EventEmitter<any> = new EventEmitter<any>();
 
-    protected providers: Array<any>;
-    private loadingCount: number = 0;
+    public providers: Array<any>;
+    public loadingCount: number = 0;
 
     constructor(
         private providerSelectorService: ProviderSelectorService
