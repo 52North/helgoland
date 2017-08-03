@@ -1,18 +1,28 @@
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
-import { ApiInterface } from './api-interface/api-interface.service';
+import { ApiInterface, CachingInterceptor, LocalHttpCache, HttpCache } from './api-interface';
 import { Settings } from './settings/settings.service';
+
+const CachingInterceptorProvider = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: CachingInterceptor,
+    multi: true
+};
 
 @NgModule({
     imports: [
-        HttpModule
+        CommonModule,
+        HttpClientModule
     ],
     declarations: [
     ],
     entryComponents: [
     ],
     providers: [
+        { provide: HttpCache, useClass: LocalHttpCache },
+        CachingInterceptorProvider,
         ApiInterface,
         Settings
     ]

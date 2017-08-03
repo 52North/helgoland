@@ -20,7 +20,7 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
     @Output()
     public onItemSelected: EventEmitter<Parameter> = new EventEmitter<Parameter>();
 
-    public loading: number = 0;
+    public loading = 0;
     public items: Array<Parameter>;
 
     constructor(

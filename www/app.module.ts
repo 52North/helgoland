@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static';
 import { ServicesModule } from './src/services/services.module';
@@ -19,6 +20,7 @@ import {
     imports: [
         BrowserModule,
         UpgradeModule,
+        HttpClientModule,
         ServicesModule
     ],
     declarations: [

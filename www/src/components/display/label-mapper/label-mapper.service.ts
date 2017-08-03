@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import * as $ from 'jquery';
 import { Settings } from '../../../services';
@@ -8,7 +8,7 @@ import { Settings } from '../../../services';
 export class LabelMapperService {
 
     constructor(
-        private http: Http,
+        private httpClient: HttpClient,
         private settings: Settings
     ) { }
 
@@ -20,9 +20,9 @@ export class LabelMapperService {
                 const url = this.findUrl(label);
                 if (url) {
                     const labelUrl = this.settings.config.proxyUrl ? this.settings.config.proxyUrl + url : url;
-                    this.http.get(labelUrl).subscribe((res) => {
+                    this.httpClient.get(labelUrl, {responseType: 'text'}).subscribe((res) => {
                         try {
-                            const xml = $.parseXML(res.text());
+                            const xml = $.parseXML(res);
                             label = label.replace(url, $(xml).find('prefLabel').text());
                         } catch (error) {
                             // currently do nothing and use old label

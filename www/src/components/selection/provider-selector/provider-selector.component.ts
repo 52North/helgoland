@@ -29,7 +29,7 @@ export class ProviderSelectorComponent implements OnInit {
     public onProviderSelected: EventEmitter<any> = new EventEmitter<any>();
 
     public providers: Array<any>;
-    public loadingCount: number = 0;
+    public loadingCount = 0;
 
     constructor(
         private providerSelectorService: ProviderSelectorService

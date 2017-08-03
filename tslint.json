@@ -4,6 +4,7 @@
   ],
   "rules": {
     "array-type": false,
+    "class-name": true,
     "comment-format": [
       true,
       "check-space"
@@ -21,18 +22,17 @@
     "interface-name": false,
     "invoke-injectable": true,
     "label-position": true,
-    "max-line-length": [
-      true,
-      120
-    ],
     "max-classes-per-file": [
       true,
       5
     ],
+    "max-line-length": [
+      true,
+      140
+    ],
     "member-access": false,
     "member-ordering": [
       true,
-      "public-before-private",
       "static-before-instance",
       "variables-before-functions"
     ],
@@ -52,12 +52,12 @@
       "trace"
     ],
     "no-construct": true,
-    "no-debugger": false,
+    "no-debugger": true,
     "no-duplicate-variable": true,
     "no-empty": false,
     "no-eval": true,
     "no-forward-ref": true,
-    "no-inferrable-types": false,
+    "no-inferrable-types": true,
     "no-input-rename": true,
     "no-internal-module": true,
     "no-null-keyword": false,
@@ -132,12 +132,6 @@
     "use-life-cycle-interface": true,
     "use-output-property-decorator": true,
     "use-pipe-transform-interface": true,
-    "variable-name": [
-      true,
-      "check-format",
-      "allow-leading-underscore",
-      "ban-keywords"
-    ],
     "whitespace": [
       true,
       "check-branch",
