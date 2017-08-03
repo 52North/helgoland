@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
-import { ApiInterface } from './api-interface.service';
+import { ApiInterface } from './api-interface/api-interface.service';
+import { Settings } from './settings/settings.service';
 
 @NgModule({
     imports: [
@@ -12,8 +13,9 @@ import { ApiInterface } from './api-interface.service';
     entryComponents: [
     ],
     providers: [
-        ApiInterface
+        ApiInterface,
+        Settings
     ]
 })
-export class ApiInterfaceModule {
+export class ServicesModule {
 }

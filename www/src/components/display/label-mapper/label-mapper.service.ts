@@ -2,26 +2,24 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable, Observer } from 'rxjs';
 import * as $ from 'jquery';
+import { Settings } from '../../../services';
 
 @Injectable()
 export class LabelMapperService {
 
     constructor(
-        private http: Http
+        private http: Http,
+        private settings: Settings
     ) { }
 
     public getMappedLabel(label: string): Observable<string> {
-        // TODO add settingsService;
-        const settingsService = {
-            solveLabels: false
-        };
         return new Observable<string>((observer: Observer<string>) => {
-            if (settingsService.solveLabels) {
+            if (!this.settings.config.solveLabels) {
                 this.confirmLabel(observer, label);
             } else {
                 const url = this.findUrl(label);
                 if (url) {
-                    const labelUrl = 'https://cors-anywhere.herokuapp.com/' + url;
+                    const labelUrl = this.settings.config.proxyUrl ? this.settings.config.proxyUrl + url : url;
                     this.http.get(labelUrl).subscribe((res) => {
                         try {
                             const xml = $.parseXML(res.text());

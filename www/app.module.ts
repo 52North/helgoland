@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static';
-import { ApiInterfaceModule } from './src/services/api-interface/api-interface.module';
+import { ServicesModule } from './src/services/services.module';
 
 import {
     MultiServiceFilterSelectorComponent,
@@ -19,7 +19,7 @@ import {
     imports: [
         BrowserModule,
         UpgradeModule,
-        ApiInterfaceModule
+        ServicesModule
     ],
     declarations: [
         MultiServiceFilterSelectorComponent,

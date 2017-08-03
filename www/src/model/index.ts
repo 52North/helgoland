@@ -8,3 +8,5 @@ export * from './api/phenomenon';
 export * from './api/platform';
 export * from './api/procedure';
 export * from './api/service';
+
+export * from './config/config';
