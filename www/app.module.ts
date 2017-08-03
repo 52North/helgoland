@@ -10,6 +10,11 @@ import {
     ServiceFilterSelectorComponent
 } from './src/components/selection';
 
+import {
+    LabelMapperComponent,
+    LabelMapperService
+} from './src/components/display';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -19,15 +24,18 @@ import {
     declarations: [
         MultiServiceFilterSelectorComponent,
         ProviderSelectorComponent,
-        ServiceFilterSelectorComponent
+        ServiceFilterSelectorComponent,
+        LabelMapperComponent
     ],
     entryComponents: [
         MultiServiceFilterSelectorComponent,
         ProviderSelectorComponent,
-        ServiceFilterSelectorComponent
+        ServiceFilterSelectorComponent,
+        LabelMapperComponent
     ],
     providers: [
-        ProviderSelectorService
+        ProviderSelectorService,
+        LabelMapperService
     ]
 })
 export class AppModule {

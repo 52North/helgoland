@@ -4,6 +4,5 @@
 </div>
 <!-- TODO: add label ordering -->
 <div class="service-filter-selector-entry" *ngFor="let item of items" (click)="onSelectItem(item)">
-    {{item.label}}
-    <!-- <swc-label-mapper label="item.label"></swc-label-mapper> -->
+    <n52-label-mapper label="{{item.label}}"></n52-label-mapper>
 </div>
