@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApiInterface } from '../../../services/api-interface';
+import { ApiInterface } from '../../../services';
 import { Observable, Observer } from 'rxjs';
 
 @Injectable()
