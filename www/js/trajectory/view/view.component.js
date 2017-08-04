@@ -10,7 +10,7 @@ angular.module('n52.core.trajectory')
             datasets: '<',
             data: '<'
         },
-        template: require('../../../templates/trajectory/trajectory-view.html'),
+        template: require('./view.component.html'),
         controller: ['trajectoryViewPermalinkSrvc',
             function(trajectoryViewPermalinkSrvc) {
                 this.$onInit = () => {

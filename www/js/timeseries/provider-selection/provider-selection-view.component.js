@@ -1,6 +1,6 @@
 angular.module('n52.core.timeseries')
     .component('swcProviderSelectionView', {
-        template: require('../../../templates/timeseries/timeseries-provider-selection-view.html'),
+        template: require('./provider-selection-view.component.html'),
         controller: ['settingsService', 'providerSelection', '$location', '$state', 'previousTimeseriesState',
             function(settingsService, providerSelection, $location, $state, previousTimeseriesState) {
 

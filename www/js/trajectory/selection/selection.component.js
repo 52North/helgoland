@@ -4,7 +4,7 @@ angular.module('n52.core.trajectory')
             datasets: '<',
             data: '<'
         },
-        template: require('../../../templates/trajectory/trajectory-selection.html'),
+        template: require('./selection.component.html'),
         controller: ['settingsService', 'constants', 'combinedSrvc', '$state',
             function(settingsService, constants, combinedSrvc, $state) {
 

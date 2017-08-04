@@ -7,7 +7,7 @@ require('n52-sensorweb-client-core/src/js/selection/time-range-selector/componen
 
 angular.module('n52.core.profile')
     .component('swcProfileSelectorView', {
-        template: require('../../../templates/profile/profile-selection-view.html'),
+        template: require('./selection-view.component.html'),
         controller: ['settingsService', 'profileSelectorPermalinkSrvc', '$uibModal', 'swcProfileSelectorViewStateSrvc', '$state', 'constants',
             function(settingsService, profileSelectorPermalinkSrvc, $uibModal, swcProfileSelectorViewStateSrvc, $state, constants) {
 
@@ -123,7 +123,7 @@ angular.module('n52.core.profile')
                     this.selectedPlatform = platform;
                     $uibModal.open({
                         animation: true,
-                        template: require('../../../templates/profile/profile-stationary-selection.html'),
+                        template: require('./stationary-selection.modal.html'),
                         resolve: {
                             selection: () => {
                                 return {
@@ -172,7 +172,7 @@ angular.module('n52.core.profile')
                 this.mobileGeometrySelected = (dataset, selectedData) => {
                     $uibModal.open({
                         animation: true,
-                        template: require('../../../templates/profile/profile-trajectory-preview.html'),
+                        template: require('./trajectory-preview.modal.html'),
                         resolve: {
                             selection: () => {
                                 return {
