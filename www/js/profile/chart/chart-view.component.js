@@ -6,7 +6,7 @@ require('n52-sensorweb-client-core/src/js/permalink/service/permalink-service');
 
 angular.module('n52.core.profile')
     .component('swcProfileChartView', {
-        template: require('../../../templates/profile/profile-chart-view.html'),
+        template: require('./chart-view.component.html'),
         controller: ['profileChartPermalinkSrvc',
             function(profileChartPermalinkSrvc) {
                 this.$onInit = () => {

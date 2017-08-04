@@ -3,7 +3,7 @@ require('n52-sensorweb-client-core/src/js/permalink/service/permalink-service');
 
 angular.module('n52.core.profile')
     .component('swcProfileCombiView', {
-        template: require('../../../templates/profile/profile-combi-view.html'),
+        template: require('./combi-view.component.html'),
         controller: ['profileCombiPermalinkSrvc', 'swcProfileCombiViewStateSrvc', '$scope',
             function(profileCombiPermalinkSrvc, swcProfileCombiViewStateSrvc, $scope) {
 
