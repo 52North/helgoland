@@ -1,3 +1,3 @@
-export * from './trajectory';
-export * from './view/view';
-export * from './selection/selection';
+export * from './trajectory.router';
+export * from './view/view.component';
+export * from './selection/selection.component';

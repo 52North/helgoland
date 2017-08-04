@@ -26,14 +26,15 @@
     }
   },
   "supportedLanguages": [{
-      "code": "de",
-      "label": "Deutsch"
-    },
-    {
-      "code": "en",
-      "label": "English"
-    }
-  ],
+    "code": "de",
+    "label": "Deutsch"
+  }, {
+    "code": "en",
+    "label": "English"
+  }, {
+    "code": "pt",
+    "label": "Portuguese"
+  }],
   "selectColorFromList": true,
   "colorList": [
     "#078D53",

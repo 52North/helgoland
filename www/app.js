@@ -158,6 +158,7 @@ mainApp.config(['$translateProvider', 'settingsServiceProvider', '$locationProvi
             suppLang.indexOf($translateProvider.preferredLanguage()) === -1) {
             $translateProvider.preferredLanguage('en');
         }
+        $translateProvider.fallbackLanguage('en');
         $translateProvider.useSanitizeValueStrategy(null);
     }
 ]);
