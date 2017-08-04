@@ -20,7 +20,7 @@ angular.module('n52.core.timeseries', [])
                 label: 'navigation.timeseries.header',
                 redirectTo: 'timeseries.diagram',
                 url: '/timeseries',
-                template: require('../../templates/timeseries/timeseries-menu.html')
+                template: require('./timeseries.submenu.html')
             });
             $stateProvider.state('timeseries.diagram', {
                 url: '/diagram',

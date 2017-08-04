@@ -7,7 +7,7 @@ require('n52-sensorweb-client-core/src/js/Legend/geometry-map-viewer/component')
 
 angular.module('n52.core.timeseries')
     .component('swcTimeseriesDiagramView', {
-        template: require('../../../templates/timeseries/timeseries-diagram-view.html'),
+        template: require('./diagram-view.component.html'),
         controller: ['timeseriesDiagramPermalinkSrvc',
             function(timeseriesDiagramPermalinkSrvc) {
                 this.$onInit = () => {
@@ -30,7 +30,7 @@ angular.module('n52.core.timeseries')
                 this.permalink = () => {
                     $uibModal.open({
                         animation: true,
-                        template: require('../../../templates/timeseries/timeseries-diagram-permalink-window.html'),
+                        template: require('./diagram-permalink-window.html'),
                         controller: ['$scope', '$uibModalInstance', 'timeseriesDiagramPermalinkSrvc',
                             function($scope, $uibModalInstance, timeseriesDiagramPermalinkSrvc) {
                                 $scope.useTime = true;
