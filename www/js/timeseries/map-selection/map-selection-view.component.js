@@ -3,7 +3,7 @@ import 'n52-sensorweb-client-core/src/js/selection/service-filter-selector/compo
 
 angular.module('n52.core.timeseries')
     .component('swcTimeseriesMapSelectionView', {
-        template: require('../../../templates/timeseries/timeseries-map-selection-view.html'),
+        template: require('./map-selection-view.component.html'),
         controller: ['providerSelection', 'settingsService', '$uibModal',
             function(providerSelection, settingsService, $uibModal) {
                 var defaultPlatformTypes = 'stationary';
@@ -21,7 +21,8 @@ angular.module('n52.core.timeseries')
                 var updatePhenomenonFilter = () => {
                     this.phenomenonFilter = {
                         platformTypes: defaultPlatformTypes,
-                        valueTypes: defaultValueTypes
+                        valueTypes: defaultValueTypes,
+                        service: providerSelection.selectedProvider.id
                     };
                 };
 

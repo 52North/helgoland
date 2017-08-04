@@ -1,6 +1,6 @@
 angular.module('n52.core.timeseries')
     .component('swcTimeseriesListSelectionView', {
-        template: require('../../../templates/timeseries/timeseries-list-selection-view.html'),
+        template: require('./list-selection-view.component.html'),
         controller: ['providerSelection', 'seriesApiInterface', 'timeseriesService', '$state',
             function(providerSelection, seriesApiInterface, timeseriesService, $state) {
                 this.$onInit = () => {
