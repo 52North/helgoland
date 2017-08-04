@@ -11,7 +11,7 @@ angular.module('n52.core.profile')
             data: '<',
             onChartHighlight: '&'
         },
-        templateUrl: 'n52.core.profile.profile-chart',
+        template: require('./chart.component.html'),
         controller: [
             function() {
                 var previousData;

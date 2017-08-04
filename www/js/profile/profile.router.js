@@ -8,7 +8,7 @@ angular.module('n52.core.profile', [])
                 redirectTo: function(trans) {
                     return trans.injector().get('profilesService').hasProfiles() ? 'profiles.diagram' : 'profiles.selection';
                 },
-                template: require('../../templates/profile/profile-menu.html')
+                template: require('./profile.submenu.html')
             });
             $stateProvider.state('profiles.diagram', {
                 url: '/view',
