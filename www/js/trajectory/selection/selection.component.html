@@ -9,7 +9,7 @@
                     <span ng-if="!$ctrl.selectedProvider">-</span>
                 </uib-tab-heading>
                 <div class="vbox boxItem">
-                    <n52-provider-selector [provider-list]="$ctrl.providerList" [provider-blacklist]="$ctrl.providerBlacklist" [filter]="$ctrl.providerFilter" (on-provider-selected)="$ctrl.providerSelected(provider, true)"></n52-provider-selector>
+                    <n52-provider-selector [provider-list]="$ctrl.providerList" [provider-blacklist]="$ctrl.providerBlacklist" [filter]="$ctrl.providerFilter" (on-provider-selected)="$ctrl.providerSelected($event, true)"></n52-provider-selector>
                 </div>
             </uib-tab>
             <uib-tab index="1" disable="!$ctrl.selectedProvider" class="vbox boxItem">

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ApiInterface } from '../../../services';
-import { Parameter } from '../../../model';
+import { Parameter, Filter } from '../../../model';
 
 /**
  * Component to select an item out of a list of provider with a given filter combination.
@@ -15,7 +15,7 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
     public endpoint: string;
 
     @Input()
-    public filterList: any;
+    public filterList: Array<Filter>;
 
     @Output()
     public onItemSelected: EventEmitter<Parameter> = new EventEmitter<Parameter>();
@@ -36,43 +36,43 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
             switch (this.endpoint) {
                 case 'offering':
                     this.apiInterface.getOfferings(entry.url, filter).subscribe(
-                        (res) => this.setItems(res, filter, entry.url, entry.serviceID),
+                        (res) => this.setItems(res, filter, entry.url, filter.service),
                         (error) => this.errorOnLoading
                     );
                     break;
                 case 'phenomenon':
                     this.apiInterface.getPhenomena(entry.url, filter).subscribe(
-                        (res) => this.setItems(res, filter, entry.url, entry.serviceID),
+                        (res) => this.setItems(res, filter, entry.url, filter.service),
                         (error) => this.errorOnLoading
                     );
                     break;
                 case 'procedure':
                     this.apiInterface.getProcedures(entry.url, filter).subscribe(
-                        (res) => this.setItems(res, filter, entry.url, entry.serviceID),
+                        (res) => this.setItems(res, filter, entry.url, filter.service),
                         (error) => this.errorOnLoading
                     );
                     break;
                 case 'feature':
                     this.apiInterface.getFeatures(entry.url, filter).subscribe(
-                        (res) => this.setItems(res, filter, entry.url, entry.serviceID),
+                        (res) => this.setItems(res, filter, entry.url, filter.service),
                         (error) => this.errorOnLoading
                     );
                     break;
                 case 'category':
                     this.apiInterface.getCategories(entry.url, filter).subscribe(
-                        (res) => this.setItems(res, filter, entry.url, entry.serviceID),
+                        (res) => this.setItems(res, filter, entry.url, filter.service),
                         (error) => this.errorOnLoading
                     );
                     break;
                 case 'platform':
                     this.apiInterface.getPlatforms(entry.url, filter).subscribe(
-                        (res) => this.setItems(res, filter, entry.url, entry.serviceID),
+                        (res) => this.setItems(res, filter, entry.url, filter.service),
                         (error) => this.errorOnLoading
                     );
                     break;
                 case 'dataset':
                     this.apiInterface.getDatasets(entry.url, filter).subscribe(
-                        (res) => this.setItems(res, filter, entry.url, entry.serviceID),
+                        (res) => this.setItems(res, filter, entry.url, filter.service),
                         (error) => this.errorOnLoading
                     );
                     break;
