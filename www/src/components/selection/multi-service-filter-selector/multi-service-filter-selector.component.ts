@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { ApiInterface } from '../../../services';
+import { ApiInterface } from '../../../services/api-interface';
 import { Parameter, Filter } from '../../../model';
 
 /**

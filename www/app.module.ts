@@ -18,6 +18,10 @@ import {
     GeometryMapViewerComponent
 } from './src/components/display';
 
+import {
+    ZoomControlComponent
+} from './src/components/control';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -31,7 +35,8 @@ import {
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
         LabelMapperComponent,
-        GeometryMapViewerComponent
+        GeometryMapViewerComponent,
+        ZoomControlComponent
     ],
     entryComponents: [
         MultiServiceFilterSelectorComponent,
@@ -39,7 +44,8 @@ import {
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
         LabelMapperComponent,
-        GeometryMapViewerComponent
+        GeometryMapViewerComponent,
+        ZoomControlComponent
     ],
     providers: [
         ProviderSelectorService,

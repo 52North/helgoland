@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import * as $ from 'jquery';
-import { Settings } from '../../../services';
+import { Settings } from '../../../services/settings';
 
 @Injectable()
 export class LabelMapperService {

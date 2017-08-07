@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ApiInterface } from '../../../services';
+import { ApiInterface } from '../../../services/api-interface';
+import { MapCache } from '../../../services/map';
 import { Station } from '../../../model';
 import * as L from 'leaflet';
 
@@ -43,7 +44,8 @@ export class StationMapSelectorComponent implements OnChanges, OnInit {
     });
 
     constructor(
-        private apiInterface: ApiInterface
+        private apiInterface: ApiInterface,
+        private mapCache: MapCache
     ) { }
 
     public ngOnInit(): void {
@@ -89,6 +91,7 @@ export class StationMapSelectorComponent implements OnChanges, OnInit {
                     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(this.map);
+                    this.mapCache.setMap(this.mapId, this.map);
                 }
                 if (callback) callback();
             }, 100);

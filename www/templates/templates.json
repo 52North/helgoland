@@ -21,7 +21,6 @@
   "n52.core.map.station": "templates/map/station.html",
   "n52.core.map.locate-station": "templates/map/locateStation.html",
   "n52.core.map.stationary-insitu": "templates/map/stationary-insitu.html",
-  "n52.core.map.zoom-controls": "templates/map/zoom-control.html",
   "n52.core.map.locate-control": "templates/map/locate-control.html",
   "n52.core.map.search-control": "templates/map/search-control.html",
   "n52.core.metadata.timeseries-rawdata": "templates/metadata/timeseries-rawdata.html",
