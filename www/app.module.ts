@@ -13,7 +13,8 @@ import {
 
 import {
     LabelMapperComponent,
-    LabelMapperService
+    LabelMapperService,
+    GeometryMapViewerComponent
 } from './src/components/display';
 
 @NgModule({
@@ -27,13 +28,15 @@ import {
         MultiServiceFilterSelectorComponent,
         ProviderSelectorComponent,
         ServiceFilterSelectorComponent,
-        LabelMapperComponent
+        LabelMapperComponent,
+        GeometryMapViewerComponent
     ],
     entryComponents: [
         MultiServiceFilterSelectorComponent,
         ProviderSelectorComponent,
         ServiceFilterSelectorComponent,
-        LabelMapperComponent
+        LabelMapperComponent,
+        GeometryMapViewerComponent
     ],
     providers: [
         ProviderSelectorService,

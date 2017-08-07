@@ -27,7 +27,7 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
         private apiInterface: ApiInterface
     ) { }
 
-    public ngOnChanges(changes: SimpleChanges): any {
+    public ngOnChanges(changes: SimpleChanges) {
         this.items = [];
         this.filterList.forEach((entry) => {
             this.loading++;

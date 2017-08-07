@@ -3,6 +3,6 @@
     <div class="profile-combi-header">{{$ctrl.header}}</div>
     <div class="hbox boxItem">
         <profile-chart class="boxItem" datasets="$ctrl.profiles" data="$ctrl.profileData" on-chart-highlight="$ctrl.onHighlight(highlight)"></profile-chart>
-        <swc-geometry-map-viewer class="boxItem" map-id="profile-combi" geometry="$ctrl.geometry" max-map-zoom="14" highlight="$ctrl.highlightGeometry"></swc-geometry-map-viewer>
+        <n52-geometry-map-viewer class="boxItem" [map-id]="'profile-combi'" [geometry]="$ctrl.geometry" [max-map-zoom]="14" [highlight]="$ctrl.highlightGeometry"></n52-geometry-map-viewer>
     </div>
 </div>

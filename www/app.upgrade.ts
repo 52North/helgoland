@@ -6,29 +6,16 @@ import {
 } from './src/components/selection';
 
 import {
-    LabelMapperComponent
+    LabelMapperComponent,
+    GeometryMapViewerComponent
 } from './src/components/display';
 
 import { mainApp } from './app';
 import { downgradeComponent } from '@angular/upgrade/static';
 
 mainApp
-    .directive('n52MultiServiceFilterSelector', downgradeComponent({
-        component: MultiServiceFilterSelectorComponent,
-        inputs: ['endpoint', 'filterList'],
-        outputs: ['itemSelected']
-    }) as angular.IDirectiveFactory)
-    .directive('n52ServiceFilterSelector', downgradeComponent({
-        component: ServiceFilterSelectorComponent,
-        inputs: ['endpoint', 'serviceUrl', 'filter', 'selectionId'],
-        outputs: ['itemSelected']
-    }) as angular.IDirectiveFactory)
-    .directive('n52ProviderSelector', downgradeComponent({
-        component: ProviderSelectorComponent,
-        inputs: ['providerList', 'providerBlacklist', 'supportStations', 'selectedProvider', 'filter'],
-        outputs: ['providerSelected']
-    }) as angular.IDirectiveFactory)
-    .directive('n52LabelMapper', downgradeComponent({
-        component: LabelMapperComponent,
-        inputs: ['label']
-    }));
+    .directive('n52MultiServiceFilterSelector', downgradeComponent({ component: MultiServiceFilterSelectorComponent }) as angular.IDirectiveFactory)
+    .directive('n52ServiceFilterSelector', downgradeComponent({ component: ServiceFilterSelectorComponent }) as angular.IDirectiveFactory)
+    .directive('n52ProviderSelector', downgradeComponent({ component: ProviderSelectorComponent }) as angular.IDirectiveFactory)
+    .directive('n52LabelMapper', downgradeComponent({ component: LabelMapperComponent }) as angular.IDirectiveFactory)
+    .directive('n52GeometryMapViewer', downgradeComponent({ component: GeometryMapViewerComponent }) as angular.IDirectiveFactory);
