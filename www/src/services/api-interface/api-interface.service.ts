@@ -12,6 +12,7 @@ import {
     Feature,
     Procedure,
     Platform,
+    Station,
     Dataset
 } from '../../model';
 
@@ -25,15 +26,16 @@ export class ApiInterface implements ApiV2 {
     public getServices(apiUrl: string, params: any): Observable<Service[]> {
         const url = this.createRequestUrl(apiUrl, 'services');
         params.expanded = true;
-        return this.requestApi(url, params);
+        return this.requestApi<Service[]>(url, params);
     }
 
     public getService(id: string, apiUrl: string, params: any): Observable<Service> {
         throw new Error('Not implemented');
     }
 
-    public getStations(apiUrl: string, params: any): Observable<any> {
-        throw new Error('Not implemented');
+    public getStations(apiUrl: string, params: any): Observable<Station[]> {
+        const url = this.createRequestUrl(apiUrl, 'stations');
+        return this.requestApi<Station[]>(url, params);
     }
 
     public getStation(id: string, apiUrl: string, params: any): Observable<any> {
@@ -50,7 +52,7 @@ export class ApiInterface implements ApiV2 {
 
     public getCategories(apiUrl: string, params: any): Observable<Category[]> {
         const url = this.createRequestUrl(apiUrl, 'categories');
-        return this.requestApi(url, params);
+        return this.requestApi<Category[]>(url, params);
     }
 
     public getCategory(id: string, apiUrl: string, params: any): Observable<Category> {
@@ -71,7 +73,7 @@ export class ApiInterface implements ApiV2 {
 
     public getOfferings(apiUrl: string, params: any): Observable<Offering[]> {
         const url = this.createRequestUrl(apiUrl, 'offerings');
-        return this.requestApi(url, params);
+        return this.requestApi<Offering[]>(url, params);
     }
 
     public getOffering(id: string, apiUrl: string, params: any): Observable<Offering> {
@@ -80,7 +82,7 @@ export class ApiInterface implements ApiV2 {
 
     public getFeatures(apiUrl: string, params: any): Observable<Feature[]> {
         const url = this.createRequestUrl(apiUrl, 'features');
-        return this.requestApi(url, params);
+        return this.requestApi<Feature[]>(url, params);
     }
 
     public getFeature(id: string, apiUrl: string, params: any): Observable<Feature> {
@@ -89,7 +91,7 @@ export class ApiInterface implements ApiV2 {
 
     public getProcedures(apiUrl: string, params: any): Observable<Procedure[]> {
         const url = this.createRequestUrl(apiUrl, 'procedures');
-        return this.requestApi(url, params);
+        return this.requestApi<Procedure[]>(url, params);
     }
 
     public getProcedure(id: string, apiUrl: string, params: any): Observable<Procedure> {
@@ -98,7 +100,7 @@ export class ApiInterface implements ApiV2 {
 
     public getPlatforms(apiUrl: string, params: any): Observable<Platform[]> {
         const url = this.createRequestUrl(apiUrl, 'platforms');
-        return this.requestApi(url, params);
+        return this.requestApi<Platform[]>(url, params);
     }
 
     public getPlatform(id: string, apiUrl: string, params: any): Observable<Platform> {
@@ -107,7 +109,7 @@ export class ApiInterface implements ApiV2 {
 
     public getDatasets(apiUrl: string, params: any): Observable<Dataset[]> {
         const url = this.createRequestUrl(apiUrl, 'datasets');
-        return this.requestApi(url, params);
+        return this.requestApi<Dataset[]>(url, params);
     }
 
     public getDataset(id: string, apiUrl: string, params: any): Observable<Dataset> {

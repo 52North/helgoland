@@ -11,10 +11,10 @@
                         <button type="button" class="btn btn-primary btn-xs" ng-show="status.showPhenomena" ng-click="$event.stopPropagation(); togglePhenomena()">X</button>
                     </div>
                     <div id="map" ng-controller="SwcBasicMapCtrl as mapCtrl">
-                        <swc-station-map-selector map-id="timeseries" service-url="$ctrl.selectedProvider.providerUrl" filter="$ctrl.stationFilter" on-station-selected="$ctrl.stationSelected(station)" map-layers="$ctrl.layers" cluster="$ctrl.cluster" class="vbox boxItem" style="height: 100%;"></swc-station-map-selector>
-                        <swc-search-control map-id="timeseries"></swc-search-control>
+                        <n52-station-map-selector [map-id]="'timeseries'" [service-url]="$ctrl.selectedProvider.providerUrl" [filter]="$ctrl.stationFilter" (on-station-selected)="$ctrl.stationSelected($event)" [map-layers]="$ctrl.layers" [cluster]="$ctrl.cluster" class="vbox boxItem" style="height: 100%;"></n52-station-map-selector>
+                        <!-- <swc-search-control map-id="timeseries"></swc-search-control>
                         <swc-zoom-controls map-id="timeseries"></swc-zoom-controls>
-                        <swc-locate-control map-id="timeseries"></swc-locate-control>
+                        <swc-locate-control map-id="timeseries"></swc-locate-control> -->
                     </div>
                 </div>
                 <div class="col-xs-8 col-sm-4 col-lg-3 fullHeight phenomena rightPanel" ng-controller="SwcPhenomenaButtonController" ng-class="{active:status.showPhenomena}">

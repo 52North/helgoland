@@ -2,7 +2,8 @@
 import {
     MultiServiceFilterSelectorComponent,
     ServiceFilterSelectorComponent,
-    ProviderSelectorComponent
+    ProviderSelectorComponent,
+    StationMapSelectorComponent
 } from './src/components/selection';
 
 import {
@@ -18,4 +19,5 @@ mainApp
     .directive('n52ServiceFilterSelector', downgradeComponent({ component: ServiceFilterSelectorComponent }) as angular.IDirectiveFactory)
     .directive('n52ProviderSelector', downgradeComponent({ component: ProviderSelectorComponent }) as angular.IDirectiveFactory)
     .directive('n52LabelMapper', downgradeComponent({ component: LabelMapperComponent }) as angular.IDirectiveFactory)
+    .directive('n52StationMapSelector', downgradeComponent({ component: StationMapSelectorComponent }) as angular.IDirectiveFactory)
     .directive('n52GeometryMapViewer', downgradeComponent({ component: GeometryMapViewerComponent }) as angular.IDirectiveFactory);

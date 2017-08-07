@@ -8,7 +8,8 @@ import {
     MultiServiceFilterSelectorComponent,
     ProviderSelectorComponent,
     ProviderSelectorService,
-    ServiceFilterSelectorComponent
+    ServiceFilterSelectorComponent,
+    StationMapSelectorComponent
 } from './src/components/selection';
 
 import {
@@ -28,6 +29,7 @@ import {
         MultiServiceFilterSelectorComponent,
         ProviderSelectorComponent,
         ServiceFilterSelectorComponent,
+        StationMapSelectorComponent,
         LabelMapperComponent,
         GeometryMapViewerComponent
     ],
@@ -35,6 +37,7 @@ import {
         MultiServiceFilterSelectorComponent,
         ProviderSelectorComponent,
         ServiceFilterSelectorComponent,
+        StationMapSelectorComponent,
         LabelMapperComponent,
         GeometryMapViewerComponent
     ],
