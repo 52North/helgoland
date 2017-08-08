@@ -17,7 +17,6 @@ require('./main/flex-box.less');
 require('./main/icon.less');
 require('./main/main.less');
 require('./main/navigation.less');
-require('./main/offcanvas.less');
 require('./main/sub-menu.less');
 require('./main/permalink.less');
 require('./map/controls.less');

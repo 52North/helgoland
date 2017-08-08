@@ -32,6 +32,7 @@ import 'bootstrap-slider/dist/bootstrap-slider';
 import 'bootstrap-slider/dist/css/bootstrap-slider.css';
 const d3 = require('d3');
 require('d3-extended')(d3);
+require('bootstrap-loader');
 
 // import 'qr-js/qr.js';
 

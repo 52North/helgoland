@@ -1,8 +1,4 @@
-<div class="btn-group-vertical btn-group-sm map-control zoom-control" role="group">
-    <a class="btn btn-default" (click)="zoomIn()">
-        <span class="glyphicon glyphicon-plus"></span>
-    </a>
-    <a class="btn btn-default" (click)="zoomOut()">
-        <span class="glyphicon glyphicon-minus"></span>
-    </a>
+<div class="btn-group-vertical map-control zoom-control">
+    <button type="button" class="btn btn-primary btn-sm" (click)="zoomIn()"><span class="glyphicon glyphicon-plus">in</span></button>
+    <button type="button" class="btn btn-secondary btn-sm" (click)="zoomOut()"><span class="glyphicon glyphicon-minus">out</span></button>
 </div>
