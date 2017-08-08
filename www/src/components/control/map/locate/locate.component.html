@@ -1,5 +1,5 @@
 <div class="btn-group-vertical btn-group-sm map-control locate-control" role="group">
-    <a class="btn btn-default" ng-class="{'btn-primary':$ctrl.isToggled}" ng-click="$ctrl.locateUser()">
+    <a class="btn btn-default" [ngClass]="{'btn-primary': isToggled}" (click)="locateUser()">
         <span class="glyphicon glyphicon-map-marker"></span>
     </a>
 </div>

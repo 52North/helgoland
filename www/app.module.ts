@@ -19,7 +19,9 @@ import {
 } from './src/components/display';
 
 import {
-    ZoomControlComponent
+    ZoomControlComponent,
+    LocateControlComponent,
+    LocateService
 } from './src/components/control';
 
 @NgModule({
@@ -36,7 +38,8 @@ import {
         StationMapSelectorComponent,
         LabelMapperComponent,
         GeometryMapViewerComponent,
-        ZoomControlComponent
+        ZoomControlComponent,
+        LocateControlComponent
     ],
     entryComponents: [
         MultiServiceFilterSelectorComponent,
@@ -45,11 +48,13 @@ import {
         StationMapSelectorComponent,
         LabelMapperComponent,
         GeometryMapViewerComponent,
-        ZoomControlComponent
+        ZoomControlComponent,
+        LocateControlComponent
     ],
     providers: [
         ProviderSelectorService,
-        LabelMapperService
+        LabelMapperService,
+        LocateService
     ]
 })
 export class AppModule {

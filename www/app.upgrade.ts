@@ -12,7 +12,8 @@ import {
 } from './src/components/display';
 
 import {
-    ZoomControlComponent
+    ZoomControlComponent,
+    LocateControlComponent
 } from './src/components/control';
 
 import { mainApp } from './app';
@@ -25,4 +26,5 @@ mainApp
     .directive('n52LabelMapper', downgradeComponent({ component: LabelMapperComponent }) as angular.IDirectiveFactory)
     .directive('n52StationMapSelector', downgradeComponent({ component: StationMapSelectorComponent }) as angular.IDirectiveFactory)
     .directive('n52GeometryMapViewer', downgradeComponent({ component: GeometryMapViewerComponent }) as angular.IDirectiveFactory)
-    .directive('n52ZoomControl', downgradeComponent({ component: ZoomControlComponent }) as angular.IDirectiveFactory);
+    .directive('n52ZoomControl', downgradeComponent({ component: ZoomControlComponent }) as angular.IDirectiveFactory)
+    .directive('n52LocateControl', downgradeComponent({ component: LocateControlComponent }) as angular.IDirectiveFactory);

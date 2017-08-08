@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import * as L from 'leaflet';
+import L from 'leaflet';
 
 @Component({
     selector: 'n52-geometry-map-viewer',
@@ -22,7 +22,7 @@ export class GeometryMapViewerComponent implements OnInit, OnChanges {
     private map;
     private highlightGeometry;
 
-    private defaultStyle = {
+    private defaultStyle: () => {
         color: 'red',
         weight: 5,
         opacity: 0.65
@@ -68,7 +68,7 @@ export class GeometryMapViewerComponent implements OnInit, OnChanges {
             if (this.highlightGeometry) {
                 this.map.removeLayer(this.highlightGeometry);
             }
-            this.highlightGeometry = L.geoJson(this.highlight, {
+            this.highlightGeometry = L.geoJSON(this.highlight, {
                 pointToLayer: (feature, latlng) => {
                     return L.circleMarker(latlng, this.highlightStyle);
                 }
