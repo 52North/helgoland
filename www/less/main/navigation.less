@@ -1,52 +1,56 @@
 @import "../variables.less";
 
-.navbar-default {
+.navbar {
     border-color: white;
     background-color: @menu-background-color;
     margin: 0;
     border: none;
-    .navbar-header {
-        .navbar-brand {
-            cursor: default;
-            color: @menu-text-color;
-        }
-        .navbar-header-text {
-            margin-left: 10px;
-        }
-        .button-right {
-            float: right;
-            margin-right: 10px;
+
+    .navbar-brand {
+        cursor: default;
+        color: @menu-text-color;
+
+        &:hover {
+            color: @menu-selected-text-color;
         }
     }
-    .navbar-nav{
-        &>li {
-            &>a {
+
+    .navbar-nav {
+        .nav-item {
+            & > a {
                 color: @menu-text-color;
-                &:hover{
-                    color: @menu-selected-text-color;
-                    background-color: @menu-selected-background-color;
-                    cursor: pointer;
-                }
             }
-        }
-        &>.active {
-            &>a {
-                color: @menu-selected-text-color;
+
+            &:hover {
+                & > a {
+                    color: @menu-selected-text-color;
+                }
                 background-color: @menu-selected-background-color;
-                &:hover,
-                    &:focus {
+                cursor: pointer;
+            }
+
+            &.active {
+                & > a {
                     color: @menu-selected-text-color;
                     background-color: @menu-selected-background-color;
+
+                    &:focus,
+                    &:hover {
+                        color: @menu-selected-text-color;
+                        background-color: @menu-selected-background-color;
+                    }
                 }
             }
         }
     }
-    .navbar-toggle{
+
+    .navbar-toggle {
         border: none;
         background-color: @menu-text-color;
+
+        &:focus,
         &:hover,
-            &:focus,
-            collapsed {
+        collapsed {
             background-color: @menu-text-color;
         }
     }

@@ -1,64 +1,20 @@
 @import "../variables.less";
 
 .sub-menu {
-    .navbar {
-        color: @menu-selected-text-color;
-        background-color: @menu-selected-background-color;
-        border: none;
-        border-radius: 0;
-        min-height: 30px !important;
-    }
+    .nav {
+        .nav-item {
+            .nav-link {
+                color: @text-color;
+                border-radius: 0;
 
-    .navbar-brand,
-    .navbar-nav > li > a {
-        padding-top: 5px !important;
-        padding-bottom: 0 !important;
-        height: 30px;
-    }
-
-    .navbar-nav {
-        & > li {
-            & > a {
-                color: @menu-selected-text-color;
+                &.active {
+                    background-color: @selection-background-color;
+                }
 
                 &:hover {
-                    color: @menu-text-color;
-                    background-color: @menu-background-color;
-                    cursor: pointer;
+                    background-color: @hover-background-color;
                 }
             }
         }
-
-        & > .active {
-            & > a {
-                color: @menu-text-color;
-                background-color: @menu-background-color;
-
-                &:focus,
-                &:hover {
-                    color: @menu-text-color;
-                    background-color: @menu-background-color;
-                }
-            }
-        }
-    }
-}
-
-.sub-menu-content {
-    position: absolute;
-    top: 30px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
-    padding: 5px;
-}
-
-.sub-menu-permalink-button {
-    position: absolute;
-    right: 10px;
-    top: -23px;
-    color: @menu-selected-text-color;
-    &:hover {
-        cursor: pointer;
     }
 }
