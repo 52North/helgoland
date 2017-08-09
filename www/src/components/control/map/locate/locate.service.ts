@@ -29,7 +29,7 @@ export class LocateService {
             const marker = L.marker(evt.latlng, {
                 icon
             }).addTo(map);
-            marker[id] = LOCATED_MARKER_ID;
+            marker['id'] = LOCATED_MARKER_ID;
         });
         map.locate({
             watch: true,

@@ -1,5 +1,5 @@
-<div class="btn-group-vertical btn-group-sm map-control locate-control" role="group">
-    <a class="btn btn-default" [ngClass]="{'btn-primary': isToggled}" (click)="locateUser()">
-        <span class="glyphicon glyphicon-map-marker"></span>
-    </a>
+<div class="btn-group-vertical btn-group-sm map-control locate-control">
+    <button type="button" class="btn btn-secondary btn-sm" (click)="locateUser()" [ngClass]="{'btn-primary': isToggled}">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+    </button>
 </div>
