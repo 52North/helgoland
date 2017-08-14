@@ -110,5 +110,6 @@
     "provider",
     "listSelection",
     "settings"
-  ]
+  ],
+  "datelineMarkerGrouping": false
 }
