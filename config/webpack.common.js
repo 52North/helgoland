@@ -53,6 +53,9 @@ module.exports = function(options) {
                     loader: "less-loader" // compiles Less to CSS
                 }]
             }, {
+                test: /\.scss$/,
+                use: ['to-string-loader', 'css-loader', 'sass-loader'],
+            }, {
                 // ASSET LOADER
                 // Reference: https://github.com/webpack/file-loader
                 // Copy png, jpg, jpeg, gif, svg, woff, woff2, ttf, eot files to output

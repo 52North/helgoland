@@ -3,13 +3,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static';
 import { ServicesModule } from './src/services/services.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {
     MultiServiceFilterSelectorComponent,
     ProviderSelectorComponent,
     ProviderSelectorService,
     ServiceFilterSelectorComponent,
-    StationMapSelectorComponent
+    StationMapSelectorComponent,
+    ListSelectorComponent,
+    ListSelectorService
 } from './src/components/selection';
 
 import {
@@ -29,7 +32,8 @@ import {
         BrowserModule,
         UpgradeModule,
         HttpClientModule,
-        ServicesModule
+        ServicesModule,
+        NgbModule.forRoot()
     ],
     declarations: [
         MultiServiceFilterSelectorComponent,
@@ -39,7 +43,8 @@ import {
         LabelMapperComponent,
         GeometryMapViewerComponent,
         ZoomControlComponent,
-        LocateControlComponent
+        LocateControlComponent,
+        ListSelectorComponent
     ],
     entryComponents: [
         MultiServiceFilterSelectorComponent,
@@ -49,12 +54,14 @@ import {
         LabelMapperComponent,
         GeometryMapViewerComponent,
         ZoomControlComponent,
-        LocateControlComponent
+        LocateControlComponent,
+        ListSelectorComponent
     ],
     providers: [
         ProviderSelectorService,
         LabelMapperService,
-        LocateService
+        LocateService,
+        ListSelectorService
     ]
 })
 export class AppModule {

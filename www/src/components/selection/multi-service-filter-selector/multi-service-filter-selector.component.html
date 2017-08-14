@@ -3,6 +3,6 @@
     <span translate="listSelection.loading" translate-values="{ countProvider: $ctrl.loading }"></span>
 </div>
 <!-- TODO: add label ordering -->
-<div class="service-filter-selector-entry" *ngFor="let item of items" (click)="onSelectItem(item)">
+<div class="selector-entry" *ngFor="let item of items" (click)="onSelectItem(item)">
     <n52-label-mapper label="{{item.label}}"></n52-label-mapper>
 </div>

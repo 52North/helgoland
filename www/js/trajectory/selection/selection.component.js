@@ -10,33 +10,33 @@ angular.module('n52.core.trajectory')
 
                 this.platformParams = [{
                     type: 'platform',
-                    header: 'trajectories.headers.platform'
+                    header: 'Mobile Platform'
                 }, {
                     type: 'offering',
-                    header: 'trajectories.headers.offering'
+                    header: 'Offering'
                 }, {
                     type: 'feature',
-                    header: 'trajectories.headers.track'
+                    header: 'Pfad'
                 }, {
                     type: 'phenomenon',
-                    header: 'trajectories.headers.phenomenon'
+                    header: 'Phänomen'
                 }, {
                     type: 'dataset',
-                    header: 'trajectories.headers.dataset'
+                    header: 'Dataset'
                 }];
 
                 this.phenomenonParams = [{
                     type: 'phenomenon',
-                    header: 'trajectories.headers.phenomenon'
+                    header: 'Phänomen'
                 }, {
                     type: 'offering',
-                    header: 'trajectories.headers.offering'
+                    header: 'Offering'
                 }, {
                     type: 'feature',
-                    header: 'trajectories.headers.track'
+                    header: 'Pfad'
                 }, {
                     type: 'dataset',
-                    header: 'trajectories.headers.dataset'
+                    header: 'Dataset'
                 }];
 
                 var createFilter = () => {
@@ -51,11 +51,15 @@ angular.module('n52.core.trajectory')
                     this.providerList = settingsService.restApiUrls;
                     this.providerBlacklist = settingsService.providerBlackList;
                     this.providerFilter = createFilter();
+                    this.paramFilter = createFilter();
                 };
 
                 this.providerSelected = (provider) => {
                     this.tabActive = 1;
-                    this.selectedProvider = provider;
+                    this.selectedProvider = [{
+                        serviceID: provider.id,
+                        url: provider.providerUrl
+                    }];
                 };
 
                 this.datasetSelected = (dataset, url) => {

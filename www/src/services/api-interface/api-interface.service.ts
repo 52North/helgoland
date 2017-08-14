@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import 'rxjs/add/operator/map';
 
 import { ApiV2 } from './interfaces/api-v2.interface';
@@ -42,8 +42,17 @@ export class ApiInterface implements ApiV2 {
         throw new Error('Not implemented');
     }
 
-    public getTimeseries(apiUrl: string, params: any): Observable<any> {
-        throw new Error('Not implemented');
+    public getTimeseries(apiUrl: string, params: any): Observable<any[]> {
+        const url = this.createRequestUrl(apiUrl, 'timeseries');
+        return new Observable<any[]>((observer: Observer<any[]>) => {
+            this.requestApi<any[]>(url, params).subscribe((result) => {
+                result.forEach((entry) => {
+                    entry.apiUrl = apiUrl;
+                });
+                observer.next(result);
+                observer.complete();
+            });
+        });
     }
 
     public getTimeserie(id: string, apiUrl: string, params: any): Observable<any> {

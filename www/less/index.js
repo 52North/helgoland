@@ -32,7 +32,6 @@ require('./mobile/mobile.less');
 require('./metadata/procedure.less');
 require('./profile/profile.less');
 require('./selection/main.less');
-require('./selection/multi-service-filter-selector.less');
 require('./selection/time-range-selection.less');
 require('./selectionList/selection-list.less');
 require('./settings/settings-window.less');

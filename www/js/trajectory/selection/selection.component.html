@@ -20,7 +20,7 @@
                     <span ng-if="!$ctrl.selectedOffering">-</span>
                 </uib-tab-heading>
                 <div ng-if="$ctrl.selectedProvider" class="vbox boxItem">
-                    <swc-list-selector parameters="$ctrl.platformParams" listselectionid="'trajectory-platform'" provider-list="[$ctrl.selectedProvider]" on-dataset-selection="$ctrl.datasetSelected(dataset, url)"></swc-list-selector>
+                    <n52-list-selector [parameters]="$ctrl.platformParams" [selector-id]="'trajectory-platform'" [filter]="$ctrl.paramFilter" [provider-list]="$ctrl.selectedProvider" (on-dataset-selection)="$ctrl.datasetSelected($event.dataset, $event.url)"></n52-list-selector>
                 </div>
             </uib-tab>
             <uib-tab index="2" disable="!$ctrl.selectedProvider" class="vbox boxItem">
@@ -31,7 +31,7 @@
                     <span ng-if="!$ctrl.selectedPhenomenon">-</span>
                 </uib-tab-heading>
                 <div ng-if="$ctrl.selectedProvider" class="vbox boxItem">
-                    <swc-list-selector parameters="$ctrl.phenomenonParams" listselectionid="'trajectory-phenomenon'" provider-list="[$ctrl.selectedProvider]" on-dataset-selection="$ctrl.datasetSelected(dataset, url)"></swc-list-selector>
+                    <n52-list-selector [parameters]="$ctrl.phenomenonParams" [selector-id]="'trajectory-phenomenon'" [filter]="$ctrl.paramFilter" [provider-list]="$ctrl.selectedProvider" (on-dataset-selection)="$ctrl.datasetSelected($event.dataset, $event.url)"></n52-list-selector>
                 </div>
             </uib-tab>
         </uib-tabset>
