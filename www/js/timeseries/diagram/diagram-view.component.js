@@ -8,14 +8,23 @@ require('n52-sensorweb-client-core/src/js/Legend/geometry-map-viewer/component')
 angular.module('n52.core.timeseries')
     .component('swcTimeseriesDiagramView', {
         template: require('./diagram-view.component.html'),
-        controller: ['timeseriesDiagramPermalinkSrvc',
-            function(timeseriesDiagramPermalinkSrvc) {
+        controller: ['timeseriesDiagramPermalinkSrvc', 'timeseriesService', 'SetTimeseriesOfStatusService',
+            function(timeseriesDiagramPermalinkSrvc, timeseriesService, SetTimeseriesOfStatusService) {
+
+                SetTimeseriesOfStatusService.setsParameters();
+                
+                this.timeseries = timeseriesService.timeseries;
+
                 this.$onInit = () => {
                     timeseriesDiagramPermalinkSrvc.validatePermalink();
                 };
 
                 this.createPermalink = () => {
                     return timeseriesDiagramPermalinkSrvc.createPermalink(true);
+                };
+
+                this.hasTimeseries = () => {
+                    return (timeseriesService.getTimeseriesCount() > 0);
                 };
             }
         ]

@@ -34,20 +34,11 @@
             <div class="small" ng-if="timeseries.parameters.category.label"><swc-label-mapper label="timeseries.parameters.category.label"></swc-label-mapper></div>
         </div>
         <div class="legendicons">
-            <span class="glyphicon glyphicon-eye-close"
-                  ng-controller="SwcToggleVisibilityCtrl"
-                  ng-class="{'glyphicon-eye-close' : timeseries.styles.visible, 'glyphicon-eye-open': !timeseries.styles.visible}"
-                  ng-click="$event.stopPropagation(); toggleVisibility(timeseries)"></span>
+            <span class="fa" ng-controller="SwcToggleVisibilityCtrl" ng-class="{'fa-eye-slash' : timeseries.styles.visible, 'fa-eye': !timeseries.styles.visible}" ng-click="$event.stopPropagation(); toggleVisibility(timeseries)"></span>
             <swc-timeseries-geometry-view-button series="timeseries"></swc-timeseries-geometry-view-button>
-            <span class="glyphicon glyphicon-pencil changeStyle"
-                  ng-controller="SwcOpenStyleModalCtrl"
-                  ng-style="{color: timeseries.styles.color}"
-                  ng-click="$event.stopPropagation(); openStyling(timeseries)"></span>
-            <span class="glyphicon glyphicon-info-sign showInfo"
-                  ng-click="$event.stopPropagation(); showInformation()"></span>
-            <span class="glyphicon glyphicon-remove delete"
-                  ng-controller="SwcDeleteLegendEntryCtrl"
-                  ng-click="$event.stopPropagation(); removeTs(timeseries)"></span>
+            <span class="fa fa-pencil" ng-controller="SwcOpenStyleModalCtrl" ng-style="{color: timeseries.styles.color}" ng-click="$event.stopPropagation(); openStyling(timeseries)"></span>
+            <span class="fa fa-info" ng-click="$event.stopPropagation(); showInformation()"></span>
+            <span class="fa fa-times" ng-controller="SwcDeleteLegendEntryCtrl" ng-click="$event.stopPropagation(); removeTs(timeseries)"></span>
         </div>
         <div class="collapseLegendEntry small" ng-show="infoVisible">
             <div class="firstLastEntry additionalLegendEntry"

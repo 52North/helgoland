@@ -77,7 +77,7 @@ angular.module('n52.core.timeseries')
                             $state.go('timeseries.diagram');
                         });
                     } else {
-                        timeseriesService.addTimeseries(dataset[0]);
+                        timeseriesService.addTimeseriesById(dataset[0].id, url);
                         $state.go('timeseries.diagram');
                     }
                 };
