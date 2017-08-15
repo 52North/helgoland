@@ -31,7 +31,7 @@
     "http://nexos.demo.52north.org/52n-sos-nexos-test/api/": "nexosTest",
     "http://codm.hzg.de/52n-sos-webapp/api/v1/": "codmhzg",
     "http://nexos.demo.52north.org/nexos-sos-proxy/api/": "sosProxy",
-    "http://nexos.demo.52north.org/proxy/api/v1/": "proxy"
+    "http://hspeed.trios.de:8888/52n-sos-webapp/api/v1/": "trios"
   },
   "chartOptions": {
     "yaxis": {
@@ -111,7 +111,7 @@
   },
   "showScale": true,
   "timebufferFactor": 0.3,
-  "solveLabels": false,
+  "solveLabels": true,
   "proxyUrl": "https://cors-anywhere.herokuapp.com/",
   "datasetPresenter": {
     "measurement": [{
