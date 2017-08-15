@@ -103,5 +103,6 @@
     "timeseries",
     "favorite",
     "settings"
-  ]
+  ],
+  "datelineMarkerGrouping": false
 }
