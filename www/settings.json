@@ -121,6 +121,10 @@
     "quantity-profile": [{
       "platformType": "stationary_insitu",
       "service": "profilePresentDataset"
+    }],
+    "measurement": [{
+      "service": "mobilePresentDataset",
+      "platformType": "mobile_insitu"
     }]
   },
   "menuItems": [
@@ -129,5 +133,6 @@
     "trajectory",
     "favorite",
     "settings"
-  ]
+  ],
+  "datelineMarkerGrouping": false
 }
