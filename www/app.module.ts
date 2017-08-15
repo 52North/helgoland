@@ -27,6 +27,11 @@ import {
     LocateService
 } from './src/components/control';
 
+import {
+    TimeseriesProviderSelectionComponent,
+    TimeseriesProviderSelectionService
+} from './src/components/view/timeseries';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -44,7 +49,8 @@ import {
         GeometryMapViewerComponent,
         ZoomControlComponent,
         LocateControlComponent,
-        ListSelectorComponent
+        ListSelectorComponent,
+        TimeseriesProviderSelectionComponent
     ],
     entryComponents: [
         MultiServiceFilterSelectorComponent,
@@ -55,13 +61,15 @@ import {
         GeometryMapViewerComponent,
         ZoomControlComponent,
         LocateControlComponent,
-        ListSelectorComponent
+        ListSelectorComponent,
+        TimeseriesProviderSelectionComponent
     ],
     providers: [
         ProviderSelectorService,
         LabelMapperService,
         LocateService,
-        ListSelectorService
+        ListSelectorService,
+        TimeseriesProviderSelectionService
     ]
 })
 export class AppModule {
