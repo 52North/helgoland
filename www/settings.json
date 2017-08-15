@@ -111,7 +111,7 @@
   },
   "showScale": true,
   "timebufferFactor": 0.3,
-  "solveLabels": true,
+  "solveLabels": false,
   "proxyUrl": "https://cors-anywhere.herokuapp.com/",
   "datasetPresenter": {
     "measurement": [{
