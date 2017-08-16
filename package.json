@@ -18,7 +18,7 @@
     "@angular/platform-server": "^4.3.4",
     "@angular/router": "^4.3.4",
     "@angular/upgrade": "^4.3.4",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.30",
+    "@ng-bootstrap/ng-bootstrap": "1.0.0-alpha.31",
     "Flot": "github:flot/flot",
     "angular": "^1.6.5",
     "angular-loader": "^1.6.5",

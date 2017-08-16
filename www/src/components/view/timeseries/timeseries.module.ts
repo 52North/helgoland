@@ -1,27 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UpgradeModule } from '@angular/upgrade/static';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SelectionModule } from '../../selection/selection-module';
 
 import {
     TimeseriesProviderSelectionComponent,
-    TimeseriesProviderSelectionService
+    TimeseriesProviderSelectionService,
+    TimeseriesListSelectionComponent,
+    TimeseriesService
 } from '.';
 
 @NgModule({
-    imports: [ CommonModule, SelectionModule, UpgradeModule ],
+    imports: [
+        CommonModule,
+        SelectionModule,
+        NgbModule
+    ],
     declarations: [
-        TimeseriesProviderSelectionComponent
+        TimeseriesProviderSelectionComponent,
+        TimeseriesListSelectionComponent
     ],
     entryComponents: [
-        TimeseriesProviderSelectionComponent
-    ],
-    exports: [
-        TimeseriesProviderSelectionComponent
+        TimeseriesProviderSelectionComponent,
+        TimeseriesListSelectionComponent
     ],
     providers: [
-        TimeseriesProviderSelectionService
+        TimeseriesProviderSelectionService,
+        TimeseriesService
     ]
 })
 export class TimeseriesModule { }

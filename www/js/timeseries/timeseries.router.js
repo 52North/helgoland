@@ -2,17 +2,17 @@ angular.module('n52.core.timeseries', [])
     .config(['$stateProvider',
         function($stateProvider) {
 
-            var openProviderSelection = (trans) => {
-                if (!trans.injector().get('providerSelection').selectedProvider) {
-                    return 'timeseries.provider';
-                }
-            };
-
-            var saveCurrentState = ['$state', 'previousTimeseriesState',
-                function($state, previousTimeseriesState) {
-                    previousTimeseriesState.state = $state.current.name;
-                }
-            ];
+            // var openProviderSelection = (trans) => {
+            //     if (!trans.injector().get('providerSelection').selectedProvider) {
+            //         return 'timeseries.provider';
+            //     }
+            // };
+            //
+            // var saveCurrentState = ['$state', 'previousTimeseriesState',
+            //     function($state, previousTimeseriesState) {
+            //         previousTimeseriesState.state = $state.current.name;
+            //     }
+            // ];
 
             // default state
             $stateProvider.state({
@@ -32,14 +32,14 @@ angular.module('n52.core.timeseries', [])
             });
             $stateProvider.state('timeseries.list-selection', {
                 url: '/list-selection',
-                redirectTo: (trans) => openProviderSelection(trans),
-                onExit: saveCurrentState,
+                // redirectTo: (trans) => openProviderSelection(trans),
+                // onExit: saveCurrentState,
                 component: 'swcTimeseriesListSelectionView'
             });
             $stateProvider.state('timeseries.map-selection', {
                 url: '/map-selection',
-                redirectTo: (trans) => openProviderSelection(trans),
-                onExit: saveCurrentState,
+                // redirectTo: (trans) => openProviderSelection(trans),
+                // onExit: saveCurrentState,
                 component: 'swcTimeseriesMapSelectionView'
             });
         }

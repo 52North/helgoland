@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Service } from '../../../../model';
 
 const SELECTED_PROVIDER_PARAM = 'selectedTimeseriesProvider';
 
 @Injectable()
 export class TimeseriesProviderSelectionService {
 
-    private selectedProvider;
+    private selectedProvider: Service;
 
-    public setSelectedProvider(provider) {
+    public setSelectedProvider(provider: Service) {
         if (typeof(Storage) !== 'undefined') {
             localStorage.setItem(SELECTED_PROVIDER_PARAM, JSON.stringify(provider));
         } else {
@@ -15,7 +16,7 @@ export class TimeseriesProviderSelectionService {
         }
     }
 
-    public getSelectedProvider() {
+    public getSelectedProvider(): Service {
         if (typeof(Storage) !== 'undefined') {
             const provider = localStorage.getItem(SELECTED_PROVIDER_PARAM);
             if (provider) {
