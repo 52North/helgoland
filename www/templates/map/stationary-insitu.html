@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="modal-body stationContent">
-        <div ng-repeat="dataset in platform.datasets" ng-if="phenomenonId == null || dataset.seriesParameters.phenomenon.id == phenomenonId">
+        <div ng-repeat="dataset in platform.datasets" ng-if="phenomenonId == null || dataset.seriesParameters.phenomenon.id === phenomenonId || dataset.datasetParameters.phenomenon.id === phenomenonId">
             <h4>{{dataset.label}}</h4>
             <div class="tsItem" ng-class="{selected : selected}">
                 <div class="checkbox">
@@ -15,7 +15,7 @@
                     <label>
                         <input type="checkbox" ng-disabled="!dataset.id" ng-model="dataset.selected" ng-change="toggled()">
                         <span>{{timeseries.procedure.label}}</span>
-                        <span ng-show="dataset.seriesParameters.category.label">({{dataset.seriesParameters.category.label}})</span>
+                        <span ng-show="dataset.seriesParameters.category.label || dataset.datasetParameters.category.label">({{dataset.seriesParameters.category.label || dataset.datasetParameters.category.label}})</span>
                     </label>
                     <swc-favorite-add-star timeseries="dataset"></swc-favorite-add-star>
                     <div class="additionalInfo" ng-show="dataset.lastValue">

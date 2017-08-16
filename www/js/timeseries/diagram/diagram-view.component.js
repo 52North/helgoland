@@ -92,7 +92,10 @@ angular.module('n52.core.timeseries')
 
                 this.openGeometryView = () => {
                     if (this.series.valueType === constants.valueType.quantity) {
-                        seriesApiInterface.getPlatforms(this.series.seriesParameters.platform.id, this.series.apiUrl)
+                        var platformId;
+                        if (this.series && this.series.seriesParameters) platformId = this.series.seriesParameters.platform.id;
+                        if (this.series && this.series.datasetParameters) platformId = this.series.datasetParameters.platform.id;
+                        seriesApiInterface.getPlatforms(platformId, this.series.apiUrl)
                             .then(platform => {
                                 openModal(platform.label, platform.geometry);
                             });
