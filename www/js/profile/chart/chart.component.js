@@ -119,16 +119,17 @@ angular.module('n52.core.profile')
                                 var trace = {
                                     x: [],
                                     y: [],
-                                    type: 'scatter',
+                                    mode: 'markers',
                                     name: '',
                                     yaxis: createYAxis(dataEntry),
                                     xaxis: createXAxis(dataEntry),
                                     // hovertext: dataEntry.label,
-                                    line: {
-                                        color: dataEntry.color,
-                                        width: dataEntry.selected ? 5 : 2
-                                    },
+                                    // markers: {
+                                    //     color: dataEntry.color,
+                                    //     width: dataEntry.selected ? 5 : 2
+                                    // },
                                     marker: {
+                                        color: dataEntry.color,
                                         size: dataEntry.selected ? 10 : 6
                                     }
                                 };
