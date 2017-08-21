@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DisplayModule } from '../display';
 import { UpgradeModule } from '@angular/upgrade/static';
+import { PipesModule } from '../../pipes';
 
 import {
     ListSelectorComponent,
@@ -11,7 +12,8 @@ import {
     ProviderSelectorComponent,
     ProviderSelectorService,
     ServiceFilterSelectorComponent,
-    StationMapSelectorComponent
+    StationMapSelectorComponent,
+    DatasetByStationSelectorComponent,
 } from '.';
 
 @NgModule({
@@ -19,6 +21,7 @@ import {
         CommonModule,
         UpgradeModule,
         DisplayModule,
+        PipesModule,
         NgbModule.forRoot()
     ],
     entryComponents: [
@@ -26,21 +29,24 @@ import {
         MultiServiceFilterSelectorComponent,
         ProviderSelectorComponent,
         ServiceFilterSelectorComponent,
-        StationMapSelectorComponent
+        StationMapSelectorComponent,
+        DatasetByStationSelectorComponent
     ],
     declarations: [
         ListSelectorComponent,
         MultiServiceFilterSelectorComponent,
         ProviderSelectorComponent,
         ServiceFilterSelectorComponent,
-        StationMapSelectorComponent
+        StationMapSelectorComponent,
+        DatasetByStationSelectorComponent
     ],
     exports: [
         ListSelectorComponent,
         MultiServiceFilterSelectorComponent,
         ProviderSelectorComponent,
         ServiceFilterSelectorComponent,
-        StationMapSelectorComponent
+        StationMapSelectorComponent,
+        DatasetByStationSelectorComponent
     ],
     providers: [
         ListSelectorService,

@@ -5,4 +5,5 @@ export * from './service-filter-selector/service-filter-selector.component';
 export * from './station-map-selector/station-map-selector.component';
 export * from './list-selector/list-selector.component';
 export * from './list-selector/list-selector.service';
+export * from './dataset-by-station-selector/dataset-by-station-selector.component';
 export * from './selection-module';

@@ -39,31 +39,37 @@ export class ApiInterface implements ApiV2 {
         return this.requestApi<Station[]>(url, params);
     }
 
-    public getStation(id: string, apiUrl: string, params?: any): Observable<any> {
-        throw new Error('Not implemented');
+    public getStation(id: string, apiUrl: string, params?: any): Observable<Station> {
+        const url = this.createRequestUrl(apiUrl, 'stations', id);
+        return this.requestApi<Station>(url, params);
     }
 
     public getTimeseries(apiUrl: string, params?: any): Observable<Timeseries[]> {
         const url = this.createRequestUrl(apiUrl, 'timeseries');
         return new Observable<Timeseries[]>((observer: Observer<Timeseries[]>) => {
-            this.requestApi<Timeseries[]>(url, params).subscribe((result) => {
-                result.forEach((entry) => {
-                    entry.url = apiUrl;
-                });
-                observer.next(result);
-                observer.complete();
-            });
+            this.requestApi<Timeseries[]>(url, params).subscribe(
+                (result) => {
+                    result.forEach((entry) => {
+                        entry.url = apiUrl;
+                    });
+                    observer.next(result);
+                },
+                (error) => observer.error(error),
+                () => observer.complete()
+            );
         });
     }
 
     public getSingleTimeseries(id: string, apiUrl: string, params?: any): Observable<Timeseries> {
         const url = this.createRequestUrl(apiUrl, 'timeseries', id);
         return new Observable<Timeseries>((observer: Observer<Timeseries>) => {
-            this.requestApi<Timeseries>(url, params).subscribe((result) => {
-                result.url = apiUrl;
-                observer.next(result);
-                observer.complete();
-            });
+            this.requestApi<Timeseries>(url, params).subscribe(
+                (result) => {
+                    result.url = apiUrl;
+                    observer.next(result);
+                },
+                (error) => observer.error(error),
+                () => observer.complete());
         });
     }
 

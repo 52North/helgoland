@@ -4,8 +4,17 @@ export class Dataset extends Parameter {
 
     url: string;
 
-    datasetType?: string;
+    datasetType?: PlatformTypes;
 
-    valueType?: string;
+    valueType?: ValueTypes;
 
+}
+
+export enum PlatformTypes {
+    stationary,
+    mobile
+}
+
+export enum ValueTypes {
+    quantity
 }

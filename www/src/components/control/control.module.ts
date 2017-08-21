@@ -19,6 +19,10 @@ import {
         LocateControlComponent,
         ZoomControlComponent
     ],
+    exports: [
+        LocateControlComponent,
+        ZoomControlComponent
+    ],
     providers: [
         LocateService
     ]
