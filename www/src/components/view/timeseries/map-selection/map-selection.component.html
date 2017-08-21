@@ -9,8 +9,8 @@
         <n52-dataset-by-station-selector [station]="platform" [url]="providerUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="openDatasets();c();">Show {{datasetSelections.length}} in Diagram</button>
-        <button type="button" class="btn btn-secondary" (click)="c();">Close</button>
+        <button type="button" class="btn btn-light" (click)="openDatasets();c();">Show {{datasetSelections.length}} in Diagram</button>
+        <button type="button" class="btn btn-light" (click)="c();">Close</button>
     </div>
 </ng-template>
 
