@@ -18,13 +18,13 @@ angular.module('n52.core.timeseries')
                     if (phenomenonId) this.stationFilter.phenomenon = phenomenonId;
                 };
 
-                var updatePhenomenonFilter = () => {
-                    this.phenomenonFilter = {
-                        platformTypes: defaultPlatformTypes,
-                        valueTypes: defaultValueTypes,
-                        service: providerSelection.selectedProvider.id
-                    };
-                };
+                // var updatePhenomenonFilter = () => {
+                //     this.phenomenonFilter = {
+                //         platformTypes: defaultPlatformTypes,
+                //         valueTypes: defaultValueTypes,
+                //         service: providerSelection.selectedProvider.id
+                //     };
+                // };
 
                 this.layers = {
                     baselayers: settingsService.baselayer,
@@ -33,9 +33,9 @@ angular.module('n52.core.timeseries')
                 this.cluster = true;
 
                 this.$onInit = () => {
-                    this.selectedProvider = providerSelection.selectedProvider;
-                    updateStationFilter(providerSelection.selectedProvider.id);
-                    updatePhenomenonFilter(providerSelection.selectedProvider.id);
+                    // this.selectedProvider = providerSelection.selectedProvider;
+                    // updateStationFilter(providerSelection.selectedProvider.id);
+                    // updatePhenomenonFilter(providerSelection.selectedProvider.id);
                 };
 
                 this.phenomenonSelected = (phenomenon) => {

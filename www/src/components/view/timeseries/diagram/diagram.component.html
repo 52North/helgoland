@@ -1,0 +1,30 @@
+<div class="fullHeight timeseries-diagram">
+    <div class="empty-diagram" *ngIf="timeseries.length == 0">
+        <span>Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.</span>
+    </div>
+    <div class="hbox fullHeight" *ngIf="timeseries.length > 0">
+        <div class="boxItem vbox fullHeight">
+            <div class="boxItem diagram" ng-controller="SwcChartCtrl">
+                <!-- <flot class="diagram" options="options" dataset="dataset" on-time-change="timeChanged(time)" on-series-selection-change="seriesSelectionChanged(selection)"></flot> -->
+            </div>
+            <div class="boxItem overview-diagram" ng-controller="SwcOverviewChartCtrl">
+                <!-- <flot options="options" dataset="dataset" on-time-change="timeChanged(time)"></flot> -->
+            </div>
+            <div class="boxItem control-bar">
+                <!-- <swc-refresh-time></swc-refresh-time> -->
+                <!-- <swc-reload-button></swc-reload-button> -->
+                <!-- <swc-yaxis-hide-button></swc-yaxis-hide-button> -->
+                <!-- <swc-time-selector-buttons></swc-time-selector-buttons> -->
+                <!-- <a class="btn btn-default" data-action="dataTable" ng-click="toggle()"><span class="glyphicon glyphicon-list"></span></a> -->
+            </div>
+        </div>
+        <div class="boxItem fullHeight legend">
+            <h3 class="header">Legende</h3>
+            <div class="legend-entry">
+                <div *ngFor="let entry of timeseries">
+                    <n52-legend-entry [dataset]="entry" (onDeleteDataset)="delete(entry)"></n52-legend-entry>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

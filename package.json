@@ -33,6 +33,7 @@
     "bootstrap": "4.0.0-beta",
     "bootstrap-datetime-picker": "^2.4.4",
     "bootstrap-slider": "^9.8.1",
+    "class-transformer": "^0.1.7",
     "d3": "^3.5.17",
     "d3-extended": "^1.2.10",
     "flot-downsample": "github:janschulte/flot-downsample",

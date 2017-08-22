@@ -1,4 +1,4 @@
-import { Parameter, TimeseriesParameterConstellation, Timeseries } from '../.';
+import { Parameter, ParameterConstellation, Timeseries } from '../.';
 
 export class Station {
 
@@ -16,6 +16,6 @@ class StationProperties extends Parameter {
 
 class TimeseriesCollection {
 
-    [key: string]: TimeseriesParameterConstellation;
+    [key: string]: ParameterConstellation;
 
 }

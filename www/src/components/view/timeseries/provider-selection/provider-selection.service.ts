@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LocalStorage } from '../../../../services/local-storage';
 import { Service } from '../../../../model';
 
 const SELECTED_PROVIDER_PARAM = 'selectedTimeseriesProvider';
@@ -8,23 +9,19 @@ export class TimeseriesProviderSelectionService {
 
     private selectedProvider: Service;
 
+    constructor(
+        private localStorage: LocalStorage
+    ) { }
+
     public setSelectedProvider(provider: Service) {
-        if (typeof(Storage) !== 'undefined') {
-            localStorage.setItem(SELECTED_PROVIDER_PARAM, JSON.stringify(provider));
-        } else {
+        if (!this.localStorage.save(SELECTED_PROVIDER_PARAM, provider)) {
             this.selectedProvider = provider;
         }
     }
 
     public getSelectedProvider(): Service {
-        if (typeof(Storage) !== 'undefined') {
-            const provider = localStorage.getItem(SELECTED_PROVIDER_PARAM);
-            if (provider) {
-                return JSON.parse(provider);
-            }
-        } else {
-            return this.selectedProvider;
-        }
+        const provider = this.localStorage.load(SELECTED_PROVIDER_PARAM);
+        return provider ? provider : this.selectedProvider;
     }
 
 }

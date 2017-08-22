@@ -1,0 +1,66 @@
+<div class="legendItem" style="position: relative;" [ngStyle]="{'border-color': dataset.styles.color}" [ngClass]="{'selected': dataset.styles.selected}" (click)="toggleSelection()">
+    <!-- <div class="loading-overlay" ng-show="timeseries.loadingData" ng-style="{'background-color': timeseries.styles.color}">
+        <div class="glyphicon glyphicon-refresh icon-spin"></div>
+    </div> -->
+    <div ng-controller="SwcToggleInformationCtrl">
+        <div class="legendItemheader">
+            <div class="legendItemLabel" [ngStyle]="{'color': dataset.styles.color}">
+                <n52-label-mapper label="{{platformLabel}}"></n52-label-mapper>
+            </div>
+            <!-- <div class="noDataWarning firstLastEntry" ng-show="timeseries.hasNoDataInCurrentExtent">
+                <div>
+                    <span class="glyphicon glyphicon-warning-sign red"></span>
+                    <span class="small" translate="legend.entry.noData"></span>
+                </div>
+                <div class="additionalLegendEntry" ng-controller="SwcJumpToFirstLatestValuesCtrl" ng-click="$event.stopPropagation(); jumpToLastTimeStamp(timeseries.lastValue)">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="small" translate="legend.entry.jumpToLastValue"></span>
+                </div>
+            </div> -->
+            <div class="small">
+                <n52-label-mapper label="{{phenomenonLabel}}"></n52-label-mapper>
+                <span *ngIf="uom">[<n52-label-mapper label="{{uom}}"></n52-label-mapper>]</span>
+            </div>
+            <div class="small">
+                <n52-label-mapper label="{{procedureLabel}}"></n52-label-mapper>
+            </div>
+            <div class="small" *ngIf="categoryLabel != phenomenonLabel">
+                <n52-label-mapper label="{{categoryLabel}}"></n52-label-mapper>
+            </div>
+        </div>
+        <div class="legendicons">
+            <span class="fa" [ngClass]="{'fa-eye-slash': dataset.styles.visible, 'fa-eye': !dataset.styles.visible}" (click)="toggleVisibility(); $event.stopPropagation();"></span>
+            <!-- <swc-timeseries-geometry-view-button series="timeseries"></swc-timeseries-geometry-view-button> -->
+            <!-- <span class="fa fa-pencil" ng-controller="SwcOpenStyleModalCtrl" ng-style="{color: timeseries.styles.color}" ng-click="$event.stopPropagation(); openStyling(timeseries)"></span> -->
+            <span class="fa fa-info" (click)="toggleInformation(); $event.stopPropagation();"></span>
+            <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();"></span>
+        </div>
+        <div class="collapseLegendEntry small" *ngIf="informationVisible">
+            <div class="firstLastEntry additionalLegendEntry" *ngIf="firstValue" (click)="jumpToFirstTimeStamp(); $event.stopPropagation();">
+                <span class="fa fa-chevron-right"></span>
+                <span>Erster Wert bei</span>
+                <span>{{firstValue.timestamp| date: 'dd.MM.yy HH:mm'}}</span>
+                <span class="hidden-medium">({{firstValue.value}} {{uom}})</span>
+            </div>
+            <div class="firstLastEntry additionalLegendEntry" *ngIf="lastValue" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
+                <span class="fa fa-chevron-right"></span>
+                <span>Letzter Wert bei</span>
+                <span>{{lastValue.timestamp| date: 'dd.MM.yy HH:mm'}}</span>
+                <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
+            </div>
+            <!-- <div class="refEntry additionalLegendEntry" ng-repeat="refValue in timeseries.referenceValues" ng-class="{selected : refValue.visible}" ng-style="{'border-color': refValue.color}" ng-controller="SwcToggleRefValueCtrl" ng-click="$event.stopPropagation(); selectRefValue(refValue, timeseries)">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span>{{refValue.label}}</span>
+            </div>
+            <div class="additionalLegendEntry" ng-controller="SwcExportToCsvCtrl" ng-click="$event.stopPropagation(); createExportCsv(timeseries)">
+                <span class="glyphicon glyphicon-download"></span>
+                <span translate="export.label"></span>
+            </div> -->
+            <!-- <div class="additionalLegendEntry">
+                <swc-procedure-metadata timeseries='timeseries'></swc-procedure-metadata>
+                <swc-timeseries-raw-data-output timeseries='timeseries'></swc-timeseries-raw-data-output>
+                <swc-sos-url timeseries='timeseries'></swc-sos-url>
+            </div> -->
+        </div>
+    </div>
+</div>

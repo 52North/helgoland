@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ApiInterface, CachingInterceptor, LocalHttpCache, HttpCache, ApiMapping } from './api-interface';
 import { Settings } from './settings';
 import { MapCache } from './map';
+import { LocalStorage } from './local-storage';
 
 const CachingInterceptorProvider = {
     provide: HTTP_INTERCEPTORS,
@@ -27,7 +28,8 @@ const CachingInterceptorProvider = {
         ApiInterface,
         ApiMapping,
         Settings,
-        MapCache
+        MapCache,
+        LocalStorage
     ]
 })
 export class ServicesModule {

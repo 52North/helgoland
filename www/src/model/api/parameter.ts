@@ -1,9 +1,6 @@
 import { Identifiable } from './identifiable';
 
-export abstract class Parameter implements Identifiable {
-
-    public id: string;
-
-    public label: string;
-
+export class Parameter implements Identifiable {
+    id: string;
+    label: string;
 }

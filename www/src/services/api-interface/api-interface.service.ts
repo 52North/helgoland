@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import 'rxjs/add/operator/map';
+import { deserialize, deserializeArray } from 'class-transformer';
 
 import { ApiV2 } from './interfaces/api-v2.interface';
 import {
@@ -47,12 +48,13 @@ export class ApiInterface implements ApiV2 {
     public getTimeseries(apiUrl: string, params?: any): Observable<Timeseries[]> {
         const url = this.createRequestUrl(apiUrl, 'timeseries');
         return new Observable<Timeseries[]>((observer: Observer<Timeseries[]>) => {
-            this.requestApi<Timeseries[]>(url, params).subscribe(
+            this.requestApiTexted(url, params).subscribe(
                 (result) => {
-                    result.forEach((entry) => {
+                    const timeseriesList = deserializeArray<Timeseries>(Timeseries, result);
+                    timeseriesList.forEach((entry) => {
                         entry.url = apiUrl;
                     });
-                    observer.next(result);
+                    observer.next(timeseriesList);
                 },
                 (error) => observer.error(error),
                 () => observer.complete()
@@ -62,14 +64,10 @@ export class ApiInterface implements ApiV2 {
 
     public getSingleTimeseries(id: string, apiUrl: string, params?: any): Observable<Timeseries> {
         const url = this.createRequestUrl(apiUrl, 'timeseries', id);
-        return new Observable<Timeseries>((observer: Observer<Timeseries>) => {
-            this.requestApi<Timeseries>(url, params).subscribe(
-                (result) => {
-                    result.url = apiUrl;
-                    observer.next(result);
-                },
-                (error) => observer.error(error),
-                () => observer.complete());
+        return this.requestApiTexted(url, params).map((result) => {
+            const timeseries = deserialize<Timeseries>(Timeseries, result);
+            timeseries.url = apiUrl;
+            return timeseries;
         });
     }
 
@@ -145,11 +143,16 @@ export class ApiInterface implements ApiV2 {
 
     private requestApi<T>(url: string, params = {}): Observable<T> {
         let httpParams = new HttpParams();
-        Object.getOwnPropertyNames(params).forEach((key) => {
-            httpParams = httpParams.set(key, params[key]);
-        });
-        return this.http.get<T>(url, {
-            params: httpParams
+        Object.getOwnPropertyNames(params).forEach((key) => httpParams = httpParams.set(key, params[key]));
+        return this.http.get<T>(url, { params: httpParams });
+    }
+
+    private requestApiTexted(url: string, params = {}): Observable<string> {
+        let httpParams = new HttpParams();
+        Object.getOwnPropertyNames(params).forEach((key) => httpParams = httpParams.set(key, params[key]));
+        return this.http.get(url, {
+            params: httpParams,
+            responseType: 'text'
         });
     }
 

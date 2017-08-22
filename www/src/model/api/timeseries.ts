@@ -1,26 +1,13 @@
 import { Parameter } from './parameter';
-import { Dataset } from './dataset';
+import { Station } from './station';
+import { FirstLastValue, IDataset, Styles, ParameterConstellation } from './dataset';
 
-export class Timeseries extends Dataset {
-
-    parameter: TimeseriesParameterConstellation;
-
-}
-
-export class TimeseriesParameterConstellation {
-
-    service: Parameter;
-
-    offering: Parameter;
-
-    feature: Parameter;
-
-    procedure: Parameter;
-
-    phenomenon: Parameter;
-
-    category: Parameter;
-
-    loading?: boolean;
-
+export class Timeseries extends Parameter implements IDataset {
+    url: string;
+    uom: string;
+    firstValue: FirstLastValue;
+    lastValue: FirstLastValue;
+    station: Station;
+    parameters: ParameterConstellation;
+    styles = new Styles();
 }

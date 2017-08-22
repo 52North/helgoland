@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import {
     GeometryMapViewerComponent,
     LabelMapperComponent,
-    LabelMapperService
+    LabelMapperService,
+    LegendEntryComponent
 } from '.';
 
 @NgModule({
@@ -14,10 +15,12 @@ import {
     declarations: [
         GeometryMapViewerComponent,
         LabelMapperComponent,
+        LegendEntryComponent
     ],
     exports: [
         GeometryMapViewerComponent,
-        LabelMapperComponent
+        LabelMapperComponent,
+        LegendEntryComponent
     ],
     providers: [
         LabelMapperService

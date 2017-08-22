@@ -10,7 +10,8 @@ import {
 
 import {
     LabelMapperComponent,
-    GeometryMapViewerComponent
+    GeometryMapViewerComponent,
+    LegendEntryComponent
 } from './src/components/display';
 
 import {
@@ -21,7 +22,8 @@ import {
 import {
     TimeseriesProviderSelectionComponent,
     TimeseriesListSelectionComponent,
-    TimeseriesMapSelectionComponent
+    TimeseriesMapSelectionComponent,
+    TimeseriesDiagramComponent
 } from './src/components/view/timeseries';
 
 import { mainApp } from './app';
@@ -36,8 +38,10 @@ mainApp
     .directive('n52DatasetByStationSelector', downgradeComponent({ component: DatasetByStationSelectorComponent }) as angular.IDirectiveFactory)
     .directive('n52LabelMapper', downgradeComponent({ component: LabelMapperComponent }) as angular.IDirectiveFactory)
     .directive('n52GeometryMapViewer', downgradeComponent({ component: GeometryMapViewerComponent }) as angular.IDirectiveFactory)
+    .directive('n52LegendEntry', downgradeComponent({ component: LegendEntryComponent }) as angular.IDirectiveFactory)
     .directive('n52ZoomControl', downgradeComponent({ component: ZoomControlComponent }) as angular.IDirectiveFactory)
     .directive('n52LocateControl', downgradeComponent({ component: LocateControlComponent }) as angular.IDirectiveFactory)
     .directive('n52TimeseriesProviderSelection', downgradeComponent({ component: TimeseriesProviderSelectionComponent }) as angular.IDirectiveFactory)
     .directive('n52TimeseriesListSelection', downgradeComponent({ component: TimeseriesListSelectionComponent }) as angular.IDirectiveFactory)
-    .directive('n52TimeseriesMapSelection', downgradeComponent({ component: TimeseriesMapSelectionComponent }) as angular.IDirectiveFactory);
+    .directive('n52TimeseriesMapSelection', downgradeComponent({ component: TimeseriesMapSelectionComponent }) as angular.IDirectiveFactory)
+    .directive('n52TimeseriesDiagram', downgradeComponent({ component: TimeseriesDiagramComponent }) as angular.IDirectiveFactory);
