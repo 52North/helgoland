@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
 import L from 'leaflet';
 
 @Component({
     selector: 'n52-geometry-map-viewer',
     templateUrl: './geometry-map-viewer.component.html'
 })
-export class GeometryMapViewerComponent implements OnInit, OnChanges {
+export class GeometryMapViewerComponent implements AfterViewInit, OnChanges {
 
     @Input()
     public mapId: string;
@@ -37,44 +37,41 @@ export class GeometryMapViewerComponent implements OnInit, OnChanges {
     constructor(
     ) { }
 
-    public ngOnInit(): any {
-        setTimeout(() => {
+    public ngAfterViewInit() {
+        this.map = L.map(this.mapId, {
+            maxZoom: this.maxMapZoom || 10
+        }).setView([51.505, -0.09], 13);
 
-            this.map = L.map(this.mapId, {
-                maxZoom: this.maxMapZoom || 10
-            }).setView([51.505, -0.09], 13);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(this.map);
 
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(this.map);
+        const geojson = L.geoJSON(this.geometry, {
+            pointToLayer: (feature, latlng) => {
+                return L.circleMarker(latlng, this.defaultStyle);
+            }
+        });
 
-            const geojson = L.geoJSON(this.geometry, {
-                pointToLayer: (feature, latlng) => {
-                    return L.circleMarker(latlng, this.defaultStyle);
-                }
-            });
+        geojson.setStyle(this.defaultStyle);
+        geojson.addTo(this.map);
 
-            geojson.setStyle(this.defaultStyle);
-            geojson.addTo(this.map);
-
-            this.map.fitBounds(geojson.getBounds());
-
-        }, 100);
+        this.map.fitBounds(geojson.getBounds());
     }
 
-
     public ngOnChanges(changes: SimpleChanges) {
-        if (changes.highlight && changes.highlight.currentValue) {
-            if (this.highlightGeometry) {
-                this.map.removeLayer(this.highlightGeometry);
-            }
-            this.highlightGeometry = L.geoJSON(this.highlight, {
-                pointToLayer: (feature, latlng) => {
-                    return L.circleMarker(latlng, this.highlightStyle);
+        if (this.map) {
+            if (changes.highlight && changes.highlight.currentValue) {
+                if (this.highlightGeometry) {
+                    this.map.removeLayer(this.highlightGeometry);
                 }
-            });
-            this.highlightGeometry.setStyle(this.highlightGeometry);
-            this.highlightGeometry.addTo(this.map);
+                this.highlightGeometry = L.geoJSON(this.highlight, {
+                    pointToLayer: (feature, latlng) => {
+                        return L.circleMarker(latlng, this.highlightStyle);
+                    }
+                });
+                this.highlightGeometry.setStyle(this.highlightGeometry);
+                this.highlightGeometry.addTo(this.map);
+            }
         }
     }
 }
