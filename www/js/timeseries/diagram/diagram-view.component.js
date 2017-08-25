@@ -85,7 +85,7 @@ angular.module('n52.core.timeseries')
                     if (this.series.valueType === constants.valueType.quantity) {
                         var platformId;
                         if (this.series && this.series.seriesParameters) platformId = this.series.seriesParameters.platform.id;
-                        if (this.series && this.series.datasetParameters) platformId = this.series.datasetParameters.platform.id;
+                        if (this.series && this.series.parameters) platformId = this.series.parameters.platform.id;
                         seriesApiInterface.getPlatforms(platformId, this.series.apiUrl)
                             .then(platform => {
                                 openModal(platform.label, platform.geometry);
