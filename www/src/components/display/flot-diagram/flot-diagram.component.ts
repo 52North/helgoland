@@ -117,7 +117,9 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
         this.datasets.forEach((entry) => {
             if (entry.data && entry.styles.visible) {
                 const label = this.createAxisLabel(entry);
-                const axe = this.plotOptions.yaxes.find((yaxisEntry) => {
+                let axePos;
+                const axe = this.plotOptions.yaxes.find((yaxisEntry, idx) => {
+                    axePos = idx + 1;
                     return yaxisEntry.uom === label;
                 });
                 if (axe) {
@@ -128,6 +130,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                         tsColors: [entry.styles.color],
                         min: null
                     });
+                    axePos = this.plotOptions.yaxes.length;
                 }
                 this.data.push({
                     id: entry.id,
@@ -144,7 +147,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                     bars: {
                         lineWidth: entry.styles.selected ? 5 : 1
                     },
-                    yaxis: 1 // TODO ...
+                    yaxis: axePos
                 });
             }
         });
