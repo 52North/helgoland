@@ -8,9 +8,9 @@
     <div class="checkbox">
         <label>
             <input type="checkbox" ng-disabled="!$ctrl.timeseries.id" ng-model="$ctrl.timeseries.selected" ng-change="$ctrl.toggled()">
-            <swc-label-mapper ng-if="$ctrl.timeseries.seriesParameters" label="$ctrl.timeseries.seriesParameters.procedure.label"></swc-label-mapper>
+            <swc-label-mapper ng-if="$ctrl.timeseries.seriesParameters || $ctrl.timeseries.parameters" label="$ctrl.timeseries.seriesParameters.procedure.label || $ctrl.timeseries.parameters.procedure.label"></swc-label-mapper>
             <swc-label-mapper ng-if="$ctrl.timeseries.procedure" label="$ctrl.timeseries.procedure.label"></swc-label-mapper>
-            <span ng-if="$ctrl.timeseries.seriesParameters">(<swc-label-mapper label="$ctrl.timeseries.seriesParameters.category.label"></swc-label-mapper>)</span>
+            <span ng-if="$ctrl.timeseries.seriesParameters || $ctrl.timeseries.parameters">(<swc-label-mapper label="$ctrl.timeseries.seriesParameters.category.label || $ctrl.timeseries.parameters.category.label"></swc-label-mapper>)</span>
             <span ng-if="$ctrl.timeseries.category.label">(<swc-label-mapper label="$ctrl.timeseries.category.label"></swc-label-mapper>)</span>
         </label>
         <swc-favorite-add-star timeseries="$ctrl.timeseries"></swc-favorite-add-star>
