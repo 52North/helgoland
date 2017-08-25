@@ -20,9 +20,9 @@
                 </div>
             </div>
             <div class="small" ng-if="$ctrl.data[0].timestamp">{{$ctrl.data[0].timestamp | date: 'dd.MM.yy HH:mm'}}</div>
-            <div class="small">{{$ctrl.profile.seriesParameters.phenomenon.label || $ctrl.profile.datasetParameters.phenomenon.label}} ({{$ctrl.profile.uom}})</div>
-            <div class="small">{{$ctrl.profile.seriesParameters.procedure.label || $ctrl.profile.datasetParameters.procedure.label}}</div>
-            <div class="small" ng-show="{{$ctrl.profile.seriesParameters.category.label || $ctrl.profile.datasetParameters.category.label}}">{{$ctrl.profile.seriesParameters.category.label || $ctrl.profile.seriesParameters.category.label}}</div>
+            <div class="small">{{$ctrl.profile.seriesParameters.phenomenon.label || $ctrl.profile.parameters.phenomenon.label}} ({{$ctrl.profile.uom}})</div>
+            <div class="small">{{$ctrl.profile.seriesParameters.procedure.label || $ctrl.profile.parameters.procedure.label}}</div>
+            <div class="small" ng-show="{{$ctrl.profile.seriesParameters.category.label || $ctrl.profile.parameters.category.label}}">{{$ctrl.profile.seriesParameters.category.label || $ctrl.profile.seriesParameters.category.label}}</div>
         </div>
         <div class="legendicons">
             <span class="glyphicon glyphicon-eye-close" ng-class="{'glyphicon-eye-close' : !$ctrl.isToggled, 'glyphicon-eye-open': $ctrl.isToggled}" ng-click="$event.stopPropagation(); $ctrl.toggleProfile($ctrl.profile)"></span>
