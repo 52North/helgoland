@@ -1,7 +1,7 @@
 <div class="legendItem" style="position: relative;" [ngStyle]="{'border-color': dataset.styles.color}" [ngClass]="{'selected': dataset.styles.selected}" (click)="toggleSelection()">
-    <!-- <div class="loading-overlay" ng-show="timeseries.loadingData" ng-style="{'background-color': timeseries.styles.color}">
-        <div class="glyphicon glyphicon-refresh icon-spin"></div>
-    </div> -->
+    <div class="loading-overlay" *ngIf="dataset.styles.loading" [ngStyle]="{'background-color': dataset.styles.color}">
+        <div class="fa fa-refresh fa-spin fa-3x fa-fw"></div>
+    </div>
     <div ng-controller="SwcToggleInformationCtrl">
         <div class="legendItemheader">
             <div class="legendItemLabel" [ngStyle]="{'color': dataset.styles.color}">

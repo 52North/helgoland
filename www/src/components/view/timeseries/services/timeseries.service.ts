@@ -48,9 +48,11 @@ export class TimeseriesService {
 
     public loadData(timespan: Timespan) {
         this.timeseries.forEach((entry, idx) => {
+            entry.styles.loading = true;
             entry.data = null;
             this.api.getTsData(entry.id, entry.url, timespan, { format: 'flot' }).subscribe((result) => {
                 entry.data = result;
+                entry.styles.loading = false;
             });
         });
     }

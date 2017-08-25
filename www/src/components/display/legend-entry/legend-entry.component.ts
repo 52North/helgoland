@@ -3,7 +3,8 @@ import { IDataset, Dataset, Timeseries, FirstLastValue, Styles } from '../../../
 
 @Component({
     selector: 'n52-legend-entry',
-    templateUrl: './legend-entry.component.html'
+    templateUrl: './legend-entry.component.html',
+    styleUrls: ['./legend-entry.component.scss']
 })
 export class LegendEntryComponent implements OnInit {
 

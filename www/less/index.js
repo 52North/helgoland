@@ -11,7 +11,6 @@ require('./controls/modals.less');
 require('./controls/panel-group.less');
 require('./favorites/favorite.less');
 require('./legend/legend-entry-settings.less');
-require('./legend/legend.less');
 require('./legend/map-viewer.less');
 require('./main/flex-box.less');
 require('./main/icon.less');
