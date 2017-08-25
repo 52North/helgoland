@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiInterface } from '../../../../services/api-interface';
 import { LocalStorage } from '../../../../services/local-storage';
-import { IDataset, Dataset, Timeseries } from '../../../../model';
+import { IDataset, Dataset, Timeseries, Timespan } from '../../../../model';
 import { deserializeArray } from 'class-transformer';
 
 const TIMESERIES_CACHE_PARAM = 'timeseries';
@@ -11,7 +11,7 @@ export class TimeseriesService {
 
     public timeseries: Array<IDataset> = [];
 
-    public timeseriesData: Array<any> = [];
+    // public timeseriesData: Array<any> = [];
 
     constructor(
         private api: ApiInterface,
@@ -44,6 +44,15 @@ export class TimeseriesService {
         const idx = this.findTimeseriesIdx(dataset);
         this.timeseries.splice(idx, 1);
         this.saveTimeseries();
+    }
+
+    public loadData(timespan: Timespan) {
+        this.timeseries.forEach((entry, idx) => {
+            entry.data = null;
+            this.api.getTsData(entry.id, entry.url, timespan, { format: 'flot' }).subscribe((result) => {
+                entry.data = result;
+            });
+        });
     }
 
     private addDataset(dataset: IDataset) {

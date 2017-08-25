@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { deserialize, deserializeArray } from 'class-transformer';
+import * as moment from 'moment';
 
 import { ApiV2 } from './interfaces/api-v2.interface';
 import {
@@ -15,8 +16,28 @@ import {
     Platform,
     Station,
     Dataset,
-    Timeseries
+    Timeseries,
+    Timespan
 } from '../../model';
+
+export class UriParameterCoder implements HttpParameterCodec {
+
+    public encodeKey(key: string): string {
+        return encodeURIComponent(key);
+    }
+
+    public encodeValue(value: string): string {
+        return encodeURIComponent(value);
+    }
+
+    public decodeKey(key: string): string {
+        return key;
+    }
+
+    public decodeValue(value: string): string {
+        return value;
+    }
+}
 
 @Injectable()
 export class ApiInterface implements ApiV2 {
@@ -69,6 +90,16 @@ export class ApiInterface implements ApiV2 {
             timeseries.url = apiUrl;
             return timeseries;
         });
+    }
+
+    public getTsData(id: string, apiUrl: string, timespan: Timespan, params = {}): Observable<any> {
+        const url = this.createRequestUrl(apiUrl, 'timeseries', id) + '/getData';
+        params['timespan'] = this.createRequestTimespan(timespan);
+        return this.requestApi<any>(url, params);
+    }
+
+    private createRequestTimespan(timespan: Timespan): string {
+        return encodeURI(moment(timespan.from).format() + '/' + moment(timespan.to).format());
     }
 
     public getCategories(apiUrl: string, params?: any): Observable<Category[]> {
@@ -142,7 +173,9 @@ export class ApiInterface implements ApiV2 {
     }
 
     private requestApi<T>(url: string, params = {}): Observable<T> {
-        let httpParams = new HttpParams();
+        let httpParams = new HttpParams({
+            encoder: new UriParameterCoder()
+        });
         Object.getOwnPropertyNames(params).forEach((key) => httpParams = httpParams.set(key, params[key]));
         return this.http.get<T>(url, { params: httpParams });
     }

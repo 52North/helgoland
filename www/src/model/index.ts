@@ -14,3 +14,4 @@ export * from './api/timeseries';
 export * from './config/config';
 
 export * from './internal/filter';
+export * from './internal/timespan';

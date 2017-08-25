@@ -7,6 +7,7 @@ export interface IDataset extends Parameter {
     lastValue: FirstLastValue;
     parameters: ParameterConstellation;
     styles: Styles;
+    data?: any;
 }
 
 export class FirstLastValue {
@@ -44,6 +45,7 @@ export class Styles {
     selected = false;
     color = '#FF0000';
     visible = true;
+    loading = false;
 }
 
 export class Dataset extends Parameter implements IDataset {
@@ -54,6 +56,7 @@ export class Dataset extends Parameter implements IDataset {
     datasetType: DatasetType;
     parameters: DatasetParameterConstellation;
     styles = new Styles();
+    data?: any;
 }
 
 export class PlatformParameter extends Parameter {

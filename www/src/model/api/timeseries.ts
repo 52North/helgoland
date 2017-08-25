@@ -10,4 +10,5 @@ export class Timeseries extends Parameter implements IDataset {
     station: Station;
     parameters: ParameterConstellation;
     styles = new Styles();
+    data?: any;
 }

@@ -4,10 +4,12 @@
     </div>
     <div class="hbox fullHeight" *ngIf="timeseries.length > 0">
         <div class="boxItem vbox fullHeight">
-            <div class="boxItem diagram" ng-controller="SwcChartCtrl">
+            <div class="boxItem diagram">
+                <n52-flot-diagram [datasets]="timeseries" [options]="diagramOptions" [timespan]="timespan" (onTimeChanged)="timeChanged($event)"></n52-flot-diagram>
                 <!-- <flot class="diagram" options="options" dataset="dataset" on-time-change="timeChanged(time)" on-series-selection-change="seriesSelectionChanged(selection)"></flot> -->
             </div>
-            <div class="boxItem overview-diagram" ng-controller="SwcOverviewChartCtrl">
+            <div class="boxItem overview-diagram">
+                <!-- <n52-flot-diagram [datasets]="timeseries" [options]="overviewOptions" [timespan]="timespan" (onTimeChanged)="timeChanged($event)"></n52-flot-diagram> -->
                 <!-- <flot options="options" dataset="dataset" on-time-change="timeChanged(time)"></flot> -->
             </div>
             <div class="boxItem control-bar">
@@ -16,6 +18,7 @@
                 <!-- <swc-yaxis-hide-button></swc-yaxis-hide-button> -->
                 <!-- <swc-time-selector-buttons></swc-time-selector-buttons> -->
                 <!-- <a class="btn btn-default" data-action="dataTable" ng-click="toggle()"><span class="glyphicon glyphicon-list"></span></a> -->
+                {{timespan.from | date: 'medium'}} - {{timespan.to | date: 'medium'}}
             </div>
         </div>
         <div class="boxItem fullHeight legend">
