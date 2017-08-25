@@ -26,7 +26,10 @@ angular.module('n52.core.profile')
 
                 this.showGeometry = function() {
                     if (this.profile.platformType === constants.platformType.stationaryInsitu) {
-                        seriesApiInterface.getPlatforms(this.profile.seriesParameters.platform.id, this.profile.url)
+                        var platformId;
+                        if (this.profile && this.profile.seriesParameters) platformId = this.profile.seriesParameters.platform.id;
+                        if (this.profile && this.profile.parameters) platformId = this.profile.parameters.platform.id;
+                        seriesApiInterface.getPlatforms(platformId, this.profile.url)
                             .then(res => {
                                 openGeometryView(this.profile, res.geometry);
                             });
@@ -49,7 +52,10 @@ angular.module('n52.core.profile')
                         },
                         controller: ['$scope', 'data', '$uibModalInstance',
                             function($scope, data, $uibModalInstance) {
-                                $scope.header = data.profile.seriesParameters.platform.label;
+                                var platformLabel;
+                                if (data.profile && data.profile.seriesParameters) platformLabel = data.profile.seriesParameters.platform.label;
+                                if (data.profile && data.profile.parameters) platformLabel = data.profile.parameters.platform.label;
+                                $scope.header = platformLabel;
                                 $scope.geometry = data.geometry;
 
                                 $scope.close = () => {
