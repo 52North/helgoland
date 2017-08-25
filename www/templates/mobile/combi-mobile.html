@@ -5,7 +5,7 @@
             <span>{{series.label}}</span>
         </div>
         <div>
-            <span>{{series.seriesParameters.phenomenon.label}}</span>
+            <span>{{series.seriesParameters.phenomenon.label || series.parameters.phenomenon.label}}</span>
             <span ng-hide="series.uom === undefined">({{series.uom}})</span>
         </div>
     </div>
