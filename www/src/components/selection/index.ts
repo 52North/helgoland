@@ -6,4 +6,5 @@ export * from './station-map-selector/station-map-selector.component';
 export * from './list-selector/list-selector.component';
 export * from './list-selector/list-selector.service';
 export * from './dataset-by-station-selector/dataset-by-station-selector.component';
+export * from './timespan-shift-selector/timespan-shift-selector.component';
 export * from './selection-module';

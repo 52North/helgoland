@@ -5,7 +5,8 @@ import {
     ProviderSelectorComponent,
     StationMapSelectorComponent,
     ListSelectorComponent,
-    DatasetByStationSelectorComponent
+    DatasetByStationSelectorComponent,
+    TimespanShiftSelectorComponent
 } from './src/components/selection';
 
 import {
@@ -37,6 +38,7 @@ mainApp
     .directive('n52StationMapSelector', downgradeComponent({ component: StationMapSelectorComponent }) as angular.IDirectiveFactory)
     .directive('n52ListSelector', downgradeComponent({ component: ListSelectorComponent }) as angular.IDirectiveFactory)
     .directive('n52DatasetByStationSelector', downgradeComponent({ component: DatasetByStationSelectorComponent }) as angular.IDirectiveFactory)
+    .directive('n52TimespanShiftSelector', downgradeComponent({ component: TimespanShiftSelectorComponent }) as angular.IDirectiveFactory)
     .directive('n52LabelMapper', downgradeComponent({ component: LabelMapperComponent }) as angular.IDirectiveFactory)
     .directive('n52GeometryMapViewer', downgradeComponent({ component: GeometryMapViewerComponent }) as angular.IDirectiveFactory)
     .directive('n52LegendEntry', downgradeComponent({ component: LegendEntryComponent }) as angular.IDirectiveFactory)

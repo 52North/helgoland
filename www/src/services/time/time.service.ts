@@ -21,15 +21,15 @@ export class Time {
 
     public stepBack(timespan: Timespan): Timespan {
         const duration = this.getDuration(timespan);
-        const from = moment(timespan.from).add(duration).toDate();
-        const to = moment(timespan.to).add(duration).toDate();
+        const from = moment(timespan.from).subtract(duration).toDate();
+        const to = moment(timespan.to).subtract(duration).toDate();
         return new Timespan(from, to);
     }
 
     public stepForward(timespan: Timespan): Timespan {
         const duration = this.getDuration(timespan);
-        const from = moment(timespan.from).subtract(duration).toDate();
-        const to = moment(timespan.to).subtract(duration).toDate();
+        const from = moment(timespan.from).add(duration).toDate();
+        const to = moment(timespan.to).add(duration).toDate();
         return new Timespan(from, to);
     }
 

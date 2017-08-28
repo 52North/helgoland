@@ -14,6 +14,7 @@ import {
     ServiceFilterSelectorComponent,
     StationMapSelectorComponent,
     DatasetByStationSelectorComponent,
+    TimespanShiftSelectorComponent
 } from '.';
 
 @NgModule({
@@ -30,7 +31,8 @@ import {
         ProviderSelectorComponent,
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
-        DatasetByStationSelectorComponent
+        DatasetByStationSelectorComponent,
+        TimespanShiftSelectorComponent
     ],
     declarations: [
         ListSelectorComponent,
@@ -38,7 +40,8 @@ import {
         ProviderSelectorComponent,
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
-        DatasetByStationSelectorComponent
+        DatasetByStationSelectorComponent,
+        TimespanShiftSelectorComponent
     ],
     exports: [
         ListSelectorComponent,
@@ -46,7 +49,8 @@ import {
         ProviderSelectorComponent,
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
-        DatasetByStationSelectorComponent
+        DatasetByStationSelectorComponent,
+        TimespanShiftSelectorComponent
     ],
     providers: [
         ListSelectorService,

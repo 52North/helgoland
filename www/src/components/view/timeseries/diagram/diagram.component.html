@@ -1,12 +1,11 @@
-<div class="fullHeight timeseries-diagram">
+<div class="fullHeight">
     <div class="empty-diagram" *ngIf="timeseries.length == 0">
         <span>Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.</span>
     </div>
     <div class="hbox fullHeight" *ngIf="timeseries.length > 0">
         <div class="boxItem vbox fullHeight">
             <div class="boxItem diagram">
-                <n52-flot-diagram [datasets]="timeseries" [options]="diagramOptions" [timespan]="timespan" (onTimeChanged)="timeChanged($event)"></n52-flot-diagram>
-                <!-- <flot class="diagram" options="options" dataset="dataset" on-time-change="timeChanged(time)" on-series-selection-change="seriesSelectionChanged(selection)"></flot> -->
+                <n52-flot-diagram [datasets]="timeseries" [options]="diagramOptions" [timespan]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-diagram>
             </div>
             <div class="boxItem overview-diagram">
                 <!-- <n52-flot-diagram [datasets]="timeseries" [options]="overviewOptions" [timespan]="timespan" (onTimeChanged)="timeChanged($event)"></n52-flot-diagram> -->
@@ -16,9 +15,8 @@
                 <!-- <swc-refresh-time></swc-refresh-time> -->
                 <!-- <swc-reload-button></swc-reload-button> -->
                 <!-- <swc-yaxis-hide-button></swc-yaxis-hide-button> -->
-                <!-- <swc-time-selector-buttons></swc-time-selector-buttons> -->
+                <n52-timespan-shift-selector [timespan]="timespan" (onTimespanChanges)="timeChanged($event)"></n52-timespan-shift-selector>
                 <!-- <a class="btn btn-default" data-action="dataTable" ng-click="toggle()"><span class="glyphicon glyphicon-list"></span></a> -->
-                {{timespan.from | date: 'medium'}} - {{timespan.to | date: 'medium'}}
             </div>
         </div>
         <div class="boxItem fullHeight legend">

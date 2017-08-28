@@ -34,7 +34,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
     public options: any;
 
     @Output()
-    public onTimeChanged: EventEmitter<Timespan> = new EventEmitter();
+    public onTimespanChanged: EventEmitter<Timespan> = new EventEmitter();
 
     private oldDatasets;
     private oldOptions;
@@ -72,7 +72,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
     }
 
     private changeTime(from: Date, to: Date) {
-        this.onTimeChanged.emit(new Timespan(from, to));
+        this.onTimespanChanged.emit(new Timespan(from, to));
     }
 
     public ngDoCheck() {
