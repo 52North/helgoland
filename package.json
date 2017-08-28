@@ -47,7 +47,6 @@
     "ng-table": "0.8.3",
     "plotly.js": "^1.28.3",
     "popper.js": "^1.12.3",
-    "qr-js": "1.1.4",
     "rxjs": "^5.4.3",
     "ui-leaflet": "github:janschulte/ui-leaflet#master",
     "zone.js": "^0.8.11"
