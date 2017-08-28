@@ -1,6 +1,12 @@
+import { Type } from 'class-transformer';
+
 export class Timespan {
-    public from: Date;
-    public to: Date;
+
+    @Type(() => Date)
+    from: Date;
+
+    @Type(() => Date)
+    to: Date;
 
     constructor(from: Date, to: Date) {
         this.from = from;

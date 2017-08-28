@@ -6,6 +6,7 @@ import { ApiInterface, CachingInterceptor, LocalHttpCache, HttpCache, ApiMapping
 import { Settings } from './settings';
 import { MapCache } from './map';
 import { LocalStorage } from './local-storage';
+import { Time } from './time';
 
 const CachingInterceptorProvider = {
     provide: HTTP_INTERCEPTORS,
@@ -29,7 +30,8 @@ const CachingInterceptorProvider = {
         ApiMapping,
         Settings,
         MapCache,
-        LocalStorage
+        LocalStorage,
+        Time
     ]
 })
 export class ServicesModule {

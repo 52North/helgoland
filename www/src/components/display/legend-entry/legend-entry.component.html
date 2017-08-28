@@ -17,6 +17,16 @@
                     <span class="small" translate="legend.entry.jumpToLastValue"></span>
                 </div>
             </div> -->
+            <div class="noDataWarning firstLastEntry" *ngIf="hasNoData()">
+                <div>
+                    <span class="fa fa-exclamation-triangle red"></span>
+                    <span class="small">Keine Daten verfügbar</span>
+                </div>
+                <div class="additionalLegendEntry" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
+                    <span class="fa fa-chevron-right"></span>
+                    <span class="small">Springe zur letzten Messung</span>
+                </div>
+            </div>
             <div class="small">
                 <n52-label-mapper label="{{phenomenonLabel}}"></n52-label-mapper>
                 <span *ngIf="uom">[<n52-label-mapper label="{{uom}}"></n52-label-mapper>]</span>

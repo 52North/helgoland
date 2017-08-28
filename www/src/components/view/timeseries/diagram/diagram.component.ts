@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TimeseriesService } from '../services/timeseries.service';
+import { Time } from '../../../../services/time';
 import { IDataset, Timespan } from '../../../../model';
+
+const TIME_CACHE_PARAM = 'timeseries-time';
 
 @Component({
     selector: 'n52-timeseries-diagram',
@@ -122,17 +125,13 @@ export class TimeseriesDiagramComponent implements OnInit {
     };
 
     constructor(
-        private timeseriesService: TimeseriesService
+        private timeseriesService: TimeseriesService,
+        private timeSrvc: Time
     ) { }
 
     public ngOnInit() {
         this.timeseries = this.timeseriesService.timeseries;
-        // TODO set range to overviewOptions out of timeService
-        this.timespan = new Timespan(new Date(1372747500000), new Date(1372862200000));
-
-        this.timeseriesService.loadData(this.timespan);
-        // this.overviewOptions.xaxis['min'] = 1372600000000;
-        // this.overviewOptions.xaxis['max'] = 1372900000000;
+        this.updateTime(this.timeSrvc.loadTimespan(TIME_CACHE_PARAM) || this.timeSrvc.initTimespan());
     }
 
     public delete(dataset: IDataset) {
@@ -140,9 +139,17 @@ export class TimeseriesDiagramComponent implements OnInit {
     }
 
     public timeChanged(timespan: Timespan) {
+        this.updateTime(timespan);
+    }
+
+    public jumpToDate(date: Date) {
+        this.updateTime(this.timeSrvc.centerTimespan(this.timespan, date));
+    }
+
+    private updateTime(timespan: Timespan) {
         this.timespan = timespan;
-        this.timeseriesService.loadData(this.timespan);
-        // TODO set time in timeservice???
+        this.timeSrvc.saveTimespan(TIME_CACHE_PARAM, timespan);
+        this.timeseriesService.loadData(timespan);
     }
 
 }

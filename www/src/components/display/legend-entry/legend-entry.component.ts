@@ -17,6 +17,9 @@ export class LegendEntryComponent implements OnInit {
     @Output()
     public onUpdateStyles: EventEmitter<Styles> = new EventEmitter();
 
+    @Output()
+    public onSelectDate: EventEmitter<Date> = new EventEmitter();
+
     public platformLabel: string;
     public phenomenonLabel: string;
     public procedureLabel: string;
@@ -52,9 +55,11 @@ export class LegendEntryComponent implements OnInit {
     }
 
     public jumpToFirstTimeStamp() {
+        this.onSelectDate.emit(new Date(this.dataset.firstValue.timestamp));
     }
 
     public jumpToLastTimeStamp() {
+        this.onSelectDate.emit(new Date(this.dataset.lastValue.timestamp));
     }
 
     public toggleSelection() {
@@ -63,5 +68,9 @@ export class LegendEntryComponent implements OnInit {
 
     public toggleVisibility() {
         this.dataset.styles.visible = !this.dataset.styles.visible;
+    }
+
+    public hasNoData(): boolean {
+        return !this.dataset.styles.loading && this.dataset.data.values && this.dataset.data.values.length === 0;
     }
 }

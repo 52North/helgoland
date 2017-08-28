@@ -11,8 +11,6 @@ export class TimeseriesService {
 
     public timeseries: Array<IDataset> = [];
 
-    // public timeseriesData: Array<any> = [];
-
     constructor(
         private api: ApiInterface,
         private localStorage: LocalStorage

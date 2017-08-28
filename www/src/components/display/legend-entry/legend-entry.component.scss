@@ -3,7 +3,7 @@
 :host {
     .legendItem {
         background-color: white;
-        padding: 3px;
+        padding: 5px;
         border-radius: 5px;
         margin-bottom: 5px;
 
@@ -13,6 +13,7 @@
         }
 
         &.selected {
+            padding: 0px;
             border-width: 5px;
             border-style: solid;
         }
