@@ -71,6 +71,6 @@ export class LegendEntryComponent implements OnInit {
     }
 
     public hasNoData(): boolean {
-        return !this.dataset.styles.loading && this.dataset.data.values && this.dataset.data.values.length === 0;
+        return !this.dataset.styles.loading && !this.dataset.hasData;
     }
 }

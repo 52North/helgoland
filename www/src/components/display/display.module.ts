@@ -6,7 +6,8 @@ import {
     LabelMapperComponent,
     LabelMapperService,
     LegendEntryComponent,
-    FlotDiagramComponent
+    FlotDiagramComponent,
+    FlotOverviewDiagramComponent
 } from '.';
 
 @NgModule({
@@ -17,13 +18,15 @@ import {
         GeometryMapViewerComponent,
         LabelMapperComponent,
         LegendEntryComponent,
-        FlotDiagramComponent
+        FlotDiagramComponent,
+        FlotOverviewDiagramComponent
     ],
     exports: [
         GeometryMapViewerComponent,
         LabelMapperComponent,
         LegendEntryComponent,
-        FlotDiagramComponent
+        FlotDiagramComponent,
+        FlotOverviewDiagramComponent
     ],
     providers: [
         LabelMapperService

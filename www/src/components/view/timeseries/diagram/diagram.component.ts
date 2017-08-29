@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TimeseriesService } from '../services/timeseries.service';
 import { Time } from '../../../../services/time';
-import { IDataset, Timespan } from '../../../../model';
+import { IDataset, Timespan, Data } from '../../../../model';
 
 const TIME_CACHE_PARAM = 'timeseries-time';
 
@@ -13,6 +13,7 @@ const TIME_CACHE_PARAM = 'timeseries-time';
 export class TimeseriesDiagramComponent implements OnInit {
 
     public timeseries: Array<IDataset>;
+    public data: Array<Data>;
     public timespan: Timespan;
 
     public diagramOptions = {
@@ -131,6 +132,7 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     public ngOnInit() {
         this.timeseries = this.timeseriesService.timeseries;
+        this.data = this.timeseriesService.data;
         this.updateTime(this.timeSrvc.loadTimespan(TIME_CACHE_PARAM) || this.timeSrvc.initTimespan());
     }
 

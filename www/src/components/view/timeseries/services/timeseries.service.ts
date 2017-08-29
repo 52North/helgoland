@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiInterface } from '../../../../services/api-interface';
 import { LocalStorage } from '../../../../services/local-storage';
-import { IDataset, Dataset, Timeseries, Timespan } from '../../../../model';
+import { Time } from '../../../../services/time';
+import { IDataset, Dataset, Timeseries, Timespan, Data } from '../../../../model';
 import { deserializeArray } from 'class-transformer';
 
 const TIMESERIES_CACHE_PARAM = 'timeseries';
@@ -11,9 +12,12 @@ export class TimeseriesService {
 
     public timeseries: Array<IDataset> = [];
 
+    public data: Array<Data> = [];
+
     constructor(
         private api: ApiInterface,
-        private localStorage: LocalStorage
+        private localStorage: LocalStorage,
+        private timeSrvc: Time
     ) {
         this.loadTimeseries();
     }
@@ -41,15 +45,18 @@ export class TimeseriesService {
     public removeTimeseries(dataset: IDataset) {
         const idx = this.findTimeseriesIdx(dataset);
         this.timeseries.splice(idx, 1);
+        this.data.splice(idx, 1);
         this.saveTimeseries();
     }
 
     public loadData(timespan: Timespan) {
         this.timeseries.forEach((entry, idx) => {
             entry.styles.loading = true;
-            entry.data = null;
-            this.api.getTsData(entry.id, entry.url, timespan, { format: 'flot' }).subscribe((result) => {
-                entry.data = result;
+            this.data[idx] = null;
+            const buffer = this.timeSrvc.getBufferedTimespan(timespan, 0.2);
+            this.api.getTsData(entry.id, entry.url, buffer, { format: 'flot' }).subscribe((result) => {
+                entry.hasData = result.values && result.values.length > 0;
+                this.data[idx] = result;
                 entry.styles.loading = false;
             });
         });
@@ -57,6 +64,7 @@ export class TimeseriesService {
 
     private addDataset(dataset: IDataset) {
         this.timeseries.push(dataset);
+        this.data.push(null);
         this.saveTimeseries();
     }
 
@@ -77,5 +85,4 @@ export class TimeseriesService {
             this.timeseries = result;
         }
     }
-
 }

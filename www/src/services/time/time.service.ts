@@ -39,6 +39,13 @@ export class Time {
         return moment.duration(to.diff(from));
     }
 
+    public getBufferedTimespan(timespan: Timespan, factor: number): Timespan {
+        const durationMillis = this.getDuration(timespan).asMilliseconds();
+        const from = moment(timespan.from).subtract(durationMillis * factor).toDate();
+        const to = moment(timespan.to).add(durationMillis * factor).toDate();
+        return new Timespan(from, to);
+    }
+
     public saveTimespan(param: string, timespan: Timespan) {
         this.localStorage.save(param, timespan);
     }

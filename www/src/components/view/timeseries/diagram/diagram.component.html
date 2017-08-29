@@ -5,11 +5,10 @@
     <div class="hbox fullHeight" *ngIf="timeseries.length > 0">
         <div class="boxItem vbox fullHeight">
             <div class="boxItem diagram">
-                <n52-flot-diagram [datasets]="timeseries" [options]="diagramOptions" [timespan]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-diagram>
+                <n52-flot-diagram [datasets]="timeseries" [data]="data" [options]="diagramOptions" [timespan]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-diagram>
             </div>
             <div class="boxItem overview-diagram">
-                <!-- <n52-flot-diagram [datasets]="timeseries" [options]="overviewOptions" [timespan]="timespan" (onTimeChanged)="timeChanged($event)"></n52-flot-diagram> -->
-                <!-- <flot options="options" dataset="dataset" on-time-change="timeChanged(time)"></flot> -->
+                <n52-flot-overview-diagram [datasets]="timeseries" [options]="overviewOptions" [timespan]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-overview-diagram>
             </div>
             <div class="boxItem control-bar">
                 <!-- <swc-refresh-time></swc-refresh-time> -->

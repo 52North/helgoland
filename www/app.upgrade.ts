@@ -13,7 +13,8 @@ import {
     LabelMapperComponent,
     GeometryMapViewerComponent,
     LegendEntryComponent,
-    FlotDiagramComponent
+    FlotDiagramComponent,
+    FlotOverviewDiagramComponent
 } from './src/components/display';
 
 import {
@@ -43,6 +44,7 @@ mainApp
     .directive('n52GeometryMapViewer', downgradeComponent({ component: GeometryMapViewerComponent }) as angular.IDirectiveFactory)
     .directive('n52LegendEntry', downgradeComponent({ component: LegendEntryComponent }) as angular.IDirectiveFactory)
     .directive('n52FlotDiagram', downgradeComponent({ component: FlotDiagramComponent }) as angular.IDirectiveFactory)
+    .directive('n52FlotOverviewDiagram', downgradeComponent({ component: FlotOverviewDiagramComponent }) as angular.IDirectiveFactory)
     .directive('n52ZoomControl', downgradeComponent({ component: ZoomControlComponent }) as angular.IDirectiveFactory)
     .directive('n52LocateControl', downgradeComponent({ component: LocateControlComponent }) as angular.IDirectiveFactory)
     .directive('n52TimeseriesProviderSelection', downgradeComponent({ component: TimeseriesProviderSelectionComponent }) as angular.IDirectiveFactory)

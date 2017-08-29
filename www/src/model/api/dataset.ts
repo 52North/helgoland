@@ -7,7 +7,11 @@ export interface IDataset extends Parameter {
     lastValue: FirstLastValue;
     parameters: ParameterConstellation;
     styles: Styles;
-    data?: any;
+    hasData: boolean;
+}
+
+export interface Data {
+    values: Array<any>;
 }
 
 export class FirstLastValue {
@@ -56,7 +60,7 @@ export class Dataset extends Parameter implements IDataset {
     datasetType: DatasetType;
     parameters: DatasetParameterConstellation;
     styles = new Styles();
-    data?: any;
+    hasData = false;
 }
 
 export class PlatformParameter extends Parameter {

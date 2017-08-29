@@ -9,7 +9,8 @@ import {
 } from '@angular/core';
 import {
     IDataset,
-    Timespan
+    Timespan,
+    Data
 } from '../../../model';
 import * as $ from 'jquery';
 import * as moment from 'moment';
@@ -28,6 +29,9 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
     public datasets: Array<IDataset>;
 
     @Input()
+    public data: Array<Data>;
+
+    @Input()
     public timespan: Timespan;
 
     @Input()
@@ -38,8 +42,9 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
 
     private oldDatasets;
     private oldOptions;
+    private oldData;
     private plotarea;
-    private data;
+    private preparedData;
     private plotOptions;
 
     public ngAfterViewInit() {
@@ -86,14 +91,19 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                 replot = true;
                 this.oldOptions = JSON.parse(JSON.stringify(this.options));
             }
-            if (replot) this.plotChart();
+            if (!equal(this.oldData, this.data)) {
+                replot = true;
+                this.oldData = JSON.parse(JSON.stringify(this.data));
+            }
+            if (replot && this.datasets && this.data
+                && this.datasets.length === this.data.length) this.plotChart();
         }
     }
 
     private plotChart() {
         this.updateData();
-        if (this.data && this.data.length !== 0) {
-            const plotObj = $.plot(this.plotarea, this.data, this.plotOptions);
+        if (this.preparedData && this.preparedData.length !== 0) {
+            const plotObj = $.plot(this.plotarea, this.preparedData, this.plotOptions);
             this.createPlotAnnotation(this.plotarea, this.plotOptions);
             this.createYAxis(plotObj);
             this.setSelection(plotObj, this.plotOptions);
@@ -103,19 +113,13 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
     }
 
     private updateData() {
-        this.data = [];
+        this.preparedData = [];
         this.plotOptions = this.options;
         this.plotOptions.yaxes = [];
         this.plotOptions.xaxis.min = this.timespan.from.getTime();
         this.plotOptions.xaxis.max = this.timespan.to.getTime();
-        if (this.plotOptions.selection.mode && this.plotOptions.selection.mode === 'overview') {
-            this.plotOptions.selection['range'] = {
-                from: this.timespan.from.getTime(),
-                to: this.timespan.to.getTime()
-            };
-        }
-        this.datasets.forEach((entry) => {
-            if (entry.data && entry.styles.visible) {
+        this.datasets.forEach((entry, datasetIdx) => {
+            if (this.data[datasetIdx] && entry.styles.visible) {
                 const label = this.createAxisLabel(entry);
                 let axePos;
                 const axe = this.plotOptions.yaxes.find((yaxisEntry, idx) => {
@@ -132,11 +136,11 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                     });
                     axePos = this.plotOptions.yaxes.length;
                 }
-                this.data.push({
+                this.preparedData.push({
                     id: entry.id,
                     url: entry.url,
                     color: entry.styles.color,
-                    data: entry.data.values,
+                    data: this.data[datasetIdx].values,
                     selected: entry.styles.selected,
                     points: {
                         fillColor: entry.styles.color
