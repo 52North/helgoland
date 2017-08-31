@@ -1,0 +1,32 @@
+<div class="hbox viewport">
+    <div class="hbox boxItem">
+        <ngb-tabset #tabset="ngbTabset" class="boxItem vbox" [justify]="'center'">
+            <ngb-tab id="trajectoryProvider">
+                <ng-template ngbTabTitle>
+                    <span>Wähle Anbieter</span>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onProviderSelected)="providerSelected($event);"></n52-provider-selector>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab id="selectByPlatform">
+                <ng-template ngbTabTitle>
+                    <span>Wähle über Platform</span>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <n52-list-selector [parameters]="platformParams" [selectorId]="'trajectory-platform'" [filter]="paramFilter" [providerList]="selectedProvider"
+                        (onDatasetSelection)="datasetSelected($event.dataset, $event.url)"></n52-list-selector>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab id="selectByPhenomenon">
+                <ng-template ngbTabTitle>
+                    <span>Wähle über Phänomen</span>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <n52-list-selector [parameters]="phenomenonParams" [selectorId]="'trajectory-phenomenon'" [filter]="paramFilter" [providerList]="selectedProvider"
+                        (onDatasetSelection)="datasetSelected($event.dataset, $event.url)"></n52-list-selector>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+</div>

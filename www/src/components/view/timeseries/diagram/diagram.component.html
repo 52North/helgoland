@@ -8,7 +8,7 @@
                 <n52-flot-diagram [datasets]="timeseries" [data]="data" [options]="diagramOptions" [timespan]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-diagram>
             </div>
             <div class="boxItem overview-diagram">
-                <n52-flot-overview-diagram [datasets]="timeseries" [options]="overviewOptions" [timespan]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-overview-diagram>
+                <n52-flot-overview-diagram [datasets]="timeseries" [rangefactor]="2" [options]="overviewOptions" [timespan]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-overview-diagram>
             </div>
             <div class="boxItem control-bar">
                 <!-- <swc-refresh-time></swc-refresh-time> -->
