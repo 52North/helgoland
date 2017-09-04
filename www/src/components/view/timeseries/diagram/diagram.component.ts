@@ -1,3 +1,4 @@
+import { IDataEntry } from '../../../../model/api/data';
 import { Component, OnInit } from '@angular/core';
 import { TimeseriesService } from '../services/timeseries.service';
 import { Time } from '../../../../services/time';
@@ -13,7 +14,7 @@ const TIME_CACHE_PARAM = 'timeseries-time';
 export class TimeseriesDiagramComponent implements OnInit {
 
     public timeseries: Array<IDataset>;
-    public data: Array<Data>;
+    public data: Array<Data<IDataEntry>>;
     public timespan: Timespan;
 
     public diagramOptions = {

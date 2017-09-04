@@ -1,0 +1,44 @@
+<!-- <swc-simple-permalink-button class="sub-menu-permalink-button" generated-url-function="$ctrl.createPermalink"></swc-simple-permalink-button>-->
+<!-- <pre>{{model.trajectory | json}}</pre> -->
+<div class="combi-mobile" *ngIf="model.trajectory">
+    <div class="combi-header" *ngIf="model.trajectory.label">
+        <!-- <swc-mobile-reload dataset-id="series.id" provider-url="series.providerUrl" class="header-button"></swc-mobile-reload> -->
+        <div>
+            <span>{{model.trajectory.label}}</span>
+        </div>
+        <div>
+            <span>{{model.trajectory.parameters.phenomenon.label}}</span>
+            <span *ngIf="model.trajectory.uom">[{{model.trajectory.uom}}]</span>
+        </div>
+    </div>
+    <div class="combi-body">
+        <div class="map">
+            <n52-geometry-map-viewer class="boxItem" [mapId]="'trajectory'" [geometry]="model.geometry" [maxMapZoom]="14" [highlight]="highlightGeometry"></n52-geometry-map-viewer>
+            <div class="mapNotifier" *ngIf="model.trajectory.loading">
+                <div>
+                    <div class="glyphicon glyphicon-refresh icon-spin"></div>
+                    <div translate="trajectories.map.loading"></div>
+                </div>
+            </div>
+            <div class="map-options">
+                <!-- <swc-mobile-map-path-toggler></swc-mobile-map-path-toggler> -->
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="chart">
+                <!-- <d3-linear-chart></d3-linear-chart> -->
+                <n52-d-three-diagram [dataset]="model.trajectory" [data]="model.data" [options]="graphOptions" [selection]="selection" [highlight]="highlight" (onSelection)="onSelectionChanged($event)" (onHighlight)="onChartHighlightChanged($event)"></n52-d-three-diagram>
+                <div class="chart-information">
+                    <span class="fa fa-info-circle" title="Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt."></span>
+                </div>
+            </div>
+            <div class="chart-buttons">
+                <!-- <swc-mobile-axis-toggler axis-type="distance" icon="road" selected-axis-type="options.axisType" tooltip="trajectories.diagram.distanceTooltip"></swc-mobile-axis-toggler> -->
+                <!-- <swc-mobile-axis-toggler axis-type="time" icon="time" selected-axis-type="options.axisType" tooltip="trajectories.diagram.timeTooltip"></swc-mobile-axis-toggler> -->
+                <!-- <swc-mobile-axis-toggler axis-type="ticks" icon="option-horizontal" selected-axis-type="options.axisType" tooltip="trajectories.diagram.ticksTooltip"></swc-mobile-axis-toggler> -->
+                <hr>
+                <!-- <swc-mobile-chart-draw-line-toggler></swc-mobile-chart-draw-line-toggler> -->
+            </div>
+        </div>
+    </div>
+</div>

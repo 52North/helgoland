@@ -1,4 +1,6 @@
+import { DThreeDiagramComponent } from './src/components/display/d-three-diagram/d-three-diagram.component';
 import { downgradeComponent } from '@angular/upgrade/static';
+import * as angular from 'angular';
 
 import { mainApp } from './app';
 import { LocateControlComponent, ZoomControlComponent } from './src/components/control';
@@ -24,7 +26,7 @@ import {
     TimeseriesMapSelectionComponent,
     TimeseriesProviderSelectionComponent,
 } from './src/components/view/timeseries';
-import { TrajectorySelectionComponent } from './src/components/view/trajectory/selection/selection.component';
+import { TrajectorySelectionComponent, TrajectoryViewComponent } from './src/components/view/trajectory';
 
 /* tslint:disable:max-line-length */
 mainApp
@@ -46,5 +48,7 @@ mainApp
     .directive('n52TimeseriesListSelection', downgradeComponent({ component: TimeseriesListSelectionComponent }) as angular.IDirectiveFactory)
     .directive('n52TimeseriesMapSelection', downgradeComponent({ component: TimeseriesMapSelectionComponent }) as angular.IDirectiveFactory)
     .directive('n52TimeseriesDiagram', downgradeComponent({ component: TimeseriesDiagramComponent }) as angular.IDirectiveFactory)
-    .directive('n52TrajectorySelection', downgradeComponent({ component: TrajectorySelectionComponent }) as angular.IDirectiveFactory);
+    .directive('n52TrajectorySelection', downgradeComponent({ component: TrajectorySelectionComponent }) as angular.IDirectiveFactory)
+    .directive('n52TrajectoryView', downgradeComponent({ component: TrajectoryViewComponent }) as angular.IDirectiveFactory)
+    .directive('n52DThreeDiagram', downgradeComponent({ component: DThreeDiagramComponent }) as angular.IDirectiveFactory);
 

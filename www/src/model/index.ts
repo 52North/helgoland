@@ -1,5 +1,6 @@
 export * from './api/category';
 export * from './api/dataset';
+export * from './api/data';
 export * from './api/feature';
 export * from './api/identifiable';
 export * from './api/offering';

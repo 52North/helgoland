@@ -29,7 +29,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
     public datasets: Array<IDataset>;
 
     @Input()
-    public data: Array<Data>;
+    public data: Array<Data<[2]>>;
 
     @Input()
     public timespan: Timespan;

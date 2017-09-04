@@ -12,7 +12,7 @@ export class TimeseriesService {
 
     public timeseries: Array<IDataset> = [];
 
-    public data: Array<Data> = [];
+    public data: Array<Data<[2]>> = [];
 
     constructor(
         private api: ApiInterface,
@@ -54,7 +54,7 @@ export class TimeseriesService {
             entry.styles.loading = true;
             this.data[idx] = null;
             const buffer = this.timeSrvc.getBufferedTimespan(timespan, 0.2);
-            this.api.getTsData(entry.id, entry.url, buffer, { format: 'flot' }).subscribe((result) => {
+            this.api.getTsData<[2]>(entry.id, entry.url, buffer, { format: 'flot' }).subscribe((result) => {
                 entry.hasData = result.values && result.values.length > 0;
                 this.data[idx] = result;
                 entry.styles.loading = false;

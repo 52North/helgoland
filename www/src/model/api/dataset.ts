@@ -10,10 +10,6 @@ export interface IDataset extends Parameter {
     hasData: boolean;
 }
 
-export interface Data {
-    values: Array<any>;
-}
-
 export class FirstLastValue {
     timestamp: number;
     value: number;

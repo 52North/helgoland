@@ -41,7 +41,7 @@ export class FlotOverviewDiagramComponent implements DoCheck, OnInit, OnChanges 
     public onTimespanChanged: EventEmitter<Timespan> = new EventEmitter();
 
     private differDatasets: IterableDiffer<IDataset>;
-    public data: Array<Data>;
+    public data: Array<Data<[2]>>;
     public overviewTimespan: Timespan;
     private init = false;
 
@@ -85,7 +85,7 @@ export class FlotOverviewDiagramComponent implements DoCheck, OnInit, OnChanges 
         this.data = [];
         this.datasets.forEach((entry, idx) => {
             this.data[idx] = null;
-            this.api.getTsData(entry.id, entry.url, this.overviewTimespan, { format: 'flot' }).subscribe((result) => {
+            this.api.getTsData<[2]>(entry.id, entry.url, this.overviewTimespan, { format: 'flot' }).subscribe((result) => {
                 this.data[idx] = result;
             });
         });

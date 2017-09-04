@@ -1,3 +1,4 @@
+import { DThreeDiagramComponent } from './d-three-diagram/d-three-diagram.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -19,14 +20,16 @@ import {
         LabelMapperComponent,
         LegendEntryComponent,
         FlotDiagramComponent,
-        FlotOverviewDiagramComponent
+        FlotOverviewDiagramComponent,
+        DThreeDiagramComponent
     ],
     exports: [
         GeometryMapViewerComponent,
         LabelMapperComponent,
         LegendEntryComponent,
         FlotDiagramComponent,
-        FlotOverviewDiagramComponent
+        FlotOverviewDiagramComponent,
+        DThreeDiagramComponent
     ],
     providers: [
         LabelMapperService

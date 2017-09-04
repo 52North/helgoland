@@ -1,3 +1,4 @@
+import { Data } from './../../model/api/data';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
@@ -92,10 +93,10 @@ export class ApiInterface implements ApiV2 {
         });
     }
 
-    public getTsData(id: string, apiUrl: string, timespan: Timespan, params = {}): Observable<any> {
+    public getTsData<T>(id: string, apiUrl: string, timespan: Timespan, params = {}): Observable<Data<T>> {
         const url = this.createRequestUrl(apiUrl, 'timeseries', id) + '/getData';
         params['timespan'] = this.createRequestTimespan(timespan);
-        return this.requestApi<any>(url, params);
+        return this.requestApi<Data<T>>(url, params);
     }
 
     private createRequestTimespan(timespan: Timespan): string {
@@ -165,7 +166,21 @@ export class ApiInterface implements ApiV2 {
     }
 
     public getDataset(id: string, apiUrl: string, params?: any): Observable<Dataset> {
-        throw new Error('Not implemented');
+        const url = this.createRequestUrl(apiUrl, 'datasets', id);
+        return this.requestApi<Dataset>(url, params).map((res) => {
+            res.url = apiUrl;
+            if (res['seriesParameters']) {
+                res.parameters = res['seriesParameters'];
+                delete res['seriesParameters'];
+            }
+            return res;
+        });
+    }
+
+    public getData<T>(id: string, apiUrl: string, timespan: Timespan, params = {}): Observable<Data<T>> {
+        const url = this.createRequestUrl(apiUrl, 'datasets', id) + '/data';
+        params['timespan'] = this.createRequestTimespan(timespan);
+        return this.requestApi<Data<T>>(url, params);
     }
 
     public getGeometries(id: string, apiUrl: string, params?: any): Observable<any> {

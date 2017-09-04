@@ -1,7 +1,8 @@
+import { TrajectoryService } from './../trajectory.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 
-import { PlatformTypes, ValueTypes } from './../../../../model/api/dataset';
+import { PlatformTypes, ValueTypes, Dataset } from './../../../../model/api/dataset';
 import { Settings } from './../../../../services/settings/settings.service';
 
 @Component({
@@ -57,7 +58,8 @@ export class TrajectorySelectionComponent implements OnInit {
     public activeTab: string;
 
     constructor(
-        private settings: Settings
+        private settings: Settings,
+        private trajectory: TrajectoryService
     ) { }
 
     public ngOnInit() {
@@ -76,10 +78,9 @@ export class TrajectorySelectionComponent implements OnInit {
         this.tabset.select('selectByPlatform');
     }
 
-    public datasetSelected(dataset, url) {
+    public datasetSelected(dataset: Array<Dataset>, url) {
         if (dataset instanceof Array && dataset.length === 1) {
-            // TODO add dataset to view
-            // combinedSrvc.loadSeries(dataset[0].id, url);
+            this.trajectory.setTrajectory(dataset[0].id, url);
             // TODO jump to view
             // $state.go('trajectory.view');
         }
