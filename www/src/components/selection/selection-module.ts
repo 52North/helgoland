@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DisplayModule } from '../display';
 import { UpgradeModule } from '@angular/upgrade/static';
 import { PipesModule } from '../../pipes';
+import { FormsModule } from '@angular/forms';
 
 import {
     ListSelectorComponent,
@@ -14,6 +15,7 @@ import {
     ServiceFilterSelectorComponent,
     StationMapSelectorComponent,
     DatasetByStationSelectorComponent,
+    TimespanSelectorComponent,
     TimespanShiftSelectorComponent
 } from '.';
 
@@ -23,6 +25,7 @@ import {
         UpgradeModule,
         DisplayModule,
         PipesModule,
+        FormsModule,
         NgbModule.forRoot()
     ],
     entryComponents: [
@@ -32,6 +35,7 @@ import {
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
         DatasetByStationSelectorComponent,
+        TimespanSelectorComponent,
         TimespanShiftSelectorComponent
     ],
     declarations: [
@@ -41,6 +45,7 @@ import {
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
         DatasetByStationSelectorComponent,
+        TimespanSelectorComponent,
         TimespanShiftSelectorComponent
     ],
     exports: [
@@ -50,6 +55,7 @@ import {
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
         DatasetByStationSelectorComponent,
+        TimespanSelectorComponent,
         TimespanShiftSelectorComponent
     ],
     providers: [
