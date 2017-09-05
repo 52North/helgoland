@@ -120,5 +120,91 @@
     "favorite",
     "settings"
   ],
-  "datelineMarkerGrouping": false
+  "datelineMarkerGrouping": false,
+  "timespanPresets": [
+    {
+      "name": "lastHour",
+      "label": "timeSelection.presets.lastHour",
+      "timespan": {
+        "from": "moment().subtract(1, 'hours')",
+        "to":   "moment()"
+      },
+      "seperatorAfterThisItem": true
+    },
+    {
+      "name": "today",
+      "label": "timeSelection.presets.today",
+      "timespan": {
+        "from": "moment().startOf('day')",
+        "to":   "moment().endOf('day')"
+      }
+    },
+    {
+      "name": "yesterday",
+      "label": "timeSelection.presets.yesterday",
+      "timespan": {
+        "from": "moment().subtract(1, 'days').startOf('day')",
+        "to":   "moment().subtract(1, 'days').endOf('day')"
+      }
+    },
+    {
+      "name": "todayYesterday",
+      "label": "timeSelection.presets.todayYesterday",
+      "timespan": {
+        "from": "moment().subtract(1, 'days').startOf('day')",
+        "to":   "moment().endOf('day')"
+      },
+      "seperatorAfterThisItem": true
+    },
+    {
+      "name": "thisWeek",
+      "label": "timeSelection.presets.thisWeek",
+      "timespan": {
+        "from": "moment().startOf('isoWeek')",
+        "to":   "moment().endOf('isoWeek')"
+      }
+    },
+    {
+      "name": "lastWeek",
+      "label": "timeSelection.presets.lastWeek",
+      "timespan": {
+        "from": "moment().subtract(1, 'weeks').startOf('isoWeek')",
+        "to":   "moment().subtract(1, 'weeks').endOf('isoWeek')"
+      },
+      "seperatorAfterThisItem": true
+    },
+    {
+      "name": "thisMonth",
+      "label": "timeSelection.presets.thisMonth",
+      "timespan": {
+        "from": "moment().startOf('month')",
+        "to":   "moment().endOf('month')"
+      }
+    },
+    {
+      "name": "lastMonth",
+      "label": "timeSelection.presets.lastMonth",
+      "timespan": {
+        "from": "moment().subtract(1, 'months').startOf('month')",
+        "to":   "moment().subtract(1, 'months').endOf('month')"
+      },
+      "seperatorAfterThisItem": true
+    },
+    {
+      "name": "thisYear",
+      "label": "timeSelection.presets.thisYear",
+      "timespan": {
+        "from": "moment().startOf('year')",
+        "to":   "moment().endOf('year')"
+      }
+    },
+    {
+      "name": "lastYear",
+      "label": "timeSelection.presets.lastYear",
+      "timespan": {
+        "from": "moment().subtract(1, 'years').startOf('year')",
+        "to":   "moment().subtract(1, 'years').endOf('year')"
+      }
+    }
+  ]
 }

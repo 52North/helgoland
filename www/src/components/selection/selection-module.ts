@@ -15,6 +15,7 @@ import {
     ServiceFilterSelectorComponent,
     StationMapSelectorComponent,
     DatasetByStationSelectorComponent,
+    PredefinedTimespanSelectorComponent,
     TimespanSelectorComponent,
     TimespanShiftSelectorComponent
 } from '.';
@@ -35,6 +36,7 @@ import {
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
         DatasetByStationSelectorComponent,
+        PredefinedTimespanSelectorComponent,
         TimespanSelectorComponent,
         TimespanShiftSelectorComponent
     ],
@@ -45,6 +47,7 @@ import {
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
         DatasetByStationSelectorComponent,
+        PredefinedTimespanSelectorComponent,
         TimespanSelectorComponent,
         TimespanShiftSelectorComponent
     ],
@@ -55,6 +58,7 @@ import {
         ServiceFilterSelectorComponent,
         StationMapSelectorComponent,
         DatasetByStationSelectorComponent,
+        PredefinedTimespanSelectorComponent,
         TimespanSelectorComponent,
         TimespanShiftSelectorComponent
     ],

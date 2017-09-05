@@ -1,3 +1,5 @@
+import { Timespan } from '../index';
+
 export class Config {
 
     restApiUrls: Array<any>;
@@ -8,4 +10,12 @@ export class Config {
 
     proxyUrl: string;
 
+    timespanPresets: Array<TimespanPreset>;
+}
+
+export class TimespanPreset {
+    name: string;
+    label: string;
+    timespan: Timespan;
+    seperatorAfterThisItem?: boolean;
 }
