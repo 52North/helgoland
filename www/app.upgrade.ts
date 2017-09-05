@@ -1,37 +1,32 @@
-/* tslint:disable:max-line-length */
-import {
-    MultiServiceFilterSelectorComponent,
-    ServiceFilterSelectorComponent,
-    ProviderSelectorComponent,
-    StationMapSelectorComponent,
-    ListSelectorComponent,
-    DatasetByStationSelectorComponent,
-    TimespanShiftSelectorComponent
-} from './src/components/selection';
-
-import {
-    LabelMapperComponent,
-    GeometryMapViewerComponent,
-    LegendEntryComponent,
-    FlotDiagramComponent,
-    FlotOverviewDiagramComponent
-} from './src/components/display';
-
-import {
-    ZoomControlComponent,
-    LocateControlComponent
-} from './src/components/control';
-
-import {
-    TimeseriesProviderSelectionComponent,
-    TimeseriesListSelectionComponent,
-    TimeseriesMapSelectionComponent,
-    TimeseriesDiagramComponent
-} from './src/components/view/timeseries';
-
-import { mainApp } from './app';
 import { downgradeComponent } from '@angular/upgrade/static';
 
+import { mainApp } from './app';
+import { LocateControlComponent, ZoomControlComponent } from './src/components/control';
+import {
+    FlotDiagramComponent,
+    FlotOverviewDiagramComponent,
+    GeometryMapViewerComponent,
+    LabelMapperComponent,
+    LegendEntryComponent,
+} from './src/components/display';
+import {
+    DatasetByStationSelectorComponent,
+    ListSelectorComponent,
+    MultiServiceFilterSelectorComponent,
+    ProviderSelectorComponent,
+    ServiceFilterSelectorComponent,
+    StationMapSelectorComponent,
+    TimespanShiftSelectorComponent,
+} from './src/components/selection';
+import {
+    TimeseriesDiagramComponent,
+    TimeseriesListSelectionComponent,
+    TimeseriesMapSelectionComponent,
+    TimeseriesProviderSelectionComponent,
+} from './src/components/view/timeseries';
+import { TrajectorySelectionComponent } from './src/components/view/trajectory/selection/selection.component';
+
+/* tslint:disable:max-line-length */
 mainApp
     .directive('n52MultiServiceFilterSelector', downgradeComponent({ component: MultiServiceFilterSelectorComponent }) as angular.IDirectiveFactory)
     .directive('n52ServiceFilterSelector', downgradeComponent({ component: ServiceFilterSelectorComponent }) as angular.IDirectiveFactory)
@@ -50,4 +45,6 @@ mainApp
     .directive('n52TimeseriesProviderSelection', downgradeComponent({ component: TimeseriesProviderSelectionComponent }) as angular.IDirectiveFactory)
     .directive('n52TimeseriesListSelection', downgradeComponent({ component: TimeseriesListSelectionComponent }) as angular.IDirectiveFactory)
     .directive('n52TimeseriesMapSelection', downgradeComponent({ component: TimeseriesMapSelectionComponent }) as angular.IDirectiveFactory)
-    .directive('n52TimeseriesDiagram', downgradeComponent({ component: TimeseriesDiagramComponent }) as angular.IDirectiveFactory);
+    .directive('n52TimeseriesDiagram', downgradeComponent({ component: TimeseriesDiagramComponent }) as angular.IDirectiveFactory)
+    .directive('n52TrajectorySelection', downgradeComponent({ component: TrajectorySelectionComponent }) as angular.IDirectiveFactory);
+
