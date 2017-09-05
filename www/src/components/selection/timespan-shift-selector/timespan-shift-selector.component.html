@@ -6,6 +6,9 @@
         </button>
     </div>
     <div class="modal-body">
+        <h5>Pre-defined</h5>
+        <n52-predefined-timespan-selector [timespan]="timespan" (onTimespanChange)="noteChangedTimespan($event)"></n52-predefined-timespan-selector>
+        <h5 style="margin-top:15px">Custom</h5>
         <n52-timespan-selector [timespan]="timespan" (onTimespanChange)="noteChangedTimespan($event)"></n52-timespan-selector>
     </div>
     <div class="modal-footer">
