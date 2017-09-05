@@ -13,7 +13,7 @@ export class TimespanShiftSelectorComponent implements OnInit {
     public timespan: Timespan;
 
     @Output()
-    public onTimespanChanges: EventEmitter<Timespan> = new EventEmitter<Timespan>();
+    public onTimespanChange: EventEmitter<Timespan> = new EventEmitter<Timespan>();
 
     constructor(
         private timeSrvc: Time
@@ -23,11 +23,11 @@ export class TimespanShiftSelectorComponent implements OnInit {
     }
 
     public back() {
-        this.onTimespanChanges.emit(this.timeSrvc.stepBack(this.timespan));
+        this.onTimespanChange.emit(this.timeSrvc.stepBack(this.timespan));
     }
 
     public forward() {
-        this.onTimespanChanges.emit(this.timeSrvc.stepForward(this.timespan));
+        this.onTimespanChange.emit(this.timeSrvc.stepForward(this.timespan));
     }
 
     public open() {
