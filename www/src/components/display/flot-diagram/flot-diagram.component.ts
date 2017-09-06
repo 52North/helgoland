@@ -1,12 +1,4 @@
-import {
-    Component,
-    AfterViewInit,
-    Input,
-    Output,
-    EventEmitter,
-    ViewChild,
-    DoCheck
-} from '@angular/core';
+import { AfterViewInit, Component, DoCheck, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
 import {
     IDataset,
     Timespan,
@@ -46,6 +38,11 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
     private plotarea;
     private preparedData;
     private plotOptions;
+
+    @HostListener('window:resize', ['$event'])
+    onResize() {
+        this.plotChart();
+    }
 
     public ngAfterViewInit() {
         this.plotarea = this.flotElem.nativeElement;
