@@ -1,12 +1,14 @@
 <span *ngFor="let item of this.settingSrvc.config.timespanPresets">
-    <button
-        [attr.data-timespan-from]="item.timespan.from"
-        [attr.data-timespan-to]="item.timespan.to"
-        (click)="timespanChanged($event)"
-        [ngClass]="{'seperator-after-this-item': item.seperatorAfterThisItem}"
-        class="btn btn-sm btn-default"
-        >
-        {{item.label}}
-    </button>
-    <br>
+    <span *ngIf="isSafeTimespanPreset(item)">
+        <button
+            [attr.data-timespan-from]="parseMomentExpression(item.timespan.from)"
+            [attr.data-timespan-to]="parseMomentExpression(item.timespan.to)"
+            (click)="timespanChanged($event)"
+            [ngClass]="{'seperator-after-this-item': item.seperatorAfterThisItem}"
+            class="btn btn-sm btn-default"
+            >
+            {{item.label}}
+        </button>
+        <br>
+    </span>
 </span>

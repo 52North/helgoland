@@ -16,6 +16,11 @@ export class Config {
 export class TimespanPreset {
     name: string;
     label: string;
-    timespan: Timespan;
+    timespan: TimespanMomentTemplate;
     seperatorAfterThisItem?: boolean;
+}
+
+export class TimespanMomentTemplate {
+    to: string;
+    from: string;
 }
