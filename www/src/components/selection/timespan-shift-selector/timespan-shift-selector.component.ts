@@ -17,6 +17,7 @@ export class TimespanShiftSelectorComponent implements OnInit {
     public onTimespanChange: EventEmitter<Timespan> = new EventEmitter<Timespan>();
 
     public tempTimespan: Timespan;
+    public tempTimespanIsValid: boolean;
 
     constructor(
         private timeSrvc: Time,
@@ -41,6 +42,11 @@ export class TimespanShiftSelectorComponent implements OnInit {
 
     public noteChangedTimespan(newValue) {
         this.tempTimespan = newValue;
+        this.tempTimespanIsValid = true;
+    }
+
+    public noteInvalidTimespan(newValue) {
+        this.tempTimespanIsValid = false;
     }
 
     public applyNewTimespan() {

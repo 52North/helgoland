@@ -4,7 +4,8 @@ import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'n52-timespan-selector',
-    templateUrl: './timespan-selector.component.html'
+    templateUrl: './timespan-selector.component.html',
+    styleUrls: ['./timespan-selector.component.scss']
 })
 
 export class TimespanSelectorComponent implements OnInit {
@@ -13,11 +14,14 @@ export class TimespanSelectorComponent implements OnInit {
 
     @Output()
     public onTimespanChange: EventEmitter<Timespan> = new EventEmitter<Timespan>();
+    @Output()
+    public onInvalidTimespanSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     public dateFrom: NgbDateStruct;
     public timeFrom: NgbTimeStruct;
     public dateTo:   NgbDateStruct;
     public timeTo:   NgbTimeStruct;
+    public isValidTimespan: boolean;
 
     constructor() { }
 
@@ -29,13 +33,20 @@ export class TimespanSelectorComponent implements OnInit {
     }
 
     public timespanChanged() {
-        // TODO-CF: Enforce dateTimeFrom to be an EARLIER moment in time than dateTimeTo
         const dateTimeFrom = new Date(this.dateFrom.year, this.dateFrom.month-1, this.dateFrom.day,
                                       this.timeFrom.hour, this.timeFrom.minute,  this.timeFrom.second);
         const dateTimeTo   = new Date(this.dateTo.year, this.dateTo.month-1, this.dateTo.day,
                                       this.timeTo.hour, this.timeTo.minute,  this.timeTo.second);
-        this.timespan = new Timespan(dateTimeFrom, dateTimeTo);
-        this.onTimespanChange.emit(this.timespan);
-        console.log(this.timespan);
+        
+        this.isValidTimespan = (dateTimeFrom < dateTimeTo);
+        
+        if(this.isValidTimespan) {
+            this.timespan = new Timespan(dateTimeFrom, dateTimeTo);
+            this.onTimespanChange.emit(this.timespan);
+            console.log(this.timespan);
+        } else {
+            this.onInvalidTimespanSelected.emit(true);
+            console.log('Invalid timespan selected!');
+        }
     }
 }
