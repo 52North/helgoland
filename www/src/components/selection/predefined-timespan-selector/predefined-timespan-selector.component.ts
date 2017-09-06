@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { Timespan, TimespanPreset } from '../../../model';
+import { Timespan, TimespanPreset, ParsedTimespanPreset } from '../../../model';
 import { Settings } from '../../../services/settings/settings.service';
 
 @Component({
@@ -15,9 +15,22 @@ export class PredefinedTimespanSelectorComponent implements OnInit {
     @Output()
     public onTimespanChange: EventEmitter<Timespan> = new EventEmitter<Timespan>();
 
+    public parsedTimespanPresets: Array<ParsedTimespanPreset>;
+
     constructor(private settingSrvc: Settings) { }
 
     public ngOnInit() {
+        this.parsedTimespanPresets = this.settingSrvc.config.timespanPresets
+            .filter((e) => this.isSafeTimespanPreset(e))
+            .map((e) => ({
+                name: e.name,
+                label: e.label,
+                timespan: {
+                    from: this.parseMomentExpression(e.timespan.from),
+                    to: this.parseMomentExpression(e.timespan.to)
+                },
+                seperatorAfterThisItem: e.seperatorAfterThisItem
+            }));
     }
 
     public isSafeMomentExpression(expression: string): boolean {
@@ -57,7 +70,7 @@ export class PredefinedTimespanSelectorComponent implements OnInit {
 
     public timespanChanged(event) {
         // construct new Timespan
-        this.timespan = new Timespan(event.target.dataset.timespanFrom, event.target.dataset.timespanTo);
+        this.timespan = new Timespan(new Date(event.target.dataset.timespanFrom), new Date(event.target.dataset.timespanTo));
         // publicise new timespan
         this.onTimespanChange.emit(this.timespan);
     }
