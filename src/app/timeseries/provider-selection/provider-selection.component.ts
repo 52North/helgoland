@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Settings } from './../../toolbox/services/settings/settings.service';
+import { TimeseriesProviderSelectionService } from './provider-selection.service';
+
 @Component({
   selector: 'app-provider-selection',
   templateUrl: './provider-selection.component.html',
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeseriesProviderSelectionComponent implements OnInit {
 
-  constructor() { }
+  public providerList;
+  public providerBlacklist;
+  public providerFilter;
+  public selectedProvider;
 
-  ngOnInit() {
+  constructor(
+    private settings: Settings,
+    private providerCache: TimeseriesProviderSelectionService
+  ) { }
+
+  public ngOnInit() {
+    this.selectedProvider = this.providerCache.getSelectedProvider();
+    this.providerList = this.settings.config['restApiUrls'];
+    this.providerBlacklist = this.settings.config['providerBlackList'];
+    this.providerFilter = this.createFilter();
+  }
+
+  public onProviderSelected(provider) {
+    this.selectedProvider = provider;
+    this.providerCache.setSelectedProvider(provider);
+    // TODO implement with routing
+  }
+
+  private createFilter() {
+    const filter = {
+      valueTypes: 'quantity'
+    };
+    return filter;
   }
 
 }

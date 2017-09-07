@@ -1,12 +1,16 @@
 $enable-rounded: false;
-$component-active-color: rgba(98, 98, 80, 1.0);
-$component-active-bg: rgba(102, 197, 228, 1.0);
-$link-color: rgba(98, 98, 80, 1.0);
+
+$primary: rgba(102, 197, 228, 1.0);
+$secondary: rgba(98, 98, 80, 1.0);
+
+$component-active-color: $secondary;
+$component-active-bg: $primary;
+$link-color: $secondary;
 
 @import '../node_modules/bootstrap/scss/bootstrap';
 $theme-colors: (
-    primary: rgba(102, 197, 228, 1.0),
-    secondary: $gray-600,
+    primary: $primary,
+    secondary: $secondary,
     success: $green,
     info: $cyan,
     warning: $yellow,

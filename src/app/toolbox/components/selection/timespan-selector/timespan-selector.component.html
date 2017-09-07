@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row timespanpicker">
+        <div class="col datetimepicker">
+            <h6>From</h6>
+            <ngb-datepicker #datepickerFrom [(ngModel)]="dateFrom" (ngModelChange)="timespanChanged()" [startDate]="{year: dateFrom.year, month: dateFrom.month}"></ngb-datepicker>
+            <ngb-timepicker #timepickerFrom [(ngModel)]="timeFrom" (ngModelChange)="timespanChanged()" [seconds]="true"></ngb-timepicker>
+        </div>
+        <div class="col datetimepicker">
+            <h6>To</h6>
+            <ngb-datepicker #datepickerTo   [(ngModel)]="dateTo"   (ngModelChange)="timespanChanged()" [startDate]="{year: dateTo.year, month: dateTo.month}"></ngb-datepicker>
+            <ngb-timepicker #timePickerTo   [(ngModel)]="timeTo"   (ngModelChange)="timespanChanged()" [seconds]="true"></ngb-timepicker>
+            <!-- TODO-CF: Provide easy "resets" for time (e.g. midnight, noon etc., or at least seconds=00 and minutes=00) -->
+        </div>
+    </div>
+
+    <div class="row invalid-notice" [style.visibility]="isValidTimespan ? 'hidden' : 'visible'">
+        <div class="col">
+            Invalid Timespan: "From" moment must be BEFORE "To" moment!
+        </div>
+    </div>
+
+    <!--
+    Alternative way: Datepicker as optional popup for input field
+    <input class="form-control" placeholder="YYYY-MM-DD" name="datepickerFrom" [(ngModel)]="dateFrom" ngbDatepicker #d="ngbDatepicker">
+    <button class="input-group-addon" (click)="d.toggle()" type="button">
+        <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+    </button>
+    -->
+</div>

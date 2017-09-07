@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 
-import { ApiInterface, CachingInterceptor, LocalHttpCache, HttpCache, ApiMapping } from './api-interface';
-import { Settings } from './settings';
-import { MapCache } from './map';
+import { ApiInterface, ApiMapping, CachingInterceptor, HttpCache, LocalHttpCache } from './api-interface';
 import { LocalStorage } from './local-storage';
+import { MapCache } from './map';
+import { Settings } from './settings';
 import { Time } from './time';
 
 const CachingInterceptorProvider = {

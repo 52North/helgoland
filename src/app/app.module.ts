@@ -1,10 +1,10 @@
-import { TimeseriesModule } from './timeseries/timeseries.module';
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
+import { TimeseriesModule } from './timeseries/timeseries.module';
 
 @NgModule({
   declarations: [

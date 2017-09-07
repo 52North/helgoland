@@ -1,3 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'variables';
 @import '../node_modules/bootstrap/scss/bootstrap';
+
+$text-color: $secondary;
+$hover-background-color: lighten($primary, 20%);
+$hover-color: $secondary;
+$selection-background-color: $primary;
+$selection-color: $secondary;

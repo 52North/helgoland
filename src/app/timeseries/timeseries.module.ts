@@ -1,12 +1,14 @@
-import { TimeseriesProviderSelectionComponent } from './provider-selection/provider-selection.component';
-import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
-import { TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
+import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
+import { TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
 import { TimeseriesNavigationComponent } from './navigation/navigation.component';
+import { TimeseriesProviderSelectionComponent } from './provider-selection/provider-selection.component';
+import { TimeseriesProviderSelectionService } from './provider-selection/provider-selection.service';
 
 const timeseriesRoutes: Routes = [
   {
@@ -36,6 +38,7 @@ const timeseriesRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    ToolboxModule,
     RouterModule.forRoot(
       timeseriesRoutes,
       { enableTracing: true }
@@ -47,6 +50,9 @@ const timeseriesRoutes: Routes = [
     TimeseriesListSelectionComponent,
     TimeseriesMapSelectionComponent,
     TimeseriesProviderSelectionComponent
+  ],
+  providers: [
+    TimeseriesProviderSelectionService
   ]
 })
 export class TimeseriesModule { }
