@@ -6,10 +6,13 @@
         </button>
     </div>
     <div class="modal-body">
-        <n52-timespan-selector [timespan]="timespan" (onTimespanChange)="noteChangedTimespan($event)"></n52-timespan-selector>
+        <h5>Pre-defined</h5>
+        <n52-predefined-timespan-selector [timespan]="timespan" (onTimespanChange)="noteChangedTimespan($event);applyNewTimespan();c();"></n52-predefined-timespan-selector>
+        <h5 style="margin-top:15px">Custom</h5>
+        <n52-timespan-selector [timespan]="timespan" (onTimespanChange)="noteChangedTimespan($event)" (onInvalidTimespanSelected)="noteInvalidTimespan($event)"></n52-timespan-selector>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="applyNewTimespan();c();">Ok</button>
+        <button type="button" class="btn btn-light" (click)="applyNewTimespan();c();" [disabled]="!tempTimespanIsValid">Ok</button>
         <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
     </div>
 </ng-template>

@@ -1,0 +1,11 @@
+@import '../../../../styles/base';
+
+:host {
+    :not(.seperator-after-this-item) + br {
+        display: none;
+    }
+
+    button {
+        margin: 3px;
+    }
+}
