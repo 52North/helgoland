@@ -18,9 +18,9 @@ export class TrajectoryViewComponent implements OnInit {
 
     public highlightGeometry: GeoJSON.Point;
 
-    public graphOptions = {
-        axisType: 'distance'
-    };
+    public axisType = 'distance';
+
+    public dotted = false;
 
     constructor(
         private trajectorySrvc: TrajectoryService
@@ -39,4 +39,11 @@ export class TrajectoryViewComponent implements OnInit {
         this.highlightGeometry = this.trajectorySrvc.getPointForIdx(idx);
     }
 
+    onAxisTypeChanged(axisType: string) {
+        this.axisType = axisType;
+    }
+
+    onDottedChanged(dotted: boolean) {
+        this.dotted = dotted;
+    }
 }

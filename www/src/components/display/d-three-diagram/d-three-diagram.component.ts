@@ -35,7 +35,10 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
     public dataset;
 
     @Input()
-    public options;
+    public dotted: boolean;
+
+    @Input()
+    public axisType: string;
 
     @Input()
     public selection: SelectionRange;
@@ -122,7 +125,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
     }
 
     private getXDomain(values) {
-        switch (this.options.axisType) {
+        switch (this.axisType) {
             case 'distance':
                 return [values[0].dist, values[values.length - 1].dist];
             case 'time':
@@ -143,12 +146,12 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
                 'class': this.pathClass
             });
         // draw filled area
-        this.graph.append('svg:path')
-            .datum(values)
-            .attr({
-                d: this.area,
-                class: 'graphArea'
-            });
+        // this.graph.append('svg:path')
+        //     .datum(values)
+        //     .attr({
+        //         d: this.area,
+        //         class: 'graphArea'
+        //     });
     }
 
     private drawDots(values) {
@@ -161,12 +164,6 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .attr('cx', this.calcXValue)
             .attr('cy', this.calcYValue);
     }
-
-    // private redrawChart(data) {
-    //     if (data) this.internalValues = data;
-    //     this.drawLineChart();
-    //     this.resetDrag();
-    // }
 
     private processData() {
         this.internalValues = [];
@@ -214,32 +211,13 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             });
             this.showDiagramIndicator(idx);
         }
+        if (changes.axisType && this.axisType && this.data) {
+            this.drawLineChart();
+        }
+        if (changes.dotted && this.data) {
+            this.drawLineChart();
+        }
     }
-    // scope.$watchCollection('data', () => {
-    //     if (scope.data.values.length > 0) {
-    //         redrawChart(scope.data.values);
-    //     }
-    // });
-
-    // scope.$watchCollection('selection', () => {
-    //     if (scope.selection.values.length > 0) {
-    //         scope.showSelection = true;
-    //         redrawChart(scope.selection.values);
-    //     } else {
-    //         scope.showSelection = false;
-    //         redrawChart(scope.data.values);
-    //     }
-    // });
-
-    // scope.$watch('options.axisType', () => redrawChart());
-
-    // scope.$watch('options.drawLine', () => redrawChart());
-
-    // scope.$watch('options.highlightIdx', function () {
-    //     if (scope.options.highlightIdx) {
-    //         showDiagramIndicator();
-    //     }
-    // });
 
     @HostListener('window:resize', ['$event'])
     onResize() {
@@ -247,7 +225,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
     }
 
     private getXValue(data) {
-        switch (this.options.axisType) {
+        switch (this.axisType) {
             case 'distance':
                 return data.dist;
             case 'time':
@@ -274,7 +252,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
     }
 
     private getXAxisLabel() {
-        switch (this.options.axisType) {
+        switch (this.axisType) {
             case 'distance':
                 return 'Distance';
             case 'time':
@@ -292,7 +270,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .scale(this.xScale)
             .orient('bottom')
             .ticks(5);
-        if (this.options.axisType === 'time') {
+        if (this.axisType === 'time') {
             this.xAxisGen.tickFormat((d) => {
                 return d3.time.format('%d.%m.%Y %H:%M:%S')(new Date(d));
             });
@@ -384,17 +362,16 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         if (!this.internalValues || this.internalValues.length === 0) {
             return;
         }
-        console.log(this.internalValues.length);
 
         this.graph.selectAll('*').remove();
 
         this.drawYAxis();
         this.drawXAxis();
 
-        if (this.options.drawLine) {
-            this.drawValueLine(this.internalValues);
-        } else {
+        if (this.dotted) {
             this.drawDots(this.internalValues);
+        } else {
+            this.drawValueLine(this.internalValues);
         }
 
         this.background = this.graph.append('svg:rect')
@@ -504,7 +481,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
     private getItemForX(x, data) {
         const index = this.xScale.invert(x);
         const bisectDate = d3.bisector((d) => {
-            switch (this.options.axisType) {
+            switch (this.axisType) {
                 case 'distance':
                     // TODO fix
                     return d['dist'];
@@ -516,27 +493,6 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             }
         }).left;
         return bisectDate(this.internalValues, index);
-        // let d0;
-        // let d1;
-        // if (i > 0 && i < data.length) {
-        //     switch (this.options.axisType) {
-        //         case 'distance':
-        //             d0 = data[i - 1].dist;
-        //             d1 = data[i].dist;
-        //             break;
-        //         case 'time':
-        //             d0 = data[i - 1].timestamp;
-        //             d1 = data[i].timestamp;
-        //             break;
-        //         case 'ticks':
-        //         default:
-        //             d0 = data[i - 1].tick;
-        //             d1 = data[i].tick;
-        //     }
-        //     return index - d0 < d1 - index ? i - 1 : i;
-        // } else {
-        //     return i > data.length - 1 ? data.length - 1 : i;
-        // }
     }
 
     private hideDiagramIndicator() {
@@ -563,13 +519,13 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .attr('x', item.xDiagCoord - 95)
             .attr('y', 13)
             .text(moment(item.timestamp).format('DD.MM.YY HH:mm'));
-        if (this.options.axisType === 'distance') {
+        if (this.axisType === 'distance') {
             this.focuslabelY
                 .attr('y', this.height() - 5)
                 .attr('x', item.xDiagCoord + 2)
                 .text(item.dist + ' km');
         }
-        if (this.options.axisType === 'ticks') {
+        if (this.axisType === 'ticks') {
             this.focuslabelY
                 .attr('y', this.height() - 5)
                 .attr('x', item.xDiagCoord + 2)

@@ -1,5 +1,4 @@
 <!-- <swc-simple-permalink-button class="sub-menu-permalink-button" generated-url-function="$ctrl.createPermalink"></swc-simple-permalink-button>-->
-<!-- <pre>{{model.trajectory | json}}</pre> -->
 <div class="combi-mobile" *ngIf="model.trajectory">
     <div class="combi-header" *ngIf="model.trajectory.label">
         <!-- <swc-mobile-reload dataset-id="series.id" provider-url="series.providerUrl" class="header-button"></swc-mobile-reload> -->
@@ -26,18 +25,27 @@
         </div>
         <div class="chart-container">
             <div class="chart">
-                <!-- <d3-linear-chart></d3-linear-chart> -->
-                <n52-d-three-diagram [dataset]="model.trajectory" [data]="model.data" [options]="graphOptions" [selection]="selection" [highlight]="highlight" (onSelection)="onSelectionChanged($event)" (onHighlight)="onChartHighlightChanged($event)"></n52-d-three-diagram>
+                <n52-d-three-diagram [dataset]="model.trajectory" [data]="model.data" [axisType]="axisType" [dotted]="dotted" [selection]="selection"
+                    [highlight]="highlight" (onSelection)="onSelectionChanged($event)" (onHighlight)="onChartHighlightChanged($event)"></n52-d-three-diagram>
                 <div class="chart-information">
                     <span class="fa fa-info-circle" title="Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt."></span>
                 </div>
             </div>
             <div class="chart-buttons">
-                <!-- <swc-mobile-axis-toggler axis-type="distance" icon="road" selected-axis-type="options.axisType" tooltip="trajectories.diagram.distanceTooltip"></swc-mobile-axis-toggler> -->
-                <!-- <swc-mobile-axis-toggler axis-type="time" icon="time" selected-axis-type="options.axisType" tooltip="trajectories.diagram.timeTooltip"></swc-mobile-axis-toggler> -->
-                <!-- <swc-mobile-axis-toggler axis-type="ticks" icon="option-horizontal" selected-axis-type="options.axisType" tooltip="trajectories.diagram.ticksTooltip"></swc-mobile-axis-toggler> -->
+                <div class="chart-control">
+                    <n52-string-toggler [value]="axisType" option="distance" icon="road" tooltip="X-Achse bildet die Distanz ab" (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
+                </div>
+                <div class="chart-control">
+                    <n52-string-toggler [value]="axisType" option="time" icon="clock-o" tooltip="X-Achse bildet den Zeitraum ab" (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
+                </div>
+                <div class="chart-control">
+                    <n52-string-toggler [value]="axisType" option="ticks" icon="ellipsis-h" tooltip="X-Achse bildet die Messpunkte linear ab"
+                        (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
+                </div>
                 <hr>
-                <!-- <swc-mobile-chart-draw-line-toggler></swc-mobile-chart-draw-line-toggler> -->
+                <div class="chart-control">
+                    <n52-bool-toggler [value]="dotted" icon="line-chart" tooltip="Zeitreihe als Linien-/Punktdarstellung" (onToggled)="onDottedChanged($event)"></n52-bool-toggler>
+                </div>
             </div>
         </div>
     </div>

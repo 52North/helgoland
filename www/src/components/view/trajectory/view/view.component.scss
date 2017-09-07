@@ -37,15 +37,18 @@ $combi-header-height: 50px;
                     height: 100%;
                 }
                 .chart-buttons {
-                    padding: 5px 0;
+                    padding: 10px;
                     flex: 0 0 30px;
-                    div {
-                        margin: 5px 0;
+                    .chart-control {
+                        +.chart-control {
+                            padding-top: 5px;
+                        }
                     }
                 }
                 .chart {
                     flex: 1 0;
-                    padding: 10px;
+                    padding-left: 10px;
+                    padding-bottom: 3px;
                     position: relative;
                     .chart-information {
                         position: absolute;

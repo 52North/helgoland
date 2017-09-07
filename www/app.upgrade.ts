@@ -1,10 +1,15 @@
-import { DThreeDiagramComponent } from './src/components/display/d-three-diagram/d-three-diagram.component';
 import { downgradeComponent } from '@angular/upgrade/static';
 import * as angular from 'angular';
 
 import { mainApp } from './app';
-import { LocateControlComponent, ZoomControlComponent } from './src/components/control';
 import {
+    BoolTogglerComponent,
+    LocateControlComponent,
+    StringTogglerComponent,
+    ZoomControlComponent,
+} from './src/components/control';
+import {
+    DThreeDiagramComponent,
     FlotDiagramComponent,
     FlotOverviewDiagramComponent,
     GeometryMapViewerComponent,
@@ -50,5 +55,7 @@ mainApp
     .directive('n52TimeseriesDiagram', downgradeComponent({ component: TimeseriesDiagramComponent }) as angular.IDirectiveFactory)
     .directive('n52TrajectorySelection', downgradeComponent({ component: TrajectorySelectionComponent }) as angular.IDirectiveFactory)
     .directive('n52TrajectoryView', downgradeComponent({ component: TrajectoryViewComponent }) as angular.IDirectiveFactory)
-    .directive('n52DThreeDiagram', downgradeComponent({ component: DThreeDiagramComponent }) as angular.IDirectiveFactory);
+    .directive('n52DThreeDiagram', downgradeComponent({ component: DThreeDiagramComponent }) as angular.IDirectiveFactory)
+    .directive('n52AxisToggler', downgradeComponent({ component: StringTogglerComponent}) as angular.IDirectiveFactory)
+    .directive('bla', downgradeComponent({ component: BoolTogglerComponent}) as angular.IDirectiveFactory);
 

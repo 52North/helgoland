@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import {
-    LocateControlComponent,
-    LocateService,
-    ZoomControlComponent
-} from '.';
+import { BoolTogglerComponent } from './bool-toggler/bool-toggler.component';
+import { LocateControlComponent } from './map/locate/locate.component';
+import { LocateService } from './map/locate/locate.service';
+import { ZoomControlComponent } from './map/zoom/zoom.component';
+import { StringTogglerComponent } from './string-toggler/string-toggler.component';
 
 @NgModule({
     imports: [
@@ -13,15 +13,21 @@ import {
     ],
     declarations: [
         LocateControlComponent,
-        ZoomControlComponent
+        ZoomControlComponent,
+        StringTogglerComponent,
+        BoolTogglerComponent
     ],
     entryComponents: [
         LocateControlComponent,
-        ZoomControlComponent
+        ZoomControlComponent,
+        StringTogglerComponent,
+        BoolTogglerComponent
     ],
     exports: [
         LocateControlComponent,
-        ZoomControlComponent
+        ZoomControlComponent,
+        StringTogglerComponent,
+        BoolTogglerComponent
     ],
     providers: [
         LocateService
