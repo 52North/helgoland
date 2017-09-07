@@ -1,0 +1,12 @@
+<span *ngFor="let item of parsedTimespanPresets">
+    <button
+        [attr.data-timespan-from]="item.timespan.from.toISOString()"
+        [attr.data-timespan-to]="item.timespan.to.toISOString()"
+        (click)="timespanChanged($event)"
+        [ngClass]="{'seperator-after-this-item': item.seperatorAfterThisItem}"
+        class="btn btn-sm btn-default"
+        >
+        {{item.label}}
+    </button>
+    <br>
+</span>
