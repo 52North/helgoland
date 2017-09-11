@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { LocateControlComponent } from './components/control/map/locate/locate.component';
@@ -18,6 +18,8 @@ import {
 import { StationMapSelectorComponent } from './components/selection/station-map-selector/station-map-selector.component';
 import { KeysPipe } from './pipes/object-keys-to-array.pipe';
 import { ApiInterface } from './services/api-interface/api-interface.service';
+import { CachingInterceptor, HttpCache } from './services/api-interface/caching/caching-interceptor';
+import { LocalHttpCache } from './services/api-interface/caching/local-cache';
 import { LocalStorage } from './services/local-storage/local-storage.service';
 import { MapCache } from './services/map/map.service';
 import { Settings } from './services/settings/settings.service';
@@ -50,6 +52,15 @@ import { Time } from './services/time/time.service';
     LabelMapperComponent
   ],
   providers: [
+    {
+      provide: HttpCache,
+      useClass: LocalHttpCache
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CachingInterceptor,
+      multi: true
+    },
     Settings,
     LocalStorage,
     ProviderSelectorService,
