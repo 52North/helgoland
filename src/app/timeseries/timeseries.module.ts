@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TimeseriesService } from './services/timeseries.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -43,7 +44,8 @@ const timeseriesRoutes: Routes = [
     RouterModule.forRoot(
       timeseriesRoutes
       // { enableTracing: true }
-    )
+    ),
+    NgbModule
   ],
   declarations: [
     TimeseriesNavigationComponent,

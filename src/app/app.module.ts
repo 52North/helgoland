@@ -13,8 +13,7 @@ import { TimeseriesModule } from './timeseries/timeseries.module';
   imports: [
     BrowserModule,
     RouterModule,
-    TimeseriesModule,
-    NgbModule.forRoot()
+    TimeseriesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

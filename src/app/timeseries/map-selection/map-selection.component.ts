@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -28,7 +29,8 @@ export class TimeseriesMapSelectionComponent implements OnInit {
   constructor(
     private providerCache: TimeseriesProviderSelectionService,
     private timeseriesService: TimeseriesService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) { }
 
   public ngOnInit() {
@@ -60,6 +62,7 @@ export class TimeseriesMapSelectionComponent implements OnInit {
     if (this.datasetSelections.length > 0) {
       this.datasetSelections.forEach((entry) => {
         this.timeseriesService.addTimeseries(entry, entry.url);
+        this.router.navigate(['timeseries/diagram']);
       });
     }
   }
