@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
+
 import { LocateService } from './locate.service';
 
 @Component({
     selector: 'n52-locate-control',
-    templateUrl: './locate.component.html'
+    templateUrl: './locate.component.html',
+    styleUrls: ['./locate.component.scss']
 })
 export class LocateControlComponent {
 

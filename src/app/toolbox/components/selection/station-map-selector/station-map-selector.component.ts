@@ -1,12 +1,25 @@
-import { MapCache } from './../../../services/map/map.service';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { Station } from './../../../model/api/station';
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    SimpleChanges,
+} from '@angular/core';
 import * as L from 'leaflet';
+
+import { Station } from './../../../model/api/station';
+import { ApiInterface } from './../../../services/api-interface/api-interface.service';
+import { MapCache } from './../../../services/map/map.service';
+
+require('leaflet.markercluster');
 
 @Component({
     selector: 'n52-station-map-selector',
-    templateUrl: './station-map-selector.component.html'
+    templateUrl: './station-map-selector.component.html',
+    styleUrls: ['./station-map-selector.component.scss']
 })
 export class StationMapSelectorComponent implements OnChanges, AfterViewInit {
 
@@ -45,16 +58,18 @@ export class StationMapSelectorComponent implements OnChanges, AfterViewInit {
 
     constructor(
         private apiInterface: ApiInterface,
-        private mapCache: MapCache
+        private mapCache: MapCache,
+        private cd: ChangeDetectorRef
     ) { }
 
     public ngAfterViewInit() {
-        this.map = L.map(this.mapId, {}).setView([51.505, -0.09], 13);
+        this.map = L.map(this.mapId, {});
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.map);
         this.mapCache.setMap(this.mapId, this.map);
         this.drawMarker();
+        this.cd.detectChanges();
     }
 
     public ngOnChanges(changes: SimpleChanges): any {
@@ -70,7 +85,7 @@ export class StationMapSelectorComponent implements OnChanges, AfterViewInit {
         this.apiInterface.getStations(this.serviceUrl, this.filter)
             .subscribe((res) => {
                 this.layer = L.markerClusterGroup({
-                    animate: false
+                    animate: true
                 });
                 if (res instanceof Array && res.length > 0) {
                     res.forEach((entry) => {

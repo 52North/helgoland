@@ -1,0 +1,9 @@
+:host {
+    flex: 1;
+    display: flex;
+    .wrapper {
+        flex: 1;
+        overflow-y: auto;
+        display: inline-block;
+    }
+}

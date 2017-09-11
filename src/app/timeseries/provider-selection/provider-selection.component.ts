@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { Settings } from './../../toolbox/services/settings/settings.service';
@@ -17,7 +18,8 @@ export class TimeseriesProviderSelectionComponent implements OnInit {
 
   constructor(
     private settings: Settings,
-    private providerCache: TimeseriesProviderSelectionService
+    private providerCache: TimeseriesProviderSelectionService,
+    private router: Router
   ) { }
 
   public ngOnInit() {
@@ -30,7 +32,7 @@ export class TimeseriesProviderSelectionComponent implements OnInit {
   public onProviderSelected(provider) {
     this.selectedProvider = provider;
     this.providerCache.setSelectedProvider(provider);
-    // TODO implement with routing
+    this.router.navigate(['timeseries/map-selection']);
   }
 
   private createFilter() {

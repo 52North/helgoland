@@ -1,21 +1,21 @@
-<div class="viewport vbox">
-    <div class="boxItem sub-menu">
-        <ul class="nav nav-pills justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/timeseries/diagram" routerLinkActive="active">Diagram</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/timeseries/map-selection" routerLinkActive="active">Karte</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/timeseries/list-selection" routerLinkActive="active">Listenauswahl</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/timeseries/provider" routerLinkActive="active">Anbieter</a>
-            </li>
-        </ul>
-    </div>
-    <div class="boxItem content-wrapper">
+<div class="main">
+
+    <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/timeseries/diagram" routerLinkActive="active">Diagram</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/timeseries/map-selection" routerLinkActive="active">Karte</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/timeseries/list-selection" routerLinkActive="active">Listenauswahl</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/timeseries/provider" routerLinkActive="active">Anbieter</a>
+        </li>
+    </ul>
+
+    <div class="content">
         <router-outlet></router-outlet>
     </div>
 </div>

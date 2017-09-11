@@ -1,0 +1,35 @@
+@import "../variables";
+
+.mapNotifier {
+    position:absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1001;
+    width: 120px;
+    height: 70px;
+    padding: 5px;
+    opacity: 0.8;
+    background-color: $primary;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.leaflet-control-layers,
+.leaflet-control-zoom {
+    display: none;
+}
+
+.map-control {
+    z-index: 500;
+    box-shadow: 1px 1px 5px #333;
+    .btn {
+        border-width: 0px;
+    }
+    a {
+        color: $text-color;
+    }
+    &:hover {
+        background-color: $hover-background-color;
+        opacity: 1;
+    }
+}

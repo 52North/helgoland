@@ -1,3 +1,4 @@
+import { TimeseriesService } from './services/timeseries.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -40,8 +41,8 @@ const timeseriesRoutes: Routes = [
     CommonModule,
     ToolboxModule,
     RouterModule.forRoot(
-      timeseriesRoutes,
-      { enableTracing: true }
+      timeseriesRoutes
+      // { enableTracing: true }
     )
   ],
   declarations: [
@@ -52,7 +53,8 @@ const timeseriesRoutes: Routes = [
     TimeseriesProviderSelectionComponent
   ],
   providers: [
-    TimeseriesProviderSelectionService
+    TimeseriesProviderSelectionService,
+    TimeseriesService
   ]
 })
 export class TimeseriesModule { }
