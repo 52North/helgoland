@@ -1,9 +1,12 @@
-import { Timespan } from './../../../model/internal/timespan';
-import { IDataset } from './../../../model/api/dataset';
-import { Data } from './../../../model/api/data';
 import { AfterViewInit, Component, DoCheck, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
-import * as $ from 'jquery';
 import * as moment from 'moment';
+
+import { Data } from './../../../model/api/data';
+import { IDataset } from './../../../model/api/dataset';
+import { Timespan } from './../../../model/internal/timespan';
+
+declare var $: any;
+
 const equal = require('deep-equal');
 
 @Component({

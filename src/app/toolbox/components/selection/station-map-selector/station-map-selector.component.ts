@@ -14,8 +14,6 @@ import { Station } from './../../../model/api/station';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 import { MapCache } from './../../../services/map/map.service';
 
-require('leaflet.markercluster');
-
 @Component({
     selector: 'n52-station-map-selector',
     templateUrl: './station-map-selector.component.html',

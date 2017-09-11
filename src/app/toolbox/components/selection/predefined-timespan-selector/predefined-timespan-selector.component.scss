@@ -1,4 +1,4 @@
-@import '../../../../styles/base';
+@import '../../../../../variables';
 
 :host {
     :not(.seperator-after-this-item) + br {

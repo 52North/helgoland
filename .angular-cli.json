@@ -24,7 +24,15 @@
         "../node_modules/leaflet.markercluster/dist/MarkerCluster.css",
         "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/Flot/jquery.flot.js",
+        "../node_modules/Flot/jquery.flot.time.js",
+        "../node_modules/Flot/jquery.flot.crosshair.js",
+        "assets/libs/jquery.flot.navigate.js",
+        "assets/libs/jquery.flot.selection.js",
+        "assets/libs/jquery.flot.touch.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
