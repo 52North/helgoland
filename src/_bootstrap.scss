@@ -1,0 +1,23 @@
+@import 'variables';
+
+$green: #28a745;
+$cyan: #17a2b8;
+$yellow: #ffc107;
+$red: #dc3545;
+$gray-100: #f8f9fa;
+$gray-800: #343a40;
+
+$theme-colors: ();
+$theme-colors: map-merge((
+    primary: $primary,
+    secondary: $secondary,
+    success: $green,
+    info: $cyan,
+    warning: $yellow,
+    danger: $red,
+    light: $gray-100,
+    dark: $gray-800
+), $theme-colors);
+$enable-rounded: false;
+        
+@import '../node_modules/bootstrap/scss/bootstrap';

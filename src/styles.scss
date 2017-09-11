@@ -1,27 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'variables';
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import 'bootstrap';
 @import '../node_modules/font-awesome/scss/font-awesome';
 
 @import './styles/map';
+@import './styles/selection';
 
 html,
 body {
     height: 100%;
     overflow: hidden;
-}
-
-.selector-entry {
-    padding:5px;
-    word-wrap: break-word;
-
-    &.selected {
-        background-color: $selection-background-color;
-        color: $selection-color;
-    }
-    &:hover {
-        background-color: $hover-background-color;
-        color: $hover-color;
-        cursor: pointer;
-    }
 }

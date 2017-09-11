@@ -17,16 +17,3 @@ $responsive-mobile-width: 768px;
 $responsive-tablet-width: 992px;
 
 $fa-font-path: '../node_modules/font-awesome/fonts';
-
-@import '../node_modules/bootstrap/scss/bootstrap';
-$theme-colors: (
-    primary: $primary,
-    secondary: $secondary,
-    success: $green,
-    info: $cyan,
-    warning: $yellow,
-    danger: $red,
-    light: $gray-100,
-    dark: $gray-800
-);
-

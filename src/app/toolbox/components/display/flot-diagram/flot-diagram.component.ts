@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, DoCheck, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    DoCheck,
+    EventEmitter,
+    HostListener,
+    Input,
+    Output,
+    ViewChild,
+    ViewEncapsulation,
+} from '@angular/core';
 import * as moment from 'moment';
 
 import { Data } from './../../../model/api/data';
@@ -12,7 +22,8 @@ const equal = require('deep-equal');
 @Component({
     selector: 'n52-flot-diagram',
     templateUrl: './flot-diagram.component.html',
-    styleUrls: ['./flot-diagram.component.scss']
+    styleUrls: ['./flot-diagram.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class FlotDiagramComponent implements AfterViewInit, DoCheck {
 
@@ -93,8 +104,9 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                 replot = true;
                 this.oldData = JSON.parse(JSON.stringify(this.data));
             }
-            if (replot && this.datasets && this.data
-                && this.datasets.length === this.data.length) { this.plotChart(); }
+            if (replot && this.datasets && this.data && this.datasets.length === this.data.length) {
+                this.plotChart();
+            }
         }
     }
 

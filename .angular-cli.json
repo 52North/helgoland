@@ -25,6 +25,7 @@
         "styles.scss"
       ],
       "scripts": [
+        "../node_modules/moment",
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/Flot/jquery.flot.js",
         "../node_modules/Flot/jquery.flot.time.js",
