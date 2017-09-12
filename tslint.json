@@ -93,6 +93,10 @@
       true,
       "allow-null-check"
     ],
+    "typedef": [
+      true,
+      "parameter"
+    ],
     "typedef-whitespace": [
       true,
       {

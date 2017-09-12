@@ -39,7 +39,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
     public timespan: Timespan;
 
     @Input()
-    public options: any;
+    public options;
 
     @Output()
     public onTimespanChanged: EventEmitter<Timespan> = new EventEmitter();
@@ -171,7 +171,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
         return dataset.parameters.phenomenon.label + ' [' + dataset.uom + ']';
     }
 
-    private setSelection(plot, options) {
+    private setSelection(plot: any, options: any) {
         if (plot && options.selection.range) {
             plot.setSelection({
                 xaxis: {
@@ -182,13 +182,13 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
         }
     }
 
-    private createPlotAnnotation(plotArea, options) {
+    private createPlotAnnotation(plotArea: any, options: any) {
         if (!options.annotation || !options.annotation.hide) {
             // plotArea.append('<div class="chart-annotation">Daten ohne Gewähr</div>');
         }
     }
 
-    private createYAxis(plot) {
+    private createYAxis(plot: any) {
         if (plot.getOptions().yaxis.show) {
             // remove old labels
             $(plot.getPlaceholder()).find('.yaxisLabel').remove();

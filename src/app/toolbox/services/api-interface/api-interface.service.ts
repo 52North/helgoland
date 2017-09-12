@@ -1,22 +1,24 @@
-import { Dataset } from './../../model/api/dataset';
-import { Platform } from './../../model/api/platform';
-import { Procedure } from './../../model/api/procedure';
-import { Feature } from './../../model/api/feature';
-import { Offering } from './../../model/api/offering';
-import { Phenomenon } from './../../model/api/phenomenon';
-import { Category } from './../../model/api/category';
-import { Timespan } from './../../model/internal/timespan';
-import { Timeseries } from './../../model/api/timeseries';
-import { Station } from './../../model/api/station';
-import { Service } from './../../model/api/service';
-import { Observable, Observer } from 'rxjs/Rx';
-import { Data } from './../../model/api/data';
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+
+import { HttpClient, HttpParameterCodec, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { deserialize, deserializeArray } from 'class-transformer';
 import * as moment from 'moment';
+import { Observable, Observer } from 'rxjs/Rx';
 
+import { Category } from './../../model/api/category';
+import { Data } from './../../model/api/data';
+import { Dataset } from './../../model/api/dataset';
+import { Feature } from './../../model/api/feature';
+import { Offering } from './../../model/api/offering';
+import { DataParameterFilter, ParameterFilter } from './../../model/api/parameterFilter';
+import { Phenomenon } from './../../model/api/phenomenon';
+import { Platform } from './../../model/api/platform';
+import { Procedure } from './../../model/api/procedure';
+import { Service } from './../../model/api/service';
+import { Station } from './../../model/api/station';
+import { Timeseries } from './../../model/api/timeseries';
+import { Timespan } from './../../model/internal/timespan';
 import { ApiV2 } from './interfaces/api-v2.interface';
 
 export class UriParameterCoder implements HttpParameterCodec {
@@ -45,27 +47,27 @@ export class ApiInterface implements ApiV2 {
         private http: HttpClient
     ) { }
 
-    public getServices(apiUrl: string, params?: any): Observable<Service[]> {
+    public getServices(apiUrl: string, params?: ParameterFilter): Observable<Service[]> {
         const url = this.createRequestUrl(apiUrl, 'services');
         params.expanded = true;
         return this.requestApi<Service[]>(url, params);
     }
 
-    public getService(id: string, apiUrl: string, params?: any): Observable<Service> {
+    public getService(id: string, apiUrl: string, params?: ParameterFilter): Observable<Service> {
         throw new Error('Not implemented');
     }
 
-    public getStations(apiUrl: string, params?: any): Observable<Station[]> {
+    public getStations(apiUrl: string, params?: ParameterFilter): Observable<Station[]> {
         const url = this.createRequestUrl(apiUrl, 'stations');
         return this.requestApi<Station[]>(url, params);
     }
 
-    public getStation(id: string, apiUrl: string, params?: any): Observable<Station> {
+    public getStation(id: string, apiUrl: string, params?: ParameterFilter): Observable<Station> {
         const url = this.createRequestUrl(apiUrl, 'stations', id);
         return this.requestApi<Station>(url, params);
     }
 
-    public getTimeseries(apiUrl: string, params?: any): Observable<Timeseries[]> {
+    public getTimeseries(apiUrl: string, params?: ParameterFilter): Observable<Timeseries[]> {
         const url = this.createRequestUrl(apiUrl, 'timeseries');
         return new Observable<Timeseries[]>((observer: Observer<Timeseries[]>) => {
             this.requestApiTexted(url, params).subscribe(
@@ -82,7 +84,7 @@ export class ApiInterface implements ApiV2 {
         });
     }
 
-    public getSingleTimeseries(id: string, apiUrl: string, params?: any): Observable<Timeseries> {
+    public getSingleTimeseries(id: string, apiUrl: string, params?: ParameterFilter): Observable<Timeseries> {
         const url = this.createRequestUrl(apiUrl, 'timeseries', id);
         return this.requestApiTexted(url, params).map((result) => {
             const timeseries = deserialize<Timeseries>(Timeseries, result);
@@ -91,7 +93,7 @@ export class ApiInterface implements ApiV2 {
         });
     }
 
-    public getTsData<T>(id: string, apiUrl: string, timespan: Timespan, params = {}): Observable<Data<T>> {
+    public getTsData<T>(id: string, apiUrl: string, timespan: Timespan, params: DataParameterFilter = {}): Observable<Data<T>> {
         const url = this.createRequestUrl(apiUrl, 'timeseries', id) + '/getData';
         params['timespan'] = this.createRequestTimespan(timespan);
         return this.requestApi<Data<T>>(url, params);
@@ -101,91 +103,84 @@ export class ApiInterface implements ApiV2 {
         return encodeURI(moment(timespan.from).format() + '/' + moment(timespan.to).format());
     }
 
-    public getCategories(apiUrl: string, params?: any): Observable<Category[]> {
+    public getCategories(apiUrl: string, params?: ParameterFilter): Observable<Category[]> {
         const url = this.createRequestUrl(apiUrl, 'categories');
         return this.requestApi<Category[]>(url, params);
     }
 
-    public getCategory(id: string, apiUrl: string, params?: any): Observable<Category> {
+    public getCategory(id: string, apiUrl: string, params?: ParameterFilter): Observable<Category> {
         // const url = this.createRequestUrl(apiUrl, 'categories', id);
         throw new Error('Not implemented');
         // return this.requestApi(url, params)
         //     .map(this.extractData);
     }
 
-    public getPhenomena(apiUrl: string, params?: any): Observable<Phenomenon[]> {
+    public getPhenomena(apiUrl: string, params?: ParameterFilter): Observable<Phenomenon[]> {
         const url = this.createRequestUrl(apiUrl, 'phenomena');
         return this.requestApi<Phenomenon[]>(url, params);
     }
 
-    public getPhenomenon(id: string, apiUrl: string, params?: any): Observable<Phenomenon> {
+    public getPhenomenon(id: string, apiUrl: string, params?: ParameterFilter): Observable<Phenomenon> {
         throw new Error('Not implemented');
     }
 
-    public getOfferings(apiUrl: string, params?: any): Observable<Offering[]> {
+    public getOfferings(apiUrl: string, params?: ParameterFilter): Observable<Offering[]> {
         const url = this.createRequestUrl(apiUrl, 'offerings');
         return this.requestApi<Offering[]>(url, params);
     }
 
-    public getOffering(id: string, apiUrl: string, params?: any): Observable<Offering> {
+    public getOffering(id: string, apiUrl: string, params?: ParameterFilter): Observable<Offering> {
         throw new Error('Not implemented');
     }
 
-    public getFeatures(apiUrl: string, params?: any): Observable<Feature[]> {
+    public getFeatures(apiUrl: string, params?: ParameterFilter): Observable<Feature[]> {
         const url = this.createRequestUrl(apiUrl, 'features');
         return this.requestApi<Feature[]>(url, params);
     }
 
-    public getFeature(id: string, apiUrl: string, params?: any): Observable<Feature> {
+    public getFeature(id: string, apiUrl: string, params?: ParameterFilter): Observable<Feature> {
         throw new Error('Not implemented');
     }
 
-    public getProcedures(apiUrl: string, params?: any): Observable<Procedure[]> {
+    public getProcedures(apiUrl: string, params?: ParameterFilter): Observable<Procedure[]> {
         const url = this.createRequestUrl(apiUrl, 'procedures');
         return this.requestApi<Procedure[]>(url, params);
     }
 
-    public getProcedure(id: string, apiUrl: string, params?: any): Observable<Procedure> {
+    public getProcedure(id: string, apiUrl: string, params?: ParameterFilter): Observable<Procedure> {
         throw new Error('Not implemented');
     }
 
-    public getPlatforms(apiUrl: string, params?: any): Observable<Platform[]> {
+    public getPlatforms(apiUrl: string, params?: ParameterFilter): Observable<Platform[]> {
         const url = this.createRequestUrl(apiUrl, 'platforms');
         return this.requestApi<Platform[]>(url, params);
     }
 
-    public getPlatform(id: string, apiUrl: string, params?: any): Observable<Platform> {
+    public getPlatform(id: string, apiUrl: string, params?: ParameterFilter): Observable<Platform> {
         throw new Error('Not implemented');
     }
 
-    public getDatasets(apiUrl: string, params?: any): Observable<Dataset[]> {
+    public getDatasets(apiUrl: string, params?: ParameterFilter): Observable<Dataset[]> {
         const url = this.createRequestUrl(apiUrl, 'datasets');
-        return this.requestApi<Dataset[]>(url, params);
+        return this.requestApi<Dataset[]>(url, params).map((list) => list.map((entry) => this.prepareDataset(entry, apiUrl)));
     }
 
-    public getDataset(id: string, apiUrl: string, params?: any): Observable<Dataset> {
+    public getDataset(id: string, apiUrl: string, params?: ParameterFilter): Observable<Dataset> {
         const url = this.createRequestUrl(apiUrl, 'datasets', id);
-        return this.requestApi<Dataset>(url, params).map((res) => {
-            res.url = apiUrl;
-            if (res['seriesParameters']) {
-                res.parameters = res['seriesParameters'];
-                delete res['seriesParameters'];
-            }
-            return res;
-        });
+        return this.requestApi<Dataset>(url, params).map((res) => this.prepareDataset(res, apiUrl));
     }
 
-    public getData<T>(id: string, apiUrl: string, timespan: Timespan, params = {}): Observable<Data<T>> {
+    public getData<T>(id: string, apiUrl: string, timespan: Timespan, params: ParameterFilter = {}): Observable<Data<T>> {
         const url = this.createRequestUrl(apiUrl, 'datasets', id) + '/data';
         params['timespan'] = this.createRequestTimespan(timespan);
         return this.requestApi<Data<T>>(url, params);
     }
 
-    public getGeometries(id: string, apiUrl: string, params?: any): Observable<any> {
-        throw new Error('Not implemented');
-    }
+    // public getGeometries(id: string, apiUrl: string, params?): Observable<> {
+    //     throw new Error('Not implemented');
+    // }
 
-    private requestApi<T>(url: string, params = {}): Observable<T> {
+    private requestApi<T>(url: string, params: ParameterFilter = {}): Observable<T> {
         let httpParams = new HttpParams({
             encoder: new UriParameterCoder()
         });
@@ -193,7 +188,7 @@ export class ApiInterface implements ApiV2 {
         return this.http.get<T>(url, { params: httpParams });
     }
 
-    private requestApiTexted(url: string, params = {}): Observable<string> {
+    private requestApiTexted(url: string, params: ParameterFilter = {}): Observable<string> {
         let httpParams = new HttpParams();
         Object.getOwnPropertyNames(params).forEach((key) => httpParams = httpParams.set(key, params[key]));
         return this.http.get(url, {
@@ -209,4 +204,13 @@ export class ApiInterface implements ApiV2 {
         return requestUrl;
     }
 
+
+    private prepareDataset(res: Dataset, apiUrl: string) {
+        res.url = apiUrl;
+        if (res['seriesParameters']) {
+            res.parameters = res['seriesParameters'];
+            delete res['seriesParameters'];
+        }
+        return res;
+    }
 }

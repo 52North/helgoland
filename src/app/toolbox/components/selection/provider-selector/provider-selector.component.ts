@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { Service } from './../../../model/api/service';
+import { BlacklistedService } from './../../../model/config/config';
 import { ProviderSelectorService } from './provider-selector.service';
 
 /**
@@ -13,33 +15,32 @@ import { ProviderSelectorService } from './provider-selector.service';
 export class ProviderSelectorComponent implements OnInit {
 
     @Input()
-    public providerList: any;
+    public providerList: Array<string>;
 
     @Input()
-    public providerBlacklist: Array<any>;
+    public providerBlacklist: Array<BlacklistedService>;
 
     @Input()
     public supportStations: boolean;
 
     @Input()
-    public selectedProvider: any;
+    public selectedProvider;
 
     @Input()
-    public filter: any;
+    public filter;
 
     @Output()
-    public onProviderSelected: EventEmitter<any> = new EventEmitter<any>();
+    public onProviderSelected: EventEmitter<Service> = new EventEmitter<Service>();
 
-    public providers: Array<any>;
+    public providers: Array<Service>;
     public loadingCount = 0;
 
     constructor(
         private providerSelectorService: ProviderSelectorService
     ) { }
 
-    public ngOnInit(): any {
-        let list = this.providerList;
-        if (!Array.isArray(list)) { list = Object.keys(list); }
+    public ngOnInit() {
+        const list = this.providerList;
         this.loadingCount = list.length;
         this.providers = [];
         list.forEach((url) => {
@@ -65,12 +66,12 @@ export class ProviderSelectorComponent implements OnInit {
         });
     }
 
-    public isSelected(provider: any) {
+    public isSelected(provider: Service) {
         if (!this.selectedProvider) { return false; }
         return this.selectedProvider.id === provider.id && this.selectedProvider.providerUrl === provider.providerUrl;
     }
 
-    public selectProvider(provider: any) {
+    public selectProvider(provider: Service) {
         this.onProviderSelected.emit(provider);
     }
 }

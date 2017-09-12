@@ -1,7 +1,8 @@
-import { Time } from './../../../services/time/time.service';
-import { Timespan } from './../../../model/internal/timespan';
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { Timespan } from './../../../model/internal/timespan';
+import { Time } from './../../../services/time/time.service';
 
 @Component({
     selector: 'n52-timespan-shift-selector',
@@ -35,17 +36,17 @@ export class TimespanShiftSelectorComponent implements OnInit {
         this.onTimespanChange.emit(this.timeSrvc.stepForward(this.timespan));
     }
 
-    public open(content) {
+    public open(content: TemplateRef<any>) {
         this.tempTimespan = new Timespan(this.timespan.from, this.timespan.to);
         this.modalService.open(content, {size: 'lg'});
     }
 
-    public noteChangedTimespan(newValue) {
+    public noteChangedTimespan(newValue: Timespan) {
         this.tempTimespan = newValue;
         this.tempTimespanIsValid = true;
     }
 
-    public noteInvalidTimespan(newValue) {
+    public noteInvalidTimespan(newValue: Timespan) {
         this.tempTimespanIsValid = false;
     }
 

@@ -1,7 +1,8 @@
-import { Dataset } from './../../../model/api/dataset';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { Dataset, IDataset } from './../../../model/api/dataset';
 import { Station } from './../../../model/api/station';
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 
 const LOADING_PARAM = 'loading';
 const SELECTED_PARAM = 'selected';
@@ -50,8 +51,8 @@ export class DatasetByStationSelectorComponent implements OnInit {
             });
     }
 
-    public toggle(timeseries) {
-        timeseries.selected = !timeseries.selected;
+    public toggle(timeseries: IDataset) {
+        timeseries['selected'] = !timeseries['selected'];
         this.updateSelection();
     }
 

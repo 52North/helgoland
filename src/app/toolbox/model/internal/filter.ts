@@ -1,9 +1,7 @@
+
 export class Filter {
-
     public url: string;
-
     public serviceID: string;
-
-    public filter: any;
-
+    public itemId: string;
+    public filter;
 }

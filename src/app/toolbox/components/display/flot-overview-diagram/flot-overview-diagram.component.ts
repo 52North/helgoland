@@ -1,8 +1,3 @@
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { Time } from './../../../services/time/time.service';
-import { Timespan } from './../../../model/internal/timespan';
-import { IDataset } from './../../../model/api/dataset';
-import { Data } from './../../../model/api/data';
 import {
     Component,
     DoCheck,
@@ -15,6 +10,12 @@ import {
     Output,
     SimpleChanges,
 } from '@angular/core';
+
+import { Data } from './../../../model/api/data';
+import { IDataset } from './../../../model/api/dataset';
+import { Timespan } from './../../../model/internal/timespan';
+import { ApiInterface } from './../../../services/api-interface/api-interface.service';
+import { Time } from './../../../services/time/time.service';
 
 @Component({
     selector: 'n52-flot-overview-diagram',
@@ -33,7 +34,7 @@ export class FlotOverviewDiagramComponent implements DoCheck, OnInit, OnChanges 
     public rangefactor: number;
 
     @Input()
-    public options: any;
+    public options;
 
     @Output()
     public onTimespanChanged: EventEmitter<Timespan> = new EventEmitter();

@@ -6,17 +6,14 @@ import { Dataset } from './../../toolbox/model/api/dataset';
 import { Timespan } from './../../toolbox/model/internal/timespan';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
+import { TrajectoryModel } from './../model/trajectory-model';
 
 const TRAJECTORY_CACHE_PARAM = 'trajectory';
 
 @Injectable()
 export class TrajectoriesService {
 
-    public model: {
-        trajectory?: Dataset,
-        data?: Array<LocatedTimeValueEntry>,
-        geometry?: GeoJSON.LineString
-    };
+    public model: TrajectoryModel;
 
     constructor(
         private api: ApiInterface,
@@ -34,16 +31,17 @@ export class TrajectoriesService {
                 new Date(this.model.trajectory.firstValue.timestamp),
                 new Date(this.model.trajectory.lastValue.timestamp)
             );
-            this.api.getData<LocatedTimeValueEntry>(this.model.trajectory.id, this.model.trajectory.url, timespan).subscribe((data) => {
-                this.model.data = data.values;
-                this.model.geometry = {
-                    type: 'LineString',
-                    coordinates: []
-                };
-                this.model.data.forEach((entry) => {
-                    this.model.geometry.coordinates.push(entry.geometry.coordinates);
+            this.api.getData<LocatedTimeValueEntry>(this.model.trajectory.id, this.model.trajectory.url, timespan)
+                .subscribe((data) => {
+                    this.model.data = data.values;
+                    this.model.geometry = {
+                        type: 'LineString',
+                        coordinates: []
+                    };
+                    this.model.data.forEach((entry) => {
+                        this.model.geometry.coordinates.push(entry.geometry.coordinates);
+                    });
                 });
-            });
         });
     }
 

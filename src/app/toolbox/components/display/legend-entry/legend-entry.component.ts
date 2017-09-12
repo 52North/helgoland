@@ -11,7 +11,7 @@ import { Timeseries } from './../../../model/api/timeseries';
 export class LegendEntryComponent implements OnInit {
 
     @Input()
-    public dataset: any;
+    public dataset;
 
     @Output()
     public onDeleteDataset: EventEmitter<boolean> = new EventEmitter();
@@ -34,7 +34,7 @@ export class LegendEntryComponent implements OnInit {
     constructor(
     ) { }
 
-    public ngOnInit(): any {
+    public ngOnInit() {
         if (this.dataset instanceof Dataset) {
             this.platformLabel = this.dataset.parameters.platform.label;
         } else if (this.dataset instanceof Timeseries) {

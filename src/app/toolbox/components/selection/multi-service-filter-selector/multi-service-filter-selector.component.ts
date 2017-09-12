@@ -1,7 +1,8 @@
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+
 import { Parameter } from './../../../model/api/parameter';
 import { Filter } from './../../../model/internal/filter';
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 
 /**
  * Component to select an item out of a list of provider with a given filter combination.
@@ -19,10 +20,10 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
     public filterList: Array<Filter>;
 
     @Output()
-    public onItemSelected: EventEmitter<Parameter> = new EventEmitter<Parameter>();
+    public onItemSelected: EventEmitter<FilteredParameter> = new EventEmitter<FilteredParameter>();
 
     public loading = 0;
-    public items: Array<Parameter>;
+    public items: Array<FilteredParameter>;
 
     constructor(
         private apiInterface: ApiInterface
@@ -84,7 +85,7 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
         });
     }
 
-    onSelectItem(item): void {
+    onSelectItem(item: FilteredParameter): void {
         this.onItemSelected.emit(item);
     }
 
@@ -92,16 +93,16 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
         this.loading--;
     }
 
-    private setItems(res: Array<Parameter>, prevfilter, url, serviceID): void {
+    private setItems(res: Array<FilteredParameter>, prevfilter: Filter, url: string, serviceID: string): void {
         this.loading--;
-        res.forEach((entry: any) => {
-            const filter = {
+        res.forEach((entry) => {
+            const filter: Filter = {
                 filter: prevfilter,
                 itemId: entry.id,
                 url,
                 serviceID
             };
-            const item: any = this.items.find((elem) => {
+            const item = this.items.find((elem) => {
                 if (elem.label === entry.label) { return true; }
             });
             if (item) {
@@ -112,4 +113,8 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
             }
         });
     }
+}
+
+export interface FilteredParameter extends Parameter {
+    filterList?: Array<Filter>;
 }

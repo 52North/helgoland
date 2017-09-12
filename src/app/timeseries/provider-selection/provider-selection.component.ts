@@ -1,6 +1,9 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
+import { ParameterFilter } from './../../toolbox/model/api/parameterFilter';
+import { Service } from './../../toolbox/model/api/service';
+import { BlacklistedService } from './../../toolbox/model/config/config';
 import { Settings } from './../../toolbox/services/settings/settings.service';
 import { TimeseriesProviderSelectionService } from './provider-selection.service';
 
@@ -11,10 +14,10 @@ import { TimeseriesProviderSelectionService } from './provider-selection.service
 })
 export class TimeseriesProviderSelectionComponent implements OnInit {
 
-  public providerList;
-  public providerBlacklist;
-  public providerFilter;
-  public selectedProvider;
+  public providerList: Array<string>;
+  public providerBlacklist: Array<BlacklistedService>;
+  public providerFilter: ParameterFilter;
+  public selectedProvider: Service;
 
   constructor(
     private settings: Settings,
@@ -24,22 +27,21 @@ export class TimeseriesProviderSelectionComponent implements OnInit {
 
   public ngOnInit() {
     this.selectedProvider = this.providerCache.getSelectedProvider();
-    this.providerList = this.settings.config['restApiUrls'];
-    this.providerBlacklist = this.settings.config['providerBlackList'];
+    this.providerList = this.settings.config.restApiUrls;
+    this.providerBlacklist = this.settings.config.providerBlackList;
     this.providerFilter = this.createFilter();
   }
 
-  public onProviderSelected(provider) {
+  public onProviderSelected(provider: Service) {
     this.selectedProvider = provider;
     this.providerCache.setSelectedProvider(provider);
     this.router.navigate(['timeseries/map-selection']);
   }
 
-  private createFilter() {
-    const filter = {
+  private createFilter(): ParameterFilter {
+    return {
       valueTypes: 'quantity'
     };
-    return filter;
   }
 
 }

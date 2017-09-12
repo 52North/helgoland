@@ -11,7 +11,7 @@ export class TrajectoriesConditionalRouter {
         private trajectoriesSrvc: TrajectoriesService
     ) {
         this.router.events
-            .filter((event) => event instanceof NavigationStart)
+            .filter((event: NavigationStart) => event instanceof NavigationStart)
             .subscribe((event: NavigationStart) => this.redirect(event.url));
     }
 

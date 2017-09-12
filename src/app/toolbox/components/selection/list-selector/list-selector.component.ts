@@ -1,6 +1,11 @@
-import { ApiMapping, ApiVersion } from './../../../services/api-interface/api-mapping.service';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+
+import { IDataset } from './../../../model/api/dataset';
+import { ParameterFilter } from './../../../model/api/parameterFilter';
+import { FilteredProvider } from './../../../model/internal/provider';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { ApiMapping, ApiVersion } from './../../../services/api-interface/api-mapping.service';
+import { FilteredParameter } from './../multi-service-filter-selector/multi-service-filter-selector.component';
 import { ListSelectorService } from './list-selector.service';
 
 /**
@@ -14,19 +19,19 @@ import { ListSelectorService } from './list-selector.service';
 export class ListSelectorComponent implements OnChanges {
 
     @Input()
-    public parameters: Array<any>;
+    public parameters: Array<ListSelectorParameter>;
 
     @Input()
-    public filter: any;
+    public filter;
 
     @Input()
-    public providerList: Array<any>;
+    public providerList: Array<FilteredProvider>;
 
     @Input()
     public selectorId: string;
 
     @Output()
-    public onDatasetSelection: EventEmitter<any> = new EventEmitter<any>();
+    public onDatasetSelection: EventEmitter<Array<IDataset>> = new EventEmitter<Array<IDataset>>();
 
     public activePanel;
 
@@ -66,7 +71,7 @@ export class ListSelectorComponent implements OnChanges {
         }
     }
 
-    public itemSelected(item, index) {
+    public itemSelected(item: FilteredParameter, index: number) {
         if (index < this.parameters.length - 1) {
             this.parameters[index].headerAddition = item.label;
             this.activePanel = this.selectorId + '-' + (index + 1);
@@ -89,27 +94,17 @@ export class ListSelectorComponent implements OnChanges {
         }
     }
 
-    private openDataset(url, params) {
+    private openDataset(url: string, params: ParameterFilter) {
         this.apiMapping.getApiVersion(url).subscribe((apiVersionId) => {
             if (apiVersionId === ApiVersion.V2) {
-                this.apiInterface.getDatasets(url, params).subscribe((result) => {
-                    this.onDatasetSelection.emit({
-                        dataset: result,
-                        url
-                    });
-                });
+                this.apiInterface.getDatasets(url, params).subscribe((result) => this.onDatasetSelection.emit(result));
             } else if (apiVersionId === ApiVersion.V1) {
-                this.apiInterface.getTimeseries(url, params).subscribe((result) => {
-                    this.onDatasetSelection.emit({
-                        dataset: result,
-                        url
-                    });
-                });
+                this.apiInterface.getTimeseries(url, params).subscribe((result) => this.onDatasetSelection.emit(result));
             }
         });
     }
 
-    private isEqual(listOne, listTwo): boolean {
+    private isEqual(listOne: Array<FilteredProvider>, listTwo: Array<FilteredProvider>): boolean {
         let match = true;
         if (listOne.length === listTwo.length) {
             listOne.forEach((entryOne) => {
@@ -124,4 +119,12 @@ export class ListSelectorComponent implements OnChanges {
         }
         return match;
     }
+}
+
+export interface ListSelectorParameter {
+    header: string;
+    type: string;
+    isDisabled?: boolean;
+    headerAddition?: string;
+    filterList?: any;
 }

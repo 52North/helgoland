@@ -1,12 +1,16 @@
 import { Observable } from 'rxjs/Rx';
 
 import { Category } from './../../../model/api/category';
+import { Data } from './../../../model/api/data';
 import { Feature } from './../../../model/api/feature';
 import { Offering } from './../../../model/api/offering';
+import { DataParameterFilter, ParameterFilter } from './../../../model/api/parameterFilter';
 import { Phenomenon } from './../../../model/api/phenomenon';
 import { Procedure } from './../../../model/api/procedure';
 import { Service } from './../../../model/api/service';
+import { Station } from './../../../model/api/station';
 import { Timeseries } from './../../../model/api/timeseries';
+import { Timespan } from './../../../model/internal/timespan';
 
 export interface ApiV1 {
 
@@ -15,28 +19,30 @@ export interface ApiV1 {
      * @param id
      * @return temp
      */
-    getServices(apiUrl: string, params: any): Observable<Service[]>;
-    getService(id: string, apiUrl: string, params?: any): Observable<Service>;
+    getServices(apiUrl: string, params?: ParameterFilter): Observable<Array<Service>>;
+    getService(id: string, apiUrl: string, params?: ParameterFilter): Observable<Service>;
 
-    getStations(apiUrl: string, params?: any): Observable<any>;
-    getStation(id: string, apiUrl: string, params?: any): Observable<any>;
+    getStations(apiUrl: string, params?: ParameterFilter): Observable<Array<Station>>;
+    getStation(id: string, apiUrl: string, params?: ParameterFilter): Observable<Station>;
 
-    getTimeseries(apiUrl: string, params?: any): Observable<Timeseries[]>;
-    getSingleTimeseries(id: string, apiUrl: string, params?: any): Observable<Timeseries>;
+    getTimeseries(apiUrl: string, params?: ParameterFilter): Observable<Array<Timeseries>>;
+    getSingleTimeseries(id: string, apiUrl: string, params?: ParameterFilter): Observable<Timeseries>;
 
-    getCategories(apiUrl: string, params?: any): Observable<Category[]>;
-    getCategory(id: string, apiUrl: string, params?: any): Observable<Category>;
+    getTsData<T>(id: string, apiUrl: string, timespan: Timespan, params?: DataParameterFilter): Observable<Data<T>>;
 
-    getPhenomena(apiUrl: string, params?: any): Observable<Phenomenon[]>;
-    getPhenomenon(id: string, apiUrl: string, params?: any): Observable<Phenomenon>;
+    getCategories(apiUrl: string, params?: ParameterFilter): Observable<Array<Category>>;
+    getCategory(id: string, apiUrl: string, params?: ParameterFilter): Observable<Category>;
 
-    getOfferings(apiUrl: string, params?: any): Observable<Offering[]>;
-    getOffering(id: string, apiUrl: string, params?: any): Observable<Offering>;
+    getPhenomena(apiUrl: string, params?: ParameterFilter): Observable<Array<Phenomenon>>;
+    getPhenomenon(id: string, apiUrl: string, params?: ParameterFilter): Observable<Phenomenon>;
 
-    getFeatures(apiUrl: string, params?: any): Observable<Feature[]>;
-    getFeature(id: string, apiUrl: string, params?: any): Observable<Feature>;
+    getOfferings(apiUrl: string, params?: ParameterFilter): Observable<Array<Offering>>;
+    getOffering(id: string, apiUrl: string, params?: ParameterFilter): Observable<Offering>;
 
-    getProcedures(apiUrl: string, params?: any): Observable<Procedure[]>;
-    getProcedure(id: string, apiUrl: string, params?: any): Observable<Procedure>;
+    getFeatures(apiUrl: string, params?: ParameterFilter): Observable<Array<Feature>>;
+    getFeature(id: string, apiUrl: string, params?: ParameterFilter): Observable<Feature>;
+
+    getProcedures(apiUrl: string, params?: ParameterFilter): Observable<Array<Procedure>>;
+    getProcedure(id: string, apiUrl: string, params?: ParameterFilter): Observable<Procedure>;
 
 }

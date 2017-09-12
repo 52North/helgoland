@@ -1,16 +1,16 @@
 import { Timespan } from './../internal/timespan';
 
 export class Config {
-
-    restApiUrls: Array<any>;
-
-    providerBlackList: Array<any>;
-
+    restApiUrls: Array<string>;
+    providerBlackList: Array<BlacklistedService>;
     solveLabels: boolean;
-
     proxyUrl: string;
-
     timespanPresets: Array<TimespanPreset>;
+}
+
+export class BlacklistedService {
+    serviceId: string;
+    apiUrl: string;
 }
 
 export class TimespanPreset {

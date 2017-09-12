@@ -59,7 +59,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         bottom: 40,
         left: 10
     };
-    private internalValues = [];
+    private internalValues: Array<DataEntry> = [];
     private background;
     private pathClass = 'path';
     private xScale;
@@ -127,7 +127,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         return this.rawSvg[0][0].clientWidth - this.margin.left - this.maxLabelwidth - this.margin.right;
     }
 
-    private getXDomain(values) {
+    private getXDomain(values: Array<DataEntry>) {
         switch (this.axisType) {
             case 'distance':
                 return [values[0].dist, values[values.length - 1].dist];
@@ -138,7 +138,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         }
     }
 
-    private drawValueLine(values) {
+    private drawValueLine(values: Array<DataEntry>) {
         // draw the value line
         this.graph.append('svg:path')
             .attr({
@@ -157,7 +157,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         //     });
     }
 
-    private drawDots(values) {
+    private drawDots(values: Array<DataEntry>) {
         // draw dots
         this.graph.selectAll('dot')
             .data(values)
@@ -183,7 +183,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         });
     }
 
-    private createDataEntry(entry, previous, index: number) {
+    private createDataEntry(entry: LocatedTimeValueEntry, previous: LocatedTimeValueEntry, index: number): DataEntry {
         const s = new L.LatLng(entry.geometry.coordinates[1], entry.geometry.coordinates[0]);
         const e = new L.LatLng(previous.geometry.coordinates[1], previous.geometry.coordinates[0]);
         const newdist = s.distanceTo(e);
@@ -195,7 +195,8 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             value: entry.value,
             x: entry.geometry.coordinates[0],
             y: entry.geometry.coordinates[1],
-            latlng: s
+            latlng: s,
+            geometry: entry.geometry
         };
     }
 
@@ -227,7 +228,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         this.drawLineChart();
     }
 
-    private getXValue(data) {
+    private getXValue(data: DataEntry) {
         switch (this.axisType) {
             case 'distance':
                 return data.dist;
@@ -481,7 +482,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         }
     }
 
-    private getItemForX(x, data) {
+    private getItemForX(x: number, data: Array<DataEntry>) {
         const index = this.xScale.invert(x);
         const bisectDate = d3.bisector((d) => {
             switch (this.axisType) {
@@ -535,4 +536,13 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
                 .text('Measurement: ' + item.tick);
         }
     }
+}
+
+interface DataEntry extends LocatedTimeValueEntry {
+    dist: number;
+    tick: number;
+    x: number;
+    y: number;
+    xDiagCoord?: number;
+    latlng: L.LatLng;
 }

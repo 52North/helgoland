@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { SelectionRange } from './../../toolbox/components/display/d-three-diagram/d-three-diagram.component';
+import { TrajectoryModel } from './../model/trajectory-model';
 import { TrajectoriesService } from './../services/trajectories.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { TrajectoriesService } from './../services/trajectories.service';
 })
 export class TrajectoriesViewComponent implements OnInit {
 
-  public model: any;
+  public model: TrajectoryModel;
 
   public selection: SelectionRange;
 

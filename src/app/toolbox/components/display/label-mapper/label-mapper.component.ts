@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { LabelMapperService } from './label-mapper.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class LabelMapperComponent implements OnInit {
         private labelMapperSrvc: LabelMapperService
     ) { }
 
-    public ngOnInit(): any {
+    public ngOnInit() {
         if (this.label) {
             this.labelMapperSrvc.getMappedLabel(this.label)
                 .subscribe((label) => {

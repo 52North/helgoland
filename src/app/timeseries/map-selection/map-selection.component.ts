@@ -1,9 +1,10 @@
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Dataset, PlatformTypes, ValueTypes } from './../../toolbox/model/api/dataset';
 import { Phenomenon } from './../../toolbox/model/api/phenomenon';
+import { Platform } from './../../toolbox/model/api/platform';
 import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
 import { TimeseriesService } from './../services/timeseries.service';
 
@@ -39,7 +40,7 @@ export class TimeseriesMapSelectionComponent implements OnInit {
     this.updatePhenomenonFilter();
   }
 
-  public onStationSelected(platform, content) {
+  public onStationSelected(platform: Platform, content: TemplateRef<any>) {
     this.platform = platform;
     this.modalService.open(content);
   }

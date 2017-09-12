@@ -28,13 +28,13 @@ export class StationMapSelectorComponent implements OnChanges, AfterViewInit {
     public serviceUrl: string;
 
     @Input()
-    public filter: any;
+    public filter;
 
     @Input()
-    public mapLayers: any;
+    public mapLayers;
 
     @Input()
-    public cluster: any;
+    public cluster;
 
     @Output()
     public onStationSelected: EventEmitter<Station> = new EventEmitter<Station>();
@@ -70,7 +70,7 @@ export class StationMapSelectorComponent implements OnChanges, AfterViewInit {
         this.cd.detectChanges();
     }
 
-    public ngOnChanges(changes: SimpleChanges): any {
+    public ngOnChanges(changes: SimpleChanges) {
         if (this.map) {
             this.drawMarker();
         }

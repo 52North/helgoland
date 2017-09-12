@@ -1,7 +1,11 @@
-import { Router } from '@angular/router';
-import { TimeseriesService } from './../services/timeseries.service';
-import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ListSelectorParameter } from './../../toolbox/components/selection/list-selector/list-selector.component';
+import { IDataset } from './../../toolbox/model/api/dataset';
+import { Provider } from './../../toolbox/model/internal/provider';
+import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
+import { TimeseriesService } from './../services/timeseries.service';
 
 @Component({
   selector: 'app-list-selection',
@@ -10,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeseriesListSelectionComponent implements OnInit {
 
-  public categoryParams = [{
+  public categoryParams: Array<ListSelectorParameter> = [{
     type: 'category',
     header: 'Kategorie'
   }, {
@@ -24,7 +28,7 @@ export class TimeseriesListSelectionComponent implements OnInit {
     header: 'Sensor'
   }];
 
-  public stationParams = [{
+  public stationParams: Array<ListSelectorParameter> = [{
     type: 'feature',
     header: 'Station'
   }, {
@@ -38,7 +42,7 @@ export class TimeseriesListSelectionComponent implements OnInit {
     header: 'Sensor'
   }];
 
-  public phenomenonParams = [{
+  public phenomenonParams: Array<ListSelectorParameter> = [{
     type: 'phenomenon',
     header: 'Phänomen'
   }, {
@@ -52,7 +56,7 @@ export class TimeseriesListSelectionComponent implements OnInit {
     header: 'Sensor'
   }];
 
-  public procedureParams = [{
+  public procedureParams: Array<ListSelectorParameter> = [{
     type: 'procedure',
     header: 'Sensor'
   }, {
@@ -66,7 +70,7 @@ export class TimeseriesListSelectionComponent implements OnInit {
     header: 'Kategorie'
   }];
 
-  public providerList;
+  public providerList: Array<Provider>;
 
   constructor(
     private providerCache: TimeseriesProviderSelectionService,
@@ -80,20 +84,18 @@ export class TimeseriesListSelectionComponent implements OnInit {
       this.providerList = [
         {
           url: provider.providerUrl,
-          serviceID: provider.id
+          id: provider.id
         }
       ];
     }
   }
 
-  public onDatasetSelected(datasetList, url) {
+  public onDatasetSelected(datasetList: Array<IDataset>) {
     if (datasetList instanceof Array && datasetList.length === 1) {
-      this.timeseriesService.addTimeseries(datasetList[0], url);
+      this.timeseriesService.addTimeseries(datasetList[0], datasetList[0].url);
       this.router.navigate(['timeseries/diagram']);
     } else {
       console.error('datasetList is no array or has not the length of 1');
     }
   }
-
-
 }

@@ -19,7 +19,7 @@ export class ServiceFilterSelectorComponent implements OnChanges {
     public serviceUrl: string;
 
     @Input()
-    public filter: any;
+    public filter;
 
     @Input()
     public selectionId: string;
@@ -34,7 +34,7 @@ export class ServiceFilterSelectorComponent implements OnChanges {
         private apiInterface: ApiInterface
     ) { }
 
-    public ngOnChanges(changes: SimpleChanges): any {
+    public ngOnChanges(changes: SimpleChanges) {
         if (changes.endpoint) {
             this.loading = true;
             switch (this.endpoint) {
@@ -74,7 +74,7 @@ export class ServiceFilterSelectorComponent implements OnChanges {
         }
     }
 
-    public onSelectItem(item): void {
+    public onSelectItem(item: Parameter): void {
         this.onItemSelected.emit(item);
     }
 
