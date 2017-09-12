@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TrajectoriesNavigationComponent } from './navigation/navigation.component';
 import { TrajectoriesSelectionComponent } from './selection/selection.component';
+import { TrajectoriesService } from './services/trajectories.service';
 import { TrajectoriesViewComponent } from './view/view.component';
 
 const trajectoriesRoutes: Routes = [
@@ -38,6 +39,9 @@ const trajectoriesRoutes: Routes = [
     TrajectoriesViewComponent,
     TrajectoriesSelectionComponent,
     TrajectoriesNavigationComponent
+  ],
+  providers: [
+    TrajectoriesService
   ]
 })
 export class TrajectoriesModule { }
