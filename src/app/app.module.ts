@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { TimeseriesModule } from './timeseries/timeseries.module';
+import { TrajectoriesModule } from './trajectories/trajectories.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { TimeseriesModule } from './timeseries/timeseries.module';
   imports: [
     BrowserModule,
     RouterModule,
-    TimeseriesModule
+    TimeseriesModule,
+    TrajectoriesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
