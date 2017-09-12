@@ -16,12 +16,12 @@ export class TrajectoriesConditionalRouter {
     }
 
     private redirect(url: string) {
-        if (url === '/trajectories') {
-            if (this.trajectoriesSrvc.hasTrajectory()) {
-                this.router.navigate(['trajectories/view']);
-            } else {
-                this.router.navigate(['trajectories/selection']);
-            }
-        }
+        // if (url === '/trajectories') {
+        //     if (this.trajectoriesSrvc.hasTrajectory()) {
+        //         this.router.navigate(['trajectories/view']);
+        //     } else {
+        //         this.router.navigate(['trajectories/selection']);
+        //     }
+        // }
     }
 }

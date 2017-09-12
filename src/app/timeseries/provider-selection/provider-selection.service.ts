@@ -8,7 +8,7 @@ const SELECTED_PROVIDER_PARAM = 'selectedTimeseriesProvider';
 @Injectable()
 export class TimeseriesProviderSelectionService {
 
-    private selectedProvider: Service;
+    private selectedProvider: Service = null;
 
     constructor(
         private localStorage: LocalStorage
@@ -23,6 +23,10 @@ export class TimeseriesProviderSelectionService {
     public getSelectedProvider(): Service {
         const provider = this.localStorage.load(SELECTED_PROVIDER_PARAM);
         return provider ? provider : this.selectedProvider;
+    }
+
+    public hasSelectedProvider(): boolean {
+        return this.selectedProvider !== null;
     }
 
 }

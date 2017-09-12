@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { TimeseriesConditionalRouter } from './../services/timeseries-router.service';
 
 @Component({
   selector: 'app-timeseries-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class TimeseriesNavigationComponent implements OnInit {
+export class TimeseriesNavigationComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(
+    private router: TimeseriesConditionalRouter
+  ) { }
 }

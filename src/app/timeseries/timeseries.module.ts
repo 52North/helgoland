@@ -1,8 +1,7 @@
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TimeseriesService } from './services/timeseries.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
@@ -11,12 +10,19 @@ import { TimeseriesMapSelectionComponent } from './map-selection/map-selection.c
 import { TimeseriesNavigationComponent } from './navigation/navigation.component';
 import { TimeseriesProviderSelectionComponent } from './provider-selection/provider-selection.component';
 import { TimeseriesProviderSelectionService } from './provider-selection/provider-selection.service';
+import { TimeseriesConditionalRouter } from './services/timeseries-router.service';
+import { TimeseriesService } from './services/timeseries.service';
 
 const timeseriesRoutes: Routes = [
   {
     path: 'timeseries',
     component: TimeseriesNavigationComponent,
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'diagram'
+      },
       {
         path: 'diagram',
         component: TimeseriesDiagramComponent
@@ -43,7 +49,6 @@ const timeseriesRoutes: Routes = [
     ToolboxModule,
     RouterModule.forRoot(
       timeseriesRoutes
-      // { enableTracing: true }
     ),
     NgbModule
   ],
@@ -56,7 +61,8 @@ const timeseriesRoutes: Routes = [
   ],
   providers: [
     TimeseriesProviderSelectionService,
-    TimeseriesService
+    TimeseriesService,
+    TimeseriesConditionalRouter
   ]
 })
 export class TimeseriesModule { }

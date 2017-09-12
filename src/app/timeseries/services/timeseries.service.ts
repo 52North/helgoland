@@ -1,12 +1,13 @@
-import { Timespan } from './../../toolbox/model/internal/timespan';
-import { Timeseries } from './../../toolbox/model/api/timeseries';
-import { Time } from './../../toolbox/services/time/time.service';
-import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
-import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
-import { IDataset, Dataset } from './../../toolbox/model/api/dataset';
-import { Data } from './../../toolbox/model/api/data';
 import { Injectable } from '@angular/core';
 import { deserializeArray } from 'class-transformer';
+
+import { Data } from './../../toolbox/model/api/data';
+import { Dataset, IDataset } from './../../toolbox/model/api/dataset';
+import { Timeseries } from './../../toolbox/model/api/timeseries';
+import { Timespan } from './../../toolbox/model/internal/timespan';
+import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
+import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
+import { Time } from './../../toolbox/services/time/time.service';
 
 const TIMESERIES_CACHE_PARAM = 'timeseries';
 
@@ -63,6 +64,10 @@ export class TimeseriesService {
                 entry.styles.loading = false;
             });
         });
+    }
+
+    public hasTimeseries(): boolean {
+        return this.timeseries.length > 0;
     }
 
     private addDataset(dataset: IDataset) {
