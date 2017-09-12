@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TrajectoriesConditionalRouter } from './../services/trajectories-router.service';
+
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -7,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrajectoriesNavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: TrajectoriesConditionalRouter
+  ) { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }

@@ -1,9 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
     selector: 'n52-geometry-map-viewer',
-    templateUrl: './geometry-map-viewer.component.html'
+    templateUrl: './geometry-map-viewer.component.html',
+    styleUrls: ['./geometry-map-viewer.component.scss']
 })
 export class GeometryMapViewerComponent implements AfterViewInit, OnChanges {
 

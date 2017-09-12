@@ -1,3 +1,4 @@
+import { TrajectoriesConditionalRouter } from './services/trajectories-router.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -32,7 +33,8 @@ const trajectoriesRoutes: Routes = [
     ToolboxModule,
     NgbModule,
     RouterModule.forRoot(
-      trajectoriesRoutes
+      trajectoriesRoutes,
+      { enableTracing: false }
     )
   ],
   declarations: [
@@ -41,7 +43,8 @@ const trajectoriesRoutes: Routes = [
     TrajectoriesNavigationComponent
   ],
   providers: [
-    TrajectoriesService
+    TrajectoriesService,
+    TrajectoriesConditionalRouter
   ]
 })
 export class TrajectoriesModule { }

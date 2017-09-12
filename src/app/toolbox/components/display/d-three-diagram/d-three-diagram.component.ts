@@ -105,6 +105,8 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .y0(this.height)
             .y1(this.calcYValue)
             .interpolate('linear');
+
+        this.drawLineChart();
     }
 
     private calcYValue = (d) => {
@@ -360,7 +362,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
     }
 
     private drawLineChart() {
-        if (!this.internalValues || this.internalValues.length === 0) {
+        if (!this.internalValues || this.internalValues.length === 0 || !this.graph) {
             return;
         }
 

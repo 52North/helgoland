@@ -1,5 +1,5 @@
-import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 
 import { Dataset, PlatformTypes, ValueTypes } from './../../toolbox/model/api/dataset';

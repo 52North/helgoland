@@ -1,10 +1,11 @@
-import { Timespan } from './../../toolbox/model/internal/timespan';
-import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
-import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
-import { Dataset } from './../../toolbox/model/api/dataset';
-import { LocatedTimeValueEntry } from './../../toolbox/model/api/data';
 import { Injectable } from '@angular/core';
 import { deserialize } from 'class-transformer';
+
+import { LocatedTimeValueEntry } from './../../toolbox/model/api/data';
+import { Dataset } from './../../toolbox/model/api/dataset';
+import { Timespan } from './../../toolbox/model/internal/timespan';
+import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
+import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
 
 const TRAJECTORY_CACHE_PARAM = 'trajectory';
 
@@ -48,6 +49,10 @@ export class TrajectoriesService {
 
     public getPointForIdx(idx: number): GeoJSON.Point {
         return this.model.data[idx].geometry;
+    }
+
+    public hasTrajectory(): boolean {
+        return this.model.trajectory !== null && this.model.data !== null;
     }
 
     private saveTrajectory() {

@@ -1,3 +1,7 @@
+import { BoolTogglerComponent } from './components/control/bool-toggler/bool-toggler.component';
+import { StringTogglerComponent } from './components/control/string-toggler/string-toggler.component';
+import { DThreeDiagramComponent } from './components/display/d-three-diagram/d-three-diagram.component';
+import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -66,7 +70,11 @@ import { Time } from './services/time/time.service';
     TimespanShiftSelectorComponent,
     PredefinedTimespanSelectorComponent,
     TimespanSelectorComponent,
-    LegendEntryComponent
+    LegendEntryComponent,
+    GeometryMapViewerComponent,
+    DThreeDiagramComponent,
+    StringTogglerComponent,
+    BoolTogglerComponent
   ],
   entryComponents: [ProviderSelectorComponent],
   exports: [
@@ -85,7 +93,11 @@ import { Time } from './services/time/time.service';
     TimespanShiftSelectorComponent,
     PredefinedTimespanSelectorComponent,
     TimespanSelectorComponent,
-    LegendEntryComponent
+    LegendEntryComponent,
+    GeometryMapViewerComponent,
+    DThreeDiagramComponent,
+    StringTogglerComponent,
+    BoolTogglerComponent
   ],
   providers: [
     {
