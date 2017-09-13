@@ -46,12 +46,15 @@ import { LocalStorage } from './services/local-storage/local-storage.service';
 import { MapCache } from './services/map/map.service';
 import { Settings } from './services/settings/settings.service';
 import { Time } from './services/time/time.service';
+import { TimeseriesStyleSelectorComponent } from './components/selection/timeseries-style-selector/timeseries-style-selector.component';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
+    ColorPickerModule,
     NgbModule.forRoot()
   ],
   declarations: [
@@ -74,7 +77,8 @@ import { Time } from './services/time/time.service';
     GeometryMapViewerComponent,
     DThreeDiagramComponent,
     StringTogglerComponent,
-    BoolTogglerComponent
+    BoolTogglerComponent,
+    TimeseriesStyleSelectorComponent
   ],
   entryComponents: [ProviderSelectorComponent],
   exports: [
@@ -97,7 +101,8 @@ import { Time } from './services/time/time.service';
     GeometryMapViewerComponent,
     DThreeDiagramComponent,
     StringTogglerComponent,
-    BoolTogglerComponent
+    BoolTogglerComponent,
+    TimeseriesStyleSelectorComponent
   ],
   providers: [
     {

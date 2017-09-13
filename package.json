@@ -31,6 +31,7 @@
     "leaflet": "^1.2.0",
     "leaflet.markercluster": "^1.1.0",
     "moment": "^2.18.1",
+    "ngx-color-picker": "^4.3.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
