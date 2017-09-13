@@ -1,3 +1,4 @@
+import { Dataset } from './../../../model/api/dataset';
 import {
     AfterViewInit,
     Component,
@@ -30,10 +31,10 @@ export class SelectionRange {
 export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
 
     @Input()
-    public data;
+    public data: Array<LocatedTimeValueEntry>;
 
     @Input()
-    public dataset;
+    public dataset: Dataset;
 
     @Input()
     public dotted: boolean;
@@ -55,9 +56,9 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
 
     private margin = {
         top: 10,
-        right: 20,
+        right: 10,
         bottom: 40,
-        left: 10
+        left: 50
     };
     private internalValues: Array<DataEntry> = [];
     private background;
@@ -81,13 +82,15 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
     private yAxisGen;
     private lineFun;
     private area;
+    private height: number;
+    private width: number;
 
     @ViewChild('dthree') d3Elem;
 
     public ngAfterViewInit() {
-        const wrapper = d3.select(this.d3Elem.nativeElement);
 
-        this.rawSvg = wrapper.append('svg')
+        this.rawSvg = d3.select(this.d3Elem.nativeElement)
+            .append('svg')
             .attr('width', '100%')
             .attr('height', '100%');
 
@@ -95,16 +98,19 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .append('g')
             .attr('transform', 'translate(' + (this.margin.left + this.maxLabelwidth) + ',' + this.margin.top + ')');
 
-        this.lineFun = d3.svg.line()
+        this.height = this.rawSvg.node().clientHeight - this.margin.top - this.margin.bottom;
+        this.width = this.rawSvg.node().clientWidth - this.margin.left - this.margin.right - this.maxLabelwidth;
+
+        this.lineFun = d3.line()
             .x(this.calcXValue)
             .y(this.calcYValue)
-            .interpolate('linear');
+            .curve(d3.curveLinear);
 
-        this.area = d3.svg.area()
+        this.area = d3.area()
             .x(this.calcXValue)
             .y0(this.height)
             .y1(this.calcYValue)
-            .interpolate('linear');
+            .curve(d3.curveLinear);
 
         this.drawLineChart();
     }
@@ -117,14 +123,6 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         const xDiagCoord = this.xScale(this.getXValue(d));
         d.xDiagCoord = xDiagCoord;
         return xDiagCoord;
-    }
-
-    private height() {
-        return this.rawSvg[0][0].clientHeight - this.margin.top - this.margin.bottom;
-    }
-
-    private width() {
-        return this.rawSvg[0][0].clientWidth - this.margin.left - this.maxLabelwidth - this.margin.right;
     }
 
     private getXDomain(values: Array<DataEntry>) {
@@ -140,21 +138,19 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
 
     private drawValueLine(values: Array<DataEntry>) {
         // draw the value line
-        this.graph.append('svg:path')
-            .attr({
-                'd': this.lineFun(values),
-                'stroke': 'blue',
-                'stroke-width': 1,
-                'fill': 'none',
-                'class': this.pathClass
-            });
+        this.graph.append('path')
+            .datum(values)
+            .attr('class', 'line')
+            .attr('fill', 'none')
+            .attr('stroke', 'blue')
+            .attr('stroke-width', 1)
+            .attr('d', this.lineFun);
+
         // draw filled area
-        // this.graph.append('svg:path')
-        //     .datum(values)
-        //     .attr({
-        //         d: this.area,
-        //         class: 'graphArea'
-        //     });
+        this.graph.append('path')
+            .datum(values)
+            .attr('d', this.area)
+            .attr('class', 'graphArea');
     }
 
     private drawDots(values: Array<DataEntry>) {
@@ -170,9 +166,9 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
 
     private processData() {
         this.internalValues = [];
-        this.data.dist = 0;
         this.data.forEach((element, idx) => {
-            const entry = this.createDataEntry(element, this.data[idx ? idx - 1 : 0], idx);
+            const previous = this.internalValues.length > 0 ? this.internalValues[this.internalValues.length - 1] : null;
+            const entry = this.createDataEntry(element, previous, idx);
             if (this.selection) {
                 if (idx >= this.selection.from && idx <= this.selection.to) {
                     this.internalValues.push(entry);
@@ -183,14 +179,19 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         });
     }
 
-    private createDataEntry(entry: LocatedTimeValueEntry, previous: LocatedTimeValueEntry, index: number): DataEntry {
+    private createDataEntry(entry: LocatedTimeValueEntry, previous: DataEntry, index: number): DataEntry {
         const s = new L.LatLng(entry.geometry.coordinates[1], entry.geometry.coordinates[0]);
-        const e = new L.LatLng(previous.geometry.coordinates[1], previous.geometry.coordinates[0]);
-        const newdist = s.distanceTo(e);
-        this.data.dist = this.data.dist + Math.round(newdist / 1000 * 100000) / 100000;
+        let dist: number;
+        if (previous) {
+            const e = new L.LatLng(previous.geometry.coordinates[1], previous.geometry.coordinates[0]);
+            const newdist = s.distanceTo(e);
+            dist = previous.dist + Math.round(newdist / 1000 * 100000) / 100000;
+        } else {
+            dist = 0;
+        }
         return {
             tick: index,
-            dist: Math.round(this.data.dist * 10) / 10,
+            dist: Math.round(dist * 10) / 10,
             timestamp: entry.timestamp,
             value: entry.value,
             x: entry.geometry.coordinates[0],
@@ -242,17 +243,17 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
     }
 
     private makeXAxis = () => {
-        return d3.svg.axis()
-            .scale(this.xScale)
-            .orient('bottom')
-            .ticks(10);
+        return d3.axisBottom(this.xScale)
+            .ticks(10)
+            .tickSize(-this.height)
+            .tickFormat();
     }
 
     private makeYAxis = () => {
-        return d3.svg.axis()
-            .scale(this.yScale)
-            .orient('left')
-            .ticks(5);
+        return d3.axisLeft(this.yScale)
+            .ticks(5)
+            .tickSize(-this.width)
+            .tickFormat();
     }
 
     private getXAxisLabel() {
@@ -267,58 +268,50 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
     }
 
     private drawXAxis() {
-        this.xScale = d3.scale.linear()
+        this.xScale = d3.scaleLinear()
             .domain(this.getXDomain(this.internalValues))
-            .range([0, this.width()]);
-        this.xAxisGen = d3.svg.axis()
-            .scale(this.xScale)
-            .orient('bottom')
-            .ticks(5);
+            .range([0, this.width]);
+        this.xAxisGen = d3.axisBottom(this.xScale).ticks(5);
         if (this.axisType === 'time') {
             this.xAxisGen.tickFormat((d) => {
-                return d3.time.format('%d.%m.%Y %H:%M:%S')(new Date(d));
+                return d3.timeFormat('%d.%m.%Y %H:%M:%S')(new Date(d));
             });
         }
 
         // draw x axis
         this.graph.append('svg:g')
             .attr('class', 'x axis')
-            .attr('transform', 'translate(0,' + this.height() + ')')
+            .attr('transform', 'translate(0,' + this.height + ')')
             .call(this.xAxisGen);
 
         // draw the x grid lines
         this.graph.append('svg:g')
             .attr('class', 'grid')
-            .attr('transform', 'translate(0,' + this.height() + ')')
-            .call(this.makeXAxis().tickSize(-this.height(), 0).tickFormat(''));
+            .attr('transform', 'translate(0,' + this.height + ')')
+            .call(this.makeXAxis);
 
         // draw upper axis as border
         this.graph.append('svg:g')
             .attr('class', 'x axis')
-            .call(d3.svg.axis()
-                .scale(this.xScale)
-                .orient('top')
-                .tickSize(0)
-                .tickFormat(''));
+            .call(d3.axisTop(this.xScale).ticks(0).tickSize(0));
 
         this.graph.append('text') // text label for the x axis
-            .attr('x', this.width() / 2)
-            .attr('y', this.height() + this.margin.bottom - 5)
+            .attr('x', this.width / 2)
+            .attr('y', this.height + this.margin.bottom - 5)
             .style('text-anchor', 'middle')
             .text(this.getXAxisLabel());
     }
 
     private drawYAxis() {
-        const range = d3.extent<LocatedTimeValueEntry>(this.internalValues, (d) => d.value);
+        const range = d3.extent<LocatedTimeValueEntry, number>(this.internalValues, (datum, index, array) => {
+            return datum.value;
+        });
         const rangeOffset = (range[1] - range[0]) * 0.10;
-        this.yScale = d3.scale.linear()
+        this.yScale = d3.scaleLinear()
             .domain([range[0] - rangeOffset, range[1] + rangeOffset])
-            .range([this.height(), 0]);
+            .range([this.height, 0]);
 
-        this.yAxisGen = d3.svg.axis()
-            .scale(this.yScale)
-            .orient('left')
-            .ticks(5);
+        this.yAxisGen = d3.axisLeft(this.yScale).ticks(5);
 
         // draw y axis
         this.graph.append('svg:g')
@@ -341,7 +334,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         this.graph.append('text')
             .attr('transform', 'rotate(-90)')
             .attr('y', 0 - this.margin.left - this.maxLabelwidth)
-            .attr('x', 0 - (this.height() / 2))
+            .attr('x', 0 - (this.height / 2))
             .attr('dy', '1em')
             .style('text-anchor', 'middle')
             .text(this.dataset.uom);
@@ -349,17 +342,13 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         // draw the y grid lines
         this.graph.append('svg:g')
             .attr('class', 'grid')
-            .call(this.makeYAxis().tickSize(-this.width(), 0).tickFormat(''));
+            .call(this.makeYAxis);
 
         // draw right axis as border
         this.graph.append('svg:g')
             .attr('class', 'y axis')
-            .attr('transform', 'translate(' + this.width() + ', 0)')
-            .call(d3.svg.axis()
-                .scale(this.yScale)
-                .orient('right')
-                .tickSize(0)
-                .tickFormat(''));
+            .attr('transform', 'translate(' + this.width + ', 0)')
+            .call(d3.axisRight(this.yScale).tickSize(0).ticks(0));
     }
 
     private drawLineChart() {
@@ -378,14 +367,12 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             this.drawValueLine(this.internalValues);
         }
 
-        this.background = this.graph.append('svg:rect')
-            .attr({
-                'width': this.width(),
-                'height': this.height(),
-                'fill': 'none',
-                'stroke': 'none',
-                'pointer-events': 'all'
-            })
+        this.background = this.graph.append('rect')
+            .attr('width', this.width)
+            .attr('height', this.height)
+            .attr('fill', 'none')
+            .attr('stroke', 'none')
+            .attr('pointer-events', 'all')
             .on('mousemove.focus', this.mousemoveHandler)
             .on('mouseout.focus', this.mouseoutHandler)
             .on('mousedown.drag', this.dragStartHandler)
@@ -464,7 +451,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
 
             this.dragRect = this.dragRectG.append('rect')
                 .attr('width', x2 - x1)
-                .attr('height', this.height())
+                .attr('height', this.height)
                 .attr('x', x1)
                 .attr('class', 'mouse-drag')
                 .style('pointer-events', 'none');
@@ -484,16 +471,15 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
 
     private getItemForX(x: number, data: Array<DataEntry>) {
         const index = this.xScale.invert(x);
-        const bisectDate = d3.bisector((d) => {
+        const bisectDate = d3.bisector((d: DataEntry) => {
             switch (this.axisType) {
                 case 'distance':
-                    // TODO fix
-                    return d['dist'];
+                    return d.dist;
                 case 'time':
-                    return d['timestamp'];
+                    return d.timestamp;
                 case 'ticks':
                 default:
-                    return d['tick'];
+                    return d.tick;
             }
         }).left;
         return bisectDate(this.internalValues, index);
@@ -509,7 +495,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         this.highlightFocus.attr('x1', item.xDiagCoord)
             .attr('y1', 0)
             .attr('x2', item.xDiagCoord)
-            .attr('y2', this.height())
+            .attr('y2', this.height)
             .classed('hidden', false);
 
         const alt = item.value;
@@ -525,13 +511,13 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .text(moment(item.timestamp).format('DD.MM.YY HH:mm'));
         if (this.axisType === 'distance') {
             this.focuslabelY
-                .attr('y', this.height() - 5)
+                .attr('y', this.height - 5)
                 .attr('x', item.xDiagCoord + 2)
                 .text(item.dist + ' km');
         }
         if (this.axisType === 'ticks') {
             this.focuslabelY
-                .attr('y', this.height() - 5)
+                .attr('y', this.height - 5)
                 .attr('x', item.xDiagCoord + 2)
                 .text('Measurement: ' + item.tick);
         }
