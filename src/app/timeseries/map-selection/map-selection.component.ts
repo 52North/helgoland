@@ -2,7 +2,10 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { Dataset, PlatformTypes, ValueTypes } from './../../toolbox/model/api/dataset';
+import { PlatformTypes } from '../../toolbox/model/api/dataset/platformTypes';
+import { ValueTypes } from '../../toolbox/model/api/dataset/valueTypes';
+import { Dataset } from './../../toolbox/model/api/dataset/dataset';
+import { ParameterFilter } from './../../toolbox/model/api/parameterFilter';
 import { Phenomenon } from './../../toolbox/model/api/phenomenon';
 import { Platform } from './../../toolbox/model/api/platform';
 import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
@@ -15,12 +18,12 @@ import { TimeseriesService } from './../services/timeseries.service';
 })
 export class TimeseriesMapSelectionComponent implements OnInit {
 
-  public providerUrl;
-  public stationFilter;
-  public phenomenonFilter;
-  public selectedPhenomenonId;
+  public providerUrl: string;
+  public stationFilter: ParameterFilter;
+  public phenomenonFilter: ParameterFilter;
+  public selectedPhenomenonId: string;
   public cluster = true;
-  public platform;
+  public platform: Platform;
   public datasetSelections: Array<Dataset> = [];
 
   private defaultPlatformTypes = PlatformTypes[PlatformTypes.stationary];

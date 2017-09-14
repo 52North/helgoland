@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 import { Parameter } from './../../../model/api/parameter';
+import { ParameterFilter } from './../../../model/api/parameterFilter';
 import { Filter } from './../../../model/internal/filter';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 
@@ -93,7 +94,7 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
         this.loading--;
     }
 
-    private setItems(res: Array<FilteredParameter>, prevfilter: Filter, url: string, serviceID: string): void {
+    private setItems(res: Array<FilteredParameter>, prevfilter: ParameterFilter, url: string, serviceID: string): void {
         this.loading--;
         res.forEach((entry) => {
             const filter: Filter = {

@@ -1,8 +1,10 @@
-import { Observable, Observer } from 'rxjs/Rx';
-import { Settings } from './../../../services/settings/settings.service';
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as $ from 'jquery';
+import { Injectable } from '@angular/core';
+import { Observable, Observer } from 'rxjs/Rx';
+
+import { Settings } from './../../../services/settings/settings.service';
+
+declare var $: any;
 
 @Injectable()
 export class LabelMapperService {

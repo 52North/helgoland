@@ -25,12 +25,12 @@ export class LocateService {
 
     public startLocate(id: string) {
         const map = this.mapCache.getMap(id);
-        map.on(LOCATION_FOUND_EVENT, (evt) => {
+        map.on(LOCATION_FOUND_EVENT, (evt: L.LocationEvent) => {
             this.removeMarker(map);
             const marker = L.marker(evt.latlng, {
                 icon
             }).addTo(map);
-            marker['id'] = LOCATED_MARKER_ID;
+            marker.options.title = LOCATED_MARKER_ID;
         });
         map.locate({
             watch: true,
@@ -45,14 +45,12 @@ export class LocateService {
         this.removeMarker(map);
     }
 
-    private removeMarker(map: any) {
-        let layer;
+    private removeMarker(map: L.Map) {
         map.eachLayer((entry) => {
-            if (entry.id === LOCATED_MARKER_ID) {
-                layer = entry;
+            if (entry instanceof L.Marker && entry.options.title === LOCATED_MARKER_ID) {
+                map.removeLayer(entry);
             }
         });
-        if (layer) { map.removeLayer(layer); }
     }
 
 }

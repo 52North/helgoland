@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
-import { IDataset } from './../../../model/api/dataset';
+import { IDataset } from './../../../model/api/dataset/idataset';
 import { ParameterFilter } from './../../../model/api/parameterFilter';
 import { FilteredProvider } from './../../../model/internal/provider';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
@@ -22,7 +22,7 @@ export class ListSelectorComponent implements OnChanges {
     public parameters: Array<ListSelectorParameter>;
 
     @Input()
-    public filter;
+    public filter: ParameterFilter;
 
     @Input()
     public providerList: Array<FilteredProvider>;
@@ -33,7 +33,7 @@ export class ListSelectorComponent implements OnChanges {
     @Output()
     public onDatasetSelection: EventEmitter<Array<IDataset>> = new EventEmitter<Array<IDataset>>();
 
-    public activePanel;
+    public activePanel: string;
 
     constructor(
         private listSelectorService: ListSelectorService,
@@ -43,23 +43,23 @@ export class ListSelectorComponent implements OnChanges {
 
     public ngOnChanges(changes: SimpleChanges) {
         if (changes.providerList && changes.providerList.currentValue) {
-            if (this.selectorId && this.listSelectorService[this.selectorId]
-                && this.isEqual(this.providerList, this.listSelectorService['providerList'])) {
-                this.parameters = this.listSelectorService[this.selectorId];
+            if (this.selectorId && this.listSelectorService.cache.has(this.selectorId)
+                && this.isEqual(this.providerList, this.listSelectorService.providerList)) {
+                this.parameters = this.listSelectorService.cache.get(this.selectorId);
                 const idx = this.parameters.findIndex((entry) => {
                     return entry.isDisabled;
                 }) - 1;
                 this.activePanel = this.selectorId + '-' + idx;
             } else {
                 if (this.selectorId) {
-                    this.listSelectorService[this.selectorId] = this.parameters;
+                    this.listSelectorService.cache.set(this.selectorId, this.parameters);
                 }
                 // create filterlist for first parameter entry
                 this.parameters[0].filterList = this.providerList.map((entry) => {
                     entry.filter = this.filter;
                     return entry;
                 });
-                this.listSelectorService['providerList'] = this.providerList;
+                this.listSelectorService.providerList = this.providerList;
                 // open first tab
                 this.activePanel = this.selectorId + '-0';
                 this.parameters[0].isDisabled = false;

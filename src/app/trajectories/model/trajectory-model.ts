@@ -1,5 +1,5 @@
 import { LocatedTimeValueEntry } from './../../toolbox/model/api/data';
-import { Dataset } from './../../toolbox/model/api/dataset';
+import { Dataset } from './../../toolbox/model/api/dataset/dataset';
 
 export interface TrajectoryModel {
     trajectory?: Dataset;

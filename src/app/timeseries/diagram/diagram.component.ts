@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Data, IDataEntry } from './../../toolbox/model/api/data';
-import { IDataset } from './../../toolbox/model/api/dataset';
+import { IDataset } from './../../toolbox/model/api/dataset/idataset';
+import { PlotOptions } from './../../toolbox/model/internal/flot/plotOptions';
 import { Timespan } from './../../toolbox/model/internal/timespan';
 import { Time } from './../../toolbox/services/time/time.service';
 import { TimeseriesService } from './../services/timeseries.service';
@@ -19,7 +20,7 @@ export class TimeseriesDiagramComponent implements OnInit {
   public data: Array<Data<IDataEntry>>;
   public timespan: Timespan;
 
-  public diagramOptions = {
+  public diagramOptions: PlotOptions = {
     crosshair: {
       mode: 'x'
     },
@@ -38,9 +39,9 @@ export class TimeseriesDiagramComponent implements OnInit {
       mode: null
     },
     series: {
-      downsample: {
-        threshold: 0
-      },
+      // downsample: {
+      //   threshold: 0
+      // },
       lines: {
         fill: false,
         show: true
@@ -83,11 +84,11 @@ export class TimeseriesDiagramComponent implements OnInit {
     },
   };
 
-  public overviewOptions = {
+  public overviewOptions: PlotOptions = {
     series: {
-      downsample: {
-        threshold: 0
-      },
+      // downsample: {
+      //   threshold: 0
+      // },
       points: {
         show: false,
         radius: 1
@@ -118,9 +119,6 @@ export class TimeseriesDiagramComponent implements OnInit {
     },
     legend: {
       show: false
-    },
-    annotation: {
-      hide: true
     },
     touch: {
       pan: '',

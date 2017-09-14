@@ -10,7 +10,7 @@ export enum ApiVersion {
 @Injectable()
 export class ApiMapping {
 
-    private cache = {};
+    private cache: Map<string, ApiVersion> = new Map<string, ApiVersion>();
 
     constructor(
         private http: HttpClient
@@ -18,8 +18,8 @@ export class ApiMapping {
 
     public getApiVersion(apiUrl: string): Observable<ApiVersion> {
         return new Observable<ApiVersion>((observer: Observer<ApiVersion>) => {
-            if (this.cache[apiUrl]) {
-                this.confirmVersion(observer, this.cache[apiUrl]);
+            if (this.cache.has(apiUrl)) {
+                this.confirmVersion(observer, this.cache.get(apiUrl));
             } else {
                 this.http.get<Array<any>>(apiUrl).subscribe((result) => {
                     let version = ApiVersion.V1;
@@ -28,6 +28,7 @@ export class ApiMapping {
                             version = ApiVersion.V2;
                         }
                     });
+                    this.cache.set(apiUrl, version);
                     this.confirmVersion(observer, version);
                 });
             }

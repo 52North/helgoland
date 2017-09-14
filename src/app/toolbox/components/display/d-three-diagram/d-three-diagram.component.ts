@@ -1,7 +1,7 @@
-import { Dataset } from './../../../model/api/dataset';
 import {
     AfterViewInit,
     Component,
+    ElementRef,
     EventEmitter,
     HostListener,
     Input,
@@ -16,6 +16,7 @@ import * as L from 'leaflet';
 import * as moment from 'moment';
 
 import { LocatedTimeValueEntry } from './../../../model/api/data';
+import { Dataset } from './../../../model/api/dataset/dataset';
 
 export class SelectionRange {
     from: number;
@@ -61,31 +62,30 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         left: 50
     };
     private internalValues: Array<DataEntry> = [];
-    private background;
-    private pathClass = 'path';
-    private xScale;
-    private yScale;
-    private focusG;
-    private highlightFocus;
-    private focuslabelValue;
-    private focuslabelTime;
-    private focuslabelY;
-    private dragging;
-    private dragStart;
-    private dragCurrent;
-    private dragRect;
-    private dragRectG;
+    private background: any;
+    private xScale: d3.ScaleLinear<number, number>;
+    private yScale: d3.ScaleLinear<number, number>;
+    private focusG: any;
+    private highlightFocus: any;
+    private focuslabelValue: any;
+    private focuslabelTime: any;
+    private focuslabelY: any;
+    private dragging: boolean;
+    private dragStart: [number, number];
+    private dragCurrent: [number, number];
+    private dragRect: any;
+    private dragRectG: any;
     private maxLabelwidth = 0;
-    private rawSvg;
-    private graph;
-    private xAxisGen;
-    private yAxisGen;
-    private lineFun;
-    private area;
+    private rawSvg: any;
+    private graph: any;
+    private xAxisGen: d3.Axis<number | { valueOf(): number; }>;
+    private yAxisGen: d3.Axis<number | { valueOf(): number; }>;
+    private lineFun: d3.Line<DataEntry>;
+    private area: d3.Area<DataEntry>;
     private height: number;
     private width: number;
 
-    @ViewChild('dthree') d3Elem;
+    @ViewChild('dthree') d3Elem: ElementRef;
 
     public ngAfterViewInit() {
 
@@ -98,15 +98,15 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .append('g')
             .attr('transform', 'translate(' + (this.margin.left + this.maxLabelwidth) + ',' + this.margin.top + ')');
 
-        this.height = this.rawSvg.node().clientHeight - this.margin.top - this.margin.bottom;
-        this.width = this.rawSvg.node().clientWidth - this.margin.left - this.margin.right - this.maxLabelwidth;
+        this.height = this.calculateHeight();
+        this.width = this.calculateWidth();
 
-        this.lineFun = d3.line()
+        this.lineFun = d3.line<DataEntry>()
             .x(this.calcXValue)
             .y(this.calcYValue)
             .curve(d3.curveLinear);
 
-        this.area = d3.area()
+        this.area = d3.area<DataEntry>()
             .x(this.calcXValue)
             .y0(this.height)
             .y1(this.calcYValue)
@@ -115,11 +115,18 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         this.drawLineChart();
     }
 
-    private calcYValue = (d) => {
+    @HostListener('window:resize', ['$event'])
+    onResize() {
+        this.height = this.calculateHeight();
+        this.width = this.calculateWidth();
+        this.drawLineChart();
+    }
+
+    private calcYValue = (d: DataEntry) => {
         return this.yScale(d.value);
     }
 
-    private calcXValue = (d, i) => {
+    private calcXValue = (d: DataEntry, i: number) => {
         const xDiagCoord = this.xScale(this.getXValue(d));
         d.xDiagCoord = xDiagCoord;
         return xDiagCoord;
@@ -224,11 +231,6 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
         }
     }
 
-    @HostListener('window:resize', ['$event'])
-    onResize() {
-        this.drawLineChart();
-    }
-
     private getXValue(data: DataEntry) {
         switch (this.axisType) {
             case 'distance':
@@ -272,9 +274,10 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .domain(this.getXDomain(this.internalValues))
             .range([0, this.width]);
         this.xAxisGen = d3.axisBottom(this.xScale).ticks(5);
+
         if (this.axisType === 'time') {
             this.xAxisGen.tickFormat((d) => {
-                return d3.timeFormat('%d.%m.%Y %H:%M:%S')(new Date(d));
+                return d3.timeFormat('%d.%m.%Y %H:%M:%S')(new Date(d.valueOf()));
             });
         }
 
@@ -319,16 +322,17 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .call(this.yAxisGen);
 
         // calculate
-        const labels = d3.select('.y.axis').selectAll('text');
-        if (labels instanceof Array && labels.length === 1) {
-            this.maxLabelwidth = 0;
-            labels[0].forEach((elem) => {
-                if (elem.getBBox().width > this.maxLabelwidth) {
-                    this.maxLabelwidth = elem.getBBox().width;
-                }
-            });
-            this.graph.attr('transform', 'translate(' + (this.margin.left + this.maxLabelwidth) + ',' + this.margin.top + ')');
-        }
+        // const labels = d3.select('.y.axis').selectAll('text');
+        // if (labels instanceof Array && labels.length === 1) {
+        //     this.maxLabelwidth = 0;
+        //     labels[0].forEach((elem) => {
+        //         debugger;
+        //         if (elem.getBBox().width > this.maxLabelwidth) {
+        //             this.maxLabelwidth = elem.getBBox().width;
+        //         }
+        //     });
+        //     this.graph.attr('transform', 'translate(' + (this.margin.left + this.maxLabelwidth) + ',' + this.margin.top + ')');
+        // }
 
         // draw y axis label
         this.graph.append('text')
@@ -521,6 +525,14 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
                 .attr('x', item.xDiagCoord + 2)
                 .text('Measurement: ' + item.tick);
         }
+    }
+
+    private calculateHeight(): number {
+        return this.rawSvg.node().clientHeight - this.margin.top - this.margin.bottom;
+    }
+
+    private calculateWidth(): number {
+        return this.rawSvg.node().clientWidth - this.margin.left - this.margin.right - this.maxLabelwidth;
     }
 }
 

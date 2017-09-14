@@ -1,4 +1,4 @@
-import { ParameterConstellation } from './dataset';
+import { ParameterConstellation } from './dataset/parameterConstellation';
 import { Parameter } from './parameter';
 import { Timeseries } from './timeseries';
 

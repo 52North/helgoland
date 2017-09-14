@@ -2,6 +2,7 @@ import {
     AfterViewInit,
     Component,
     DoCheck,
+    ElementRef,
     EventEmitter,
     HostListener,
     Input,
@@ -11,8 +12,11 @@ import {
 } from '@angular/core';
 import * as moment from 'moment';
 
+import { Plot } from '../../../model/internal/flot/plot';
 import { Data } from './../../../model/api/data';
-import { IDataset } from './../../../model/api/dataset';
+import { IDataset } from './../../../model/api/dataset/idataset';
+import { DataSeries } from './../../../model/internal/flot/dataSeries';
+import { PlotOptions } from './../../../model/internal/flot/plotOptions';
 import { Timespan } from './../../../model/internal/timespan';
 
 declare var $: any;
@@ -27,29 +31,34 @@ const equal = require('deep-equal');
 })
 export class FlotDiagramComponent implements AfterViewInit, DoCheck {
 
-    @ViewChild('flot') flotElem;
+    @ViewChild('flot') flotElem: ElementRef;
 
     @Input()
     public datasets: Array<IDataset>;
 
+    private oldDatasets: Array<IDataset>;
+
     @Input()
-    public data: Array<Data<[2]>>;
+    public data: Array<Data<[number, number]>>;
+
+    private oldData: Array<Data<[number, number]>>;
 
     @Input()
     public timespan: Timespan;
 
     @Input()
-    public options;
+    public options: PlotOptions;
+
+    private oldOptions: PlotOptions;
 
     @Output()
     public onTimespanChanged: EventEmitter<Timespan> = new EventEmitter();
 
-    private oldDatasets;
-    private oldOptions;
-    private oldData;
-    private plotarea;
-    private preparedData;
-    private plotOptions;
+    private plotarea: any;
+
+    private preparedData: Array<DataSeries>;
+
+    private plotOptions: PlotOptions;
 
     @HostListener('window:resize', ['$event'])
     onResize() {
@@ -59,7 +68,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
     public ngAfterViewInit() {
         this.plotarea = this.flotElem.nativeElement;
 
-        $(this.plotarea).bind('plotzoom', (evt, plot) => {
+        $(this.plotarea).bind('plotzoom', (evt: any, plot: any) => {
             const xaxis = plot.getXAxes()[0];
             const from = moment(xaxis.min).toDate();
             const till = moment(xaxis.max).toDate();
@@ -67,12 +76,12 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
         });
 
         // plot pan ended event
-        $(this.plotarea).bind('plotpanEnd', (evt, plot) => {
+        $(this.plotarea).bind('plotpanEnd', (evt: any, plot: any) => {
             const xaxis = plot.getXAxes()[0];
             this.changeTime(moment(xaxis.min).toDate(), moment(xaxis.max).toDate());
         });
 
-        $(this.plotarea).bind('touchended', (evt, plot) => {
+        $(this.plotarea).bind('touchended', (evt: any, plot: any) => {
             const xaxis = plot.xaxis;
             const from = moment(xaxis.from).toDate();
             const till = moment(xaxis.to).toDate();
@@ -80,7 +89,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
         });
 
         // plot selected event
-        $(this.plotarea).bind('plotselected', (evt, ranges) => {
+        $(this.plotarea).bind('plotselected', (evt: any, ranges: any) => {
             this.changeTime(moment(ranges.xaxis.from).toDate(), moment(ranges.xaxis.to).toDate());
         });
     }
@@ -113,7 +122,8 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
     private plotChart() {
         this.updateData();
         if (this.preparedData && this.preparedData.length !== 0) {
-            const plotObj = $.plot(this.plotarea, this.preparedData, this.plotOptions);
+            console.log('plotchart');
+            const plotObj: Plot = $.plot(this.plotarea, this.preparedData, this.plotOptions);
             this.createPlotAnnotation(this.plotarea, this.plotOptions);
             this.createYAxis(plotObj);
             this.setSelection(plotObj, this.plotOptions);
@@ -171,7 +181,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
         return dataset.parameters.phenomenon.label + ' [' + dataset.uom + ']';
     }
 
-    private setSelection(plot: any, options: any) {
+    private setSelection(plot: Plot, options: PlotOptions) {
         if (plot && options.selection.range) {
             plot.setSelection({
                 xaxis: {
@@ -182,19 +192,19 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
         }
     }
 
-    private createPlotAnnotation(plotArea: any, options: any) {
-        if (!options.annotation || !options.annotation.hide) {
+    private createPlotAnnotation(plotArea: any, options: PlotOptions) {
+        if (options.annotation) {
             // plotArea.append('<div class="chart-annotation">Daten ohne Gewähr</div>');
         }
     }
 
-    private createYAxis(plot: any) {
+    private createYAxis(plot: Plot) {
         if (plot.getOptions().yaxis.show) {
             // remove old labels
             $(plot.getPlaceholder()).find('.yaxisLabel').remove();
 
             // createYAxis
-            $.each(plot.getAxes(), (i, axis) => {
+            $.each(plot.getAxes(), (i: number, axis: any) => {
                 if (!axis.show) { return; }
                 const box = axis.box;
                 if (axis.direction === 'y') {
@@ -206,17 +216,17 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                         + box.left + 'px; top:' + box.top + 'px; width:' + box.width + 'px; height:' + box.height + 'px"></div>')
                         .data('axis.n', axis.n)
                         .appendTo(plot.getPlaceholder())
-                        .click((event) => {
+                        .click((event: any) => {
                             const target = $(event.currentTarget);
                             let selected = false;
-                            $.each($('.axisTarget'), (index, elem) => {
+                            $.each($('.axisTarget'), (index: number, elem: any) => {
                                 elem = $(elem);
                                 if (target.data('axis.n') === elem.data('axis.n')) {
                                     selected = elem.hasClass('selected');
                                     return false; // break loop
                                 }
                             });
-                            $.each(plot.getData(), (index, elem) => {
+                            $.each(plot.getData(), (index: number, elem: any) => {
                                 const dataset = this.datasets.find((entry) => entry.id === elem.id && entry.url === elem.url);
                                 if (target.data('axis.n') === elem.yaxis.n) {
                                     elem.selected = !selected;
@@ -234,7 +244,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                         .appendTo(plot.getPlaceholder())
                         .data('axis.n', axis.n);
                     if (axis.options.tsColors) {
-                        $.each(axis.options.tsColors, (idx, color) => {
+                        $.each(axis.options.tsColors, (idx: number, color: string) => {
                             $('<span>').html('&nbsp;&#x25CF;').css('color', color).addClass('labelColorMarker').appendTo(yaxisLabel);
                         });
                     }
@@ -243,10 +253,10 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
             });
 
             // set selection to axis
-            plot.getData().forEach((elem) => {
+            plot.getData().forEach((elem: any) => {
                 if (elem.selected) {
                     $('.flot-y' + elem.yaxis.n + '-axis').addClass('selected');
-                    $.each($('.axisTarget'), (i, entry) => {
+                    $.each($('.axisTarget'), (i: number, entry: Element) => {
                         if ($(entry).data('axis.n') === elem.yaxis.n) {
                             if (!$(entry).hasClass('selected')) {
                                 $(entry).addClass('selected');
@@ -254,7 +264,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                             }
                         }
                     });
-                    $.each($('.axisTargetStyle'), (i, entry) => {
+                    $.each($('.axisTargetStyle'), (i: number, entry: Element) => {
                         if ($(entry).data('axis.n') === elem.yaxis.n) {
                             if (!$(entry).hasClass('selected')) {
                                 $(entry).addClass('selected');
@@ -262,7 +272,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                             }
                         }
                     });
-                    $.each($('.axisLabel.yaxisLabel'), (i, entry) => {
+                    $.each($('.axisLabel.yaxisLabel'), (i: number, entry: Element) => {
                         if ($(entry).data('axis.n') === elem.yaxis.n) {
                             if (!$(entry).hasClass('selected')) {
                                 $(entry).addClass('selected');

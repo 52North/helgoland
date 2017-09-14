@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { deserialize } from 'class-transformer';
 
 import { LocatedTimeValueEntry } from './../../toolbox/model/api/data';
-import { Dataset } from './../../toolbox/model/api/dataset';
+import { Dataset } from './../../toolbox/model/api/dataset/dataset';
 import { Timespan } from './../../toolbox/model/internal/timespan';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';

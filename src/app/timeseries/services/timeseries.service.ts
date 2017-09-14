@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { deserializeArray } from 'class-transformer';
 
 import { Data } from './../../toolbox/model/api/data';
-import { Dataset, IDataset } from './../../toolbox/model/api/dataset';
+import { Dataset } from './../../toolbox/model/api/dataset/dataset';
+import { IDataset } from './../../toolbox/model/api/dataset/idataset';
 import { Timeseries } from './../../toolbox/model/api/timeseries';
 import { Timespan } from './../../toolbox/model/internal/timespan';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
@@ -58,7 +59,7 @@ export class TimeseriesService {
             entry.styles.loading = true;
             this.data[idx] = null;
             const buffer = this.timeSrvc.getBufferedTimespan(timespan, 0.2);
-            this.api.getTsData<[2]>(entry.id, entry.url, buffer, { format: 'flot' }).subscribe((result) => {
+            this.api.getTsData<[2]>(entry.id, entry.url, buffer, { format: 'flot', generalize: false }).subscribe((result) => {
                 entry.hasData = result.values && result.values.length > 0;
                 this.data[idx] = result;
                 entry.styles.loading = false;

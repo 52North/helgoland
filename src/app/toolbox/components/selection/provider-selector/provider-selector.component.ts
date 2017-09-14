@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { ParameterFilter } from './../../../model/api/parameterFilter';
 import { Service } from './../../../model/api/service';
 import { BlacklistedService } from './../../../model/config/config';
 import { ProviderSelectorService } from './provider-selector.service';
@@ -24,10 +25,10 @@ export class ProviderSelectorComponent implements OnInit {
     public supportStations: boolean;
 
     @Input()
-    public selectedProvider;
+    public selectedProvider: Service;
 
     @Input()
-    public filter;
+    public filter: ParameterFilter;
 
     @Output()
     public onProviderSelected: EventEmitter<Service> = new EventEmitter<Service>();

@@ -1,3 +1,4 @@
+import { ParameterFilter } from './../../../model/api/parameterFilter';
 import {
     AfterViewInit,
     ChangeDetectorRef,
@@ -28,21 +29,21 @@ export class StationMapSelectorComponent implements OnChanges, AfterViewInit {
     public serviceUrl: string;
 
     @Input()
-    public filter;
+    public filter: ParameterFilter;
 
     @Input()
-    public mapLayers;
+    public mapLayers: any; // TODO implement input mapLayers
 
     @Input()
-    public cluster;
+    public cluster: boolean; // TODO implement clustering
 
     @Output()
     public onStationSelected: EventEmitter<Station> = new EventEmitter<Station>();
 
     public loading: boolean;
     public noResultsFound: boolean;
-    private map;
-    private layer;
+    private map: L.Map;
+    private markerClusterGroup: L.FeatureGroup;
 
     private icon = L.icon({
         iconUrl: require('leaflet/dist/images/marker-icon.png'),
@@ -79,10 +80,10 @@ export class StationMapSelectorComponent implements OnChanges, AfterViewInit {
     public drawMarker() {
         this.noResultsFound = false;
         this.loading = true;
-        if (this.layer) { this.map.removeLayer(this.layer); }
+        if (this.markerClusterGroup) { this.map.removeLayer(this.markerClusterGroup); }
         this.apiInterface.getStations(this.serviceUrl, this.filter)
             .subscribe((res) => {
-                this.layer = L.markerClusterGroup({
+                this.markerClusterGroup = L.markerClusterGroup({
                     animate: true
                 });
                 if (res instanceof Array && res.length > 0) {
@@ -93,10 +94,10 @@ export class StationMapSelectorComponent implements OnChanges, AfterViewInit {
                         marker.on('click', () => {
                             this.onStationSelected.emit(entry);
                         });
-                        this.layer.addLayer(marker);
+                        this.markerClusterGroup.addLayer(marker);
                     });
-                    this.layer.addTo(this.map);
-                    this.map.fitBounds(this.layer.getBounds());
+                    this.markerClusterGroup.addTo(this.map);
+                    this.map.fitBounds(this.markerClusterGroup.getBounds());
                 } else {
                     this.noResultsFound = true;
                 }

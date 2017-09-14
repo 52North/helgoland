@@ -1,6 +1,9 @@
+import { FirstLastValue } from './dataset/firstLastValue';
+import { IDataset } from './dataset/idataset';
+import { ParameterConstellation } from './dataset/parameterConstellation';
+import { Styles } from './dataset/styles';
 import { Parameter } from './parameter';
 import { Station } from './station';
-import { FirstLastValue, IDataset, Styles, ParameterConstellation } from './dataset';
 
 export class Timeseries extends Parameter implements IDataset {
     url: string;

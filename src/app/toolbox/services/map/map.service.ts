@@ -3,17 +3,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MapCache {
 
-    private mapCache = {};
+    private mapCache: Map<string, any> = new Map<string, any>();
 
     constructor() {
     }
 
-    public getMap(id: string) {
-        return this.mapCache[id];
+    public getMap(id: string): L.Map {
+        return this.mapCache.get(id);
     }
 
-    public setMap(id: string, map: any) {
-        this.mapCache[id] = map;
+    public setMap(id: string, map: L.Map) {
+        this.mapCache.set(id, map);
     }
 
 }

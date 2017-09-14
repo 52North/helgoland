@@ -8,7 +8,7 @@ import { Observable, Observer } from 'rxjs/Rx';
 
 import { Category } from './../../model/api/category';
 import { Data } from './../../model/api/data';
-import { Dataset } from './../../model/api/dataset';
+import { Dataset } from './../../model/api/dataset/dataset';
 import { Feature } from './../../model/api/feature';
 import { Offering } from './../../model/api/offering';
 import { DataParameterFilter, ParameterFilter } from './../../model/api/parameterFilter';
@@ -95,7 +95,7 @@ export class ApiInterface implements ApiV2 {
 
     public getTsData<T>(id: string, apiUrl: string, timespan: Timespan, params: DataParameterFilter = {}): Observable<Data<T>> {
         const url = this.createRequestUrl(apiUrl, 'timeseries', id) + '/getData';
-        params['timespan'] = this.createRequestTimespan(timespan);
+        params.timespan = this.createRequestTimespan(timespan);
         return this.requestApi<Data<T>>(url, params);
     }
 
@@ -170,9 +170,9 @@ export class ApiInterface implements ApiV2 {
         return this.requestApi<Dataset>(url, params).map((res) => this.prepareDataset(res, apiUrl));
     }
 
-    public getData<T>(id: string, apiUrl: string, timespan: Timespan, params: ParameterFilter = {}): Observable<Data<T>> {
+    public getData<T>(id: string, apiUrl: string, timespan: Timespan, params: DataParameterFilter = {}): Observable<Data<T>> {
         const url = this.createRequestUrl(apiUrl, 'datasets', id) + '/data';
-        params['timespan'] = this.createRequestTimespan(timespan);
+        params.timespan = this.createRequestTimespan(timespan);
         return this.requestApi<Data<T>>(url, params);
     }
 
@@ -205,12 +205,12 @@ export class ApiInterface implements ApiV2 {
     }
 
 
-    private prepareDataset(res: Dataset, apiUrl: string) {
-        res.url = apiUrl;
-        if (res['seriesParameters']) {
-            res.parameters = res['seriesParameters'];
-            delete res['seriesParameters'];
+    private prepareDataset(dataset: Dataset, apiUrl: string) {
+        dataset.url = apiUrl;
+        if (dataset.seriesParameters) {
+            dataset.parameters = dataset.seriesParameters;
+            delete dataset.seriesParameters;
         }
-        return res;
+        return dataset;
     }
 }

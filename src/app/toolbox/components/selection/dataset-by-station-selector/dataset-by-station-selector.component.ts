@@ -1,13 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Dataset, IDataset } from './../../../model/api/dataset';
 import { Station } from './../../../model/api/station';
+import { Timeseries } from './../../../model/api/timeseries';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 
-const LOADING_PARAM = 'loading';
-const SELECTED_PARAM = 'selected';
-const ERROR_PARAM = 'error';
-const LOADED_PARAM = 'loaded';
+class ExtendedTimeseries extends Timeseries {
+    selected: boolean;
+}
 
 @Component({
     selector: 'n52-dataset-by-station-selector',
@@ -22,8 +21,15 @@ export class DatasetByStationSelectorComponent implements OnInit {
     @Input()
     public url: string;
 
+    @Input()
+    public defaultSelected = false;
+
     @Output()
-    public onSelectionChanged: EventEmitter<Array<Dataset>> = new EventEmitter<Array<Dataset>>();
+    public onSelectionChanged: EventEmitter<Array<Timeseries>> = new EventEmitter<Array<Timeseries>>();
+
+    public timeseriesList: Array<ExtendedTimeseries> = new Array<ExtendedTimeseries>();
+
+    public counter: number;
 
     constructor(
         private apiInterface: ApiInterface
@@ -33,38 +39,32 @@ export class DatasetByStationSelectorComponent implements OnInit {
         this.apiInterface.getStation(this.station.properties.id, this.url)
             .subscribe((station) => {
                 this.station = station;
+                this.counter = 0;
                 for (const id in this.station.properties.timeseries) {
                     if (this.station.properties.timeseries.hasOwnProperty(id)) {
-                        this.station.properties.timeseries[id][LOADING_PARAM] = true;
-                        this.station.properties.timeseries[id][SELECTED_PARAM] = true;
+                        this.counter++;
                         this.apiInterface.getSingleTimeseries(id, this.url)
                             .subscribe((result) => {
-                                this.station.properties.timeseries[id][LOADED_PARAM] = result;
-                            }, (error) => {
-                                this.station.properties.timeseries[id][ERROR_PARAM] = true;
-                            }, () => {
-                                this.station.properties.timeseries[id][LOADING_PARAM] = false;
+                                const ts = result as ExtendedTimeseries;
+                                ts.selected = this.defaultSelected;
+                                this.timeseriesList.push(ts);
                                 this.updateSelection();
+                                this.counter--;
+                            }, (error) => {
+                                this.counter--;
                             });
                     }
                 }
             });
     }
 
-    public toggle(timeseries: IDataset) {
-        timeseries['selected'] = !timeseries['selected'];
+    public toggle(timeseries: ExtendedTimeseries) {
+        timeseries.selected = !timeseries.selected;
         this.updateSelection();
     }
 
     private updateSelection() {
-        const selection: Array<Dataset> = [];
-        for (const id in this.station.properties.timeseries) {
-            if (this.station.properties.timeseries.hasOwnProperty(id)) {
-                if (this.station.properties.timeseries[id][SELECTED_PARAM]) {
-                    selection.push(this.station.properties.timeseries[id][LOADED_PARAM]);
-                }
-            }
-        }
+        const selection = this.timeseriesList.filter((entry) => entry.selected);
         this.onSelectionChanged.emit(selection);
     }
 

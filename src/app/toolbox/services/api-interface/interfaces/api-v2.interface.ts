@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Rx';
 
 import { Data } from './../../../model/api/data';
-import { IDataset } from './../../../model/api/dataset';
+import { IDataset } from './../../../model/api/dataset/idataset';
 import { DataParameterFilter, ParameterFilter } from './../../../model/api/parameterFilter';
 import { Platform } from './../../../model/api/platform';
 import { Timespan } from './../../../model/internal/timespan';

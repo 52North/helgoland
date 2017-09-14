@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 import { Parameter } from './../../../model/api/parameter';
+import { ParameterFilter } from './../../../model/api/parameterFilter';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 
 /**
@@ -19,7 +20,7 @@ export class ServiceFilterSelectorComponent implements OnChanges {
     public serviceUrl: string;
 
     @Input()
-    public filter;
+    public filter: ParameterFilter;
 
     @Input()
     public selectionId: string;

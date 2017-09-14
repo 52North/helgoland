@@ -20,16 +20,16 @@ export class GeometryMapViewerComponent implements AfterViewInit, OnChanges {
     @Input()
     public maxMapZoom: number;
 
-    private map;
-    private highlightGeometry;
+    private map: L.Map;
+    private highlightGeometry: L.GeoJSON;
 
-    private defaultStyle: () => {
+    private defaultStyle: L.PathOptions = {
         color: 'red',
         weight: 5,
         opacity: 0.65
     };
 
-    private highlightStyle = {
+    private highlightStyle: L.PathOptions = {
         color: 'blue',
         weight: 10,
         opacity: 1
@@ -70,7 +70,7 @@ export class GeometryMapViewerComponent implements AfterViewInit, OnChanges {
                 return L.circleMarker(latlng, this.highlightStyle);
             }
         });
-        this.highlightGeometry.setStyle(this.highlightGeometry);
+        this.highlightGeometry.setStyle(() => this.highlightStyle);
         this.highlightGeometry.addTo(this.map);
     }
 
@@ -82,7 +82,7 @@ export class GeometryMapViewerComponent implements AfterViewInit, OnChanges {
                 }
             });
 
-            geojson.setStyle(this.defaultStyle);
+            geojson.setStyle(() => this.defaultStyle);
             geojson.addTo(this.map);
 
             this.map.fitBounds(geojson.getBounds());

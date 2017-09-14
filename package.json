@@ -39,6 +39,7 @@
     "@angular/compiler-cli": "^4.2.4",
     "@angular/language-service": "^4.2.4",
     "@types/d3": "^4.10.0",
+    "@types/flot": "0.0.30",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/leaflet": "^1.2.0",

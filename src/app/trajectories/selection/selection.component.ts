@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 
+import { PlatformTypes } from '../../toolbox/model/api/dataset/platformTypes';
+import { ValueTypes } from '../../toolbox/model/api/dataset/valueTypes';
 import { BlacklistedService } from '../../toolbox/model/config/config';
 import { ListSelectorParameter } from './../../toolbox/components/selection/list-selector/list-selector.component';
-import { Dataset, PlatformTypes, ValueTypes } from './../../toolbox/model/api/dataset';
+import { Dataset } from './../../toolbox/model/api/dataset/dataset';
 import { ParameterFilter } from './../../toolbox/model/api/parameterFilter';
 import { Service } from './../../toolbox/model/api/service';
 import { Provider } from './../../toolbox/model/internal/provider';

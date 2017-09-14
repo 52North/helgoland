@@ -11,8 +11,9 @@ import {
     SimpleChanges,
 } from '@angular/core';
 
-import { Data } from './../../../model/api/data';
-import { IDataset } from './../../../model/api/dataset';
+import { Data } from '../../../model/api/data';
+import { IDataset } from './../../../model/api/dataset/idataset';
+import { PlotOptions } from './../../../model/internal/flot/plotOptions';
 import { Timespan } from './../../../model/internal/timespan';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 import { Time } from './../../../services/time/time.service';
@@ -34,7 +35,7 @@ export class FlotOverviewDiagramComponent implements DoCheck, OnInit, OnChanges 
     public rangefactor: number;
 
     @Input()
-    public options;
+    public options: PlotOptions;
 
     @Output()
     public onTimespanChanged: EventEmitter<Timespan> = new EventEmitter();
@@ -84,9 +85,16 @@ export class FlotOverviewDiagramComponent implements DoCheck, OnInit, OnChanges 
         this.data = [];
         this.datasets.forEach((entry, idx) => {
             this.data[idx] = null;
-            this.api.getTsData<[2]>(entry.id, entry.url, this.overviewTimespan, { format: 'flot' }).subscribe((result) => {
-                this.data[idx] = result;
-            });
+            this.api.getTsData<[2]>(
+                entry.id,
+                entry.url,
+                this.overviewTimespan,
+                {
+                    format: 'flot',
+                    generalize: true
+                }).subscribe((result) => {
+                    this.data[idx] = result;
+                });
         });
     }
 }

@@ -1,22 +1,17 @@
-<div class="item" *ngFor="let timeseries of station.properties.timeseries | keys" [ngClass]="{'error': timeseries.value.error}" (click)="toggle(timeseries.value)">
-    <div *ngIf="timeseries.value.loading">
-        <div>
-            {{timeseries.value.phenomenon.label}} loading...
-        </div>
+<div class="item" *ngFor="let timeseries of timeseriesList" (click)="toggle(timeseries)">
+    <div *ngIf="counter">
+        {{counter}} timeseries are loading...
     </div>
-    <div *ngIf="timeseries.value.error">
-        Could not load {{timeseries.value.phenomenon.label}}
-    </div>
-    <div *ngIf="timeseries.value.loaded" [ngClass]="{'selected': timeseries.value.selected}">
+    <div [ngClass]="{'selected': timeseries.selected}">
         <div>
-            {{timeseries.value.phenomenon.label}}
+            {{timeseries.parameters.phenomenon.label}}
         </div>
-        <span>{{timeseries.value.procedure.label}}</span>
-        <span *ngIf="timeseries.value.category.label && timeseries.value.category.label != timeseries.value.phenomenon.label">({{timeseries.value.category.label}})</span>
-        <div class="additionalInfo" *ngIf="timeseries.value.loaded.lastValue">
-            <span>{{timeseries.value.loaded.lastValue.value}}</span>
-            <span>{{timeseries.value.loaded.uom}}</span>
-            <span>({{timeseries.value.loaded.lastValue.timestamp| date: 'dd.MM.yy HH:mm'}})</span>
+        <span>{{timeseries.parameters.procedure.label}}</span>
+        <span *ngIf="timeseries.parameters.category.label && timeseries.parameters.category.label != timeseries.parameters.phenomenon.label">({{timeseries.parameters.category.label}})</span>
+        <div class="additionalInfo" *ngIf="timeseries.lastValue">
+            <span>{{timeseries.lastValue.value}}</span>
+            <span>{{timeseries.uom}}</span>
+            <span>({{timeseries.lastValue.timestamp| date: 'dd.MM.yy HH:mm'}})</span>
         </div>
     </div>
 </div>

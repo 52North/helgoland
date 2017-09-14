@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Dataset, FirstLastValue, Styles } from './../../../model/api/dataset';
+import { Dataset } from './../../../model/api/dataset/dataset';
+import { FirstLastValue } from './../../../model/api/dataset/firstLastValue';
+import { IDataset } from './../../../model/api/dataset/idataset';
+import { Styles } from './../../../model/api/dataset/styles';
 import { Timeseries } from './../../../model/api/timeseries';
 
 @Component({
@@ -11,7 +14,7 @@ import { Timeseries } from './../../../model/api/timeseries';
 export class LegendEntryComponent implements OnInit {
 
     @Input()
-    public dataset;
+    public dataset: IDataset;
 
     @Output()
     public onDeleteDataset: EventEmitter<boolean> = new EventEmitter();
