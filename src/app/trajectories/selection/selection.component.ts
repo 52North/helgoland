@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 
@@ -14,9 +14,10 @@ import { Settings } from './../../toolbox/services/settings/settings.service';
 import { TrajectoriesService } from './../services/trajectories.service';
 
 @Component({
-  selector: 'app-selection',
+  selector: 'trajectories-selection',
   templateUrl: './selection.component.html',
-  styleUrls: ['./selection.component.scss']
+  styleUrls: ['./selection.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TrajectoriesSelectionComponent implements OnInit {
 
@@ -84,7 +85,9 @@ export class TrajectoriesSelectionComponent implements OnInit {
       url: provider.providerUrl
     }];
     this.paramFilter = this.createFilter();
-    this.tabset.select('selectByPlatform');
+    const id = 'selectByPlatform';
+    this.tabset.tabs.find(entry => entry.id === id).disabled = false;
+    this.tabset.select(id);
   }
 
   public datasetSelected(dataset: Array<Dataset>) {

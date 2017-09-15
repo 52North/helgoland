@@ -5,10 +5,12 @@
         <span>Wähle Anbieter</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onProviderSelected)="providerSelected($event);"></n52-provider-selector>
+        <div class="providerList">
+          <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onProviderSelected)="providerSelected($event);"></n52-provider-selector>
+        </div>
       </ng-template>
     </ngb-tab>
-    <ngb-tab id="selectByPlatform">
+    <ngb-tab id="selectByPlatform" [disabled]="selectedProvider == undefined">
       <ng-template ngbTabTitle>
         <span>Wähle über Platform</span>
       </ng-template>
@@ -17,7 +19,7 @@
           (onDatasetSelection)="datasetSelected($event)"></n52-list-selector>
       </ng-template>
     </ngb-tab>
-    <ngb-tab id="selectByPhenomenon">
+    <ngb-tab id="selectByPhenomenon" [disabled]="selectedProvider == undefined">
       <ng-template ngbTabTitle>
         <span>Wähle über Phänomen</span>
       </ng-template>

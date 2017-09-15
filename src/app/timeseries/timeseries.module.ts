@@ -15,6 +15,11 @@ import { TimeseriesService } from './services/timeseries.service';
 
 const timeseriesRoutes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'timeseries'
+  },
+  {
     path: 'timeseries',
     component: TimeseriesNavigationComponent,
     children: [
