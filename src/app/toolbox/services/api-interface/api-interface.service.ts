@@ -50,11 +50,20 @@ export class ApiInterface implements ApiV2 {
     public getServices(apiUrl: string, params?: ParameterFilter): Observable<Service[]> {
         const url = this.createRequestUrl(apiUrl, 'services');
         params.expanded = true;
-        return this.requestApi<Service[]>(url, params);
+        return this.requestApi<Service[]>(url, params)
+            .map(result => {
+                result.forEach(entry => entry.providerUrl = apiUrl);
+                return result;
+            });
     }
 
     public getService(id: string, apiUrl: string, params?: ParameterFilter): Observable<Service> {
-        throw new Error('Not implemented');
+        const url = this.createRequestUrl(apiUrl, 'services', id);
+        return this.requestApi<Service>(url, params)
+            .map(result => {
+                result.providerUrl = apiUrl;
+                return result;
+            });
     }
 
     public getStations(apiUrl: string, params?: ParameterFilter): Observable<Station[]> {
@@ -121,7 +130,8 @@ export class ApiInterface implements ApiV2 {
     }
 
     public getPhenomenon(id: string, apiUrl: string, params?: ParameterFilter): Observable<Phenomenon> {
-        throw new Error('Not implemented');
+        const url = this.createRequestUrl(apiUrl, 'phenomena', id);
+        return this.requestApi<Phenomenon>(url, params);
     }
 
     public getOfferings(apiUrl: string, params?: ParameterFilter): Observable<Offering[]> {
@@ -130,7 +140,8 @@ export class ApiInterface implements ApiV2 {
     }
 
     public getOffering(id: string, apiUrl: string, params?: ParameterFilter): Observable<Offering> {
-        throw new Error('Not implemented');
+        const url = this.createRequestUrl(apiUrl, 'offerings', id);
+        return this.requestApi<Offering>(url, params);
     }
 
     public getFeatures(apiUrl: string, params?: ParameterFilter): Observable<Feature[]> {
@@ -139,7 +150,8 @@ export class ApiInterface implements ApiV2 {
     }
 
     public getFeature(id: string, apiUrl: string, params?: ParameterFilter): Observable<Feature> {
-        throw new Error('Not implemented');
+        const url = this.createRequestUrl(apiUrl, 'features', id);
+        return this.requestApi<Feature>(url, params);
     }
 
     public getProcedures(apiUrl: string, params?: ParameterFilter): Observable<Procedure[]> {
@@ -148,7 +160,8 @@ export class ApiInterface implements ApiV2 {
     }
 
     public getProcedure(id: string, apiUrl: string, params?: ParameterFilter): Observable<Procedure> {
-        throw new Error('Not implemented');
+        const url = this.createRequestUrl(apiUrl, 'procedures', id);
+        return this.requestApi<Procedure>(url, params);
     }
 
     public getPlatforms(apiUrl: string, params?: ParameterFilter): Observable<Platform[]> {
@@ -157,7 +170,8 @@ export class ApiInterface implements ApiV2 {
     }
 
     public getPlatform(id: string, apiUrl: string, params?: ParameterFilter): Observable<Platform> {
-        throw new Error('Not implemented');
+        const url = this.createRequestUrl(apiUrl, 'platforms');
+        return this.requestApi<Platform>(url, params);
     }
 
     public getDatasets(apiUrl: string, params?: ParameterFilter): Observable<Dataset[]> {

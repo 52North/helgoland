@@ -7,6 +7,7 @@ import { ToolboxModule } from './../toolbox/toolbox.module';
 import { ProfilesCombiViewComponent } from './combi-view/combi-view.component';
 import { ProfilesDiagramComponent } from './diagram/diagram.component';
 import { ProfilesNavigationComponent } from './navigation/navigation.component';
+import { ProfilesSelectionPermalink } from './selection/selection-permalink.service';
 import { ProfilesSelectionComponent } from './selection/selection.component';
 import { ProfilesSelectionCache } from './selection/selection.service';
 
@@ -52,7 +53,8 @@ const profilesRoutes: Routes = [
     ProfilesNavigationComponent
   ],
   providers: [
-    ProfilesSelectionCache
+    ProfilesSelectionCache,
+    ProfilesSelectionPermalink
   ]
 })
 export class ProfilesModule { }

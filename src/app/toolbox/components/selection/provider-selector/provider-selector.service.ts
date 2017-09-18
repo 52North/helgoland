@@ -20,7 +20,6 @@ export class ProviderSelectorService {
                     if (providers && providers instanceof Array) {
                         const usableProviders = providers.map((provider) => {
                             if (!this.isServiceBlacklisted(provider.id, url, blacklist)) {
-                                provider.providerUrl = url;
                                 return provider;
                             }
                         });

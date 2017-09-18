@@ -11,6 +11,7 @@ import { Procedure } from './../../toolbox/model/api/procedure';
 import { Service } from './../../toolbox/model/api/service';
 import { BlacklistedService } from './../../toolbox/model/config/config';
 import { Settings } from './../../toolbox/services/settings/settings.service';
+import { ProfilesSelectionPermalink } from './selection-permalink.service';
 import { ProfilesSelectionCache } from './selection.service';
 
 @Component({
@@ -43,17 +44,18 @@ export class ProfilesSelectionComponent implements OnInit {
 
   constructor(
     private settings: Settings,
-    private cache: ProfilesSelectionCache
+    private cache: ProfilesSelectionCache,
+    private selectionPermalink: ProfilesSelectionPermalink
   ) { }
 
   ngOnInit() {
-    // profileSelectorPermalinkSrvc.validatePermalink().then(() => {
-    //   if (this.cache.selectedProvider) { this.providerSelected(this.cache.selectedProvider, false); }
-    //   if (this.cache.selectedOffering) { this.offeringSelected(this.cache.selectedOffering, false); }
-    //   if (this.cache.selectedPhenomenon) { this.phenomenonSelected(this.cache.selectedPhenomenon, false); }
-    //   if (this.cache.selectedProcedure) { this.procedureSelected(this.cache.selectedProcedure, false); }
-    //   if (this.cache.selectedFeature) { this.featureSelected(this.cache.selectedFeature); }
-    // });
+    this.selectionPermalink.validatePeramlink().subscribe((selection) => {
+      if (selection.selectedProvider) { this.providerSelected(selection.selectedProvider, false); }
+      if (selection.selectedOffering) { this.offeringSelected(selection.selectedOffering, false); }
+      if (selection.selectedPhenomenon) { this.phenomenonSelected(selection.selectedPhenomenon, false); }
+      if (selection.selectedProcedure) { this.procedureSelected(selection.selectedProcedure, false); }
+      if (selection.selectedFeature) { this.featureSelected(selection.selectedFeature); }
+    });
     this.providerList = this.settings.config.restApiUrls;
     this.providerBlacklist = this.settings.config.providerBlackList;
     this.providerFilter = this.createFilter();
@@ -264,8 +266,8 @@ export class ProfilesSelectionComponent implements OnInit {
   //   this.selectedTimespan = timespan;
   // }
 
-  // private createPermalink() {
-  //   return profileSelectorPermalinkSrvc.createPermalink();
-  // }
+  createPermalink = () => {
+    return this.selectionPermalink.createPermalink();
+  }
 
 }
