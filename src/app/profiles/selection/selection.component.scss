@@ -2,5 +2,21 @@ profiles-selection {
     width: 100%;
     .tab-content {
         padding: 20px;
+        .tab-pane {
+            display: flex;
+            flex-direction: column;
+            .header {
+                text-align: center;
+            }
+            .platform-body {
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                .stationary,
+                .mobile {
+                    width: 50%;
+                }
+            }
+        }
     }
 }

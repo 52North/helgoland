@@ -7,13 +7,13 @@
     </div>
     <div class="modal-body">
         <div class="permalink-button">
-            <n52-permalink-in-mail [url]="permalinkUrl"></n52-permalink-in-mail>
+            <n52-permalink-in-mail [url]="permalinkUrl" (onTriggered)="c()"></n52-permalink-in-mail>
         </div>
         <div class="permalink-button">
-            <n52-permalink-new-window [url]="permalinkUrl"></n52-permalink-new-window>
+            <n52-permalink-new-window [url]="permalinkUrl" (onTriggered)="c()"></n52-permalink-new-window>
         </div>
         <div class="permalink-button">
-            <n52-permalink-to-clipboard [url]="permalinkUrl"></n52-permalink-to-clipboard>
+            <n52-permalink-to-clipboard [url]="permalinkUrl" (onTriggered)="c()"></n52-permalink-to-clipboard>
         </div>
     </div>
 </ng-template>

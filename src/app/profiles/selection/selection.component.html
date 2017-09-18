@@ -42,13 +42,16 @@
       </ng-template>
       <ng-template ngbTabContent>
         <div class="header">Wähle entweder eine stationäre oder mobile Platform:</div>
-        <div class="">
-          <div>Stationäre Platform:</div>
-        </div>
-        <div class="">
-          <div>Mobile Platform:</div>
-          <n52-service-filter-selector [endpoint]="'feature'" [filter]="mobilePlatformFilter" [serviceUrl]="selectedProvider.providerUrl"
-            [selectionId]="selectedFeature?.id" (onItemSelected)="featureSelected($event, true)"></n52-service-filter-selector>
+        <div class="platform-body">
+          <div class="stationary">
+            <div class="header">Stationäre Platform:</div>
+            <div>TODO: add stationary platform selection</div>
+          </div>
+          <div class="mobile">
+            <div class="header">Mobile Platform:</div>
+            <n52-service-filter-selector [endpoint]="'feature'" [filter]="mobilePlatformFilter" [serviceUrl]="selectedProvider.providerUrl"
+              [selectionId]="selectedFeature?.id" (onItemSelected)="featureSelected($event, true)"></n52-service-filter-selector>
+          </div>
         </div>
       </ng-template>
     </ngb-tab>
