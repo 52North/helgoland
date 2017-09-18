@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Timespan } from './../../../model/internal/timespan';
@@ -16,6 +16,9 @@ export class TimespanShiftSelectorComponent implements OnInit {
 
     @Output()
     public onTimespanChange: EventEmitter<Timespan> = new EventEmitter<Timespan>();
+
+    @ViewChild('modalTimespanSelector')
+    public modalTemplate: TemplateRef<any>;
 
     public tempTimespan: Timespan;
     public tempTimespanIsValid: boolean;
@@ -36,9 +39,9 @@ export class TimespanShiftSelectorComponent implements OnInit {
         this.onTimespanChange.emit(this.timeSrvc.stepForward(this.timespan));
     }
 
-    public open(content: TemplateRef<any>) {
+    public open() {
         this.tempTimespan = new Timespan(this.timespan.from, this.timespan.to);
-        this.modalService.open(content, {size: 'lg'});
+        this.modalService.open(this.modalTemplate, {size: 'lg'});
     }
 
     public noteChangedTimespan(newValue: Timespan) {

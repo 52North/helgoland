@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -17,6 +17,9 @@ import { TimeseriesService } from './../services/timeseries.service';
   styleUrls: ['./map-selection.component.scss']
 })
 export class TimeseriesMapSelectionComponent implements OnInit {
+
+  @ViewChild('modalStation')
+  public modalTemplate: TemplateRef<any>;
 
   public providerUrl: string;
   public stationFilter: ParameterFilter;
@@ -43,9 +46,9 @@ export class TimeseriesMapSelectionComponent implements OnInit {
     this.updatePhenomenonFilter();
   }
 
-  public onStationSelected(platform: Platform, content: TemplateRef<any>) {
+  public onStationSelected(platform: Platform) {
     this.platform = platform;
-    this.modalService.open(content);
+    this.modalService.open(this.modalTemplate);
   }
 
   public onPhenomenonSelected(phenomenon: Phenomenon) {
