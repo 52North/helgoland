@@ -1,18 +1,19 @@
-import { BoolTogglerComponent } from './components/control/bool-toggler/bool-toggler.component';
-import { StringTogglerComponent } from './components/control/string-toggler/string-toggler.component';
-import { DThreeDiagramComponent } from './components/display/d-three-diagram/d-three-diagram.component';
-import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
+import { PermalinkService } from './services/permalink/permalink.service';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { BoolTogglerComponent } from './components/control/bool-toggler/bool-toggler.component';
 import { LocateControlComponent } from './components/control/map/locate/locate.component';
 import { LocateService } from './components/control/map/locate/locate.service';
 import { ZoomControlComponent } from './components/control/map/zoom/zoom.component';
+import { StringTogglerComponent } from './components/control/string-toggler/string-toggler.component';
+import { DThreeDiagramComponent } from './components/display/d-three-diagram/d-three-diagram.component';
 import { FlotDiagramComponent } from './components/display/flot-diagram/flot-diagram.component';
 import { FlotOverviewDiagramComponent } from './components/display/flot-overview-diagram/flot-overview-diagram.component';
+import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
 import { LabelMapperComponent } from './components/display/label-mapper/label-mapper.component';
 import { LabelMapperService } from './components/display/label-mapper/label-mapper.service';
 import { LegendEntryComponent } from './components/display/legend-entry/legend-entry.component';
@@ -37,6 +38,10 @@ import { TimespanSelectorComponent } from './components/selection/timespan-selec
 import {
     TimespanShiftSelectorComponent,
 } from './components/selection/timespan-shift-selector/timespan-shift-selector.component';
+import { PermalinkButtonComponent } from './permalink/permalink-button/permalink-button.component';
+import { PermalinkInMailComponent } from './permalink/permalink-in-mail/permalink-in-mail.component';
+import { PermalinkNewWindowComponent } from './permalink/permalink-new-window/permalink-new-window.component';
+import { PermalinkToClipboardComponent } from './permalink/permalink-to-clipboard/permalink-to-clipboard.component';
 import { KeysPipe } from './pipes/object-keys-to-array.pipe';
 import { ApiInterface } from './services/api-interface/api-interface.service';
 import { ApiMapping } from './services/api-interface/api-mapping.service';
@@ -74,7 +79,11 @@ import { Time } from './services/time/time.service';
     GeometryMapViewerComponent,
     DThreeDiagramComponent,
     StringTogglerComponent,
-    BoolTogglerComponent
+    BoolTogglerComponent,
+    PermalinkButtonComponent,
+    PermalinkInMailComponent,
+    PermalinkNewWindowComponent,
+    PermalinkToClipboardComponent
   ],
   entryComponents: [ProviderSelectorComponent],
   exports: [
@@ -97,7 +106,11 @@ import { Time } from './services/time/time.service';
     GeometryMapViewerComponent,
     DThreeDiagramComponent,
     StringTogglerComponent,
-    BoolTogglerComponent
+    BoolTogglerComponent,
+    PermalinkButtonComponent,
+    PermalinkInMailComponent,
+    PermalinkNewWindowComponent,
+    PermalinkToClipboardComponent
   ],
   providers: [
     {
@@ -118,7 +131,8 @@ import { Time } from './services/time/time.service';
     MapCache,
     LocateService,
     LabelMapperService,
-    ListSelectorService
+    ListSelectorService,
+    PermalinkService
   ]
 })
 export class ToolboxModule { }
