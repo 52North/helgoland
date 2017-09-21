@@ -1,4 +1,4 @@
-import { Timespan } from './../internal/timespan';
+import { Timespan } from './../internal/time-interval';
 
 export class Config {
     restApiUrls: Array<string>;

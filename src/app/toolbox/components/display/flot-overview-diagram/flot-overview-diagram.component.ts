@@ -14,7 +14,7 @@ import {
 import { Data } from '../../../model/api/data';
 import { IDataset } from './../../../model/api/dataset/idataset';
 import { PlotOptions } from './../../../model/internal/flot/plotOptions';
-import { Timespan } from './../../../model/internal/timespan';
+import { Timespan } from './../../../model/internal/time-interval';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 import { Time } from './../../../services/time/time.service';
 

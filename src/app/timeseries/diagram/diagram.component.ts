@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Data, IDataEntry } from './../../toolbox/model/api/data';
 import { IDataset } from './../../toolbox/model/api/dataset/idataset';
 import { PlotOptions } from './../../toolbox/model/internal/flot/plotOptions';
-import { Timespan } from './../../toolbox/model/internal/timespan';
+import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { Time } from './../../toolbox/services/time/time.service';
 import { TimeseriesService } from './../services/timeseries.service';
 

@@ -17,7 +17,7 @@ import { Data } from './../../../model/api/data';
 import { IDataset } from './../../../model/api/dataset/idataset';
 import { DataSeries } from './../../../model/internal/flot/dataSeries';
 import { PlotOptions } from './../../../model/internal/flot/plotOptions';
-import { Timespan } from './../../../model/internal/timespan';
+import { Timespan } from './../../../model/internal/time-interval';
 
 declare var $: any;
 

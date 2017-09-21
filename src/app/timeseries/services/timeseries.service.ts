@@ -5,7 +5,7 @@ import { Data } from './../../toolbox/model/api/data';
 import { Dataset } from './../../toolbox/model/api/dataset/dataset';
 import { IDataset } from './../../toolbox/model/api/dataset/idataset';
 import { Timeseries } from './../../toolbox/model/api/timeseries';
-import { Timespan } from './../../toolbox/model/internal/timespan';
+import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
 import { Time } from './../../toolbox/services/time/time.service';

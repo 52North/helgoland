@@ -1,6 +1,7 @@
-import { Timespan } from './../../../model/internal/timespan';
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+
+import { Timespan } from './../../../model/internal/time-interval';
 
 @Component({
     selector: 'n52-timespan-selector',

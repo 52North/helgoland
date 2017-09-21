@@ -3,7 +3,7 @@ import { plainToClass } from 'class-transformer';
 import * as moment from 'moment';
 import { Duration } from 'moment';
 
-import { Timespan } from './../../model/internal/timespan';
+import { Timespan } from './../../model/internal/time-interval';
 import { LocalStorage } from './../local-storage/local-storage.service';
 
 @Injectable()

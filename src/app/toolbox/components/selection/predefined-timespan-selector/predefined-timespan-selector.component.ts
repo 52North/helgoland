@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Settings } from '../../../services/settings/settings.service';
 import { ParsedTimespanPreset, TimespanPreset } from './../../../model/config/config';
-import { Timespan } from './../../../model/internal/timespan';
+import { Timespan } from './../../../model/internal/time-interval';
 
 @Component({
     selector: 'n52-predefined-timespan-selector',

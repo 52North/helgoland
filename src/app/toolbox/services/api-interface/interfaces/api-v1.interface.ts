@@ -10,7 +10,7 @@ import { Procedure } from './../../../model/api/procedure';
 import { Service } from './../../../model/api/service';
 import { Station } from './../../../model/api/station';
 import { Timeseries } from './../../../model/api/timeseries';
-import { Timespan } from './../../../model/internal/timespan';
+import { Timespan } from './../../../model/internal/time-interval';
 
 export interface ApiV1 {
 
