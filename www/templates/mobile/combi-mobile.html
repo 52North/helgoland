@@ -4,10 +4,10 @@
         <div>
             <span>{{series.label}}</span>
         </div>
-        <div>
-            <span>{{series.seriesParameters.phenomenon.label || series.datasetParameters.phenomenon.label}}</span>
+        <!-- <div>
+            <span>{{series.seriesParameters.phenomenon.label || series.parameters.phenomenon.label}}</span>
             <span ng-hide="series.uom === undefined">({{series.uom}})</span>
-        </div>
+        </div> -->
     </div>
     <div class="combi-body">
         <div class="map">
@@ -35,6 +35,7 @@
                 <swc-mobile-axis-toggler axis-type="ticks" icon="option-horizontal" selected-axis-type="options.axisType" tooltip="trajectories.diagram.ticksTooltip"></swc-mobile-axis-toggler>
                 <hr>
                 <swc-mobile-chart-draw-line-toggler></swc-mobile-chart-draw-line-toggler>
+                <swc-multi-phenomenon-button dataset="series" feature="series.seriesParameters.feature || series.parameters.feature" selected-phenomena="phenomenaList" on-selected-phenomena-changed="onSelectedPhenomenaChanged(phenomenaList)"></swc-multi-phenomenon-button>
             </div>
         </div>
     </div>
