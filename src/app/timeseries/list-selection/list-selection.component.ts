@@ -8,7 +8,7 @@ import { TimeseriesProviderSelectionService } from './../provider-selection/prov
 import { TimeseriesService } from './../services/timeseries.service';
 
 @Component({
-  selector: 'app-list-selection',
+  selector: 'n52-list-selection',
   templateUrl: './list-selection.component.html',
   styleUrls: ['./list-selection.component.scss']
 })

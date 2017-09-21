@@ -14,7 +14,7 @@ import { Settings } from './../../toolbox/services/settings/settings.service';
 import { TrajectoriesService } from './../services/trajectories.service';
 
 @Component({
-  selector: 'trajectories-selection',
+  selector: 'n52-trajectories-selection',
   templateUrl: './selection.component.html',
   styleUrls: ['./selection.component.scss'],
   encapsulation: ViewEncapsulation.None

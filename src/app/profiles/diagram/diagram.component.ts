@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-diagram',
+  selector: 'n52-diagram',
   templateUrl: './diagram.component.html',
   styleUrls: ['./diagram.component.scss']
 })

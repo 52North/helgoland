@@ -8,7 +8,7 @@ import { Settings } from './../../toolbox/services/settings/settings.service';
 import { TimeseriesProviderSelectionService } from './provider-selection.service';
 
 @Component({
-  selector: 'app-provider-selection',
+  selector: 'n52-provider-selection',
   templateUrl: './provider-selection.component.html',
   styleUrls: ['./provider-selection.component.scss']
 })

@@ -10,7 +10,7 @@ import { TimeseriesService } from './../services/timeseries.service';
 const TIME_CACHE_PARAM = 'timeseries-time';
 
 @Component({
-  selector: 'app-diagram',
+  selector: 'n52-diagram',
   templateUrl: './diagram.component.html',
   styleUrls: ['./diagram.component.scss']
 })

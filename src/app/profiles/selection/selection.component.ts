@@ -15,7 +15,7 @@ import { ProfilesSelectionPermalink } from './selection-permalink.service';
 import { ProfilesSelectionCache } from './selection.service';
 
 @Component({
-  selector: 'profiles-selection',
+  selector: 'n52-profiles-selection',
   templateUrl: './selection.component.html',
   styleUrls: ['./selection.component.scss'],
   encapsulation: ViewEncapsulation.None

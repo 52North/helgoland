@@ -12,7 +12,7 @@ import { TimeseriesProviderSelectionService } from './../provider-selection/prov
 import { TimeseriesService } from './../services/timeseries.service';
 
 @Component({
-  selector: 'app-map-selection',
+  selector: 'n52-map-selection',
   templateUrl: './map-selection.component.html',
   styleUrls: ['./map-selection.component.scss']
 })
