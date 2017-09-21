@@ -316,6 +316,10 @@
       "timeTooltip": "X-Achse bildet den Zeitraum ab",
       "ticksTooltip": "X-Achse bildet die Messpunkte linear ab",
       "lineDotsTooltip": "Zeitreihe als Linien-/Punktdarstellung"
+    },
+    "multiPhenomenon": {
+      "buttonTooltip": "Wähle weitere Phänomene",
+      "modalHeader": "Hinzufügen oder Entfernen von Phänomenen"
     }
   }
 }
