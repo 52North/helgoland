@@ -1,4 +1,4 @@
-import { DatasetGraphComponent } from './../../../model/internal/datasetGraphComponent';
+import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
 import {
     AfterViewInit,
     Component,
@@ -7,18 +7,26 @@ import {
     EventEmitter,
     HostListener,
     Input,
+    IterableDiffer,
+    IterableDiffers,
+    OnChanges,
     Output,
+    SimpleChanges,
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
 import * as moment from 'moment';
 
+import { Data } from '../../../model/api/data';
 import { Plot } from '../../../model/internal/flot/plot';
-import { Data } from './../../../model/api/data';
 import { IDataset } from './../../../model/api/dataset/idataset';
+import { Timeseries } from './../../../model/api/timeseries';
+import { DatasetGraphComponent, GraphMessage, StylesMap } from './../../../model/internal/datasetGraphComponent';
 import { DataSeries } from './../../../model/internal/flot/dataSeries';
 import { PlotOptions } from './../../../model/internal/flot/plotOptions';
-import { Timespan } from './../../../model/internal/time-interval';
+import { TimeInterval, Timespan } from './../../../model/internal/time-interval';
+import { ApiInterface } from './../../../services/api-interface/api-interface.service';
+import { Time } from './../../../services/time/time.service';
 
 declare var $: any;
 
@@ -30,30 +38,37 @@ const equal = require('deep-equal');
     styleUrls: ['./flot-timeseries-diagram.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck {
+export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, OnChanges, DatasetGraphComponent {
 
     @ViewChild('flot') flotElem: ElementRef;
 
     @Input()
-    public datasets: Array<IDataset>;
-
-    private oldDatasets: Array<IDataset>;
-
-    @Input()
-    public data: Array<Data<[number, number]>>;
-
-    private oldData: Array<Data<[number, number]>>;
+    public seriesIds: Array<string>;
+    private seriesIdsDiffer: IterableDiffer<string>;
 
     @Input()
-    public timespan: Timespan;
+    public selectedSeriesIds: Array<string>;
+    private selectedSeriesIdsDiffer: IterableDiffer<string>;
 
     @Input()
-    public options: PlotOptions;
+    public timeInterval: TimeInterval;
 
-    private oldOptions: PlotOptions;
+    @Input()
+    public seriesOptions: StylesMap;
+    private oldSeriesOptions: StylesMap;
+
+    @Input()
+    public graphOptions: any;
+    private oldGraphOptions: any;
+
+    @Output()
+    public onSeriesSelected: EventEmitter<string> = new EventEmitter();
 
     @Output()
     public onTimespanChanged: EventEmitter<Timespan> = new EventEmitter();
+
+    @Output()
+    public onMessageThrown: EventEmitter<GraphMessage> = new EventEmitter();
 
     private plotarea: any;
 
@@ -61,9 +76,23 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck {
 
     private plotOptions: PlotOptions;
 
+    private timeseriesMap: Map<string, Timeseries> = new Map();
+    private dataMap: Map<string, Data<[number, number]>> = new Map();
+    private timespan: Timespan;
+
     @HostListener('window:resize', ['$event'])
     onResize() {
         this.plotChart();
+    }
+
+    constructor(
+        private iterableDiffers: IterableDiffers,
+        private api: ApiInterface,
+        private datasetIdResolver: InternalIdHandler,
+        private timeSrvc: Time
+    ) {
+        this.seriesIdsDiffer = this.iterableDiffers.find([]).create();
+        this.selectedSeriesIdsDiffer = this.iterableDiffers.find([]).create();
     }
 
     public ngAfterViewInit() {
@@ -95,28 +124,54 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck {
         });
     }
 
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes.timeInterval) {
+            if (this.timeInterval instanceof Timespan) {
+                this.timespan = this.timeInterval;
+            }
+            // TODO get new data for all datasets
+            this.loadAllTsData();
+        }
+    }
+
     private changeTime(from: Date, to: Date) {
         this.onTimespanChanged.emit(new Timespan(from, to));
     }
 
     public ngDoCheck() {
-        if (this.plotarea) {
-            let replot = false;
-            if (!equal(this.oldDatasets, this.datasets)) {
-                replot = true;
-                this.oldDatasets = JSON.parse(JSON.stringify(this.datasets));
-            }
-            if (!equal(this.oldOptions, this.options)) {
-                replot = true;
-                this.oldOptions = JSON.parse(JSON.stringify(this.options));
-            }
-            if (!equal(this.oldData, this.data)) {
-                replot = true;
-                this.oldData = JSON.parse(JSON.stringify(this.data));
-            }
-            if (replot && this.datasets && this.data && this.datasets.length === this.data.length) {
-                this.plotChart();
-            }
+        let replot = false;
+        const seriesIdsChanges = this.seriesIdsDiffer.diff(this.seriesIds);
+        if (seriesIdsChanges) {
+            seriesIdsChanges.forEachAddedItem(addedItem => {
+                const internalId = this.datasetIdResolver.resolveInternalId(addedItem.item);
+                this.api.getSingleTimeseries(internalId.id, internalId.url)
+                    .subscribe((timeseries: Timeseries) => this.addTimeseries(timeseries));
+            });
+            seriesIdsChanges.forEachRemovedItem(removedItem => {
+                this.removeTimeseries(removedItem.item);
+            });
+        }
+
+        const selectedSeriesIdsChanges = this.selectedSeriesIdsDiffer.diff(this.selectedSeriesIds);
+        if (selectedSeriesIdsChanges) {
+            selectedSeriesIdsChanges.forEachAddedItem(addedItem => {
+                console.log('Added: ' + addedItem.item);
+                // TODO update Datasets
+            });
+            selectedSeriesIdsChanges.forEachRemovedItem(removedItem => {
+                console.log('Removed: ' + removedItem.item);
+                // TODO update Datasets
+            });
+        }
+
+        if (!equal(this.oldGraphOptions, this.graphOptions)) {
+            replot = true;
+            this.oldGraphOptions = JSON.parse(JSON.stringify(this.graphOptions));
+        }
+
+        if (!equal(this.oldSeriesOptions, this.seriesOptions)) {
+            replot = true;
+            this.oldSeriesOptions = JSON.parse(JSON.stringify(this.seriesOptions));
         }
     }
 
@@ -135,12 +190,12 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck {
 
     private updateData() {
         this.preparedData = [];
-        this.plotOptions = this.options;
+        this.plotOptions = this.graphOptions;
         this.plotOptions.yaxes = [];
         this.plotOptions.xaxis.min = this.timespan.from.getTime();
         this.plotOptions.xaxis.max = this.timespan.to.getTime();
-        this.datasets.forEach((entry, datasetIdx) => {
-            if (this.data[datasetIdx] && entry.styles.visible) {
+        this.timeseriesMap.forEach((entry) => {
+            if (this.dataMap.has(entry.internalId) && entry.styles.visible) {
                 const label = this.createAxisLabel(entry);
                 let axePos;
                 const axe = this.plotOptions.yaxes.find((yaxisEntry, idx) => {
@@ -158,10 +213,9 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck {
                     axePos = this.plotOptions.yaxes.length;
                 }
                 this.preparedData.push({
-                    id: entry.id,
-                    url: entry.url,
+                    internalId: entry.internalId,
                     color: entry.styles.color,
-                    data: this.data[datasetIdx].values,
+                    data: this.dataMap.get(entry.internalId).values,
                     selected: entry.styles.selected,
                     points: {
                         fillColor: entry.styles.color
@@ -228,7 +282,8 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck {
                                 }
                             });
                             $.each(plot.getData(), (index: number, elem: any) => {
-                                const dataset = this.datasets.find((entry) => entry.id === elem.id && entry.url === elem.url);
+                                // const dataset = this.timeseriesMap.find((entry) => entry.id === elem.id && entry.url === elem.url);
+                                const dataset = this.timeseriesMap.get(elem.internalId);
                                 if (target.data('axis.n') === elem.yaxis.n) {
                                     elem.selected = !selected;
                                     dataset.styles.selected = !selected;
@@ -241,7 +296,8 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck {
                             }
                             this.plotChart();
                         });
-                    const yaxisLabel = $('<div class="axisLabel yaxisLabel" style=left:' + box.left + 'px;></div>').text(axis.options.uom)
+                    const yaxisLabel = $('<div class="axisLabel yaxisLabel" style=left:'
+                        + box.left + 'px;></div>').text(axis.options.uom)
                         .appendTo(plot.getPlaceholder())
                         .data('axis.n', axis.n);
                     if (axis.options.tsColors) {
@@ -285,4 +341,36 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck {
             });
         }
     }
+
+    private addTimeseries(timeseries: Timeseries) {
+        this.timeseriesMap.set(timeseries.internalId, timeseries);
+        this.loadTsData(timeseries);
+    }
+
+    private loadTsData(timeseries: Timeseries) {
+        if (this.timespan) {
+            timeseries.styles.loading = true;
+            this.dataMap.delete(timeseries.internalId);
+            const buffer = this.timeSrvc.getBufferedTimespan(this.timespan, 0.2);
+            this.api.getTsData<[number, number]>(timeseries.id, timeseries.url, buffer, { format: 'flot', generalize: false })
+                .subscribe(result => {
+                    timeseries.styles.loading = false;
+                    this.dataMap.set(timeseries.internalId, result);
+                    this.plotChart();
+                });
+        }
+    }
+
+    private loadAllTsData() {
+        this.timeseriesMap.forEach(timeseries => {
+            this.loadTsData(timeseries);
+        });
+    }
+
+    private removeTimeseries(internalId: string) {
+        this.dataMap.delete(internalId);
+        this.timeseriesMap.delete(internalId);
+        this.plotChart();
+    }
+
 }

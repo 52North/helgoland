@@ -8,6 +8,7 @@ import { Station } from './station';
 export class Timeseries extends Parameter implements IDataset {
     url: string;
     uom: string;
+    internalId: string;
     firstValue: FirstLastValue;
     lastValue: FirstLastValue;
     station: Station;

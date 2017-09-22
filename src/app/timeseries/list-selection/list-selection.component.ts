@@ -92,7 +92,7 @@ export class TimeseriesListSelectionComponent implements OnInit {
 
   public onDatasetSelected(datasetList: Array<IDataset>) {
     if (datasetList instanceof Array && datasetList.length === 1) {
-      this.timeseriesService.addTimeseries(datasetList[0], datasetList[0].url);
+      this.timeseriesService.addTimeseries(datasetList[0]);
       this.router.navigate(['timeseries/diagram']);
     } else {
       console.error('datasetList is no array or has not the length of 1');

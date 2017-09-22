@@ -157,8 +157,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                     axePos = this.plotOptions.yaxes.length;
                 }
                 this.preparedData.push({
-                    id: entry.id,
-                    url: entry.url,
+                    internalId: entry.internalId,
                     color: entry.styles.color,
                     data: this.data[datasetIdx].values,
                     selected: entry.styles.selected,
@@ -227,7 +226,7 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                                 }
                             });
                             $.each(plot.getData(), (index: number, elem: any) => {
-                                const dataset = this.datasets.find((entry) => entry.id === elem.id && entry.url === elem.url);
+                                const dataset = this.datasets.find((entry) => entry.internalId === elem.internalId);
                                 if (target.data('axis.n') === elem.yaxis.n) {
                                     elem.selected = !selected;
                                     dataset.styles.selected = !selected;

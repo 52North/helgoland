@@ -6,6 +6,7 @@ import { Styles } from './styles';
 export interface IDataset extends Parameter {
     url: string;
     uom: string;
+    internalId: string;
     firstValue: FirstLastValue;
     lastValue: FirstLastValue;
     parameters: ParameterConstellation;

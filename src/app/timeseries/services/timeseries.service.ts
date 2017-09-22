@@ -11,11 +11,14 @@ import { LocalStorage } from './../../toolbox/services/local-storage/local-stora
 import { Time } from './../../toolbox/services/time/time.service';
 
 const TIMESERIES_CACHE_PARAM = 'timeseries';
+const TIMESERIES_IDS_CACHE_PARAM = 'timeseriesIds';
 
 @Injectable()
 export class TimeseriesService {
 
     public timeseries: Array<IDataset> = [];
+
+    public seriesIds: Array<string> = [];
 
     public data: Array<Data<[2]>> = [];
 
@@ -27,27 +30,33 @@ export class TimeseriesService {
         this.loadTimeseries();
     }
 
-    public addTimeseries(dataset: IDataset, url: string) {
+    public addTimeseries(dataset: IDataset) {
         if (dataset instanceof Dataset) {
-            this.addDatasetById(dataset.id, url);
+            this.addDatasetById(dataset);
         } else if (dataset instanceof Timeseries) {
-            this.addTimeseriesBy(dataset.id, url);
+            this.addTimeseriesBy(dataset);
         }
     }
 
-    public addTimeseriesBy(id: string, url: string) {
-        this.api.getSingleTimeseries(id, url).subscribe((res) => this.addDataset(res));
+    public addTimeseriesBy(dataset: IDataset) {
+        this.seriesIds.push(dataset.internalId);
+        this.api.getSingleTimeseries(dataset.id, dataset.url).subscribe((res) => this.addDataset(res));
     }
 
-    public addDatasetById(id: string, url: string) {
-        this.api.getDataset(id, url).subscribe((res) => this.addDataset(res));
+    public addDatasetById(dataset: IDataset) {
+        this.api.getDataset(dataset.id, dataset.url).subscribe((res) => this.addDataset(res));
     }
 
     public removeAllTimeseries() {
+        this.seriesIds.length = 0;
         this.timeseries.length = 0;
     }
 
     public removeTimeseries(dataset: IDataset) {
+        const seriesIdx = this.seriesIds.indexOf(dataset.internalId);
+        if (seriesIdx > -1) {
+            this.seriesIds.splice(seriesIdx, 1);
+        }
         const idx = this.findTimeseriesIdx(dataset);
         this.timeseries.splice(idx, 1);
         this.data.splice(idx, 1);
@@ -68,7 +77,7 @@ export class TimeseriesService {
     }
 
     public hasTimeseries(): boolean {
-        return this.timeseries.length > 0;
+        return this.seriesIds.length > 0;
     }
 
     private addDataset(dataset: IDataset) {
@@ -85,6 +94,7 @@ export class TimeseriesService {
 
     private saveTimeseries() {
         this.localStorage.save(TIMESERIES_CACHE_PARAM, this.timeseries);
+        this.localStorage.save(TIMESERIES_IDS_CACHE_PARAM, this.seriesIds);
     }
 
     private loadTimeseries() {
@@ -93,5 +103,6 @@ export class TimeseriesService {
             const result = deserializeArray<Timeseries>(Timeseries, json);
             this.timeseries = result;
         }
+        this.seriesIds = this.localStorage.load(TIMESERIES_IDS_CACHE_PARAM);
     }
 }

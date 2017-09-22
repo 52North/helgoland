@@ -3,6 +3,10 @@ import { EventEmitter, Input } from '@angular/core';
 
 import { Styles } from './../api/dataset/styles';
 
+export class StylesMap {
+    [seriesId: string]: Styles;
+}
+
 export interface DatasetGraphComponent {
 
     // INPUTS
@@ -15,7 +19,7 @@ export interface DatasetGraphComponent {
 
     seriesOptions: StylesMap;
 
-    diagramOptions: any;
+    graphOptions: any;
 
     // OUTPUTS
 
@@ -25,10 +29,6 @@ export interface DatasetGraphComponent {
 
     onMessageThrown: EventEmitter<GraphMessage>;
 
-}
-
-export interface StylesMap {
-    [seriesId: string]: Styles;
 }
 
 export interface GraphMessage {

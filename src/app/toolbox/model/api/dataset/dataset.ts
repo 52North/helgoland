@@ -13,6 +13,7 @@ export class DatasetParameterConstellation extends ParameterConstellation {
 export class Dataset extends Parameter implements IDataset {
     url: string;
     uom: string;
+    internalId: string;
     firstValue: FirstLastValue;
     lastValue: FirstLastValue;
     datasetType: DatasetTypes;

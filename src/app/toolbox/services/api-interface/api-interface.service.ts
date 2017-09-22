@@ -20,6 +20,7 @@ import { Station } from './../../model/api/station';
 import { Timeseries } from './../../model/api/timeseries';
 import { Timespan } from './../../model/internal/time-interval';
 import { ApiV2 } from './interfaces/api-v2.interface';
+import { InternalIdHandler } from './internal-id-handler.service';
 
 export class UriParameterCoder implements HttpParameterCodec {
 
@@ -44,7 +45,8 @@ export class UriParameterCoder implements HttpParameterCodec {
 export class ApiInterface implements ApiV2 {
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private internalDatasetId: InternalIdHandler
     ) { }
 
     public getServices(apiUrl: string, params?: ParameterFilter): Observable<Service[]> {
@@ -84,6 +86,7 @@ export class ApiInterface implements ApiV2 {
                     const timeseriesList = deserializeArray<Timeseries>(Timeseries, result);
                     timeseriesList.forEach((entry) => {
                         entry.url = apiUrl;
+                        this.internalDatasetId.generateInternalId(entry);
                     });
                     observer.next(timeseriesList);
                 },
@@ -98,6 +101,7 @@ export class ApiInterface implements ApiV2 {
         return this.requestApiTexted(url, params).map((result) => {
             const timeseries = deserialize<Timeseries>(Timeseries, result);
             timeseries.url = apiUrl;
+            this.internalDatasetId.generateInternalId(timeseries);
             return timeseries;
         });
     }
@@ -221,6 +225,7 @@ export class ApiInterface implements ApiV2 {
 
     private prepareDataset(dataset: Dataset, apiUrl: string) {
         dataset.url = apiUrl;
+        this.internalDatasetId.generateInternalId(dataset);
         if (dataset.seriesParameters) {
             dataset.parameters = dataset.seriesParameters;
             delete dataset.seriesParameters;

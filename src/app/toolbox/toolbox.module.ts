@@ -1,4 +1,3 @@
-import { PermalinkService } from './services/permalink/permalink.service';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -13,6 +12,9 @@ import { StringTogglerComponent } from './components/control/string-toggler/stri
 import { DThreeDiagramComponent } from './components/display/d-three-diagram/d-three-diagram.component';
 import { FlotDiagramComponent } from './components/display/flot-diagram/flot-diagram.component';
 import { FlotOverviewDiagramComponent } from './components/display/flot-overview-diagram/flot-overview-diagram.component';
+import {
+    FlotTimeseriesDiagramComponent,
+} from './components/display/flot-timeseries-diagram/flot-timeseries-diagram.component';
 import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
 import { LabelMapperComponent } from './components/display/label-mapper/label-mapper.component';
 import { LabelMapperService } from './components/display/label-mapper/label-mapper.service';
@@ -47,8 +49,10 @@ import { ApiInterface } from './services/api-interface/api-interface.service';
 import { ApiMapping } from './services/api-interface/api-mapping.service';
 import { CachingInterceptor, HttpCache } from './services/api-interface/caching/caching-interceptor';
 import { LocalHttpCache } from './services/api-interface/caching/local-cache';
+import { InternalIdHandler } from './services/api-interface/internal-id-handler.service';
 import { LocalStorage } from './services/local-storage/local-storage.service';
 import { MapCache } from './services/map/map.service';
+import { PermalinkService } from './services/permalink/permalink.service';
 import { Settings } from './services/settings/settings.service';
 import { Time } from './services/time/time.service';
 
@@ -83,7 +87,8 @@ import { Time } from './services/time/time.service';
     PermalinkButtonComponent,
     PermalinkInMailComponent,
     PermalinkNewWindowComponent,
-    PermalinkToClipboardComponent
+    PermalinkToClipboardComponent,
+    FlotTimeseriesDiagramComponent
   ],
   entryComponents: [ProviderSelectorComponent],
   exports: [
@@ -110,7 +115,8 @@ import { Time } from './services/time/time.service';
     PermalinkButtonComponent,
     PermalinkInMailComponent,
     PermalinkNewWindowComponent,
-    PermalinkToClipboardComponent
+    PermalinkToClipboardComponent,
+    FlotTimeseriesDiagramComponent
   ],
   providers: [
     {
@@ -132,7 +138,8 @@ import { Time } from './services/time/time.service';
     LocateService,
     LabelMapperService,
     ListSelectorService,
-    PermalinkService
+    PermalinkService,
+    InternalIdHandler
   ]
 })
 export class ToolboxModule { }

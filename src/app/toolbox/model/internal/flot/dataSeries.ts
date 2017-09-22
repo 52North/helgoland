@@ -1,6 +1,5 @@
 export interface DataSeries extends jquery.flot.dataSeries, SeriesOptions {
-    id: string;
-    url: string;
+    internalId: string;
     data: any[];
 }
 
