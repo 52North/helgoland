@@ -1,10 +1,10 @@
-<div class="legendItem" style="position: relative;" [ngStyle]="{'border-color': dataset.styles.color}" [ngClass]="{'selected': dataset.styles.selected}" (click)="toggleSelection()">
-    <div class="loading-overlay" *ngIf="dataset.styles.loading" [ngStyle]="{'background-color': dataset.styles.color}">
+<div class="legendItem" style="position: relative;" [ngStyle]="{'border-color': datasetOptions.color}" [ngClass]="{'selected': datasetOptions.selected}" (click)="toggleSelection()">
+    <div class="loading-overlay" *ngIf="datasetOptions.loading" [ngStyle]="{'background-color': datasetOptions.color}">
         <div class="fa fa-refresh fa-spin fa-3x fa-fw"></div>
     </div>
     <div ng-controller="SwcToggleInformationCtrl">
         <div class="legendItemheader">
-            <div class="legendItemLabel" [ngStyle]="{'color': dataset.styles.color}">
+            <div class="legendItemLabel" [ngStyle]="{'color': datasetOptions.color}">
                 <n52-label-mapper label="{{platformLabel}}"></n52-label-mapper>
             </div>
             <!-- <div class="noDataWarning firstLastEntry" ng-show="timeseries.hasNoDataInCurrentExtent">
@@ -39,9 +39,9 @@
             </div>
         </div>
         <div class="legendicons">
-            <span class="fa" [ngClass]="{'fa-eye-slash': dataset.styles.visible, 'fa-eye': !dataset.styles.visible}" (click)="toggleVisibility(); $event.stopPropagation();"></span>
+            <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions.visible, 'fa-eye': !datasetOptions.visible}" (click)="toggleVisibility(); $event.stopPropagation();"></span>
             <!-- <swc-timeseries-geometry-view-button series="timeseries"></swc-timeseries-geometry-view-button> -->
-            <!-- <span class="fa fa-pencil" ng-controller="SwcOpenStyleModalCtrl" ng-style="{color: timeseries.styles.color}" ng-click="$event.stopPropagation(); openStyling(timeseries)"></span> -->
+            <!-- <span class="fa fa-pencil" ng-controller="SwcOpenStyleModalCtrl" ng-style="{color: datasetOptions.color}" ng-click="$event.stopPropagation(); openStyling(timeseries)"></span> -->
             <span class="fa fa-info" (click)="toggleInformation(); $event.stopPropagation();"></span>
             <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();"></span>
         </div>

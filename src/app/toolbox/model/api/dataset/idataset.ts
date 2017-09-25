@@ -10,6 +10,5 @@ export interface IDataset extends Parameter {
     firstValue: FirstLastValue;
     lastValue: FirstLastValue;
     parameters: ParameterConstellation;
-    styles: Styles;
     hasData: boolean;
 }

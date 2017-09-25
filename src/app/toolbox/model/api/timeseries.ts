@@ -13,6 +13,5 @@ export class Timeseries extends Parameter implements IDataset {
     lastValue: FirstLastValue;
     station: Station;
     parameters: ParameterConstellation;
-    styles = new Styles();
     hasData = false;
 }

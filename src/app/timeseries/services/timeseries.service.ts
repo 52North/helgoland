@@ -4,6 +4,7 @@ import { deserializeArray } from 'class-transformer';
 import { Data } from './../../toolbox/model/api/data';
 import { Dataset } from './../../toolbox/model/api/dataset/dataset';
 import { IDataset } from './../../toolbox/model/api/dataset/idataset';
+import { Styles } from './../../toolbox/model/api/dataset/styles';
 import { Timeseries } from './../../toolbox/model/api/timeseries';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
@@ -19,6 +20,8 @@ export class TimeseriesService {
     public timeseries: Array<IDataset> = [];
 
     public seriesIds: Array<string> = [];
+
+    public seriesOptions: Map<string, Styles> = new Map();
 
     public data: Array<Data<[2]>> = [];
 
@@ -40,7 +43,24 @@ export class TimeseriesService {
 
     public addTimeseriesBy(dataset: IDataset) {
         this.seriesIds.push(dataset.internalId);
+        this.seriesOptions.set(dataset.internalId, this.createStyles(dataset));
         this.api.getSingleTimeseries(dataset.id, dataset.url).subscribe((res) => this.addDataset(res));
+    }
+
+    private createStyles(dataset: IDataset) {
+        const styles = new Styles();
+        styles.internalId = dataset.internalId;
+        styles.color = this.getRandomColor();
+        return styles;
+    }
+
+    private getRandomColor(): string {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
     public addDatasetById(dataset: IDataset) {
@@ -49,6 +69,7 @@ export class TimeseriesService {
 
     public removeAllTimeseries() {
         this.seriesIds.length = 0;
+        this.seriesOptions.clear();
         this.timeseries.length = 0;
     }
 
@@ -56,6 +77,7 @@ export class TimeseriesService {
         const seriesIdx = this.seriesIds.indexOf(dataset.internalId);
         if (seriesIdx > -1) {
             this.seriesIds.splice(seriesIdx, 1);
+            this.seriesOptions.delete(dataset.internalId);
         }
         const idx = this.findTimeseriesIdx(dataset);
         this.timeseries.splice(idx, 1);
@@ -65,13 +87,13 @@ export class TimeseriesService {
 
     public loadData(timespan: Timespan) {
         this.timeseries.forEach((entry, idx) => {
-            entry.styles.loading = true;
+            // entry.styles.loading = true;
             this.data[idx] = null;
             const buffer = this.timeSrvc.getBufferedTimespan(timespan, 0.2);
             this.api.getTsData<[2]>(entry.id, entry.url, buffer, { format: 'flot', generalize: false }).subscribe((result) => {
                 entry.hasData = result.values && result.values.length > 0;
                 this.data[idx] = result;
-                entry.styles.loading = false;
+                // entry.styles.loading = false;
             });
         });
     }
@@ -102,6 +124,7 @@ export class TimeseriesService {
         if (json) {
             const result = deserializeArray<Timeseries>(Timeseries, json);
             this.timeseries = result;
+            this.timeseries.forEach(entry => this.seriesOptions.set(entry.internalId, this.createStyles(entry)));
         }
         this.seriesIds = this.localStorage.load(TIMESERIES_IDS_CACHE_PARAM);
     }

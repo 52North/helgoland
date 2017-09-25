@@ -4,5 +4,5 @@ export interface DataSeries extends jquery.flot.dataSeries, SeriesOptions {
 }
 
 interface SeriesOptions extends jquery.flot.seriesOptions {
-    selected: boolean;
+    selected?: boolean;
 }

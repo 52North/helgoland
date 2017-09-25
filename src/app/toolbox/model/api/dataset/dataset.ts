@@ -18,7 +18,6 @@ export class Dataset extends Parameter implements IDataset {
     lastValue: FirstLastValue;
     datasetType: DatasetTypes;
     parameters: DatasetParameterConstellation;
-    styles = new Styles();
     hasData = false;
     seriesParameters?: DatasetParameterConstellation;
 }

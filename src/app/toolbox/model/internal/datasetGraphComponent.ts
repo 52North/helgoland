@@ -3,10 +3,6 @@ import { EventEmitter, Input } from '@angular/core';
 
 import { Styles } from './../api/dataset/styles';
 
-export class StylesMap {
-    [seriesId: string]: Styles;
-}
-
 export interface DatasetGraphComponent {
 
     // INPUTS
@@ -17,7 +13,7 @@ export interface DatasetGraphComponent {
 
     timeInterval: TimeInterval; // oder einzeln lösen. Checken, ob Änderung einzelner property in change detection auftauchen.
 
-    seriesOptions: StylesMap;
+    seriesOptions: Map<string, Styles>;
 
     graphOptions: any;
 

@@ -139,40 +139,40 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
         this.plotOptions.xaxis.min = this.timespan.from.getTime();
         this.plotOptions.xaxis.max = this.timespan.to.getTime();
         this.datasets.forEach((entry, datasetIdx) => {
-            if (this.data[datasetIdx] && entry.styles.visible) {
-                const label = this.createAxisLabel(entry);
-                let axePos;
-                const axe = this.plotOptions.yaxes.find((yaxisEntry, idx) => {
-                    axePos = idx + 1;
-                    return yaxisEntry.uom === label;
-                });
-                if (axe) {
-                    axe.tsColors.push(entry.styles.color);
-                } else {
-                    this.plotOptions.yaxes.push({
-                        uom: entry.parameters.phenomenon.label + ' [' + entry.uom + ']',
-                        tsColors: [entry.styles.color],
-                        min: null
-                    });
-                    axePos = this.plotOptions.yaxes.length;
-                }
-                this.preparedData.push({
-                    internalId: entry.internalId,
-                    color: entry.styles.color,
-                    data: this.data[datasetIdx].values,
-                    selected: entry.styles.selected,
-                    points: {
-                        fillColor: entry.styles.color
-                    },
-                    lines: {
-                        lineWidth: entry.styles.selected ? 5 : 1
-                    },
-                    bars: {
-                        lineWidth: entry.styles.selected ? 5 : 1
-                    },
-                    yaxis: axePos
-                });
-            }
+            // if (this.data[datasetIdx] && entry.styles.visible) {
+            //     const label = this.createAxisLabel(entry);
+            //     let axePos;
+            //     const axe = this.plotOptions.yaxes.find((yaxisEntry, idx) => {
+            //         axePos = idx + 1;
+            //         return yaxisEntry.uom === label;
+            //     });
+            //     if (axe) {
+            //         axe.tsColors.push(entry.styles.color);
+            //     } else {
+            //         this.plotOptions.yaxes.push({
+            //             uom: entry.parameters.phenomenon.label + ' [' + entry.uom + ']',
+            //             tsColors: [entry.styles.color],
+            //             min: null
+            //         });
+            //         axePos = this.plotOptions.yaxes.length;
+            //     }
+            //     this.preparedData.push({
+            //         internalId: entry.internalId,
+            //         color: entry.styles.color,
+            //         data: this.data[datasetIdx].values,
+            //         selected: entry.styles.selected,
+            //         points: {
+            //             fillColor: entry.styles.color
+            //         },
+            //         lines: {
+            //             lineWidth: entry.styles.selected ? 5 : 1
+            //         },
+            //         bars: {
+            //             lineWidth: entry.styles.selected ? 5 : 1
+            //         },
+            //         yaxis: axePos
+            //     });
+            // }
         });
     }
 
@@ -227,12 +227,12 @@ export class FlotDiagramComponent implements AfterViewInit, DoCheck {
                             });
                             $.each(plot.getData(), (index: number, elem: any) => {
                                 const dataset = this.datasets.find((entry) => entry.internalId === elem.internalId);
-                                if (target.data('axis.n') === elem.yaxis.n) {
-                                    elem.selected = !selected;
-                                    dataset.styles.selected = !selected;
-                                } else {
-                                    dataset.styles.selected = false;
-                                }
+                                // if (target.data('axis.n') === elem.yaxis.n) {
+                                //     elem.selected = !selected;
+                                //     dataset.styles.selected = !selected;
+                                // } else {
+                                //     dataset.styles.selected = false;
+                                // }
                             });
                             if (!selected) {
                                 target.addClass('selected');

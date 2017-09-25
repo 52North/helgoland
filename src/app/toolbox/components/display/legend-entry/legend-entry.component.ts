@@ -16,11 +16,17 @@ export class LegendEntryComponent implements OnInit {
     @Input()
     public dataset: IDataset;
 
+    @Input()
+    public datasetOptions: Styles;
+
     @Output()
     public onDeleteDataset: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-    public onUpdateStyles: EventEmitter<Styles> = new EventEmitter();
+    public onSelectDataset: EventEmitter<boolean> = new EventEmitter();
+
+    @Output()
+    public onUpdateOptions: EventEmitter<Styles> = new EventEmitter();
 
     @Output()
     public onSelectDate: EventEmitter<Date> = new EventEmitter();
@@ -68,14 +74,16 @@ export class LegendEntryComponent implements OnInit {
     }
 
     public toggleSelection() {
-        this.dataset.styles.selected = !this.dataset.styles.selected;
+        this.datasetOptions.selected = !this.datasetOptions.selected;
+        this.onSelectDataset.emit(this.datasetOptions.selected);
     }
 
     public toggleVisibility() {
-        this.dataset.styles.visible = !this.dataset.styles.visible;
+        this.datasetOptions.visible = !this.datasetOptions.visible;
+        this.onUpdateOptions.emit(this.datasetOptions);
     }
 
     public hasNoData(): boolean {
-        return !this.dataset.styles.loading && !this.dataset.hasData;
+        return !this.datasetOptions.loading && !this.dataset.hasData;
     }
 }

@@ -1,4 +1,3 @@
-import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
 import {
     AfterViewInit,
     Component,
@@ -9,6 +8,7 @@ import {
     Input,
     IterableDiffer,
     IterableDiffers,
+    KeyValueDiffers,
     OnChanges,
     Output,
     SimpleChanges,
@@ -20,12 +20,14 @@ import * as moment from 'moment';
 import { Data } from '../../../model/api/data';
 import { Plot } from '../../../model/internal/flot/plot';
 import { IDataset } from './../../../model/api/dataset/idataset';
+import { Styles } from './../../../model/api/dataset/styles';
 import { Timeseries } from './../../../model/api/timeseries';
-import { DatasetGraphComponent, GraphMessage, StylesMap } from './../../../model/internal/datasetGraphComponent';
+import { DatasetGraphComponent, GraphMessage } from './../../../model/internal/datasetGraphComponent';
 import { DataSeries } from './../../../model/internal/flot/dataSeries';
 import { PlotOptions } from './../../../model/internal/flot/plotOptions';
-import { TimeInterval, Timespan } from './../../../model/internal/time-interval';
+import { BufferedTime, TimeInterval, Timespan } from './../../../model/internal/time-interval';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
+import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
 import { Time } from './../../../services/time/time.service';
 
 declare var $: any;
@@ -54,8 +56,8 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     public timeInterval: TimeInterval;
 
     @Input()
-    public seriesOptions: StylesMap;
-    private oldSeriesOptions: StylesMap;
+    public seriesOptions: Map<string, Styles>;
+    public oldSeriesOptions: Map<string, Styles> = new Map();
 
     @Input()
     public graphOptions: any;
@@ -72,12 +74,12 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
 
     private plotarea: any;
 
-    private preparedData: Array<DataSeries>;
+    private preparedData: Array<DataSeries> = Array();
 
     private plotOptions: PlotOptions;
 
     private timeseriesMap: Map<string, Timeseries> = new Map();
-    private dataMap: Map<string, Data<[number, number]>> = new Map();
+
     private timespan: Timespan;
 
     @HostListener('window:resize', ['$event'])
@@ -87,6 +89,7 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
 
     constructor(
         private iterableDiffers: IterableDiffers,
+        private keyValueDiffers: KeyValueDiffers,
         private api: ApiInterface,
         private datasetIdResolver: InternalIdHandler,
         private timeSrvc: Time
@@ -128,8 +131,9 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
         if (changes.timeInterval) {
             if (this.timeInterval instanceof Timespan) {
                 this.timespan = this.timeInterval;
+            } else if (this.timeInterval instanceof BufferedTime) {
+                // TODO convert if TimeBuffer
             }
-            // TODO get new data for all datasets
             this.loadAllTsData();
         }
     }
@@ -139,7 +143,6 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     }
 
     public ngDoCheck() {
-        let replot = false;
         const seriesIdsChanges = this.seriesIdsDiffer.diff(this.seriesIds);
         if (seriesIdsChanges) {
             seriesIdsChanges.forEachAddedItem(addedItem => {
@@ -155,30 +158,39 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
         const selectedSeriesIdsChanges = this.selectedSeriesIdsDiffer.diff(this.selectedSeriesIds);
         if (selectedSeriesIdsChanges) {
             selectedSeriesIdsChanges.forEachAddedItem(addedItem => {
-                console.log('Added: ' + addedItem.item);
-                // TODO update Datasets
+                this.setSelectedId(addedItem.item);
             });
             selectedSeriesIdsChanges.forEachRemovedItem(removedItem => {
-                console.log('Removed: ' + removedItem.item);
-                // TODO update Datasets
+                this.removeSelectedId(removedItem.item);
             });
         }
 
         if (!equal(this.oldGraphOptions, this.graphOptions)) {
-            replot = true;
+            this.plotOptions = JSON.parse(JSON.stringify(this.graphOptions));
+            this.plotOptions.yaxes = [];
             this.oldGraphOptions = JSON.parse(JSON.stringify(this.graphOptions));
+            this.optionsChanged();
         }
 
-        if (!equal(this.oldSeriesOptions, this.seriesOptions)) {
-            replot = true;
-            this.oldSeriesOptions = JSON.parse(JSON.stringify(this.seriesOptions));
-        }
+        this.seriesOptions.forEach((value, key) => {
+            if (!equal(value, this.oldSeriesOptions.get(key))) {
+                this.oldSeriesOptions.set(key, JSON.parse(JSON.stringify(this.seriesOptions.get(key))));
+                if (this.timeseriesMap.has(key)) {
+                    this.loadTsData(this.timeseriesMap.get(key));
+                }
+            }
+        });
+    }
+
+    private optionsChanged() {
+        this.loadAllTsData();
     }
 
     private plotChart() {
-        this.updateData();
-        if (this.preparedData && this.preparedData.length !== 0) {
-            console.log('plotchart');
+        if (this.preparedData && this.preparedData.length !== 0 && this.plotOptions) {
+            this.prepareAxisPos();
+            this.plotOptions.xaxis.min = this.timespan.from.getTime();
+            this.plotOptions.xaxis.max = this.timespan.to.getTime();
             const plotObj: Plot = $.plot(this.plotarea, this.preparedData, this.plotOptions);
             this.createPlotAnnotation(this.plotarea, this.plotOptions);
             this.createYAxis(plotObj);
@@ -188,47 +200,91 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
         }
     }
 
-    private updateData() {
-        this.preparedData = [];
-        this.plotOptions = this.graphOptions;
-        this.plotOptions.yaxes = [];
-        this.plotOptions.xaxis.min = this.timespan.from.getTime();
-        this.plotOptions.xaxis.max = this.timespan.to.getTime();
-        this.timeseriesMap.forEach((entry) => {
-            if (this.dataMap.has(entry.internalId) && entry.styles.visible) {
-                const label = this.createAxisLabel(entry);
-                let axePos;
-                const axe = this.plotOptions.yaxes.find((yaxisEntry, idx) => {
-                    axePos = idx + 1;
-                    return yaxisEntry.uom === label;
-                });
-                if (axe) {
-                    axe.tsColors.push(entry.styles.color);
+    private removePreparedData(internalId: string) {
+        // remove from preparedData Array
+        const idx = this.preparedData.findIndex(entry => entry.internalId === internalId);
+        if (idx >= 0) { this.preparedData.splice(idx, 1); }
+        // remove from axis
+        const axisIdx = this.plotOptions.yaxes.findIndex(entry => {
+            const internalIdIndex = entry.internalIds.indexOf(internalId);
+            if (internalIdIndex > -1) {
+                if (entry.internalIds.length === 1) {
+                    return true;
                 } else {
-                    this.plotOptions.yaxes.push({
-                        uom: entry.parameters.phenomenon.label + ' [' + entry.uom + ']',
-                        tsColors: [entry.styles.color],
-                        min: null
-                    });
-                    axePos = this.plotOptions.yaxes.length;
+                    entry.internalIds.splice(internalIdIndex, 1);
+                    entry.tsColors.splice(internalIdIndex, 1);
                 }
-                this.preparedData.push({
-                    internalId: entry.internalId,
-                    color: entry.styles.color,
-                    data: this.dataMap.get(entry.internalId).values,
-                    selected: entry.styles.selected,
-                    points: {
-                        fillColor: entry.styles.color
-                    },
-                    lines: {
-                        lineWidth: entry.styles.selected ? 5 : 1
-                    },
-                    bars: {
-                        lineWidth: entry.styles.selected ? 5 : 1
-                    },
-                    yaxis: axePos
-                });
             }
+            return false;
+        });
+        if (axisIdx > -1) {
+            this.plotOptions.yaxes.splice(axisIdx, 1);
+        }
+    }
+
+    private setSelectedId(internalId: string) {
+        const tsData = this.preparedData.find(e => e.internalId === internalId);
+        tsData.selected = true;
+        tsData.lines.lineWidth = 5;
+        tsData.bars.lineWidth = 5;
+        this.plotChart();
+    }
+
+    private removeSelectedId(internalId: string) {
+        const tsData = this.preparedData.find(e => e.internalId === internalId);
+        tsData.selected = false;
+        tsData.lines.lineWidth = 1;
+        tsData.bars.lineWidth = 1;
+        this.plotChart();
+    }
+
+    private prepareData(timeseries: Timeseries, data: Data<[number, number]>) {
+        this.removePreparedData(timeseries.internalId);
+        const styles = this.seriesOptions.get(timeseries.internalId);
+        if (styles.visible) {
+            const label = this.createAxisLabel(timeseries);
+            let axePos;
+            const axe = this.plotOptions.yaxes.find((yaxisEntry, idx) => {
+                axePos = idx + 1;
+                return yaxisEntry.uom === label;
+            });
+            if (axe) {
+                axe.internalIds.push(timeseries.internalId);
+                axe.tsColors.push(styles.color);
+            } else {
+                this.plotOptions.yaxes.push({
+                    uom: timeseries.parameters.phenomenon.label + ' [' + timeseries.uom + ']',
+                    tsColors: [styles.color],
+                    internalIds: [timeseries.internalId],
+                    min: null
+                });
+                axePos = this.plotOptions.yaxes.length;
+            }
+            this.preparedData.push({
+                internalId: timeseries.internalId,
+                color: styles.color,
+                data: data.values,
+                points: {
+                    fillColor: styles.color
+                },
+                lines: {
+                    lineWidth: 1
+                },
+                bars: {
+                    lineWidth: 1
+                }
+            });
+        }
+    }
+
+    private prepareAxisPos() {
+        // remove unused axes
+        this.plotOptions.yaxes = this.plotOptions.yaxes.filter(entry => entry.internalIds.length !== 0);
+        this.plotOptions.yaxes.forEach((xaxis, idx) => {
+            xaxis.internalIds.forEach(id => {
+                const temp = this.preparedData.find(dataEntry => dataEntry.internalId === id);
+                temp.yaxis = idx + 1;
+            });
         });
     }
 
@@ -282,13 +338,12 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
                                 }
                             });
                             $.each(plot.getData(), (index: number, elem: any) => {
-                                // const dataset = this.timeseriesMap.find((entry) => entry.id === elem.id && entry.url === elem.url);
-                                const dataset = this.timeseriesMap.get(elem.internalId);
+                                const style = this.seriesOptions.get(elem.internalId);
                                 if (target.data('axis.n') === elem.yaxis.n) {
                                     elem.selected = !selected;
-                                    dataset.styles.selected = !selected;
+                                    style.selected = !selected;
                                 } else {
-                                    dataset.styles.selected = false;
+                                    style.selected = false;
                                 }
                             });
                             if (!selected) {
@@ -348,14 +403,11 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     }
 
     private loadTsData(timeseries: Timeseries) {
-        if (this.timespan) {
-            timeseries.styles.loading = true;
-            this.dataMap.delete(timeseries.internalId);
+        if (this.timespan && this.plotOptions) {
             const buffer = this.timeSrvc.getBufferedTimespan(this.timespan, 0.2);
             this.api.getTsData<[number, number]>(timeseries.id, timeseries.url, buffer, { format: 'flot', generalize: false })
                 .subscribe(result => {
-                    timeseries.styles.loading = false;
-                    this.dataMap.set(timeseries.internalId, result);
+                    this.prepareData(timeseries, result);
                     this.plotChart();
                 });
         }
@@ -368,8 +420,8 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     }
 
     private removeTimeseries(internalId: string) {
-        this.dataMap.delete(internalId);
         this.timeseriesMap.delete(internalId);
+        this.removePreparedData(internalId);
         this.plotChart();
     }
 

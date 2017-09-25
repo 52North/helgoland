@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Data, IDataEntry } from './../../toolbox/model/api/data';
 import { IDataset } from './../../toolbox/model/api/dataset/idataset';
+import { Styles } from './../../toolbox/model/api/dataset/styles';
 import { PlotOptions } from './../../toolbox/model/internal/flot/plotOptions';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { Time } from './../../toolbox/services/time/time.service';
@@ -17,6 +18,9 @@ const TIME_CACHE_PARAM = 'timeseries-time';
 export class TimeseriesDiagramComponent implements OnInit {
 
   public timeseries: Array<IDataset>;
+  public seriesIds: Array<string>;
+  public seriesOptions: Map<string, Styles>;
+  public selectedIds: Array<string> = new Array();
   public data: Array<Data<IDataEntry>>;
   public timespan: Timespan;
 
@@ -133,12 +137,26 @@ export class TimeseriesDiagramComponent implements OnInit {
 
   public ngOnInit() {
     this.timeseries = this.timeseriesService.timeseries;
+    this.seriesIds = this.timeseriesService.seriesIds;
+    this.seriesOptions = this.timeseriesService.seriesOptions;
     this.data = this.timeseriesService.data;
     this.updateTime(this.timeSrvc.loadTimespan(TIME_CACHE_PARAM) || this.timeSrvc.initTimespan());
   }
 
-  public delete(dataset: IDataset) {
+  public deleteTimeseries(dataset: IDataset) {
     this.timeseriesService.removeTimeseries(dataset);
+  }
+
+  public selectTimeseries(selected: boolean, dataset: IDataset) {
+    if (selected) {
+      this.selectedIds.push(dataset.internalId);
+    } else {
+      this.selectedIds.splice(this.selectedIds.findIndex(entry => entry === dataset.internalId), 1);
+    }
+  }
+
+  public updateOptions(options: Styles, dataset: IDataset) {
+    this.seriesOptions.set(dataset.internalId, JSON.parse(JSON.stringify(options)));
   }
 
   public timeChanged(timespan: Timespan) {
