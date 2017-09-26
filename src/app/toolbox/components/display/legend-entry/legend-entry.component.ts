@@ -1,27 +1,34 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { TimeInterval } from '../../../model/internal/time-interval';
 import { Dataset } from './../../../model/api/dataset/dataset';
 import { FirstLastValue } from './../../../model/api/dataset/firstLastValue';
 import { IDataset } from './../../../model/api/dataset/idataset';
 import { DatasetOptions } from './../../../model/api/dataset/options';
 import { Timeseries } from './../../../model/api/dataset/timeseries';
+import { ApiInterface } from './../../../services/api-interface/api-interface.service';
+import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
+import { Time } from './../../../services/time/time.service';
 
 @Component({
     selector: 'n52-legend-entry',
     templateUrl: './legend-entry.component.html',
     styleUrls: ['./legend-entry.component.scss']
 })
-export class LegendEntryComponent implements OnInit {
+export class LegendEntryComponent implements OnInit, OnChanges {
 
     @Input()
-    public dataset: IDataset;
+    public datasetId: string;
 
     @Input()
     public datasetOptions: DatasetOptions;
 
     @Input()
     public selected: boolean;
+
+    @Input()
+    public timeInterval: TimeInterval;
 
     @Output()
     public onDeleteDataset: EventEmitter<boolean> = new EventEmitter();
@@ -35,6 +42,8 @@ export class LegendEntryComponent implements OnInit {
     @Output()
     public onSelectDate: EventEmitter<Date> = new EventEmitter();
 
+    private dataset: IDataset;
+
     public platformLabel: string;
     public phenomenonLabel: string;
     public procedureLabel: string;
@@ -44,23 +53,32 @@ export class LegendEntryComponent implements OnInit {
     public lastValue: FirstLastValue;
     public informationVisible = false;
     public tempColor: string;
+    public hasData = true;
 
     constructor(
-        private modalService: NgbModal
+        private modalService: NgbModal,
+        private api: ApiInterface,
+        private timeSrvc: Time,
+        private internalIdHandler: InternalIdHandler
     ) { }
 
     public ngOnInit() {
-        if (this.dataset instanceof Dataset) {
-            this.platformLabel = this.dataset.parameters.platform.label;
-        } else if (this.dataset instanceof Timeseries) {
-            this.platformLabel = this.dataset.station.properties.label;
+        const temp = this.internalIdHandler.resolveInternalId(this.datasetId);
+        this.api.getSingleTimeseries(temp.id, temp.url).subscribe(timeseries => {
+            this.dataset = timeseries;
+            this.setParameters();
+        }, error => {
+            this.api.getDataset(temp.id, temp.url).subscribe(dataset => {
+                this.dataset = dataset;
+                this.setParameters();
+            });
+        });
+    }
+
+    public ngOnChanges(changes: SimpleChanges) {
+        if (changes.timeInterval) {
+            this.checkDataInTimespan();
         }
-        this.phenomenonLabel = this.dataset.parameters.phenomenon.label;
-        this.procedureLabel = this.dataset.parameters.procedure.label;
-        this.categoryLabel = this.dataset.parameters.category.label;
-        this.firstValue = this.dataset.firstValue;
-        this.lastValue = this.dataset.lastValue;
-        this.uom = this.dataset.uom;
     }
 
     public removeDataset() {
@@ -89,11 +107,32 @@ export class LegendEntryComponent implements OnInit {
         this.onUpdateOptions.emit(this.datasetOptions);
     }
 
-    public hasNoData(): boolean {
-        return !this.datasetOptions.loading && !this.dataset.hasData;
+    public open(content: TemplateRef<any>) {
+        this.modalService.open(content, { size: 'lg' });
     }
 
-    public open(content: TemplateRef<any>) {
-        this.modalService.open(content, {size: 'lg'});
+    private setParameters() {
+        if (this.dataset instanceof Dataset) {
+            this.platformLabel = this.dataset.parameters.platform.label;
+        } else if (this.dataset instanceof Timeseries) {
+            this.platformLabel = this.dataset.station.properties.label;
+        }
+        this.phenomenonLabel = this.dataset.parameters.phenomenon.label;
+        this.procedureLabel = this.dataset.parameters.procedure.label;
+        this.categoryLabel = this.dataset.parameters.category.label;
+        this.firstValue = this.dataset.firstValue;
+        this.lastValue = this.dataset.lastValue;
+        this.uom = this.dataset.uom;
+        this.checkDataInTimespan();
+    }
+
+    private checkDataInTimespan() {
+        if (this.timeInterval && this.dataset) {
+            this.hasData = this.timeSrvc.overlaps(
+                this.timeInterval,
+                new Date(this.dataset.firstValue.timestamp),
+                new Date(this.dataset.lastValue.timestamp)
+            );
+        }
     }
 }

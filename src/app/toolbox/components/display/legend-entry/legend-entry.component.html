@@ -23,17 +23,7 @@
             <div class="legendItemLabel" [ngStyle]="{'color': datasetOptions.color}">
                 <n52-label-mapper label="{{platformLabel}}"></n52-label-mapper>
             </div>
-            <!-- <div class="noDataWarning firstLastEntry" ng-show="timeseries.hasNoDataInCurrentExtent">
-                <div>
-                    <span class="glyphicon glyphicon-warning-sign red"></span>
-                    <span class="small" translate="legend.entry.noData"></span>
-                </div>
-                <div class="additionalLegendEntry" ng-controller="SwcJumpToFirstLatestValuesCtrl" ng-click="$event.stopPropagation(); jumpToLastTimeStamp(timeseries.lastValue)">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="small" translate="legend.entry.jumpToLastValue"></span>
-                </div>
-            </div> -->
-            <div class="noDataWarning firstLastEntry" *ngIf="hasNoData()">
+            <div class="noDataWarning firstLastEntry" *ngIf="!hasData">
                 <div>
                     <span class="fa fa-exclamation-triangle red"></span>
                     <span class="small">Keine Daten verfügbar</span>

@@ -34,6 +34,14 @@ export class Time {
         return new Timespan(from, to);
     }
 
+    public overlaps(timeInterval: TimeInterval, from: Date, to: Date): boolean {
+        const timespan = this.createTimespanOfInterval(timeInterval);
+        if (timespan.from >= from && timespan.from <= to || timespan.to >= from && timespan.to <= to) {
+            return true;
+        }
+        return false;
+    }
+
     public createTimespanOfInterval(timeInterval: TimeInterval): Timespan {
         if (timeInterval instanceof Timespan) {
             return timeInterval;

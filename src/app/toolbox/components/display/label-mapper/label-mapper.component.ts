@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { LabelMapperService } from './label-mapper.service';
 
@@ -6,7 +6,7 @@ import { LabelMapperService } from './label-mapper.service';
     selector: 'n52-label-mapper',
     templateUrl: './label-mapper.component.html'
 })
-export class LabelMapperComponent implements OnInit {
+export class LabelMapperComponent implements OnChanges {
 
     @Input()
     public label: string;
@@ -19,8 +19,8 @@ export class LabelMapperComponent implements OnInit {
         private labelMapperSrvc: LabelMapperService
     ) { }
 
-    public ngOnInit() {
-        if (this.label) {
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.label) {
             this.labelMapperSrvc.getMappedLabel(this.label)
                 .subscribe((label) => {
                     this.determinedLabel = label;

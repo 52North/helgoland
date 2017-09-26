@@ -91,7 +91,6 @@ export class TimeseriesService {
             this.data[idx] = null;
             const buffer = this.timeSrvc.getBufferedTimespan(timespan, 0.2);
             this.api.getTsData<[2]>(entry.id, entry.url, buffer, { format: 'flot', generalize: false }).subscribe((result) => {
-                entry.hasData = result.values && result.values.length > 0;
                 this.data[idx] = result;
                 // entry.styles.loading = false;
             });
