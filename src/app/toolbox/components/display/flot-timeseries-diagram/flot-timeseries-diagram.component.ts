@@ -124,6 +124,8 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
         $(this.plotarea).bind('plotselected', (evt: any, ranges: any) => {
             this.changeTime(moment(ranges.xaxis.from).toDate(), moment(ranges.xaxis.to).toDate());
         });
+
+        this.plotChart();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -182,6 +184,7 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     }
 
     private plotChart() {
+        debugger;
         if (this.preparedData && this.preparedData.length !== 0 && this.plotOptions) {
             this.prepareAxisPos();
             this.plotOptions.xaxis.min = this.timespan.from.getTime();
