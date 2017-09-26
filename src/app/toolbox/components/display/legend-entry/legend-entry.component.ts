@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Dataset } from './../../../model/api/dataset/dataset';
 import { FirstLastValue } from './../../../model/api/dataset/firstLastValue';
@@ -42,8 +43,10 @@ export class LegendEntryComponent implements OnInit {
     public firstValue: FirstLastValue;
     public lastValue: FirstLastValue;
     public informationVisible = false;
+    public tempColor: string;
 
     constructor(
+        private modalService: NgbModal
     ) { }
 
     public ngOnInit() {
@@ -88,5 +91,9 @@ export class LegendEntryComponent implements OnInit {
 
     public hasNoData(): boolean {
         return !this.datasetOptions.loading && !this.dataset.hasData;
+    }
+
+    public open(content: TemplateRef<any>) {
+        this.modalService.open(content, {size: 'lg'});
     }
 }

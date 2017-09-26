@@ -1,3 +1,19 @@
+<ng-template #modalTimeseriesStyleSelector let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Timeseries style</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <n52-timeseries-style-selector [timeseriesColor]="datasetOptions.color" (onColorChange)="tempColor = $event"></n52-timeseries-style-selector>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="datasetOptions.color = tempColor; c();">Ok</button>
+        <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
+    </div>
+</ng-template>
+
 <div class="legendItem" style="position: relative;" [ngStyle]="{'border-color': datasetOptions.color}" [ngClass]="{'selected': selected}" (click)="toggleSelection()">
     <div class="loading-overlay" *ngIf="datasetOptions.loading" [ngStyle]="{'background-color': datasetOptions.color}">
         <div class="fa fa-refresh fa-spin fa-3x fa-fw"></div>
@@ -41,7 +57,7 @@
         <div class="legendicons">
             <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions.visible, 'fa-eye': !datasetOptions.visible}" (click)="toggleVisibility(); $event.stopPropagation();"></span>
             <!-- <swc-timeseries-geometry-view-button series="timeseries"></swc-timeseries-geometry-view-button> -->
-            <!-- <span class="fa fa-pencil" ng-controller="SwcOpenStyleModalCtrl" ng-style="{color: datasetOptions.color}" ng-click="$event.stopPropagation(); openStyling(timeseries)"></span> -->
+            <span class="fa fa-pencil" (click)="open(modalTimeseriesStyleSelector); $event.stopPropagation();" [ngStyle]="{color: datasetOptions.color}"></span>
             <span class="fa fa-info" (click)="toggleInformation(); $event.stopPropagation();"></span>
             <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();"></span>
         </div>

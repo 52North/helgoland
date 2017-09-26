@@ -6,6 +6,7 @@ export class Config {
     solveLabels: boolean;
     proxyUrl: string;
     timespanPresets: Array<TimespanPreset>;
+    colorList: Array<string>;
 }
 
 export class BlacklistedService {

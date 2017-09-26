@@ -3,6 +3,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { BoolTogglerComponent } from './components/control/bool-toggler/bool-toggler.component';
 import { LocateControlComponent } from './components/control/map/locate/locate.component';
@@ -36,6 +37,9 @@ import {
     ServiceFilterSelectorComponent,
 } from './components/selection/service-filter-selector/service-filter-selector.component';
 import { StationMapSelectorComponent } from './components/selection/station-map-selector/station-map-selector.component';
+import {
+    TimeseriesStyleSelectorComponent,
+} from './components/selection/timeseries-style-selector/timeseries-style-selector.component';
 import { TimespanSelectorComponent } from './components/selection/timespan-selector/timespan-selector.component';
 import {
     TimespanShiftSelectorComponent,
@@ -61,6 +65,7 @@ import { Time } from './services/time/time.service';
     CommonModule,
     HttpClientModule,
     FormsModule,
+    ColorPickerModule,
     NgbModule.forRoot()
   ],
   declarations: [
@@ -88,7 +93,8 @@ import { Time } from './services/time/time.service';
     PermalinkInMailComponent,
     PermalinkNewWindowComponent,
     PermalinkToClipboardComponent,
-    FlotTimeseriesDiagramComponent
+    FlotTimeseriesDiagramComponent,
+    TimeseriesStyleSelectorComponent
   ],
   entryComponents: [ProviderSelectorComponent],
   exports: [
@@ -116,7 +122,8 @@ import { Time } from './services/time/time.service';
     PermalinkInMailComponent,
     PermalinkNewWindowComponent,
     PermalinkToClipboardComponent,
-    FlotTimeseriesDiagramComponent
+    FlotTimeseriesDiagramComponent,
+    TimeseriesStyleSelectorComponent
   ],
   providers: [
     {
