@@ -3,7 +3,7 @@ import { plainToClass } from 'class-transformer';
 import * as moment from 'moment';
 import { Duration } from 'moment';
 
-import { Timespan } from './../../model/internal/time-interval';
+import { BufferedTime, TimeInterval, Timespan } from './../../model/internal/time-interval';
 import { LocalStorage } from './../local-storage/local-storage.service';
 
 @Injectable()
@@ -32,6 +32,16 @@ export class Time {
         const from = moment(timespan.from).add(duration).toDate();
         const to = moment(timespan.to).add(duration).toDate();
         return new Timespan(from, to);
+    }
+
+    public createTimespanOfInterval(timeInterval: TimeInterval): Timespan {
+        if (timeInterval instanceof Timespan) {
+            return timeInterval;
+        } else if (timeInterval instanceof BufferedTime) {
+            throw new Error('not implemented yet');
+        } else {
+            console.error('Wrong time interval!');
+        }
     }
 
     private getDuration(timespan: Timespan): Duration {

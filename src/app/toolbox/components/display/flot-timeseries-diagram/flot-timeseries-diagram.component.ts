@@ -25,7 +25,7 @@ import { Timeseries } from './../../../model/api/dataset/timeseries';
 import { DatasetGraphComponent, GraphMessage } from './../../../model/internal/datasetGraphComponent';
 import { DataSeries } from './../../../model/internal/flot/dataSeries';
 import { PlotOptions } from './../../../model/internal/flot/plotOptions';
-import { BufferedTime, TimeInterval, Timespan } from './../../../model/internal/time-interval';
+import { TimeInterval, Timespan } from './../../../model/internal/time-interval';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
 import { Time } from './../../../services/time/time.service';
@@ -129,11 +129,7 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
 
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.timeInterval) {
-            if (this.timeInterval instanceof Timespan) {
-                this.timespan = this.timeInterval;
-            } else if (this.timeInterval instanceof BufferedTime) {
-                // TODO convert if TimeBuffer
-            }
+            this.timespan = this.timeSrvc.createTimespanOfInterval(this.timeInterval);
             this.loadAllTsData();
         }
     }
@@ -412,7 +408,12 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     private loadTsData(timeseries: Timeseries) {
         if (this.timespan && this.plotOptions) {
             const buffer = this.timeSrvc.getBufferedTimespan(this.timespan, 0.2);
-            this.api.getTsData<[number, number]>(timeseries.id, timeseries.url, buffer, { format: 'flot', generalize: false })
+            const seriesOptions = this.seriesOptions.get(timeseries.internalId);
+            this.api.getTsData<[number, number]>(timeseries.id, timeseries.url, buffer,
+                {
+                    format: 'flot',
+                    generalize: seriesOptions.generalize
+                })
                 .subscribe(result => {
                     this.prepareData(timeseries, result);
                     this.plotChart();

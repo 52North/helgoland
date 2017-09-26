@@ -4,5 +4,5 @@ export class DatasetOptions {
     visible = true;
     loading = false;
     separateYAxe = false;
-    generalize = true;
+    generalize = false;
 }

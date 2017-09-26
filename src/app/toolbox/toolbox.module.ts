@@ -11,8 +11,9 @@ import { LocateService } from './components/control/map/locate/locate.service';
 import { ZoomControlComponent } from './components/control/map/zoom/zoom.component';
 import { StringTogglerComponent } from './components/control/string-toggler/string-toggler.component';
 import { DThreeDiagramComponent } from './components/display/d-three-diagram/d-three-diagram.component';
-import { FlotDiagramComponent } from './components/display/flot-diagram/flot-diagram.component';
-import { FlotOverviewDiagramComponent } from './components/display/flot-overview-diagram/flot-overview-diagram.component';
+import {
+    FlotOverviewTimeseriesDiagramComponent,
+} from './components/display/flot-overview-timeseries-diagram/flot-overview-timeseries-diagram.component';
 import {
     FlotTimeseriesDiagramComponent,
 } from './components/display/flot-timeseries-diagram/flot-timeseries-diagram.component';
@@ -79,8 +80,7 @@ import { Time } from './services/time/time.service';
     LabelMapperComponent,
     ListSelectorComponent,
     MultiServiceFilterSelectorComponent,
-    FlotDiagramComponent,
-    FlotOverviewDiagramComponent,
+    FlotOverviewTimeseriesDiagramComponent,
     TimespanShiftSelectorComponent,
     PredefinedTimespanSelectorComponent,
     TimespanSelectorComponent,
@@ -108,8 +108,7 @@ import { Time } from './services/time/time.service';
     LabelMapperComponent,
     ListSelectorComponent,
     MultiServiceFilterSelectorComponent,
-    FlotDiagramComponent,
-    FlotOverviewDiagramComponent,
+    FlotOverviewTimeseriesDiagramComponent,
     TimespanShiftSelectorComponent,
     PredefinedTimespanSelectorComponent,
     TimespanSelectorComponent,

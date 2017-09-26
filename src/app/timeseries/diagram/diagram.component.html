@@ -4,12 +4,12 @@
 <div class="content" *ngIf="seriesIds.length > 0">
   <div class="diagram-wrapper">
     <div class="diagram">
-      <!-- <n52-flot-diagram [datasets]="timeseries" [data]="data" [options]="diagramOptions" [timespan]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-diagram> -->
       <n52-flot-timeseries-diagram [seriesIds]="seriesIds" [selectedSeriesIds]="selectedIds" [seriesOptions]="seriesOptions" [graphOptions]="diagramOptions"
         [timeInterval]="timespan" (onSeriesSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-flot-timeseries-diagram>
     </div>
     <div class="overview-diagram">
-      <!-- <n52-flot-overview-diagram [datasets]="timeseries" [rangefactor]="2" [options]="overviewOptions" [timespan]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-overview-diagram> -->
+      <n52-flot-overview-timeseries-diagram [seriesIds]="seriesIds" [rangefactor]="2" [seriesOptions]="seriesOptions" [graphOptions]="overviewOptions"
+        [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-overview-timeseries-diagram>
     </div>
     <div class="control-bar">
       <!-- <swc-refresh-time></swc-refresh-time> -->
@@ -24,8 +24,7 @@
     <div class="legend-entry">
       <div *ngFor="let entry of timeseries">
         <n52-legend-entry [dataset]="entry" [selected]="isSelected(entry)" [datasetOptions]="seriesOptions.get(entry.internalId)"
-          (onDeleteDataset)="deleteTimeseries(entry)" (onSelectDataset)="selectTimeseries($event, entry)" (onUpdateOptions)="updateOptions($event, entry)"
-          (onSelectDate)="jumpToDate($event)"></n52-legend-entry>
+          (onDeleteDataset)="deleteTimeseries(entry)" (onSelectDataset)="selectTimeseries($event, entry)" (onSelectDate)="jumpToDate($event)"></n52-legend-entry>
       </div>
     </div>
   </div>
