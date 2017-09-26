@@ -19,6 +19,9 @@ export class LegendEntryComponent implements OnInit {
     @Input()
     public datasetOptions: DatasetOptions;
 
+    @Input()
+    public selected: boolean;
+
     @Output()
     public onDeleteDataset: EventEmitter<boolean> = new EventEmitter();
 
@@ -74,8 +77,8 @@ export class LegendEntryComponent implements OnInit {
     }
 
     public toggleSelection() {
-        this.datasetOptions.selected = !this.datasetOptions.selected;
-        this.onSelectDataset.emit(this.datasetOptions.selected);
+        this.selected = !this.selected;
+        this.onSelectDataset.emit(this.selected);
     }
 
     public toggleVisibility() {

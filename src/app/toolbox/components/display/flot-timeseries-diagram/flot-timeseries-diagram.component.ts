@@ -64,7 +64,7 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     private oldGraphOptions: any;
 
     @Output()
-    public onSeriesSelected: EventEmitter<string> = new EventEmitter();
+    public onSeriesSelected: EventEmitter<Array<string>> = new EventEmitter();
 
     @Output()
     public onTimespanChanged: EventEmitter<Timespan> = new EventEmitter();
@@ -239,41 +239,46 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     }
 
     private prepareData(timeseries: Timeseries, data: Data<[number, number]>) {
-        this.removePreparedData(timeseries.internalId);
+        const dataIdx = this.preparedData.findIndex(e => e.internalId === timeseries.internalId);
         const styles = this.seriesOptions.get(timeseries.internalId);
-        if (styles.visible) {
-            const label = this.createAxisLabel(timeseries);
-            let axePos;
-            const axe = this.plotOptions.yaxes.find((yaxisEntry, idx) => {
-                axePos = idx + 1;
-                return yaxisEntry.uom === label;
-            });
-            if (axe) {
+        const label = this.createAxisLabel(timeseries);
+        let axePos;
+        const axe = this.plotOptions.yaxes.find((yaxisEntry, idx) => {
+            axePos = idx + 1;
+            return yaxisEntry.uom === label;
+        });
+        if (axe) {
+            if (axe.internalIds.indexOf(timeseries.internalId) < 0) {
                 axe.internalIds.push(timeseries.internalId);
                 axe.tsColors.push(styles.color);
-            } else {
-                this.plotOptions.yaxes.push({
-                    uom: timeseries.parameters.phenomenon.label + ' [' + timeseries.uom + ']',
-                    tsColors: [styles.color],
-                    internalIds: [timeseries.internalId],
-                    min: null
-                });
-                axePos = this.plotOptions.yaxes.length;
             }
-            this.preparedData.push({
-                internalId: timeseries.internalId,
-                color: styles.color,
-                data: data.values,
-                points: {
-                    fillColor: styles.color
-                },
-                lines: {
-                    lineWidth: 1
-                },
-                bars: {
-                    lineWidth: 1
-                }
+        } else {
+            this.plotOptions.yaxes.push({
+                uom: timeseries.parameters.phenomenon.label + ' [' + timeseries.uom + ']',
+                tsColors: [styles.color],
+                internalIds: [timeseries.internalId],
+                min: null
             });
+            axePos = this.plotOptions.yaxes.length;
+        }
+        const dataEntry = {
+            internalId: timeseries.internalId,
+            color: styles.color,
+            data: styles.visible ? data.values : [],
+            points: {
+                fillColor: styles.color
+            },
+            lines: {
+                lineWidth: 1
+            },
+            bars: {
+                lineWidth: 1
+            }
+        };
+        if (dataIdx >= 0) {
+            this.preparedData[dataIdx] = dataEntry;
+        } else {
+            this.preparedData.push(dataEntry);
         }
     }
 
@@ -337,15 +342,17 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
                                     return false; // break loop
                                 }
                             });
+                            const selections: Array<string> = [];
                             $.each(plot.getData(), (index: number, elem: any) => {
                                 const style = this.seriesOptions.get(elem.internalId);
                                 if (target.data('axis.n') === elem.yaxis.n) {
                                     elem.selected = !selected;
-                                    style.selected = !selected;
-                                } else {
-                                    style.selected = false;
+                                    if (elem.selected) {
+                                        selections.push(elem.internalId);
+                                    }
                                 }
                             });
+                            this.onSeriesSelected.emit(selections);
                             if (!selected) {
                                 target.addClass('selected');
                             }

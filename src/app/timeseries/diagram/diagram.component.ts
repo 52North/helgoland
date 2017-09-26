@@ -155,6 +155,14 @@ export class TimeseriesDiagramComponent implements OnInit {
     }
   }
 
+  public timeseriesSelected(selections: Array<string>) {
+    this.selectedIds = selections;
+  }
+
+  public isSelected(timeseries: IDataset) {
+    return this.selectedIds.find(e => e === timeseries.internalId);
+  }
+
   public updateOptions(options: DatasetOptions, dataset: IDataset) {
     this.seriesOptions.set(dataset.internalId, JSON.parse(JSON.stringify(options)));
   }

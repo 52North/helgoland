@@ -19,7 +19,7 @@ export interface DatasetGraphComponent {
 
     // OUTPUTS
 
-    onSeriesSelected: EventEmitter<string>; // Oder Array<string>
+    onSeriesSelected: EventEmitter<Array<string>>;
 
     onTimespanChanged: EventEmitter<Timespan>;
 
