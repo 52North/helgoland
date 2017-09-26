@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { Category } from './../../../model/api/category';
 import { Data } from './../../../model/api/data';
+import { Timeseries } from './../../../model/api/dataset/timeseries';
 import { Feature } from './../../../model/api/feature';
 import { Offering } from './../../../model/api/offering';
 import { DataParameterFilter, ParameterFilter } from './../../../model/api/parameterFilter';
@@ -9,7 +10,6 @@ import { Phenomenon } from './../../../model/api/phenomenon';
 import { Procedure } from './../../../model/api/procedure';
 import { Service } from './../../../model/api/service';
 import { Station } from './../../../model/api/station';
-import { Timeseries } from './../../../model/api/timeseries';
 import { Timespan } from './../../../model/internal/time-interval';
 
 export interface ApiV1 {

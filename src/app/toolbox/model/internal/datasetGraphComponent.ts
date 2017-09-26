@@ -1,7 +1,7 @@
-import { TimeInterval, Timespan } from './time-interval';
-import { EventEmitter, Input } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
-import { Styles } from './../api/dataset/styles';
+import { DatasetOptions } from './../api/dataset/options';
+import { TimeInterval, Timespan } from './time-interval';
 
 export interface DatasetGraphComponent {
 
@@ -13,7 +13,7 @@ export interface DatasetGraphComponent {
 
     timeInterval: TimeInterval; // oder einzeln lösen. Checken, ob Änderung einzelner property in change detection auftauchen.
 
-    seriesOptions: Map<string, Styles>;
+    seriesOptions: Map<string, DatasetOptions>;
 
     graphOptions: any;
 

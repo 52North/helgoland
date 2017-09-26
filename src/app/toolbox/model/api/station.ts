@@ -1,6 +1,6 @@
 import { ParameterConstellation } from './dataset/parameterConstellation';
+import { Timeseries } from './dataset/timeseries';
 import { Parameter } from './parameter';
-import { Timeseries } from './timeseries';
 
 export class Station {
 

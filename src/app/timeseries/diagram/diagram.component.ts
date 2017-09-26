@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Data, IDataEntry } from './../../toolbox/model/api/data';
 import { IDataset } from './../../toolbox/model/api/dataset/idataset';
-import { Styles } from './../../toolbox/model/api/dataset/styles';
+import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { PlotOptions } from './../../toolbox/model/internal/flot/plotOptions';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { Time } from './../../toolbox/services/time/time.service';
@@ -19,7 +19,7 @@ export class TimeseriesDiagramComponent implements OnInit {
 
   public timeseries: Array<IDataset>;
   public seriesIds: Array<string>;
-  public seriesOptions: Map<string, Styles>;
+  public seriesOptions: Map<string, DatasetOptions>;
   public selectedIds: Array<string> = new Array();
   public data: Array<Data<IDataEntry>>;
   public timespan: Timespan;
@@ -155,7 +155,7 @@ export class TimeseriesDiagramComponent implements OnInit {
     }
   }
 
-  public updateOptions(options: Styles, dataset: IDataset) {
+  public updateOptions(options: DatasetOptions, dataset: IDataset) {
     this.seriesOptions.set(dataset.internalId, JSON.parse(JSON.stringify(options)));
   }
 

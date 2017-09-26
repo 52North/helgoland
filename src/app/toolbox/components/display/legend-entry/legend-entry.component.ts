@@ -3,8 +3,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Dataset } from './../../../model/api/dataset/dataset';
 import { FirstLastValue } from './../../../model/api/dataset/firstLastValue';
 import { IDataset } from './../../../model/api/dataset/idataset';
-import { Styles } from './../../../model/api/dataset/styles';
-import { Timeseries } from './../../../model/api/timeseries';
+import { DatasetOptions } from './../../../model/api/dataset/options';
+import { Timeseries } from './../../../model/api/dataset/timeseries';
 
 @Component({
     selector: 'n52-legend-entry',
@@ -17,7 +17,7 @@ export class LegendEntryComponent implements OnInit {
     public dataset: IDataset;
 
     @Input()
-    public datasetOptions: Styles;
+    public datasetOptions: DatasetOptions;
 
     @Output()
     public onDeleteDataset: EventEmitter<boolean> = new EventEmitter();
@@ -26,7 +26,7 @@ export class LegendEntryComponent implements OnInit {
     public onSelectDataset: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-    public onUpdateOptions: EventEmitter<Styles> = new EventEmitter();
+    public onUpdateOptions: EventEmitter<DatasetOptions> = new EventEmitter();
 
     @Output()
     public onSelectDate: EventEmitter<Date> = new EventEmitter();

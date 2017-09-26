@@ -4,7 +4,6 @@ import { FirstLastValue } from './firstLastValue';
 import { IDataset } from './idataset';
 import { ParameterConstellation } from './parameterConstellation';
 import { PlatformTypes } from './platformTypes';
-import { Styles } from './styles';
 
 export class DatasetParameterConstellation extends ParameterConstellation {
     platform: PlatformParameter;

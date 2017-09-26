@@ -4,8 +4,8 @@ import { deserializeArray } from 'class-transformer';
 import { Data } from './../../toolbox/model/api/data';
 import { Dataset } from './../../toolbox/model/api/dataset/dataset';
 import { IDataset } from './../../toolbox/model/api/dataset/idataset';
-import { Styles } from './../../toolbox/model/api/dataset/styles';
-import { Timeseries } from './../../toolbox/model/api/timeseries';
+import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
+import { Timeseries } from './../../toolbox/model/api/dataset/timeseries';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
@@ -21,7 +21,7 @@ export class TimeseriesService {
 
     public seriesIds: Array<string> = [];
 
-    public seriesOptions: Map<string, Styles> = new Map();
+    public seriesOptions: Map<string, DatasetOptions> = new Map();
 
     public data: Array<Data<[2]>> = [];
 
@@ -48,7 +48,7 @@ export class TimeseriesService {
     }
 
     private createStyles(dataset: IDataset) {
-        const styles = new Styles();
+        const styles = new DatasetOptions();
         styles.internalId = dataset.internalId;
         styles.color = this.getRandomColor();
         return styles;

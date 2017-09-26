@@ -20,8 +20,8 @@ import * as moment from 'moment';
 import { Data } from '../../../model/api/data';
 import { Plot } from '../../../model/internal/flot/plot';
 import { IDataset } from './../../../model/api/dataset/idataset';
-import { Styles } from './../../../model/api/dataset/styles';
-import { Timeseries } from './../../../model/api/timeseries';
+import { DatasetOptions } from './../../../model/api/dataset/options';
+import { Timeseries } from './../../../model/api/dataset/timeseries';
 import { DatasetGraphComponent, GraphMessage } from './../../../model/internal/datasetGraphComponent';
 import { DataSeries } from './../../../model/internal/flot/dataSeries';
 import { PlotOptions } from './../../../model/internal/flot/plotOptions';
@@ -56,8 +56,8 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     public timeInterval: TimeInterval;
 
     @Input()
-    public seriesOptions: Map<string, Styles>;
-    public oldSeriesOptions: Map<string, Styles> = new Map();
+    public seriesOptions: Map<string, DatasetOptions>;
+    public oldSeriesOptions: Map<string, DatasetOptions> = new Map();
 
     @Input()
     public graphOptions: any;

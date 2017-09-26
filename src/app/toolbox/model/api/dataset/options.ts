@@ -1,4 +1,4 @@
-export class Styles {
+export class DatasetOptions {
     internalId: string;
     selected = false;
     color = '#FF0000';

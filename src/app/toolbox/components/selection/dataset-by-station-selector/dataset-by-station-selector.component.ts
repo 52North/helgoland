@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { Timeseries } from './../../../model/api/dataset/timeseries';
 import { Station } from './../../../model/api/station';
-import { Timeseries } from './../../../model/api/timeseries';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 
 class ExtendedTimeseries extends Timeseries {
