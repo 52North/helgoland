@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 
-import { TrajectoriesService } from './trajectories.service';
-
 @Injectable()
 export class TrajectoriesConditionalRouter {
 
     constructor(
-        private router: Router,
-        private trajectoriesSrvc: TrajectoriesService
+        private router: Router
     ) {
         this.router.events
             .filter((event: NavigationStart) => event instanceof NavigationStart)

@@ -1,14 +1,9 @@
-import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Injectable()
 export class PermalinkService {
 
-    constructor(
-        private router: Router,
-        private location: Location
-    ) { }
+    constructor() { }
 
     public createBaseUrl() {
         const url = window.location.href;

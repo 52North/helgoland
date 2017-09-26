@@ -12,10 +12,10 @@ import { Time } from './../../../services/time/time.service';
 export class FlotOverviewTimeseriesDiagramComponent implements OnInit, OnChanges {
 
     @Input()
-    public seriesIds: Array<string>;
+    public datasetIds: Array<string>;
 
     @Input()
-    public seriesOptions: Map<string, DatasetOptions>;
+    public datasetOptions: Map<string, DatasetOptions>;
 
     @Input()
     public graphOptions: any;
@@ -59,6 +59,6 @@ export class FlotOverviewTimeseriesDiagramComponent implements OnInit, OnChanges
             from: timespan.from.getTime(),
             to: timespan.to.getTime()
         };
-        this.seriesOptions.forEach(e => e.generalize = true);
+        this.datasetOptions.forEach(e => e.generalize = true);
     }
 }

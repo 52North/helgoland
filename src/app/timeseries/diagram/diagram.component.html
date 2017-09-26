@@ -1,14 +1,14 @@
-<div class="empty-diagram" *ngIf="seriesIds.length == 0">
+<div class="empty-diagram" *ngIf="datasetIds.length == 0">
   <span>Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.</span>
 </div>
-<div class="content" *ngIf="seriesIds.length > 0">
+<div class="content" *ngIf="datasetIds.length > 0">
   <div class="diagram-wrapper">
     <div class="diagram">
-      <n52-flot-timeseries-diagram [seriesIds]="seriesIds" [selectedSeriesIds]="selectedIds" [seriesOptions]="seriesOptions" [graphOptions]="diagramOptions"
-        [timeInterval]="timespan" (onSeriesSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-flot-timeseries-diagram>
+      <n52-flot-timeseries-diagram [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
+        [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-flot-timeseries-diagram>
     </div>
     <div class="overview-diagram">
-      <n52-flot-overview-timeseries-diagram [seriesIds]="seriesIds" [rangefactor]="2" [seriesOptions]="seriesOptions" [graphOptions]="overviewOptions"
+      <n52-flot-overview-timeseries-diagram [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions" [graphOptions]="overviewOptions"
         [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-overview-timeseries-diagram>
     </div>
     <div class="control-bar">
@@ -22,10 +22,10 @@
   <div class="legend scrollable">
     <h3 class="header">Legende</h3>
     <div class="legend-entry">
-      <div *ngFor="let entry of timeseries">
-        <n52-legend-entry [datasetId]="entry.internalId" [selected]="isSelected(entry)" [datasetOptions]="seriesOptions.get(entry.internalId)"
-          [timeInterval]="timespan" (onDeleteDataset)="deleteTimeseries(entry)" (onSelectDataset)="selectTimeseries($event, entry)"
-          (onSelectDate)="jumpToDate($event)"></n52-legend-entry>
+      <div *ngFor="let id of datasetIds">
+        <n52-legend-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" [timeInterval]="timespan"
+          (onDeleteDataset)="deleteTimeseries(id)" (onSelectDataset)="selectTimeseries($event, id)" (onSelectDate)="jumpToDate($event)"
+          (onUpdateOptions)="updateOptions($event, id)"></n52-legend-entry>
       </div>
     </div>
   </div>

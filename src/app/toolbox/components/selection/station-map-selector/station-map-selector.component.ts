@@ -1,4 +1,3 @@
-import { ParameterFilter } from './../../../model/api/parameterFilter';
 import {
     AfterViewInit,
     ChangeDetectorRef,
@@ -11,6 +10,7 @@ import {
 } from '@angular/core';
 import * as L from 'leaflet';
 
+import { ParameterFilter } from './../../../model/api/parameterFilter';
 import { Station } from './../../../model/api/station';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 import { MapCache } from './../../../services/map/map.service';

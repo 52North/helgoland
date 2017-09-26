@@ -8,7 +8,6 @@ import {
     Input,
     IterableDiffer,
     IterableDiffers,
-    KeyValueDiffers,
     OnChanges,
     Output,
     SimpleChanges,
@@ -22,7 +21,8 @@ import { Plot } from '../../../model/internal/flot/plot';
 import { IDataset } from './../../../model/api/dataset/idataset';
 import { DatasetOptions } from './../../../model/api/dataset/options';
 import { Timeseries } from './../../../model/api/dataset/timeseries';
-import { DatasetGraphComponent, GraphMessage } from './../../../model/internal/datasetGraphComponent';
+import { DatasetGraphComponent } from './../../../model/internal/datasetGraphComponent';
+import { GraphMessage } from './../../../model/internal/datasetGraphComponent';
 import { DataSeries } from './../../../model/internal/flot/dataSeries';
 import { PlotOptions } from './../../../model/internal/flot/plotOptions';
 import { TimeInterval, Timespan } from './../../../model/internal/time-interval';
@@ -45,26 +45,26 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     @ViewChild('flot') flotElem: ElementRef;
 
     @Input()
-    public seriesIds: Array<string>;
-    private seriesIdsDiffer: IterableDiffer<string>;
+    public datasetIds: Array<string>;
+    private datasetIdsDiffer: IterableDiffer<string>;
 
     @Input()
-    public selectedSeriesIds: Array<string>;
-    private selectedSeriesIdsDiffer: IterableDiffer<string>;
+    public selectedDatasetIds: Array<string>;
+    private selectedDatasetIdsDiffer: IterableDiffer<string>;
 
     @Input()
     public timeInterval: TimeInterval;
 
     @Input()
-    public seriesOptions: Map<string, DatasetOptions>;
-    public oldSeriesOptions: Map<string, DatasetOptions> = new Map();
+    public datasetOptions: Map<string, DatasetOptions>;
+    public oldDatasetOptions: Map<string, DatasetOptions> = new Map();
 
     @Input()
     public graphOptions: any;
     private oldGraphOptions: any;
 
     @Output()
-    public onSeriesSelected: EventEmitter<Array<string>> = new EventEmitter();
+    public onDatasetSelected: EventEmitter<Array<string>> = new EventEmitter();
 
     @Output()
     public onTimespanChanged: EventEmitter<Timespan> = new EventEmitter();
@@ -89,13 +89,12 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
 
     constructor(
         private iterableDiffers: IterableDiffers,
-        private keyValueDiffers: KeyValueDiffers,
         private api: ApiInterface,
         private datasetIdResolver: InternalIdHandler,
         private timeSrvc: Time
     ) {
-        this.seriesIdsDiffer = this.iterableDiffers.find([]).create();
-        this.selectedSeriesIdsDiffer = this.iterableDiffers.find([]).create();
+        this.datasetIdsDiffer = this.iterableDiffers.find([]).create();
+        this.selectedDatasetIdsDiffer = this.iterableDiffers.find([]).create();
     }
 
     public ngAfterViewInit() {
@@ -139,24 +138,24 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     }
 
     public ngDoCheck() {
-        const seriesIdsChanges = this.seriesIdsDiffer.diff(this.seriesIds);
-        if (seriesIdsChanges) {
-            seriesIdsChanges.forEachAddedItem(addedItem => {
+        const datasetIdsChanges = this.datasetIdsDiffer.diff(this.datasetIds);
+        if (datasetIdsChanges) {
+            datasetIdsChanges.forEachAddedItem(addedItem => {
                 const internalId = this.datasetIdResolver.resolveInternalId(addedItem.item);
                 this.api.getSingleTimeseries(internalId.id, internalId.url)
                     .subscribe((timeseries: Timeseries) => this.addTimeseries(timeseries));
             });
-            seriesIdsChanges.forEachRemovedItem(removedItem => {
+            datasetIdsChanges.forEachRemovedItem(removedItem => {
                 this.removeTimeseries(removedItem.item);
             });
         }
 
-        const selectedSeriesIdsChanges = this.selectedSeriesIdsDiffer.diff(this.selectedSeriesIds);
-        if (selectedSeriesIdsChanges) {
-            selectedSeriesIdsChanges.forEachAddedItem(addedItem => {
+        const selectedDatasetIdsChanges = this.selectedDatasetIdsDiffer.diff(this.selectedDatasetIds);
+        if (selectedDatasetIdsChanges) {
+            selectedDatasetIdsChanges.forEachAddedItem(addedItem => {
                 this.setSelectedId(addedItem.item);
             });
-            selectedSeriesIdsChanges.forEachRemovedItem(removedItem => {
+            selectedDatasetIdsChanges.forEachRemovedItem(removedItem => {
                 this.removeSelectedId(removedItem.item);
             });
         }
@@ -168,9 +167,9 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
             this.optionsChanged();
         }
 
-        this.seriesOptions.forEach((value, key) => {
-            if (!equal(value, this.oldSeriesOptions.get(key))) {
-                this.oldSeriesOptions.set(key, JSON.parse(JSON.stringify(this.seriesOptions.get(key))));
+        this.datasetOptions.forEach((value, key) => {
+            if (!equal(value, this.oldDatasetOptions.get(key))) {
+                this.oldDatasetOptions.set(key, JSON.parse(JSON.stringify(this.datasetOptions.get(key))));
                 if (this.timeseriesMap.has(key)) {
                     this.loadTsData(this.timeseriesMap.get(key));
                 }
@@ -236,7 +235,7 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
 
     private prepareData(timeseries: Timeseries, data: Data<[number, number]>) {
         const dataIdx = this.preparedData.findIndex(e => e.internalId === timeseries.internalId);
-        const styles = this.seriesOptions.get(timeseries.internalId);
+        const styles = this.datasetOptions.get(timeseries.internalId);
         const label = this.createAxisLabel(timeseries);
         let axePos;
         const axe = this.plotOptions.yaxes.find((yaxisEntry, idx) => {
@@ -340,7 +339,6 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
                             });
                             const selections: Array<string> = [];
                             $.each(plot.getData(), (index: number, elem: any) => {
-                                const style = this.seriesOptions.get(elem.internalId);
                                 if (target.data('axis.n') === elem.yaxis.n) {
                                     elem.selected = !selected;
                                     if (elem.selected) {
@@ -348,7 +346,7 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
                                     }
                                 }
                             });
-                            this.onSeriesSelected.emit(selections);
+                            this.onDatasetSelected.emit(selections);
                             if (!selected) {
                                 target.addClass('selected');
                             }
@@ -408,11 +406,11 @@ export class FlotTimeseriesDiagramComponent implements AfterViewInit, DoCheck, O
     private loadTsData(timeseries: Timeseries) {
         if (this.timespan && this.plotOptions) {
             const buffer = this.timeSrvc.getBufferedTimespan(this.timespan, 0.2);
-            const seriesOptions = this.seriesOptions.get(timeseries.internalId);
+            const datasetOptions = this.datasetOptions.get(timeseries.internalId);
             this.api.getTsData<[number, number]>(timeseries.id, timeseries.url, buffer,
                 {
                     format: 'flot',
-                    generalize: seriesOptions.generalize
+                    generalize: datasetOptions.generalize
                 })
                 .subscribe(result => {
                     this.prepareData(timeseries, result);

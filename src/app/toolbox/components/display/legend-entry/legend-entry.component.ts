@@ -111,6 +111,11 @@ export class LegendEntryComponent implements OnInit, OnChanges {
         this.modalService.open(content, { size: 'lg' });
     }
 
+    public updateColor() {
+        this.datasetOptions.color = this.tempColor;
+        this.onUpdateOptions.emit(this.datasetOptions);
+    }
+
     private setParameters() {
         if (this.dataset instanceof Dataset) {
             this.platformLabel = this.dataset.parameters.platform.label;

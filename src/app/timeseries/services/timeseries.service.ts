@@ -1,34 +1,25 @@
 import { Injectable } from '@angular/core';
-import { deserializeArray } from 'class-transformer';
 
-import { Data } from './../../toolbox/model/api/data';
 import { Dataset } from './../../toolbox/model/api/dataset/dataset';
 import { IDataset } from './../../toolbox/model/api/dataset/idataset';
 import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { Timeseries } from './../../toolbox/model/api/dataset/timeseries';
-import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
-import { Time } from './../../toolbox/services/time/time.service';
 
-const TIMESERIES_CACHE_PARAM = 'timeseries';
+const TIMESERIES_OPTIONS_CACHE_PARAM = 'timeseriesOptions';
 const TIMESERIES_IDS_CACHE_PARAM = 'timeseriesIds';
 
 @Injectable()
 export class TimeseriesService {
 
-    public timeseries: Array<IDataset> = [];
+    public datasetIds: Array<string> = [];
 
-    public seriesIds: Array<string> = [];
-
-    public seriesOptions: Map<string, DatasetOptions> = new Map();
-
-    public data: Array<Data<[2]>> = [];
+    public datasetOptions: Map<string, DatasetOptions> = new Map();
 
     constructor(
         private api: ApiInterface,
-        private localStorage: LocalStorage,
-        private timeSrvc: Time
+        private localStorage: LocalStorage
     ) {
         this.loadTimeseries();
     }
@@ -42,9 +33,13 @@ export class TimeseriesService {
     }
 
     public addTimeseriesBy(dataset: IDataset) {
-        this.seriesIds.push(dataset.internalId);
-        this.seriesOptions.set(dataset.internalId, this.createStyles(dataset));
+        this.datasetIds.push(dataset.internalId);
+        this.datasetOptions.set(dataset.internalId, this.createStyles(dataset));
         this.api.getSingleTimeseries(dataset.id, dataset.url).subscribe((res) => this.addDataset(res));
+    }
+
+    public addDatasetById(dataset: IDataset) {
+        this.api.getDataset(dataset.id, dataset.url).subscribe((res) => this.addDataset(res));
     }
 
     private createStyles(dataset: IDataset) {
@@ -63,68 +58,41 @@ export class TimeseriesService {
         return color;
     }
 
-    public addDatasetById(dataset: IDataset) {
-        this.api.getDataset(dataset.id, dataset.url).subscribe((res) => this.addDataset(res));
-    }
-
     public removeAllTimeseries() {
-        this.seriesIds.length = 0;
-        this.seriesOptions.clear();
-        this.timeseries.length = 0;
+        this.datasetIds.length = 0;
+        this.datasetOptions.clear();
     }
 
-    public removeTimeseries(dataset: IDataset) {
-        const seriesIdx = this.seriesIds.indexOf(dataset.internalId);
+    public removeTimeseries(internalId: string) {
+        const seriesIdx = this.datasetIds.indexOf(internalId);
         if (seriesIdx > -1) {
-            this.seriesIds.splice(seriesIdx, 1);
-            this.seriesOptions.delete(dataset.internalId);
+            this.datasetIds.splice(seriesIdx, 1);
+            this.datasetOptions.delete(internalId);
         }
-        const idx = this.findTimeseriesIdx(dataset);
-        this.timeseries.splice(idx, 1);
-        this.data.splice(idx, 1);
         this.saveTimeseries();
-    }
-
-    public loadData(timespan: Timespan) {
-        this.timeseries.forEach((entry, idx) => {
-            // entry.styles.loading = true;
-            this.data[idx] = null;
-            const buffer = this.timeSrvc.getBufferedTimespan(timespan, 0.2);
-            this.api.getTsData<[2]>(entry.id, entry.url, buffer, { format: 'flot', generalize: false }).subscribe((result) => {
-                this.data[idx] = result;
-                // entry.styles.loading = false;
-            });
-        });
     }
 
     public hasTimeseries(): boolean {
-        return this.seriesIds.length > 0;
+        return this.datasetIds.length > 0;
     }
 
-    private addDataset(dataset: IDataset) {
-        this.timeseries.push(dataset);
-        this.data.push(null);
+    public updateTimeseriesOptions(options: DatasetOptions, internalId: string) {
+        this.datasetOptions.set(internalId, options);
         this.saveTimeseries();
     }
 
-    private findTimeseriesIdx(dataset: IDataset) {
-        return this.timeseries.findIndex((entry) => {
-            return entry.id === dataset.id && entry.url === dataset.url;
-        });
+    private addDataset(dataset: IDataset) {
+        this.saveTimeseries();
     }
 
     private saveTimeseries() {
-        this.localStorage.save(TIMESERIES_CACHE_PARAM, this.timeseries);
-        this.localStorage.save(TIMESERIES_IDS_CACHE_PARAM, this.seriesIds);
+        this.localStorage.save(TIMESERIES_IDS_CACHE_PARAM, this.datasetIds);
+        this.localStorage.save(TIMESERIES_OPTIONS_CACHE_PARAM, Array.from(this.datasetOptions.values()));
     }
 
     private loadTimeseries() {
-        const json = this.localStorage.loadTextual(TIMESERIES_CACHE_PARAM);
-        if (json) {
-            const result = deserializeArray<Timeseries>(Timeseries, json);
-            this.timeseries = result;
-            this.timeseries.forEach(entry => this.seriesOptions.set(entry.internalId, this.createStyles(entry)));
-        }
-        this.seriesIds = this.localStorage.load(TIMESERIES_IDS_CACHE_PARAM);
+        this.localStorage.load<Array<DatasetOptions>>(TIMESERIES_OPTIONS_CACHE_PARAM)
+            .forEach(e => this.datasetOptions.set(e.internalId, e));
+        this.datasetIds = this.localStorage.load<Array<string>>(TIMESERIES_IDS_CACHE_PARAM);
     }
 }

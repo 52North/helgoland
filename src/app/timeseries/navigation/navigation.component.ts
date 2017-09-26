@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { TimeseriesConditionalRouter } from './../services/timeseries-router.service';
-
 @Component({
   selector: 'n52-timeseries-navigation',
   templateUrl: './navigation.component.html',
@@ -9,7 +7,5 @@ import { TimeseriesConditionalRouter } from './../services/timeseries-router.ser
 })
 export class TimeseriesNavigationComponent {
 
-  constructor(
-    private router: TimeseriesConditionalRouter
-  ) { }
+  constructor() { }
 }

@@ -21,7 +21,7 @@ export class TimeseriesProviderSelectionService {
     }
 
     public getSelectedProvider(): Service {
-        const provider = this.localStorage.load(SELECTED_PROVIDER_PARAM);
+        const provider = this.localStorage.load<Service>(SELECTED_PROVIDER_PARAM);
         return provider ? provider : this.selectedProvider;
     }
 

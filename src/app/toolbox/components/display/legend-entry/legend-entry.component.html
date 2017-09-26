@@ -9,7 +9,7 @@
         <n52-timeseries-style-selector [timeseriesColor]="datasetOptions.color" (onColorChange)="tempColor = $event"></n52-timeseries-style-selector>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="datasetOptions.color = tempColor; c();">Ok</button>
+        <button type="button" class="btn btn-light" (click)="updateColor(); c();">Ok</button>
         <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
     </div>
 </ng-template>

@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 
-import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
-import { TimeseriesService } from './timeseries.service';
-
 @Injectable()
 export class TimeseriesConditionalRouter {
 
     constructor(
-        private router: Router,
-        private timeseriesSrvc: TimeseriesService,
-        private providerSelection: TimeseriesProviderSelectionService
+        private router: Router
     ) {
         this.router.events
             .filter((event) => event instanceof NavigationStart)

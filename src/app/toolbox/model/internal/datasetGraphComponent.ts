@@ -7,19 +7,19 @@ export interface DatasetGraphComponent {
 
     // INPUTS
 
-    seriesIds: Array<string>;
+    datasetIds: Array<string>;
 
-    selectedSeriesIds: Array<string>;
+    selectedDatasetIds: Array<string>;
 
     timeInterval: TimeInterval; // oder einzeln lösen. Checken, ob Änderung einzelner property in change detection auftauchen.
 
-    seriesOptions: Map<string, DatasetOptions>;
+    datasetOptions: Map<string, DatasetOptions>;
 
     graphOptions: any;
 
     // OUTPUTS
 
-    onSeriesSelected: EventEmitter<Array<string>>;
+    onDatasetSelected: EventEmitter<Array<string>>;
 
     onTimespanChanged: EventEmitter<Timespan>;
 
