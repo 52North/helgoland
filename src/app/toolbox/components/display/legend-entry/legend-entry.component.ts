@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 import { Dataset } from './../../../model/api/dataset/dataset';
 import { FirstLastValue } from './../../../model/api/dataset/firstLastValue';
@@ -10,7 +10,8 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 @Component({
     selector: 'n52-legend-entry',
     templateUrl: './legend-entry.component.html',
-    styleUrls: ['./legend-entry.component.scss']
+    styleUrls: ['./legend-entry.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class LegendEntryComponent implements OnInit {
 
@@ -82,7 +83,7 @@ export class LegendEntryComponent implements OnInit {
         return !this.dataset.styles.loading && !this.dataset.hasData;
     }
 
-    public open(content: TemplateRef<any>) {
-        this.modalService.open(content, {size: 'lg'});
+    public open(content: TemplateRef<any>, className: string = '') {
+        this.modalService.open(content, {size: 'lg', windowClass: className});
     }
 }
