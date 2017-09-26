@@ -1,3 +1,19 @@
+<ng-template #modalTimeseriesStyleSelector let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Timeseries style</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <n52-timeseries-style-selector [timeseriesColor]="dataset.styles.color" (onColorChange)="tempColor = $event"></n52-timeseries-style-selector>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="dataset.styles.color = tempColor; c();">Ok</button>
+        <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
+    </div>
+</ng-template>
+
 <div class="legendItem" style="position: relative;" [ngStyle]="{'border-color': dataset.styles.color}" [ngClass]="{'selected': dataset.styles.selected}" (click)="toggleSelection()">
     <div class="loading-overlay" *ngIf="dataset.styles.loading" [ngStyle]="{'background-color': dataset.styles.color}">
         <div class="fa fa-refresh fa-spin fa-3x fa-fw"></div>
@@ -41,7 +57,7 @@
         <div class="legendicons">
             <span class="fa" [ngClass]="{'fa-eye-slash': dataset.styles.visible, 'fa-eye': !dataset.styles.visible}" (click)="toggleVisibility(); $event.stopPropagation();"></span>
             <!-- <swc-timeseries-geometry-view-button series="timeseries"></swc-timeseries-geometry-view-button> -->
-            <!-- <span class="fa fa-pencil" ng-controller="SwcOpenStyleModalCtrl" ng-style="{color: timeseries.styles.color}" ng-click="$event.stopPropagation(); openStyling(timeseries)"></span> -->
+            <span class="fa fa-pencil" (click)="open(modalTimeseriesStyleSelector); $event.stopPropagation();" [ngStyle]="{color: dataset.styles.color}"></span>
             <span class="fa fa-info" (click)="toggleInformation(); $event.stopPropagation();"></span>
             <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();"></span>
         </div>

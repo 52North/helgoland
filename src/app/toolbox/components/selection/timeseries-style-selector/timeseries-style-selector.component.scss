@@ -1,0 +1,9 @@
+@import '../../../../../variables';
+
+:host {
+    // TODO-CF: replace this rule by one that makes the color-picker/span automatically propagate its height to its parent
+    .colorpicker {
+        height: 400px;
+    }
+    // TODO-CF: add rule that makes the color picker respect the margin of the h6
+}
