@@ -1,6 +1,13 @@
 @import '../../../../../variables';
 
-:host {
+
+.geometryViewerModal {
+    .modal-body {
+        height: 50vh;
+    }
+}
+
+n52-legend-entry {
     .legendItem {
         background-color: white;
         padding: 5px;

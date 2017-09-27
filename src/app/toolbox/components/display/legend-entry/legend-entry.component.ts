@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    TemplateRef,
+    ViewEncapsulation,
+} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TimeInterval } from '../../../model/internal/time-interval';
@@ -14,7 +24,8 @@ import { Time } from './../../../services/time/time.service';
 @Component({
     selector: 'n52-legend-entry',
     templateUrl: './legend-entry.component.html',
-    styleUrls: ['./legend-entry.component.scss']
+    styleUrls: ['./legend-entry.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class LegendEntryComponent implements OnInit, OnChanges {
 
@@ -107,8 +118,8 @@ export class LegendEntryComponent implements OnInit, OnChanges {
         this.onUpdateOptions.emit(this.datasetOptions);
     }
 
-    public open(content: TemplateRef<any>) {
-        this.modalService.open(content, { size: 'lg' });
+    public open(content: TemplateRef<any>, className: string = '') {
+        this.modalService.open(content, {size: 'lg', windowClass: className});
     }
 
     public updateColor() {
