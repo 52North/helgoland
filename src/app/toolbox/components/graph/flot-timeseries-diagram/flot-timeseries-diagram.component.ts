@@ -3,10 +3,10 @@ import * as moment from 'moment';
 
 import { Data } from '../../../model/api/data';
 import { Plot } from '../../../model/internal/flot/plot';
+import { DatasetGraphComponent } from '../datasetGraphComponent';
 import { IDataset } from './../../../model/api/dataset/idataset';
 import { DatasetOptions } from './../../../model/api/dataset/options';
 import { Timeseries } from './../../../model/api/dataset/timeseries';
-import { DatasetGraphComponent } from './../../../model/internal/datasetGraphComponent';
 import { DataSeries } from './../../../model/internal/flot/dataSeries';
 import { PlotOptions } from './../../../model/internal/flot/plotOptions';
 import { Timespan } from './../../../model/internal/time-interval';

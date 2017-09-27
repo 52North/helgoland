@@ -11,16 +11,16 @@ import { LocateService } from './components/control/map/locate/locate.service';
 import { ZoomControlComponent } from './components/control/map/zoom/zoom.component';
 import { StringTogglerComponent } from './components/control/string-toggler/string-toggler.component';
 import { DThreeDiagramComponent } from './components/display/d-three-diagram/d-three-diagram.component';
-import {
-    FlotOverviewTimeseriesDiagramComponent,
-} from './components/display/flot-overview-timeseries-diagram/flot-overview-timeseries-diagram.component';
-import {
-    FlotTimeseriesDiagramComponent,
-} from './components/display/flot-timeseries-diagram/flot-timeseries-diagram.component';
 import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
 import { LabelMapperComponent } from './components/display/label-mapper/label-mapper.component';
 import { LabelMapperService } from './components/display/label-mapper/label-mapper.service';
 import { LegendEntryComponent } from './components/display/legend-entry/legend-entry.component';
+import {
+    FlotOverviewTimeseriesDiagramComponent,
+} from './components/graph/flot-overview-timeseries-diagram/flot-overview-timeseries-diagram.component';
+import {
+    FlotTimeseriesDiagramComponent,
+} from './components/graph/flot-timeseries-diagram/flot-timeseries-diagram.component';
 import {
     DatasetByStationSelectorComponent,
 } from './components/selection/dataset-by-station-selector/dataset-by-station-selector.component';
@@ -61,91 +61,71 @@ import { PermalinkService } from './services/permalink/permalink.service';
 import { Settings } from './services/settings/settings.service';
 import { Time } from './services/time/time.service';
 
+const COMPONENTS = [
+    ProviderSelectorComponent,
+    DatasetByStationSelectorComponent,
+    StationMapSelectorComponent,
+    ServiceFilterSelectorComponent,
+    ZoomControlComponent,
+    LocateControlComponent,
+    KeysPipe,
+    LabelMapperComponent,
+    ListSelectorComponent,
+    MultiServiceFilterSelectorComponent,
+    FlotOverviewTimeseriesDiagramComponent,
+    TimespanShiftSelectorComponent,
+    PredefinedTimespanSelectorComponent,
+    TimespanSelectorComponent,
+    LegendEntryComponent,
+    GeometryMapViewerComponent,
+    DThreeDiagramComponent,
+    StringTogglerComponent,
+    BoolTogglerComponent,
+    PermalinkButtonComponent,
+    PermalinkInMailComponent,
+    PermalinkNewWindowComponent,
+    PermalinkToClipboardComponent,
+    FlotTimeseriesDiagramComponent,
+    TimeseriesStyleSelectorComponent
+];
+
 @NgModule({
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ColorPickerModule,
-    NgbModule.forRoot()
-  ],
-  declarations: [
-    ProviderSelectorComponent,
-    DatasetByStationSelectorComponent,
-    StationMapSelectorComponent,
-    ServiceFilterSelectorComponent,
-    ZoomControlComponent,
-    LocateControlComponent,
-    KeysPipe,
-    LabelMapperComponent,
-    ListSelectorComponent,
-    MultiServiceFilterSelectorComponent,
-    FlotOverviewTimeseriesDiagramComponent,
-    TimespanShiftSelectorComponent,
-    PredefinedTimespanSelectorComponent,
-    TimespanSelectorComponent,
-    LegendEntryComponent,
-    GeometryMapViewerComponent,
-    DThreeDiagramComponent,
-    StringTogglerComponent,
-    BoolTogglerComponent,
-    PermalinkButtonComponent,
-    PermalinkInMailComponent,
-    PermalinkNewWindowComponent,
-    PermalinkToClipboardComponent,
-    FlotTimeseriesDiagramComponent,
-    TimeseriesStyleSelectorComponent
-  ],
-  entryComponents: [ProviderSelectorComponent],
-  exports: [
-    ProviderSelectorComponent,
-    DatasetByStationSelectorComponent,
-    StationMapSelectorComponent,
-    ServiceFilterSelectorComponent,
-    ZoomControlComponent,
-    LocateControlComponent,
-    KeysPipe,
-    LabelMapperComponent,
-    ListSelectorComponent,
-    MultiServiceFilterSelectorComponent,
-    FlotOverviewTimeseriesDiagramComponent,
-    TimespanShiftSelectorComponent,
-    PredefinedTimespanSelectorComponent,
-    TimespanSelectorComponent,
-    LegendEntryComponent,
-    GeometryMapViewerComponent,
-    DThreeDiagramComponent,
-    StringTogglerComponent,
-    BoolTogglerComponent,
-    PermalinkButtonComponent,
-    PermalinkInMailComponent,
-    PermalinkNewWindowComponent,
-    PermalinkToClipboardComponent,
-    FlotTimeseriesDiagramComponent,
-    TimeseriesStyleSelectorComponent
-  ],
-  providers: [
-    {
-      provide: HttpCache,
-      useClass: LocalHttpCache
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CachingInterceptor,
-      multi: true
-    },
-    Settings,
-    LocalStorage,
-    ProviderSelectorService,
-    ApiInterface,
-    ApiMapping,
-    Time,
-    MapCache,
-    LocateService,
-    LabelMapperService,
-    ListSelectorService,
-    PermalinkService,
-    InternalIdHandler
-  ]
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        FormsModule,
+        ColorPickerModule,
+        NgbModule.forRoot()
+    ],
+    declarations: [
+        COMPONENTS
+    ],
+    entryComponents: [],
+    exports: [
+        COMPONENTS
+    ],
+    providers: [
+        {
+            provide: HttpCache,
+            useClass: LocalHttpCache
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CachingInterceptor,
+            multi: true
+        },
+        Settings,
+        LocalStorage,
+        ProviderSelectorService,
+        ApiInterface,
+        ApiMapping,
+        Time,
+        MapCache,
+        LocateService,
+        LabelMapperService,
+        ListSelectorService,
+        PermalinkService,
+        InternalIdHandler
+    ]
 })
 export class ToolboxModule { }

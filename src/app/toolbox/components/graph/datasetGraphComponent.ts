@@ -9,12 +9,13 @@ import {
     SimpleChanges,
 } from '@angular/core';
 
+import { DatasetOptions } from '../../model/api/dataset/options';
+import { ResizableComponent } from '../../model/internal/ResizableComponent';
+import { TimeInterval } from '../../model/internal/time-interval';
+import { Timespan } from './../../model/internal/time-interval';
 import { ApiInterface } from './../../services/api-interface/api-interface.service';
 import { InternalIdHandler } from './../../services/api-interface/internal-id-handler.service';
 import { Time } from './../../services/time/time.service';
-import { DatasetOptions } from './../api/dataset/options';
-import { ResizableComponent } from './ResizableComponent';
-import { TimeInterval, Timespan } from './time-interval';
 
 const equal = require('deep-equal');
 
