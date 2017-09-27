@@ -1,0 +1,11 @@
+<div ng-if="$ctrl.visible">
+    <div ng-repeat="phenomenon in $ctrl.phenomenaList" style="padding: 5px;">
+        <div>
+            <span style="white-space: nowrap;">
+                <span ng-if="phenomenon.selected"><a class="btn btn-default" ng-click="$ctrl.toggleSelection(phenomenon)"><span class="fa fa-minus"></span></a></span>
+                <span ng-if="!phenomenon.selected"><a class="btn btn-default" ng-click="$ctrl.toggleSelection(phenomenon)"><span class="fa fa-plus"></span></a></span>
+                <span style="padding-left: 10px;" ng-style="{'color': phenomenon.color}">{{phenomenon.label}}</span>
+            </span>
+        </div>
+    </div>
+</div>

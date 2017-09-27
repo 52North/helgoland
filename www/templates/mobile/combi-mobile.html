@@ -29,13 +29,15 @@
                     <span class="glyphicon glyphicon-exclamation-sign" title="{{'trajectories.diagram.hint' | translate}}"></span>
                 </div>
             </div>
+            <div class="legend">
+                <swc-multi-phenomenon-button dataset="series" feature="series.seriesParameters.feature || series.parameters.feature" selected-phenomena="phenomenaList" on-selected-phenomena-changed="onSelectedPhenomenaChanged(phenomenaList)"></swc-multi-phenomenon-button>
+            </div>
             <div class="chart-buttons">
                 <swc-mobile-axis-toggler axis-type="distance" icon="road" selected-axis-type="options.axisType" tooltip="trajectories.diagram.distanceTooltip"></swc-mobile-axis-toggler>
                 <swc-mobile-axis-toggler axis-type="time" icon="time" selected-axis-type="options.axisType" tooltip="trajectories.diagram.timeTooltip"></swc-mobile-axis-toggler>
                 <swc-mobile-axis-toggler axis-type="ticks" icon="option-horizontal" selected-axis-type="options.axisType" tooltip="trajectories.diagram.ticksTooltip"></swc-mobile-axis-toggler>
                 <hr>
                 <swc-mobile-chart-draw-line-toggler></swc-mobile-chart-draw-line-toggler>
-                <swc-multi-phenomenon-button dataset="series" feature="series.seriesParameters.feature || series.parameters.feature" selected-phenomena="phenomenaList" on-selected-phenomena-changed="onSelectedPhenomenaChanged(phenomenaList)"></swc-multi-phenomenon-button>
             </div>
         </div>
     </div>
