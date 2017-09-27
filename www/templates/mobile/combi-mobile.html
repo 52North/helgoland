@@ -4,10 +4,10 @@
         <div>
             <span>{{series.label}}</span>
         </div>
-        <div>
+        <!-- <div>
             <span>{{series.seriesParameters.phenomenon.label || series.parameters.phenomenon.label}}</span>
             <span ng-hide="series.uom === undefined">({{series.uom}})</span>
-        </div>
+        </div> -->
     </div>
     <div class="combi-body">
         <div class="map">
@@ -28,6 +28,9 @@
                 <div class="chart-information">
                     <span class="glyphicon glyphicon-exclamation-sign" title="{{'trajectories.diagram.hint' | translate}}"></span>
                 </div>
+            </div>
+            <div class="legend">
+                <swc-multi-phenomenon-button dataset="series" feature="series.seriesParameters.feature || series.parameters.feature" selected-phenomena="phenomenaList" on-selected-phenomena-changed="onSelectedPhenomenaChanged(phenomenaList)"></swc-multi-phenomenon-button>
             </div>
             <div class="chart-buttons">
                 <swc-mobile-axis-toggler axis-type="distance" icon="road" selected-axis-type="options.axisType" tooltip="trajectories.diagram.distanceTooltip"></swc-mobile-axis-toggler>

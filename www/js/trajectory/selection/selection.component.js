@@ -23,9 +23,6 @@ angular.module('n52.core.trajectory')
                 }, {
                     type: 'phenomenon',
                     header: 'trajectories.headers.phenomenon'
-                }, {
-                    type: 'dataset',
-                    header: 'trajectories.headers.dataset'
                 }];
 
                 this.phenomenonParams = [{
@@ -37,9 +34,6 @@ angular.module('n52.core.trajectory')
                 }, {
                     type: 'feature',
                     header: 'trajectories.headers.track'
-                }, {
-                    type: 'dataset',
-                    header: 'trajectories.headers.dataset'
                 }];
 
                 var createFilter = () => {
