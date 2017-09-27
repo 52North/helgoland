@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { Parameter } from './../../../model/api/parameter';
 import { ParameterFilter } from './../../../model/api/parameterFilter';
 import { Filter } from './../../../model/internal/filter';
+import { FilteredProvider } from './../../../model/internal/provider';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 
 /**
@@ -18,7 +19,7 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
     public endpoint: string;
 
     @Input()
-    public filterList: Array<Filter>;
+    public filterList: Array<FilteredProvider>;
 
     @Output()
     public onItemSelected: EventEmitter<FilteredParameter> = new EventEmitter<FilteredParameter>();
@@ -35,7 +36,7 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
         this.filterList.forEach((entry) => {
             this.loading++;
             const filter = entry.filter || {};
-            filter.service = entry.serviceID;
+            filter.service = entry.id;
             switch (this.endpoint) {
                 case 'offering':
                     this.apiInterface.getOfferings(entry.url, filter).subscribe(
@@ -94,14 +95,14 @@ export class MultiServiceFilterSelectorComponent implements OnChanges {
         this.loading--;
     }
 
-    private setItems(res: Array<FilteredParameter>, prevfilter: ParameterFilter, url: string, serviceID: string): void {
+    private setItems(res: Array<FilteredParameter>, prevfilter: ParameterFilter, url: string, service: string): void {
         this.loading--;
         res.forEach((entry) => {
             const filter: Filter = {
                 filter: prevfilter,
                 itemId: entry.id,
                 url,
-                serviceID
+                service
             };
             const item = this.items.find((elem) => {
                 if (elem.label === entry.label) { return true; }

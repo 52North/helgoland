@@ -3,10 +3,10 @@ import { HostListener } from '@angular/core';
 export abstract class ResizableComponent {
 
     @HostListener('window:resize', ['$event'])
-    private onResize() {
-        this.onResizeWindow();
+    protected onWindowResize() {
+        this.onResize();
     }
 
-    protected abstract onResizeWindow(): void;
+    protected abstract onResize(): void;
 
 }

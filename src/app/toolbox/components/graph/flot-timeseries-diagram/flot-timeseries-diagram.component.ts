@@ -119,7 +119,7 @@ export class FlotTimeseriesDiagramComponent extends DatasetGraphComponent implem
         }
     }
 
-    protected onResizeWindow(): void {
+    protected onResize(): void {
         this.plotChart();
     }
 

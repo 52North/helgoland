@@ -1,4 +1,4 @@
 export enum PlatformTypes {
-    stationary,
-    mobile
+    stationary = 'stationary',
+    mobile = 'mobile'
 }

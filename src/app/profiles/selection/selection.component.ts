@@ -63,7 +63,7 @@ export class ProfilesSelectionComponent implements OnInit {
 
   private createFilter(): ParameterFilter {
     const filter: ParameterFilter = {
-      valueTypes: ValueTypes[ValueTypes.quantity]
+      valueTypes: ValueTypes.quantity
     };
     if (this.selectedProvider) { filter.service = this.selectedProvider.id; }
     if (this.selectedOffering) { filter.offering = this.selectedOffering.id; }
@@ -137,8 +137,8 @@ export class ProfilesSelectionComponent implements OnInit {
     this.setSelectedProcedure(procedure);
     this.stationaryPlatformFilter = this.createFilter();
     this.mobilePlatformFilter = this.createFilter();
-    this.stationaryPlatformFilter.platformTypes = PlatformTypes[PlatformTypes.stationary];
-    this.mobilePlatformFilter.platformTypes = PlatformTypes[PlatformTypes.mobile];
+    this.stationaryPlatformFilter.platformTypes = PlatformTypes.stationary;
+    this.mobilePlatformFilter.platformTypes = PlatformTypes.mobile;
   }
 
   private featureSelected(feature: Feature) {

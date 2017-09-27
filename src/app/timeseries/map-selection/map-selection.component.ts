@@ -29,8 +29,8 @@ export class TimeseriesMapSelectionComponent implements OnInit {
   public platform: Platform;
   public datasetSelections: Array<Dataset> = [];
 
-  private defaultPlatformTypes = PlatformTypes[PlatformTypes.stationary];
-  private defaultValueTypes = ValueTypes[ValueTypes.quantity];
+  private defaultPlatformTypes = PlatformTypes.stationary;
+  private defaultValueTypes = ValueTypes.quantity;
   private provider = this.providerCache.getSelectedProvider();
 
   constructor(
