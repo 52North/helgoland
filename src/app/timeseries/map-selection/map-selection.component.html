@@ -15,7 +15,7 @@
 </ng-template>
 
 <div class="map scrollable">
-    <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="providerUrl" [filter]="stationFilter" (onStationSelected)="onStationSelected($event)"
+    <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="providerUrl" [filter]="stationFilter" (onSelected)="onStationSelected($event)"
         [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
     <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
     <n52-locate-control class="locate-control" [mapId]="'timeseries'"></n52-locate-control>

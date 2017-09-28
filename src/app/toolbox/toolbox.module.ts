@@ -26,6 +26,8 @@ import {
 } from './components/selection/dataset-by-station-selector/dataset-by-station-selector.component';
 import { ListSelectorComponent } from './components/selection/list-selector/list-selector.component';
 import { ListSelectorService } from './components/selection/list-selector/list-selector.service';
+import { PlatformMapSelectorComponent } from './components/selection/map-selector/platform-map-selector.component';
+import { StationMapSelectorComponent } from './components/selection/map-selector/station-map-selector.component';
 import {
     MultiServiceFilterSelectorComponent,
 } from './components/selection/multi-service-filter-selector/multi-service-filter-selector.component';
@@ -37,7 +39,6 @@ import { ProviderSelectorService } from './components/selection/provider-selecto
 import {
     ServiceFilterSelectorComponent,
 } from './components/selection/service-filter-selector/service-filter-selector.component';
-import { StationMapSelectorComponent } from './components/selection/station-map-selector/station-map-selector.component';
 import {
     TimeseriesStyleSelectorComponent,
 } from './components/selection/timeseries-style-selector/timeseries-style-selector.component';
@@ -65,6 +66,7 @@ const COMPONENTS = [
     ProviderSelectorComponent,
     DatasetByStationSelectorComponent,
     StationMapSelectorComponent,
+    PlatformMapSelectorComponent,
     ServiceFilterSelectorComponent,
     ZoomControlComponent,
     LocateControlComponent,

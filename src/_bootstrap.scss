@@ -18,6 +18,5 @@ $theme-colors: map-merge((
     light: $gray-100,
     dark: $gray-800
 ), $theme-colors);
-$enable-rounded: false;
         
 @import '../node_modules/bootstrap/scss/bootstrap';

@@ -49,7 +49,7 @@ export class GeometryMapViewerComponent implements AfterViewInit, OnChanges {
 
         this.drawGeometry();
 
-        window.setTimeout(() => this.map.invalidateSize(), 100);
+        window.setTimeout(() => this.map.invalidateSize(), 10);
     }
 
     public ngOnChanges(changes: SimpleChanges) {
