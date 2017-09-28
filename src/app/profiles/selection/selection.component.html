@@ -1,6 +1,23 @@
+<ng-template #modalStationaryPlatform let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Platform: {{stationaryPlatform.label}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div style="word-wrap: break-word;">{{stationaryPlatformDataset.label}}</div>
+    <div *ngIf="stationaryPlatformLoading">Läd die verfügbaren Zeitpunkte...</div>
+    <div *ngIf="!stationaryPlatformLoading" style="padding: 10px;">
+      <div>Selektiere ein Zeitpunkt um das Profile zu sehen:</div>
+      <n52-time-list-selector [timeList]="stationaryTimestamps" (onTimeSelected)="onTimeselected($event); c();"></n52-time-list-selector>
+    </div>
+  </div>
+</ng-template>
+
 <n52-permalink-button [generatedUrlFunction]="createPermalink"></n52-permalink-button>
 <div class="container">
-  <ngb-tabset #profileSelection="ngbTabset" class="boxItem vbox" justify="fill">
+  <ngb-tabset #profileSelection="ngbTabset" class="wrapper" justify="fill">
     <ngb-tab id="selectProvider">
       <ng-template ngbTabTitle>
         <span>Wähle Anbieter</span>
@@ -45,7 +62,8 @@
         <div class="platform-body">
           <div class="stationary">
             <div class="header">Stationäre Platform:</div>
-            <div>TODO: add stationary platform selection</div>
+            <n52-platform-map-selector class="map" [mapId]="'profiles-stationary'" [serviceUrl]="selectedProvider.providerUrl" [filter]="stationaryPlatformFilter"
+              (onSelected)="onStationaryPlatformSelected($event)"></n52-platform-map-selector>
           </div>
           <div class="mobile">
             <div class="header">Mobile Platform:</div>

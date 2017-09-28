@@ -39,6 +39,7 @@ import { ProviderSelectorService } from './components/selection/provider-selecto
 import {
     ServiceFilterSelectorComponent,
 } from './components/selection/service-filter-selector/service-filter-selector.component';
+import { TimeListSelectorComponent } from './components/selection/time-list-selector/time-list-selector.component';
 import {
     TimeseriesStyleSelectorComponent,
 } from './components/selection/timeseries-style-selector/timeseries-style-selector.component';
@@ -88,7 +89,8 @@ const COMPONENTS = [
     PermalinkNewWindowComponent,
     PermalinkToClipboardComponent,
     FlotTimeseriesDiagramComponent,
-    TimeseriesStyleSelectorComponent
+    TimeseriesStyleSelectorComponent,
+    TimeListSelectorComponent
 ];
 
 @NgModule({

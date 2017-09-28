@@ -1,0 +1,3 @@
+<div class="selector-entry" *ngFor="let time of timeList" (click)="selectTime(time)">
+    <span>{{time | date: 'medium'}}</span>
+</div>
