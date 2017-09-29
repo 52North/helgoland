@@ -10,7 +10,8 @@ angular.module('n52.core.timeseries')
 
                 var createFilter = () => {
                     var filter = {
-                        valueTypes: 'quantity'
+                        valueTypes: 'quantity',
+                        platformTypes: 'stationary'
                     };
                     return filter;
                 };
