@@ -4,12 +4,12 @@
 <div class="content" *ngIf="datasetIds.length > 0">
   <div class="diagram-wrapper">
     <div class="diagram">
-      <n52-flot-timeseries-diagram [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
-        [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-flot-timeseries-diagram>
+      <n52-flot-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
+        [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-flot-timeseries-graph>
     </div>
     <div class="overview-diagram">
-      <n52-flot-overview-timeseries-diagram [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions" [graphOptions]="overviewOptions"
-        [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-overview-timeseries-diagram>
+      <n52-flot-overview-timeseries-graph [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions" [graphOptions]="overviewOptions"
+        [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)"></n52-flot-overview-timeseries-graph>
     </div>
     <div class="control-bar">
       <!-- <swc-refresh-time></swc-refresh-time> -->

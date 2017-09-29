@@ -24,12 +24,12 @@ export class SelectionRange {
 }
 
 @Component({
-    selector: 'n52-d-three-diagram',
-    templateUrl: './d-three-diagram.component.html',
-    styleUrls: ['./d-three-diagram.component.scss'],
+    selector: 'n52-d-three-graph',
+    templateUrl: './d-three-graph.component.html',
+    styleUrls: ['./d-three-graph.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
+export class DThreeGraphComponent implements AfterViewInit, OnChanges {
 
     @Input()
     public data: Array<LocatedTimeValueEntry>;
@@ -112,14 +112,14 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .y1(this.calcYValue)
             .curve(d3.curveLinear);
 
-        this.drawLineChart();
+        this.drawLineGraph();
     }
 
     @HostListener('window:resize', ['$event'])
     onResize() {
         this.height = this.calculateHeight();
         this.width = this.calculateWidth();
-        this.drawLineChart();
+        this.drawLineGraph();
     }
 
     private calcYValue = (d: DataEntry) => {
@@ -211,11 +211,11 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
     public ngOnChanges(changes: SimpleChanges) {
         if (changes.data && this.data) {
             this.processData();
-            this.drawLineChart();
+            this.drawLineGraph();
         }
         if (changes.selection && this.selection && this.data) {
             this.processData();
-            this.drawLineChart();
+            this.drawLineGraph();
         }
         if (changes.highlight && this.highlight) {
             const idx = this.internalValues.findIndex((entry) => {
@@ -224,10 +224,10 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             this.showDiagramIndicator(idx);
         }
         if (changes.axisType && this.axisType && this.data) {
-            this.drawLineChart();
+            this.drawLineGraph();
         }
         if (changes.dotted && this.data) {
-            this.drawLineChart();
+            this.drawLineGraph();
         }
     }
 
@@ -355,7 +355,7 @@ export class DThreeDiagramComponent implements AfterViewInit, OnChanges {
             .call(d3.axisRight(this.yScale).tickSize(0).ticks(0));
     }
 
-    private drawLineChart() {
+    private drawLineGraph() {
         if (!this.internalValues || this.internalValues.length === 0 || !this.graph) {
             return;
         }

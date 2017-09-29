@@ -17,12 +17,12 @@ import { Time } from './../../../services/time/time.service';
 declare var $: any;
 
 @Component({
-    selector: 'n52-flot-timeseries-diagram',
-    templateUrl: './flot-timeseries-diagram.component.html',
-    styleUrls: ['./flot-timeseries-diagram.component.scss'],
+    selector: 'n52-flot-timeseries-graph',
+    templateUrl: './flot-timeseries-graph.component.html',
+    styleUrls: ['./flot-timeseries-graph.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class FlotTimeseriesDiagramComponent extends DatasetGraphComponent implements AfterViewInit {
+export class FlotTimeseriesGraphComponent extends DatasetGraphComponent implements AfterViewInit {
 
     @ViewChild('flot') flotElem: ElementRef;
 
@@ -71,7 +71,7 @@ export class FlotTimeseriesDiagramComponent extends DatasetGraphComponent implem
             this.changeTime(moment(ranges.xaxis.from).toDate(), moment(ranges.xaxis.to).toDate());
         });
 
-        this.plotChart();
+        this.plotGraph();
     }
 
     protected optionsChanged(options: any) {
@@ -85,7 +85,7 @@ export class FlotTimeseriesDiagramComponent extends DatasetGraphComponent implem
         tsData.selected = true;
         tsData.lines.lineWidth = 5;
         tsData.bars.lineWidth = 5;
-        this.plotChart();
+        this.plotGraph();
     }
 
     protected removeSelectedId(internalId: string) {
@@ -93,7 +93,7 @@ export class FlotTimeseriesDiagramComponent extends DatasetGraphComponent implem
         tsData.selected = false;
         tsData.lines.lineWidth = 1;
         tsData.bars.lineWidth = 1;
-        this.plotChart();
+        this.plotGraph();
     }
 
     protected loadDatasetData() {
@@ -105,7 +105,7 @@ export class FlotTimeseriesDiagramComponent extends DatasetGraphComponent implem
     protected removeDataset(internalId: string) {
         this.timeseriesMap.delete(internalId);
         this.removePreparedData(internalId);
-        this.plotChart();
+        this.plotGraph();
     }
 
     protected addDataset(internalId: string, url: string): void {
@@ -120,14 +120,14 @@ export class FlotTimeseriesDiagramComponent extends DatasetGraphComponent implem
     }
 
     protected onResize(): void {
-        this.plotChart();
+        this.plotGraph();
     }
 
     private changeTime(from: Date, to: Date) {
         this.onTimespanChanged.emit(new Timespan(from, to));
     }
 
-    private plotChart() {
+    private plotGraph() {
         if (this.preparedData && this.preparedData.length !== 0 && this.plotOptions) {
             this.prepareAxisPos();
             this.plotOptions.xaxis.min = this.timespan.from.getTime();
@@ -235,7 +235,7 @@ export class FlotTimeseriesDiagramComponent extends DatasetGraphComponent implem
 
     private createPlotAnnotation(plotArea: any, options: PlotOptions) {
         if (options.annotation) {
-            // plotArea.append('<div class="chart-annotation">Daten ohne Gewähr</div>');
+            // plotArea.append('<div class="graph-annotation">Daten ohne Gewähr</div>');
         }
     }
 
@@ -280,7 +280,7 @@ export class FlotTimeseriesDiagramComponent extends DatasetGraphComponent implem
                             if (!selected) {
                                 target.addClass('selected');
                             }
-                            this.plotChart();
+                            this.plotGraph();
                         });
                     const yaxisLabel = $('<div class="axisLabel yaxisLabel" style=left:'
                         + box.left + 'px;></div>').text(axis.options.uom)
@@ -344,7 +344,7 @@ export class FlotTimeseriesDiagramComponent extends DatasetGraphComponent implem
                 })
                 .subscribe(result => {
                     this.prepareData(timeseries, result);
-                    this.plotChart();
+                    this.plotGraph();
                 });
         }
     }

@@ -5,11 +5,11 @@ import { TimeInterval, Timespan } from './../../../model/internal/time-interval'
 import { Time } from './../../../services/time/time.service';
 
 @Component({
-    selector: 'n52-flot-overview-timeseries-diagram',
-    templateUrl: './flot-overview-timeseries-diagram.component.html',
-    styleUrls: ['./flot-overview-timeseries-diagram.component.scss']
+    selector: 'n52-flot-overview-timeseries-graph',
+    templateUrl: './flot-overview-timeseries-graph.component.html',
+    styleUrls: ['./flot-overview-timeseries-graph.component.scss']
 })
-export class FlotOverviewTimeseriesDiagramComponent implements OnInit, OnChanges {
+export class FlotOverviewTimeseriesGraphComponent implements OnInit, OnChanges {
 
     @Input()
     public datasetIds: Array<string>;

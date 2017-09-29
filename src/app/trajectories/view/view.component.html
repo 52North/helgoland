@@ -25,8 +25,8 @@
     </div>
     <div class="chart-container">
       <div class="chart">
-        <n52-d-three-diagram [dataset]="model.trajectory" [data]="model.data" [axisType]="axisType" [dotted]="dotted" [selection]="selection"
-          [highlight]="highlight" (onSelection)="onSelectionChanged($event)" (onHighlight)="onChartHighlightChanged($event)"></n52-d-three-diagram>
+        <n52-d-three-graph [dataset]="model.trajectory" [data]="model.data" [axisType]="axisType" [dotted]="dotted" [selection]="selection"
+          [highlight]="highlight" (onSelection)="onSelectionChanged($event)" (onHighlight)="onChartHighlightChanged($event)"></n52-d-three-graph>
         <div class="chart-information">
           <span class="fa fa-info-circle" title="Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt."></span>
         </div>

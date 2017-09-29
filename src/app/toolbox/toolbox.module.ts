@@ -10,17 +10,16 @@ import { LocateControlComponent } from './components/control/map/locate/locate.c
 import { LocateService } from './components/control/map/locate/locate.service';
 import { ZoomControlComponent } from './components/control/map/zoom/zoom.component';
 import { StringTogglerComponent } from './components/control/string-toggler/string-toggler.component';
-import { DThreeDiagramComponent } from './components/display/d-three-diagram/d-three-diagram.component';
+import { DThreeGraphComponent } from './components/display/d-three-graph/d-three-graph.component';
 import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
 import { LabelMapperComponent } from './components/display/label-mapper/label-mapper.component';
 import { LabelMapperService } from './components/display/label-mapper/label-mapper.service';
 import { LegendEntryComponent } from './components/display/legend-entry/legend-entry.component';
 import {
-    FlotOverviewTimeseriesDiagramComponent,
-} from './components/graph/flot-overview-timeseries-diagram/flot-overview-timeseries-diagram.component';
-import {
-    FlotTimeseriesDiagramComponent,
-} from './components/graph/flot-timeseries-diagram/flot-timeseries-diagram.component';
+    FlotOverviewTimeseriesGraphComponent,
+} from './components/graph/flot-overview-timeseries-graph/flot-overview-timeseries-graph.component';
+import { FlotTimeseriesGraphComponent } from './components/graph/flot-timeseries-graph/flot-timeseries-graph.component';
+import { PlotlyProfileGraphComponent } from './components/graph/plotly-profile-graph/plotly-profile-graph.component';
 import {
     DatasetByStationSelectorComponent,
 } from './components/selection/dataset-by-station-selector/dataset-by-station-selector.component';
@@ -44,6 +43,9 @@ import {
 } from './components/selection/service-filter-selector/service-filter-selector.component';
 import { TimeListSelectorComponent } from './components/selection/time-list-selector/time-list-selector.component';
 import {
+    TimeRangeSliderSelectorComponent,
+} from './components/selection/time-range-slider-selector/time-range-slider-selector.component';
+import {
     TimeseriesStyleSelectorComponent,
 } from './components/selection/timeseries-style-selector/timeseries-style-selector.component';
 import { TimespanSelectorComponent } from './components/selection/timespan-selector/timespan-selector.component';
@@ -65,7 +67,6 @@ import { MapCache } from './services/map/map.service';
 import { PermalinkService } from './services/permalink/permalink.service';
 import { Settings } from './services/settings/settings.service';
 import { Time } from './services/time/time.service';
-import { TimeRangeSliderSelectorComponent } from './components/selection/time-range-slider-selector/time-range-slider-selector.component';
 
 const COMPONENTS = [
     ProviderSelectorComponent,
@@ -80,20 +81,20 @@ const COMPONENTS = [
     LabelMapperComponent,
     ListSelectorComponent,
     MultiServiceFilterSelectorComponent,
-    FlotOverviewTimeseriesDiagramComponent,
+    FlotOverviewTimeseriesGraphComponent,
     TimespanShiftSelectorComponent,
     PredefinedTimespanSelectorComponent,
     TimespanSelectorComponent,
     LegendEntryComponent,
     GeometryMapViewerComponent,
-    DThreeDiagramComponent,
+    DThreeGraphComponent,
     StringTogglerComponent,
     BoolTogglerComponent,
     PermalinkButtonComponent,
     PermalinkInMailComponent,
     PermalinkNewWindowComponent,
     PermalinkToClipboardComponent,
-    FlotTimeseriesDiagramComponent,
+    FlotTimeseriesGraphComponent,
     TimeseriesStyleSelectorComponent,
     TimeListSelectorComponent,
     TimeRangeSliderSelectorComponent
@@ -108,7 +109,8 @@ const COMPONENTS = [
         NgbModule.forRoot()
     ],
     declarations: [
-        COMPONENTS
+        COMPONENTS,
+        PlotlyProfileGraphComponent
     ],
     entryComponents: [],
     exports: [

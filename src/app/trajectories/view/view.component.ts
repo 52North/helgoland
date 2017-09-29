@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { SelectionRange } from './../../toolbox/components/display/d-three-diagram/d-three-diagram.component';
+import { SelectionRange } from './../../toolbox/components/display/d-three-graph/d-three-graph.component';
 import { TrajectoryModel } from './../model/trajectory-model';
 import { TrajectoriesService } from './../services/trajectories.service';
 
