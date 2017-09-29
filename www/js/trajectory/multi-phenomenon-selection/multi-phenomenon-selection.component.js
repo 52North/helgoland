@@ -22,7 +22,8 @@ angular.module('n52.core.trajectory')
                             this.visible = result.length > 1;
                             this.phenomenaList = result.filter((entry) => {
                                 entry.color = colorService.getColor(entry.id);
-                                if (entry.id !== this.dataset.seriesParameters.phenomenon.id) {
+                                if (this.dataset.parameters && entry.id !== this.dataset.parameters.phenomenon.id ||
+                                    this.dataset.seriesParameters && entry.id !== this.dataset.seriesParameters.phenomenon.id) {
                                     return true;
                                 }
                             });
