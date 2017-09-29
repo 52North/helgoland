@@ -29,6 +29,9 @@ import { ListSelectorService } from './components/selection/list-selector/list-s
 import { PlatformMapSelectorComponent } from './components/selection/map-selector/platform-map-selector.component';
 import { StationMapSelectorComponent } from './components/selection/map-selector/station-map-selector.component';
 import {
+    ProfileTrajectoryMapSelectorComponent,
+} from './components/selection/map-selector/trajectory-map-selector.component';
+import {
     MultiServiceFilterSelectorComponent,
 } from './components/selection/multi-service-filter-selector/multi-service-filter-selector.component';
 import {
@@ -62,12 +65,14 @@ import { MapCache } from './services/map/map.service';
 import { PermalinkService } from './services/permalink/permalink.service';
 import { Settings } from './services/settings/settings.service';
 import { Time } from './services/time/time.service';
+import { TimeRangeSliderSelectorComponent } from './components/selection/time-range-slider-selector/time-range-slider-selector.component';
 
 const COMPONENTS = [
     ProviderSelectorComponent,
     DatasetByStationSelectorComponent,
     StationMapSelectorComponent,
     PlatformMapSelectorComponent,
+    ProfileTrajectoryMapSelectorComponent,
     ServiceFilterSelectorComponent,
     ZoomControlComponent,
     LocateControlComponent,
@@ -90,7 +95,8 @@ const COMPONENTS = [
     PermalinkToClipboardComponent,
     FlotTimeseriesDiagramComponent,
     TimeseriesStyleSelectorComponent,
-    TimeListSelectorComponent
+    TimeListSelectorComponent,
+    TimeRangeSliderSelectorComponent
 ];
 
 @NgModule({

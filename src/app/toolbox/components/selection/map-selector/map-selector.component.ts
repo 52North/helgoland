@@ -4,11 +4,6 @@ import * as L from 'leaflet';
 import { ParameterFilter } from './../../../model/api/parameterFilter';
 import { MapCache } from './../../../services/map/map.service';
 
-// @Component({
-//     selector: 'n52-station-map-selector',
-//     templateUrl: './station-map-selector.component.html',
-//     styleUrls: ['./station-map-selector.component.scss']
-// })
 export abstract class MapSelectorComponent<T> implements OnChanges, AfterViewInit {
 
     @Input()
@@ -32,7 +27,6 @@ export abstract class MapSelectorComponent<T> implements OnChanges, AfterViewIni
     public loading: boolean;
     public noResultsFound: boolean;
     protected map: L.Map;
-    protected markerClusterGroup: L.FeatureGroup;
 
     protected icon = L.icon({
         iconUrl: require('leaflet/dist/images/marker-icon.png'),
@@ -56,16 +50,16 @@ export abstract class MapSelectorComponent<T> implements OnChanges, AfterViewIni
         }).addTo(this.map);
         this.mapCache.setMap(this.mapId, this.map);
         setTimeout(() => {
-            this.drawMarker();
+            this.drawGeometries();
             this.cd.detectChanges();
         }, 10);
     }
 
     public ngOnChanges(changes: SimpleChanges) {
-        if (this.map) {
-            this.drawMarker();
+        if ((changes.serviceUrl || changes.filter) && this.map) {
+            this.drawGeometries();
         }
     }
 
-    protected abstract drawMarker(): void;
+    protected abstract drawGeometries(): void;
 }

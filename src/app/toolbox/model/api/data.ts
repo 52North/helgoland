@@ -1,4 +1,3 @@
-import { IDataEntry } from './data';
 // tslint:disable-next-line:no-empty-interface
 export interface IDataEntry { }
 
@@ -11,14 +10,19 @@ export interface TimeValueEntry extends IDataEntry {
     value: number;
 }
 
+export interface LocatedTimeValueEntry extends TimeValueEntry {
+    geometry: GeoJSON.Point;
+}
+
 export interface ProfileDataEntry extends IDataEntry {
     timestamp: number;
     value: Array<{ value: number, vertical: number }>;
     verticalUnit: string;
 }
 
-export interface LocatedTimeValueEntry extends IDataEntry {
+export interface LocatedProfileDataEntry extends ProfileDataEntry {
     timestamp: number;
-    value: number;
-    geometry: GeoJSON.Point;
+    value: Array<{ value: number, vertical: number }>;
+    verticalUnit: string;
+    geometry: GeoJSON.GeoJsonObject;
 }

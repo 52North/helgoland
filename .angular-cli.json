@@ -22,6 +22,7 @@
         "../node_modules/leaflet/dist/leaflet.css",
         "../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
         "../node_modules/leaflet.markercluster/dist/MarkerCluster.css",
+        "../node_modules/bootstrap-slider/dist/css/bootstrap-slider.css",
         "styles.scss"
       ],
       "scripts": [
@@ -30,6 +31,7 @@
         "../node_modules/Flot/jquery.flot.js",
         "../node_modules/Flot/jquery.flot.time.js",
         "../node_modules/Flot/jquery.flot.crosshair.js",
+        "../node_modules/bootstrap-slider/dist/bootstrap-slider.js",
         "assets/libs/jquery.flot.navigate.js",
         "assets/libs/jquery.flot.selection.js",
         "assets/libs/jquery.flot.touch.js"

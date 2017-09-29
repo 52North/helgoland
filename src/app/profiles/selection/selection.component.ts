@@ -6,6 +6,7 @@ import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 import { IDataset } from '../../toolbox/model/api/dataset/idataset';
 import { PlatformTypes } from '../../toolbox/model/api/dataset/platformTypes';
 import { ValueTypes } from '../../toolbox/model/api/dataset/valueTypes';
+import { TrajectoryResult } from './../../toolbox/components/selection/map-selector/trajectory-map-selector.component';
 import { ProfileDataEntry } from './../../toolbox/model/api/data';
 import { Feature } from './../../toolbox/model/api/feature';
 import { Offering } from './../../toolbox/model/api/offering';
@@ -51,8 +52,17 @@ export class ProfilesSelectionComponent implements OnInit {
     public stationaryPlatformDataset: IDataset;
     public stationaryTimestamps: Array<number>;
 
+    public mobileTimestamps: Array<number>;
+    public selectedMobileTimespan: Timespan;
+
+    public mobilePreviewHeader: string;
+    public mobilePreviewTimestamp: number;
+
     @ViewChild('modalStationaryPlatform')
     public modalStationaryPlatform: TemplateRef<any>;
+
+    @ViewChild('modalMobilePreview')
+    public modalMobilePreview: TemplateRef<any>;
 
     @ViewChild('profileSelection')
     public tabset: NgbTabset;
@@ -194,120 +204,21 @@ export class ProfilesSelectionComponent implements OnInit {
         this.router.navigate(['profiles/diagram']);
     }
 
-    // private platformSelected(platform: Platform) {
-    //   this.selectedPlatform = platform;
-    //   $uibModal.open({
-    //     animation: true,
-    //     template: require('./stationary-selection.modal.html'),
-    //     resolve: {
-    //       selection: () => {
-    //         return {
-    //           platform: platform,
-    //           url: this.selectedProvider.providerUrl
-    //         };
-    //       }
-    //     },
-    //     controller: ['$scope', 'selection', '$uibModalInstance', 'seriesApiInterface', 'profilesService',
-    //       function ($scope, selection, $uibModalInstance, seriesApiInterface, profilesService) {
-    //         $scope.platform = selection.platform;
 
-    //         $scope.platform.datasets.forEach(dataset => {
-    //           dataset.loading = true;
-    //           seriesApiInterface.getDatasets(dataset.id, selection.url)
-    //             .then(res => {
-    //               dataset.url = selection.url;
-    //               var timespan = {
-    //                 start: res.firstValue.timestamp,
-    //                 end: res.lastValue.timestamp
-    //               };
-    //               seriesApiInterface.getDatasetData(dataset.id, selection.url, timespan)
-    //                 .then(data => {
-    //                   dataset.dataTimestamps = [];
-    //                   data.values.forEach(entry => {
-    //                     dataset.dataTimestamps.push(entry.timestamp);
-    //                   });
-    //                   dataset.loading = false;
-    //                 });
-    //             });
-    //         });
+    public onMobileSelected(selection: TrajectoryResult) {
+        this.mobilePreviewHeader = selection.dataset.label;
+        this.mobilePreviewTimestamp = selection.data.timestamp;
+        this.modalService.open(this.modalMobilePreview, { size: 'lg' });
+    }
 
-    //         $scope.onTimeselected = (dataset, time) => {
-    //           profilesService.addProfile(dataset.id, selection.url, time);
-    //           $state.go('profiles.diagram');
-    //         };
 
-    //         $scope.close = () => {
-    //           $uibModalInstance.close();
-    //         };
-    //       }
-    //     ]
-    //   });
-    // }
+    private timelistDetermined(timelist: Array<number>) {
+        this.mobileTimestamps = timelist;
+    }
 
-    // private mobileGeometrySelected(dataset: Dataset, selectedData) {
-    //   $uibModal.open({
-    //     animation: true,
-    //     template: require('./trajectory-preview.modal.html'),
-    //     resolve: {
-    //       selection: () => {
-    //         return {
-    //           dataset: dataset,
-    //           url: this.selectedProvider.providerUrl,
-    //           data: selectedData
-    //         };
-    //       }
-    //     },
-    //     size: 'lg',
-    //     controller: ['$scope', 'selection', '$uibModalInstance', 'profilesService', '$state',
-    //       function ($scope, selection, $uibModalInstance, profilesService, $state) {
-    //         $scope.header = selection.dataset.label;
-    //         $scope.timestamp = selection.data.timestamp;
-
-    //         selection.dataset.style = {
-    //           color: 'red'
-    //         };
-
-    //         $scope.datasets = {
-    //           'preview': selection.dataset
-    //         };
-
-    //         $scope.profileData = {
-    //           'preview': [{
-    //             value: selection.data.value,
-    //             verticalUnit: selection.data.verticalUnit
-    //           }]
-    //         };
-
-    //         $scope.addToChart = () => {
-    //           profilesService.addProfile(dataset.id, selection.url, selection.data.timestamp);
-    //           $state.go('profiles.diagram');
-    //           $scope.close();
-    //         };
-
-    //         $scope.goToCombiView = () => {
-    //           $state.go('profiles.combi', {
-    //             url: selection.url,
-    //             id: selection.dataset.id,
-    //             time: selection.data.timestamp
-    //           });
-    //           $scope.close();
-    //         };
-
-    //         $scope.close = () => {
-    //           $uibModalInstance.close();
-    //         };
-    //       }
-    //     ]
-    //   });
-    // }
-
-    // private mobileTimeList(timelist) {
-    //   this.timestamps = timelist;
-    // }
-
-    // private onMobileTimespanSelected(timespan) {
-    //   this.selectedTimespan = timespan;
-    // }
+    private onTimespanSelected(timespan: Timespan) {
+        this.selectedMobileTimespan = timespan;
+    }
 
     createPermalink = () => {
         return this.selectionPermalink.createPermalink();

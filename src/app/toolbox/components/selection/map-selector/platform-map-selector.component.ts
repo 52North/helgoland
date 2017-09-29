@@ -13,6 +13,8 @@ import { MapSelectorComponent } from './map-selector.component';
 })
 export class PlatformMapSelectorComponent extends MapSelectorComponent<Platform> implements OnChanges, AfterViewInit {
 
+    private markerClusterGroup: L.FeatureGroup;
+
     constructor(
         private apiInterface: ApiInterface,
         protected mapCache: MapCache,
@@ -21,7 +23,7 @@ export class PlatformMapSelectorComponent extends MapSelectorComponent<Platform>
         super(mapCache, cd);
     }
 
-    protected drawMarker() {
+    protected drawGeometries() {
         this.noResultsFound = false;
         this.loading = true;
         if (this.markerClusterGroup) { this.map.removeLayer(this.markerClusterGroup); }

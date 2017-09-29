@@ -15,6 +15,27 @@
   </div>
 </ng-template>
 
+<ng-template #modalMobilePreview let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" style="word-break: break-word;">{{mobilePreviewHeader}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="time-at" style="text-align: center;">
+      <span>Zeitpunkt:</span>
+      <span>{{mobilePreviewTimestamp | date : 'medium'}}</span>
+    </div>
+    <!-- <profile-chart datasets="datasets" data="profileData"></profile-chart> -->
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="goToCombiView();c();">Kombinierter-Ansicht</button>
+    <button type="button" class="btn btn-light" (click)="addToChart();c();">Diagramm-Ansicht</button>
+    <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
+  </div>
+</ng-template>
+
 <n52-permalink-button [generatedUrlFunction]="createPermalink"></n52-permalink-button>
 <div class="container">
   <ngb-tabset #profileSelection="ngbTabset" class="wrapper" justify="fill">
@@ -78,8 +99,14 @@
         <span>Wähle Profile</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <div>Timeslider</div>
-        <div>Trajectory-Map-Selector</div>
+        <div class="timeslider">
+          <n52-time-range-slider-selector [timeList]="mobileTimestamps" (onTimespanSelected)="onTimespanSelected($event)"></n52-time-range-slider-selector>
+        </div>
+        <div class="trajectory-map">
+          <n52-profile-trajectory-map-selector class="map" [mapId]="'profiles-stationary'" [serviceUrl]="selectedProvider.providerUrl"
+            [filter]="mobilePlatformFilter" [selectedTimespan]="selectedMobileTimespan" (onSelected)="onMobileSelected($event)"
+            (onTimeListDetermined)="timelistDetermined($event)"></n52-profile-trajectory-map-selector>
+        </div>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
