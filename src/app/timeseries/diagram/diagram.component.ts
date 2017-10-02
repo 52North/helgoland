@@ -142,7 +142,7 @@ export class TimeseriesDiagramComponent implements OnInit {
     }
 
     public deleteTimeseries(internalId: string) {
-        this.timeseriesService.removeTimeseries(internalId);
+        this.timeseriesService.removeDataset(internalId);
     }
 
     public selectTimeseries(selected: boolean, internalId: string) {
@@ -175,7 +175,7 @@ export class TimeseriesDiagramComponent implements OnInit {
     }
 
     public updateOptions(options: DatasetOptions, internalId: string) {
-        this.timeseriesService.updateTimeseriesOptions(options, internalId);
+        this.timeseriesService.updateDatasetOptions(options, internalId);
     }
 
 }

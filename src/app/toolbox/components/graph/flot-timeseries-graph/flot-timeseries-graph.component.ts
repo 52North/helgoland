@@ -22,7 +22,7 @@ declare var $: any;
     styleUrls: ['./flot-timeseries-graph.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class FlotTimeseriesGraphComponent extends DatasetGraphComponent implements AfterViewInit {
+export class FlotTimeseriesGraphComponent extends DatasetGraphComponent<DatasetOptions> implements AfterViewInit {
 
     @ViewChild('flot') flotElem: ElementRef;
 

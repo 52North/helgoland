@@ -29,6 +29,16 @@ export class LocalStorage {
         }
     }
 
+    public loadArray<T>(param: string): Array<T> {
+        if (this.localStorageEnabled) {
+            const result = localStorage.getItem(param);
+            if (result) {
+                return JSON.parse(result);
+            }
+            return [];
+        }
+    }
+
     public loadTextual(param: string): string {
         if (this.localStorageEnabled) {
             return localStorage.getItem(param);

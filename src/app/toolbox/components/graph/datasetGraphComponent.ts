@@ -19,7 +19,7 @@ import { Time } from './../../services/time/time.service';
 
 const equal = require('deep-equal');
 
-export abstract class DatasetGraphComponent extends ResizableComponent implements OnChanges, DoCheck {
+export abstract class DatasetGraphComponent<T extends DatasetOptions> extends ResizableComponent implements OnChanges, DoCheck {
 
     @Input()
     public datasetIds: Array<string>;
@@ -33,8 +33,8 @@ export abstract class DatasetGraphComponent extends ResizableComponent implement
     public timeInterval: TimeInterval;
 
     @Input()
-    public datasetOptions: Map<string, DatasetOptions>;
-    public oldDatasetOptions: Map<string, DatasetOptions> = new Map();
+    public datasetOptions: Map<string, T>;
+    public oldDatasetOptions: Map<string, T> = new Map();
 
     @Input()
     public graphOptions: any;
@@ -63,7 +63,7 @@ export abstract class DatasetGraphComponent extends ResizableComponent implement
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        if (changes.timeInterval) {
+        if (changes.timeInterval && this.timeInterval) {
             this.timespan = this.timeSrvc.createTimespanOfInterval(this.timeInterval);
             this.loadDatasetData();
         }
@@ -97,12 +97,14 @@ export abstract class DatasetGraphComponent extends ResizableComponent implement
             this.optionsChanged(options);
         }
 
-        this.datasetOptions.forEach((value, key) => {
-            if (!equal(value, this.oldDatasetOptions.get(key))) {
-                this.oldDatasetOptions.set(key, JSON.parse(JSON.stringify(this.datasetOptions.get(key))));
-                this.datasetOptionsChanged(key, value);
-            }
-        });
+        if (this.datasetOptions) {
+            this.datasetOptions.forEach((value, key) => {
+                if (!equal(value, this.oldDatasetOptions.get(key))) {
+                    this.oldDatasetOptions.set(key, JSON.parse(JSON.stringify(this.datasetOptions.get(key))));
+                    this.datasetOptionsChanged(key, value);
+                }
+            });
+        }
     }
 
     protected abstract loadDatasetData(): void;
