@@ -1,12 +1,12 @@
 import { LocalStorage } from '../local-storage/local-storage.service';
-import { DatasetOptions } from './../../model/api/dataset/options';
 import { IDataset } from './../../model/api/dataset/idataset';
+import { DatasetOptions } from './../../model/api/dataset/options';
 
-export abstract class DatasetService {
+export abstract class DatasetService<T extends DatasetOptions | Array<DatasetOptions>> {
 
     public datasetIds: Array<string> = [];
 
-    public datasetOptions: Map<string, DatasetOptions> = new Map();
+    public datasetOptions: Map<string, T> = new Map();
 
     constructor(
         protected localStorage: LocalStorage
@@ -14,10 +14,20 @@ export abstract class DatasetService {
         this.loadState();
     }
 
-    public addDataset(dataset: IDataset) {
-        this.datasetIds.push(dataset.internalId);
-        this.datasetOptions.set(dataset.internalId, this.createStyles(dataset));
-        this.saveState();
+    public addDataset(internalId: string, options?: T) {
+        if (this.datasetIds.indexOf(internalId) < 0) {
+            this.datasetIds.push(internalId);
+            if (options) {
+                this.datasetOptions.set(internalId, options);
+            } else {
+                this.datasetOptions.set(internalId, this.createStyles(internalId));
+            }
+            this.saveState();
+        } else if (options instanceof Array) {
+            const temp = (this.datasetOptions.get(internalId) as Array<DatasetOptions>);
+            options.forEach(e => temp.push(e));
+            this.saveState();
+        }
     }
 
     public removeAllDatasets() {
@@ -39,12 +49,12 @@ export abstract class DatasetService {
         return this.datasetIds.length > 0;
     }
 
-    public updateDatasetOptions(options: DatasetOptions, internalId: string) {
+    public updateDatasetOptions(options: T, internalId: string) {
         this.datasetOptions.set(internalId, options);
         this.saveState();
     }
 
-    protected abstract createStyles(dataset: IDataset): DatasetOptions;
+    protected abstract createStyles(internalId: string): T;
 
     protected abstract saveState(): void;
 

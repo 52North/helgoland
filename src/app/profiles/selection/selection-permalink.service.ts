@@ -27,16 +27,17 @@ export class ProfilesSelection {
 }
 
 @Injectable()
-export class ProfilesSelectionPermalink {
+export class ProfilesSelectionPermalink extends PermalinkService<Observable<ProfilesSelection>> {
 
     constructor(
         private selectionCache: ProfilesSelectionCache,
-        private permalinkSrvc: PermalinkService,
         private activatedRoute: ActivatedRoute,
         private api: ApiInterface
-    ) { }
+    ) {
+        super();
+    }
 
-    public createPermalink(): string {
+    public generatePermalink(): string {
         let parameter = '';
         if (this.selectionCache.selectedProvider) {
             parameter += PROVIDER_URL_PARAM + '=' + this.selectionCache.selectedProvider.providerUrl;
@@ -55,9 +56,9 @@ export class ProfilesSelectionPermalink {
             }
         }
         if (parameter) {
-            return this.permalinkSrvc.createBaseUrl() + '?' + parameter;
+            return this.createBaseUrl() + '?' + parameter;
         } else {
-            return this.permalinkSrvc.createBaseUrl();
+            return this.createBaseUrl();
         }
     }
 

@@ -74,10 +74,10 @@ export class FlotTimeseriesGraphComponent extends DatasetGraphComponent<DatasetO
         this.plotGraph();
     }
 
-    protected optionsChanged(options: any) {
+    protected graphOptionsChanged(options: any) {
         this.plotOptions = options;
         this.plotOptions.yaxes = [];
-        this.loadDatasetData();
+        this.timeIntervalChanges();
     }
 
     protected setSelectedId(internalId: string) {
@@ -96,7 +96,7 @@ export class FlotTimeseriesGraphComponent extends DatasetGraphComponent<DatasetO
         this.plotGraph();
     }
 
-    protected loadDatasetData() {
+    protected timeIntervalChanges() {
         this.timeseriesMap.forEach(timeseries => {
             this.loadTsData(timeseries);
         });

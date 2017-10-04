@@ -1,0 +1,13 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    .chart {
+        flex: 1;
+    }
+    .legend {
+        flex: 0 0 300px;
+        // min-width: 300px;
+    }
+}

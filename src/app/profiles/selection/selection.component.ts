@@ -8,6 +8,7 @@ import { PlatformTypes } from '../../toolbox/model/api/dataset/platformTypes';
 import { ValueTypes } from '../../toolbox/model/api/dataset/valueTypes';
 import { TrajectoryResult } from './../../toolbox/components/selection/map-selector/trajectory-map-selector.component';
 import { ProfileDataEntry } from './../../toolbox/model/api/data';
+import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { Feature } from './../../toolbox/model/api/feature';
 import { Offering } from './../../toolbox/model/api/offering';
 import { ParameterFilter } from './../../toolbox/model/api/parameterFilter';
@@ -19,6 +20,7 @@ import { BlacklistedService } from './../../toolbox/model/config/config';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
 import { Settings } from './../../toolbox/services/settings/settings.service';
+import { ProfilesService } from './../services/profiles.service';
 import { ProfilesSelectionPermalink } from './selection-permalink.service';
 import { ProfilesSelectionCache } from './selection.service';
 
@@ -55,8 +57,9 @@ export class ProfilesSelectionComponent implements OnInit {
     public mobileTimestamps: Array<number>;
     public selectedMobileTimespan: Timespan;
 
-    public mobilePreviewHeader: string;
+    public mobilePreviewDataset: IDataset;
     public mobilePreviewTimestamp: number;
+    public mobilePreviewOptions: Map<string, Array<TimedDatasetOptions>>;
 
     @ViewChild('modalStationaryPlatform')
     public modalStationaryPlatform: TemplateRef<any>;
@@ -73,7 +76,8 @@ export class ProfilesSelectionComponent implements OnInit {
         private selectionPermalink: ProfilesSelectionPermalink,
         private modalService: NgbModal,
         private api: ApiInterface,
-        private router: Router
+        private router: Router,
+        private profilesSrvc: ProfilesService
     ) { }
 
     ngOnInit() {
@@ -187,6 +191,7 @@ export class ProfilesSelectionComponent implements OnInit {
         platform.datasets.forEach(dataset => {
             this.stationaryPlatformDataset = dataset;
             this.api.getDataset(dataset.id, this.selectedProvider.providerUrl).subscribe(res => {
+                this.stationaryPlatformDataset = res;
                 const timespan = new Timespan(new Date(res.firstValue.timestamp), new Date(res.lastValue.timestamp));
                 this.api.getData<ProfileDataEntry>(res.id, res.url, timespan).subscribe(data => {
                     this.stationaryTimestamps = [];
@@ -199,18 +204,28 @@ export class ProfilesSelectionComponent implements OnInit {
         });
     }
 
-    public onTimeselected(time: any) {
-        // TODO add to profile service
-        this.router.navigate(['profiles/diagram']);
+    public onTimeselected(timestamp: number) {
+        this.addProfileToChart(this.stationaryPlatformDataset, timestamp);
     }
 
-
     public onMobileSelected(selection: TrajectoryResult) {
-        this.mobilePreviewHeader = selection.dataset.label;
+        this.mobilePreviewDataset = selection.dataset;
         this.mobilePreviewTimestamp = selection.data.timestamp;
+        this.mobilePreviewOptions = new Map();
+        const options = new TimedDatasetOptions(selection.dataset.internalId, selection.data.timestamp);
+        this.mobilePreviewOptions.set(selection.dataset.internalId, [options]);
         this.modalService.open(this.modalMobilePreview, { size: 'lg' });
     }
 
+    public addToChart() {
+        this.addProfileToChart(this.mobilePreviewDataset, this.mobilePreviewTimestamp);
+    }
+
+    private addProfileToChart(dataset: IDataset, timestamp: number) {
+        const options = new TimedDatasetOptions(dataset.internalId, timestamp);
+        this.profilesSrvc.addDataset(dataset.internalId, [options]);
+        this.router.navigate(['profiles/diagram']);
+    }
 
     private timelistDetermined(timelist: Array<number>) {
         this.mobileTimestamps = timelist;
@@ -218,10 +233,6 @@ export class ProfilesSelectionComponent implements OnInit {
 
     private onTimespanSelected(timespan: Timespan) {
         this.selectedMobileTimespan = timespan;
-    }
-
-    createPermalink = () => {
-        return this.selectionPermalink.createPermalink();
     }
 
 }

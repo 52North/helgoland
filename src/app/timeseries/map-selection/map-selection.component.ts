@@ -68,7 +68,7 @@ export class TimeseriesMapSelectionComponent implements OnInit {
   public openDatasets() {
     if (this.datasetSelections.length > 0) {
       this.datasetSelections.forEach((entry) => {
-        this.timeseriesService.addDataset(entry);
+        this.timeseriesService.addDataset(entry.internalId);
         this.router.navigate(['timeseries/diagram']);
       });
     }

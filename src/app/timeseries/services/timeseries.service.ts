@@ -9,7 +9,7 @@ const TIMESERIES_OPTIONS_CACHE_PARAM = 'timeseriesOptions';
 const TIMESERIES_IDS_CACHE_PARAM = 'timeseriesIds';
 
 @Injectable()
-export class TimeseriesService extends DatasetService {
+export class TimeseriesService extends DatasetService<DatasetOptions> {
 
     constructor(
         protected localStorage: LocalStorage
@@ -17,9 +17,8 @@ export class TimeseriesService extends DatasetService {
         super(localStorage);
     }
 
-    protected createStyles(dataset: IDataset) {
-        const styles = new DatasetOptions();
-        styles.internalId = dataset.internalId;
+    protected createStyles(internalId: string) {
+        const styles = new DatasetOptions(internalId);
         styles.color = this.getRandomColor();
         return styles;
     }

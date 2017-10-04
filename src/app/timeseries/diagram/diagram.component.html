@@ -23,9 +23,9 @@
     <h3 class="header">Legende</h3>
     <div class="legend-entry">
       <div *ngFor="let id of datasetIds">
-        <n52-legend-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" [timeInterval]="timespan"
+        <n52-timeseries-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" [timeInterval]="timespan"
           (onDeleteDataset)="deleteTimeseries(id)" (onSelectDataset)="selectTimeseries($event, id)" (onSelectDate)="jumpToDate($event)"
-          (onUpdateOptions)="updateOptions($event, id)"></n52-legend-entry>
+          (onUpdateOptions)="updateOptions($event, id)"></n52-timeseries-entry>
       </div>
     </div>
   </div>

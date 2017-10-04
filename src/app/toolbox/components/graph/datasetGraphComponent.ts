@@ -19,7 +19,8 @@ import { Time } from './../../services/time/time.service';
 
 const equal = require('deep-equal');
 
-export abstract class DatasetGraphComponent<T extends DatasetOptions> extends ResizableComponent implements OnChanges, DoCheck {
+export abstract class DatasetGraphComponent<T extends DatasetOptions | Array<DatasetOptions>>
+    extends ResizableComponent implements OnChanges, DoCheck {
 
     @Input()
     public datasetIds: Array<string>;
@@ -34,7 +35,7 @@ export abstract class DatasetGraphComponent<T extends DatasetOptions> extends Re
 
     @Input()
     public datasetOptions: Map<string, T>;
-    public oldDatasetOptions: Map<string, T> = new Map();
+    public oldDatasetOptions: Map<string, T>;
 
     @Input()
     public graphOptions: any;
@@ -65,7 +66,7 @@ export abstract class DatasetGraphComponent<T extends DatasetOptions> extends Re
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.timeInterval && this.timeInterval) {
             this.timespan = this.timeSrvc.createTimespanOfInterval(this.timeInterval);
-            this.loadDatasetData();
+            this.timeIntervalChanges();
         }
     }
 
@@ -73,8 +74,7 @@ export abstract class DatasetGraphComponent<T extends DatasetOptions> extends Re
         const datasetIdsChanges = this.datasetIdsDiffer.diff(this.datasetIds);
         if (datasetIdsChanges) {
             datasetIdsChanges.forEachAddedItem(addedItem => {
-                const internalId = this.datasetIdResolver.resolveInternalId(addedItem.item);
-                this.addDataset(internalId.id, internalId.url);
+                this.addDatasetByInternalId(addedItem.item);
             });
             datasetIdsChanges.forEachRemovedItem(removedItem => {
                 this.removeDataset(removedItem.item);
@@ -94,22 +94,29 @@ export abstract class DatasetGraphComponent<T extends DatasetOptions> extends Re
         if (!equal(this.oldGraphOptions, this.graphOptions)) {
             this.oldGraphOptions = JSON.parse(JSON.stringify(this.graphOptions));
             const options = JSON.parse(JSON.stringify(this.graphOptions));
-            this.optionsChanged(options);
+            this.graphOptionsChanged(options);
         }
 
         if (this.datasetOptions) {
+            const firstChange = this.oldDatasetOptions === undefined;
+            if (firstChange) { this.oldDatasetOptions = new Map(); }
             this.datasetOptions.forEach((value, key) => {
                 if (!equal(value, this.oldDatasetOptions.get(key))) {
                     this.oldDatasetOptions.set(key, JSON.parse(JSON.stringify(this.datasetOptions.get(key))));
-                    this.datasetOptionsChanged(key, value);
+                    this.datasetOptionsChanged(key, value, firstChange);
                 }
             });
         }
     }
 
-    protected abstract loadDatasetData(): void;
+    protected addDatasetByInternalId(internalId: string) {
+        const internalIdObj = this.datasetIdResolver.resolveInternalId(internalId);
+        this.addDataset(internalIdObj.id, internalIdObj.url);
+    }
 
-    protected abstract addDataset(internalId: string, url: string): void;
+    protected abstract timeIntervalChanges(): void;
+
+    protected abstract addDataset(id: string, url: string): void;
 
     protected abstract removeDataset(internalId: string): void;
 
@@ -117,9 +124,9 @@ export abstract class DatasetGraphComponent<T extends DatasetOptions> extends Re
 
     protected abstract removeSelectedId(internalId: string): void;
 
-    protected abstract optionsChanged(options: any): void;
+    protected abstract graphOptionsChanged(options: any): void;
 
-    protected abstract datasetOptionsChanged(internalId: string, options: DatasetOptions): void;
+    protected abstract datasetOptionsChanged(internalId: string, options: T, firstChange: boolean): void;
 
 }
 

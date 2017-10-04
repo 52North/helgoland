@@ -10,11 +10,12 @@ import { LocateControlComponent } from './components/control/map/locate/locate.c
 import { LocateService } from './components/control/map/locate/locate.service';
 import { ZoomControlComponent } from './components/control/map/zoom/zoom.component';
 import { StringTogglerComponent } from './components/control/string-toggler/string-toggler.component';
+import { ProfileEntryComponent } from './components/datasetlist/profile-entry/profile-entry.component';
+import { TimeseriesEntryComponent } from './components/datasetlist/timeseries-entry/timeseries-entry.component';
 import { DThreeGraphComponent } from './components/display/d-three-graph/d-three-graph.component';
 import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
 import { LabelMapperComponent } from './components/display/label-mapper/label-mapper.component';
 import { LabelMapperService } from './components/display/label-mapper/label-mapper.service';
-import { LegendEntryComponent } from './components/display/legend-entry/legend-entry.component';
 import {
     FlotOverviewTimeseriesGraphComponent,
 } from './components/graph/flot-overview-timeseries-graph/flot-overview-timeseries-graph.component';
@@ -64,7 +65,6 @@ import { LocalHttpCache } from './services/api-interface/caching/local-cache';
 import { InternalIdHandler } from './services/api-interface/internal-id-handler.service';
 import { LocalStorage } from './services/local-storage/local-storage.service';
 import { MapCache } from './services/map/map.service';
-import { PermalinkService } from './services/permalink/permalink.service';
 import { Settings } from './services/settings/settings.service';
 import { Time } from './services/time/time.service';
 
@@ -85,7 +85,8 @@ const COMPONENTS = [
     TimespanShiftSelectorComponent,
     PredefinedTimespanSelectorComponent,
     TimespanSelectorComponent,
-    LegendEntryComponent,
+    TimeseriesEntryComponent,
+    ProfileEntryComponent,
     GeometryMapViewerComponent,
     DThreeGraphComponent,
     StringTogglerComponent,
@@ -97,7 +98,8 @@ const COMPONENTS = [
     FlotTimeseriesGraphComponent,
     TimeseriesStyleSelectorComponent,
     TimeListSelectorComponent,
-    TimeRangeSliderSelectorComponent
+    TimeRangeSliderSelectorComponent,
+    PlotlyProfileGraphComponent
 ];
 
 @NgModule({
@@ -109,8 +111,7 @@ const COMPONENTS = [
         NgbModule.forRoot()
     ],
     declarations: [
-        COMPONENTS,
-        PlotlyProfileGraphComponent
+        COMPONENTS
     ],
     entryComponents: [],
     exports: [
@@ -136,7 +137,6 @@ const COMPONENTS = [
         LocateService,
         LabelMapperService,
         ListSelectorService,
-        PermalinkService,
         InternalIdHandler
     ]
 })

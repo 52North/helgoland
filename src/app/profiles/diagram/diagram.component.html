@@ -1,3 +1,14 @@
-<p>
-  diagram works!
-</p>
+<n52-permalink-button [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
+<div class="chart">
+    <n52-plotly-profile-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
+        [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-plotly-profile-graph>
+</div>
+<div class="legend">
+    <h3>Legende</h3>
+    <div class="legend-entry">
+        <div *ngFor="let id of datasetIds">
+            <n52-profile-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" (onDeleteDatasetOptions)="deleteProfileOptions($event)"
+                (onSelectDataset)="selectProfile($event, id)" (onUpdateOptions)="updateOptions($event, id)"></n52-profile-entry>
+        </div>
+    </div>
+</div>

@@ -3,7 +3,6 @@ import {
     EventEmitter,
     Input,
     OnChanges,
-    OnInit,
     Output,
     SimpleChanges,
     TemplateRef,
@@ -12,6 +11,7 @@ import {
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TimeInterval } from '../../../model/internal/time-interval';
+import { ListEntryComponent } from '../list-entry.component';
 import { Dataset } from './../../../model/api/dataset/dataset';
 import { FirstLastValue } from './../../../model/api/dataset/firstLastValue';
 import { IDataset } from './../../../model/api/dataset/idataset';
@@ -22,30 +22,18 @@ import { InternalIdHandler } from './../../../services/api-interface/internal-id
 import { Time } from './../../../services/time/time.service';
 
 @Component({
-    selector: 'n52-legend-entry',
-    templateUrl: './legend-entry.component.html',
-    styleUrls: ['./legend-entry.component.scss'],
+    selector: 'n52-timeseries-entry',
+    templateUrl: './timeseries-entry.component.html',
+    styleUrls: ['./timeseries-entry.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class LegendEntryComponent implements OnInit, OnChanges {
-
-    @Input()
-    public datasetId: string;
+export class TimeseriesEntryComponent extends ListEntryComponent implements OnChanges {
 
     @Input()
     public datasetOptions: DatasetOptions;
 
     @Input()
-    public selected: boolean;
-
-    @Input()
     public timeInterval: TimeInterval;
-
-    @Output()
-    public onDeleteDataset: EventEmitter<boolean> = new EventEmitter();
-
-    @Output()
-    public onSelectDataset: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
     public onUpdateOptions: EventEmitter<DatasetOptions> = new EventEmitter();
@@ -53,7 +41,7 @@ export class LegendEntryComponent implements OnInit, OnChanges {
     @Output()
     public onSelectDate: EventEmitter<Date> = new EventEmitter();
 
-    private dataset: IDataset;
+    protected dataset: IDataset;
 
     public platformLabel: string;
     public phenomenonLabel: string;
@@ -70,16 +58,17 @@ export class LegendEntryComponent implements OnInit, OnChanges {
         private modalService: NgbModal,
         private api: ApiInterface,
         private timeSrvc: Time,
-        private internalIdHandler: InternalIdHandler
-    ) { }
+        protected internalIdHandler: InternalIdHandler
+    ) {
+        super(internalIdHandler);
+    }
 
-    public ngOnInit() {
-        const temp = this.internalIdHandler.resolveInternalId(this.datasetId);
-        this.api.getSingleTimeseries(temp.id, temp.url).subscribe(timeseries => {
+    protected loadDataset(id: string, url: string) {
+        this.api.getSingleTimeseries(id, url).subscribe(timeseries => {
             this.dataset = timeseries;
             this.setParameters();
         }, error => {
-            this.api.getDataset(temp.id, temp.url).subscribe(dataset => {
+            this.api.getDataset(id, url).subscribe(dataset => {
                 this.dataset = dataset;
                 this.setParameters();
             });
@@ -90,10 +79,6 @@ export class LegendEntryComponent implements OnInit, OnChanges {
         if (changes.timeInterval) {
             this.checkDataInTimespan();
         }
-    }
-
-    public removeDataset() {
-        this.onDeleteDataset.emit(true);
     }
 
     public toggleInformation() {
@@ -108,18 +93,13 @@ export class LegendEntryComponent implements OnInit, OnChanges {
         this.onSelectDate.emit(new Date(this.dataset.lastValue.timestamp));
     }
 
-    public toggleSelection() {
-        this.selected = !this.selected;
-        this.onSelectDataset.emit(this.selected);
-    }
-
     public toggleVisibility() {
         this.datasetOptions.visible = !this.datasetOptions.visible;
         this.onUpdateOptions.emit(this.datasetOptions);
     }
 
     public open(content: TemplateRef<any>, className: string = '') {
-        this.modalService.open(content, {size: 'lg', windowClass: className});
+        this.modalService.open(content, { size: 'lg', windowClass: className });
     }
 
     public updateColor() {

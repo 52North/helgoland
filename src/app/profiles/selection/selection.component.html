@@ -17,7 +17,7 @@
 
 <ng-template #modalMobilePreview let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title" style="word-break: break-word;">{{mobilePreviewHeader}}</h4>
+    <h4 class="modal-title" style="word-break: break-word;">{{mobilePreviewDataset.header}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -27,7 +27,7 @@
       <span>Zeitpunkt:</span>
       <span>{{mobilePreviewTimestamp | date : 'medium'}}</span>
     </div>
-    <!-- <profile-chart datasets="datasets" data="profileData"></profile-chart> -->
+    <n52-plotly-profile-graph [datasetIds]="[mobilePreviewDataset.internalId]" [datasetOptions]="mobilePreviewOptions"></n52-plotly-profile-graph>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="goToCombiView();c();">Kombinierter-Ansicht</button>
@@ -36,7 +36,7 @@
   </div>
 </ng-template>
 
-<n52-permalink-button [generatedUrlFunction]="createPermalink"></n52-permalink-button>
+<n52-permalink-button [generatedUrlFunction]="selectionPermalink.createPermalink"></n52-permalink-button>
 <div class="container">
   <ngb-tabset #profileSelection="ngbTabset" class="wrapper" justify="fill">
     <ngb-tab id="selectProvider">

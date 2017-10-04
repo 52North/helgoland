@@ -5,11 +5,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { ProfilesCombiViewComponent } from './combi-view/combi-view.component';
+import { ProfilesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { ProfilesDiagramComponent } from './diagram/diagram.component';
 import { ProfilesNavigationComponent } from './navigation/navigation.component';
 import { ProfilesSelectionPermalink } from './selection/selection-permalink.service';
 import { ProfilesSelectionComponent } from './selection/selection.component';
 import { ProfilesSelectionCache } from './selection/selection.service';
+import { ProfilesService } from './services/profiles.service';
 
 const profilesRoutes: Routes = [
   {
@@ -53,8 +55,10 @@ const profilesRoutes: Routes = [
     ProfilesNavigationComponent
   ],
   providers: [
+    ProfilesDiagramPermalink,
     ProfilesSelectionCache,
-    ProfilesSelectionPermalink
+    ProfilesSelectionPermalink,
+    ProfilesService
   ]
 })
 export class ProfilesModule { }
