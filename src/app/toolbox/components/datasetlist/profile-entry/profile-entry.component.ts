@@ -6,7 +6,6 @@ import { Dataset } from './../../../model/api/dataset/dataset';
 import { TimedDatasetOptions } from './../../../model/api/dataset/options';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
-import { Time } from './../../../services/time/time.service';
 
 @Component({
     selector: 'n52-profile-entry',
@@ -36,7 +35,6 @@ export class ProfileEntryComponent extends ListEntryComponent {
     constructor(
         private modalService: NgbModal,
         private api: ApiInterface,
-        private timeSrvc: Time,
         protected internalIdHandler: InternalIdHandler
     ) {
         super(internalIdHandler);

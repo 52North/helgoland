@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { DatasetService } from '../../toolbox/services/dataset/dataset.service';
-import { IDataset } from './../../toolbox/model/api/dataset/idataset';
 import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
 

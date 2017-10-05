@@ -1,6 +1,6 @@
-import { FirstLastValue } from './../../../model/api/dataset/firstLastValue';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+
 import { Timespan } from './../../../model/internal/time-interval';
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
 declare var $: any;
 
