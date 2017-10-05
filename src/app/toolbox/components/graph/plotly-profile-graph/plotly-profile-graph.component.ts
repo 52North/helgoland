@@ -6,7 +6,7 @@ import { ProfileDataEntry } from '../../../model/api/data';
 import { Timespan } from '../../../model/internal/time-interval';
 import { DatasetGraphComponent } from '../datasetGraphComponent';
 import { IDataset } from './../../../model/api/dataset/idataset';
-import { DatasetOptions, TimedDatasetOptions } from './../../../model/api/dataset/options';
+import { TimedDatasetOptions } from './../../../model/api/dataset/options';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
 import { Time } from './../../../services/time/time.service';
@@ -138,13 +138,7 @@ export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<Tim
     }
 
     protected onResize(): void {
-        debugger;
         this.redrawChart();
-    }
-
-    private updateDatasetOptions(data: Partial<Plotly.ScatterData>, options: DatasetOptions) {
-        data.line.color = options.color;
-        data.marker.color = options.color;
     }
 
     private processData() {
@@ -172,10 +166,10 @@ export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<Tim
                         // hovertext: dataEntry.label,
                         line: {
                             color: option.color,
-                            width: selected ? 5 : 2
+                            width: selected ? LINE_WIDTH_SELECTED : LINE_WIDTH
                         },
                         marker: {
-                            size: selected ? 10 : 6
+                            size: selected ? MARKER_SIZE_SELECTED : MARKER_SIZE
                         }
                     };
                     this.preparedData.push(prepared);
@@ -190,7 +184,6 @@ export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<Tim
         let axis;
         for (const key in this.layout) {
             if (this.layout.hasOwnProperty(key) && key.startsWith('xaxis') && this.layout[key].title === dataset.uom) {
-                const xaxis = this.layout[key] as Partial<Plotly.Axis>;
                 axis = this.layout[key];
             }
         }

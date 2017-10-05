@@ -227,11 +227,11 @@ export class ProfilesSelectionComponent implements OnInit {
         this.router.navigate(['profiles/diagram']);
     }
 
-    private timelistDetermined(timelist: Array<number>) {
+    public timelistDetermined(timelist: Array<number>) {
         this.mobileTimestamps = timelist;
     }
 
-    private onTimespanSelected(timespan: Timespan) {
+    public onTimespanSelected(timespan: Timespan) {
         this.selectedMobileTimespan = timespan;
     }
 

@@ -1,4 +1,3 @@
-import { IDataset } from '../../../model/api/dataset/idataset';
 import {
     AfterViewInit,
     ChangeDetectorRef,
@@ -11,8 +10,8 @@ import {
 } from '@angular/core';
 import * as L from 'leaflet';
 
+import { IDataset } from '../../../model/api/dataset/idataset';
 import { LocatedProfileDataEntry } from './../../../model/api/data';
-import { Platform } from './../../../model/api/platform';
 import { Timespan } from './../../../model/internal/time-interval';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 import { MapCache } from './../../../services/map/map.service';
