@@ -26,6 +26,9 @@ n52-profiles-selection {
                         .mobile {
                             flex: 1;
                             text-align: center;
+                            .body {
+                                padding: 10px;
+                            }
                         }
                         .stationary {
                             display: flex;

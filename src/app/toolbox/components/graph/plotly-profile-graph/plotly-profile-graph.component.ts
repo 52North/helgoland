@@ -286,7 +286,7 @@ export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<Tim
     }
 
     private drawChart() {
-        if (this.plotlyArea) {
+        if (this.plotlyArea && this.rawData.size > 0) {
             this.processData();
             Plotly.newPlot(this.plotlyArea, this.preparedData, this.layout, this.settings);
             this.plotlyArea.on('plotly_hover', (entry: any) => {
