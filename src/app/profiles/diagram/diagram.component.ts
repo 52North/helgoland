@@ -22,7 +22,6 @@ export class ProfilesDiagramComponent implements OnInit {
         private permalinkSrvc: ProfilesDiagramPermalink
     ) {
         this.permalinkSrvc.validatePeramlink();
-
         this.datasetIds = profilesSrvc.datasetIds;
         this.datasetOptions = profilesSrvc.datasetOptions;
     }

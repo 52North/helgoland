@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
+import { ProfilesCombiViewPermalink } from './combi-view/combi-view-permalink.service';
 import { ProfilesCombiViewComponent } from './combi-view/combi-view.component';
 import { ProfilesCombiService } from './combi-view/combi-view.service';
 import { ProfilesDiagramPermalink } from './diagram/diagram-permalink.service';
@@ -60,7 +61,8 @@ const profilesRoutes: Routes = [
     ProfilesSelectionCache,
     ProfilesSelectionPermalink,
     ProfilesService,
-    ProfilesCombiService
+    ProfilesCombiService,
+    ProfilesCombiViewPermalink
   ]
 })
 export class ProfilesModule { }

@@ -6,6 +6,7 @@ import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
 import { InternalIdHandler } from './../../toolbox/services/api-interface/internal-id-handler.service';
+import { ProfilesCombiViewPermalink } from './combi-view-permalink.service';
 import { ProfilesCombiService } from './combi-view.service';
 
 @Component({
@@ -28,8 +29,11 @@ export class ProfilesCombiViewComponent implements OnInit {
     constructor(
         private service: ProfilesCombiService,
         private api: ApiInterface,
-        private internalIdHandler: InternalIdHandler
-    ) { }
+        private internalIdHandler: InternalIdHandler,
+        private permalinkSrvc: ProfilesCombiViewPermalink
+    ) {
+        this.permalinkSrvc.validatePeramlink();
+    }
 
     ngOnInit() {
         this.datasetIds = this.service.datasetIds;
