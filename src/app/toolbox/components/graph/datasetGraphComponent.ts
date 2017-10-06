@@ -23,11 +23,11 @@ export abstract class DatasetGraphComponent<T extends DatasetOptions | Array<Dat
     extends ResizableComponent implements OnChanges, DoCheck {
 
     @Input()
-    public datasetIds: Array<string>;
+    public datasetIds: Array<string> = [];
     private datasetIdsDiffer: IterableDiffer<string>;
 
     @Input()
-    public selectedDatasetIds: Array<string>;
+    public selectedDatasetIds: Array<string> = [];
     private selectedDatasetIdsDiffer: IterableDiffer<string>;
 
     @Input()

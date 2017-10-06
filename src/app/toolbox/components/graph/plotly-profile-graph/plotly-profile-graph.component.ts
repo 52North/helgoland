@@ -41,8 +41,7 @@ export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<Tim
     private counterXAxis = 0;
     private counterYAxis = 0;
 
-    // private layout: Partial<Plotly.Layout> = {
-    private layout: any = {
+    private layout: Layout = {
         autosize: true,
         showlegend: false,
         dragmode: 'pan',
@@ -290,16 +289,15 @@ export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<Tim
         if (this.plotlyArea) {
             this.processData();
             Plotly.newPlot(this.plotlyArea, this.preparedData, this.layout, this.settings);
+            this.plotlyArea.on('plotly_hover', (entry: any) => {
+                if (entry.points.length === 1) {
+                    this.onHighlight.emit({
+                        internalId: entry.points[0].data.id,
+                        dataIndex: entry.points[0].pointNumber
+                    });
+                }
+            });
         }
-
-        this.plotlyArea.on('plotly_hover', (entry: any) => {
-            if (entry.points.length === 1) {
-                this.onHighlight.emit({
-                    internalId: entry.points[0].data.id,
-                    dataIndex: entry.points[0].pointNumber
-                });
-            }
-        });
     }
 
     private clearLayout() {
@@ -328,4 +326,8 @@ export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<Tim
 interface ScatterData extends Partial<Plotly.ScatterData> {
     id: string;
     timestamp: number;
+}
+
+interface Layout extends Partial<Plotly.Layout> {
+    [key: string]: any;
 }

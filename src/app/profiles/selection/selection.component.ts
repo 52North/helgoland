@@ -20,6 +20,7 @@ import { BlacklistedService } from './../../toolbox/model/config/config';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
 import { Settings } from './../../toolbox/services/settings/settings.service';
+import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';
 import { ProfilesSelectionPermalink } from './selection-permalink.service';
 import { ProfilesSelectionCache } from './selection.service';
@@ -77,7 +78,8 @@ export class ProfilesSelectionComponent implements OnInit {
         private modalService: NgbModal,
         private api: ApiInterface,
         private router: Router,
-        private profilesSrvc: ProfilesService
+        private profilesSrvc: ProfilesService,
+        private combiSrvc: ProfilesCombiService
     ) { }
 
     ngOnInit() {
@@ -219,6 +221,12 @@ export class ProfilesSelectionComponent implements OnInit {
 
     public addToChart() {
         this.addProfileToChart(this.mobilePreviewDataset, this.mobilePreviewTimestamp);
+    }
+
+    public addToCombiView() {
+        const options = new TimedDatasetOptions(this.mobilePreviewDataset.internalId, this.mobilePreviewTimestamp);
+        this.combiSrvc.addDataset(this.mobilePreviewDataset.internalId, [options]);
+        this.router.navigate(['profiles/combi']);
     }
 
     private addProfileToChart(dataset: IDataset, timestamp: number) {

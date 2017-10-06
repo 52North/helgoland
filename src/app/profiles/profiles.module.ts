@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { ProfilesCombiViewComponent } from './combi-view/combi-view.component';
+import { ProfilesCombiService } from './combi-view/combi-view.service';
 import { ProfilesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { ProfilesDiagramComponent } from './diagram/diagram.component';
 import { ProfilesNavigationComponent } from './navigation/navigation.component';
@@ -58,7 +59,8 @@ const profilesRoutes: Routes = [
     ProfilesDiagramPermalink,
     ProfilesSelectionCache,
     ProfilesSelectionPermalink,
-    ProfilesService
+    ProfilesService,
+    ProfilesCombiService
   ]
 })
 export class ProfilesModule { }

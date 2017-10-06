@@ -1,0 +1,26 @@
+:host {
+    width: 100%;
+    height: 100%;
+    .profile-combi {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        .header {
+            height: 100%;
+            flex: 0 0 20px;
+            text-align: center;
+        }
+        .body {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            .chart {
+                flex: 1;
+            }
+            .map {
+                flex: 1;
+            }
+        }
+    }
+}
