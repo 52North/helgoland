@@ -1,14 +1,21 @@
-<n52-permalink-button [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
-<div class="chart">
+<n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
+<div class="chart" *ngIf="datasetIds.length !== 0">
     <n52-plotly-profile-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
         [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-plotly-profile-graph>
 </div>
-<div class="legend">
+<div class="legend" *ngIf="datasetIds.length !== 0">
     <h3>Legende</h3>
     <div class="legend-entry">
         <div *ngFor="let id of datasetIds">
             <n52-profile-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" (onDeleteDatasetOptions)="deleteProfileOptions($event)"
                 (onSelectDataset)="selectProfile($event, id)" (onUpdateOptions)="updateOptions($event, id)"></n52-profile-entry>
         </div>
+    </div>
+</div>
+
+<div *ngIf="datasetIds.length === 0" class="container n52-alert">
+    <div class="alert alert-primary" role="alert">
+        <span>Bitte
+            <a routerLink="/profiles/selection" class="alert-link">wählen</a> Sie zuerst Profile aus.</span>
     </div>
 </div>

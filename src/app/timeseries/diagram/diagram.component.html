@@ -1,5 +1,13 @@
-<div class="empty-diagram" *ngIf="datasetIds.length == 0">
-  <span>Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.</span>
+<div *ngIf="datasetIds.length == 0" class="container n52-alert">
+  <div class="alert alert-primary" role="alert">
+    <span>Sie haben keine Zeitreihe ausgewählt, wählen Sie einen
+      <a routerLink="/timeseries/provider" class="alert-link">Anbieter</a>
+      , oder eine Zeitreihe über die
+      <a routerLink="/timeseries/map-selection" class="alert-link">Karte</a>
+      oder die
+      <a routerLink="/timeseries/list-selection" class="alert-link">Listenauswahl</a>
+    </span>.
+  </div>
 </div>
 <div class="content" *ngIf="datasetIds.length > 0">
   <div class="diagram-wrapper">

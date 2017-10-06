@@ -1,5 +1,5 @@
-<n52-permalink-button [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
-<div class="profile-combi">
+<n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
+<div class="profile-combi" *ngIf="datasetIds.length !== 0">
     <div class="header">{{datasetLabel}}</div>
     <div class="body">
         <div class="chart">
@@ -8,5 +8,12 @@
         <div class="map">
             <n52-geometry-map-viewer [mapId]="'combiViewMap'" [geometry]="geometry" [maxMapZoom]="15" [highlight]="highlightGeometry"></n52-geometry-map-viewer>
         </div>
+    </div>
+</div>
+
+<div *ngIf="datasetIds.length === 0" class="container n52-alert">
+    <div class="alert alert-primary" role="alert">
+        <span>Bitte
+            <a routerLink="/profiles/selection" class="alert-link">wählen</a> Sie zuerst Profile aus.</span>
     </div>
 </div>

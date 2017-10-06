@@ -15,18 +15,13 @@ export class TimeseriesProviderSelectionService {
     ) { }
 
     public setSelectedProvider(provider: Service) {
-        if (!this.localStorage.save(SELECTED_PROVIDER_PARAM, provider)) {
-            this.selectedProvider = provider;
-        }
+        this.localStorage.save(SELECTED_PROVIDER_PARAM, provider);
+        this.selectedProvider = provider;
     }
 
     public getSelectedProvider(): Service {
         const provider = this.localStorage.load<Service>(SELECTED_PROVIDER_PARAM);
         return provider ? provider : this.selectedProvider;
-    }
-
-    public hasSelectedProvider(): boolean {
-        return this.selectedProvider !== null;
     }
 
 }

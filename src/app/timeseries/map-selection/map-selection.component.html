@@ -2,11 +2,11 @@
     <div class="modal-header">
         <h4 class="modal-title">{{platform.properties.label}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="d()">
-          <span aria-hidden="true">&times;</span>
-      </button>
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <div class="modal-body">
-        <n52-dataset-by-station-selector [station]="platform" [url]="providerUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector>
+        <n52-dataset-by-station-selector [station]="platform" [url]="provider.providerUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-light" (click)="openDatasets();c();">Show {{datasetSelections.length}} in Diagram</button>
@@ -14,19 +14,26 @@
     </div>
 </ng-template>
 
-<div class="map scrollable">
-    <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="providerUrl" [filter]="stationFilter" (onSelected)="onStationSelected($event)"
-        [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
+<div class="map scrollable" *ngIf="provider">
+    <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="provider.providerUrl" [filter]="stationFilter"
+        (onSelected)="onStationSelected($event)" [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
     <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
     <n52-locate-control class="locate-control" [mapId]="'timeseries'"></n52-locate-control>
 </div>
-<div class="phenomenon-list scrollable">
+<div class="phenomenon-list scrollable" *ngIf="provider">
     <div class="selector-entry" [ngClass]="{selected: selectedPhenomenonId == null}" (click)="onAllPhenomenonSelected()">
         <span>Alle Phänomene</span>
     </div>
     <hr>
     <div>
-        <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="providerUrl" [selectionId]="selectedPhenomenonId"
+        <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="provider.providerUrl" [selectionId]="selectedPhenomenonId"
             (onItemSelected)="onPhenomenonSelected($event)"></n52-service-filter-selector>
+    </div>
+</div>
+
+<div *ngIf="!provider" class="container n52-alert">
+    <div class="alert alert-primary" role="alert">
+        <span>Um Zeitreihen über die Karte auszuwählen, müssen Sie erst einen
+            <a routerLink="/timeseries/provider" class="alert-link">Anbieter</a> wählen.</span>
     </div>
 </div>

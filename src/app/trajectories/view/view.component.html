@@ -50,3 +50,9 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="!model.trajectory" class="container n52-alert">
+  <div class="alert alert-primary" role="alert">
+    <span>Bitte <a routerLink="/trajectories/selection" class="alert-link">wählen</a> Sie zuerst eine Trajektorie aus.</span>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="providerList">
   <ngb-tabset>
     <ngb-tab>
       <ng-template ngbTabTitle>Kategorie</ng-template>
@@ -25,4 +25,11 @@
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
+</div>
+
+<div *ngIf="!providerList" class="container n52-alert">
+  <div class="alert alert-primary" role="alert">
+    <span>Um Zeitreihen über die Listenauswahl auszuwählen, müssen Sie erst einen
+      <a routerLink="/timeseries/provider" class="alert-link">Anbieter</a> wählen.</span>
+  </div>
 </div>

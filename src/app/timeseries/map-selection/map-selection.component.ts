@@ -8,6 +8,7 @@ import { Dataset } from './../../toolbox/model/api/dataset/dataset';
 import { ParameterFilter } from './../../toolbox/model/api/parameterFilter';
 import { Phenomenon } from './../../toolbox/model/api/phenomenon';
 import { Platform } from './../../toolbox/model/api/platform';
+import { Service } from './../../toolbox/model/api/service';
 import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
 import { TimeseriesService } from './../services/timeseries.service';
 
@@ -21,7 +22,7 @@ export class TimeseriesMapSelectionComponent implements OnInit {
   @ViewChild('modalStation')
   public modalTemplate: TemplateRef<any>;
 
-  public providerUrl: string;
+  public provider: Service;
   public stationFilter: ParameterFilter;
   public phenomenonFilter: ParameterFilter;
   public selectedPhenomenonId: string;
@@ -31,7 +32,6 @@ export class TimeseriesMapSelectionComponent implements OnInit {
 
   private defaultPlatformTypes = PlatformTypes.stationary;
   private defaultValueTypes = ValueTypes.quantity;
-  private provider = this.providerCache.getSelectedProvider();
 
   constructor(
     private providerCache: TimeseriesProviderSelectionService,
@@ -41,9 +41,11 @@ export class TimeseriesMapSelectionComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.providerUrl = this.provider.providerUrl;
-    this.updateStationFilter();
-    this.updatePhenomenonFilter();
+    this.provider = this.providerCache.getSelectedProvider();
+    if (this.provider) {
+      this.updateStationFilter();
+      this.updatePhenomenonFilter();
+    }
   }
 
   public onStationSelected(platform: Platform) {
