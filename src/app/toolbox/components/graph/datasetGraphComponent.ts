@@ -139,3 +139,8 @@ export enum GraphMessageType {
     ERROR,
     INFO
 }
+
+export interface GraphHighlight {
+    internalId: string;
+    dataIndex: number;
+}

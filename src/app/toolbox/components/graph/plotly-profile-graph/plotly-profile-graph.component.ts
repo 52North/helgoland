@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, IterableDiffers, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, IterableDiffers, Output, ViewChild } from '@angular/core';
 import * as d3 from 'd3';
 import * as Plotly from 'plotly.js/lib/core';
 
@@ -10,6 +10,7 @@ import { TimedDatasetOptions } from './../../../model/api/dataset/options';
 import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
 import { Time } from './../../../services/time/time.service';
+import { GraphHighlight } from './../datasetGraphComponent';
 
 interface RawData {
     dataset: IDataset;
@@ -28,6 +29,9 @@ const MARKER_SIZE = 6;
     styleUrls: ['./plotly-profile-graph.component.scss']
 })
 export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<TimedDatasetOptions>> implements AfterViewInit {
+
+    @Output()
+    public onHighlight: EventEmitter<GraphHighlight> = new EventEmitter();
 
     @ViewChild('plotly') plotlyElem: ElementRef;
     private plotlyArea: any;
@@ -287,16 +291,15 @@ export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<Tim
             this.processData();
             Plotly.newPlot(this.plotlyArea, this.preparedData, this.layout, this.settings);
         }
-        // document.getElementById(this.plotlyArea).on('plotly_hover', (entry: any) => {
-        //     debugger;
-        //     if (entry.points.length === 1) {
-        //         scope.onHighlight({
-        //             highlight: {
-        //                 index: entry.points[0].pointNumber
-        //             }
-        //         });
-        //     }
-        // });
+
+        this.plotlyArea.on('plotly_hover', (entry: any) => {
+            if (entry.points.length === 1) {
+                this.onHighlight.emit({
+                    internalId: entry.points[0].data.id,
+                    dataIndex: entry.points[0].pointNumber
+                });
+            }
+        });
     }
 
     private clearLayout() {
