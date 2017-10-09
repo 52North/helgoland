@@ -16,6 +16,7 @@ export class ProfilesCombiService extends DatasetService<Array<TimedDatasetOptio
         protected localStorage: LocalStorage
     ) {
         super(localStorage);
+        this.loadState();
     }
 
     public addDataset(internalId: string, options: Array<TimedDatasetOptions>) {

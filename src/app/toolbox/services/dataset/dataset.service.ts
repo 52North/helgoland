@@ -9,9 +9,7 @@ export abstract class DatasetService<T extends DatasetOptions | Array<DatasetOpt
 
     constructor(
         protected localStorage: LocalStorage
-    ) {
-        this.loadState();
-    }
+    ) { }
 
     public addDataset(internalId: string, options?: T) {
         if (this.datasetIds.indexOf(internalId) < 0) {

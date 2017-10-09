@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
+import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
 import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
 import { TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
@@ -67,7 +68,8 @@ const timeseriesRoutes: Routes = [
   providers: [
     TimeseriesProviderSelectionService,
     TimeseriesService,
-    TimeseriesConditionalRouter
+    TimeseriesConditionalRouter,
+    TimeseriesDiagramPermalink
   ]
 })
 export class TimeseriesModule { }

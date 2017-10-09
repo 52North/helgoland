@@ -14,6 +14,7 @@ export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> 
         protected localStorage: LocalStorage
     ) {
         super(localStorage);
+        this.loadState();
     }
 
     public addDataset(internalId: string, options?: Array<TimedDatasetOptions>) {

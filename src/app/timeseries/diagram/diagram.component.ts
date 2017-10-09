@@ -7,8 +7,7 @@ import { PlotOptions } from './../../toolbox/model/internal/flot/plotOptions';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { Time } from './../../toolbox/services/time/time.service';
 import { TimeseriesService } from './../services/timeseries.service';
-
-const TIME_CACHE_PARAM = 'timeseries-time';
+import { TimeseriesDiagramPermalink } from './diagram-permalink.service';
 
 @Component({
     selector: 'n52-diagram',
@@ -132,13 +131,15 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     constructor(
         private timeseriesService: TimeseriesService,
-        private timeSrvc: Time
+        private timeSrvc: Time,
+        private permalinkSrvc: TimeseriesDiagramPermalink
     ) { }
 
     public ngOnInit() {
+        this.permalinkSrvc.validatePeramlink();
         this.datasetIds = this.timeseriesService.datasetIds;
         this.datasetOptions = this.timeseriesService.datasetOptions;
-        this.updateTime(this.timeSrvc.loadTimespan(TIME_CACHE_PARAM) || this.timeSrvc.initTimespan());
+        this.timespan = this.timeseriesService.timespan;
     }
 
     public deleteTimeseries(internalId: string) {
@@ -170,8 +171,8 @@ export class TimeseriesDiagramComponent implements OnInit {
     }
 
     private updateTime(timespan: Timespan) {
+        this.timeseriesService.setTimespan(timespan);
         this.timespan = timespan;
-        this.timeSrvc.saveTimespan(TIME_CACHE_PARAM, timespan);
     }
 
     public updateOptions(options: DatasetOptions, internalId: string) {

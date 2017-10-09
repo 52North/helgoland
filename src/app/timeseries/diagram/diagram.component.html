@@ -1,3 +1,4 @@
+<n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
 <div *ngIf="datasetIds.length == 0" class="container n52-alert">
   <div class="alert alert-primary" role="alert">
     <span>Sie haben keine Zeitreihe ausgewählt, wählen Sie einen
