@@ -1,3 +1,7 @@
+import './jquery.flot.navigate';
+import './jquery.flot.selection';
+import './jquery.flot.touch';
+
 import { AfterViewInit, Component, ElementRef, IterableDiffers, ViewChild, ViewEncapsulation } from '@angular/core';
 import * as moment from 'moment';
 

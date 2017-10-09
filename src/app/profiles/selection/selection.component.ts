@@ -74,12 +74,12 @@ export class ProfilesSelectionComponent implements OnInit {
     constructor(
         private settings: Settings,
         private cache: ProfilesSelectionCache,
-        private selectionPermalink: ProfilesSelectionPermalink,
         private modalService: NgbModal,
         private api: ApiInterface,
         private router: Router,
         private profilesSrvc: ProfilesService,
-        private combiSrvc: ProfilesCombiService
+        private combiSrvc: ProfilesCombiService,
+        public selectionPermalink: ProfilesSelectionPermalink
     ) { }
 
     ngOnInit() {

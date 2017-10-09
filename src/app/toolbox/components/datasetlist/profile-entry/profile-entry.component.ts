@@ -27,7 +27,7 @@ export class ProfileEntryComponent extends ListEntryComponent {
     @Output()
     public onDeleteDatasetOptions: EventEmitter<TimedDatasetOptions> = new EventEmitter();
 
-    protected dataset: Dataset;
+    public dataset: Dataset;
 
     public editableOptions: TimedDatasetOptions;
     public tempColor: string;

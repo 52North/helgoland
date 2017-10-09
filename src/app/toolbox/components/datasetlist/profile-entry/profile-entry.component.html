@@ -41,7 +41,7 @@
             </div>
             <div class="small">
                 <n52-label-mapper label="{{dataset?.parameters.phenomenon.label}}"></n52-label-mapper>
-                <span *ngIf="uom">[<n52-label-mapper label="{{dataset.uom}}"></n52-label-mapper>]</span>
+                <span *ngIf="dataset?.uom">[<n52-label-mapper label="{{dataset.uom}}"></n52-label-mapper>]</span>
             </div>
             <div class="small">
                 <n52-label-mapper label="{{dataset?.parameters.procedure.label}}"></n52-label-mapper>

@@ -31,11 +31,7 @@
         "../node_modules/Flot/jquery.flot.js",
         "../node_modules/Flot/jquery.flot.time.js",
         "../node_modules/Flot/jquery.flot.crosshair.js",
-        "../node_modules/bootstrap-slider/dist/bootstrap-slider.js",
-        "../node_modules/plotly.js/dist/plotly-basic.min.js",
-        "assets/libs/jquery.flot.navigate.js",
-        "assets/libs/jquery.flot.selection.js",
-        "assets/libs/jquery.flot.touch.js"
+        "../node_modules/bootstrap-slider/dist/bootstrap-slider.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

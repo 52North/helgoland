@@ -1,3 +1,5 @@
+import 'leaflet.markercluster';
+
 import { AfterViewInit, ChangeDetectorRef, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
 
