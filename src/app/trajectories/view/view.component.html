@@ -1,19 +1,18 @@
-<n52-permalink-button *ngIf="model.trajectory" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
-<div class="combi-mobile" *ngIf="model.trajectory">
-  <div class="combi-header" *ngIf="model.trajectory.label">
-    <!-- <swc-mobile-reload dataset-id="series.id" provider-url="series.providerUrl" class="header-button"></swc-mobile-reload> -->
+<n52-permalink-button *ngIf="datasetIds.length > 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
+<div class="combi-mobile" *ngIf="datasetIds.length > 0">
+  <div class="combi-header" *ngIf="trajectory?.label">
     <div>
-      <span>{{model.trajectory.label}}</span>
+      <span>{{trajectory.label}}</span>
     </div>
     <div>
-      <span>{{model.trajectory.parameters.phenomenon.label}}</span>
-      <span *ngIf="model.trajectory.uom">[{{model.trajectory.uom}}]</span>
+      <span>{{trajectory.parameters.phenomenon.label}}</span>
+      <span *ngIf="trajectory.uom">[{{trajectory.uom}}]</span>
     </div>
   </div>
   <div class="combi-body">
     <div class="map-container">
-      <n52-geometry-map-viewer class="map" mapId="trajectory" [geometry]="model.geometry" [maxMapZoom]="14" [highlight]="highlightGeometry"></n52-geometry-map-viewer>
-      <div class="mapNotifier" *ngIf="model.trajectory.loading">
+      <n52-geometry-map-viewer class="map" mapId="trajectory" [geometry]="geometry" [maxMapZoom]="14" [highlight]="highlightGeometry"></n52-geometry-map-viewer>
+      <div class="mapNotifier" *ngIf="loading">
         <div>
           <div class="glyphicon glyphicon-refresh icon-spin"></div>
           <div translate="trajectories.map.loading"></div>
@@ -25,19 +24,20 @@
     </div>
     <div class="chart-container">
       <div class="chart">
-        <!-- <n52-d-three-graph [dataset]="model.trajectory" [data]="model.data" [axisType]="axisType" [dotted]="dotted" [selection]="selection"
-          [highlight]="highlight" (onSelection)="onSelectionChanged($event)" (onHighlight)="onChartHighlightChanged($event)"></n52-d-three-graph> -->
-        <n52-d3-timeseries-graph [datasetIds]="[model.trajectory.internalId]" [timeInterval]="timespan" [datasetOptions]="options" [graphOptions]="graphOptions"></n52-d3-timeseries-graph>
+        <n52-d3-timeseries-graph [datasetIds]="datasetIds" [timeInterval]="timespan" [datasetOptions]="options"
+          [graphOptions]="graphOptions"></n52-d3-timeseries-graph>
         <div class="chart-information">
           <span class="fa fa-info-circle" title="Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt."></span>
         </div>
       </div>
       <div class="chart-buttons">
         <div class="chart-control">
-          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeDistance" icon="road" tooltip="X-Achse bildet die Distanz ab" (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeDistance" icon="road" tooltip="X-Achse bildet die Distanz ab"
+            (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
         </div>
         <div class="chart-control">
-          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTime" icon="clock-o" tooltip="X-Achse bildet den Zeitraum ab" (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTime" icon="clock-o" tooltip="X-Achse bildet den Zeitraum ab"
+            (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
         </div>
         <div class="chart-control">
           <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTicks" icon="ellipsis-h" tooltip="X-Achse bildet die Messpunkte linear ab"
@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<div *ngIf="!model.trajectory" class="container n52-alert">
+<div *ngIf="datasetIds.length === 0" class="container n52-alert">
   <div class="alert alert-primary" role="alert">
     <span>Bitte
       <a routerLink="/trajectories/selection" class="alert-link">wählen</a> Sie zuerst eine Trajektorie aus.</span>

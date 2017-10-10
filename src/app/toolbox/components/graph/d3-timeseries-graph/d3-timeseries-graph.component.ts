@@ -357,7 +357,6 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
         }
     }
 
-
     private hideDiagramIndicator() {
         this.focusG.style('visibility', 'hidden');
     }

@@ -1,79 +1,37 @@
 import { Injectable } from '@angular/core';
-import { deserialize } from 'class-transformer';
 
-import { DatasetOptions } from '../../toolbox/model/api/dataset/options';
-import { LocatedTimeValueEntry } from './../../toolbox/model/api/data';
-import { Dataset } from './../../toolbox/model/api/dataset/dataset';
-import { Timespan } from './../../toolbox/model/internal/time-interval';
+import { DatasetService } from '../../toolbox/services/dataset/dataset.service';
+import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
 import { InternalIdHandler } from './../../toolbox/services/api-interface/internal-id-handler.service';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
-import { TrajectoryModel } from './../model/trajectory-model';
 
-const TRAJECTORY_CACHE_PARAM = 'trajectory';
+const TRAJECTORY_IDS_PARAM = 'trajectory-ids';
+const TRAJECTORY_OPTIONS_PARAM = 'trajectory-options';
 
 @Injectable()
-export class TrajectoriesService {
-
-    public model: TrajectoryModel;
-
-    public timespan: Timespan = new Timespan(new Date(), new Date());
-
-    public options: Map<string, DatasetOptions> = new Map();
+export class TrajectoriesService extends DatasetService<DatasetOptions> {
 
     constructor(
+        protected localStorage: LocalStorage,
         private api: ApiInterface,
-        private localStorage: LocalStorage,
         private internalIdHandler: InternalIdHandler
     ) {
-        this.model = {};
-        this.loadTrajectory();
+        super(localStorage);
+        this.loadState();
     }
 
-    public setTrajectoryByInternalId(internalId: string) {
-        const idConstellation = this.internalIdHandler.resolveInternalId(internalId);
-        this.setTrajectory(idConstellation.id, idConstellation.url);
+    protected createStyles(internalId: string): DatasetOptions {
+        return new DatasetOptions(internalId);
     }
 
-    public setTrajectory(id: string, url: string) {
-        this.api.getDataset(id, url).subscribe((res) => {
-            this.model.trajectory = res;
-            this.options.clear();
-            this.options.set(res.internalId, new DatasetOptions(res.internalId));
-            this.saveTrajectory();
-            this.timespan.from = new Date(this.model.trajectory.firstValue.timestamp);
-            this.timespan.to = new Date(this.model.trajectory.lastValue.timestamp);
-            this.api.getData<LocatedTimeValueEntry>(this.model.trajectory.id, this.model.trajectory.url, this.timespan)
-                .subscribe((data) => {
-                    this.model.data = data.values;
-                    this.model.geometry = {
-                        type: 'LineString',
-                        coordinates: []
-                    };
-                    this.model.data.forEach((entry) => {
-                        this.model.geometry.coordinates.push(entry.geometry.coordinates);
-                    });
-                });
-        });
+    protected saveState() {
+        this.localStorage.save(TRAJECTORY_IDS_PARAM, this.datasetIds);
+        this.localStorage.save(TRAJECTORY_OPTIONS_PARAM, Array.from(this.datasetOptions.values()));
     }
 
-    public getPointForIdx(idx: number): GeoJSON.Point {
-        return this.model.data[idx].geometry;
-    }
-
-    public hasTrajectory(): boolean {
-        return this.model.trajectory !== null && this.model.data !== null;
-    }
-
-    private saveTrajectory() {
-        this.localStorage.save(TRAJECTORY_CACHE_PARAM, this.model.trajectory);
-    }
-
-    private loadTrajectory() {
-        const json = this.localStorage.loadTextual(TRAJECTORY_CACHE_PARAM);
-        if (json) {
-            const result = deserialize<Dataset>(Dataset, json);
-            this.setTrajectory(result.id, result.url);
-        }
+    protected loadState() {
+        this.datasetIds = this.localStorage.loadArray<string>(TRAJECTORY_IDS_PARAM);
+        this.localStorage.loadArray<DatasetOptions>(TRAJECTORY_OPTIONS_PARAM).forEach(e => this.datasetOptions.set(e.internalId, e));
     }
 }

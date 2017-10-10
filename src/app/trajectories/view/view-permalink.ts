@@ -19,14 +19,14 @@ export class TrajectoriesViewPermalink extends PermalinkService<void> {
     public validatePeramlink(): void {
         this.activatedRoute.queryParamMap.subscribe(map => {
             if (map.has(PARAM_ID)) {
-                this.trajectories.setTrajectoryByInternalId(map.get(PARAM_ID));
+                this.trajectories.addDataset(map.get(PARAM_ID));
             }
         });
     }
 
     protected generatePermalink(): string {
-        if (this.trajectories.hasTrajectory()) {
-            return this.createBaseUrl() + '?' + PARAM_ID + '=' + encodeURIComponent(this.trajectories.model.trajectory.internalId);
+        if (this.trajectories.hasDatasets()) {
+            return this.createBaseUrl() + '?' + PARAM_ID + '=' + encodeURIComponent(this.trajectories.datasetIds[0]);
         }
         return '';
     }
