@@ -1,0 +1,34 @@
+import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { PermalinkService } from '../../toolbox/services/permalink/permalink.service';
+import { TrajectoriesService } from './../services/trajectories.service';
+
+const PARAM_ID = 'id';
+
+@Injectable()
+export class TrajectoriesViewPermalink extends PermalinkService<void> {
+
+    constructor(
+        private trajectories: TrajectoriesService,
+        private activatedRoute: ActivatedRoute
+    ) {
+        super();
+    }
+
+    public validatePeramlink(): void {
+        this.activatedRoute.queryParamMap.subscribe(map => {
+            if (map.has(PARAM_ID)) {
+                this.trajectories.setTrajectoryByInternalId(map.get(PARAM_ID));
+            }
+        });
+    }
+
+    protected generatePermalink(): string {
+        if (this.trajectories.hasTrajectory()) {
+            return this.createBaseUrl() + '?' + PARAM_ID + '=' + encodeURIComponent(this.trajectories.model.trajectory.internalId);
+        }
+        return '';
+    }
+
+}

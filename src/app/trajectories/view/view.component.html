@@ -1,4 +1,4 @@
-<!-- <swc-simple-permalink-button class="sub-menu-permalink-button" generated-url-function="$ctrl.createPermalink"></swc-simple-permalink-button>-->
+<n52-permalink-button *ngIf="model.trajectory" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
 <div class="combi-mobile" *ngIf="model.trajectory">
   <div class="combi-header" *ngIf="model.trajectory.label">
     <!-- <swc-mobile-reload dataset-id="series.id" provider-url="series.providerUrl" class="header-button"></swc-mobile-reload> -->

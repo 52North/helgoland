@@ -8,6 +8,7 @@ import { TrajectoriesNavigationComponent } from './navigation/navigation.compone
 import { TrajectoriesSelectionComponent } from './selection/selection.component';
 import { TrajectoriesConditionalRouter } from './services/trajectories-router.service';
 import { TrajectoriesService } from './services/trajectories.service';
+import { TrajectoriesViewPermalink } from './view/view-permalink';
 import { TrajectoriesViewComponent } from './view/view.component';
 
 const trajectoriesRoutes: Routes = [
@@ -49,7 +50,8 @@ const trajectoriesRoutes: Routes = [
   ],
   providers: [
     TrajectoriesService,
-    TrajectoriesConditionalRouter
+    TrajectoriesConditionalRouter,
+    TrajectoriesViewPermalink
   ]
 })
 export class TrajectoriesModule { }

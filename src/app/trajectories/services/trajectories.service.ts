@@ -5,6 +5,7 @@ import { LocatedTimeValueEntry } from './../../toolbox/model/api/data';
 import { Dataset } from './../../toolbox/model/api/dataset/dataset';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
+import { InternalIdHandler } from './../../toolbox/services/api-interface/internal-id-handler.service';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
 import { TrajectoryModel } from './../model/trajectory-model';
 
@@ -17,10 +18,16 @@ export class TrajectoriesService {
 
     constructor(
         private api: ApiInterface,
-        private localStorage: LocalStorage
+        private localStorage: LocalStorage,
+        private internalIdHandler: InternalIdHandler
     ) {
         this.model = {};
         this.loadTrajectory();
+    }
+
+    public setTrajectoryByInternalId(internalId: string) {
+        const idConstellation = this.internalIdHandler.resolveInternalId(internalId);
+        this.setTrajectory(idConstellation.id, idConstellation.url);
     }
 
     public setTrajectory(id: string, url: string) {
