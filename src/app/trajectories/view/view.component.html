@@ -12,7 +12,7 @@
   </div>
   <div class="combi-body">
     <div class="map-container">
-      <n52-geometry-map-viewer class="map" [mapId]="'trajectory'" [geometry]="model.geometry" [maxMapZoom]="14" [highlight]="highlightGeometry"></n52-geometry-map-viewer>
+      <n52-geometry-map-viewer class="map" mapId="trajectory" [geometry]="model.geometry" [maxMapZoom]="14" [highlight]="highlightGeometry"></n52-geometry-map-viewer>
       <div class="mapNotifier" *ngIf="model.trajectory.loading">
         <div>
           <div class="glyphicon glyphicon-refresh icon-spin"></div>
@@ -25,8 +25,9 @@
     </div>
     <div class="chart-container">
       <div class="chart">
-        <n52-d-three-graph [dataset]="model.trajectory" [data]="model.data" [axisType]="axisType" [dotted]="dotted" [selection]="selection"
-          [highlight]="highlight" (onSelection)="onSelectionChanged($event)" (onHighlight)="onChartHighlightChanged($event)"></n52-d-three-graph>
+        <!-- <n52-d-three-graph [dataset]="model.trajectory" [data]="model.data" [axisType]="axisType" [dotted]="dotted" [selection]="selection"
+          [highlight]="highlight" (onSelection)="onSelectionChanged($event)" (onHighlight)="onChartHighlightChanged($event)"></n52-d-three-graph> -->
+        <n52-d3-timeseries-graph [datasetIds]="[model.trajectory.internalId]" [timeInterval]="timespan" [datasetOptions]="options"></n52-d3-timeseries-graph>
         <div class="chart-information">
           <span class="fa fa-info-circle" title="Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt."></span>
         </div>
@@ -53,6 +54,7 @@
 
 <div *ngIf="!model.trajectory" class="container n52-alert">
   <div class="alert alert-primary" role="alert">
-    <span>Bitte <a routerLink="/trajectories/selection" class="alert-link">wählen</a> Sie zuerst eine Trajektorie aus.</span>
+    <span>Bitte
+      <a routerLink="/trajectories/selection" class="alert-link">wählen</a> Sie zuerst eine Trajektorie aus.</span>
   </div>
 </div>

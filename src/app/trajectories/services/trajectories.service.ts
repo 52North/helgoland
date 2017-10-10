@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { deserialize } from 'class-transformer';
 
+import { DatasetOptions } from '../../toolbox/model/api/dataset/options';
 import { LocatedTimeValueEntry } from './../../toolbox/model/api/data';
 import { Dataset } from './../../toolbox/model/api/dataset/dataset';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
@@ -15,6 +16,10 @@ const TRAJECTORY_CACHE_PARAM = 'trajectory';
 export class TrajectoriesService {
 
     public model: TrajectoryModel;
+
+    public timespan: Timespan = new Timespan(new Date(), new Date());
+
+    public options: Map<string, DatasetOptions> = new Map();
 
     constructor(
         private api: ApiInterface,
@@ -33,12 +38,12 @@ export class TrajectoriesService {
     public setTrajectory(id: string, url: string) {
         this.api.getDataset(id, url).subscribe((res) => {
             this.model.trajectory = res;
+            this.options.clear();
+            this.options.set(res.internalId, new DatasetOptions(res.internalId));
             this.saveTrajectory();
-            const timespan = new Timespan(
-                new Date(this.model.trajectory.firstValue.timestamp),
-                new Date(this.model.trajectory.lastValue.timestamp)
-            );
-            this.api.getData<LocatedTimeValueEntry>(this.model.trajectory.id, this.model.trajectory.url, timespan)
+            this.timespan.from = new Date(this.model.trajectory.firstValue.timestamp);
+            this.timespan.to = new Date(this.model.trajectory.lastValue.timestamp);
+            this.api.getData<LocatedTimeValueEntry>(this.model.trajectory.id, this.model.trajectory.url, this.timespan)
                 .subscribe((data) => {
                     this.model.data = data.values;
                     this.model.geometry = {

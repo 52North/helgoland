@@ -16,6 +16,7 @@ import { DThreeGraphComponent } from './components/display/d-three-graph/d-three
 import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
 import { LabelMapperComponent } from './components/display/label-mapper/label-mapper.component';
 import { LabelMapperService } from './components/display/label-mapper/label-mapper.service';
+import { D3TimeseriesGraphComponent } from './components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
 import {
     FlotOverviewTimeseriesGraphComponent,
 } from './components/graph/flot-overview-timeseries-graph/flot-overview-timeseries-graph.component';
@@ -99,7 +100,8 @@ const COMPONENTS = [
     TimeseriesStyleSelectorComponent,
     TimeListSelectorComponent,
     TimeRangeSliderSelectorComponent,
-    PlotlyProfileGraphComponent
+    PlotlyProfileGraphComponent,
+    D3TimeseriesGraphComponent
 ];
 
 @NgModule({

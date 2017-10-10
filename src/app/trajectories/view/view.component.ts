@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { SelectionRange } from './../../toolbox/components/display/d-three-graph/d-three-graph.component';
+import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
+import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { TrajectoryModel } from './../model/trajectory-model';
 import { TrajectoriesService } from './../services/trajectories.service';
 import { TrajectoriesViewPermalink } from './view-permalink';
@@ -25,6 +27,10 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public dotted = false;
 
+    public timespan: Timespan;
+
+    public options: Map<string, DatasetOptions>;
+
     constructor(
         private trajectorySrvc: TrajectoriesService,
         private permalinkSrvc: TrajectoriesViewPermalink
@@ -33,6 +39,8 @@ export class TrajectoriesViewComponent implements OnInit {
     public ngOnInit() {
         this.permalinkSrvc.validatePeramlink();
         this.model = this.trajectorySrvc.model;
+        this.timespan = this.trajectorySrvc.timespan;
+        this.options = this.trajectorySrvc.options;
     }
 
     onSelectionChanged(range: SelectionRange) {
