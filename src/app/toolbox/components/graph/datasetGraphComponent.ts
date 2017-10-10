@@ -19,7 +19,7 @@ import { Time } from './../../services/time/time.service';
 
 const equal = require('deep-equal');
 
-export abstract class DatasetGraphComponent<T extends DatasetOptions | Array<DatasetOptions>>
+export abstract class DatasetGraphComponent<T extends DatasetOptions | Array<DatasetOptions>, U>
     extends ResizableComponent implements OnChanges, DoCheck {
 
     @Input()
@@ -38,8 +38,8 @@ export abstract class DatasetGraphComponent<T extends DatasetOptions | Array<Dat
     public oldDatasetOptions: Map<string, T>;
 
     @Input()
-    public graphOptions: any;
-    private oldGraphOptions: any;
+    public graphOptions: U;
+    private oldGraphOptions: U;
 
     @Output()
     public onDatasetSelected: EventEmitter<Array<string>> = new EventEmitter();
@@ -124,7 +124,7 @@ export abstract class DatasetGraphComponent<T extends DatasetOptions | Array<Dat
 
     protected abstract removeSelectedId(internalId: string): void;
 
-    protected abstract graphOptionsChanged(options: any): void;
+    protected abstract graphOptionsChanged(options: U): void;
 
     protected abstract datasetOptionsChanged(internalId: string, options: T, firstChange: boolean): void;
 

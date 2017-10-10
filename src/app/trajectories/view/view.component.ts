@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
+import { AxisType, D3GraphOptions } from '../../toolbox/components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
 import { SelectionRange } from './../../toolbox/components/display/d-three-graph/d-three-graph.component';
 import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
@@ -23,13 +24,18 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public highlightGeometry: GeoJSON.Point;
 
-    public axisType = 'distance';
-
-    public dotted = false;
-
     public timespan: Timespan;
 
     public options: Map<string, DatasetOptions>;
+
+    public graphOptions: D3GraphOptions = {
+        axisType: AxisType.Distance,
+        dotted: false
+    };
+
+    public axisTypeDistance = AxisType.Distance;
+    public axisTypeTime = AxisType.Time;
+    public axisTypeTicks = AxisType.Ticks;
 
     constructor(
         private trajectorySrvc: TrajectoriesService,
@@ -52,12 +58,12 @@ export class TrajectoriesViewComponent implements OnInit {
         this.highlightGeometry = this.trajectorySrvc.getPointForIdx(idx);
     }
 
-    onAxisTypeChanged(axisType: string) {
-        this.axisType = axisType;
+    onAxisTypeChanged(axisType: AxisType) {
+        this.graphOptions.axisType = axisType;
     }
 
     onDottedChanged(dotted: boolean) {
-        this.dotted = dotted;
+        this.graphOptions.dotted = dotted;
     }
 
 }

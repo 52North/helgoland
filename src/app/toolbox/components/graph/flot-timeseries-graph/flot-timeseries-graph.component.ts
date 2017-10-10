@@ -26,7 +26,7 @@ declare var $: any;
     styleUrls: ['./flot-timeseries-graph.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class FlotTimeseriesGraphComponent extends DatasetGraphComponent<DatasetOptions> implements AfterViewInit {
+export class FlotTimeseriesGraphComponent extends DatasetGraphComponent<DatasetOptions, PlotOptions> implements AfterViewInit {
 
     @ViewChild('flot') flotElem: ElementRef;
 
@@ -78,7 +78,7 @@ export class FlotTimeseriesGraphComponent extends DatasetGraphComponent<DatasetO
         this.plotGraph();
     }
 
-    protected graphOptionsChanged(options: any) {
+    protected graphOptionsChanged(options: PlotOptions) {
         this.plotOptions = options;
         this.plotOptions.yaxes = [];
         this.timeIntervalChanges();

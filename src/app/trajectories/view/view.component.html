@@ -27,25 +27,25 @@
       <div class="chart">
         <!-- <n52-d-three-graph [dataset]="model.trajectory" [data]="model.data" [axisType]="axisType" [dotted]="dotted" [selection]="selection"
           [highlight]="highlight" (onSelection)="onSelectionChanged($event)" (onHighlight)="onChartHighlightChanged($event)"></n52-d-three-graph> -->
-        <n52-d3-timeseries-graph [datasetIds]="[model.trajectory.internalId]" [timeInterval]="timespan" [datasetOptions]="options"></n52-d3-timeseries-graph>
+        <n52-d3-timeseries-graph [datasetIds]="[model.trajectory.internalId]" [timeInterval]="timespan" [datasetOptions]="options" [graphOptions]="graphOptions"></n52-d3-timeseries-graph>
         <div class="chart-information">
           <span class="fa fa-info-circle" title="Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt."></span>
         </div>
       </div>
       <div class="chart-buttons">
         <div class="chart-control">
-          <n52-string-toggler [value]="axisType" option="distance" icon="road" tooltip="X-Achse bildet die Distanz ab" (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeDistance" icon="road" tooltip="X-Achse bildet die Distanz ab" (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
         </div>
         <div class="chart-control">
-          <n52-string-toggler [value]="axisType" option="time" icon="clock-o" tooltip="X-Achse bildet den Zeitraum ab" (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTime" icon="clock-o" tooltip="X-Achse bildet den Zeitraum ab" (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
         </div>
         <div class="chart-control">
-          <n52-string-toggler [value]="axisType" option="ticks" icon="ellipsis-h" tooltip="X-Achse bildet die Messpunkte linear ab"
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTicks" icon="ellipsis-h" tooltip="X-Achse bildet die Messpunkte linear ab"
             (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
         </div>
         <hr>
         <div class="chart-control">
-          <n52-bool-toggler [value]="dotted" icon="line-chart" tooltip="Zeitreihe als Linien-/Punktdarstellung" (onToggled)="onDottedChanged($event)"></n52-bool-toggler>
+          <n52-bool-toggler [value]="graphOptions.dotted" icon="line-chart" tooltip="Zeitreihe als Linien-/Punktdarstellung" (onToggled)="onDottedChanged($event)"></n52-bool-toggler>
         </div>
       </div>
     </div>

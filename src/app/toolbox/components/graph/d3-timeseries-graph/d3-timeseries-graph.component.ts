@@ -20,13 +20,24 @@ interface DataEntry extends LocatedTimeValueEntry {
     latlng: L.LatLng;
 }
 
+export interface D3GraphOptions {
+    axisType: AxisType;
+    dotted: boolean;
+}
+
+export enum AxisType {
+    Distance,
+    Time,
+    Ticks
+}
+
 @Component({
     selector: 'n52-d3-timeseries-graph',
     templateUrl: './d3-timeseries-graph.component.html',
     styleUrls: ['./d3-timeseries-graph.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOptions> implements AfterViewInit {
+export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOptions, D3GraphOptions> implements AfterViewInit {
 
     private datasetMap: Map<string, IDataset> = new Map();
 
@@ -62,8 +73,10 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     private dragRect: any;
     private dragRectG: any;
 
-    public axisType = 'distance'; // TODO add to graph options aand use an Enum
-    public dotted = false; // TODO add to graph options
+    private defaultGraphOptions: D3GraphOptions = {
+        axisType: AxisType.Distance,
+        dotted: false
+    };
 
     constructor(
         protected iterableDiffers: IterableDiffers,
@@ -72,6 +85,7 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
         protected timeSrvc: Time
     ) {
         super(iterableDiffers, api, datasetIdResolver, timeSrvc);
+        this.graphOptions = this.defaultGraphOptions;
     }
 
     public ngAfterViewInit(): void {
@@ -115,19 +129,19 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     }
 
     protected removeDataset(internalId: string): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     protected setSelectedId(internalId: string): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     protected removeSelectedId(internalId: string): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     protected graphOptionsChanged(options: any): void {
-        throw new Error("Method not implemented.");
+        this.timeIntervalChanges();
     }
 
     protected datasetOptionsChanged(internalId: string, options: DatasetOptions, firstChange: boolean): void {
@@ -167,7 +181,7 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
             //         this.internalValues.push(entry);
             //     }
             // } else {
-                this.internalValues.push(entry);
+            this.internalValues.push(entry);
             // }
         });
     }
@@ -213,12 +227,12 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     }
 
     private getXValue(data: DataEntry) {
-        switch (this.axisType) {
-            case 'distance':
+        switch (this.graphOptions.axisType) {
+            case AxisType.Distance:
                 return data.dist;
-            case 'time':
+            case AxisType.Time:
                 return data.timestamp;
-            case 'ticks':
+            case AxisType.Ticks:
                 return data.tick;
             default:
                 return data.tick;
@@ -235,7 +249,7 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
         this.drawYAxis();
         this.drawXAxis();
 
-        if (this.dotted) {
+        if (this.graphOptions.dotted) {
             this.drawDots(this.internalValues);
         } else {
             this.drawValueLine(this.internalValues);
@@ -368,13 +382,13 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
             .attr('x', item.xDiagCoord - 95)
             .attr('y', 13)
             .text(moment(item.timestamp).format('DD.MM.YY HH:mm'));
-        if (this.axisType === 'distance') {
+        if (this.graphOptions.axisType === AxisType.Distance) {
             this.focuslabelY
                 .attr('y', this.height - 5)
                 .attr('x', item.xDiagCoord + 2)
                 .text(item.dist + ' km');
         }
-        if (this.axisType === 'ticks') {
+        if (this.graphOptions.axisType === AxisType.Ticks) {
             this.focuslabelY
                 .attr('y', this.height - 5)
                 .attr('x', item.xDiagCoord + 2)
@@ -385,12 +399,12 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     private getItemForX(x: number, data: Array<DataEntry>) {
         const index = this.xScale.invert(x);
         const bisectDate = d3.bisector((d: DataEntry) => {
-            switch (this.axisType) {
-                case 'distance':
+            switch (this.graphOptions.axisType) {
+                case AxisType.Distance:
                     return d.dist;
-                case 'time':
+                case AxisType.Time:
                     return d.timestamp;
-                case 'ticks':
+                case AxisType.Ticks:
                 default:
                     return d.tick;
             }
@@ -454,7 +468,7 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
             .range([0, this.width]);
         this.xAxisGen = d3.axisBottom(this.xScale).ticks(5);
 
-        if (this.axisType === 'time') {
+        if (this.graphOptions.axisType === AxisType.Time) {
             this.xAxisGen.tickFormat((d) => {
                 return d3.timeFormat('%d.%m.%Y %H:%M:%S')(new Date(d.valueOf()));
             });
@@ -527,10 +541,10 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     }
 
     private getXDomain(values: Array<DataEntry>) {
-        switch (this.axisType) {
-            case 'distance':
+        switch (this.graphOptions.axisType) {
+            case AxisType.Distance:
                 return [values[0].dist, values[values.length - 1].dist];
-            case 'time':
+            case AxisType.Time:
                 return [values[0].timestamp, values[values.length - 1].timestamp];
             default:
                 return [values[0].tick, values[values.length - 1].tick];
@@ -538,10 +552,10 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     }
 
     private getXAxisLabel() {
-        switch (this.axisType) {
-            case 'distance':
+        switch (this.graphOptions.axisType) {
+            case AxisType.Distance:
                 return 'Distance';
-            case 'time':
+            case AxisType.Time:
                 return 'Time';
             default:
                 return 'Ticks';

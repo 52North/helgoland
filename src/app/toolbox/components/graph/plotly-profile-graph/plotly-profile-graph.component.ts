@@ -30,7 +30,7 @@ const MARKER_SIZE = 6;
     templateUrl: './plotly-profile-graph.component.html',
     styleUrls: ['./plotly-profile-graph.component.scss']
 })
-export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<TimedDatasetOptions>> implements AfterViewInit {
+export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<TimedDatasetOptions>, any> implements AfterViewInit {
 
     @Output()
     public onHighlight: EventEmitter<GraphHighlight> = new EventEmitter();
