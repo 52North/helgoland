@@ -32,6 +32,7 @@ import { StationMapSelectorComponent } from './components/selection/map-selector
 import {
     ProfileTrajectoryMapSelectorComponent,
 } from './components/selection/map-selector/trajectory-map-selector.component';
+import { MultiPhenomenonListComponent } from './components/selection/multi-phenomenon-list/multi-phenomenon-list.component';
 import {
     MultiServiceFilterSelectorComponent,
 } from './components/selection/multi-service-filter-selector/multi-service-filter-selector.component';
@@ -101,7 +102,8 @@ const COMPONENTS = [
     TimeListSelectorComponent,
     TimeRangeSliderSelectorComponent,
     PlotlyProfileGraphComponent,
-    D3TimeseriesGraphComponent
+    D3TimeseriesGraphComponent,
+    MultiPhenomenonListComponent
 ];
 
 @NgModule({

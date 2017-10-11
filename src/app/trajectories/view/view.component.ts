@@ -76,21 +76,31 @@ export class TrajectoriesViewComponent implements OnInit {
         }
     }
 
-    onSelectionChanged(range: SelectionRange) {
+    public onSelectionChanged(range: SelectionRange) {
         this.selection = range;
     }
 
-    onChartHighlightChanged(idx: number) {
+    public onChartHighlightChanged(idx: number) {
         this.highlight = idx;
         // this.highlightGeometry = this.trajectorySrvc.getPointForIdx(idx); // TODO
     }
 
-    onAxisTypeChanged(axisType: AxisType) {
+    public onAxisTypeChanged(axisType: AxisType) {
         this.graphOptions.axisType = axisType;
     }
 
-    onDottedChanged(dotted: boolean) {
+    public onDottedChanged(dotted: boolean) {
         this.graphOptions.dotted = dotted;
+    }
+
+    public onAddDataset(entry: DatasetOptions) {
+        const options = new DatasetOptions(entry.internalId);
+        options.color = entry.color;
+        this.trajectorySrvc.addDataset(entry.internalId, options);
+    }
+
+    public onRemoveDataset(internalId: string) {
+        this.trajectorySrvc.removeDataset(internalId);
     }
 
 }

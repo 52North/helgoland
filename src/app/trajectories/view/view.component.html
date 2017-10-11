@@ -30,6 +30,9 @@
           <span class="fa fa-info-circle" title="Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt."></span>
         </div>
       </div>
+      <div class="legend">
+          <n52-multi-phenomenon-list [dataset]="trajectory" (onAddDataset)="onAddDataset($event)" (onRemoveDataset)="onRemoveDataset($event)"></n52-multi-phenomenon-list>
+      </div>
       <div class="chart-buttons">
         <div class="chart-control">
           <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeDistance" icon="road" tooltip="X-Achse bildet die Distanz ab"
