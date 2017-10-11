@@ -25,13 +25,13 @@
     <div class="chart-container">
       <div class="chart">
         <n52-d3-timeseries-graph [datasetIds]="datasetIds" [timeInterval]="timespan" [datasetOptions]="options"
-          [graphOptions]="graphOptions"></n52-d3-timeseries-graph>
+          [graphOptions]="graphOptions" [selection]="selection" (onSelection)="onSelectionChanged($event)"></n52-d3-timeseries-graph>
         <div class="chart-information">
           <span class="fa fa-info-circle" title="Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt."></span>
         </div>
       </div>
       <div class="legend">
-          <n52-multi-phenomenon-list [dataset]="trajectory" (onAddDataset)="onAddDataset($event)" (onRemoveDataset)="onRemoveDataset($event)"></n52-multi-phenomenon-list>
+          <n52-multi-phenomenon-list [dataset]="trajectory" [datasetIds]="datasetIds" [datasetOptions]="options" (onAddDataset)="onAddDataset($event)" (onRemoveDataset)="onRemoveDataset($event)"></n52-multi-phenomenon-list>
       </div>
       <div class="chart-buttons">
         <div class="chart-control">

@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { DatasetService } from '../../toolbox/services/dataset/dataset.service';
 import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
-import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
-import { InternalIdHandler } from './../../toolbox/services/api-interface/internal-id-handler.service';
 import { ColorService } from './../../toolbox/services/color/color.service';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
 
@@ -15,9 +13,7 @@ export class TrajectoriesService extends DatasetService<DatasetOptions> {
 
     constructor(
         protected localStorage: LocalStorage,
-        private api: ApiInterface,
-        private color: ColorService,
-        private internalIdHandler: InternalIdHandler
+        private color: ColorService
     ) {
         super(localStorage);
         this.loadState();

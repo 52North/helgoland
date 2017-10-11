@@ -15,7 +15,7 @@ $drag-color: rgba(0, 0, 255, 0.40);
         fill: lightsteelblue;
         fill-opacity: 0.7;
     }
-    .grid .tick {
+    .grid .tick line {
         stroke: lightgrey;
         stroke-opacity: 0.7;
         shape-rendering: crispEdges;

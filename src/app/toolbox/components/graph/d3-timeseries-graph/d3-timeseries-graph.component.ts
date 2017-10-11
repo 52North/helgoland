@@ -1,4 +1,16 @@
-import { AfterViewInit, Component, ElementRef, IterableDiffers, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    IterableDiffers,
+    OnChanges,
+    Output,
+    SimpleChanges,
+    ViewChild,
+    ViewEncapsulation,
+} from '@angular/core';
 import * as d3 from 'd3';
 import * as L from 'leaflet';
 import * as moment from 'moment';
@@ -18,6 +30,24 @@ interface DataEntry extends LocatedTimeValueEntry {
     y: number;
     xDiagCoord?: number;
     latlng: L.LatLng;
+    [id: string]: any;
+}
+
+interface DatasetConstellation {
+    dataset?: IDataset;
+    data?: Array<LocatedTimeValueEntry>;
+    yScale?: d3.ScaleLinear<number, number>;
+    drawOptions?: DrawOptions;
+    focusLabelRect?: any;
+    focusLabel?: any;
+}
+
+interface DrawOptions {
+    uom: string;
+    id: string;
+    color: string;
+    first: boolean;
+    offset: number;
 }
 
 export interface D3GraphOptions {
@@ -31,15 +61,26 @@ export enum AxisType {
     Ticks
 }
 
+export class SelectionRange {
+    from: number;
+    to: number;
+}
+
 @Component({
     selector: 'n52-d3-timeseries-graph',
     templateUrl: './d3-timeseries-graph.component.html',
     styleUrls: ['./d3-timeseries-graph.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOptions, D3GraphOptions> implements AfterViewInit {
+export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOptions, D3GraphOptions> implements AfterViewInit, OnChanges {
 
-    private datasetMap: Map<string, IDataset> = new Map();
+    private datasetMap: Map<string, DatasetConstellation> = new Map();
+
+    @Input()
+    public selection: SelectionRange;
+
+    @Output()
+    public onSelection: EventEmitter<SelectionRange> = new EventEmitter();
 
     @ViewChild('dthree') d3Elem: ElementRef;
 
@@ -51,27 +92,27 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
         top: 10,
         right: 10,
         bottom: 40,
-        left: 50
+        left: 40
     };
     private maxLabelwidth = 0;
     private lineFun: d3.Line<DataEntry>;
     private area: d3.Area<DataEntry>;
-    private xScale: d3.ScaleLinear<number, number>;
-    private yScale: d3.ScaleLinear<number, number>;
+    private xScaleBase: d3.ScaleLinear<number, number>;
+    private yScaleBase: d3.ScaleLinear<number, number>;
     private background: any;
     private focusG: any;
     private highlightFocus: any;
-    private focuslabelValue: any;
     private focuslabelTime: any;
     private focuslabelY: any;
-    private xAxisGen: d3.Axis<number | { valueOf(): number; }>;
     private yAxisGen: d3.Axis<number | { valueOf(): number; }>;
-    private internalValues: Array<DataEntry> = [];
+    private baseValues: Array<DataEntry> = [];
     private dragging: boolean;
     private dragStart: [number, number];
     private dragCurrent: [number, number];
     private dragRect: any;
     private dragRectG: any;
+    private bufferSum: number;
+    private dataLength: number;
 
     private defaultGraphOptions: D3GraphOptions = {
         axisType: AxisType.Distance,
@@ -86,6 +127,14 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     ) {
         super(iterableDiffers, api, datasetIdResolver, timeSrvc);
         this.graphOptions = this.defaultGraphOptions;
+    }
+
+    public ngOnChanges(changes: SimpleChanges) {
+        super.ngOnChanges(changes);
+        if (changes.selection && this.selection) {
+            this.processAllData();
+            this.drawLineGraph();
+        }
     }
 
     public ngAfterViewInit(): void {
@@ -116,20 +165,24 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     }
 
     protected timeIntervalChanges(): void {
-        this.datasetMap.forEach(dataset => {
-            this.loadData(dataset);
+        this.datasetMap.forEach(entry => {
+            if (entry.dataset) {
+                this.loadData(entry.dataset);
+            }
         });
     }
 
     protected addDataset(id: string, url: string): void {
         this.api.getDataset(id, url).subscribe(dataset => {
-            this.datasetMap.set(dataset.internalId, dataset);
+            this.datasetMap.set(dataset.internalId, { dataset });
             this.loadData(dataset);
         });
     }
 
     protected removeDataset(internalId: string): void {
-        throw new Error('Method not implemented.');
+        this.datasetMap.delete(internalId);
+        this.processAllData();
+        this.drawLineGraph();
     }
 
     protected setSelectedId(internalId: string): void {
@@ -140,13 +193,12 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
         throw new Error('Method not implemented.');
     }
 
-    protected graphOptionsChanged(options: any): void {
+    protected graphOptionsChanged(options: D3GraphOptions): void {
         this.timeIntervalChanges();
     }
 
     protected datasetOptionsChanged(internalId: string, options: DatasetOptions, firstChange: boolean): void {
         if (this.datasetMap.has(internalId)) {
-            this.loadData(this.datasetMap.get(internalId));
         }
     }
 
@@ -165,28 +217,47 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
                     generalize: option.generalize
                 })
                 .subscribe(result => {
-                    this.processData(result.values);
+                    this.dataLength = result.values.length;
+                    this.datasetMap.get(dataset.internalId).data = result.values;
+                    this.processDataForId(dataset.internalId);
                     this.drawLineGraph();
                 });
         }
     }
 
-    private processData(data: Array<LocatedTimeValueEntry>) {
-        this.internalValues = [];
-        data.forEach((element, idx) => {
-            const previous = this.internalValues.length > 0 ? this.internalValues[this.internalValues.length - 1] : null;
-            const entry = this.createDataEntry(element, previous, idx);
-            // if (this.selection) {
-            //     if (idx >= this.selection.from && idx <= this.selection.to) {
-            //         this.internalValues.push(entry);
-            //     }
-            // } else {
-            this.internalValues.push(entry);
-            // }
+    private processAllData() {
+        this.baseValues = [];
+        this.datasetIds.forEach(id => this.processDataForId(id));
+    }
+
+    private processDataForId(internalId: string) {
+        const datasetEntry = this.datasetMap.get(internalId);
+        const firstEntry = this.baseValues.length === 0;
+        let previous: DataEntry = null;
+        datasetEntry.data.forEach((elem, idx) => {
+            if (firstEntry) {
+                const entry = this.createDataEntry(internalId, elem, previous, idx);
+                if (this.selection) {
+                    if (idx >= this.selection.from && idx <= this.selection.to) {
+                        this.baseValues.push(entry);
+                    }
+                } else {
+                    this.baseValues.push(entry);
+                }
+                previous = entry;
+            } else {
+                if (this.selection) {
+                    if (idx >= this.selection.from && idx <= this.selection.to) {
+                        this.baseValues[idx - this.selection.from][internalId] = elem.value;
+                    }
+                } else {
+                    this.baseValues[idx][internalId] = elem.value;
+                }
+            }
         });
     }
 
-    private createDataEntry(entry: LocatedTimeValueEntry, previous: DataEntry, index: number): DataEntry {
+    private createDataEntry(internalId: string, entry: LocatedTimeValueEntry, previous: DataEntry, index: number): DataEntry {
         const s = new L.LatLng(entry.geometry.coordinates[1], entry.geometry.coordinates[0]);
         let dist: number;
         if (previous) {
@@ -201,6 +272,7 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
             dist: Math.round(dist * 10) / 10,
             timestamp: entry.timestamp,
             value: entry.value,
+            [internalId]: entry.value,
             x: entry.geometry.coordinates[0],
             y: entry.geometry.coordinates[1],
             latlng: s,
@@ -209,11 +281,11 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     }
 
     private calcYValue = (d: DataEntry) => {
-        return this.yScale(d.value);
+        return this.yScaleBase(d.value);
     }
 
     private calcXValue = (d: DataEntry, i: number) => {
-        const xDiagCoord = this.xScale(this.getXValue(d));
+        const xDiagCoord = this.xScaleBase(this.getXValue(d));
         d.xDiagCoord = xDiagCoord;
         return xDiagCoord;
     }
@@ -239,28 +311,89 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
         }
     }
 
+    private drawDots(values: DataEntry[], yScale: d3.ScaleLinear<number, number>, options: DrawOptions) {
+        this.graph.selectAll('dot')
+            .data(values)
+            .enter().append('circle')
+            .attr('stroke', options.color)
+            .attr('r', 1.5)
+            .attr('fill', options.color)
+            .attr('cx', this.calcXValue)
+            .attr('cy', (d: DataEntry) => yScale(d[options.id]));
+    }
+
+    private drawValueLine(values: DataEntry[], yScale: d3.ScaleLinear<number, number>, options: DrawOptions) {
+        this.graph.append('svg:path')
+            .datum(values)
+            .attr('class', 'line')
+            .attr('fill', 'none')
+            .attr('stroke', options.color)
+            .attr('stroke-width', 1)
+            .attr('d', d3.line<DataEntry>()
+                .x(this.calcXValue)
+                .y((d: DataEntry) => yScale(d[options.id]))
+                .curve(d3.curveLinear));
+    }
+
+    private drawGraph(yScale: d3.ScaleLinear<number, number>, options: DrawOptions) {
+        if (this.graphOptions.dotted) {
+            this.drawDots(this.baseValues, yScale, options);
+        } else {
+            this.drawValueLine(this.baseValues, yScale, options);
+        }
+    }
+
     private drawLineGraph() {
-        if (!this.internalValues || this.internalValues.length === 0 || !this.graph) {
+        if (!this.baseValues || this.baseValues.length === 0 || !this.graph) {
             return;
         }
 
         this.graph.selectAll('*').remove();
 
-        this.drawYAxis();
-        this.drawXAxis();
+        this.bufferSum = 0;
 
-        if (this.graphOptions.dotted) {
-            this.drawDots(this.internalValues);
-        } else {
-            this.drawValueLine(this.internalValues);
-        }
+        this.yScaleBase = null;
 
-        this.background = this.graph.append('rect')
-            .attr('width', this.width)
+        this.datasetMap.forEach((datasetEntry, id) => {
+            if (this.datasetOptions.has(id) && datasetEntry.data) {
+                datasetEntry.drawOptions = {
+                    uom: datasetEntry.dataset.uom,
+                    id: datasetEntry.dataset.internalId,
+                    color: this.datasetOptions.get(id).color,
+                    first: this.yScaleBase === null,
+                    offset: this.bufferSum
+                };
+                const axisResult = this.drawYAxis(datasetEntry.drawOptions);
+                if (this.yScaleBase === null) {
+                    this.yScaleBase = axisResult.yScale;
+                } else {
+                    this.bufferSum = axisResult.buffer;
+                }
+                datasetEntry.yScale = axisResult.yScale;
+            }
+        });
+
+        // draw right axis as border
+        this.graph.append('svg:g')
+            .attr('class', 'y axis')
+            .attr('transform', 'translate(' + this.width + ', 0)')
+            .call(d3.axisRight(this.yScaleBase).tickSize(0).ticks(0));
+
+        this.drawXAxis(this.bufferSum);
+
+        this.datasetMap.forEach((entry, id) => {
+            if (this.datasetOptions.has(id) && entry.data) {
+                this.drawGraph(entry.yScale, entry.drawOptions);
+            }
+        });
+
+        this.background = this.graph.append('svg:rect')
+            .attr('width', this.width - this.bufferSum)
             .attr('height', this.height)
             .attr('fill', 'none')
             .attr('stroke', 'none')
             .attr('pointer-events', 'all')
+            .attr('transform', 'translate(' + this.bufferSum + ', 0)')
             .on('mousemove.focus', this.mousemoveHandler)
             .on('mouseout.focus', this.mouseoutHandler)
             .on('mousedown.drag', this.dragStartHandler)
@@ -273,10 +406,23 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
             .attr('x2', '0')
             .attr('y2', '0')
             .attr('x1', '0')
-            .attr('y1', '0');
-        this.focuslabelValue = this.focusG.append('svg:text')
-            .style('pointer-events', 'none')
-            .attr('class', 'mouse-focus-label-x');
+            .attr('y1', '0')
+            .style('stroke', 'black')
+            .style('stroke-width', '1px');
+
+        this.datasetMap.forEach((entry, id) => {
+            if (this.datasetOptions.has(id) && entry.data) {
+                entry.focusLabelRect = this.focusG.append('svg:rect')
+                    .style('fill', 'white')
+                    .style('stroke', 'none')
+                    .style('pointer-events', 'none');
+                entry.focusLabel = this.focusG.append('svg:text').attr('class', 'mouse-focus-label-x')
+                    .style('pointer-events', 'none')
+                    .style('fill', this.datasetOptions.get(id).color)
+                    .style('font-weight', 'lighter');
+            }
+        });
+
         this.focuslabelTime = this.focusG.append('svg:text')
             .style('pointer-events', 'none')
             .attr('class', 'mouse-focus-label-x');
@@ -286,12 +432,12 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     }
 
     private mousemoveHandler = () => {
-        if (!this.internalValues || this.internalValues.length === 0) {
+        if (!this.baseValues || this.baseValues.length === 0) {
             return;
         }
         const coords = d3.mouse(this.background.node());
-        const idx = this.getItemForX(coords[0], this.internalValues);
-        // this.onHighlight.emit(this.internalValues[idx].tick); // TODO
+        const idx = this.getItemForX(coords[0] + this.bufferSum, this.baseValues);
+        this.showDiagramIndicator(idx);
     }
 
     private mouseoutHandler = () => {
@@ -310,13 +456,13 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
 
     private dragEndHandler = () => {
         if (!this.dragStart || !this.dragging) {
-            // this.onSelection.emit({ from: 0, to: this.data.length }); // TODO
+            this.onSelection.emit({ from: 0, to: this.dataLength });
             this.dragStart = null;
             this.dragging = false;
         } else {
-            const from = this.getItemForX(this.dragStart[0], this.internalValues);
-            const to = this.getItemForX(this.dragCurrent[0], this.internalValues);
-            // this.onSelection.emit({ from: this.internalValues[from].tick, to: this.internalValues[to].tick }); // TODO
+            const from = this.getItemForX(this.dragStart[0] + this.bufferSum, this.baseValues);
+            const to = this.getItemForX(this.dragCurrent[0] + this.bufferSum, this.baseValues);
+            this.onSelection.emit({ from: this.baseValues[from].tick, to: this.baseValues[to].tick });
             this.dragStart = null;
             this.dragging = false;
         }
@@ -340,12 +486,12 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
             this.dragRect = this.dragRectG.append('rect')
                 .attr('width', x2 - x1)
                 .attr('height', this.height)
-                .attr('x', x1)
+                .attr('x', x1 + this.bufferSum)
                 .attr('class', 'mouse-drag')
                 .style('pointer-events', 'none');
         } else {
             this.dragRect.attr('width', x2 - x1)
-                .attr('x', x1);
+                .attr('x', x1 + this.bufferSum);
         }
     }
 
@@ -362,7 +508,7 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     }
 
     private showDiagramIndicator = (idx: number) => {
-        const item = this.internalValues[idx];
+        const item = this.baseValues[idx];
         this.focusG.style('visibility', 'visible');
         this.highlightFocus.attr('x1', item.xDiagCoord)
             .attr('y1', 0)
@@ -370,33 +516,66 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
             .attr('y2', this.height)
             .classed('hidden', false);
 
-        const alt = item.value;
-        const numY = alt;
+        let onLeftSide = false;
+        if ((this.background.node().getBBox().width + this.bufferSum) / 2 > item.xDiagCoord) { onLeftSide = true; }
 
-        this.focuslabelValue
-            .attr('x', item.xDiagCoord + 2)
-            .attr('y', 13);
-        // .text(numY + this.dataset.uom); // TODO
+        this.showLabelValues(item, onLeftSide);
+        this.showTimeIndicatorLabel(item, onLeftSide);
+        this.showBottomIndicatorLabel(item, onLeftSide);
+    }
+
+    private showLabelValues(item: DataEntry, onLeftSide: boolean) {
+        this.datasetMap.forEach((entry, id) => {
+            entry.focusLabel.text(item[id] + (entry.dataset.uom ? entry.dataset.uom : ''));
+            const entryX = onLeftSide ? item.xDiagCoord + 2 : item.xDiagCoord - this.getDimensions(entry.focusLabel.node()).w;
+            entry.focusLabel
+                .attr('x', entryX)
+                .attr('y', entry.yScale(item[id]) + this.getDimensions(entry.focusLabel.node()).h - 3);
+            entry.focusLabelRect
+                .attr('x', entryX)
+                .attr('y', entry.yScale(item[id]))
+                .attr('width', this.getDimensions(entry.focusLabel.node()).w)
+                .attr('height', this.getDimensions(entry.focusLabel.node()).h);
+        });
+    }
+
+    private showTimeIndicatorLabel(item: DataEntry, onLeftSide: boolean) {
+        this.focuslabelTime.text(moment(item.timestamp).format('DD.MM.YY HH:mm'));
         this.focuslabelTime
-            .attr('x', item.xDiagCoord - 95)
-            .attr('y', 13)
-            .text(moment(item.timestamp).format('DD.MM.YY HH:mm'));
+            .attr('x', onLeftSide ? item.xDiagCoord + 2 : item.xDiagCoord - this.getDimensions(this.focuslabelTime.node()).w)
+            .attr('y', 13);
+    }
+
+    private showBottomIndicatorLabel(item: DataEntry, onLeftSide: boolean) {
         if (this.graphOptions.axisType === AxisType.Distance) {
-            this.focuslabelY
-                .attr('y', this.height - 5)
-                .attr('x', item.xDiagCoord + 2)
-                .text(item.dist + ' km');
+            this.focuslabelY.text(item.dist + ' km');
         }
         if (this.graphOptions.axisType === AxisType.Ticks) {
-            this.focuslabelY
-                .attr('y', this.height - 5)
-                .attr('x', item.xDiagCoord + 2)
-                .text('Measurement: ' + item.tick);
+            this.focuslabelY.text('Measurement: ' + item.tick);
         }
+        this.focuslabelY
+            .attr('y', this.calculateHeight() - 5)
+            .attr('x', onLeftSide ? item.xDiagCoord + 2 : item.xDiagCoord - this.getDimensions(this.focuslabelY.node()).w);
+    }
+
+    private getDimensions(el: any) {
+        let w = 0,
+            h = 0;
+        if (el) {
+            const dimensions = el.getBBox();
+            w = dimensions.width;
+            h = dimensions.height;
+        } else {
+            console.log('error: getDimensions() ' + el + ' not found.');
+        }
+        return {
+            w: w,
+            h: h
+        };
     }
 
     private getItemForX(x: number, data: Array<DataEntry>) {
-        const index = this.xScale.invert(x);
+        const index = this.xScaleBase.invert(x);
         const bisectDate = d3.bisector((d: DataEntry) => {
             switch (this.graphOptions.axisType) {
                 case AxisType.Distance:
@@ -408,67 +587,69 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
                     return d.tick;
             }
         }).left;
-        return bisectDate(this.internalValues, index);
+        return bisectDate(this.baseValues, index);
     }
 
-    private drawYAxis() {
-        const range = d3.extent<LocatedTimeValueEntry, number>(this.internalValues, (datum, index, array) => {
-            return datum.value;
+    private drawYAxis(options: DrawOptions): any {
+        const range = d3.extent<DataEntry, number>(this.baseValues, (datum, index, array) => {
+            return datum[options.id]; // here with ID
         });
         const rangeOffset = (range[1] - range[0]) * 0.10;
-        this.yScale = d3.scaleLinear()
+        const yScale = d3.scaleLinear()
             .domain([range[0] - rangeOffset, range[1] + rangeOffset])
             .range([this.height, 0]);
 
-        this.yAxisGen = d3.axisLeft(this.yScale).ticks(5);
+        this.yAxisGen = d3.axisLeft(yScale).ticks(5);
 
         // draw y axis
-        this.graph.append('svg:g')
+        const axis = this.graph.append('svg:g')
             .attr('class', 'y axis')
             .call(this.yAxisGen);
 
-        // calculate
-        // const labels = d3.select('.y.axis').selectAll('text');
-        // if (labels instanceof Array && labels.length === 1) {
-        //     this.maxLabelwidth = 0;
-        //     labels[0].forEach((elem) => {
-        //         debugger;
-        //         if (elem.getBBox().width > this.maxLabelwidth) {
-        //             this.maxLabelwidth = elem.getBBox().width;
-        //         }
-        //     });
-        //     this.graph.attr('transform', 'translate(' + (this.margin.left + this.maxLabelwidth) + ',' + this.margin.top + ')');
-        // }
-
         // draw y axis label
-        this.graph.append('text')
+        const text = this.graph.append('text')
             .attr('transform', 'rotate(-90)')
-            .attr('y', 0 - this.margin.left - this.maxLabelwidth)
-            .attr('x', 0 - (this.height / 2))
             .attr('dy', '1em')
-            .style('text-anchor', 'middle');
-        // .text(this.dataset.uom); // TODO
+            .style('text-anchor', 'middle')
+            .style('fill', options.color)
+            .text(options.uom);
 
-        // draw the y grid lines
-        this.graph.append('svg:g')
-            .attr('class', 'grid')
-            .call(this.makeYAxis);
+        const axisWidth = axis.node().getBBox().width + 5 + this.getDimensions(text.node()).h;
+        const buffer = options.offset + (axisWidth < 30 ? 30 : axisWidth);
+        if (!options.first) {
+            axis.attr('transform', 'translate(' + buffer + ', 0)');
+        }
 
-        // draw right axis as border
-        this.graph.append('svg:g')
-            .attr('class', 'y axis')
-            .attr('transform', 'translate(' + this.width + ', 0)')
-            .call(d3.axisRight(this.yScale).tickSize(0).ticks(0));
+        const textOffset = !options.first ? buffer : options.offset;
+        text.attr('y', 0 - this.margin.left - this.maxLabelwidth + textOffset)
+            .attr('x', 0 - (this.height / 2));
+
+        // draw the y grid lines when there is only one dataset
+        if (this.datasetIds.length === 1) {
+            this.graph.append('svg:g')
+                .attr('class', 'grid')
+                .call(d3.axisLeft(yScale)
+                    .ticks(5)
+                    .tickSize(-this.width)
+                    .tickFormat(() => '')
+                );
+        }
+
+        return {
+            buffer: buffer,
+            yScale: yScale
+        };
     }
 
-    private drawXAxis() {
-        this.xScale = d3.scaleLinear()
-            .domain(this.getXDomain(this.internalValues))
-            .range([0, this.width]);
-        this.xAxisGen = d3.axisBottom(this.xScale).ticks(5);
+    private drawXAxis(buffer: number) {
+        this.xScaleBase = d3.scaleLinear()
+            .domain(this.getXDomain(this.baseValues))
+            .range([buffer, this.width]);
+
+        const xAxisGen = d3.axisBottom(this.xScaleBase).ticks(5);
 
         if (this.graphOptions.axisType === AxisType.Time) {
-            this.xAxisGen.tickFormat((d) => {
+            xAxisGen.tickFormat((d) => {
                 return d3.timeFormat('%d.%m.%Y %H:%M:%S')(new Date(d.valueOf()));
             });
         }
@@ -477,63 +658,40 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
         this.graph.append('svg:g')
             .attr('class', 'x axis')
             .attr('transform', 'translate(0,' + this.height + ')')
-            .call(this.xAxisGen);
+            .call(xAxisGen);
 
         // draw the x grid lines
         this.graph.append('svg:g')
             .attr('class', 'grid')
             .attr('transform', 'translate(0,' + this.height + ')')
-            .call(this.makeXAxis);
+            .call(d3.axisBottom(this.xScaleBase)
+                .ticks(10)
+                .tickSize(-this.height)
+                .tickFormat(() => '')
+            );
 
         // draw upper axis as border
         this.graph.append('svg:g')
             .attr('class', 'x axis')
-            .call(d3.axisTop(this.xScale).ticks(0).tickSize(0));
+            .call(d3.axisTop(this.xScaleBase).ticks(0).tickSize(0));
 
-        this.graph.append('text') // text label for the x axis
-            .attr('x', this.width / 2)
+        // text label for the x axis
+        this.graph.append('text')
+            .attr('x', (this.width + buffer) / 2)
             .attr('y', this.height + this.margin.bottom - 5)
             .style('text-anchor', 'middle')
             .text(this.getXAxisLabel());
     }
 
-    private drawDots(values: Array<DataEntry>) {
-        // draw dots
-        this.graph.selectAll('dot')
-            .data(values)
-            .enter().append('circle')
-            .attr('stroke', 'blue')
-            .attr('r', 1.5)
-            .attr('cx', this.calcXValue)
-            .attr('cy', this.calcYValue);
-    }
-
-    private drawValueLine(values: Array<DataEntry>) {
-        // draw the value line
-        this.graph.append('path')
-            .datum(values)
-            .attr('class', 'line')
-            .attr('fill', 'none')
-            .attr('stroke', 'blue')
-            .attr('stroke-width', 1)
-            .attr('d', this.lineFun);
-
-        // draw filled area
-        this.graph.append('path')
-            .datum(values)
-            .attr('d', this.area)
-            .attr('class', 'graphArea');
-    }
-
     private makeXAxis = () => {
-        return d3.axisBottom(this.xScale)
+        return d3.axisBottom(this.xScaleBase)
             .ticks(10)
             .tickSize(-this.height)
             .tickFormat();
     }
 
     private makeYAxis = () => {
-        return d3.axisLeft(this.yScale)
+        return d3.axisLeft(this.yScaleBase)
             .ticks(5)
             .tickSize(-this.width)
             .tickFormat();

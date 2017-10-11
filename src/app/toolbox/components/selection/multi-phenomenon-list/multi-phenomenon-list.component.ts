@@ -22,6 +22,12 @@ export class MultiPhenomenonListComponent implements OnChanges {
     @Input()
     public dataset: IDataset;
 
+    @Input()
+    public datasetIds: Array<string>;
+
+    @Input()
+    public datasetOptions: Map<string, DatasetOptions>;
+
     @Output()
     public onAddDataset: EventEmitter<DatasetOptions> = new EventEmitter();
 
@@ -48,10 +54,16 @@ export class MultiPhenomenonListComponent implements OnChanges {
                 .subscribe(res => {
                     this.visible = res.length > 1;
                     res.forEach(entry => {
+                        let color;
+                        if (this.datasetOptions.has(entry.internalId)) {
+                            color = this.datasetOptions.get(entry.internalId).color;
+                        } else {
+                            color = this.color.getColor();
+                        }
                         if (this.dataset.parameters.phenomenon.id !== entry.parameters.phenomenon.id) {
                             const temp = entry as SelectableDataset;
-                            temp.selected = false;
-                            temp.color = this.color.getColor();
+                            temp.selected = this.datasetIds.indexOf(entry.internalId) > -1 ? true : false;
+                            temp.color = color;
                             this.datasetList.push(temp);
                         }
                     });
