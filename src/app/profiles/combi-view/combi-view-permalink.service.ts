@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
+import { ColorService } from './../../toolbox/services/color/color.service';
 import { PermalinkService } from './../../toolbox/services/permalink/permalink.service';
 import { ProfilesCombiService } from './combi-view.service';
 
@@ -13,7 +14,8 @@ export class ProfilesCombiViewPermalink extends PermalinkService<void> {
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private combiSrvc: ProfilesCombiService
+        private combiSrvc: ProfilesCombiService,
+        private color: ColorService
     ) {
         super();
     }
@@ -30,7 +32,7 @@ export class ProfilesCombiViewPermalink extends PermalinkService<void> {
                 this.combiSrvc.removeAllDatasets();
                 const id = params[PARAM_ID];
                 const time: number = parseInt(params[PARAM_TIME], 10);
-                const options = new TimedDatasetOptions(id, time);
+                const options = new TimedDatasetOptions(id, this.color.getColor(), time);
                 this.combiSrvc.addDataset(id, [options]);
             }
         });

@@ -4,6 +4,7 @@ import { DatasetService } from '../../toolbox/services/dataset/dataset.service';
 import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
 import { InternalIdHandler } from './../../toolbox/services/api-interface/internal-id-handler.service';
+import { ColorService } from './../../toolbox/services/color/color.service';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
 
 const TRAJECTORY_IDS_PARAM = 'trajectory-ids';
@@ -15,6 +16,7 @@ export class TrajectoriesService extends DatasetService<DatasetOptions> {
     constructor(
         protected localStorage: LocalStorage,
         private api: ApiInterface,
+        private color: ColorService,
         private internalIdHandler: InternalIdHandler
     ) {
         super(localStorage);
@@ -22,7 +24,7 @@ export class TrajectoriesService extends DatasetService<DatasetOptions> {
     }
 
     protected createStyles(internalId: string): DatasetOptions {
-        return new DatasetOptions(internalId);
+        return new DatasetOptions(internalId, this.color.getColor());
     }
 
     protected saveState() {

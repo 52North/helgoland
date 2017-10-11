@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 import { PlatformTypes } from '../../../model/api/dataset/platformTypes';
+import { ColorService } from '../../../services/color/color.service';
 import { Dataset } from './../../../model/api/dataset/dataset';
 import { IDataset } from './../../../model/api/dataset/idataset';
 import { DatasetOptions } from './../../../model/api/dataset/options';
@@ -32,7 +33,8 @@ export class MultiPhenomenonListComponent implements OnChanges {
     public datasetList: Array<SelectableDataset> = new Array();
 
     constructor(
-        private api: ApiInterface
+        private api: ApiInterface,
+        private color: ColorService
     ) { }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -49,7 +51,7 @@ export class MultiPhenomenonListComponent implements OnChanges {
                         if (this.dataset.parameters.phenomenon.id !== entry.parameters.phenomenon.id) {
                             const temp = entry as SelectableDataset;
                             temp.selected = false;
-                            temp.color = '#123456';
+                            temp.color = this.color.getColor();
                             this.datasetList.push(temp);
                         }
                     });
@@ -60,9 +62,7 @@ export class MultiPhenomenonListComponent implements OnChanges {
     public toggleSelection(dataset: SelectableDataset) {
         dataset.selected = !dataset.selected;
         if (dataset.selected) {
-            const option = new DatasetOptions(dataset.internalId);
-            option.color = dataset.color;
-            this.onAddDataset.emit(option);
+            this.onAddDataset.emit(new DatasetOptions(dataset.internalId, dataset.color));
         } else {
             this.onRemoveDataset.emit(dataset.internalId);
         }

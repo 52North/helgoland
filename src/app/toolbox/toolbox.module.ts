@@ -65,6 +65,7 @@ import { ApiMapping } from './services/api-interface/api-mapping.service';
 import { CachingInterceptor, HttpCache } from './services/api-interface/caching/caching-interceptor';
 import { LocalHttpCache } from './services/api-interface/caching/local-cache';
 import { InternalIdHandler } from './services/api-interface/internal-id-handler.service';
+import { ColorService } from './services/color/color.service';
 import { LocalStorage } from './services/local-storage/local-storage.service';
 import { MapCache } from './services/map/map.service';
 import { Settings } from './services/settings/settings.service';
@@ -141,7 +142,8 @@ const COMPONENTS = [
         LocateService,
         LabelMapperService,
         ListSelectorService,
-        InternalIdHandler
+        InternalIdHandler,
+        ColorService
     ]
 })
 export class ToolboxModule { }

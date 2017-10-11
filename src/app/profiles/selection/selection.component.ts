@@ -19,6 +19,7 @@ import { Service } from './../../toolbox/model/api/service';
 import { BlacklistedService } from './../../toolbox/model/config/config';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
+import { ColorService } from './../../toolbox/services/color/color.service';
 import { Settings } from './../../toolbox/services/settings/settings.service';
 import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';
@@ -79,6 +80,7 @@ export class ProfilesSelectionComponent implements OnInit {
         private router: Router,
         private profilesSrvc: ProfilesService,
         private combiSrvc: ProfilesCombiService,
+        private color: ColorService,
         public selectionPermalink: ProfilesSelectionPermalink
     ) { }
 
@@ -214,7 +216,7 @@ export class ProfilesSelectionComponent implements OnInit {
         this.mobilePreviewDataset = selection.dataset;
         this.mobilePreviewTimestamp = selection.data.timestamp;
         this.mobilePreviewOptions = new Map();
-        const options = new TimedDatasetOptions(selection.dataset.internalId, selection.data.timestamp);
+        const options = new TimedDatasetOptions(selection.dataset.internalId, this.color.getColor(), selection.data.timestamp);
         this.mobilePreviewOptions.set(selection.dataset.internalId, [options]);
         this.modalService.open(this.modalMobilePreview, { size: 'lg' });
     }
@@ -224,13 +226,13 @@ export class ProfilesSelectionComponent implements OnInit {
     }
 
     public addToCombiView() {
-        const options = new TimedDatasetOptions(this.mobilePreviewDataset.internalId, this.mobilePreviewTimestamp);
+        const options = new TimedDatasetOptions(this.mobilePreviewDataset.internalId, this.color.getColor(), this.mobilePreviewTimestamp);
         this.combiSrvc.addDataset(this.mobilePreviewDataset.internalId, [options]);
         this.router.navigate(['profiles/combi']);
     }
 
     private addProfileToChart(dataset: IDataset, timestamp: number) {
-        const options = new TimedDatasetOptions(dataset.internalId, timestamp);
+        const options = new TimedDatasetOptions(dataset.internalId, this.color.getColor(), timestamp);
         this.profilesSrvc.addDataset(dataset.internalId, [options]);
         this.router.navigate(['profiles/diagram']);
     }

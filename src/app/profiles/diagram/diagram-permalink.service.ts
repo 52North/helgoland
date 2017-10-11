@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
+import { ColorService } from './../../toolbox/services/color/color.service';
 import { PermalinkService } from './../../toolbox/services/permalink/permalink.service';
 import { ProfilesService } from './../services/profiles.service';
 
@@ -15,7 +16,8 @@ export class ProfilesDiagramPermalink extends PermalinkService<void> {
 
     constructor(
         private profilesSrvc: ProfilesService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private color: ColorService
     ) {
         super();
     }
@@ -47,7 +49,7 @@ export class ProfilesDiagramPermalink extends PermalinkService<void> {
                         const internalId = profileParam[0];
                         const timestamps = profileParam[1].split(PARAM_TIME_SEPERATOR);
                         const options = timestamps.map(timestamp => {
-                            return new TimedDatasetOptions(internalId, parseInt(timestamp, 10));
+                            return new TimedDatasetOptions(internalId, this.color.getColor(), parseInt(timestamp, 10));
                         });
                         this.profilesSrvc.addDataset(internalId, options);
                     }

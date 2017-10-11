@@ -94,9 +94,7 @@ export class TrajectoriesViewComponent implements OnInit {
     }
 
     public onAddDataset(entry: DatasetOptions) {
-        const options = new DatasetOptions(entry.internalId);
-        options.color = entry.color;
-        this.trajectorySrvc.addDataset(entry.internalId, options);
+        this.trajectorySrvc.addDataset(entry.internalId, new DatasetOptions(entry.internalId, entry.color));
     }
 
     public onRemoveDataset(internalId: string) {

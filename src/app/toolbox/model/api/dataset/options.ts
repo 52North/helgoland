@@ -1,21 +1,22 @@
 export class DatasetOptions {
     internalId: string;
-    color = '#FF0000';
+    color: string;
     visible = true;
     loading?: boolean;
     separateYAxe?= false;
     generalize?= false;
 
-    constructor(internalId: string) {
+    constructor(internalId: string, color: string) {
         this.internalId = internalId;
+        this.color = color;
     }
 }
 
 export class TimedDatasetOptions extends DatasetOptions {
     timestamp: number;
 
-    constructor(internalId: string, timestamp: number) {
-        super(internalId);
+    constructor(internalId: string, color: string, timestamp: number) {
+        super(internalId, color);
         this.timestamp = timestamp;
     }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { ColorService } from '../../toolbox/services/color/color.service';
 import { DatasetService } from '../../toolbox/services/dataset/dataset.service';
 import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
@@ -11,7 +12,8 @@ const PROFILES_IDS_CACHE_PARAM = 'profilesIds';
 export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> {
 
     constructor(
-        protected localStorage: LocalStorage
+        protected localStorage: LocalStorage,
+        private color: ColorService
     ) {
         super(localStorage);
         this.loadState();
@@ -31,9 +33,7 @@ export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> 
     }
 
     protected createStyles(internalId: string): Array<TimedDatasetOptions> {
-        const options = new TimedDatasetOptions(internalId, 0);
-        options.color = '#FF0000';
-        return [options];
+        return [new TimedDatasetOptions(internalId, this.color.getColor(), 0)];
     }
 
     protected saveState(): void {

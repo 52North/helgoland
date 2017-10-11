@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { ColorService } from '../../toolbox/services/color/color.service';
 import { DatasetService } from '../../toolbox/services/dataset/dataset.service';
 import { Time } from '../../toolbox/services/time/time.service';
 import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
@@ -17,16 +18,15 @@ export class TimeseriesService extends DatasetService<DatasetOptions> {
 
     constructor(
         protected localStorage: LocalStorage,
-        protected timeSrvc: Time
+        protected timeSrvc: Time,
+        private color: ColorService
     ) {
         super(localStorage);
         this.loadState();
     }
 
     protected createStyles(internalId: string) {
-        const styles = new DatasetOptions(internalId);
-        styles.color = this.getRandomColor();
-        return styles;
+        return new DatasetOptions(internalId, this.color.getColor());
     }
 
     public setTimespan(timespan: Timespan) {
@@ -45,15 +45,6 @@ export class TimeseriesService extends DatasetService<DatasetOptions> {
             .forEach(e => this.datasetOptions.set(e.internalId, e));
         this.datasetIds = this.localStorage.loadArray<string>(TIMESERIES_IDS_CACHE_PARAM);
         this.timespan = this.timeSrvc.loadTimespan(TIME_CACHE_PARAM) || this.timeSrvc.initTimespan();
-    }
-
-    private getRandomColor(): string {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
     }
 
 }
