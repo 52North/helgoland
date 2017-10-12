@@ -11,7 +11,7 @@
   </div>
   <div class="combi-body">
     <div class="map-container">
-      <n52-geometry-map-viewer class="map" mapId="trajectory" [geometry]="geometry" [maxMapZoom]="14" [highlight]="highlightGeometry"></n52-geometry-map-viewer>
+      <n52-geometry-map-viewer class="map" mapId="trajectory" [geometry]="geometry" [maxMapZoom]="14" [highlight]="highlightGeometry" [zoomTo]="zoomToGeometry"></n52-geometry-map-viewer>
       <div class="mapNotifier" *ngIf="loading">
         <div>
           <div class="glyphicon glyphicon-refresh icon-spin"></div>

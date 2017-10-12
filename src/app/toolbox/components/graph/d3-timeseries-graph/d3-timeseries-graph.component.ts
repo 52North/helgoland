@@ -467,11 +467,18 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
         } else {
             const from = this.getItemForX(this.dragStart[0] + this.bufferSum, this.baseValues);
             const to = this.getItemForX(this.dragCurrent[0] + this.bufferSum, this.baseValues);
-            this.onSelectionChangedFinished.emit({ from: this.baseValues[from].tick, to: this.baseValues[to].tick });
+            this.onSelectionChangedFinished.emit(this.prepareRange(this.baseValues[from].tick, this.baseValues[to].tick));
         }
         this.dragStart = null;
         this.dragging = false;
         this.resetDrag();
+    }
+
+    private prepareRange(from: number, to: number): SelectionRange {
+        if (from <= to) {
+            return { from, to };
+        }
+        return { from: to, to: from };
     }
 
     private drawDragRectangle() {
@@ -481,7 +488,7 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
 
         const from = this.getItemForX(this.dragStart[0] + this.bufferSum, this.baseValues);
         const to = this.getItemForX(this.dragCurrent[0] + this.bufferSum, this.baseValues);
-        this.onSelectionChanged.emit({ from: this.baseValues[from].tick, to: this.baseValues[to].tick });
+        this.onSelectionChanged.emit(this.prepareRange(this.baseValues[from].tick, this.baseValues[to].tick));
 
         const x1 = Math.min(this.dragStart[0], this.dragCurrent[0]);
         const x2 = Math.max(this.dragStart[0], this.dragCurrent[0]);

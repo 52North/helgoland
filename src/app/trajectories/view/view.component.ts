@@ -23,7 +23,9 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public highlight: number;
 
-    public highlightGeometry: GeoJSON.Point;
+    public highlightGeometry: GeoJSON.DirectGeometryObject;
+
+    public zoomToGeometry: GeoJSON.DirectGeometryObject;
 
     public timespan: Timespan;
 
@@ -77,12 +79,19 @@ export class TrajectoriesViewComponent implements OnInit {
     }
 
     public onChartSelectionChanged(range: SelectionRange) {
-        console.log('Range changed: ' + range.from + ' ' + range.to);
+        this.highlightGeometry = {
+            type: 'LineString',
+            coordinates: this.geometry.coordinates.slice(range.from, range.to)
+        };
     }
 
     public onChartSelectionChangedFinished(range: SelectionRange) {
         console.log('Range finished: ' + range.from + ' ' + range.to);
         this.selection = range;
+        this.zoomToGeometry = {
+            type: 'LineString',
+            coordinates: this.geometry.coordinates.slice(range.from, range.to)
+        };
     }
 
     public onChartHighlightChanged(idx: number) {
