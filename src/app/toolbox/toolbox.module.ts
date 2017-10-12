@@ -12,7 +12,6 @@ import { ZoomControlComponent } from './components/control/map/zoom/zoom.compone
 import { StringTogglerComponent } from './components/control/string-toggler/string-toggler.component';
 import { ProfileEntryComponent } from './components/datasetlist/profile-entry/profile-entry.component';
 import { TimeseriesEntryComponent } from './components/datasetlist/timeseries-entry/timeseries-entry.component';
-import { DThreeGraphComponent } from './components/display/d-three-graph/d-three-graph.component';
 import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
 import { LabelMapperComponent } from './components/display/label-mapper/label-mapper.component';
 import { LabelMapperService } from './components/display/label-mapper/label-mapper.service';
@@ -91,7 +90,6 @@ const COMPONENTS = [
     TimeseriesEntryComponent,
     ProfileEntryComponent,
     GeometryMapViewerComponent,
-    DThreeGraphComponent,
     StringTogglerComponent,
     BoolTogglerComponent,
     PermalinkButtonComponent,
