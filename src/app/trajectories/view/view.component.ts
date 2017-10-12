@@ -21,8 +21,6 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public selection: SelectionRange;
 
-    public highlight: number;
-
     public highlightGeometry: GeoJSON.DirectGeometryObject;
 
     public zoomToGeometry: GeoJSON.DirectGeometryObject;
@@ -95,7 +93,6 @@ export class TrajectoriesViewComponent implements OnInit {
     }
 
     public onChartHighlightChanged(idx: number) {
-        this.highlight = idx;
         this.highlightGeometry = {
             type: 'Point',
             coordinates: this.geometry.coordinates[idx]

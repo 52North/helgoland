@@ -697,20 +697,6 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
             .text(this.getXAxisLabel());
     }
 
-    private makeXAxis = () => {
-        return d3.axisBottom(this.xScaleBase)
-            .ticks(10)
-            .tickSize(-this.height)
-            .tickFormat();
-    }
-
-    private makeYAxis = () => {
-        return d3.axisLeft(this.yScaleBase)
-            .ticks(5)
-            .tickSize(-this.width)
-            .tickFormat();
-    }
-
     private getXDomain(values: Array<DataEntry>) {
         switch (this.graphOptions.axisType) {
             case AxisType.Distance:
