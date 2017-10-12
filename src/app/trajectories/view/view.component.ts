@@ -4,7 +4,7 @@ import { AxisType, D3GraphOptions } from '../../toolbox/components/graph/d3-time
 import { LocatedTimeValueEntry } from '../../toolbox/model/api/data';
 import { ApiInterface } from '../../toolbox/services/api-interface/api-interface.service';
 import { InternalIdHandler } from '../../toolbox/services/api-interface/internal-id-handler.service';
-import { SelectionRange } from './../../toolbox/components/display/d-three-graph/d-three-graph.component';
+import { SelectionRange } from './../../toolbox/components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
 import { IDataset } from './../../toolbox/model/api/dataset/idataset';
 import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { Timespan } from './../../toolbox/model/internal/time-interval';
@@ -76,13 +76,21 @@ export class TrajectoriesViewComponent implements OnInit {
         }
     }
 
-    public onSelectionChanged(range: SelectionRange) {
+    public onChartSelectionChanged(range: SelectionRange) {
+        console.log('Range changed: ' + range.from + ' ' + range.to);
+    }
+
+    public onChartSelectionChangedFinished(range: SelectionRange) {
+        console.log('Range finished: ' + range.from + ' ' + range.to);
         this.selection = range;
     }
 
     public onChartHighlightChanged(idx: number) {
         this.highlight = idx;
-        // this.highlightGeometry = this.trajectorySrvc.getPointForIdx(idx); // TODO
+        this.highlightGeometry = {
+            type: 'Point',
+            coordinates: this.geometry.coordinates[idx]
+        };
     }
 
     public onAxisTypeChanged(axisType: AxisType) {

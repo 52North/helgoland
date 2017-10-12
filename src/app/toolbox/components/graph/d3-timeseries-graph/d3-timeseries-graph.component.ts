@@ -80,7 +80,13 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
     public selection: SelectionRange;
 
     @Output()
-    public onSelection: EventEmitter<SelectionRange> = new EventEmitter();
+    public onSelectionChangedFinished: EventEmitter<SelectionRange> = new EventEmitter();
+
+    @Output()
+    public onSelectionChanged: EventEmitter<SelectionRange> = new EventEmitter();
+
+    @Output()
+    public onHoverHighlight: EventEmitter<number> = new EventEmitter();
 
     @ViewChild('dthree') d3Elem: ElementRef;
 
@@ -438,6 +444,7 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
         const coords = d3.mouse(this.background.node());
         const idx = this.getItemForX(coords[0] + this.bufferSum, this.baseValues);
         this.showDiagramIndicator(idx);
+        this.onHoverHighlight.emit(this.baseValues[idx].tick);
     }
 
     private mouseoutHandler = () => {
@@ -456,25 +463,25 @@ export class D3TimeseriesGraphComponent extends DatasetGraphComponent<DatasetOpt
 
     private dragEndHandler = () => {
         if (!this.dragStart || !this.dragging) {
-            this.onSelection.emit({ from: 0, to: this.dataLength });
-            this.dragStart = null;
-            this.dragging = false;
+            this.onSelectionChangedFinished.emit({ from: 0, to: this.dataLength });
         } else {
             const from = this.getItemForX(this.dragStart[0] + this.bufferSum, this.baseValues);
             const to = this.getItemForX(this.dragCurrent[0] + this.bufferSum, this.baseValues);
-            this.onSelection.emit({ from: this.baseValues[from].tick, to: this.baseValues[to].tick });
-            this.dragStart = null;
-            this.dragging = false;
+            this.onSelectionChangedFinished.emit({ from: this.baseValues[from].tick, to: this.baseValues[to].tick });
         }
+        this.dragStart = null;
+        this.dragging = false;
         this.resetDrag();
     }
 
     private drawDragRectangle() {
-        if (!this.dragStart) {
-            return;
-        }
+        if (!this.dragStart) { return; }
 
         this.dragCurrent = d3.mouse(this.background.node());
+
+        const from = this.getItemForX(this.dragStart[0] + this.bufferSum, this.baseValues);
+        const to = this.getItemForX(this.dragCurrent[0] + this.bufferSum, this.baseValues);
+        this.onSelectionChanged.emit({ from: this.baseValues[from].tick, to: this.baseValues[to].tick });
 
         const x1 = Math.min(this.dragStart[0], this.dragCurrent[0]);
         const x2 = Math.max(this.dragStart[0], this.dragCurrent[0]);
