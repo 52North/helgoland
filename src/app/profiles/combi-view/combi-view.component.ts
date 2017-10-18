@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiInterface, InternalIdHandler, LocatedProfileDataEntry, TimedDatasetOptions, Timespan } from 'helgoland-toolbox';
 
-import { LocatedProfileDataEntry } from '../../toolbox/model/api/data';
 import { GraphHighlight } from './../../toolbox/components/graph/datasetGraphComponent';
-import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
-import { Timespan } from './../../toolbox/model/internal/time-interval';
-import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
-import { InternalIdHandler } from './../../toolbox/services/api-interface/internal-id-handler.service';
 import { ProfilesCombiViewPermalink } from './combi-view-permalink.service';
 import { ProfilesCombiService } from './combi-view.service';
 
@@ -48,7 +44,7 @@ export class ProfilesCombiViewComponent implements OnInit {
         this.api.getDataset(combination.id, combination.url).subscribe(ds => {
             this.datasetLabel = ds.label;
             const timestamp = this.datasetOptions.get(internalId)[0].timestamp;
-            const timespan = new Timespan(new Date(timestamp), new Date(timestamp));
+            const timespan = new Timespan(timestamp, timestamp);
             this.api.getData<LocatedProfileDataEntry>(combination.id, combination.url, timespan).subscribe(data => {
                 this.geometry = data.values[0].geometry as GeoJSON.LineString;
             });

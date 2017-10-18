@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-
-import { DatasetOptions } from './../../../model/api/dataset/options';
-import { TimeInterval, Timespan } from './../../../model/internal/time-interval';
-import { Time } from './../../../services/time/time.service';
+import { DatasetOptions, Time, TimeInterval, Timespan } from 'helgoland-toolbox';
 
 @Component({
     selector: 'n52-flot-overview-timeseries-graph',
@@ -56,8 +53,8 @@ export class FlotOverviewTimeseriesGraphComponent implements OnInit, OnChanges {
         const timespan = this.timeSrvc.createTimespanOfInterval(this.timeInterval);
         this.overviewTimespan = this.timeSrvc.getBufferedTimespan(timespan, this.rangefactor);
         this.graphOptions.selection.range = {
-            from: timespan.from.getTime(),
-            to: timespan.to.getTime()
+            from: timespan.from,
+            to: timespan.to
         };
         this.datasetOptions.forEach(e => e.generalize = true);
     }

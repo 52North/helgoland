@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-
-import { ColorService } from '../../toolbox/services/color/color.service';
-import { DatasetService } from '../../toolbox/services/dataset/dataset.service';
-import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
-import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
+import { ColorService, DatasetService, LocalStorage, TimedDatasetOptions } from 'helgoland-toolbox';
 
 const PROFILES_OPTIONS_CACHE_PARAM = 'profilesOptions';
 const PROFILES_IDS_CACHE_PARAM = 'profilesIds';

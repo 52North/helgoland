@@ -2,16 +2,18 @@ import 'plotly.js/dist/plotly-basic';
 
 import { AfterViewInit, Component, ElementRef, EventEmitter, IterableDiffers, Output, ViewChild } from '@angular/core';
 import * as d3 from 'd3';
+import {
+    ApiInterface,
+    IDataset,
+    InternalIdHandler,
+    ProfileDataEntry,
+    Time,
+    TimedDatasetOptions,
+    Timespan,
+} from 'helgoland-toolbox';
 import * as Plotly from 'plotly.js/lib/core';
 
-import { ProfileDataEntry } from '../../../model/api/data';
-import { Timespan } from '../../../model/internal/time-interval';
 import { DatasetGraphComponent } from '../datasetGraphComponent';
-import { IDataset } from './../../../model/api/dataset/idataset';
-import { TimedDatasetOptions } from './../../../model/api/dataset/options';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
-import { Time } from './../../../services/time/time.service';
 import { GraphHighlight } from './../datasetGraphComponent';
 
 interface RawData {
@@ -89,7 +91,7 @@ export class PlotlyProfileGraphComponent extends DatasetGraphComponent<Array<Tim
             const options = this.datasetOptions.get(dataset.internalId);
             options.forEach(option => {
                 if (option.timestamp) {
-                    const timespan = new Timespan(new Date(option.timestamp), new Date(option.timestamp));
+                    const timespan = new Timespan(option.timestamp, option.timestamp);
                     this.api.getData<ProfileDataEntry>(id, url, timespan).subscribe((data) => {
                         if (data.values.length === 1) {
                             if (this.rawData.has(dataset.internalId)) {

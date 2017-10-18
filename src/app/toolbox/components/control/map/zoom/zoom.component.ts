@@ -1,5 +1,5 @@
-import { MapCache } from './../../../../services/map/map.service';
 import { Component, Input } from '@angular/core';
+import { MapCache } from 'helgoland-toolbox';
 
 @Component({
     selector: 'n52-zoom-control',

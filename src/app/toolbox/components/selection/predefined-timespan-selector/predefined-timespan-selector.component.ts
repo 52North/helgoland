@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Timespan } from 'helgoland-toolbox';
+import { ParsedTimespanPreset, TimespanPreset } from 'helgoland-toolbox';
 
-import { Settings } from '../../../services/settings/settings.service';
-import { ParsedTimespanPreset, TimespanPreset } from './../../../model/config/config';
-import { Timespan } from './../../../model/internal/time-interval';
+import { Settings } from './../../../../services/settings.service';
 
 @Component({
     selector: 'n52-predefined-timespan-selector',
@@ -28,8 +28,8 @@ export class PredefinedTimespanSelectorComponent implements OnInit {
                 name: e.name,
                 label: e.label,
                 timespan: {
-                    from: this.parseMomentExpression(e.timespan.from),
-                    to: this.parseMomentExpression(e.timespan.to)
+                    from: this.parseMomentExpression(e.timespan.from).getTime(),
+                    to: this.parseMomentExpression(e.timespan.to).getTime()
                 },
                 seperatorAfterThisItem: e.seperatorAfterThisItem
             }));
@@ -74,7 +74,7 @@ export class PredefinedTimespanSelectorComponent implements OnInit {
 
     public timespanChanged(preset: TimespanPreset) {
         // construct new Timespan
-        this.timespan = new Timespan(new Date(preset.timespan.from), new Date(preset.timespan.to));
+        this.timespan = new Timespan(parseInt(preset.timespan.from, 10), parseInt(preset.timespan.to, 10));
         // publicise new timespan
         this.onTimespanChange.emit(this.timespan);
     }

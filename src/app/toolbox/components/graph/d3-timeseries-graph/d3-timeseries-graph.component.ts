@@ -12,16 +12,11 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import * as d3 from 'd3';
+import { ApiInterface, DatasetOptions, IDataset, InternalIdHandler, LocatedTimeValueEntry, Time } from 'helgoland-toolbox';
 import * as L from 'leaflet';
 import * as moment from 'moment';
 
-import { LocatedTimeValueEntry } from '../../../model/api/data';
-import { DatasetOptions } from '../../../model/api/dataset/options';
 import { DatasetGraphComponent } from '../datasetGraphComponent';
-import { IDataset } from './../../../model/api/dataset/idataset';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
-import { Time } from './../../../services/time/time.service';
 
 interface DataEntry extends LocatedTimeValueEntry {
     dist: number;

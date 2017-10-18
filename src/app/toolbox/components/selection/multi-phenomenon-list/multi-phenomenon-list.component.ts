@@ -1,11 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-
-import { PlatformTypes } from '../../../model/api/dataset/platformTypes';
-import { ColorService } from '../../../services/color/color.service';
-import { Dataset } from './../../../model/api/dataset/dataset';
-import { IDataset } from './../../../model/api/dataset/idataset';
-import { DatasetOptions } from './../../../model/api/dataset/options';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
+import { ApiInterface, ColorService, Dataset, DatasetOptions, IDataset, PlatformTypes } from 'helgoland-toolbox';
 
 interface SelectableDataset extends Dataset {
     selected: boolean;

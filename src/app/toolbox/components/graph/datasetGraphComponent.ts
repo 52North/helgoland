@@ -8,14 +8,15 @@ import {
     Output,
     SimpleChanges,
 } from '@angular/core';
-
-import { DatasetOptions } from '../../model/api/dataset/options';
-import { ResizableComponent } from '../../model/internal/ResizableComponent';
-import { TimeInterval } from '../../model/internal/time-interval';
-import { Timespan } from './../../model/internal/time-interval';
-import { ApiInterface } from './../../services/api-interface/api-interface.service';
-import { InternalIdHandler } from './../../services/api-interface/internal-id-handler.service';
-import { Time } from './../../services/time/time.service';
+import {
+    ApiInterface,
+    DatasetOptions,
+    InternalIdHandler,
+    ResizableComponent,
+    Time,
+    TimeInterval,
+    Timespan,
+} from 'helgoland-toolbox';
 
 const equal = require('deep-equal');
 

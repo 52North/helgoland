@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-
-import { Phenomenon } from '../../toolbox/model/api/phenomenon';
-import { Feature } from './../../toolbox/model/api/feature';
-import { Offering } from './../../toolbox/model/api/offering';
-import { Procedure } from './../../toolbox/model/api/procedure';
-import { Service } from './../../toolbox/model/api/service';
+import { Feature, Offering, Phenomenon, Procedure, Service } from 'helgoland-toolbox';
 
 @Injectable()
 export class ProfilesSelectionCache {

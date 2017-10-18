@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
+import { ApiInterface, BlacklistedService, ParameterFilter, Service } from 'helgoland-toolbox';
 import { Observable, Observer } from 'rxjs/Rx';
-
-import { ParameterFilter } from './../../../model/api/parameterFilter';
-import { Service } from './../../../model/api/service';
-import { BlacklistedService } from './../../../model/config/config';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
 
 @Injectable()
 export class ProviderSelectorService {

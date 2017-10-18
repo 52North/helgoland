@@ -2,25 +2,27 @@ import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@a
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
+import {
+    ApiInterface,
+    BlacklistedService,
+    ColorService,
+    Feature,
+    IDataset,
+    Offering,
+    ParameterFilter,
+    Phenomenon,
+    Platform,
+    PlatformTypes,
+    Procedure,
+    ProfileDataEntry,
+    Service,
+    TimedDatasetOptions,
+    Timespan,
+    ValueTypes,
+} from 'helgoland-toolbox';
 
-import { IDataset } from '../../toolbox/model/api/dataset/idataset';
-import { PlatformTypes } from '../../toolbox/model/api/dataset/platformTypes';
-import { ValueTypes } from '../../toolbox/model/api/dataset/valueTypes';
+import { Settings } from './../../services/settings.service';
 import { TrajectoryResult } from './../../toolbox/components/selection/map-selector/trajectory-map-selector.component';
-import { ProfileDataEntry } from './../../toolbox/model/api/data';
-import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
-import { Feature } from './../../toolbox/model/api/feature';
-import { Offering } from './../../toolbox/model/api/offering';
-import { ParameterFilter } from './../../toolbox/model/api/parameterFilter';
-import { Phenomenon } from './../../toolbox/model/api/phenomenon';
-import { Platform } from './../../toolbox/model/api/platform';
-import { Procedure } from './../../toolbox/model/api/procedure';
-import { Service } from './../../toolbox/model/api/service';
-import { BlacklistedService } from './../../toolbox/model/config/config';
-import { Timespan } from './../../toolbox/model/internal/time-interval';
-import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
-import { ColorService } from './../../toolbox/services/color/color.service';
-import { Settings } from './../../toolbox/services/settings/settings.service';
 import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';
 import { ProfilesSelectionPermalink } from './selection-permalink.service';
@@ -196,7 +198,7 @@ export class ProfilesSelectionComponent implements OnInit {
             this.stationaryPlatformDataset = dataset;
             this.api.getDataset(dataset.id, this.selectedProvider.providerUrl).subscribe(res => {
                 this.stationaryPlatformDataset = res;
-                const timespan = new Timespan(new Date(res.firstValue.timestamp), new Date(res.lastValue.timestamp));
+                const timespan = new Timespan(res.firstValue.timestamp, res.lastValue.timestamp);
                 this.api.getData<ProfileDataEntry>(res.id, res.url, timespan).subscribe(data => {
                     this.stationaryTimestamps = [];
                     data.values.forEach(entry => {

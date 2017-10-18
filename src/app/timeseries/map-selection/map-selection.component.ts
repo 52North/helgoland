@@ -1,14 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Dataset, ParameterFilter, Phenomenon, Platform, PlatformTypes, Service, ValueTypes } from 'helgoland-toolbox';
 
-import { PlatformTypes } from '../../toolbox/model/api/dataset/platformTypes';
-import { ValueTypes } from '../../toolbox/model/api/dataset/valueTypes';
-import { Dataset } from './../../toolbox/model/api/dataset/dataset';
-import { ParameterFilter } from './../../toolbox/model/api/parameterFilter';
-import { Phenomenon } from './../../toolbox/model/api/phenomenon';
-import { Platform } from './../../toolbox/model/api/platform';
-import { Service } from './../../toolbox/model/api/service';
 import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
 import { TimeseriesService } from './../services/timeseries.service';
 

@@ -1,9 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnChanges } from '@angular/core';
+import { ApiInterface, MapCache, Station } from 'helgoland-toolbox';
 import * as L from 'leaflet';
 
-import { Station } from './../../../model/api/station';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { MapCache } from './../../../services/map/map.service';
 import { MapSelectorComponent } from './map-selector.component';
 
 @Component({

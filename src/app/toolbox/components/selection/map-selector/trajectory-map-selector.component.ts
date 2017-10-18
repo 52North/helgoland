@@ -8,13 +8,9 @@ import {
     Output,
     SimpleChanges,
 } from '@angular/core';
+import { ApiInterface, IDataset, LocatedProfileDataEntry, MapCache, Timespan } from 'helgoland-toolbox';
 import * as L from 'leaflet';
 
-import { IDataset } from '../../../model/api/dataset/idataset';
-import { LocatedProfileDataEntry } from './../../../model/api/data';
-import { Timespan } from './../../../model/internal/time-interval';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { MapCache } from './../../../services/map/map.service';
 import { MapSelectorComponent } from './map-selector.component';
 
 @Component({
@@ -60,7 +56,7 @@ export class ProfileTrajectoryMapSelectorComponent extends MapSelectorComponent<
             this.clearMap();
             this.initLayer();
             this.data.forEach(entry => {
-                if (this.selectedTimespan.from.getTime() <= entry.timestamp && entry.timestamp <= this.selectedTimespan.to.getTime()) {
+                if (this.selectedTimespan.from <= entry.timestamp && entry.timestamp <= this.selectedTimespan.to) {
                     this.layer.addLayer(this.createGeoJson(entry, this.dataset));
                 }
             });
@@ -74,7 +70,7 @@ export class ProfileTrajectoryMapSelectorComponent extends MapSelectorComponent<
         this.apiInterface.getDatasets(this.serviceUrl, this.filter).subscribe(datasets => {
             datasets.forEach(dataset => {
                 this.dataset = dataset;
-                const timespan = new Timespan(new Date(dataset.firstValue.timestamp), new Date(dataset.lastValue.timestamp));
+                const timespan = new Timespan(dataset.firstValue.timestamp, dataset.lastValue.timestamp);
                 this.apiInterface.getData<LocatedProfileDataEntry>(dataset.id, this.serviceUrl, timespan).subscribe(data => {
                     if (data.values instanceof Array) {
                         this.initLayer();

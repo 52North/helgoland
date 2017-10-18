@@ -1,14 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { ApiInterface, Feature, Offering, PermalinkService, Phenomenon, Procedure, Service } from 'helgoland-toolbox';
 import { Observable, Observer } from 'rxjs/Rx';
 
-import { Feature } from './../../toolbox/model/api/feature';
-import { Offering } from './../../toolbox/model/api/offering';
-import { Phenomenon } from './../../toolbox/model/api/phenomenon';
-import { Procedure } from './../../toolbox/model/api/procedure';
-import { Service } from './../../toolbox/model/api/service';
-import { ApiInterface } from './../../toolbox/services/api-interface/api-interface.service';
-import { PermalinkService } from './../../toolbox/services/permalink/permalink.service';
 import { ProfilesSelectionCache } from './selection.service';
 
 const PROVIDER_URL_PARAM = 'url';

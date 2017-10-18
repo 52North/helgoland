@@ -1,10 +1,8 @@
 import 'leaflet.markercluster';
 
 import { AfterViewInit, ChangeDetectorRef, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { MapCache, ParameterFilter } from 'helgoland-toolbox';
 import * as L from 'leaflet';
-
-import { ParameterFilter } from './../../../model/api/parameterFilter';
-import { MapCache } from './../../../services/map/map.service';
 
 export abstract class MapSelectorComponent<T> implements OnChanges, AfterViewInit {
 

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BlacklistedService, ParameterFilter, Service } from 'helgoland-toolbox';
 
-import { ParameterFilter } from './../../toolbox/model/api/parameterFilter';
-import { Service } from './../../toolbox/model/api/service';
-import { BlacklistedService } from './../../toolbox/model/config/config';
-import { Settings } from './../../toolbox/services/settings/settings.service';
+import { Settings } from './../../services/settings.service';
 import { TimeseriesProviderSelectionService } from './provider-selection.service';
 
 @Component({

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HelgolandToolboxModule } from 'helgoland-toolbox';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TrajectoriesNavigationComponent } from './navigation/navigation.component';
@@ -37,6 +38,7 @@ const trajectoriesRoutes: Routes = [
   imports: [
     CommonModule,
     ToolboxModule,
+    HelgolandToolboxModule,
     NgbModule,
     RouterModule.forRoot(
       trajectoriesRoutes,

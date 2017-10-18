@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PermalinkService, Timespan } from 'helgoland-toolbox';
 
 import { TimeseriesService } from '../services/timeseries.service';
-import { Timespan } from './../../toolbox/model/internal/time-interval';
-import { PermalinkService } from './../../toolbox/services/permalink/permalink.service';
 
 const PARAM_IDS = 'ids';
 const ID_SEPERATOR = '!!';
@@ -26,8 +25,8 @@ export class TimeseriesDiagramPermalink extends PermalinkService<void> {
             const id = this.timeseriesSrvc.datasetIds.join(ID_SEPERATOR);
             paramUrl = this.createBaseUrl() + '?' + PARAM_IDS + '=' + encodeURIComponent(id);
             if (this.timeseriesSrvc.timespan) {
-                paramUrl = paramUrl + '&' + PARAM_TIME + '=' + encodeURIComponent(this.timeseriesSrvc.timespan.from.getTime()
-                    + TIME_SEPERATOR + this.timeseriesSrvc.timespan.to.getTime());
+                paramUrl = paramUrl + '&' + PARAM_TIME + '=' + encodeURIComponent(this.timeseriesSrvc.timespan.from
+                    + TIME_SEPERATOR + this.timeseriesSrvc.timespan.to);
             }
         }
         return paramUrl;
@@ -46,7 +45,7 @@ export class TimeseriesDiagramPermalink extends PermalinkService<void> {
                     if (time.length === 2) {
                         const start = parseInt(time[0], 10);
                         const end = parseInt(time[1], 10);
-                        this.timeseriesSrvc.setTimespan(new Timespan(new Date(start), new Date(end)));
+                        this.timeseriesSrvc.setTimespan(new Timespan(start, end));
                     }
                 }
             }

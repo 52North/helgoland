@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ProfilesModule } from './profiles/profiles.module';
+import { Settings } from './services/settings.service';
 import { TimeseriesModule } from './timeseries/timeseries.module';
 import { TrajectoriesModule } from './trajectories/trajectories.module';
 
@@ -18,7 +19,9 @@ import { TrajectoriesModule } from './trajectories/trajectories.module';
     TrajectoriesModule,
     ProfilesModule
   ],
-  providers: [],
+  providers: [
+    Settings
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

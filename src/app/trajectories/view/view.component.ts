@@ -1,13 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ApiInterface,
+    DatasetOptions,
+    IDataset,
+    InternalIdHandler,
+    LocatedTimeValueEntry,
+    Timespan,
+} from 'helgoland-toolbox';
 
 import { AxisType, D3GraphOptions } from '../../toolbox/components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
-import { LocatedTimeValueEntry } from '../../toolbox/model/api/data';
-import { ApiInterface } from '../../toolbox/services/api-interface/api-interface.service';
-import { InternalIdHandler } from '../../toolbox/services/api-interface/internal-id-handler.service';
 import { SelectionRange } from './../../toolbox/components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
-import { IDataset } from './../../toolbox/model/api/dataset/idataset';
-import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
-import { Timespan } from './../../toolbox/model/internal/time-interval';
 import { TrajectoriesService } from './../services/trajectories.service';
 import { TrajectoriesViewPermalink } from './view-permalink';
 
@@ -62,7 +64,7 @@ export class TrajectoriesViewComponent implements OnInit {
             const internalId = this.internalIdHandler.resolveInternalId(this.datasetIds[0]);
             this.api.getDataset(internalId.id, internalId.url).subscribe(dataset => {
                 this.trajectory = dataset;
-                this.timespan = new Timespan(new Date(dataset.firstValue.timestamp), new Date(dataset.lastValue.timestamp));
+                this.timespan = new Timespan(dataset.firstValue.timestamp, dataset.lastValue.timestamp);
                 this.api.getData<LocatedTimeValueEntry>(internalId.id, internalId.url, this.timespan)
                     .subscribe(data => {
                         this.geometry = {

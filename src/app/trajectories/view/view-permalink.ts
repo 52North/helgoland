@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PermalinkService } from 'helgoland-toolbox';
 
-import { PermalinkService } from '../../toolbox/services/permalink/permalink.service';
 import { TrajectoriesService } from './../services/trajectories.service';
 
 const PARAM_ID = 'id';

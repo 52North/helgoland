@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HelgolandToolboxModule } from 'helgoland-toolbox';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
@@ -53,6 +54,7 @@ const timeseriesRoutes: Routes = [
   imports: [
     CommonModule,
     ToolboxModule,
+    HelgolandToolboxModule,
     RouterModule.forRoot(
       timeseriesRoutes
     ),

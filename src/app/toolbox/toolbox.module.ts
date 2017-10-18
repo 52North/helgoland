@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -58,17 +58,6 @@ import { PermalinkButtonComponent } from './permalink/permalink-button/permalink
 import { PermalinkInMailComponent } from './permalink/permalink-in-mail/permalink-in-mail.component';
 import { PermalinkNewWindowComponent } from './permalink/permalink-new-window/permalink-new-window.component';
 import { PermalinkToClipboardComponent } from './permalink/permalink-to-clipboard/permalink-to-clipboard.component';
-import { KeysPipe } from './pipes/object-keys-to-array.pipe';
-import { ApiInterface } from './services/api-interface/api-interface.service';
-import { ApiMapping } from './services/api-interface/api-mapping.service';
-import { CachingInterceptor, HttpCache } from './services/api-interface/caching/caching-interceptor';
-import { LocalHttpCache } from './services/api-interface/caching/local-cache';
-import { InternalIdHandler } from './services/api-interface/internal-id-handler.service';
-import { ColorService } from './services/color/color.service';
-import { LocalStorage } from './services/local-storage/local-storage.service';
-import { MapCache } from './services/map/map.service';
-import { Settings } from './services/settings/settings.service';
-import { Time } from './services/time/time.service';
 
 const COMPONENTS = [
     ProviderSelectorComponent,
@@ -79,7 +68,6 @@ const COMPONENTS = [
     ServiceFilterSelectorComponent,
     ZoomControlComponent,
     LocateControlComponent,
-    KeysPipe,
     LabelMapperComponent,
     ListSelectorComponent,
     MultiServiceFilterSelectorComponent,
@@ -121,27 +109,10 @@ const COMPONENTS = [
         COMPONENTS
     ],
     providers: [
-        {
-            provide: HttpCache,
-            useClass: LocalHttpCache
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: CachingInterceptor,
-            multi: true
-        },
-        Settings,
-        LocalStorage,
         ProviderSelectorService,
-        ApiInterface,
-        ApiMapping,
-        Time,
-        MapCache,
         LocateService,
         LabelMapperService,
-        ListSelectorService,
-        InternalIdHandler,
-        ColorService
+        ListSelectorService
     ]
 })
 export class ToolboxModule { }

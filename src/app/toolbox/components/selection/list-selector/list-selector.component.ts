@@ -1,10 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { ApiInterface, ApiMapping, ApiVersion, FilteredProvider, IDataset, ParameterFilter } from 'helgoland-toolbox';
 
-import { IDataset } from './../../../model/api/dataset/idataset';
-import { ParameterFilter } from './../../../model/api/parameterFilter';
-import { FilteredProvider } from './../../../model/internal/provider';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { ApiMapping, ApiVersion } from './../../../services/api-interface/api-mapping.service';
 import { FilteredParameter } from './../multi-service-filter-selector/multi-service-filter-selector.component';
 import { ListSelectorService } from './list-selector.service';
 

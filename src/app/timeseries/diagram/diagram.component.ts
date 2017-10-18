@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Data, DatasetOptions, IDataEntry, IDataset, PlotOptions, Time, Timespan } from 'helgoland-toolbox';
 
-import { Data, IDataEntry } from './../../toolbox/model/api/data';
-import { IDataset } from './../../toolbox/model/api/dataset/idataset';
-import { DatasetOptions } from './../../toolbox/model/api/dataset/options';
-import { PlotOptions } from './../../toolbox/model/internal/flot/plotOptions';
-import { Timespan } from './../../toolbox/model/internal/time-interval';
-import { Time } from './../../toolbox/services/time/time.service';
 import { TimeseriesService } from './../services/timeseries.service';
 import { TimeseriesDiagramPermalink } from './diagram-permalink.service';
 

@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BlacklistedService, ParameterFilter, Service } from 'helgoland-toolbox';
 
-import { ParameterFilter } from './../../../model/api/parameterFilter';
-import { Service } from './../../../model/api/service';
-import { BlacklistedService } from './../../../model/config/config';
 import { ProviderSelectorService } from './provider-selector.service';
 
 /**

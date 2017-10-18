@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TimedDatasetOptions } from 'helgoland-toolbox';
 
-import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
 import { ProfilesService } from './../services/profiles.service';
 import { ProfilesDiagramPermalink } from './diagram-permalink.service';
 

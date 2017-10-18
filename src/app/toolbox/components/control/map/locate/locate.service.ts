@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
+import { MapCache } from 'helgoland-toolbox';
 import * as L from 'leaflet';
-
-import { MapCache } from './../../../../services/map/map.service';
 
 const LOCATION_FOUND_EVENT = 'locationfound';
 const LOCATED_MARKER_ID = 'located';

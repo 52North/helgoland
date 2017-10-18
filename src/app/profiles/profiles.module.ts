@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HelgolandToolboxModule } from 'helgoland-toolbox';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { ProfilesCombiViewPermalink } from './combi-view/combi-view-permalink.service';
@@ -45,6 +46,7 @@ const profilesRoutes: Routes = [
   imports: [
     CommonModule,
     ToolboxModule,
+    HelgolandToolboxModule,
     NgbModule,
     RouterModule.forRoot(
       profilesRoutes

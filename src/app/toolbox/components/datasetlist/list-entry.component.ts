@@ -1,6 +1,5 @@
 import { EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-import { InternalIdHandler } from './../../services/api-interface/internal-id-handler.service';
+import { InternalIdHandler } from 'helgoland-toolbox';
 
 export abstract class ListEntryComponent implements OnInit {
 

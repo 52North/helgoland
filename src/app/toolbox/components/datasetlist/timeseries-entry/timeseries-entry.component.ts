@@ -9,17 +9,19 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+    ApiInterface,
+    Dataset,
+    DatasetOptions,
+    FirstLastValue,
+    IDataset,
+    InternalIdHandler,
+    Time,
+    TimeInterval,
+    Timeseries,
+} from 'helgoland-toolbox';
 
-import { TimeInterval } from '../../../model/internal/time-interval';
 import { ListEntryComponent } from '../list-entry.component';
-import { Dataset } from './../../../model/api/dataset/dataset';
-import { FirstLastValue } from './../../../model/api/dataset/firstLastValue';
-import { IDataset } from './../../../model/api/dataset/idataset';
-import { DatasetOptions } from './../../../model/api/dataset/options';
-import { Timeseries } from './../../../model/api/dataset/timeseries';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
-import { Time } from './../../../services/time/time.service';
 
 @Component({
     selector: 'n52-timeseries-entry',
@@ -126,8 +128,8 @@ export class TimeseriesEntryComponent extends ListEntryComponent implements OnCh
         if (this.timeInterval && this.dataset) {
             this.hasData = this.timeSrvc.overlaps(
                 this.timeInterval,
-                new Date(this.dataset.firstValue.timestamp),
-                new Date(this.dataset.lastValue.timestamp)
+                this.dataset.firstValue.timestamp,
+                this.dataset.lastValue.timestamp
             );
         }
     }

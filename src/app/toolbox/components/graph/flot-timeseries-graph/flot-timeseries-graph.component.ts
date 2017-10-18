@@ -3,20 +3,21 @@ import './jquery.flot.selection';
 import './jquery.flot.touch';
 
 import { AfterViewInit, Component, ElementRef, IterableDiffers, ViewChild, ViewEncapsulation } from '@angular/core';
-import * as moment from 'moment';
+import {
+    ApiInterface,
+    Data,
+    DataSeries,
+    DatasetOptions,
+    IDataset,
+    InternalIdHandler,
+    Plot,
+    PlotOptions,
+    Time,
+    Timeseries,
+    Timespan,
+} from 'helgoland-toolbox';
 
-import { Data } from '../../../model/api/data';
-import { Plot } from '../../../model/internal/flot/plot';
 import { DatasetGraphComponent } from '../datasetGraphComponent';
-import { IDataset } from './../../../model/api/dataset/idataset';
-import { DatasetOptions } from './../../../model/api/dataset/options';
-import { Timeseries } from './../../../model/api/dataset/timeseries';
-import { DataSeries } from './../../../model/internal/flot/dataSeries';
-import { PlotOptions } from './../../../model/internal/flot/plotOptions';
-import { Timespan } from './../../../model/internal/time-interval';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
-import { Time } from './../../../services/time/time.service';
 
 declare var $: any;
 
@@ -52,27 +53,22 @@ export class FlotTimeseriesGraphComponent extends DatasetGraphComponent<DatasetO
 
         $(this.plotarea).bind('plotzoom', (evt: any, plot: any) => {
             const xaxis = plot.getXAxes()[0];
-            const from = moment(xaxis.min).toDate();
-            const till = moment(xaxis.max).toDate();
-            this.changeTime(from, till);
+            this.changeTime(xaxis.min, xaxis.max);
         });
 
         // plot pan ended event
         $(this.plotarea).bind('plotpanEnd', (evt: any, plot: any) => {
             const xaxis = plot.getXAxes()[0];
-            this.changeTime(moment(xaxis.min).toDate(), moment(xaxis.max).toDate());
+            this.changeTime(xaxis.min, xaxis.max);
         });
 
         $(this.plotarea).bind('touchended', (evt: any, plot: any) => {
-            const xaxis = plot.xaxis;
-            const from = moment(xaxis.from).toDate();
-            const till = moment(xaxis.to).toDate();
-            this.changeTime(from, till);
+            this.changeTime(plot.xaxis.from, plot.xaxis.to);
         });
 
         // plot selected event
         $(this.plotarea).bind('plotselected', (evt: any, ranges: any) => {
-            this.changeTime(moment(ranges.xaxis.from).toDate(), moment(ranges.xaxis.to).toDate());
+            this.changeTime(ranges.xaxis.from, ranges.xaxis.to);
         });
 
         this.plotGraph();
@@ -127,15 +123,15 @@ export class FlotTimeseriesGraphComponent extends DatasetGraphComponent<DatasetO
         this.plotGraph();
     }
 
-    private changeTime(from: Date, to: Date) {
+    private changeTime(from: number, to: number) {
         this.onTimespanChanged.emit(new Timespan(from, to));
     }
 
     private plotGraph() {
         if (this.preparedData && this.preparedData.length !== 0 && this.plotOptions) {
             this.prepareAxisPos();
-            this.plotOptions.xaxis.min = this.timespan.from.getTime();
-            this.plotOptions.xaxis.max = this.timespan.to.getTime();
+            this.plotOptions.xaxis.min = this.timespan.from;
+            this.plotOptions.xaxis.max = this.timespan.to;
             const plotObj: Plot = $.plot(this.plotarea, this.preparedData, this.plotOptions);
             this.createPlotAnnotation(this.plotarea, this.plotOptions);
             this.createYAxis(plotObj);

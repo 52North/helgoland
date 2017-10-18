@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 
-import { Settings } from './../../../services/settings/settings.service';
+import { Settings } from './../../../../services/settings.service';
 
 declare var $: any;
 

@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-import { Timeseries } from './../../../model/api/dataset/timeseries';
-import { Station } from './../../../model/api/station';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
+import { ApiInterface, Station, Timeseries } from 'helgoland-toolbox';
 
 class ExtendedTimeseries extends Timeseries {
     selected: boolean;

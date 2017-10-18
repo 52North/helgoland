@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { FilteredProvider } from 'helgoland-toolbox';
 
-import { FilteredProvider } from './../../../model/internal/provider';
 import { ListSelectorParameter } from './list-selector.component';
 
 @Injectable()

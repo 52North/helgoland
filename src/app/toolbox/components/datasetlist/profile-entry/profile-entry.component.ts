@@ -1,11 +1,8 @@
 import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiInterface, Dataset, InternalIdHandler, TimedDatasetOptions } from 'helgoland-toolbox';
 
 import { ListEntryComponent } from '../list-entry.component';
-import { Dataset } from './../../../model/api/dataset/dataset';
-import { TimedDatasetOptions } from './../../../model/api/dataset/options';
-import { ApiInterface } from './../../../services/api-interface/api-interface.service';
-import { InternalIdHandler } from './../../../services/api-interface/internal-id-handler.service';
 
 @Component({
     selector: 'n52-profile-entry',

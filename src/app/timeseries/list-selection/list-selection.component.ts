@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IDataset, Provider } from 'helgoland-toolbox';
 
 import { ListSelectorParameter } from './../../toolbox/components/selection/list-selector/list-selector.component';
-import { IDataset } from './../../toolbox/model/api/dataset/idataset';
-import { Provider } from './../../toolbox/model/internal/provider';
 import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
 import { TimeseriesService } from './../services/timeseries.service';
 

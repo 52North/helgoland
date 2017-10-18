@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --aot",
     "prod": "ng serve --prod",
     "build": "ng build --prod",
     "test": "ng test",
@@ -26,7 +26,6 @@
     "Flot": "github:flot/flot",
     "bootstrap": "^4.0.0-beta",
     "bootstrap-slider": "^9.9.0",
-    "class-transformer": "^0.1.8",
     "core-js": "^2.4.1",
     "d3": "^4.11.0",
     "font-awesome": "^4.7.0",

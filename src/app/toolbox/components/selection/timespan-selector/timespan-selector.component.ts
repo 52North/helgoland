@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-
-import { Timespan } from './../../../model/internal/time-interval';
+import { Timespan } from 'helgoland-toolbox';
 
 @Component({
     selector: 'n52-timespan-selector',
@@ -27,17 +26,19 @@ export class TimespanSelectorComponent implements OnInit {
     constructor() { }
 
     public ngOnInit() {
+        const from = new Date(this.timespan.from);
+        const to = new Date(this.timespan.to);
         this.dateFrom = {
-            year: this.timespan.from.getFullYear(), month: this.timespan.from.getMonth() + 1, day: this.timespan.from.getDate()
+            year: from.getFullYear(), month: from.getMonth() + 1, day: from.getDate()
         };
         this.timeFrom = {
-            hour: this.timespan.from.getHours(), minute: this.timespan.from.getMinutes(), second: this.timespan.from.getSeconds()
+            hour: from.getHours(), minute: from.getMinutes(), second: from.getSeconds()
         };
         this.dateTo = {
-            year: this.timespan.to.getFullYear(), month: this.timespan.to.getMonth() + 1, day: this.timespan.to.getDate()
+            year: to.getFullYear(), month: to.getMonth() + 1, day: to.getDate()
         };
         this.timeTo = {
-            hour: this.timespan.to.getHours(), minute: this.timespan.to.getMinutes(), second: this.timespan.to.getSeconds()
+            hour: to.getHours(), minute: to.getMinutes(), second: to.getSeconds()
         };
     }
 
@@ -50,7 +51,7 @@ export class TimespanSelectorComponent implements OnInit {
         this.isValidTimespan = (dateTimeFrom < dateTimeTo);
 
         if (this.isValidTimespan) {
-            this.timespan = new Timespan(dateTimeFrom, dateTimeTo);
+            this.timespan = new Timespan(dateTimeFrom.getTime(), dateTimeTo.getTime());
             this.onTimespanChange.emit(this.timespan);
             console.log(this.timespan);
         } else {

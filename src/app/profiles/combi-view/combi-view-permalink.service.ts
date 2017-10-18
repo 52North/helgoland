@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ColorService, PermalinkService, TimedDatasetOptions } from 'helgoland-toolbox';
 
-import { TimedDatasetOptions } from './../../toolbox/model/api/dataset/options';
-import { ColorService } from './../../toolbox/services/color/color.service';
-import { PermalinkService } from './../../toolbox/services/permalink/permalink.service';
 import { ProfilesCombiService } from './combi-view.service';
 
 const PARAM_ID = 'id';

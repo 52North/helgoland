@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
-
-import { Timespan } from './../../../model/internal/time-interval';
+import { Timespan } from 'helgoland-toolbox';
 
 declare var $: any;
 
@@ -36,10 +35,7 @@ export class TimeRangeSliderSelectorComponent implements OnChanges {
                 max: max,
                 value: [min, max]
             }).on('slideStop', (event: any) => {
-                this.onTimespanSelected.emit(new Timespan(
-                    new Date(event.value[0]),
-                    new Date(event.value[1])
-                ));
+                this.onTimespanSelected.emit(new Timespan(event.value[0], event.value[1]));
             }).on('slide', (event: any) => {
                 this.selectionStart = event.value[0];
                 this.selectionEnd = event.value[1];

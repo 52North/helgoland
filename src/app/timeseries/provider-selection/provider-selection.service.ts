@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-
-import { Service } from './../../toolbox/model/api/service';
-import { LocalStorage } from './../../toolbox/services/local-storage/local-storage.service';
+import { LocalStorage, Service } from 'helgoland-toolbox';
 
 const SELECTED_PROVIDER_PARAM = 'selectedTimeseriesProvider';
 

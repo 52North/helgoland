@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Settings } from '../../../services/settings/settings.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { Settings } from './../../../../services/settings.service';
 
 @Component({
   selector: 'n52-timeseries-style-selector',
