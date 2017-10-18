@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { BoolTogglerComponent } from './components/control/bool-toggler/bool-toggler.component';
@@ -54,10 +54,6 @@ import { TimespanSelectorComponent } from './components/selection/timespan-selec
 import {
     TimespanShiftSelectorComponent,
 } from './components/selection/timespan-shift-selector/timespan-shift-selector.component';
-import { PermalinkButtonComponent } from './permalink/permalink-button/permalink-button.component';
-import { PermalinkInMailComponent } from './permalink/permalink-in-mail/permalink-in-mail.component';
-import { PermalinkNewWindowComponent } from './permalink/permalink-new-window/permalink-new-window.component';
-import { PermalinkToClipboardComponent } from './permalink/permalink-to-clipboard/permalink-to-clipboard.component';
 
 const COMPONENTS = [
     ProviderSelectorComponent,
@@ -80,10 +76,6 @@ const COMPONENTS = [
     GeometryMapViewerComponent,
     StringTogglerComponent,
     BoolTogglerComponent,
-    PermalinkButtonComponent,
-    PermalinkInMailComponent,
-    PermalinkNewWindowComponent,
-    PermalinkToClipboardComponent,
     FlotTimeseriesGraphComponent,
     TimeseriesStyleSelectorComponent,
     TimeListSelectorComponent,
@@ -99,7 +91,9 @@ const COMPONENTS = [
         HttpClientModule,
         FormsModule,
         ColorPickerModule,
-        NgbModule.forRoot()
+        NgbAccordionModule,
+        NgbDatepickerModule,
+        NgbTimepickerModule
     ],
     declarations: [
         COMPONENTS

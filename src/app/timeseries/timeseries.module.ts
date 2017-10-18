@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HelgolandToolboxModule } from 'helgoland-toolbox';
+import { NgbAccordionModule, NgbModalModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { HelgolandPermalinkModule, HelgolandToolboxModule } from 'helgoland-toolbox';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
@@ -55,10 +55,13 @@ const timeseriesRoutes: Routes = [
     CommonModule,
     ToolboxModule,
     HelgolandToolboxModule,
+    HelgolandPermalinkModule,
     RouterModule.forRoot(
       timeseriesRoutes
     ),
-    NgbModule
+    NgbTabsetModule,
+    NgbAccordionModule,
+    NgbModalModule
   ],
   declarations: [
     TimeseriesNavigationComponent,

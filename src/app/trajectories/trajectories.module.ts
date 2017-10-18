@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HelgolandToolboxModule } from 'helgoland-toolbox';
+import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { HelgolandPermalinkModule, HelgolandToolboxModule } from 'helgoland-toolbox';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TrajectoriesNavigationComponent } from './navigation/navigation.component';
@@ -39,11 +39,12 @@ const trajectoriesRoutes: Routes = [
     CommonModule,
     ToolboxModule,
     HelgolandToolboxModule,
-    NgbModule,
+    HelgolandPermalinkModule,
     RouterModule.forRoot(
       trajectoriesRoutes,
       { enableTracing: false }
-    )
+    ),
+    NgbTabsetModule
   ],
   declarations: [
     TrajectoriesViewComponent,
