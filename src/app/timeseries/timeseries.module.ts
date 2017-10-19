@@ -6,6 +6,7 @@ import {
     HelgolandFlotGraphModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
+    HelgolandTimeModule,
     HelgolandToolboxModule,
 } from 'helgoland-toolbox';
 import { HelgolandMapControlModule, HelgolandMapSelectorModule } from 'helgoland-toolbox/dist';
@@ -66,6 +67,7 @@ const timeseriesRoutes: Routes = [
     HelgolandSelectorModule,
     HelgolandMapSelectorModule,
     HelgolandMapControlModule,
+    HelgolandTimeModule,
     RouterModule.forRoot(
       timeseriesRoutes
     ),

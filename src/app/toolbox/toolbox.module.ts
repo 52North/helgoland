@@ -15,32 +15,16 @@ import { D3TimeseriesGraphComponent } from './components/graph/d3-timeseries-gra
 import { PlotlyProfileGraphComponent } from './components/graph/plotly-profile-graph/plotly-profile-graph.component';
 import { MultiPhenomenonListComponent } from './components/selection/multi-phenomenon-list/multi-phenomenon-list.component';
 import {
-    PredefinedTimespanSelectorComponent,
-} from './components/selection/predefined-timespan-selector/predefined-timespan-selector.component';
-import { TimeListSelectorComponent } from './components/selection/time-list-selector/time-list-selector.component';
-import {
-    TimeRangeSliderSelectorComponent,
-} from './components/selection/time-range-slider-selector/time-range-slider-selector.component';
-import {
     TimeseriesStyleSelectorComponent,
 } from './components/selection/timeseries-style-selector/timeseries-style-selector.component';
-import { TimespanSelectorComponent } from './components/selection/timespan-selector/timespan-selector.component';
-import {
-    TimespanShiftSelectorComponent,
-} from './components/selection/timespan-shift-selector/timespan-shift-selector.component';
 
 const COMPONENTS = [
-    TimespanShiftSelectorComponent,
-    PredefinedTimespanSelectorComponent,
-    TimespanSelectorComponent,
     TimeseriesEntryComponent,
     ProfileEntryComponent,
     GeometryMapViewerComponent,
     StringTogglerComponent,
     BoolTogglerComponent,
     TimeseriesStyleSelectorComponent,
-    TimeListSelectorComponent,
-    TimeRangeSliderSelectorComponent,
     PlotlyProfileGraphComponent,
     D3TimeseriesGraphComponent,
     MultiPhenomenonListComponent

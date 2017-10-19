@@ -7,6 +7,7 @@ import {
     HelgolandMapSelectorModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
+    HelgolandTimeModule,
     HelgolandToolboxModule,
 } from 'helgoland-toolbox';
 
@@ -57,6 +58,7 @@ const profilesRoutes: Routes = [
     HelgolandSelectorModule,
     HelgolandDepictionModule,
     HelgolandMapSelectorModule,
+    HelgolandTimeModule,
     RouterModule.forRoot(
       profilesRoutes
     ),
