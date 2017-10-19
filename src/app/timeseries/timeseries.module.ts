@@ -8,6 +8,7 @@ import {
     HelgolandSelectorModule,
     HelgolandToolboxModule,
 } from 'helgoland-toolbox';
+import { HelgolandMapControlModule, HelgolandMapSelectorModule } from 'helgoland-toolbox/dist';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
@@ -63,6 +64,8 @@ const timeseriesRoutes: Routes = [
     HelgolandPermalinkModule,
     HelgolandFlotGraphModule,
     HelgolandSelectorModule,
+    HelgolandMapSelectorModule,
+    HelgolandMapControlModule,
     RouterModule.forRoot(
       timeseriesRoutes
     ),

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import {
     HelgolandDepictionModule,
+    HelgolandMapSelectorModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandToolboxModule,
@@ -55,6 +56,7 @@ const profilesRoutes: Routes = [
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandDepictionModule,
+    HelgolandMapSelectorModule,
     RouterModule.forRoot(
       profilesRoutes
     ),

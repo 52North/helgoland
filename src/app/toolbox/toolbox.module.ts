@@ -7,20 +7,12 @@ import { HelgolandDepictionModule } from 'helgoland-toolbox';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { BoolTogglerComponent } from './components/control/bool-toggler/bool-toggler.component';
-import { LocateControlComponent } from './components/control/map/locate/locate.component';
-import { LocateService } from './components/control/map/locate/locate.service';
-import { ZoomControlComponent } from './components/control/map/zoom/zoom.component';
 import { StringTogglerComponent } from './components/control/string-toggler/string-toggler.component';
 import { ProfileEntryComponent } from './components/datasetlist/profile-entry/profile-entry.component';
 import { TimeseriesEntryComponent } from './components/datasetlist/timeseries-entry/timeseries-entry.component';
 import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
 import { D3TimeseriesGraphComponent } from './components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
 import { PlotlyProfileGraphComponent } from './components/graph/plotly-profile-graph/plotly-profile-graph.component';
-import { PlatformMapSelectorComponent } from './components/selection/map-selector/platform-map-selector.component';
-import { StationMapSelectorComponent } from './components/selection/map-selector/station-map-selector.component';
-import {
-    ProfileTrajectoryMapSelectorComponent,
-} from './components/selection/map-selector/trajectory-map-selector.component';
 import { MultiPhenomenonListComponent } from './components/selection/multi-phenomenon-list/multi-phenomenon-list.component';
 import {
     PredefinedTimespanSelectorComponent,
@@ -38,11 +30,6 @@ import {
 } from './components/selection/timespan-shift-selector/timespan-shift-selector.component';
 
 const COMPONENTS = [
-    StationMapSelectorComponent,
-    PlatformMapSelectorComponent,
-    ProfileTrajectoryMapSelectorComponent,
-    ZoomControlComponent,
-    LocateControlComponent,
     TimespanShiftSelectorComponent,
     PredefinedTimespanSelectorComponent,
     TimespanSelectorComponent,
@@ -77,8 +64,6 @@ const COMPONENTS = [
     exports: [
         COMPONENTS
     ],
-    providers: [
-        LocateService
-    ]
+    providers: []
 })
 export class ToolboxModule { }

@@ -19,10 +19,10 @@ import {
     Settings,
     TimedDatasetOptions,
     Timespan,
+    TrajectoryResult,
     ValueTypes,
 } from 'helgoland-toolbox';
 
-import { TrajectoryResult } from './../../toolbox/components/selection/map-selector/trajectory-map-selector.component';
 import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';
 import { ProfilesSelectionPermalink } from './selection-permalink.service';
