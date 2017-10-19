@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbAccordionModule, NgbModalModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
-import { HelgolandPermalinkModule, HelgolandToolboxModule } from 'helgoland-toolbox';
+import { HelgolandFlotGraphModule, HelgolandPermalinkModule, HelgolandToolboxModule } from 'helgoland-toolbox';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
@@ -56,6 +56,7 @@ const timeseriesRoutes: Routes = [
     ToolboxModule,
     HelgolandToolboxModule,
     HelgolandPermalinkModule,
+    HelgolandFlotGraphModule,
     RouterModule.forRoot(
       timeseriesRoutes
     ),

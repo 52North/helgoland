@@ -16,10 +16,6 @@ import { GeometryMapViewerComponent } from './components/display/geometry-map-vi
 import { LabelMapperComponent } from './components/display/label-mapper/label-mapper.component';
 import { LabelMapperService } from './components/display/label-mapper/label-mapper.service';
 import { D3TimeseriesGraphComponent } from './components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
-import {
-    FlotOverviewTimeseriesGraphComponent,
-} from './components/graph/flot-overview-timeseries-graph/flot-overview-timeseries-graph.component';
-import { FlotTimeseriesGraphComponent } from './components/graph/flot-timeseries-graph/flot-timeseries-graph.component';
 import { PlotlyProfileGraphComponent } from './components/graph/plotly-profile-graph/plotly-profile-graph.component';
 import {
     DatasetByStationSelectorComponent,
@@ -67,7 +63,6 @@ const COMPONENTS = [
     LabelMapperComponent,
     ListSelectorComponent,
     MultiServiceFilterSelectorComponent,
-    FlotOverviewTimeseriesGraphComponent,
     TimespanShiftSelectorComponent,
     PredefinedTimespanSelectorComponent,
     TimespanSelectorComponent,
@@ -76,7 +71,6 @@ const COMPONENTS = [
     GeometryMapViewerComponent,
     StringTogglerComponent,
     BoolTogglerComponent,
-    FlotTimeseriesGraphComponent,
     TimeseriesStyleSelectorComponent,
     TimeListSelectorComponent,
     TimeRangeSliderSelectorComponent,
