@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbAccordionModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { HelgolandDepictionModule } from 'helgoland-toolbox';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { BoolTogglerComponent } from './components/control/bool-toggler/bool-toggler.component';
@@ -13,15 +14,8 @@ import { StringTogglerComponent } from './components/control/string-toggler/stri
 import { ProfileEntryComponent } from './components/datasetlist/profile-entry/profile-entry.component';
 import { TimeseriesEntryComponent } from './components/datasetlist/timeseries-entry/timeseries-entry.component';
 import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
-import { LabelMapperComponent } from './components/display/label-mapper/label-mapper.component';
-import { LabelMapperService } from './components/display/label-mapper/label-mapper.service';
 import { D3TimeseriesGraphComponent } from './components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
 import { PlotlyProfileGraphComponent } from './components/graph/plotly-profile-graph/plotly-profile-graph.component';
-import {
-    DatasetByStationSelectorComponent,
-} from './components/selection/dataset-by-station-selector/dataset-by-station-selector.component';
-import { ListSelectorComponent } from './components/selection/list-selector/list-selector.component';
-import { ListSelectorService } from './components/selection/list-selector/list-selector.service';
 import { PlatformMapSelectorComponent } from './components/selection/map-selector/platform-map-selector.component';
 import { StationMapSelectorComponent } from './components/selection/map-selector/station-map-selector.component';
 import {
@@ -29,16 +23,8 @@ import {
 } from './components/selection/map-selector/trajectory-map-selector.component';
 import { MultiPhenomenonListComponent } from './components/selection/multi-phenomenon-list/multi-phenomenon-list.component';
 import {
-    MultiServiceFilterSelectorComponent,
-} from './components/selection/multi-service-filter-selector/multi-service-filter-selector.component';
-import {
     PredefinedTimespanSelectorComponent,
 } from './components/selection/predefined-timespan-selector/predefined-timespan-selector.component';
-import { ProviderSelectorComponent } from './components/selection/provider-selector/provider-selector.component';
-import { ProviderSelectorService } from './components/selection/provider-selector/provider-selector.service';
-import {
-    ServiceFilterSelectorComponent,
-} from './components/selection/service-filter-selector/service-filter-selector.component';
 import { TimeListSelectorComponent } from './components/selection/time-list-selector/time-list-selector.component';
 import {
     TimeRangeSliderSelectorComponent,
@@ -52,17 +38,11 @@ import {
 } from './components/selection/timespan-shift-selector/timespan-shift-selector.component';
 
 const COMPONENTS = [
-    ProviderSelectorComponent,
-    DatasetByStationSelectorComponent,
     StationMapSelectorComponent,
     PlatformMapSelectorComponent,
     ProfileTrajectoryMapSelectorComponent,
-    ServiceFilterSelectorComponent,
     ZoomControlComponent,
     LocateControlComponent,
-    LabelMapperComponent,
-    ListSelectorComponent,
-    MultiServiceFilterSelectorComponent,
     TimespanShiftSelectorComponent,
     PredefinedTimespanSelectorComponent,
     TimespanSelectorComponent,
@@ -85,6 +65,7 @@ const COMPONENTS = [
         HttpClientModule,
         FormsModule,
         ColorPickerModule,
+        HelgolandDepictionModule,
         NgbAccordionModule,
         NgbDatepickerModule,
         NgbTimepickerModule
@@ -97,10 +78,7 @@ const COMPONENTS = [
         COMPONENTS
     ],
     providers: [
-        ProviderSelectorService,
-        LocateService,
-        LabelMapperService,
-        ListSelectorService
+        LocateService
     ]
 })
 export class ToolboxModule { }

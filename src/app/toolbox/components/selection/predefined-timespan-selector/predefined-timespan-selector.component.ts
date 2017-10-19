@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Timespan } from 'helgoland-toolbox';
+import { Settings, Timespan } from 'helgoland-toolbox';
 import { ParsedTimespanPreset, TimespanPreset } from 'helgoland-toolbox';
-
-import { Settings } from './../../../../services/settings.service';
 
 @Component({
     selector: 'n52-predefined-timespan-selector',

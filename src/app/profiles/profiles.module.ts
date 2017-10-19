@@ -2,7 +2,12 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
-import { HelgolandPermalinkModule, HelgolandToolboxModule } from 'helgoland-toolbox';
+import {
+    HelgolandDepictionModule,
+    HelgolandPermalinkModule,
+    HelgolandSelectorModule,
+    HelgolandToolboxModule,
+} from 'helgoland-toolbox';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { ProfilesCombiViewPermalink } from './combi-view/combi-view-permalink.service';
@@ -48,6 +53,8 @@ const profilesRoutes: Routes = [
     ToolboxModule,
     HelgolandToolboxModule,
     HelgolandPermalinkModule,
+    HelgolandSelectorModule,
+    HelgolandDepictionModule,
     RouterModule.forRoot(
       profilesRoutes
     ),

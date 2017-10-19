@@ -4,15 +4,15 @@ import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 import {
     BlacklistedService,
     Dataset,
+    ListSelectorParameter,
     ParameterFilter,
     PlatformTypes,
     Provider,
     Service,
+    Settings,
     ValueTypes,
 } from 'helgoland-toolbox';
 
-import { Settings } from './../../services/settings.service';
-import { ListSelectorParameter } from './../../toolbox/components/selection/list-selector/list-selector.component';
 import { TrajectoriesService } from './../services/trajectories.service';
 
 @Component({

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
-import { HelgolandPermalinkModule, HelgolandToolboxModule } from 'helgoland-toolbox';
+import { HelgolandPermalinkModule, HelgolandSelectorModule, HelgolandToolboxModule } from 'helgoland-toolbox';
 
 import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TrajectoriesNavigationComponent } from './navigation/navigation.component';
@@ -40,6 +40,7 @@ const trajectoriesRoutes: Routes = [
     ToolboxModule,
     HelgolandToolboxModule,
     HelgolandPermalinkModule,
+    HelgolandSelectorModule,
     RouterModule.forRoot(
       trajectoriesRoutes,
       { enableTracing: false }

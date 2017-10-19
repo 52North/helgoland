@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-import { Settings } from './../../../../services/settings.service';
+import { Settings } from 'helgoland-toolbox';
 
 @Component({
   selector: 'n52-timeseries-style-selector',

@@ -8,10 +8,11 @@ import {
     NgbTabsetModule,
     NgbTimepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { Settings } from 'helgoland-toolbox';
 
 import { AppComponent } from './app.component';
 import { ProfilesModule } from './profiles/profiles.module';
-import { Settings } from './services/settings.service';
+import { SettingsService } from './services/settings.service';
 import { TimeseriesModule } from './timeseries/timeseries.module';
 import { TrajectoriesModule } from './trajectories/trajectories.module';
 
@@ -32,7 +33,10 @@ import { TrajectoriesModule } from './trajectories/trajectories.module';
     NgbTimepickerModule.forRoot()
   ],
   providers: [
-    Settings
+    {
+      provide: Settings,
+      useClass: SettingsService
+    }
   ],
   bootstrap: [AppComponent]
 })

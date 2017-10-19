@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BlacklistedService, ParameterFilter, Service } from 'helgoland-toolbox';
+import { BlacklistedService, ParameterFilter, Service, Settings } from 'helgoland-toolbox';
 
-import { Settings } from './../../services/settings.service';
 import { TimeseriesProviderSelectionService } from './provider-selection.service';
 
 @Component({

@@ -16,12 +16,12 @@ import {
     Procedure,
     ProfileDataEntry,
     Service,
+    Settings,
     TimedDatasetOptions,
     Timespan,
     ValueTypes,
 } from 'helgoland-toolbox';
 
-import { Settings } from './../../services/settings.service';
 import { TrajectoryResult } from './../../toolbox/components/selection/map-selector/trajectory-map-selector.component';
 import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';
