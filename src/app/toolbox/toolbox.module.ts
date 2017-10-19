@@ -6,8 +6,6 @@ import { NgbAccordionModule, NgbDatepickerModule, NgbTimepickerModule } from '@n
 import { HelgolandDepictionModule } from 'helgoland-toolbox';
 import { ColorPickerModule } from 'ngx-color-picker';
 
-import { BoolTogglerComponent } from './components/control/bool-toggler/bool-toggler.component';
-import { StringTogglerComponent } from './components/control/string-toggler/string-toggler.component';
 import { ProfileEntryComponent } from './components/datasetlist/profile-entry/profile-entry.component';
 import { TimeseriesEntryComponent } from './components/datasetlist/timeseries-entry/timeseries-entry.component';
 import { GeometryMapViewerComponent } from './components/display/geometry-map-viewer/geometry-map-viewer.component';
@@ -22,8 +20,6 @@ const COMPONENTS = [
     TimeseriesEntryComponent,
     ProfileEntryComponent,
     GeometryMapViewerComponent,
-    StringTogglerComponent,
-    BoolTogglerComponent,
     TimeseriesStyleSelectorComponent,
     PlotlyProfileGraphComponent,
     D3TimeseriesGraphComponent,
