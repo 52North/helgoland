@@ -8,10 +8,8 @@ import {
     HelgolandMapViewModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
-    HelgolandToolboxModule,
 } from 'helgoland-toolbox';
 
-import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TrajectoriesNavigationComponent } from './navigation/navigation.component';
 import { TrajectoriesSelectionComponent } from './selection/selection.component';
 import { TrajectoriesConditionalRouter } from './services/trajectories-router.service';
@@ -44,8 +42,6 @@ const trajectoriesRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    ToolboxModule,
-    HelgolandToolboxModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandControlModule,

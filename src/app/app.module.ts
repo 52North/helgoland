@@ -1,3 +1,4 @@
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -8,7 +9,7 @@ import {
     NgbTabsetModule,
     NgbTimepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
-import { Settings } from 'helgoland-toolbox';
+import { CachingInterceptor, HttpCache, LocalHttpCache, Settings } from 'helgoland-toolbox';
 
 import { AppComponent } from './app.component';
 import { ProfilesModule } from './profiles/profiles.module';
@@ -26,6 +27,7 @@ import { TrajectoriesModule } from './trajectories/trajectories.module';
     TimeseriesModule,
     TrajectoriesModule,
     ProfilesModule,
+    HttpClientModule,
     NgbTabsetModule.forRoot(),
     NgbAccordionModule.forRoot(),
     NgbModalModule.forRoot(),
@@ -36,7 +38,16 @@ import { TrajectoriesModule } from './trajectories/trajectories.module';
     {
       provide: Settings,
       useClass: SettingsService
-    }
+    },
+    {
+      provide: HttpCache,
+      useClass: LocalHttpCache
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CachingInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

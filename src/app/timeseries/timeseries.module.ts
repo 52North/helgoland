@@ -8,11 +8,9 @@ import {
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandTimeModule,
-    HelgolandToolboxModule,
 } from 'helgoland-toolbox';
 import { HelgolandMapControlModule, HelgolandMapSelectorModule } from 'helgoland-toolbox/dist';
 
-import { ToolboxModule } from './../toolbox/toolbox.module';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
 import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
@@ -61,8 +59,6 @@ const timeseriesRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    ToolboxModule,
-    HelgolandToolboxModule,
     HelgolandPermalinkModule,
     HelgolandFlotGraphModule,
     HelgolandSelectorModule,

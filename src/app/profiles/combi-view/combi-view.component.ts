@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiInterface, InternalIdHandler, LocatedProfileDataEntry, TimedDatasetOptions, Timespan } from 'helgoland-toolbox';
+import {
+    ApiInterface,
+    GraphHighlight,
+    InternalIdHandler,
+    LocatedProfileDataEntry,
+    TimedDatasetOptions,
+    Timespan,
+} from 'helgoland-toolbox';
 
-import { GraphHighlight } from './../../toolbox/components/graph/datasetGraphComponent';
 import { ProfilesCombiViewPermalink } from './combi-view-permalink.service';
 import { ProfilesCombiService } from './combi-view.service';
 
