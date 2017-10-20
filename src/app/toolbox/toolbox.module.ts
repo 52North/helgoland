@@ -5,12 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { NgbAccordionModule, NgbDatepickerModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColorPickerModule } from 'ngx-color-picker';
 
-import { D3TimeseriesGraphComponent } from './components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
 import { PlotlyProfileGraphComponent } from './components/graph/plotly-profile-graph/plotly-profile-graph.component';
 
 const COMPONENTS = [
-    PlotlyProfileGraphComponent,
-    D3TimeseriesGraphComponent
+    PlotlyProfileGraphComponent
 ];
 
 @NgModule({

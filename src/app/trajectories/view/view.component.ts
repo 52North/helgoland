@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
     ApiInterface,
+    D3AxisType,
+    D3GraphOptions,
+    D3SelectionRange,
     DatasetOptions,
     IDataset,
     InternalIdHandler,
@@ -8,8 +11,6 @@ import {
     Timespan,
 } from 'helgoland-toolbox';
 
-import { AxisType, D3GraphOptions } from '../../toolbox/components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
-import { SelectionRange } from './../../toolbox/components/graph/d3-timeseries-graph/d3-timeseries-graph.component';
 import { TrajectoriesService } from './../services/trajectories.service';
 import { TrajectoriesViewPermalink } from './view-permalink';
 
@@ -21,7 +22,7 @@ import { TrajectoriesViewPermalink } from './view-permalink';
 })
 export class TrajectoriesViewComponent implements OnInit {
 
-    public selection: SelectionRange;
+    public selection: D3SelectionRange;
 
     public highlightGeometry: GeoJSON.DirectGeometryObject;
 
@@ -40,13 +41,13 @@ export class TrajectoriesViewComponent implements OnInit {
     public options: Map<string, DatasetOptions>;
 
     public graphOptions: D3GraphOptions = {
-        axisType: AxisType.Distance,
+        axisType: D3AxisType.Distance,
         dotted: false
     };
 
-    public axisTypeDistance = AxisType.Distance;
-    public axisTypeTime = AxisType.Time;
-    public axisTypeTicks = AxisType.Ticks;
+    public axisTypeDistance = D3AxisType.Distance;
+    public axisTypeTime = D3AxisType.Time;
+    public axisTypeTicks = D3AxisType.Ticks;
 
     constructor(
         private trajectorySrvc: TrajectoriesService,
@@ -78,14 +79,14 @@ export class TrajectoriesViewComponent implements OnInit {
         }
     }
 
-    public onChartSelectionChanged(range: SelectionRange) {
+    public onChartSelectionChanged(range: D3SelectionRange) {
         this.highlightGeometry = {
             type: 'LineString',
             coordinates: this.geometry.coordinates.slice(range.from, range.to)
         };
     }
 
-    public onChartSelectionChangedFinished(range: SelectionRange) {
+    public onChartSelectionChangedFinished(range: D3SelectionRange) {
         console.log('Range finished: ' + range.from + ' ' + range.to);
         this.selection = range;
         this.zoomToGeometry = {
@@ -101,7 +102,7 @@ export class TrajectoriesViewComponent implements OnInit {
         };
     }
 
-    public onAxisTypeChanged(axisType: AxisType) {
+    public onAxisTypeChanged(axisType: D3AxisType) {
         this.graphOptions.axisType = axisType;
     }
 

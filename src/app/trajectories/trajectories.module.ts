@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import {
     HelgolandControlModule,
+    HelgolandD3GraphModule,
     HelgolandMapViewModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
@@ -49,6 +50,7 @@ const trajectoriesRoutes: Routes = [
     HelgolandSelectorModule,
     HelgolandControlModule,
     HelgolandMapViewModule,
+    HelgolandD3GraphModule,
     RouterModule.forRoot(
       trajectoriesRoutes,
       { enableTracing: false }
