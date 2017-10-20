@@ -3,8 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import {
+    HelgolandDatasetlistModule,
     HelgolandDepictionModule,
     HelgolandMapSelectorModule,
+    HelgolandMapViewModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandTimeModule,
@@ -59,6 +61,8 @@ const profilesRoutes: Routes = [
     HelgolandDepictionModule,
     HelgolandMapSelectorModule,
     HelgolandTimeModule,
+    HelgolandDatasetlistModule,
+    HelgolandMapViewModule,
     RouterModule.forRoot(
       profilesRoutes
     ),

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbAccordionModule, NgbModalModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import {
+    HelgolandDatasetlistModule,
     HelgolandFlotGraphModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
@@ -68,6 +69,7 @@ const timeseriesRoutes: Routes = [
     HelgolandMapSelectorModule,
     HelgolandMapControlModule,
     HelgolandTimeModule,
+    HelgolandDatasetlistModule,
     RouterModule.forRoot(
       timeseriesRoutes
     ),
