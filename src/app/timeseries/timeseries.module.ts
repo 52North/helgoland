@@ -5,11 +5,12 @@ import { NgbAccordionModule, NgbModalModule, NgbTabsetModule } from '@ng-bootstr
 import {
     HelgolandDatasetlistModule,
     HelgolandFlotGraphModule,
+    HelgolandMapControlModule,
+    HelgolandMapSelectorModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandTimeModule,
 } from 'helgoland-toolbox';
-import { HelgolandMapControlModule, HelgolandMapSelectorModule } from 'helgoland-toolbox/dist';
 
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';

@@ -1,0 +1,18 @@
+@import "../variables";
+
+n52-timeseries-entry,
+n52-profile-entry {
+    @media screen and (max-width: $responsive-mobile-width) {
+        .hidden-small {
+            display: none;
+        }
+        .legend.active {
+            background: rgba(66, 139, 202, 0.65);
+        }
+    }
+    @media screen and (max-width: $responsive-tablet-width) {
+        .hidden-medium {
+            display: none;
+        }
+    }
+}

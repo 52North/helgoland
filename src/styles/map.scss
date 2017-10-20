@@ -1,17 +1,9 @@
 @import "../variables";
-
-.mapNotifier {
-    position:absolute;
-    bottom: 10px;
-    left: 10px;
-    z-index: 1001;
-    width: 120px;
-    height: 70px;
-    padding: 5px;
-    opacity: 0.8;
+.map-notifier {
     background-color: $primary;
-    border-radius: 10px;
-    text-align: center;
+    @if ($enable-rounded) {
+        border-radius: 10px;
+    }
 }
 
 .leaflet-control-layers,

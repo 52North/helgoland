@@ -1,0 +1,15 @@
+@import "../variables";
+
+n52-flot-timeseries-graph {
+    .axisTarget {
+        cursor: pointer;
+        &:hover {
+            background-color: $hover-background-color;
+            opacity: 0.4;
+        }
+        &.selected {
+            background-color: $selection-background-color;
+            opacity: 0.4;
+        }
+    }
+}

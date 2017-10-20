@@ -12,3 +12,32 @@
         cursor: pointer;
     }
 }
+
+n52-provider-selector {
+    .provider-list {
+        color: $text-color;
+        .provider-item {
+            &:hover {
+                background-color: $hover-background-color;
+                color: $hover-color;
+            }
+            &.selected {
+                background-color: $selection-background-color;
+                color: $selection-color;
+            }
+        }
+    }
+}
+
+n52-dataset-by-station-selector {
+    .item {
+        .selected {
+            color: $selection-color;
+            background-color: $selection-background-color;
+        }
+        :hover {
+            color: $hover-color;
+            background-color: $hover-background-color;
+        }
+    }
+}
