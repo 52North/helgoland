@@ -1,0 +1,99 @@
+{
+	"controls": {
+		"cancel": "Abbrechen",
+		"close": "Schließen"
+	},
+	"listSelection": {
+		"loading": ""
+	},
+	"navigation": {
+		"profiles": {
+			"combi": "Kombinierte Ansicht",
+			"diagram": "Diagramm",
+			"main": "Profile",
+			"selection": "Auswahl"
+		},
+		"timeseries": {
+			"diagram": "Diagramm",
+			"list-selection": "Listenauswahl",
+			"main": "Zeitreihen",
+			"map": "Karte",
+			"provider": "Anbieter"
+		},
+		"trajectories": {
+			"main": "Trajektorien",
+			"selection": "Auswahl",
+			"view": "Ansicht"
+		}
+	},
+	"profiles": {
+		"hint": {
+			"select-profile": "Bitte wählen Sie zuerst Profile aus."
+		},
+		"selection": {
+			"load-timestamps": "Läd die verfügbaren Zeitpunkte",
+			"platform": "Platform",
+			"select-offering": "Wähle Offering",
+			"select-phenomenon": "Wähle Phänomen",
+			"select-platform": {
+				"header": "Wähle Platform",
+				"hint": "Wähle entweder eine stationäre oder mobile Platform",
+				"mobile": "Mobile Platform",
+				"stationary": "Stationäre Platform"
+			},
+			"select-profile": "Wähle Profile",
+			"select-provider": "Wähle Anbieter",
+			"select-sensor": "Wähle Sensor",
+			"select-timestamp": "Selektiere ein Zeitpunkt um das Profile zu sehen",
+			"timestamp": "Zeitpunkt",
+			"to-combi-view": "Kombinierter-Ansicht",
+			"to-diagram-view": "Diagramm-Ansicht"
+		}
+	},
+	"provider-selector": {
+		"datasets": "Datensätze",
+		"phenomena": "Phänomene",
+		"platforms": "Platformen",
+		"service-url": "Service-Url",
+		"stations": "Stationen",
+		"timeseries": "Zeitreihen"
+	},
+	"timeseries": {
+		"diagram": {
+			"hint": {
+				"select-by-map": "Bitte wählen Sie zuerst eine Zeitreihe aus.",
+				"select-provider": "Bitte wählen Sie zuerst einen Provider aus."
+			},
+			"legend": "Legende"
+		},
+		"list-selection": {
+			"category": "Kategorie",
+			"hint": "Um Zeitreihen über die Listenauswahl auszuwählen, müssen Sie erst einen Anbieter wählen.",
+			"phenomenon": "Phänomen",
+			"sensor": "Sensor",
+			"station": "Station"
+		},
+		"map-selection": {
+			"hint": "Um Zeitreihen über die Karte auszuwählen, müssen Sie erst einen Anbieter wählen.",
+			"show-in-diagram": "Zeige {{value}} im Diagramm"
+		}
+	},
+	"trajectories": {
+		"map": {
+			"loading": ""
+		},
+		"selection": {
+			"select-by-phenomenon": "Wähle über Phänomen",
+			"select-by-platform": "Wähle über Platform",
+			"select-provider": "Wähle Anbieter"
+		},
+		"view": {
+			"graph-distance-tooltip": "X-Achse bildet die Distanz ab",
+			"graph-dotted-tooltip": "Zeitreihe als Linien-/Punktdarstellung",
+			"graph-information-tooltip": "Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt.",
+			"graph-ticks-tooltip": "X-Achse bildet die Messpunkte linear ab",
+			"graph-time-tooltip": "X-Achse bildet den Zeitraum ab",
+			"hint": "Bitte wählen Sie zuerst eine Trajektorie aus."
+		}
+	}
+}

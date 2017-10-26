@@ -1,15 +1,15 @@
 <ng-template #modalStationaryPlatform let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Platform: {{stationaryPlatform.label}}</h4>
+    <h4 class="modal-title">{{'profiles.selection.platform' | translate}}: {{stationaryPlatform.label}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <div style="word-wrap: break-word;">{{stationaryPlatformDataset.label}}</div>
-    <div *ngIf="stationaryPlatformLoading">Läd die verfügbaren Zeitpunkte...</div>
+    <div *ngIf="stationaryPlatformLoading">{{'profiles.selection.load-timestamps' | translate}}...</div>
     <div *ngIf="!stationaryPlatformLoading" style="padding: 10px;">
-      <div>Selektiere ein Zeitpunkt um das Profile zu sehen:</div>
+      <div>{{'profiles.selection.select-timestamp' | translate}}:</div>
       <n52-time-list-selector [timeList]="stationaryTimestamps" (onTimeSelected)="onTimeselected($event); c();"></n52-time-list-selector>
     </div>
   </div>
@@ -24,7 +24,7 @@
   </div>
   <div class="modal-body">
     <div class="time-at" style="text-align: center;">
-      <span>Zeitpunkt:</span>
+      <span>{{'profiles.selection.timestamp' | translate}}:</span>
       <span>{{mobilePreviewTimestamp | date : 'medium'}}</span>
     </div>
     <div>
@@ -32,9 +32,9 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="addToCombiView();c();">Kombinierter-Ansicht</button>
-    <button type="button" class="btn btn-light" (click)="addToChart();c();">Diagramm-Ansicht</button>
-    <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
+    <button type="button" class="btn btn-light" (click)="addToCombiView();c();">{{'profiles.selection.to-combi-view' | translate}}</button>
+    <button type="button" class="btn btn-light" (click)="addToChart();c();">{{'profiles.selection.to-diagram-view' | translate}}</button>
+    <button type="button" class="btn btn-light" (click)="c();">{{'controls.cancel' | translate}}</button>
   </div>
 </ng-template>
 
@@ -43,7 +43,7 @@
   <ngb-tabset #profileSelection="ngbTabset" class="wrapper" justify="fill">
     <ngb-tab id="selectProvider">
       <ng-template ngbTabTitle>
-        <span>Wähle Anbieter</span>
+        <span>{{'profiles.selection.select-provider' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent class="tab-content">
         <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onProviderSelected)="providerSelected($event, true);"></n52-provider-selector>
@@ -51,7 +51,7 @@
     </ngb-tab>
     <ngb-tab id="selectOffering" [disabled]="selectedProvider == undefined">
       <ng-template ngbTabTitle>
-        <span>Wähle Offering</span>
+        <span>{{'profiles.selection.select-offering' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
         <n52-service-filter-selector [endpoint]="'offering'" [filter]="offeringFilter" [serviceUrl]="selectedProvider.providerUrl"
@@ -60,7 +60,7 @@
     </ngb-tab>
     <ngb-tab id="selectPhenomenon" [disabled]="selectedOffering == undefined">
       <ng-template ngbTabTitle>
-        <span>Wähle Phänomen</span>
+        <span>{{'profiles.selection.select-phenomenon' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
         <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedProvider.providerUrl"
@@ -69,7 +69,7 @@
     </ngb-tab>
     <ngb-tab id="selectProcedure" [disabled]="selectedPhenomenon == undefined">
       <ng-template ngbTabTitle>
-        <span>Wähle Sensor</span>
+        <span>{{'profiles.selection.select-sensor' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
         <n52-service-filter-selector [endpoint]="'procedure'" [filter]="procedureFilter" [serviceUrl]="selectedProvider.providerUrl"
@@ -78,18 +78,18 @@
     </ngb-tab>
     <ngb-tab id="selectPlatform" [disabled]="selectedProcedure == undefined">
       <ng-template ngbTabTitle>
-        <span>Wähle Platform</span>
+        <span>{{'profiles.selection.select-platform.header' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <div class="header">Wähle entweder eine stationäre oder mobile Platform:</div>
+        <div class="header">{{'profiles.selection.select-platform.hint' | translate}}:</div>
         <div class="platform-body">
           <div class="stationary">
-            <div class="header">Stationäre Platform:</div>
+            <div class="header">{{'profiles.selection.select-platform.stationary' | translate}}:</div>
             <n52-platform-map-selector class="map" [mapId]="'profiles-stationary'" [serviceUrl]="selectedProvider.providerUrl" [filter]="stationaryPlatformFilter"
               (onSelected)="onStationaryPlatformSelected($event)"></n52-platform-map-selector>
           </div>
           <div class="mobile">
-            <div class="header">Mobile Platform:</div>
+            <div class="header">{{'profiles.selection.select-platform.mobile' | translate}}:</div>
             <div class="body">
               <n52-service-filter-selector [endpoint]="'feature'" [filter]="mobilePlatformFilter" [serviceUrl]="selectedProvider.providerUrl"
                 [selectionId]="selectedFeature?.id" (onItemSelected)="featureSelected($event, true)"></n52-service-filter-selector>
@@ -100,7 +100,7 @@
     </ngb-tab>
     <ngb-tab id="selectProfile" [disabled]="selectedFeature == undefined">
       <ng-template ngbTabTitle>
-        <span>Wähle Profile</span>
+        <span>{{'profiles.selection.select-profile' | translate}}Wähle Profile</span>
       </ng-template>
       <ng-template ngbTabContent>
         <div class="timeslider">

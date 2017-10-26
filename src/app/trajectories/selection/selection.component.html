@@ -2,7 +2,7 @@
   <ngb-tabset #tabset="ngbTabset" class="boxItem vbox" [justify]="'center'">
     <ngb-tab id="trajectoryProvider">
       <ng-template ngbTabTitle>
-        <span>Wähle Anbieter</span>
+        <span>{{'trajectories.selection.select-provider' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
         <div class="providerList">
@@ -12,7 +12,7 @@
     </ngb-tab>
     <ngb-tab id="selectByPlatform" [disabled]="selectedProvider == undefined">
       <ng-template ngbTabTitle>
-        <span>Wähle über Platform</span>
+        <span>{{'trajectories.selection.select-by-platform' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
         <n52-list-selector [parameters]="platformParams" [selectorId]="'trajectory-platform'" [filter]="paramFilter" [providerList]="selectedProvider"
@@ -21,7 +21,7 @@
     </ngb-tab>
     <ngb-tab id="selectByPhenomenon" [disabled]="selectedProvider == undefined">
       <ng-template ngbTabTitle>
-        <span>Wähle über Phänomen</span>
+        <span>{{'trajectories.selection.select-by-phenomenon' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
         <n52-list-selector [parameters]="phenomenonParams" [selectorId]="'trajectory-phenomenon'" [filter]="paramFilter" [providerList]="selectedProvider"

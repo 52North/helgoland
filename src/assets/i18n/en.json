@@ -1,0 +1,99 @@
+{
+	"controls": {
+		"cancel": "Cancel",
+		"close": "Close"
+	},
+	"listSelection": {
+		"loading": ""
+	},
+	"navigation": {
+		"profiles": {
+			"combi": "Combination",
+			"diagram": "Diagram",
+			"main": "Profiles",
+			"selection": "Selection"
+		},
+		"timeseries": {
+			"diagram": "Diagram",
+			"list-selection": "List selection",
+			"main": "Timeseries",
+			"map": "Map",
+			"provider": "Provider"
+		},
+		"trajectories": {
+			"main": "Trajectories",
+			"selection": "Selection",
+			"view": "View"
+		}
+	},
+	"profiles": {
+		"hint": {
+			"select-profile": "Please select a profile first."
+		},
+		"selection": {
+			"load-timestamps": "Loading valid time stamps",
+			"platform": "Platform",
+			"select-offering": "Select offering",
+			"select-phenomenon": "Select phenomenon",
+			"select-platform": {
+				"header": "Select platform",
+				"hint": "Select either a stationary or mobile platform",
+				"mobile": "Mobile platforms",
+				"stationary": "Stationary platforms"
+			},
+			"select-profile": "Select profile",
+			"select-provider": "Select provider",
+			"select-sensor": "Select sensor",
+			"select-timestamp": "Select time stamp",
+			"timestamp": "Time stamp",
+			"to-combi-view": "Combind view",
+			"to-diagram-view": "Diagram view"
+		}
+	},
+	"provider-selector": {
+		"datasets": "Datasets",
+		"phenomena": "Phenomena",
+		"platforms": "Platforms",
+		"service-url": "Service-Url",
+		"stations": "Stations",
+		"timeseries": "Timeseries"
+	},
+	"timeseries": {
+		"diagram": {
+			"hint": {
+				"select-by-map": "Please select a timeseries first.",
+				"select-provider": "Please select a provider first."
+			},
+			"legend": "Legend"
+		},
+		"list-selection": {
+			"category": "Category",
+			"hint": "To select timeseries by list selection, you need to select a provider first.",
+			"phenomenon": "Phenomenon",
+			"sensor": "Sensor",
+			"station": "Station"
+		},
+		"map-selection": {
+			"hint": "To select timeseries by map selection, you need to select a provider first.",
+			"show-in-diagram": "Show {{value}} in diagram"
+		}
+	},
+	"trajectories": {
+		"map": {
+			"loading": ""
+		},
+		"selection": {
+			"select-by-phenomenon": "Select by phenomenon",
+			"select-by-platform": "Select by platform",
+			"select-provider": "Select provider"
+		},
+		"view": {
+			"graph-distance-tooltip": "x-axis figures the disatance",
+			"graph-dotted-tooltip": "Timeseries as line/dots",
+			"graph-information-tooltip": "The observation period can be shrinked by click and draw. A single click on the diagram represents the complete observation period.",
+			"graph-ticks-tooltip": "x-axis figures the measurement ticks linear",
+			"graph-time-tooltip": "x-axis figures the timeframe",
+			"hint": "Please select a trajectory first."
+		}
+	}
+}

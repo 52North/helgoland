@@ -9,8 +9,10 @@
         <n52-dataset-by-station-selector [station]="platform" [url]="provider.providerUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="openDatasets();c();">Show {{datasetSelections.length}} in Diagram</button>
-        <button type="button" class="btn btn-light" (click)="c();">Close</button>
+        <button type="button" class="btn btn-light" (click)="openDatasets();c();">
+            <span translate [translateParams]="{value: datasetSelections.length}">timeseries.map-selection.show-in-diagram</span>
+        </button>
+        <button type="button" class="btn btn-light" (click)="c();">{{'controls.close' | translate}}</button>
     </div>
 </ng-template>
 
@@ -33,7 +35,6 @@
 
 <div *ngIf="!provider" class="container n52-alert">
     <div class="alert alert-primary" role="alert">
-        <span>Um Zeitreihen über die Karte auszuwählen, müssen Sie erst einen
-            <a routerLink="/timeseries/provider" class="alert-link">Anbieter</a> wählen.</span>
+        <a routerLink="/timeseries/provider" class="alert-link">{{'timeseries.map-selection.hint' | translate}}</a>
     </div>
 </div>

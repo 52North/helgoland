@@ -11,7 +11,8 @@
   </div>
   <div class="combi-body">
     <div class="map-container">
-      <n52-geometry-map-viewer class="map" mapId="trajectory" [geometry]="geometry" [maxMapZoom]="14" [highlight]="highlightGeometry" [zoomTo]="zoomToGeometry"></n52-geometry-map-viewer>
+      <n52-geometry-map-viewer class="map" mapId="trajectory" [geometry]="geometry" [maxMapZoom]="14" [highlight]="highlightGeometry"
+        [zoomTo]="zoomToGeometry"></n52-geometry-map-viewer>
       <div class="mapNotifier" *ngIf="loading">
         <div>
           <div class="glyphicon glyphicon-refresh icon-spin"></div>
@@ -25,9 +26,10 @@
     <div class="chart-container">
       <div class="chart">
         <n52-d3-timeseries-graph [datasetIds]="datasetIds" [timeInterval]="timespan" [datasetOptions]="options" [graphOptions]="graphOptions"
-          [selection]="selection" (onSelectionChanged)="onChartSelectionChanged($event)" (onSelectionChangedFinished)="onChartSelectionChangedFinished($event)" (onHoverHighlight)="onChartHighlightChanged($event)"></n52-d3-timeseries-graph>
+          [selection]="selection" (onSelectionChanged)="onChartSelectionChanged($event)" (onSelectionChangedFinished)="onChartSelectionChangedFinished($event)"
+          (onHoverHighlight)="onChartHighlightChanged($event)"></n52-d3-timeseries-graph>
         <div class="chart-information">
-          <span class="fa fa-info-circle" title="Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt."></span>
+          <span class="fa fa-info-circle" title="{{'trajectories.view.graph-information-tooltip' | translate}}"></span>
         </div>
       </div>
       <div class="legend">
@@ -36,20 +38,21 @@
       </div>
       <div class="chart-buttons">
         <div class="chart-control">
-          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeDistance" icon="road" tooltip="X-Achse bildet die Distanz ab"
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeDistance" icon="road" tooltip="{{'trajectories.view.graph-distance-tooltip' | translate}}"
             (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
         </div>
         <div class="chart-control">
-          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTime" icon="clock-o" tooltip="X-Achse bildet den Zeitraum ab"
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTime" icon="clock-o" tooltip="{{'trajectories.view.graph-time-tooltip' | translate}}"
             (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
         </div>
         <div class="chart-control">
-          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTicks" icon="ellipsis-h" tooltip="X-Achse bildet die Messpunkte linear ab"
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTicks" icon="ellipsis-h" tooltip="{{'trajectories.view.graph-ticks-tooltip' | translate}}"
             (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
         </div>
         <hr>
         <div class="chart-control">
-          <n52-bool-toggler [value]="graphOptions.dotted" icon="line-chart" tooltip="Zeitreihe als Linien-/Punktdarstellung" (onToggled)="onDottedChanged($event)"></n52-bool-toggler>
+          <n52-bool-toggler [value]="graphOptions.dotted" icon="line-chart" tooltip="{{'trajectories.view.graph-dotted-tooltip' | translate}}"
+            (onToggled)="onDottedChanged($event)"></n52-bool-toggler>
         </div>
       </div>
     </div>
@@ -58,7 +61,6 @@
 
 <div *ngIf="datasetIds.length === 0" class="container n52-alert">
   <div class="alert alert-primary" role="alert">
-    <span>Bitte
-      <a routerLink="/trajectories/selection" class="alert-link">wählen</a> Sie zuerst eine Trajektorie aus.</span>
+    <a routerLink="/trajectories/selection" class="alert-link">{{'trajectories.view.hint' | translate}}</a>
   </div>
 </div>

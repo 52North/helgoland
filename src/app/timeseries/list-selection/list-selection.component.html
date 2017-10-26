@@ -1,25 +1,25 @@
 <div class="container" *ngIf="providerList">
   <ngb-tabset>
     <ngb-tab>
-      <ng-template ngbTabTitle>Kategorie</ng-template>
+      <ng-template ngbTabTitle>{{'timeseries.list-selection.category' | translate}}</ng-template>
       <ng-template ngbTabContent>
         <n52-list-selector [parameters]="categoryParams" [selectorId]="'category'" [providerList]="providerList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
       </ng-template>
     </ngb-tab>
     <ngb-tab>
-      <ng-template ngbTabTitle>Station</ng-template>
+      <ng-template ngbTabTitle>{{'timeseries.list-selection.station' | translate}}</ng-template>
       <ng-template ngbTabContent>
         <n52-list-selector [parameters]="stationParams" [selectorId]="'station'" [providerList]="providerList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
       </ng-template>
     </ngb-tab>
     <ngb-tab>
-      <ng-template ngbTabTitle>Phänomen</ng-template>
+      <ng-template ngbTabTitle>{{'timeseries.list-selection.phenomenon' | translate}}</ng-template>
       <ng-template ngbTabContent>
         <n52-list-selector [parameters]="phenomenonParams" [selectorId]="'phenomenon'" [providerList]="providerList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
       </ng-template>
     </ngb-tab>
     <ngb-tab>
-      <ng-template ngbTabTitle>Sensor</ng-template>
+      <ng-template ngbTabTitle>{{'timeseries.list-selection.sensor' | translate}}</ng-template>
       <ng-template ngbTabContent>
         <n52-list-selector [parameters]="procedureParams" [selectorId]="'procedure'" [providerList]="providerList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
       </ng-template>
@@ -29,7 +29,6 @@
 
 <div *ngIf="!providerList" class="container n52-alert">
   <div class="alert alert-primary" role="alert">
-    <span>Um Zeitreihen über die Listenauswahl auszuwählen, müssen Sie erst einen
-      <a routerLink="/timeseries/provider" class="alert-link">Anbieter</a> wählen.</span>
+    <a routerLink="/timeseries/provider" class="alert-link">{{'timeseries.list-selection.hint' | translate}}</a>
   </div>
 </div>

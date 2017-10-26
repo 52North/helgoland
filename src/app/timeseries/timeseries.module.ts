@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NgbAccordionModule, NgbModalModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbDropdownModule, NgbModalModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
 import {
     HelgolandDatasetlistModule,
     HelgolandFlotGraphModule,
@@ -60,6 +61,7 @@ const timeseriesRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    TranslateModule,
     HelgolandPermalinkModule,
     HelgolandFlotGraphModule,
     HelgolandSelectorModule,
@@ -72,7 +74,8 @@ const timeseriesRoutes: Routes = [
     ),
     NgbTabsetModule,
     NgbAccordionModule,
-    NgbModalModule
+    NgbModalModule,
+    NgbDropdownModule
   ],
   declarations: [
     TimeseriesNavigationComponent,

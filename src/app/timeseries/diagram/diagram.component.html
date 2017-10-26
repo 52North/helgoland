@@ -1,13 +1,12 @@
 <n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
-<div *ngIf="datasetIds.length == 0" class="container n52-alert">
+<div *ngIf="datasetIds.length == 0 && selectedProvider" class="container n52-alert">
   <div class="alert alert-primary" role="alert">
-    <span>Sie haben keine Zeitreihe ausgewählt, wählen Sie einen
-      <a routerLink="/timeseries/provider" class="alert-link">Anbieter</a>
-      , oder eine Zeitreihe über die
-      <a routerLink="/timeseries/map-selection" class="alert-link">Karte</a>
-      oder die
-      <a routerLink="/timeseries/list-selection" class="alert-link">Listenauswahl</a>
-    </span>.
+    <a routerLink="/timeseries/map-selection" class="alert-link">{{'timeseries.diagram.hint.select-by-map' | translate}}</a>
+  </div>
+</div>
+<div *ngIf="!selectedProvider" class="container n52-alert">
+  <div class="alert alert-primary" role="alert">
+    <a routerLink="/timeseries/provider" class="alert-link">{{'timeseries.diagram.hint.select-provider' | translate}}</a>
   </div>
 </div>
 <div class="content" *ngIf="datasetIds.length > 0">
@@ -29,7 +28,7 @@
     </div>
   </div>
   <div class="legend scrollable">
-    <h3 class="header">Legende</h3>
+    <h3 class="header">{{'timeseries.diagram.legend' | translate}}</h3>
     <div class="legend-entry">
       <div *ngFor="let id of datasetIds">
         <n52-timeseries-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" [timeInterval]="timespan"

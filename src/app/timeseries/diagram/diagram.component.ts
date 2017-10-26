@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Data, DatasetOptions, IDataEntry, IDataset, PlotOptions, Time, Timespan } from 'helgoland-toolbox';
+import { Data, DatasetOptions, IDataEntry, IDataset, PlotOptions, Service, Time, Timespan } from 'helgoland-toolbox';
 
+import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
 import { TimeseriesService } from './../services/timeseries.service';
 import { TimeseriesDiagramPermalink } from './diagram-permalink.service';
 
@@ -17,6 +18,7 @@ export class TimeseriesDiagramComponent implements OnInit {
     public selectedIds: Array<string> = new Array();
     public data: Array<Data<IDataEntry>>;
     public timespan: Timespan;
+    public selectedProvider: Service;
 
     public diagramOptions: PlotOptions = {
         crosshair: {
@@ -127,10 +129,12 @@ export class TimeseriesDiagramComponent implements OnInit {
     constructor(
         private timeseriesService: TimeseriesService,
         private timeSrvc: Time,
-        private permalinkSrvc: TimeseriesDiagramPermalink
+        private permalinkSrvc: TimeseriesDiagramPermalink,
+        private providerCache: TimeseriesProviderSelectionService
     ) { }
 
     public ngOnInit() {
+        this.selectedProvider = this.providerCache.getSelectedProvider();
         this.permalinkSrvc.validatePeramlink();
         this.datasetIds = this.timeseriesService.datasetIds;
         this.datasetOptions = this.timeseriesService.datasetOptions;

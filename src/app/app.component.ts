@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Language } from 'helgoland-toolbox/dist';
 
 @Component({
   selector: 'n52-root',
@@ -6,5 +8,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+
+  public languageList: Language[];
+
+  constructor(translate: TranslateService) {
+    translate.setDefaultLang('en');
+    translate.use('de');
+
+    this.languageList = [
+      {
+        label: 'Deutsch',
+        code: 'de'
+      },
+      {
+        label: 'English',
+        code: 'en'
+      }
+    ];
+
+  }
 }

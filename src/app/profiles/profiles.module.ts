@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
 import {
     HelgolandDatasetlistModule,
     HelgolandDepictionModule,
@@ -53,6 +54,7 @@ const profilesRoutes: Routes = [
 @NgModule({
     imports: [
         CommonModule,
+        TranslateModule,
         HelgolandPermalinkModule,
         HelgolandSelectorModule,
         HelgolandDepictionModule,
