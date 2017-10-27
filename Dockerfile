@@ -4,11 +4,11 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
-RUN npm --quiet install --silent --allow-root install && npm --quiet install grunt-cli
+RUN npm install --allow-root
 
 COPY . /usr/src/app
 
-RUN ./node_modules/grunt-cli/bin/grunt
+RUN npm run build
 
 EXPOSE 8080
 

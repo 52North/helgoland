@@ -74,14 +74,14 @@
     "url": "https://github.com/52North/sensorweb-thin-client"
   },
   "scripts": {
-    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
+    "build": "./node_modules/.bin/rimraf dist && ./node_modules/.bin/webpack --config config/webpack.prod.js --progress --profile --bail",
     "docker": "npm run docker:build && npm run docker:run",
     "docker:build": "docker build -t helgoland:latest -f Dockerfile-local .",
     "docker:run": "docker run -p 8001:80 helgoland",
-    "prod": "http-server dist -p 8000 -c-1",
-    "server": "webpack-dev-server --history-api-fallback --inline --progress",
+    "prod": "./node_modules/.bin/http-server dist -p 8000 -c-1",
+    "server": "./node_modules/.bin/webpack-dev-server --history-api-fallback --inline --progress",
     "start": "npm run server",
-    "test": "karma start",
-    "test-watch": "karma start --auto-watch --no-single-run"
+    "test": "./node_modules/.bin/karma start",
+    "test-watch": "./node_modules/.bin/karma start --auto-watch --no-single-run"
   }
 }
