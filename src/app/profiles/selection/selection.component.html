@@ -34,7 +34,7 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="addToCombiView();c();">{{'profiles.selection.to-combi-view' | translate}}</button>
     <button type="button" class="btn btn-light" (click)="addToChart();c();">{{'profiles.selection.to-diagram-view' | translate}}</button>
-    <button type="button" class="btn btn-light" (click)="c();">{{'controls.cancel' | translate}}</button>
+    <button type="button" class="btn btn-light" (click)="c();">{{'controls.close' | translate}}</button>
   </div>
 </ng-template>
 
@@ -100,7 +100,7 @@
     </ngb-tab>
     <ngb-tab id="selectProfile" [disabled]="selectedFeature == undefined">
       <ng-template ngbTabTitle>
-        <span>{{'profiles.selection.select-profile' | translate}}Wähle Profile</span>
+        <span>{{'profiles.selection.select-profile' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
         <div class="timeslider">

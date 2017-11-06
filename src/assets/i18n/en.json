@@ -1,6 +1,5 @@
 {
 	"controls": {
-		"cancel": "Cancel",
 		"close": "Close"
 	},
 	"listSelection": {
@@ -46,7 +45,7 @@
 			"select-sensor": "Select sensor",
 			"select-timestamp": "Select time stamp",
 			"timestamp": "Time stamp",
-			"to-combi-view": "Combind view",
+			"to-combi-view": "Combined view",
 			"to-diagram-view": "Diagram view"
 		}
 	},
@@ -74,8 +73,9 @@
 			"station": "Station"
 		},
 		"map-selection": {
+			"dataset-selection-hint": "Please select one or more timeseries to displa in diagram",
 			"hint": "To select timeseries by map selection, you need to select a provider first.",
-			"show-in-diagram": "Show {{value}} in diagram"
+			"show-in-diagram": "Show {{value}} timeseries in diagram"
 		}
 	},
 	"trajectories": {

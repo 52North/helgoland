@@ -6,10 +6,11 @@
         </button>
     </div>
     <div class="modal-body">
+        <div class="timeseries-hint">{{'timeseries.map-selection.dataset-selection-hint' | translate}}:</div>
         <n52-dataset-by-station-selector [station]="platform" [url]="provider.providerUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="openDatasets();c();">
+        <button *ngIf="datasetSelections.length > 0" type="button" class="btn btn-light" (click)="openDatasets();c();">
             <span translate [translateParams]="{value: datasetSelections.length}">timeseries.map-selection.show-in-diagram</span>
         </button>
         <button type="button" class="btn btn-light" (click)="c();">{{'controls.close' | translate}}</button>

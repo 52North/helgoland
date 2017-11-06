@@ -1,6 +1,5 @@
 {
 	"controls": {
-		"cancel": "Abbrechen",
 		"close": "Schließen"
 	},
 	"listSelection": {
@@ -46,8 +45,8 @@
 			"select-sensor": "Wähle Sensor",
 			"select-timestamp": "Selektiere ein Zeitpunkt um das Profile zu sehen",
 			"timestamp": "Zeitpunkt",
-			"to-combi-view": "Kombinierter-Ansicht",
-			"to-diagram-view": "Diagramm-Ansicht"
+			"to-combi-view": "Kombinierte Ansicht",
+			"to-diagram-view": "Diagram Ansicht"
 		}
 	},
 	"provider-selector": {
@@ -74,8 +73,9 @@
 			"station": "Station"
 		},
 		"map-selection": {
+			"dataset-selection-hint": "Bitte wählen Sie eine oder mehrere Zeitreihen zur Darstellung aus",
 			"hint": "Um Zeitreihen über die Karte auszuwählen, müssen Sie erst einen Anbieter wählen.",
-			"show-in-diagram": "Zeige {{value}} im Diagramm"
+			"show-in-diagram": "Zeige {{value}} Zeitreihen im Diagramm"
 		}
 	},
 	"trajectories": {
