@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TimedDatasetOptions } from 'helgoland-toolbox';
 
 import { ProfilesService } from './../services/profiles.service';
@@ -11,13 +12,20 @@ import { ProfilesDiagramPermalink } from './diagram-permalink.service';
 })
 export class ProfilesDiagramComponent implements OnInit {
 
+    @ViewChild('modalProfileOptionsEditor')
+    public modalProfileOptionsEditor: TemplateRef<any>;
+
     public datasetIds: Array<string>;
 
     protected selectedIds: Array<string> = [];
 
+    public editableOptions: TimedDatasetOptions;
+    public tempColor: string;
+
     public datasetOptions: Map<string, Array<TimedDatasetOptions>>;
 
     constructor(
+        private modalService: NgbModal,
         private profilesSrvc: ProfilesService,
         private permalinkSrvc: ProfilesDiagramPermalink
     ) {
@@ -50,6 +58,16 @@ export class ProfilesDiagramComponent implements OnInit {
 
     public updateOptions(options: Array<TimedDatasetOptions>, internalId: string) {
         this.profilesSrvc.updateDatasetOptions(options, internalId);
+    }
+
+    public editOption(options: TimedDatasetOptions) {
+        this.modalService.open(this.modalProfileOptionsEditor);
+        this.editableOptions = options;
+    }
+
+    public updateOption() {
+        this.editableOptions.color = this.tempColor;
+        this.profilesSrvc.updateDatasetOptions(this.datasetOptions.get(this.editableOptions.internalId), this.editableOptions.internalId);
     }
 
 }

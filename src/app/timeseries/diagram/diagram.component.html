@@ -1,3 +1,19 @@
+<ng-template #modalTimeseriesOptionsEditor let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <h4 class="modal-title">Timeseries style</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      <n52-color-selector [color]="editableOption.color" (onColorChange)="tempColor = $event"></n52-color-selector>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="updateOption(); c();">Ok</button>
+      <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
+  </div>
+</ng-template>
+
 <n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
 <div *ngIf="datasetIds.length == 0 && selectedProvider" class="container n52-alert">
   <div class="alert alert-primary" role="alert">
@@ -33,7 +49,7 @@
       <div *ngFor="let id of datasetIds">
         <n52-timeseries-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" [timeInterval]="timespan"
           (onDeleteDataset)="deleteTimeseries(id)" (onSelectDataset)="selectTimeseries($event, id)" (onSelectDate)="jumpToDate($event)"
-          (onUpdateOptions)="updateOptions($event, id)"></n52-timeseries-entry>
+          (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)"></n52-timeseries-entry>
       </div>
     </div>
   </div>

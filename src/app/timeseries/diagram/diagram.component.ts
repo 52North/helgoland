@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Data, DatasetOptions, IDataEntry, IDataset, PlotOptions, Service, Time, Timespan } from 'helgoland-toolbox';
 
 import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
@@ -126,11 +127,18 @@ export class TimeseriesDiagramComponent implements OnInit {
         }
     };
 
+    @ViewChild('modalTimeseriesOptionsEditor')
+    public modalTimeseriesOptionsEditor: TemplateRef<any>;
+
+    public editableOption: DatasetOptions;
+    public tempColor: string;
+
     constructor(
         private timeseriesService: TimeseriesService,
         private timeSrvc: Time,
         private permalinkSrvc: TimeseriesDiagramPermalink,
-        private providerCache: TimeseriesProviderSelectionService
+        private providerCache: TimeseriesProviderSelectionService,
+        private modalService: NgbModal
     ) { }
 
     public ngOnInit() {
@@ -176,6 +184,16 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     public updateOptions(options: DatasetOptions, internalId: string) {
         this.timeseriesService.updateDatasetOptions(options, internalId);
+    }
+
+    public editOption(options: DatasetOptions) {
+        this.modalService.open(this.modalTimeseriesOptionsEditor);
+        this.editableOption = options;
+    }
+
+    public updateOption(option: DatasetOptions) {
+        this.editableOption.color = this.tempColor;
+        this.timeseriesService.updateDatasetOptions(this.editableOption, this.editableOption.internalId);
     }
 
 }
