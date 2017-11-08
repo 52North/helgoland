@@ -1,7 +1,9 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TimedDatasetOptions } from 'helgoland-toolbox';
 
+import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';
 import { ProfilesDiagramPermalink } from './diagram-permalink.service';
 
@@ -15,6 +17,11 @@ export class ProfilesDiagramComponent implements OnInit {
     @ViewChild('modalProfileOptionsEditor')
     public modalProfileOptionsEditor: TemplateRef<any>;
 
+    @ViewChild('modalGeometryViewer')
+    public modalGeometryViewer: TemplateRef<any>;
+
+    public geometry: GeoJSON.GeoJsonObject;
+
     public datasetIds: Array<string>;
 
     protected selectedIds: Array<string> = [];
@@ -27,7 +34,9 @@ export class ProfilesDiagramComponent implements OnInit {
     constructor(
         private modalService: NgbModal,
         private profilesSrvc: ProfilesService,
-        private permalinkSrvc: ProfilesDiagramPermalink
+        private permalinkSrvc: ProfilesDiagramPermalink,
+        private combiSrvc: ProfilesCombiService,
+        private router: Router
     ) {
         this.permalinkSrvc.validatePeramlink();
         this.datasetIds = profilesSrvc.datasetIds;
@@ -65,9 +74,19 @@ export class ProfilesDiagramComponent implements OnInit {
         this.editableOptions = options;
     }
 
+    public showGeometry(geometry: GeoJSON.GeoJsonObject) {
+        this.geometry = geometry;
+        this.modalService.open(this.modalGeometryViewer);
+    }
+
     public updateOption() {
         this.editableOptions.color = this.tempColor;
         this.profilesSrvc.updateDatasetOptions(this.datasetOptions.get(this.editableOptions.internalId), this.editableOptions.internalId);
+    }
+
+    public openCombiView(option: TimedDatasetOptions) {
+        this.combiSrvc.addDataset(option.internalId, [option]);
+        this.router.navigate(['profiles/combi']);
     }
 
 }

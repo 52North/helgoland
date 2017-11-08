@@ -29,6 +29,13 @@
 		"hint": {
 			"select-profile": "Please select a profile first."
 		},
+		"legend": {
+			"delete-subentry": "Remove this profile",
+			"edit-style": "Edit the style of this profile",
+			"go-to-combi-view": "Show in the combined view",
+			"show-geometry": "Show profile geometry",
+			"visibility": "Show/Hide this profile"
+		},
 		"selection": {
 			"load-timestamps": "Loading valid time stamps",
 			"platform": "Platform",

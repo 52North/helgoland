@@ -29,6 +29,13 @@
 		"hint": {
 			"select-profile": "Bitte wählen Sie zuerst Profile aus."
 		},
+		"legend": {
+			"delete-subentry": "Entferne dieses Profil",
+			"edit-style": "Verändere das Aussehen dieses Profils",
+			"go-to-combi-view": "Zeige in der kombinierten Ansicht",
+			"show-geometry": "Zeige Profil-Geometry",
+			"visibility": "Zeige/Verstecke das Profil"
+		},
 		"selection": {
 			"load-timestamps": "Läd die verfügbaren Zeitpunkte",
 			"platform": "Platform",
