@@ -1,6 +1,6 @@
 <ng-template #modalTimeseriesOptionsEditor let-c="close" let-d="dismiss">
   <div class="modal-header">
-      <h4 class="modal-title">Timeseries style</h4>
+      <h4 class="modal-title">{{'timeseries.diagram.legend.style-edit-header' | translate}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="d()">
           <span aria-hidden="true">&times;</span>
       </button>
@@ -11,6 +11,21 @@
   <div class="modal-footer">
       <button type="button" class="btn btn-light" (click)="updateOption(); c();">Ok</button>
       <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
+  </div>
+</ng-template>
+
+<ng-template #modalGeometryViewer let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <h4 class="modal-title">{{'timeseries.diagram.legend.show-geometry-header' | translate}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body timeseriesGeometryViewer">
+      <n52-geometry-map-viewer [mapId]="'mapGeometryViewerModal'" [geometry]="geometry" [maxMapZoom]="15"></n52-geometry-map-viewer>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c();">Close</button>
   </div>
 </ng-template>
 
@@ -39,12 +54,12 @@
     </div>
   </div>
   <div class="legend scrollable">
-    <h3 class="header">{{'timeseries.diagram.legend' | translate}}</h3>
+    <h3 class="header">{{'timeseries.diagram.legend.header' | translate}}</h3>
     <div class="legend-entry">
       <div *ngFor="let id of datasetIds">
         <n52-timeseries-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" [timeInterval]="timespan"
           (onDeleteDataset)="deleteTimeseries(id)" (onSelectDataset)="selectTimeseries($event, id)" (onSelectDate)="jumpToDate($event)"
-          (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)"></n52-timeseries-entry>
+          (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)" (onShowGeometry)="showGeometry($event)"></n52-timeseries-entry>
       </div>
     </div>
   </div>

@@ -68,7 +68,11 @@
 			"hint": {
 				"select-timeseries-first": "Bitte wählen Sie zuerst eine Zeitreihe aus."
 			},
-			"legend": "Legende"
+			"legend": {
+				"header": "Legende",
+				"show-geometry-header": "Position der Station",
+				"style-edit-header": "Zeitreihenerscheinung ändern"
+			}
 		},
 		"list-selection": {
 			"category": "Kategorie",

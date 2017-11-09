@@ -129,6 +129,10 @@ export class TimeseriesDiagramComponent implements OnInit {
     @ViewChild('modalTimeseriesOptionsEditor')
     public modalTimeseriesOptionsEditor: TemplateRef<any>;
 
+    @ViewChild('modalGeometryViewer')
+    public modalGeometryViewer: TemplateRef<any>;
+    public geometry: GeoJSON.GeoJsonObject;
+
     public editableOption: DatasetOptions;
     public tempColor: string;
 
@@ -184,8 +188,13 @@ export class TimeseriesDiagramComponent implements OnInit {
     }
 
     public editOption(options: DatasetOptions) {
-        this.modalService.open(this.modalTimeseriesOptionsEditor);
         this.editableOption = options;
+        this.modalService.open(this.modalTimeseriesOptionsEditor);
+    }
+
+    public showGeometry(geometry: GeoJSON.GeoJsonObject) {
+        this.geometry = geometry;
+        this.modalService.open(this.modalGeometryViewer);
     }
 
     public updateOption(option: DatasetOptions) {

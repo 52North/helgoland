@@ -68,7 +68,11 @@
 			"hint": {
 				"select-timeseries-first": "Please select a timeseries first."
 			},
-			"legend": "Legend"
+			"legend": {
+				"header": "Legend",
+				"show-geometry-header": "Position of the station",
+				"style-edit-header": "Change style of this timeseries"
+			}
 		},
 		"list-selection": {
 			"category": "Category",
