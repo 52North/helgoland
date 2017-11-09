@@ -1,5 +1,4 @@
 @import "../variables";
-
 n52-flot-timeseries-graph {
     .axisTarget {
         cursor: pointer;
@@ -12,4 +11,12 @@ n52-flot-timeseries-graph {
             opacity: 0.4;
         }
     }
+}
+
+#tooltip {
+    background-color: white;
+    position: absolute;
+    padding: 2px;
+    z-index: 9999;
+    display: none;
 }

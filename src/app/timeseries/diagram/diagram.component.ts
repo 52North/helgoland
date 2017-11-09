@@ -16,6 +16,7 @@ export class TimeseriesDiagramComponent implements OnInit {
     public datasetIds: Array<string>;
     public datasetOptions: Map<string, DatasetOptions>;
     public selectedIds: Array<string> = new Array();
+    public highlightId: string;
     public data: Array<Data<IDataEntry>>;
     public timespan: Timespan;
     public selectedProvider: Service;
@@ -200,6 +201,10 @@ export class TimeseriesDiagramComponent implements OnInit {
     public updateOption(option: DatasetOptions) {
         this.editableOption.color = this.tempColor;
         this.timeseriesService.updateDatasetOptions(this.editableOption, this.editableOption.internalId);
+    }
+
+    public highlight(id: string) {
+        this.highlightId = id;
     }
 
 }

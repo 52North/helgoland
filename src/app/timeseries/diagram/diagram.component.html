@@ -1,31 +1,31 @@
 <ng-template #modalTimeseriesOptionsEditor let-c="close" let-d="dismiss">
   <div class="modal-header">
-      <h4 class="modal-title">{{'timeseries.diagram.legend.style-edit-header' | translate}}</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d()">
-          <span aria-hidden="true">&times;</span>
-      </button>
+    <h4 class="modal-title">{{'timeseries.diagram.legend.style-edit-header' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
   <div class="modal-body">
-      <n52-color-selector [color]="editableOption.color" (onColorChange)="tempColor = $event"></n52-color-selector>
+    <n52-color-selector [color]="editableOption.color" (onColorChange)="tempColor = $event"></n52-color-selector>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="updateOption(); c();">Ok</button>
-      <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
+    <button type="button" class="btn btn-light" (click)="updateOption(); c();">Ok</button>
+    <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
   </div>
 </ng-template>
 
 <ng-template #modalGeometryViewer let-c="close" let-d="dismiss">
   <div class="modal-header">
-      <h4 class="modal-title">{{'timeseries.diagram.legend.show-geometry-header' | translate}}</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d()">
-          <span aria-hidden="true">&times;</span>
-      </button>
+    <h4 class="modal-title">{{'timeseries.diagram.legend.show-geometry-header' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
   <div class="modal-body timeseriesGeometryViewer">
-      <n52-geometry-map-viewer [mapId]="'mapGeometryViewerModal'" [geometry]="geometry" [maxMapZoom]="15"></n52-geometry-map-viewer>
+    <n52-geometry-map-viewer [mapId]="'mapGeometryViewerModal'" [geometry]="geometry" [maxMapZoom]="15"></n52-geometry-map-viewer>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="c();">Close</button>
+    <button type="button" class="btn btn-light" (click)="c();">Close</button>
   </div>
 </ng-template>
 
@@ -39,7 +39,8 @@
   <div class="diagram-wrapper">
     <div class="diagram">
       <n52-flot-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
-        [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-flot-timeseries-graph>
+        [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"
+        (onHighlight)="highlight($event)"></n52-flot-timeseries-graph>
     </div>
     <div class="overview-diagram">
       <n52-flot-overview-timeseries-graph [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions" [graphOptions]="overviewOptions"
@@ -57,9 +58,10 @@
     <h3 class="header">{{'timeseries.diagram.legend.header' | translate}}</h3>
     <div class="legend-entry">
       <div *ngFor="let id of datasetIds">
-        <n52-timeseries-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" [timeInterval]="timespan"
-          (onDeleteDataset)="deleteTimeseries(id)" (onSelectDataset)="selectTimeseries($event, id)" (onSelectDate)="jumpToDate($event)"
-          (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)" (onShowGeometry)="showGeometry($event)"></n52-timeseries-entry>
+        <n52-timeseries-entry [datasetId]="id" [selected]="isSelected(id)" [highlight]="id === highlightId" [datasetOptions]="datasetOptions.get(id)"
+          [timeInterval]="timespan" (onDeleteDataset)="deleteTimeseries(id)" (onSelectDataset)="selectTimeseries($event, id)"
+          (onSelectDate)="jumpToDate($event)" (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)"
+          (onShowGeometry)="showGeometry($event)"></n52-timeseries-entry>
       </div>
     </div>
   </div>

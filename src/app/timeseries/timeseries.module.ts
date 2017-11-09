@@ -27,7 +27,7 @@ const timeseriesRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'timeseries'
+    redirectTo: '/timeseries'
   },
   {
     path: 'timeseries',
@@ -36,7 +36,7 @@ const timeseriesRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'diagram'
+        redirectTo: '/diagram'
       },
       {
         path: 'diagram',
@@ -51,6 +51,11 @@ const timeseriesRoutes: Routes = [
         component: TimeseriesListSelectionComponent
       }
     ]
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '/timeseries'
   }
 ];
 
