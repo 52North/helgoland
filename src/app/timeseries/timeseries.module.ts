@@ -8,19 +8,17 @@ import {
     HelgolandFlotGraphModule,
     HelgolandMapControlModule,
     HelgolandMapSelectorModule,
+    HelgolandModificationModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandTimeModule,
-    HelgolandModificationModule,
 } from 'helgoland-toolbox';
 
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
-import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
-import { TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
+import { TimeseriesListSelectionCache, TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
+import { TimeseriesMapSelectionCache, TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
 import { TimeseriesNavigationComponent } from './navigation/navigation.component';
-import { TimeseriesProviderSelectionComponent } from './provider-selection/provider-selection.component';
-import { TimeseriesProviderSelectionService } from './provider-selection/provider-selection.service';
 import { TimeseriesConditionalRouter } from './services/timeseries-router.service';
 import { TimeseriesService } from './services/timeseries.service';
 
@@ -50,10 +48,6 @@ const timeseriesRoutes: Routes = [
       {
         path: 'list-selection',
         component: TimeseriesListSelectionComponent
-      },
-      {
-        path: 'provider',
-        component: TimeseriesProviderSelectionComponent
       }
     ]
   }
@@ -83,14 +77,14 @@ const timeseriesRoutes: Routes = [
     TimeseriesNavigationComponent,
     TimeseriesDiagramComponent,
     TimeseriesListSelectionComponent,
-    TimeseriesMapSelectionComponent,
-    TimeseriesProviderSelectionComponent
+    TimeseriesMapSelectionComponent
   ],
   providers: [
-    TimeseriesProviderSelectionService,
     TimeseriesService,
     TimeseriesConditionalRouter,
-    TimeseriesDiagramPermalink
+    TimeseriesDiagramPermalink,
+    TimeseriesListSelectionCache,
+    TimeseriesMapSelectionCache
   ]
 })
 export class TimeseriesModule { }

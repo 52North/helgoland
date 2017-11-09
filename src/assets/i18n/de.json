@@ -16,8 +16,7 @@
 			"diagram": "Diagramm",
 			"list-selection": "Listenauswahl",
 			"main": "Zeitreihen",
-			"map": "Karte",
-			"provider": "Anbieter"
+			"map": "Karteauswahl"
 		},
 		"trajectories": {
 			"main": "Trajektorien",
@@ -67,21 +66,21 @@
 	"timeseries": {
 		"diagram": {
 			"hint": {
-				"select-by-map": "Bitte wählen Sie zuerst eine Zeitreihe aus.",
-				"select-provider": "Bitte wählen Sie zuerst einen Provider aus."
+				"select-timeseries-first": "Bitte wählen Sie zuerst eine Zeitreihe aus."
 			},
 			"legend": "Legende"
 		},
 		"list-selection": {
 			"category": "Kategorie",
-			"hint": "Um Zeitreihen über die Listenauswahl auszuwählen, müssen Sie erst einen Anbieter wählen.",
 			"phenomenon": "Phänomen",
+			"provider": "Anbieter",
 			"sensor": "Sensor",
 			"station": "Station"
 		},
 		"map-selection": {
 			"dataset-selection-hint": "Bitte wählen Sie eine oder mehrere Zeitreihen zur Darstellung aus",
-			"hint": "Um Zeitreihen über die Karte auszuwählen, müssen Sie erst einen Anbieter wählen.",
+			"map": "Karte",
+			"provider": "Anbieter",
 			"show-in-diagram": "Zeige {{value}} Zeitreihen im Diagramm"
 		}
 	},

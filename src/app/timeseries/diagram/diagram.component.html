@@ -15,14 +15,9 @@
 </ng-template>
 
 <n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
-<div *ngIf="datasetIds.length == 0 && selectedProvider" class="container n52-alert">
+<div *ngIf="datasetIds.length == 0" class="container n52-alert">
   <div class="alert alert-primary" role="alert">
-    <a routerLink="/timeseries/map-selection" class="alert-link">{{'timeseries.diagram.hint.select-by-map' | translate}}</a>
-  </div>
-</div>
-<div *ngIf="!selectedProvider" class="container n52-alert">
-  <div class="alert alert-primary" role="alert">
-    <a routerLink="/timeseries/provider" class="alert-link">{{'timeseries.diagram.hint.select-provider' | translate}}</a>
+    <a routerLink="/timeseries/map-selection" class="alert-link">{{'timeseries.diagram.hint.select-timeseries-first' | translate}}</a>
   </div>
 </div>
 <div class="content" *ngIf="datasetIds.length > 0">

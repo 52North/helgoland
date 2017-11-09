@@ -1,60 +1,54 @@
-@import "../../../variables";
-:host {
-    flex: 1;
-    display: flex;
+n52-map-selection {
+    width: 100%;
+    .container {
+        height: 100%;
+        ngb-tabset {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            .tab-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                .tab-pane {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    .map-content {
+                        flex: 1;
+                        display: flex;
+                        .map {
+                            width: 65%;
+                            position: relative;
+                            .locate-control {
+                                position: absolute;
+                                left: 25px;
+                                top: 80px;
+                                border-radius: 5px;
+                            }
+                            .zoom-control {
+                                position: absolute;
+                                left: 25px;
+                                top: 10px;
+                                border-radius: 5px;
+                            }
+                        }
+                        .phenomenon-list {
+                            height: 100%;
+                            flex: 1 1 auto;
+                            overflow-y: auto;
+                            width: 35%;
+                            padding: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
     .scrollable {
+        width: 100%;
         overflow-y: auto;
         display: inline-block;
-    }
-    .map {
-        width: 65%;
-        position: relative;
-        .locate-control {
-            position: absolute;
-            left: 25px;
-            top: 80px;
-            border-radius: 5px;
-        }
-        .zoom-control {
-            position: absolute;
-            left: 25px;
-            top: 10px;
-            border-radius: 5px;
-        }
-    }
-    .phenomenon-list {
-        height: 100%;
-        flex: 1 1 auto;
-        overflow-y: auto;
-        width: 35%;
-        padding: 10px;
-    }
-    .phenomena {
-        a:hover {
-            text-decoration: none;
-        }
-        .phenomena-list {
-            margin-top: 30px;
-            hr {
-                margin-top: 5px;
-                margin-bottom: 5px;
-            }
-            &>a:nth-child(1) div {
-                margin-top: 20px;
-            }
-            .loadPhen .loading {
-                display: inline;
-            }
-            .loading {
-                display: none;
-            }
-        }
-    }
-}
-
-.modal-body {
-    .timeseries-hint {
-        text-align: center;
-        padding: 10px;
     }
 }

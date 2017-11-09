@@ -7,7 +7,7 @@
     </div>
     <div class="modal-body">
         <div class="timeseries-hint">{{'timeseries.map-selection.dataset-selection-hint' | translate}}:</div>
-        <n52-dataset-by-station-selector [station]="platform" [url]="provider.providerUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector>
+        <n52-dataset-by-station-selector [station]="platform" [url]="selectedService.providerUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector>
     </div>
     <div class="modal-footer">
         <button *ngIf="datasetSelections.length > 0" type="button" class="btn btn-light" (click)="openDatasets();c();">
@@ -17,25 +17,43 @@
     </div>
 </ng-template>
 
-<div class="map scrollable" *ngIf="provider">
-    <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="provider.providerUrl" [filter]="stationFilter"
-        (onSelected)="onStationSelected($event)" [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
-    <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
-    <n52-locate-control class="locate-control" [mapId]="'timeseries'"></n52-locate-control>
-</div>
-<div class="phenomenon-list scrollable" *ngIf="provider">
-    <div class="selector-entry" [ngClass]="{selected: selectedPhenomenonId == null}" (click)="onAllPhenomenonSelected()">
-        <span>Alle Phänomene</span>
-    </div>
-    <hr>
-    <div>
-        <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="provider.providerUrl" [selectionId]="selectedPhenomenonId"
-            (onItemSelected)="onPhenomenonSelected($event)"></n52-service-filter-selector>
-    </div>
-</div>
-
-<div *ngIf="!provider" class="container n52-alert">
-    <div class="alert alert-primary" role="alert">
-        <a routerLink="/timeseries/provider" class="alert-link">{{'timeseries.map-selection.hint' | translate}}</a>
-    </div>
+<div class="container">
+    <ngb-tabset #tabset="ngbTabset" justify="fill">
+        <ngb-tab id="selectProvider">
+            <ng-template ngbTabTitle>
+                {{'timeseries.map-selection.provider' | translate}}
+            </ng-template>
+            <ng-template ngbTabContent>
+                <div class="scrollable">
+                    <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [selectedProvider]="selectedService"
+                        [supportStations]="true" [filter]="providerFilter" (onProviderSelected)="providerSelected($event)"></n52-provider-selector>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="selectByMap" [disabled]="selectedService == undefined">
+            <ng-template ngbTabTitle>
+                {{'timeseries.map-selection.map' | translate}}
+            </ng-template>
+            <ng-template ngbTabContent>
+                <div class="map-content">
+                    <div class="map">
+                        <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService.providerUrl" [filter]="stationFilter"
+                            (onSelected)="onStationSelected($event)" [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
+                        <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
+                        <n52-locate-control class="locate-control" [mapId]="'timeseries'"></n52-locate-control>
+                    </div>
+                    <div class="phenomenon-list scrollable">
+                        <div class="selector-entry" [ngClass]="{selected: selectedPhenomenonId == null}" (click)="onAllPhenomenonSelected()">
+                            <span>Alle Phänomene</span>
+                        </div>
+                        <hr>
+                        <div>
+                            <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedService.providerUrl"
+                                [selectionId]="selectedPhenomenonId" (onItemSelected)="onPhenomenonSelected($event)"></n52-service-filter-selector>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
 </div>

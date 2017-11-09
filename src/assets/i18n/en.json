@@ -16,8 +16,7 @@
 			"diagram": "Diagram",
 			"list-selection": "List selection",
 			"main": "Timeseries",
-			"map": "Map",
-			"provider": "Provider"
+			"map": "Map selection"
 		},
 		"trajectories": {
 			"main": "Trajectories",
@@ -67,21 +66,21 @@
 	"timeseries": {
 		"diagram": {
 			"hint": {
-				"select-by-map": "Please select a timeseries first.",
-				"select-provider": "Please select a provider first."
+				"select-timeseries-first": "Please select a timeseries first."
 			},
 			"legend": "Legend"
 		},
 		"list-selection": {
 			"category": "Category",
-			"hint": "To select timeseries by list selection, you need to select a provider first.",
 			"phenomenon": "Phenomenon",
+			"provider": "Provider",
 			"sensor": "Sensor",
 			"station": "Station"
 		},
 		"map-selection": {
 			"dataset-selection-hint": "Please select one or more timeseries to displa in diagram",
-			"hint": "To select timeseries by map selection, you need to select a provider first.",
+			"map": "Map",
+			"provider": "Provider",
 			"show-in-diagram": "Show {{value}} timeseries in diagram"
 		}
 	},

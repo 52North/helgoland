@@ -45,7 +45,7 @@
       <ng-template ngbTabTitle>
         <span>{{'profiles.selection.select-provider' | translate}}</span>
       </ng-template>
-      <ng-template ngbTabContent class="tab-content">
+      <ng-template ngbTabContent>
         <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onProviderSelected)="providerSelected($event, true);"></n52-provider-selector>
       </ng-template>
     </ngb-tab>

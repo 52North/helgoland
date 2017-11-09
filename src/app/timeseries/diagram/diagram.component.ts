@@ -2,7 +2,6 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Data, DatasetOptions, IDataEntry, IDataset, PlotOptions, Service, Time, Timespan } from 'helgoland-toolbox';
 
-import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
 import { TimeseriesService } from './../services/timeseries.service';
 import { TimeseriesDiagramPermalink } from './diagram-permalink.service';
 
@@ -137,12 +136,10 @@ export class TimeseriesDiagramComponent implements OnInit {
         private timeseriesService: TimeseriesService,
         private timeSrvc: Time,
         private permalinkSrvc: TimeseriesDiagramPermalink,
-        private providerCache: TimeseriesProviderSelectionService,
         private modalService: NgbModal
     ) { }
 
     public ngOnInit() {
-        this.selectedProvider = this.providerCache.getSelectedProvider();
         this.permalinkSrvc.validatePeramlink();
         this.datasetIds = this.timeseriesService.datasetIds;
         this.datasetOptions = this.timeseriesService.datasetOptions;

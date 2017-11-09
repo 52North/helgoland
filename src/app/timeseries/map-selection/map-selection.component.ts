@@ -1,22 +1,49 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    Injectable,
+    OnInit,
+    TemplateRef,
+    ViewChild,
+    ViewEncapsulation,
+} from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Dataset, ParameterFilter, Phenomenon, Platform, PlatformTypes, Service, ValueTypes } from 'helgoland-toolbox';
+import { NgbModal, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
+import {
+    BlacklistedService,
+    Dataset,
+    ParameterFilter,
+    Phenomenon,
+    Platform,
+    PlatformTypes,
+    Service,
+    Settings,
+    ValueTypes,
+} from 'helgoland-toolbox';
 
-import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
 import { TimeseriesService } from './../services/timeseries.service';
 
 @Component({
   selector: 'n52-map-selection',
   templateUrl: './map-selection.component.html',
-  styleUrls: ['./map-selection.component.scss']
+  styleUrls: ['./map-selection.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class TimeseriesMapSelectionComponent implements OnInit {
+export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
 
   @ViewChild('modalStation')
   public modalTemplate: TemplateRef<any>;
 
-  public provider: Service;
+  @ViewChild('tabset')
+  public tabset: NgbTabset;
+
+  public providerList: Array<string>;
+  public providerBlacklist: Array<BlacklistedService>;
+  public providerFilter: ParameterFilter;
+  public selectedService: Service;
+
   public stationFilter: ParameterFilter;
   public phenomenonFilter: ParameterFilter;
   public selectedPhenomenonId: string;
@@ -28,18 +55,41 @@ export class TimeseriesMapSelectionComponent implements OnInit {
   private defaultValueTypes = ValueTypes.quantity;
 
   constructor(
-    private providerCache: TimeseriesProviderSelectionService,
     private timeseriesService: TimeseriesService,
     private modalService: NgbModal,
+    private settings: Settings,
+    private cache: TimeseriesMapSelectionCache,
+    private cdr: ChangeDetectorRef,
     private router: Router
   ) { }
 
   public ngOnInit() {
-    this.provider = this.providerCache.getSelectedProvider();
-    if (this.provider) {
-      this.updateStationFilter();
-      this.updatePhenomenonFilter();
+    this.providerList = this.settings.config.restApiUrls;
+    this.providerBlacklist = this.settings.config.providerBlackList;
+    this.providerFilter = { valueTypes: ValueTypes.quantity };
+  }
+
+  public ngAfterViewInit(): void {
+    if (this.cache.selectedService) {
+      this.providerSelected(this.cache.selectedService);
+      this.cdr.detectChanges();
     }
+    if (this.cache.lastTab) {
+      this.tabset.select(this.cache.lastTab);
+      this.cdr.detectChanges();
+    }
+    this.tabset.tabChange.subscribe((tabChange: NgbTabChangeEvent) => {
+      this.cache.lastTab = tabChange.nextId;
+    });
+  }
+
+  public providerSelected(service: Service) {
+    this.selectedService = this.cache.selectedService = service;
+    this.updateStationFilter();
+    this.updatePhenomenonFilter();
+    const id = 'selectByMap';
+    this.tabset.tabs.find(entry => entry.id === id).disabled = false;
+    this.tabset.select(id);
   }
 
   public onStationSelected(platform: Platform) {
@@ -74,7 +124,7 @@ export class TimeseriesMapSelectionComponent implements OnInit {
     this.stationFilter = {
       platformTypes: this.defaultPlatformTypes,
       valueTypes: this.defaultValueTypes,
-      service: this.provider.id
+      service: this.selectedService.id
     };
     if (phenomenonId) { this.stationFilter.phenomenon = phenomenonId; }
   }
@@ -83,8 +133,13 @@ export class TimeseriesMapSelectionComponent implements OnInit {
     this.phenomenonFilter = {
       platformTypes: this.defaultPlatformTypes,
       valueTypes: this.defaultValueTypes,
-      service: this.provider.id
+      service: this.selectedService.id
     };
   }
+}
 
+@Injectable()
+export class TimeseriesMapSelectionCache {
+  public selectedService: Service;
+  public lastTab: string;
 }

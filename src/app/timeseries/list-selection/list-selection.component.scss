@@ -1,3 +1,27 @@
-:host {
+n52-list-selection {
     width: 100%;
+    .container {
+        height: 100%;
+        ngb-tabset {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            .tab-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                .tab-pane{
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                }
+            }
+        }
+    }
+    .scrollable {
+        width: 100%;
+        overflow-y: auto;
+        display: inline-block;
+    }
 }

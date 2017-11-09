@@ -1,16 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Injectable, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { IDataset, ListSelectorParameter, Provider } from 'helgoland-toolbox';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
+import {
+  BlacklistedService,
+  IDataset,
+  ListSelectorParameter,
+  ParameterFilter,
+  Provider,
+  Service,
+  Settings,
+  ValueTypes,
+} from 'helgoland-toolbox';
 
-import { TimeseriesProviderSelectionService } from './../provider-selection/provider-selection.service';
 import { TimeseriesService } from './../services/timeseries.service';
 
 @Component({
   selector: 'n52-list-selection',
   templateUrl: './list-selection.component.html',
-  styleUrls: ['./list-selection.component.scss']
+  styleUrls: ['./list-selection.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class TimeseriesListSelectionComponent implements OnInit {
+export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
 
   public categoryParams: Array<ListSelectorParameter> = [{
     type: 'category',
@@ -68,24 +79,53 @@ export class TimeseriesListSelectionComponent implements OnInit {
     header: 'Kategorie'
   }];
 
-  public providerList: Array<Provider>;
+  @ViewChild('tabset')
+  public tabset: NgbTabset;
+
+  public providerList: Array<string>;
+  public providerBlacklist: Array<BlacklistedService>;
+  public providerFilter: ParameterFilter;
+  public selectedService: Service;
+
+  public selectedProviderList: Array<Provider>;
 
   constructor(
-    private providerCache: TimeseriesProviderSelectionService,
     private timeseriesService: TimeseriesService,
+    private settings: Settings,
+    private cache: TimeseriesListSelectionCache,
+    private cdr: ChangeDetectorRef,
     private router: Router
   ) { }
 
   public ngOnInit() {
-    const provider = this.providerCache.getSelectedProvider();
-    if (provider) {
-      this.providerList = [
-        {
-          url: provider.providerUrl,
-          id: provider.id
-        }
-      ];
+    this.providerList = this.settings.config.restApiUrls;
+    this.providerBlacklist = this.settings.config.providerBlackList;
+    this.providerFilter = { valueTypes: ValueTypes.quantity };
+  }
+
+  public ngAfterViewInit(): void {
+    if (this.cache.selectedService) {
+      this.providerSelected(this.cache.selectedService);
+      this.cdr.detectChanges();
     }
+    if (this.cache.lastTab) {
+      this.tabset.select(this.cache.lastTab);
+      this.cdr.detectChanges();
+    }
+    this.tabset.tabChange.subscribe((tabChange: NgbTabChangeEvent) => {
+      this.cache.lastTab = tabChange.nextId;
+    });
+  }
+
+  public providerSelected(service: Service) {
+    this.selectedService = this.cache.selectedService = service;
+    this.selectedProviderList = [{
+      id: service.id,
+      url: service.providerUrl
+    }];
+    const id = 'selectByCategory';
+    this.tabset.tabs.find(entry => entry.id === id).disabled = false;
+    this.tabset.select(id);
   }
 
   public onDatasetSelected(datasetList: Array<IDataset>) {
@@ -96,4 +136,10 @@ export class TimeseriesListSelectionComponent implements OnInit {
       console.error('datasetList is no array or has not the length of 1');
     }
   }
+}
+
+@Injectable()
+export class TimeseriesListSelectionCache {
+  public selectedService: Service;
+  public lastTab: string;
 }

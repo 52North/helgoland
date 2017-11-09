@@ -1,34 +1,37 @@
-<div class="container" *ngIf="providerList">
-  <ngb-tabset>
-    <ngb-tab>
+<div class="container">
+  <ngb-tabset #tabset="ngbTabset">
+    <ngb-tab id="selectProvider">
+      <ng-template ngbTabTitle>{{'timeseries.list-selection.provider' | translate}}</ng-template>
+      <ng-template ngbTabContent>
+        <div class="scrollable">
+          <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [selectedProvider]="selectedService"
+            [supportStations]="true" [filter]="providerFilter" (onProviderSelected)="providerSelected($event)"></n52-provider-selector>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="selectByCategory" [disabled]="selectedService == undefined">
       <ng-template ngbTabTitle>{{'timeseries.list-selection.category' | translate}}</ng-template>
       <ng-template ngbTabContent>
-        <n52-list-selector [parameters]="categoryParams" [selectorId]="'category'" [providerList]="providerList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
+        <n52-list-selector [parameters]="categoryParams" [selectorId]="'category'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
       </ng-template>
     </ngb-tab>
-    <ngb-tab>
+    <ngb-tab id="selectByStation" [disabled]="selectedService == undefined">
       <ng-template ngbTabTitle>{{'timeseries.list-selection.station' | translate}}</ng-template>
       <ng-template ngbTabContent>
-        <n52-list-selector [parameters]="stationParams" [selectorId]="'station'" [providerList]="providerList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
+        <n52-list-selector [parameters]="stationParams" [selectorId]="'station'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
       </ng-template>
     </ngb-tab>
-    <ngb-tab>
+    <ngb-tab id="selectByPhenomenon" [disabled]="selectedService == undefined">
       <ng-template ngbTabTitle>{{'timeseries.list-selection.phenomenon' | translate}}</ng-template>
       <ng-template ngbTabContent>
-        <n52-list-selector [parameters]="phenomenonParams" [selectorId]="'phenomenon'" [providerList]="providerList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
+        <n52-list-selector [parameters]="phenomenonParams" [selectorId]="'phenomenon'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
       </ng-template>
     </ngb-tab>
-    <ngb-tab>
+    <ngb-tab id="selectBySensor" [disabled]="selectedService == undefined">
       <ng-template ngbTabTitle>{{'timeseries.list-selection.sensor' | translate}}</ng-template>
       <ng-template ngbTabContent>
-        <n52-list-selector [parameters]="procedureParams" [selectorId]="'procedure'" [providerList]="providerList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
+        <n52-list-selector [parameters]="procedureParams" [selectorId]="'procedure'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-</div>
-
-<div *ngIf="!providerList" class="container n52-alert">
-  <div class="alert alert-primary" role="alert">
-    <a routerLink="/timeseries/provider" class="alert-link">{{'timeseries.list-selection.hint' | translate}}</a>
-  </div>
 </div>
