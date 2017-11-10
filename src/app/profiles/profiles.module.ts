@@ -8,11 +8,11 @@ import {
     HelgolandDepictionModule,
     HelgolandMapSelectorModule,
     HelgolandMapViewModule,
+    HelgolandModificationModule,
     HelgolandPermalinkModule,
     HelgolandPlotlyGraphModule,
     HelgolandSelectorModule,
     HelgolandTimeModule,
-    HelgolandModificationModule,
 } from 'helgoland-toolbox';
 
 import { ProfilesCombiViewPermalink } from './combi-view/combi-view-permalink.service';
@@ -65,7 +65,7 @@ const profilesRoutes: Routes = [
         HelgolandMapViewModule,
         HelgolandPlotlyGraphModule,
         HelgolandModificationModule,
-        RouterModule.forRoot(
+        RouterModule.forChild(
             profilesRoutes
         ),
         NgbTabsetModule

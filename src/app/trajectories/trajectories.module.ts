@@ -49,9 +49,8 @@ const trajectoriesRoutes: Routes = [
     HelgolandControlModule,
     HelgolandMapViewModule,
     HelgolandD3GraphModule,
-    RouterModule.forRoot(
-      trajectoriesRoutes,
-      { enableTracing: false }
+    RouterModule.forChild(
+      trajectoriesRoutes
     ),
     NgbTabsetModule
   ],

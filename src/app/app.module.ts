@@ -1,8 +1,9 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { Routes } from '@angular/router/src/config';
 import {
     NgbAccordionModule,
     NgbDatepickerModule,
@@ -26,6 +27,14 @@ import { TrajectoriesModule } from './trajectories/trajectories.module';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
+const baseRoutes: Routes = [
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'timeseries'
+  }
+];
 
 @NgModule({
   declarations: [
@@ -51,7 +60,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgbModalModule.forRoot(),
     NgbDropdownModule.forRoot(),
     NgbDatepickerModule.forRoot(),
-    NgbTimepickerModule.forRoot()
+    NgbTimepickerModule.forRoot(),
+    RouterModule.forRoot(
+      baseRoutes
+    )
   ],
   providers: [
     {

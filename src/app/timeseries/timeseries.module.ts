@@ -67,7 +67,7 @@ const timeseriesRoutes: Routes = [
     HelgolandTimeModule,
     HelgolandDatasetlistModule,
     HelgolandModificationModule,
-    RouterModule.forRoot(
+    RouterModule.forChild(
       timeseriesRoutes
     ),
     NgbTabsetModule,
