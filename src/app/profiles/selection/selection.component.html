@@ -104,7 +104,7 @@
       </ng-template>
       <ng-template ngbTabContent>
         <div class="timeslider">
-          <n52-time-range-slider-selector [timeList]="mobileTimestamps" (onTimespanSelected)="onTimespanSelected($event)"></n52-time-range-slider-selector>
+          <n52-time-range-slider-selector id="profile-time-slider" [timeList]="mobileTimestamps" (onTimespanSelected)="onTimespanSelected($event)"></n52-time-range-slider-selector>
         </div>
         <div class="trajectory-map">
           <n52-profile-trajectory-map-selector class="map" [mapId]="'profiles-stationary'" [serviceUrl]="selectedProvider.providerUrl"
