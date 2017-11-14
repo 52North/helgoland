@@ -1,6 +1,7 @@
 {
 	"controls": {
-		"close": "Close"
+		"close": "Close",
+		"ok": "Ok"
 	},
 	"listSelection": {
 		"loading": ""
@@ -98,6 +99,7 @@
 			"select-provider": "Select provider"
 		},
 		"view": {
+			"change-color-header": "Change color",
 			"graph-distance-tooltip": "x-axis figures the disatance",
 			"graph-dotted-tooltip": "Timeseries as line/dots",
 			"graph-information-tooltip": "The observation period can be shrinked by click and draw. A single click on the diagram represents the complete observation period.",

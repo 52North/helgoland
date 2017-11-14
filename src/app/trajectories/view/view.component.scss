@@ -1,5 +1,5 @@
 @import "../../../variables";
-$combi-header-height: 50px;
+$combi-header-height: 30px;
 n52-trajectories-view {
     width: 100%;
     .combi-mobile {
@@ -78,6 +78,9 @@ n52-trajectories-view {
                     flex: 0 250px;
                     padding: 5px 5px 0 0;
                     overflow: auto;
+                    .legend-entry {
+                        padding: 2px 0px;
+                    }
                 }
                 .btn {
                     width: 42px;

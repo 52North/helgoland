@@ -6,7 +6,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import {
     HelgolandControlModule,
     HelgolandD3GraphModule,
+    HelgolandDatasetlistModule,
     HelgolandMapViewModule,
+    HelgolandModificationModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
 } from 'helgoland-toolbox';
@@ -49,6 +51,8 @@ const trajectoriesRoutes: Routes = [
     HelgolandControlModule,
     HelgolandMapViewModule,
     HelgolandD3GraphModule,
+    HelgolandDatasetlistModule,
+    HelgolandModificationModule,
     RouterModule.forChild(
       trajectoriesRoutes
     ),

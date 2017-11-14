@@ -1,12 +1,24 @@
+<ng-template #modalTrajectoryOptionsEditor let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{'trajectories.view.change-color-header' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <n52-color-selector [color]="editableOption.color" (onColorChange)="tempColor = $event"></n52-color-selector>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="updateOption(); c();">{{'controls.ok' | translate}}</button>
+    <button type="button" class="btn btn-light" (click)="c();">{{'controls.close' | translate}}</button>
+  </div>
+</ng-template>
+
 <n52-permalink-button *ngIf="datasetIds.length > 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
 <div class="combi-mobile" *ngIf="datasetIds.length > 0">
   <div class="combi-header" *ngIf="trajectory?.label">
     <div>
       <span>{{trajectory.label}}</span>
-    </div>
-    <div>
-      <span>{{trajectory.parameters.phenomenon.label}}</span>
-      <span *ngIf="trajectory.uom">[{{trajectory.uom}}]</span>
     </div>
   </div>
   <div class="combi-body">
@@ -19,9 +31,6 @@
           <div translate="trajectories.map.loading"></div>
         </div>
       </div>
-      <div class="map-options">
-        <!-- <swc-mobile-map-path-toggler></swc-mobile-map-path-toggler> -->
-      </div>
     </div>
     <div class="chart-container">
       <div class="chart">
@@ -33,8 +42,9 @@
         </div>
       </div>
       <div class="legend">
-        <n52-multi-phenomenon-list [dataset]="trajectory" [datasetIds]="datasetIds" [datasetOptions]="options" (onAddDataset)="onAddDataset($event)"
-          (onRemoveDataset)="onRemoveDataset($event)"></n52-multi-phenomenon-list>
+        <div *ngFor="let id of datasetIds" class="legend-entry">
+          <n52-trajectory-entry [datasetId]="id" [datasetOptions]="options.get(id)" (onEditOptions)="editOptions($event)"></n52-trajectory-entry>
+        </div>
       </div>
       <div class="chart-buttons">
         <div class="chart-control">

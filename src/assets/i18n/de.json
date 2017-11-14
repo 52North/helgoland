@@ -1,6 +1,7 @@
 {
 	"controls": {
-		"close": "Schließen"
+		"close": "Schließen",
+		"ok": "OK"
 	},
 	"listSelection": {
 		"loading": ""
@@ -98,6 +99,7 @@
 			"select-provider": "Wähle Anbieter"
 		},
 		"view": {
+			"change-color-header": "Farbe ändern",
 			"graph-distance-tooltip": "X-Achse bildet die Distanz ab",
 			"graph-dotted-tooltip": "Zeitreihe als Linien-/Punktdarstellung",
 			"graph-information-tooltip": "Der Betrachtungsraum lässt sich mit der Maus durch klicken und ziehen verkleiner. Mit einem einfach Klick auf das Diagramm wird wieder der ganze Betrachtungsraum dargestellt.",

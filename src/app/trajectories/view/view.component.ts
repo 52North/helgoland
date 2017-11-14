@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import {
     ApiInterface,
     D3AxisType,
@@ -40,6 +41,13 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public options: Map<string, DatasetOptions>;
 
+    public editableOption: DatasetOptions;
+
+    public tempColor: string;
+
+    @ViewChild('modalTrajectoryOptionsEditor')
+    public modalTrajectoryOptionsEditor: TemplateRef<any>;
+
     public graphOptions: D3GraphOptions = {
         axisType: D3AxisType.Distance,
         dotted: false
@@ -53,7 +61,8 @@ export class TrajectoriesViewComponent implements OnInit {
         private trajectorySrvc: TrajectoriesService,
         private permalinkSrvc: TrajectoriesViewPermalink,
         private api: ApiInterface,
-        private internalIdHandler: InternalIdHandler
+        private internalIdHandler: InternalIdHandler,
+        private modalService: NgbModal
     ) { }
 
     public ngOnInit() {
@@ -116,6 +125,16 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public onRemoveDataset(internalId: string) {
         this.trajectorySrvc.removeDataset(internalId);
+    }
+
+    public editOptions(option: DatasetOptions) {
+        this.editableOption = option;
+        this.modalService.open(this.modalTrajectoryOptionsEditor);
+    }
+
+    public updateOption(option: DatasetOptions) {
+        this.editableOption.color = this.tempColor;
+        this.trajectorySrvc.updateDatasetOptions(this.editableOption, this.editableOption.internalId);
     }
 
 }

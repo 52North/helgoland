@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 import {
     BlacklistedService,
+    ColorService,
     Dataset,
+    DatasetOptions,
     ListSelectorParameter,
     ParameterFilter,
     PlatformTypes,
@@ -33,12 +35,6 @@ export class TrajectoriesSelectionComponent implements OnInit {
     }, {
       type: 'feature',
       header: 'Pfad'
-    }, {
-      type: 'phenomenon',
-      header: 'Phänomen'
-    }, {
-      type: 'dataset',
-      header: 'Dataset'
     }
   ];
 
@@ -52,9 +48,6 @@ export class TrajectoriesSelectionComponent implements OnInit {
     }, {
       type: 'feature',
       header: 'Pfad'
-    }, {
-      type: 'dataset',
-      header: 'Dataset'
     }
   ];
 
@@ -71,7 +64,8 @@ export class TrajectoriesSelectionComponent implements OnInit {
   constructor(
     private settings: Settings,
     private trajectory: TrajectoriesService,
-    private router: Router
+    private router: Router,
+    private color: ColorService
   ) { }
 
   public ngOnInit() {
@@ -93,10 +87,12 @@ export class TrajectoriesSelectionComponent implements OnInit {
   }
 
   public datasetSelected(dataset: Array<Dataset>) {
-    if (dataset instanceof Array && dataset.length === 1) {
-      this.trajectory.addDataset(dataset[0].internalId);
-      this.router.navigate(['trajectories/view']);
-    }
+    dataset.forEach(entry => {
+      const options = new DatasetOptions(entry.internalId, this.color.getColor());
+      options.visible = false;
+      this.trajectory.addDataset(entry.internalId, options);
+    });
+    this.router.navigate(['trajectories/view']);
   }
 
   private createFilter(): ParameterFilter {
