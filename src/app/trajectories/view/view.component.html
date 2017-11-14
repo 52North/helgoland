@@ -34,12 +34,21 @@
     </div>
     <div class="chart-container">
       <div class="chart">
-        <n52-d3-timeseries-graph [datasetIds]="datasetIds" [timeInterval]="timespan" [datasetOptions]="options" [graphOptions]="graphOptions"
-          [selection]="selection" (onSelectionChanged)="onChartSelectionChanged($event)" (onSelectionChangedFinished)="onChartSelectionChangedFinished($event)"
-          (onHoverHighlight)="onChartHighlightChanged($event)"></n52-d3-timeseries-graph>
-        <div class="chart-information">
-          <span class="fa fa-info-circle" title="{{'trajectories.view.graph-information-tooltip' | translate}}"></span>
+        <div *ngIf="hasVisibleDatasets();else emptyChart" style="height: 100%;">
+          <n52-d3-trajectory-graph [datasetIds]="datasetIds" [timeInterval]="timespan" [datasetOptions]="options" [graphOptions]="graphOptions"
+            [selection]="selection" (onSelectionChanged)="onChartSelectionChanged($event)" (onSelectionChangedFinished)="onChartSelectionChangedFinished($event)"
+            (onHoverHighlight)="onChartHighlightChanged($event)"></n52-d3-trajectory-graph>
+          <div class="chart-information">
+            <span class="fa fa-info-circle" title="{{'trajectories.view.graph-information-tooltip' | translate}}"></span>
+          </div>
         </div>
+        <ng-template #emptyChart>
+          <div class="container n52-alert">
+            <div class="alert alert-primary" role="alert">
+              <a class="alert-link">{{'trajectories.diagram.hint' | translate}}</a>
+            </div>
+          </div>
+        </ng-template>
       </div>
       <div class="legend">
         <div *ngFor="let id of datasetIds" class="legend-entry">

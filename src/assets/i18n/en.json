@@ -90,6 +90,9 @@
 		}
 	},
 	"trajectories": {
+		"diagram": {
+			"hint": "Please select at least on phenomenon on the right."
+		},
 		"map": {
 			"loading": ""
 		},

@@ -137,4 +137,8 @@ export class TrajectoriesViewComponent implements OnInit {
         this.trajectorySrvc.updateDatasetOptions(this.editableOption, this.editableOption.internalId);
     }
 
+    public hasVisibleDatasets(): boolean {
+        return Array.from(this.options.values()).some(entry => entry.visible);
+    }
+
 }

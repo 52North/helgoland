@@ -90,6 +90,9 @@
 		}
 	},
 	"trajectories": {
+		"diagram": {
+			"hint": "Bitte wählen Sie mindestens ein Phänomen aus auf der rechten Seite aus."
+		},
 		"map": {
 			"loading": ""
 		},
