@@ -39,6 +39,7 @@ export class TimeseriesDiagramComponent implements OnInit {
         selection: {
             mode: null
         },
+        showReferenceValues: true,
         series: {
             // downsample: {
             //   threshold: 0
