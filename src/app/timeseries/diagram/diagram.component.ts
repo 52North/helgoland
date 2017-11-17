@@ -125,7 +125,8 @@ export class TimeseriesDiagramComponent implements OnInit {
         touch: {
             pan: '',
             scale: ''
-        }
+        },
+        generalizeAllways: true
     };
 
     @ViewChild('modalTimeseriesOptionsEditor')

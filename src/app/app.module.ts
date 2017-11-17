@@ -14,7 +14,16 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { CachingInterceptor, HttpCache, LocalHttpCache, OnGoingHttpCache, Settings } from 'helgoland-toolbox';
+import {
+    ApiInterface,
+    CachingInterceptor,
+    GetDataApiInterface,
+    HttpCache,
+    LocalHttpCache,
+    LocalOngoingHttpCache,
+    OnGoingHttpCache,
+    Settings,
+} from 'helgoland-toolbox';
 
 import { AppComponent } from './app.component';
 import { LocalSelectorImplComponent } from './components/local-selector/local-selector.component';
@@ -79,7 +88,14 @@ const baseRoutes: Routes = [
       useClass: CachingInterceptor,
       multi: true
     },
-    OnGoingHttpCache
+    {
+      provide: ApiInterface,
+      useClass: GetDataApiInterface
+    },
+    {
+      provide: OnGoingHttpCache,
+      useClass: LocalOngoingHttpCache
+    }
   ],
   bootstrap: [AppComponent]
 })

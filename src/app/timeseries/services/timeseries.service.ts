@@ -20,7 +20,9 @@ export class TimeseriesService extends DatasetService<DatasetOptions> {
     }
 
     protected createStyles(internalId: string) {
-        return new DatasetOptions(internalId, this.color.getColor());
+        const options = new DatasetOptions(internalId, this.color.getColor());
+        options.generalize = false;
+        return options;
     }
 
     public setTimespan(timespan: Timespan) {
