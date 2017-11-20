@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Data, DatasetOptions, IDataEntry, IDataset, PlotOptions, Service, Time, Timespan } from 'helgoland-toolbox';
 
@@ -139,11 +139,14 @@ export class TimeseriesDiagramComponent implements OnInit {
     public editableOption: DatasetOptions;
     public tempColor: string;
 
+    public overviewLoading: boolean;
+
     constructor(
         private timeseriesService: TimeseriesService,
         private timeSrvc: Time,
         private permalinkSrvc: TimeseriesDiagramPermalink,
-        private modalService: NgbModal
+        private modalService: NgbModal,
+        private cdr: ChangeDetectorRef
     ) { }
 
     public ngOnInit() {
@@ -207,6 +210,11 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     public highlight(id: string) {
         this.highlightId = id;
+    }
+
+    public onOverviewLoading(loading: boolean) {
+        this.overviewLoading = loading;
+        this.cdr.detectChanges();
     }
 
 }

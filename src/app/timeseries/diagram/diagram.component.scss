@@ -19,9 +19,11 @@
             flex-direction: column;
             .diagram {
                 flex: 1;
+                position: relative;
             }
             .overview-diagram {
                 flex: 0 0 120px;
+                position: relative;
             }
             .control-bar {
                 flex: 0 0 50px;
