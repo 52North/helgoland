@@ -1,0 +1,40 @@
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+n52-timeseries-favorites {
+    width: 100%;
+    .card-columns {
+        @include media-breakpoint-down(sm) {
+            column-count: 1;
+        }
+        @include media-breakpoint-only(md) {
+            column-count: 2;
+        }
+        @include media-breakpoint-only(lg) {
+            column-count: 2;
+        }
+        @include media-breakpoint-only(xl) {
+            column-count: 3;
+        }
+    }
+    .card-header {
+        .delete {
+            float: right;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .card-body {
+        padding: 5px;
+        .diagram {
+            position: relative;
+            height: 200px;
+            n52-flot-timeseries-graph {
+                .yaxisLabel {
+                    z-index: 1
+                }
+            }
+        }
+    }
+}

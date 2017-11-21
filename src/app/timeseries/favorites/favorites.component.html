@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="card-columns">
+    <div class="card text-center" *ngFor="let favorite of favorites" (click)="favorite.show = !favorite.show">
+      <div class="card-header">
+        <div class="delete" (click)="deleteFavorite(favorite)">
+          <span class="fa fa-times"></span>
+        </div>
+        <div>{{favorite.label}}</div>
+      </div>
+      <div class="card-body">
+        <div class="diagram">
+          <n52-flot-timeseries-graph [datasetIds]="[favorite.favorite.internalId]" [datasetOptions]="favorite.option" [graphOptions]="diagramOptions"
+            [timeInterval]="favorite.timespan" (onTimespanChanged)="timeChanged($event)" (onLoading)="favorite.loading = $event"></n52-flot-timeseries-graph>
+          <div class="loading-overlay" *ngIf="favorite.loading">
+            <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+          </div>
+        </div>
+        <div class="">
+          <small class="text-muted">{{'timeseries.favorites.lastMeasurements' | translate}}: {{favorite.timespan.from | date}} - {{favorite.timespan.to
+            | date}}</small>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        <a href="#" class="btn btn-primary" (click)="addToDiagram(favorite)">{{'timeseries.favorites.addToDiagram' | translate}}</a>
+      </div>
+    </div>
+  </div>
+</div>

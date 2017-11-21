@@ -18,5 +18,5 @@ $theme-colors: map-merge((
     light: $gray-100,
     dark: $gray-800
 ), $theme-colors);
-        
-@import '../node_modules/bootstrap/scss/bootstrap';
+
+@import '~bootstrap/scss/bootstrap';

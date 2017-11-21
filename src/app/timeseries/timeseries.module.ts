@@ -17,6 +17,7 @@ import {
 
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
+import { TimeseriesFavoritesComponent } from './favorites/favorites.component';
 import { TimeseriesListSelectionCache, TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
 import { TimeseriesMapSelectionCache, TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
 import { TimeseriesNavigationComponent } from './navigation/navigation.component';
@@ -49,6 +50,10 @@ const timeseriesRoutes: Routes = [
       {
         path: 'list-selection',
         component: TimeseriesListSelectionComponent
+      },
+      {
+        path: 'favorites',
+        component: TimeseriesFavoritesComponent
       }
     ]
   }
@@ -79,7 +84,8 @@ const timeseriesRoutes: Routes = [
     TimeseriesNavigationComponent,
     TimeseriesDiagramComponent,
     TimeseriesListSelectionComponent,
-    TimeseriesMapSelectionComponent
+    TimeseriesMapSelectionComponent,
+    TimeseriesFavoritesComponent
   ],
   providers: [
     TimeseriesService,

@@ -15,6 +15,7 @@
 		},
 		"timeseries": {
 			"diagram": "Diagramm",
+			"favorites": "Favoriten",
 			"list-selection": "Listenauswahl",
 			"main": "Zeitreihen",
 			"map": "Karteauswahl"
@@ -74,6 +75,10 @@
 				"show-geometry-header": "Position der Station",
 				"style-edit-header": "Zeitreihenerscheinung ändern"
 			}
+		},
+		"favorites": {
+			"addToDiagram": "Zum Diagram hinzufügen",
+			"lastMeasurements": "Letzte Messungen"
 		},
 		"list-selection": {
 			"category": "Kategorie",
