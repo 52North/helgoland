@@ -23,6 +23,7 @@ import { TimeseriesMapSelectionCache, TimeseriesMapSelectionComponent } from './
 import { TimeseriesNavigationComponent } from './navigation/navigation.component';
 import { TimeseriesConditionalRouter } from './services/timeseries-router.service';
 import { TimeseriesService } from './services/timeseries.service';
+import { FormsModule } from '@angular/forms';
 
 const timeseriesRoutes: Routes = [
   {
@@ -63,12 +64,12 @@ const timeseriesRoutes: Routes = [
   imports: [
     CommonModule,
     TranslateModule,
+    FormsModule,
     HelgolandPermalinkModule,
     HelgolandFlotGraphModule,
     HelgolandSelectorModule,
     HelgolandMapSelectorModule,
     HelgolandMapControlModule,
-    HelgolandMapViewModule,
     HelgolandTimeModule,
     HelgolandDatasetlistModule,
     HelgolandModificationModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatasetOptions, FavoriteService, PlotOptions, SingleFavorite, Timespan } from 'helgoland-toolbox';
 
@@ -10,7 +10,7 @@ import { TimeseriesService } from '../services/timeseries.service';
   styleUrls: ['./favorites.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TimeseriesFavoritesComponent implements OnInit {
+export class TimeseriesFavoritesComponent {
 
   public favorites: ExtendedSingleFavorite[];
 
@@ -82,8 +82,6 @@ export class TimeseriesFavoritesComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
-
   public addToDiagram(favorite: ExtendedSingleFavorite) {
     this.timeseriesService.addDataset(favorite.favorite.internalId);
     this.router.navigate(['timeseries/diagram']);
@@ -93,6 +91,10 @@ export class TimeseriesFavoritesComponent implements OnInit {
     const idx = this.favorites.findIndex(entry => entry.id === favorite.id);
     this.favorites.splice(idx, 1);
     this.favoriteSrvc.removeFavorite(favorite.id);
+  }
+
+  public setLabel(favorite: ExtendedSingleFavorite, label: string) {
+    this.favoriteSrvc.changeLabel(favorite, label);
   }
 
 }

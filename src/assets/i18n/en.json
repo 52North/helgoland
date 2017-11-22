@@ -1,5 +1,6 @@
 {
 	"controls": {
+		"cancel": "Cancel",
 		"close": "Close",
 		"ok": "Ok"
 	},
@@ -73,7 +74,11 @@
 			"legend": {
 				"header": "Legend",
 				"show-geometry-header": "Position of the station",
-				"style-edit-header": "Change style of this timeseries"
+				"style-edit": {
+					"generalize": "Generalize data",
+					"header": "Change style of this timeseries",
+					"zeroBasedYAxe": "Timeseries zero based"
+				}
 			}
 		},
 		"favorites": {

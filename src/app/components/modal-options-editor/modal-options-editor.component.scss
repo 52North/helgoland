@@ -1,0 +1,11 @@
+:host {
+    .modal-body {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        .column {
+            flex: 1;
+            padding: 10px;
+        }
+    }
+}

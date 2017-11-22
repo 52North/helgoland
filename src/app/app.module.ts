@@ -26,7 +26,7 @@ import {
 } from 'helgoland-toolbox';
 
 import { AppComponent } from './app.component';
-import { LocalSelectorImplComponent } from './components/local-selector/local-selector.component';
+import { ComponentsModule } from './components/components.module';
 import { ProfilesModule } from './profiles/profiles.module';
 import { SettingsService } from './services/settings.service';
 import { TimeseriesModule } from './timeseries/timeseries.module';
@@ -47,8 +47,7 @@ const baseRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LocalSelectorImplComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +59,7 @@ const baseRoutes: Routes = [
         deps: [HttpClient]
       }
     }),
+    ComponentsModule,
     TimeseriesModule,
     TrajectoriesModule,
     ProfilesModule,

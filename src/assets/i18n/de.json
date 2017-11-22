@@ -1,5 +1,6 @@
 {
 	"controls": {
+		"cancel": "Abbrechen",
 		"close": "Schließen",
 		"ok": "OK"
 	},
@@ -73,7 +74,11 @@
 			"legend": {
 				"header": "Legende",
 				"show-geometry-header": "Position der Station",
-				"style-edit-header": "Zeitreihenerscheinung ändern"
+				"style-edit": {
+					"generalize": "Daten generalisieren",
+					"header": "Zeitreihenerscheinung ändern",
+					"zeroBasedYAxe": "Zeitreihe null-basiert"
+				}
 			}
 		},
 		"favorites": {

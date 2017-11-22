@@ -1,7 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Data, DatasetOptions, IDataEntry, IDataset, PlotOptions, Service, Time, Timespan } from 'helgoland-toolbox';
 
+import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
+import { ModalOptionsEditorComponent } from '../../components/modal-options-editor/modal-options-editor.component';
 import { TimeseriesService } from './../services/timeseries.service';
 import { TimeseriesDiagramPermalink } from './diagram-permalink.service';
 
@@ -129,16 +131,6 @@ export class TimeseriesDiagramComponent implements OnInit {
         generalizeAllways: true
     };
 
-    @ViewChild('modalTimeseriesOptionsEditor')
-    public modalTimeseriesOptionsEditor: TemplateRef<any>;
-
-    @ViewChild('modalGeometryViewer')
-    public modalGeometryViewer: TemplateRef<any>;
-    public geometry: GeoJSON.GeoJsonObject;
-
-    public editableOption: DatasetOptions;
-    public tempColor: string;
-
     public overviewLoading: boolean;
 
     constructor(
@@ -194,18 +186,13 @@ export class TimeseriesDiagramComponent implements OnInit {
     }
 
     public editOption(options: DatasetOptions) {
-        this.editableOption = options;
-        this.modalService.open(this.modalTimeseriesOptionsEditor);
+        const ref = this.modalService.open(ModalOptionsEditorComponent);
+        (ref.componentInstance as ModalOptionsEditorComponent).options = options;
     }
 
     public showGeometry(geometry: GeoJSON.GeoJsonObject) {
-        this.geometry = geometry;
-        this.modalService.open(this.modalGeometryViewer);
-    }
-
-    public updateOption(option: DatasetOptions) {
-        this.editableOption.color = this.tempColor;
-        this.timeseriesService.updateDatasetOptions(this.editableOption, this.editableOption.internalId);
+        const ref = this.modalService.open(ModalGeometryViewerComponent);
+        (ref.componentInstance as ModalGeometryViewerComponent).geometry = geometry;
     }
 
     public highlight(id: string) {

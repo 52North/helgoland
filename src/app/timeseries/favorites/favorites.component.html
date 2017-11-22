@@ -1,11 +1,27 @@
 <div class="container">
   <div class="card-columns">
-    <div class="card text-center" *ngFor="let favorite of favorites" (click)="favorite.show = !favorite.show">
+    <div class="card text-center" *ngFor="let favorite of favorites">
       <div class="card-header">
-        <div class="delete" (click)="deleteFavorite(favorite)">
+        <div *ngIf="!favorite.editLabel" class="delete" (click)="deleteFavorite(favorite)">
           <span class="fa fa-times"></span>
         </div>
-        <div>{{favorite.label}}</div>
+        <div *ngIf="!favorite.editLabel">
+          <span>{{favorite.label}}</span>
+          <span class="fa fa-pencil" (click)="favorite.editLabel = true; editedLabel = favorite.label"></span>
+        </div>
+        <div *ngIf="favorite.editLabel">
+          <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="editedLabel">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button" (click)="setLabel(favorite, editedLabel); favorite.editLabel = false;">
+                <span class="fa fa-check"></span>
+              </button>
+              <button class="btn btn-primary" type="button" (click)="favorite.editLabel = false;">
+                <span class="fa fa-times"></span>
+              </button>
+            </span>
+          </div>
+        </div>
       </div>
       <div class="card-body">
         <div class="diagram">
@@ -21,7 +37,7 @@
         </div>
       </div>
       <div class="card-footer text-muted">
-        <a href="#" class="btn btn-primary" (click)="addToDiagram(favorite)">{{'timeseries.favorites.addToDiagram' | translate}}</a>
+        <div class="btn btn-primary" (click)="addToDiagram(favorite)">{{'timeseries.favorites.addToDiagram' | translate}}</div>
       </div>
     </div>
   </div>
