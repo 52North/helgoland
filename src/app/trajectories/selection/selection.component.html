@@ -1,11 +1,11 @@
-<div class="container">
-  <ngb-tabset #tabset="ngbTabset" class="boxItem vbox" [justify]="'center'">
+<div class="wrapper">
+  <ngb-tabset #tabset="ngbTabset" class="boxItem vbox" justify="fill">
     <ngb-tab id="trajectoryProvider">
       <ng-template ngbTabTitle>
         <span>{{'trajectories.selection.select-provider' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <div class="providerList">
+        <div class="providerList container">
           <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onProviderSelected)="providerSelected($event);"></n52-provider-selector>
         </div>
       </ng-template>
@@ -15,8 +15,10 @@
         <span>{{'trajectories.selection.select-by-platform' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <n52-list-selector [parameters]="platformParams" [selectorId]="'trajectory-platform'" [filter]="paramFilter" [providerList]="selectedProvider"
-          (onDatasetSelection)="datasetSelected($event)"></n52-list-selector>
+        <div class="container">
+          <n52-list-selector [parameters]="platformParams" [selectorId]="'trajectory-platform'" [filter]="paramFilter" [providerList]="selectedProvider"
+            (onDatasetSelection)="datasetSelected($event)"></n52-list-selector>
+        </div>
       </ng-template>
     </ngb-tab>
     <ngb-tab id="selectByPhenomenon" [disabled]="selectedProvider == undefined">
@@ -24,8 +26,10 @@
         <span>{{'trajectories.selection.select-by-phenomenon' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <n52-list-selector [parameters]="phenomenonParams" [selectorId]="'trajectory-phenomenon'" [filter]="paramFilter" [providerList]="selectedProvider"
-          (onDatasetSelection)="datasetSelected($event)"></n52-list-selector>
+        <div class="container">
+          <n52-list-selector [parameters]="phenomenonParams" [selectorId]="'trajectory-phenomenon'" [filter]="paramFilter" [providerList]="selectedProvider"
+            (onDatasetSelection)="datasetSelected($event)"></n52-list-selector>
+        </div>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>

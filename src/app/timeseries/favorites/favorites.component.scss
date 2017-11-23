@@ -4,7 +4,7 @@
 n52-timeseries-favorites {
     display: flex;
     width: 100%;
-    .container {
+    .wrapper {
         flex: 1;
         overflow-y: auto;
         display: inline-block;
@@ -32,10 +32,10 @@ n52-timeseries-favorites {
                 column-count: 2;
             }
             @include media-breakpoint-only(lg) {
-                column-count: 2;
+                column-count: 3;
             }
             @include media-breakpoint-only(xl) {
-                column-count: 3;
+                column-count: 4;
             }
         }
         .card-header {

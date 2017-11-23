@@ -39,14 +39,15 @@
 </ng-template>
 
 <n52-permalink-button [generatedUrlFunction]="selectionPermalink.createPermalink"></n52-permalink-button>
-<div class="container">
   <ngb-tabset #profileSelection="ngbTabset" class="wrapper" justify="fill">
     <ngb-tab id="selectProvider">
       <ng-template ngbTabTitle>
         <span>{{'profiles.selection.select-provider' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onProviderSelected)="providerSelected($event, true);"></n52-provider-selector>
+        <div class="container">
+          <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onProviderSelected)="providerSelected($event, true);"></n52-provider-selector>
+        </div>
       </ng-template>
     </ngb-tab>
     <ngb-tab id="selectOffering" [disabled]="selectedProvider == undefined">
@@ -54,8 +55,10 @@
         <span>{{'profiles.selection.select-offering' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <n52-service-filter-selector [endpoint]="'offering'" [filter]="offeringFilter" [serviceUrl]="selectedProvider.providerUrl"
-          [selectionId]="selectedOffering?.id" (onItemSelected)="offeringSelected($event, true)"></n52-service-filter-selector>
+        <div class="container">
+          <n52-service-filter-selector [endpoint]="'offering'" [filter]="offeringFilter" [serviceUrl]="selectedProvider.providerUrl"
+            [selectionId]="selectedOffering?.id" (onItemSelected)="offeringSelected($event, true)"></n52-service-filter-selector>
+        </div>
       </ng-template>
     </ngb-tab>
     <ngb-tab id="selectPhenomenon" [disabled]="selectedOffering == undefined">
@@ -63,8 +66,10 @@
         <span>{{'profiles.selection.select-phenomenon' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedProvider.providerUrl"
-          [selectionId]="selectedPhenomenon?.id" (onItemSelected)="phenomenonSelected($event, true)"></n52-service-filter-selector>
+        <div class="container">
+          <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedProvider.providerUrl"
+            [selectionId]="selectedPhenomenon?.id" (onItemSelected)="phenomenonSelected($event, true)"></n52-service-filter-selector>
+        </div>
       </ng-template>
     </ngb-tab>
     <ngb-tab id="selectProcedure" [disabled]="selectedPhenomenon == undefined">
@@ -72,8 +77,10 @@
         <span>{{'profiles.selection.select-sensor' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <n52-service-filter-selector [endpoint]="'procedure'" [filter]="procedureFilter" [serviceUrl]="selectedProvider.providerUrl"
-          [selectionId]="selectedProcedure?.id" (onItemSelected)="procedureSelected($event, true)"></n52-service-filter-selector>
+        <div class="container">
+          <n52-service-filter-selector [endpoint]="'procedure'" [filter]="procedureFilter" [serviceUrl]="selectedProvider.providerUrl"
+            [selectionId]="selectedProcedure?.id" (onItemSelected)="procedureSelected($event, true)"></n52-service-filter-selector>
+        </div>
       </ng-template>
     </ngb-tab>
     <ngb-tab id="selectPlatform" [disabled]="selectedProcedure == undefined">
@@ -114,4 +121,3 @@
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-</div>

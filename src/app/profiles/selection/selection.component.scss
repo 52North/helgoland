@@ -1,52 +1,49 @@
 n52-profiles-selection {
     width: 100%;
-    .container {
+    .wrapper {
+        display: flex;
+        flex-direction: column;
         height: 100%;
-        .wrapper {
+        .tab-content {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            height: 100%;
-            .tab-content {
-                flex: 1;
+            padding: 20px;
+            .tab-pane {
                 display: flex;
                 flex-direction: column;
-                padding: 20px;
-                .tab-pane {
+                flex: 1;
+                .header {
+                    text-align: center;
+                }
+                .platform-body {
                     display: flex;
-                    flex-direction: column;
-                    flex: 1;
-                    .header {
-                        text-align: center;
-                    }
-                    .platform-body {
-                        display: flex;
-                        flex-direction: row;
-                        height: 100%;
-                        .stationary,
-                        .mobile {
-                            flex: 1;
-                            text-align: center;
-                            .body {
-                                padding: 10px;
-                            }
-                        }
-                        .stationary {
-                            display: flex;
-                            flex-direction: column;
-                            .header {
-                                flex: 0 30px;
-                            }
-                            .map {
-                                flex: 1;
-                            }
-                        }
-                    }
-                    .timeslider {
-                        flex: 0;
-                    }
-                    .trajectory-map {
+                    flex-direction: row;
+                    height: 100%;
+                    .stationary,
+                    .mobile {
                         flex: 1;
+                        text-align: center;
+                        .body {
+                            padding: 10px;
+                        }
                     }
+                    .stationary {
+                        display: flex;
+                        flex-direction: column;
+                        .header {
+                            flex: 0 30px;
+                        }
+                        .map {
+                            flex: 1;
+                        }
+                    }
+                }
+                .timeslider {
+                    flex: 0;
+                }
+                .trajectory-map {
+                    flex: 1;
                 }
             }
         }
