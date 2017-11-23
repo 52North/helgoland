@@ -24,85 +24,26 @@ export class TimeseriesDiagramComponent implements OnInit {
     public selectedProvider: Service;
 
     public diagramOptions: PlotOptions = {
-        crosshair: {
-            mode: 'x'
-        },
-        grid: {
-            autoHighlight: true,
-            hoverable: true
-        },
-        legend: {
-            show: false
-        },
         pan: {
             frameRate: 10,
             interactive: true
         },
-        selection: {
-            mode: null
-        },
         showReferenceValues: true,
-        series: {
-            // downsample: {
-            //   threshold: 0
-            // },
-            lines: {
-                fill: false,
-                show: true
-            },
-            points: {
-                fill: true,
-                radius: 2,
-                show: false
-            },
-            //            points : {
-            //                 show: true
-            //            },
-            shadowSize: 1
-        },
         touch: {
             delayTouchEnded: 200,
             pan: 'x',
             scale: ''
-        },
-        xaxis: {
-            mode: 'time',
-            timezone: 'browser',
-            // monthNames: monthNamesTranslaterServ.getMonthNames()
-            //            timeformat: '%Y/%m/%d',
-            // use these the following two lines to have small ticks at the bottom ob the diagram
-            //            tickLength: 5,
-            //            tickColor: '#000'
         },
         yaxis: {
             additionalWidth: 17,
             labelWidth: 50,
             min: null,
             panRange: false,
-            show: true,
-            // tickFormatter: function(val, axis) {
-            //     var factor = axis.tickDecimals ? Math.pow(10, axis.tickDecimals) : 1;
-            //     var formatted = '' + Math.round(val * factor) / factor;
-            //     return formatted + '<br>' + this.uom;
-            // }
-        },
+            show: true
+        }
     };
 
     public overviewOptions: PlotOptions = {
-        series: {
-            // downsample: {
-            //   threshold: 0
-            // },
-            points: {
-                show: false,
-                radius: 1
-            },
-            lines: {
-                show: true,
-                fill: false
-            },
-            shadowSize: 1
-        },
         selection: {
             mode: 'overview',
             color: '#718296',
@@ -113,15 +54,7 @@ export class TimeseriesDiagramComponent implements OnInit {
             hoverable: false,
             autoHighlight: false
         },
-        xaxis: {
-            mode: 'time',
-            timezone: 'browser',
-            // monthNames: monthNamesTranslaterServ.getMonthNames()
-        },
         yaxis: {
-            show: false
-        },
-        legend: {
             show: false
         },
         touch: {

@@ -30,8 +30,8 @@
       </div>
       <div class="card-body">
         <div class="diagram">
-          <n52-flot-timeseries-graph [datasetIds]="[favorite.favorite.internalId]" [datasetOptions]="favorite.option" [graphOptions]="diagramOptions"
-            [timeInterval]="favorite.timespan" (onTimespanChanged)="timeChanged($event)" (onLoading)="favorite.loading = $event"></n52-flot-timeseries-graph>
+          <n52-flot-timeseries-graph [datasetIds]="[favorite.favorite.internalId]" [datasetOptions]="favorite.option" [timeInterval]="favorite.timespan"
+            (onTimespanChanged)="timeChanged($event)" (onLoading)="favorite.loading = $event"></n52-flot-timeseries-graph>
           <div class="loading-overlay" *ngIf="favorite.loading">
             <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
           </div>

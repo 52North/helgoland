@@ -21,20 +21,6 @@ export class TimeseriesFavoritesComponent {
 
   public favorites: ExtendedSingleFavorite[];
 
-  public diagramOptions: PlotOptions = {
-    grid: {
-      autoHighlight: true,
-      hoverable: true
-    },
-    selection: {
-      mode: null
-    },
-    xaxis: {
-      mode: 'time',
-      timezone: 'browser',
-    }
-  };
-
   constructor(
     private favoriteSrvc: FavoriteService,
     private timeseriesService: TimeseriesService,
