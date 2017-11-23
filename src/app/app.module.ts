@@ -19,6 +19,7 @@ import {
     CachingInterceptor,
     GetDataApiInterface,
     HttpCache,
+    JsonFavoriteExporterService,
     LocalHttpCache,
     LocalOngoingHttpCache,
     OnGoingHttpCache,
@@ -75,6 +76,7 @@ const baseRoutes: Routes = [
     )
   ],
   providers: [
+    JsonFavoriteExporterService,
     {
       provide: Settings,
       useClass: SettingsService

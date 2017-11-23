@@ -89,6 +89,8 @@
 		},
 		"favorites": {
 			"addToDiagram": "Zum Diagram hinzufügen",
+			"export": "Favoriten exportieren",
+			"import": "Favoriten importieren",
 			"lastMeasurements": "Letzte Messungen"
 		},
 		"list-selection": {

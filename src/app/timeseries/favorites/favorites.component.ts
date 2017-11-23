@@ -1,6 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { DatasetOptions, FavoriteService, PlotOptions, SingleFavorite, Timespan } from 'helgoland-toolbox';
+import {
+    DatasetOptions,
+    FavoriteService,
+    JsonFavoriteExporterService,
+    PlotOptions,
+    SingleFavorite,
+    Timespan,
+} from 'helgoland-toolbox';
 
 import { TimeseriesService } from '../services/timeseries.service';
 
@@ -15,71 +22,26 @@ export class TimeseriesFavoritesComponent {
   public favorites: ExtendedSingleFavorite[];
 
   public diagramOptions: PlotOptions = {
-    crosshair: {
-      mode: 'x'
-    },
     grid: {
       autoHighlight: true,
       hoverable: true
     },
-    legend: {
-      show: false
-    },
     selection: {
       mode: null
-    },
-    series: {
-      lines: {
-        fill: false,
-        show: true
-      },
-      points: {
-        fill: true,
-        radius: 2,
-        show: false
-      },
-      shadowSize: 1
-    },
-    touch: {
-      delayTouchEnded: 200,
-      pan: 'x',
-      scale: ''
     },
     xaxis: {
       mode: 'time',
       timezone: 'browser',
-      // monthNames: monthNamesTranslaterServ.getMonthNames()
-      //            timeformat: '%Y/%m/%d',
-      // use these the following two lines to have small ticks at the bottom ob the diagram
-      //            tickLength: 5,
-      //            tickColor: '#000'
-    },
-    yaxis: {
-      hideLabel: true,
-      min: null,
-      panRange: false,
-      show: true,
     }
   };
 
   constructor(
     private favoriteSrvc: FavoriteService,
     private timeseriesService: TimeseriesService,
+    private jsonExporter: JsonFavoriteExporterService,
     private router: Router
   ) {
-    this.favorites = [];
-    favoriteSrvc.getFavorites().forEach((entry) => {
-      const option = new DatasetOptions(entry.favorite.internalId, '#FF0000');
-      option.generalize = true;
-      const timespan = new Timespan(entry.favorite.lastValue.timestamp - 604800000, entry.favorite.lastValue.timestamp);
-      this.favorites.push({
-        id: entry.id,
-        label: entry.label,
-        favorite: entry.favorite,
-        timespan,
-        option: new Map([[entry.favorite.internalId, option]])
-      });
-    });
+    this.loadFavorites();
   }
 
   public addToDiagram(favorite: ExtendedSingleFavorite) {
@@ -97,6 +59,29 @@ export class TimeseriesFavoritesComponent {
     this.favoriteSrvc.changeLabel(favorite, label);
   }
 
+  public importFavorites(event: Event) {
+    this.jsonExporter.importFavorites(event).subscribe(() => this.loadFavorites());
+  }
+
+  public exportFavorites() {
+    this.jsonExporter.exportFavorites();
+  }
+
+  private loadFavorites() {
+    this.favorites = [];
+    this.favoriteSrvc.getFavorites().forEach((entry) => {
+      const option = new DatasetOptions(entry.favorite.internalId, '#FF0000');
+      option.generalize = true;
+      const timespan = new Timespan(entry.favorite.lastValue.timestamp - 604800000, entry.favorite.lastValue.timestamp);
+      this.favorites.push({
+        id: entry.id,
+        label: entry.label,
+        favorite: entry.favorite,
+        timespan,
+        option: new Map([[entry.favorite.internalId, option]])
+      });
+    });
+  }
 }
 
 interface ExtendedSingleFavorite extends SingleFavorite {

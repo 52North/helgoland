@@ -2,37 +2,59 @@
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/mixins/_breakpoints';
 n52-timeseries-favorites {
+    display: flex;
     width: 100%;
-    .card-columns {
-        @include media-breakpoint-down(sm) {
-            column-count: 1;
-        }
-        @include media-breakpoint-only(md) {
-            column-count: 2;
-        }
-        @include media-breakpoint-only(lg) {
-            column-count: 2;
-        }
-        @include media-breakpoint-only(xl) {
-            column-count: 3;
-        }
-    }
-    .card-header {
-        .delete {
-            float: right;
-            &:hover {
-                cursor: pointer;
+    .container {
+        flex: 1;
+        overflow-y: auto;
+        display: inline-block;
+        padding: 20px;
+        .porter-buttons {
+            text-align: center;
+            padding: 5px;
+            label {
+                margin: 0;
+            }
+            .inputfile {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
             }
         }
-    }
-    .card-body {
-        padding: 5px;
-        .diagram {
-            position: relative;
-            height: 200px;
-            n52-flot-timeseries-graph {
-                .yaxisLabel {
-                    z-index: 1
+        .card-columns {
+            @include media-breakpoint-down(sm) {
+                column-count: 1;
+            }
+            @include media-breakpoint-only(md) {
+                column-count: 2;
+            }
+            @include media-breakpoint-only(lg) {
+                column-count: 2;
+            }
+            @include media-breakpoint-only(xl) {
+                column-count: 3;
+            }
+        }
+        .card-header {
+            .delete {
+                float: right;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+        .card-body {
+            padding: 5px;
+            .diagram {
+                position: relative;
+                height: 200px;
+                n52-flot-timeseries-graph {
+                    .yaxisLabel {
+                        z-index: 1
+                    }
                 }
             }
         }

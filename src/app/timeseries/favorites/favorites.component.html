@@ -1,4 +1,9 @@
 <div class="container">
+  <div class="porter-buttons">
+    <input class="inputfile" type="file" id="file" (change)="importFavorites($event)" accept=".json">
+    <label class="btn btn-primary" for="file">{{'timeseries.favorites.import' | translate}}</label>
+    <div class="btn btn-primary" (click)="exportFavorites()">{{'timeseries.favorites.export' | translate}}</div>
+  </div>
   <div class="card-columns">
     <div class="card text-center" *ngFor="let favorite of favorites">
       <div class="card-header">
