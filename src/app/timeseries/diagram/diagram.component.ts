@@ -4,6 +4,9 @@ import { Data, DatasetOptions, IDataEntry, IDataset, PlotOptions, Service, Time,
 
 import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
 import { ModalOptionsEditorComponent } from '../../components/modal-options-editor/modal-options-editor.component';
+import {
+    ModalTimeseriesTimespanComponent,
+} from '../../components/modal-timeseries-timespan/modal-timeseries-timespan.component';
 import { TimeseriesService } from './../services/timeseries.service';
 import { TimeseriesDiagramPermalink } from './diagram-permalink.service';
 
@@ -107,6 +110,13 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     public jumpToDate(date: Date) {
         this.updateTime(this.timeSrvc.centerTimespan(this.timespan, date));
+    }
+
+    public openTimeSettings() {
+        const ref = this.modalService.open(ModalTimeseriesTimespanComponent);
+        (ref.componentInstance as ModalTimeseriesTimespanComponent).timespan = this.timespan;
+        (ref.componentInstance as ModalTimeseriesTimespanComponent).onTimespanChanged
+            .subscribe((timespan: Timespan) => this.updateTime(timespan));
     }
 
     private updateTime(timespan: Timespan) {

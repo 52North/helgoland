@@ -25,9 +25,9 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public selection: D3SelectionRange;
 
-    public highlightGeometry: GeoJSON.DirectGeometryObject;
+    public highlightGeometry: GeoJSON.GeoJsonObject;
 
-    public zoomToGeometry: GeoJSON.DirectGeometryObject;
+    public zoomToGeometry: GeoJSON.LineString;
 
     public timespan: Timespan;
 
@@ -92,7 +92,7 @@ export class TrajectoriesViewComponent implements OnInit {
         this.highlightGeometry = {
             type: 'LineString',
             coordinates: this.geometry.coordinates.slice(range.from, range.to)
-        };
+        } as GeoJSON.GeoJsonObject;
     }
 
     public onChartSelectionChangedFinished(range: D3SelectionRange) {
@@ -108,7 +108,7 @@ export class TrajectoriesViewComponent implements OnInit {
         this.highlightGeometry = {
             type: 'Point',
             coordinates: this.geometry.coordinates[idx]
-        };
+        } as GeoJSON.GeoJsonObject;
     }
 
     public onAxisTypeChanged(axisType: D3AxisType) {

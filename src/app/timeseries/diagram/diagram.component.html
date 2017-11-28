@@ -25,7 +25,7 @@
       <!-- <swc-refresh-time></swc-refresh-time> -->
       <!-- <swc-reload-button></swc-reload-button> -->
       <!-- <swc-yaxis-hide-button></swc-yaxis-hide-button> -->
-      <n52-timespan-shift-selector [timespan]="timespan" (onTimespanChange)="timeChanged($event)"></n52-timespan-shift-selector>
+      <n52-timespan-shift-selector [timespan]="timespan" (onTimespanChange)="timeChanged($event)" (onOpenTimeSettings)="openTimeSettings($event)"></n52-timespan-shift-selector>
       <!-- <a class="btn btn-default" data-action="dataTable" ng-click="toggle()"><span class="glyphicon glyphicon-list"></span></a> -->
     </div>
   </div>
