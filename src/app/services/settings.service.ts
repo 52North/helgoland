@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Config, Settings } from 'helgoland-toolbox';
+import { Settings, SettingsService } from 'helgoland-toolbox';
 
 @Injectable()
-export class SettingsService extends Settings {
-
-    public config: Config;
+export class ExtendedSettingsService extends SettingsService<Settings> {
 
     constructor() {
         super();
-        this.config = require('../../settings.json');
+        this.setSettings(require('../../settings.json'));
     }
 
 }

@@ -1,16 +1,25 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Injectable, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    Injectable,
+    OnInit,
+    ViewChild,
+    ViewEncapsulation,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 import {
-  BlacklistedService,
-  IDataset,
-  ListSelectorParameter,
-  ParameterFilter,
-  Provider,
-  Service,
-  Settings,
-  ValueTypes,
+    BlacklistedService,
+    IDataset,
+    ListSelectorParameter,
+    ParameterFilter,
+    Provider,
+    Service,
+    Settings,
+    SettingsService,
+    ValueTypes,
 } from 'helgoland-toolbox';
 
 import { TimeseriesService } from './../services/timeseries.service';
@@ -91,15 +100,15 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
 
   constructor(
     private timeseriesService: TimeseriesService,
-    private settings: Settings,
+    private settingsSrvc: SettingsService<Settings>,
     private cache: TimeseriesListSelectionCache,
     private cdr: ChangeDetectorRef,
     private router: Router
   ) { }
 
   public ngOnInit() {
-    this.providerList = this.settings.config.restApiUrls;
-    this.providerBlacklist = this.settings.config.providerBlackList;
+    this.providerList = this.settingsSrvc.getSettings().restApiUrls;
+    this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
     this.providerFilter = { valueTypes: ValueTypes.quantity };
   }
 

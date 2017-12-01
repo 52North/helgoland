@@ -23,13 +23,13 @@ import {
     LocalHttpCache,
     LocalOngoingHttpCache,
     OnGoingHttpCache,
-    Settings,
+    SettingsService,
 } from 'helgoland-toolbox';
 
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { ProfilesModule } from './profiles/profiles.module';
-import { SettingsService } from './services/settings.service';
+import { ExtendedSettingsService } from './services/settings.service';
 import { TimeseriesModule } from './timeseries/timeseries.module';
 import { TrajectoriesModule } from './trajectories/trajectories.module';
 
@@ -78,8 +78,8 @@ const baseRoutes: Routes = [
   providers: [
     JsonFavoriteExporterService,
     {
-      provide: Settings,
-      useClass: SettingsService
+      provide: SettingsService,
+      useClass: ExtendedSettingsService
     },
     {
       provide: HttpCache,

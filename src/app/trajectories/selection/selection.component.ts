@@ -12,6 +12,7 @@ import {
     Provider,
     Service,
     Settings,
+    SettingsService,
     ValueTypes,
 } from 'helgoland-toolbox';
 
@@ -62,15 +63,15 @@ export class TrajectoriesSelectionComponent implements OnInit {
   public activeTab: string;
 
   constructor(
-    private settings: Settings,
+    private settingsSrvc: SettingsService<Settings>,
     private trajectory: TrajectoriesService,
     private router: Router,
     private color: ColorService
   ) { }
 
   public ngOnInit() {
-    this.providerList = this.settings.config.restApiUrls;
-    this.providerBlacklist = this.settings.config.providerBlackList;
+    this.providerList = this.settingsSrvc.getSettings().restApiUrls;
+    this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
     this.providerFilter = this.createFilter();
     this.paramFilter = this.createFilter();
   }

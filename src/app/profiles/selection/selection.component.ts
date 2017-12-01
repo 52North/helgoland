@@ -17,6 +17,7 @@ import {
     ProfileDataEntry,
     Service,
     Settings,
+    SettingsService,
     TimedDatasetOptions,
     Timespan,
     TrajectoryResult,
@@ -75,7 +76,7 @@ export class ProfilesSelectionComponent implements OnInit {
     public tabset: NgbTabset;
 
     constructor(
-        private settings: Settings,
+        private settingsSrvc: SettingsService<Settings>,
         private cache: ProfilesSelectionCache,
         private modalService: NgbModal,
         private api: ApiInterface,
@@ -94,8 +95,8 @@ export class ProfilesSelectionComponent implements OnInit {
             if (selection.selectedProcedure) { this.procedureSelected(selection.selectedProcedure, false); }
             if (selection.selectedFeature) { this.featureSelected(selection.selectedFeature); }
         });
-        this.providerList = this.settings.config.restApiUrls;
-        this.providerBlacklist = this.settings.config.providerBlackList;
+        this.providerList = this.settingsSrvc.getSettings().restApiUrls;
+        this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
         this.providerFilter = this.createFilter();
     }
 

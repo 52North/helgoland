@@ -22,6 +22,7 @@ import {
     Settings,
     ValueTypes,
 } from 'helgoland-toolbox';
+import { SettingsService } from 'helgoland-toolbox/dist/services/settings/settings.service';
 
 import { TimeseriesService } from './../services/timeseries.service';
 
@@ -57,15 +58,15 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   constructor(
     private timeseriesService: TimeseriesService,
     private modalService: NgbModal,
-    private settings: Settings,
+    private settingsSrvc: SettingsService<Settings>,
     private cache: TimeseriesMapSelectionCache,
     private cdr: ChangeDetectorRef,
     private router: Router
   ) { }
 
   public ngOnInit() {
-    this.providerList = this.settings.config.restApiUrls;
-    this.providerBlacklist = this.settings.config.providerBlackList;
+    this.providerList = this.settingsSrvc.getSettings().restApiUrls;
+    this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
     this.providerFilter = { valueTypes: ValueTypes.quantity };
   }
 
