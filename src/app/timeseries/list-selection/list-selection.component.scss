@@ -11,10 +11,12 @@ n52-list-selection {
                 display: flex;
                 flex-direction: column;
                 padding: 20px;
+                overflow: hidden;
                 .tab-pane{
                     display: flex;
                     flex-direction: column;
                     flex: 1;
+                    overflow: auto;
                 }
             }
         }
