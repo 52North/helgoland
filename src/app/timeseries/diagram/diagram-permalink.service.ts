@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PermalinkService, Timespan } from 'helgoland-toolbox';
+import { DefinedTimespan, DefinedTimespanService } from 'helgoland-toolbox/dist/services/time/defined-timespan.service';
 
 import { TimeseriesService } from '../services/timeseries.service';
 
@@ -8,13 +9,15 @@ const PARAM_IDS = 'ids';
 const ID_SEPERATOR = '!!';
 const PARAM_TIME = 'time';
 const TIME_SEPERATOR = '|';
+const PARAM_DEFINED_TIME = 'defined_time';
 
 @Injectable()
 export class TimeseriesDiagramPermalink extends PermalinkService<void> {
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private timeseriesSrvc: TimeseriesService
+        private timeseriesSrvc: TimeseriesService,
+        private definedTimeintervalSrvc: DefinedTimespanService
     ) {
         super();
     }
@@ -40,14 +43,18 @@ export class TimeseriesDiagramPermalink extends PermalinkService<void> {
                 ids.forEach(id => {
                     this.timeseriesSrvc.addDataset(id);
                 });
-                if (params[PARAM_TIME]) {
-                    const time = (params[PARAM_TIME] as string).split(TIME_SEPERATOR);
-                    if (time.length === 2) {
-                        const start = parseInt(time[0], 10);
-                        const end = parseInt(time[1], 10);
-                        this.timeseriesSrvc.setTimespan(new Timespan(start, end));
-                    }
+            }
+            if (params[PARAM_TIME]) {
+                const time = (params[PARAM_TIME] as string).split(TIME_SEPERATOR);
+                if (time.length === 2) {
+                    const start = parseInt(time[0], 10);
+                    const end = parseInt(time[1], 10);
+                    this.timeseriesSrvc.setTimespan(new Timespan(start, end));
                 }
+            } else if (params[PARAM_DEFINED_TIME]) {
+                const definedTime = params[PARAM_DEFINED_TIME] as DefinedTimespan;
+                const timespan = this.definedTimeintervalSrvc.getInterval(definedTime);
+                if (timespan) { this.timeseriesSrvc.setTimespan(timespan); }
             }
         });
     }
