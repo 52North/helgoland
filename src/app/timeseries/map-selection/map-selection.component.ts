@@ -22,7 +22,7 @@ import {
     Settings,
     ValueTypes,
 } from 'helgoland-toolbox';
-import { SettingsService } from 'helgoland-toolbox/dist/services/settings/settings.service';
+import { SettingsService } from 'helgoland-toolbox';
 
 import { TimeseriesService } from './../services/timeseries.service';
 

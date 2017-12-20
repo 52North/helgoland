@@ -22,6 +22,7 @@
 		},
 		"timeseries": {
 			"diagram": "Diagramm",
+			"table": "Tabelle",
 			"favorites": "Favoriten",
 			"list-selection": "Listenauswahl",
 			"main": "Zeitreihen",

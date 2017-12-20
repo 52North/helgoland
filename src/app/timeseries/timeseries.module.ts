@@ -17,6 +17,7 @@ import {
 
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
+import { TimeseriesTableComponent } from './table/table.component';
 import { TimeseriesFavoritesComponent } from './favorites/favorites.component';
 import { TimeseriesListSelectionCache, TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
 import { TimeseriesMapSelectionCache, TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
@@ -24,6 +25,7 @@ import { TimeseriesNavigationComponent } from './navigation/navigation.component
 import { TimeseriesConditionalRouter } from './services/timeseries-router.service';
 import { TimeseriesService } from './services/timeseries.service';
 import { FormsModule } from '@angular/forms';
+import { HelgolandTableModule } from 'helgoland-toolbox/dist/components/table/table.module';
 
 const timeseriesRoutes: Routes = [
   {
@@ -43,6 +45,10 @@ const timeseriesRoutes: Routes = [
       {
         path: 'diagram',
         component: TimeseriesDiagramComponent
+      },
+      {
+        path: 'table',
+        component: TimeseriesTableComponent
       },
       {
         path: 'map-selection',
@@ -71,6 +77,7 @@ const timeseriesRoutes: Routes = [
     HelgolandMapSelectorModule,
     HelgolandMapControlModule,
     HelgolandTimeModule,
+    HelgolandTableModule,
     HelgolandDatasetlistModule,
     HelgolandModificationModule,
     RouterModule.forChild(
@@ -84,6 +91,7 @@ const timeseriesRoutes: Routes = [
   declarations: [
     TimeseriesNavigationComponent,
     TimeseriesDiagramComponent,
+    TimeseriesTableComponent,
     TimeseriesListSelectionComponent,
     TimeseriesMapSelectionComponent,
     TimeseriesFavoritesComponent
