@@ -16,8 +16,8 @@
       </ng-template>
       <ng-template ngbTabContent>
         <div class="container">
-          <n52-list-selector [parameters]="platformParams" [selectorId]="'trajectory-platform'" [filter]="paramFilter" [providerList]="selectedProvider"
-            (onDatasetSelection)="datasetSelected($event)"></n52-list-selector>
+          <n52-custom-list-selector [parameters]="platformParams" [selectorId]="'trajectory-platform'" [filter]="paramFilter" [providerList]="selectedProvider"
+            (onDatasetSelection)="datasetSelected($event)"></n52-custom-list-selector>
         </div>
       </ng-template>
     </ngb-tab>
@@ -27,8 +27,8 @@
       </ng-template>
       <ng-template ngbTabContent>
         <div class="container">
-          <n52-list-selector [parameters]="phenomenonParams" [selectorId]="'trajectory-phenomenon'" [filter]="paramFilter" [providerList]="selectedProvider"
-            (onDatasetSelection)="datasetSelected($event)"></n52-list-selector>
+          <n52-custom-list-selector [parameters]="phenomenonParams" [selectorId]="'trajectory-phenomenon'" [filter]="paramFilter" [providerList]="selectedProvider"
+            (onDatasetSelection)="datasetSelected($event)"></n52-custom-list-selector>
         </div>
       </ng-template>
     </ngb-tab>

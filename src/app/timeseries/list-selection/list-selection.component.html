@@ -13,7 +13,7 @@
       <ng-template ngbTabTitle>{{'timeseries.list-selection.category' | translate}}</ng-template>
       <ng-template ngbTabContent>
         <div class="scrollable container">
-          <n52-list-selector [parameters]="categoryParams" [selectorId]="'category'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
+          <n52-custom-list-selector [parameters]="categoryParams" [selectorId]="'category'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-custom-list-selector>
         </div>
       </ng-template>
     </ngb-tab>
@@ -21,7 +21,7 @@
       <ng-template ngbTabTitle>{{'timeseries.list-selection.station' | translate}}</ng-template>
       <ng-template ngbTabContent>
         <div class="scrollable container">
-          <n52-list-selector [parameters]="stationParams" [selectorId]="'station'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
+          <n52-custom-list-selector [parameters]="stationParams" [selectorId]="'station'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-custom-list-selector>
         </div>
       </ng-template>
     </ngb-tab>
@@ -29,7 +29,7 @@
       <ng-template ngbTabTitle>{{'timeseries.list-selection.phenomenon' | translate}}</ng-template>
       <ng-template ngbTabContent>
         <div class="scrollable container">
-          <n52-list-selector [parameters]="phenomenonParams" [selectorId]="'phenomenon'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
+          <n52-custom-list-selector [parameters]="phenomenonParams" [selectorId]="'phenomenon'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-custom-list-selector>
         </div>
       </ng-template>
     </ngb-tab>
@@ -37,7 +37,7 @@
       <ng-template ngbTabTitle>{{'timeseries.list-selection.sensor' | translate}}</ng-template>
       <ng-template ngbTabContent>
         <div class="scrollable container">
-          <n52-list-selector [parameters]="procedureParams" [selectorId]="'procedure'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-list-selector>
+          <n52-custom-list-selector [parameters]="procedureParams" [selectorId]="'procedure'" [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)"></n52-custom-list-selector>
         </div>
       </ng-template>
     </ngb-tab>

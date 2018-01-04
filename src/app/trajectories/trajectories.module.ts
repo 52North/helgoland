@@ -4,15 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import {
-    HelgolandControlModule,
-    HelgolandD3GraphModule,
-    HelgolandDatasetlistModule,
-    HelgolandMapViewModule,
-    HelgolandModificationModule,
-    HelgolandPermalinkModule,
-    HelgolandSelectorModule,
+  HelgolandControlModule,
+  HelgolandD3GraphModule,
+  HelgolandDatasetlistModule,
+  HelgolandMapViewModule,
+  HelgolandModificationModule,
+  HelgolandSelectorModule,
 } from 'helgoland-toolbox';
 
+import { ComponentsModule } from '../components/components.module';
 import { TrajectoriesNavigationComponent } from './navigation/navigation.component';
 import { TrajectoriesSelectionComponent } from './selection/selection.component';
 import { TrajectoriesConditionalRouter } from './services/trajectories-router.service';
@@ -46,7 +46,6 @@ const trajectoriesRoutes: Routes = [
   imports: [
     CommonModule,
     TranslateModule,
-    HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandControlModule,
     HelgolandMapViewModule,
@@ -56,7 +55,8 @@ const trajectoriesRoutes: Routes = [
     RouterModule.forChild(
       trajectoriesRoutes
     ),
-    NgbTabsetModule
+    NgbTabsetModule,
+    ComponentsModule
   ],
   declarations: [
     TrajectoriesViewComponent,

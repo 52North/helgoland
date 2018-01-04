@@ -9,12 +9,12 @@ import {
     HelgolandMapSelectorModule,
     HelgolandMapViewModule,
     HelgolandModificationModule,
-    HelgolandPermalinkModule,
     HelgolandPlotlyGraphModule,
     HelgolandSelectorModule,
     HelgolandTimeModule,
 } from 'helgoland-toolbox';
 
+import { ComponentsModule } from '../components/components.module';
 import { ProfilesCombiViewPermalink } from './combi-view/combi-view-permalink.service';
 import { ProfilesCombiViewComponent } from './combi-view/combi-view.component';
 import { ProfilesCombiService } from './combi-view/combi-view.service';
@@ -56,7 +56,6 @@ const profilesRoutes: Routes = [
     imports: [
         CommonModule,
         TranslateModule,
-        HelgolandPermalinkModule,
         HelgolandSelectorModule,
         HelgolandDepictionModule,
         HelgolandMapSelectorModule,
@@ -68,7 +67,8 @@ const profilesRoutes: Routes = [
         RouterModule.forChild(
             profilesRoutes
         ),
-        NgbTabsetModule
+        NgbTabsetModule,
+        ComponentsModule
     ],
     declarations: [
         ProfilesDiagramComponent,
