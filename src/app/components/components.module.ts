@@ -12,6 +12,9 @@ import {
 } from 'helgoland-toolbox';
 
 import { CustomListSelectorComponent } from './custom-list-selector/custom-list-selector.component';
+import {
+  CustomTimespanShiftSelectorComponent,
+} from './custom-timespan-shift-selector/custom-timespan-shift-selector.component';
 import { LocalSelectorImplComponent } from './local-selector/local-selector.component';
 import { ModalGeometryViewerComponent } from './modal-geometry-viewer/modal-geometry-viewer.component';
 import { ModalOptionsEditorComponent } from './modal-options-editor/modal-options-editor.component';
@@ -41,7 +44,8 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     ModalTimeseriesTimespanComponent,
     PermalinkButtonComponent,
     TimespanSelectorComponent,
-    CustomListSelectorComponent
+    CustomListSelectorComponent,
+    CustomTimespanShiftSelectorComponent
   ],
   entryComponents: [
     LocalSelectorImplComponent,
@@ -52,7 +56,8 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
   exports: [
     LocalSelectorImplComponent,
     PermalinkButtonComponent,
-    CustomListSelectorComponent
+    CustomListSelectorComponent,
+    CustomTimespanShiftSelectorComponent
   ]
 })
 export class ComponentsModule { }

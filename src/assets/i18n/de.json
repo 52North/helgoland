@@ -22,11 +22,11 @@
 		},
 		"timeseries": {
 			"diagram": "Diagramm",
-			"table": "Tabelle",
 			"favorites": "Favoriten",
 			"list-selection": "Listenauswahl",
 			"main": "Zeitreihen",
-			"map": "Karteauswahl"
+			"map": "Karteauswahl",
+			"table": "Tabelle"
 		},
 		"trajectories": {
 			"main": "Trajektorien",
@@ -106,6 +106,19 @@
 			"map": "Karte",
 			"provider": "Anbieter",
 			"show-in-diagram": "Zeige {{value}} Zeitreihen im Diagramm"
+		},
+		"timespan-selector": {
+			"current_month": "Derzeitiger Monat",
+			"current_week": "Derzeitige Woche",
+			"current_year": "Derzeitiges Jahr",
+			"header": "Zeitraumauswahl",
+			"last_hour": "Letzte Stunde",
+			"last_month": "Letzter Monat",
+			"last_week": "Letzte Woche",
+			"last_year": "Letztes Jahr",
+			"today": "Heute",
+			"today_yesterday": "Heute & Gestern",
+			"yesterday": "Gestern"
 		}
 	},
 	"trajectories": {
