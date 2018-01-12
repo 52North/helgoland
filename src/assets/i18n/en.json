@@ -86,6 +86,10 @@
 					"header": "Change style of this timeseries",
 					"zeroBasedYAxe": "Timeseries zero based"
 				}
+			},
+			"phenomenon": {
+				"header": "Phenomena",
+				"show-all": "All phenomena"
 			}
 		},
 		"favorites": {

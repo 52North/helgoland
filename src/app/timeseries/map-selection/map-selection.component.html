@@ -35,21 +35,24 @@
         {{'timeseries.map-selection.map' | translate}}
       </ng-template>
       <ng-template ngbTabContent>
-        <div class="map-content">
-          <div class="map">
-            <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService.providerUrl" [filter]="stationFilter"
-              (onSelected)="onStationSelected($event)" [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
-            <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
-            <n52-locate-control class="locate-control" [mapId]="'timeseries'"></n52-locate-control>
-          </div>
-          <div class="phenomenon-list scrollable">
-            <div class="selector-entry" [ngClass]="{selected: selectedPhenomenonId == null}" (click)="onAllPhenomenonSelected()">
-              <span>Alle Phänomene</span>
+        <div class="row row-offcanvas row-offcanvas-right" [ngClass]="{active: legendToggled}">
+          <div class="map-content">
+            <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.phenomenon.header' | translate}}</button>
+            <div class="map">
+              <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService.providerUrl" [filter]="stationFilter"
+                (onSelected)="onStationSelected($event)" [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
+              <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
+              <n52-locate-control class="locate-control" [mapId]="'timeseries'"></n52-locate-control>
             </div>
-            <hr>
-            <div>
-              <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedService.providerUrl"
-                [selectionId]="selectedPhenomenonId" (onItemSelected)="onPhenomenonSelected($event)"></n52-service-filter-selector>
+            <div class="phenomenon-list scrollable sidebar-offcanvas">
+              <div class="selector-entry" [ngClass]="{selected: selectedPhenomenonId == null}" (click)="onAllPhenomenonSelected()">
+                <span>{{'timeseries.diagram.phenomenon.show-all' | translate}}</span>
+              </div>
+              <hr>
+              <div>
+                <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedService.providerUrl"
+                  [selectionId]="selectedPhenomenonId" (onItemSelected)="onPhenomenonSelected($event)"></n52-service-filter-selector>
+              </div>
             </div>
           </div>
         </div>

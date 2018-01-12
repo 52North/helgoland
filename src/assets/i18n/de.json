@@ -86,6 +86,10 @@
 					"header": "Zeitreihenerscheinung ändern",
 					"zeroBasedYAxe": "Zeitreihe null-basiert"
 				}
+			},
+			"phenomenon": {
+				"header": "Phänomene",
+				"show-all": "Alle Phänomene"
 			}
 		},
 		"favorites": {

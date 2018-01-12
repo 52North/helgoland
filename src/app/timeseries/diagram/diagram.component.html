@@ -7,7 +7,7 @@
 <div class="container-fluid" *ngIf="datasetIds.length > 0">
   <div class="row row-offcanvas row-offcanvas-right" [ngClass]="{active: legendToggled}">
     <div class="col-12 col-md-8 col-xl-9 diagram-wrapper">
-      <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">Legend</button>
+      <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.legend.header' | translate}}</button>
       <div class="diagram">
         <n52-flot-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
           [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"
