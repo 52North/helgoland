@@ -1,0 +1,2 @@
+[context."feature/angularUpgrade"]
+  command = "npm run build-netlify"

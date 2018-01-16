@@ -10,6 +10,7 @@
     "test": "ng test",
     "lint": "ng lint --type-check",
     "e2e": "ng e2e",
+    "build-netlify": "cp ./netlify/settings-netlify.json ./src/assets/settings.json && npm run build",
     "i18n-extract": "ngx-translate-extract -i ./src ./node_modules/helgoland-toolbox/src -o ./src/assets/i18n/*.json --clean --sort --format namespaced-json"
   },
   "private": true,
