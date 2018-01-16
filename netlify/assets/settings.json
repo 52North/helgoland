@@ -10,7 +10,6 @@
   }],
   "restApiUrls": [
     "https://www.fluggs.de/sos2/api/v1/",
-    "https://nexos.demo.52north.org/52n-sos-nexos-test/api/",
     "https://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/",
     "https://geo.irceline.be/sos/api/v1/",
     "https://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/"

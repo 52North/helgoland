@@ -13,7 +13,7 @@
       <n52-permalink-new-window [url]="permalinkUrl" (onTriggered)="c()"></n52-permalink-new-window>
     </div>
     <div class="permalink-button">
-      <n52-permalink-to-clipboard [url]="permalinkUrl" (onTriggered)="c()"></n52-permalink-to-clipboard>
+      <n52-permalink-to-clipboard [url]="permalinkUrl" (onTriggered)="confirmClipboard(); c();"></n52-permalink-to-clipboard>
     </div>
   </div>
 </ng-template>

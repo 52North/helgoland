@@ -34,6 +34,9 @@
 			"view": "Ansicht"
 		}
 	},
+	"permalink": {
+		"confirm-to-clipboard": "Der Permalink ist in der Zwischenablage."
+	},
 	"profiles": {
 		"hint": {
 			"select-profile": "Bitte wählen Sie zuerst Profile aus."
