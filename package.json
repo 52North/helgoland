@@ -31,7 +31,7 @@
     "bootstrap-slider": "^10.0.0",
     "core-js": "^2.5.3",
     "font-awesome": "^4.7.0",
-    "helgoland-toolbox": "0.0.1-alpha.21",
+    "helgoland-toolbox": "file:../helgoland-toolbox/helgoland-toolbox-0.0.1-alpha.21.tgz",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
