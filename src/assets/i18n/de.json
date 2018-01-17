@@ -35,6 +35,11 @@
 		}
 	},
 	"permalink": {
+		"button": {
+			"in-mail": "Per Mail verschicken",
+			"in-window": "In neuem Tab öffnen",
+			"to-clipboard": "In die Zwischenablage"
+		},
 		"confirm-to-clipboard": "Der Permalink ist in der Zwischenablage."
 	},
 	"profiles": {
