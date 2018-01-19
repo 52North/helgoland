@@ -44,7 +44,7 @@
               <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
               <n52-locate-control class="locate-control" [mapId]="'timeseries'"></n52-locate-control>
             </div>
-            <div class="phenomenon-list scrollable sidebar-offcanvas">
+            <div class="phenomenon-list sidebar-offcanvas">
               <div class="selector-entry" [ngClass]="{selected: selectedPhenomenonId == null}" (click)="onAllPhenomenonSelected()">
                 <span>{{'timeseries.diagram.phenomenon.show-all' | translate}}</span>
               </div>

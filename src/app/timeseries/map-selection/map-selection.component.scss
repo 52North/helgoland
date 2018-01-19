@@ -17,6 +17,13 @@ n52-map-selection {
                     flex-direction: column;
                     flex: 1;
                     overflow: auto;
+                    overflow-x: hidden;
+
+                    .row-offcanvas {
+                        height: 100%;
+                        margin-right: 0px;
+                        margin-left: 0px;
+                    }
 
                     /* button for off canvas styling */
                     .legend-button {
@@ -28,6 +35,7 @@ n52-map-selection {
                     .map-content {
                         flex: 1;
                         display: flex;
+                        height: 100%;
                         .map {
                             width: 65%;
                             position: relative;
@@ -51,20 +59,24 @@ n52-map-selection {
                             overflow-y: auto;
                             width: 35%;
                             padding: 10px;
+                            max-height: calc(100vh - 56px - 81px - 43px);
                         }
                     }
                 }
             }
             /* off canvas styling */
             @media screen and (max-width: 767.98px) {
-                .tab-content .tab-pane {
-                    overflow: hidden;
-                    .map-content {
-                        .map {
-                            width: calc(100% - 20px);
-                        }
-                        .phenomenon-list {
-                            width: 75%;
+                .tab-content {
+                    padding: 0px;
+                    .tab-pane {
+                        overflow: hidden;
+                        .map-content {
+                            .map {
+                                width: 100%;
+                            }
+                            .phenomenon-list {
+                                width: 75%;
+                            }
                         }
                     }
                 }
