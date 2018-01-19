@@ -34,6 +34,14 @@
 			"view": "View"
 		}
 	},
+	"permalink": {
+		"button": {
+			"in-mail": "Send by mail",
+			"in-window": "Open in a new tab",
+			"to-clipboard": "Copy to clipboard"
+		},
+		"confirm-to-clipboard": "The permalink is copied to the clipboard."
+	},
 	"profiles": {
 		"hint": {
 			"select-profile": "Please select a profile first."
@@ -86,6 +94,10 @@
 					"header": "Change style of this timeseries",
 					"zeroBasedYAxe": "Timeseries zero based"
 				}
+			},
+			"phenomenon": {
+				"header": "Phenomena",
+				"show-all": "All phenomena"
 			}
 		},
 		"favorites": {

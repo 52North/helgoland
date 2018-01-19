@@ -10,6 +10,7 @@ import {
   HelgolandSelectorModule,
   HelgolandTimeModule,
 } from 'helgoland-toolbox';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { CustomListSelectorComponent } from './custom-list-selector/custom-list-selector.component';
 import {
@@ -19,7 +20,10 @@ import { LocalSelectorImplComponent } from './local-selector/local-selector.comp
 import { ModalGeometryViewerComponent } from './modal-geometry-viewer/modal-geometry-viewer.component';
 import { ModalOptionsEditorComponent } from './modal-options-editor/modal-options-editor.component';
 import { ModalTimeseriesTimespanComponent } from './modal-timeseries-timespan/modal-timeseries-timespan.component';
-import { PermalinkButtonComponent } from './permalink-button/permalink-button.component';
+import { PermalinkButtonComponent } from './permalink/permalink-button/permalink-button.component';
+import { InMailComponent } from './permalink/in-mail/in-mail.component';
+import { InNewWindowComponent } from './permalink/in-new-window/in-new-window.component';
+import { ToClipboardComponent } from './permalink/to-clipboard/to-clipboard.component';
 import { TimespanSelectorComponent } from './timespan-selector/timespan-selector.component';
 
 @NgModule({
@@ -34,8 +38,9 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     HelgolandTimeModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
-    TranslateModule.forChild(),
-    HelgolandModificationModule
+    HelgolandModificationModule,
+    ClipboardModule,
+    TranslateModule.forChild()
   ],
   declarations: [
     LocalSelectorImplComponent,
@@ -45,7 +50,10 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     PermalinkButtonComponent,
     TimespanSelectorComponent,
     CustomListSelectorComponent,
-    CustomTimespanShiftSelectorComponent
+    CustomTimespanShiftSelectorComponent,
+    InMailComponent,
+    InNewWindowComponent,
+    ToClipboardComponent
   ],
   entryComponents: [
     LocalSelectorImplComponent,

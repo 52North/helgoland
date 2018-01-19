@@ -1,5 +1,7 @@
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { NotifierService } from 'helgoland-toolbox';
 
 @Component({
   selector: 'n52-permalink-button',
@@ -17,11 +19,20 @@ export class PermalinkButtonComponent {
   public permalinkUrl: string;
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private translate: TranslateService,
+    private notification: NotifierService
   ) { }
 
   public permalink() {
     this.permalinkUrl = this.generatedUrlFunction();
     this.modalService.open(this.modal);
   }
+
+  public confirmClipboard() {
+    this.translate.get('permalink.confirm-to-clipboard').subscribe(text => {
+      this.notification.notify(text);
+    });
+  }
+
 }

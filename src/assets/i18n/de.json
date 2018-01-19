@@ -34,6 +34,14 @@
 			"view": "Ansicht"
 		}
 	},
+	"permalink": {
+		"button": {
+			"in-mail": "Per Mail verschicken",
+			"in-window": "In neuem Tab öffnen",
+			"to-clipboard": "In die Zwischenablage"
+		},
+		"confirm-to-clipboard": "Der Permalink ist in der Zwischenablage."
+	},
 	"profiles": {
 		"hint": {
 			"select-profile": "Bitte wählen Sie zuerst Profile aus."
@@ -86,6 +94,10 @@
 					"header": "Zeitreihenerscheinung ändern",
 					"zeroBasedYAxe": "Zeitreihe null-basiert"
 				}
+			},
+			"phenomenon": {
+				"header": "Phänomene",
+				"show-all": "Alle Phänomene"
 			}
 		},
 		"favorites": {
