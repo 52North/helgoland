@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ColorService, DatasetOptions, DatasetService, LocalStorage, Time, Timespan } from 'helgoland-toolbox';
+import { ColorService, DatasetOptions, DatasetService, LocalStorage, Time, Timespan } from '@helgoland/core';
 
 const TIMESERIES_OPTIONS_CACHE_PARAM = 'timeseriesOptions';
 const TIMESERIES_IDS_CACHE_PARAM = 'timeseriesIds';

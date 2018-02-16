@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ColorService, DatasetOptions, DatasetService, LocalStorage } from 'helgoland-toolbox';
+import { ColorService, DatasetOptions, DatasetService, LocalStorage } from '@helgoland/core';
 
 const TRAJECTORY_IDS_PARAM = 'trajectory-ids';
 const TRAJECTORY_OPTIONS_PARAM = 'trajectory-options';

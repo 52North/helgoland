@@ -6,7 +6,7 @@ import {
     LocatedProfileDataEntry,
     TimedDatasetOptions,
     Timespan,
-} from 'helgoland-toolbox';
+} from '@helgoland/core';
 
 import { ProfilesCombiViewPermalink } from './combi-view-permalink.service';
 import { ProfilesCombiService } from './combi-view.service';

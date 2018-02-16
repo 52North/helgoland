@@ -1,15 +1,10 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-    DatasetOptions,
-    FavoriteService,
-    JsonFavoriteExporterService,
-    PlotOptions,
-    SingleFavorite,
-    Timespan,
-} from 'helgoland-toolbox';
+import { DatasetOptions, Timespan } from '@helgoland/core';
+import { FavoriteService, JsonFavoriteExporterService, SingleFavorite } from '@helgoland/favorite';
 
 import { TimeseriesService } from '../services/timeseries.service';
+
 
 @Component({
   selector: 'n52-timeseries-favorites',

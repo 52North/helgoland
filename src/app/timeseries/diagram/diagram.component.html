@@ -11,15 +11,15 @@
       <div class="diagram">
         <n52-flot-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
           [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"
-          (onHighlight)="highlight($event)" (onLoading)="graphLoading = $event"></n52-flot-timeseries-graph>
+          (onHighlight)="highlight($event)" (onContentLoading)="onGraphLoading($event)"></n52-flot-timeseries-graph>
         <div class="loading-overlay" *ngIf="graphLoading">
           <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
         </div>
       </div>
       <div class="overview-diagram d-none d-md-block">
         <n52-flot-overview-timeseries-graph [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions" [graphOptions]="overviewOptions"
-          [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)" (onLoading)="onOverviewLoading($event)"></n52-flot-overview-timeseries-graph>
-        <div class="loading-overlay" *ngIf="overviewLoading">
+          [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onOverviewLoading($event)"></n52-flot-overview-timeseries-graph>
+        <div class="loading-overlay" *ngIf="overviewGraphLoading">
           <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
         </div>
       </div>

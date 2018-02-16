@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Settings, SettingsService } from 'helgoland-toolbox';
+import { Settings, SettingsService } from '@helgoland/core';
+
 import { settings } from '../../environments/environment';
 
 @Injectable()

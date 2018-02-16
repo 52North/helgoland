@@ -2,18 +2,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { HelgolandDatasetTableModule } from '@helgoland/depiction/dataset-table';
+import { HelgolandDatasetlistModule } from '@helgoland/depiction/datasetlist';
+import { HelgolandFlotModule } from '@helgoland/flot';
+import { HelgolandMapControlModule } from '@helgoland/map/control';
+import { HelgolandMapSelectorModule } from '@helgoland/map/selector';
+import { HelgolandSelectorModule } from '@helgoland/selector';
 import { NgbAccordionModule, NgbDropdownModule, NgbModalModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-  HelgolandDatasetlistModule,
-  HelgolandFlotGraphModule,
-  HelgolandMapControlModule,
-  HelgolandMapSelectorModule,
-  HelgolandModificationModule,
-  HelgolandSelectorModule,
-  HelgolandTimeModule,
-} from 'helgoland-toolbox';
-import { HelgolandTableModule } from 'helgoland-toolbox/dist/components/table/table.module';
 
 import { ComponentsModule } from '../components/components.module';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
@@ -70,14 +66,12 @@ const timeseriesRoutes: Routes = [
     CommonModule,
     TranslateModule,
     FormsModule,
-    HelgolandFlotGraphModule,
+    HelgolandDatasetlistModule,
+    HelgolandFlotModule,
+    HelgolandDatasetTableModule,
     HelgolandSelectorModule,
     HelgolandMapSelectorModule,
     HelgolandMapControlModule,
-    HelgolandTimeModule,
-    HelgolandTableModule,
-    HelgolandDatasetlistModule,
-    HelgolandModificationModule,
     RouterModule.forChild(
       timeseriesRoutes
     ),

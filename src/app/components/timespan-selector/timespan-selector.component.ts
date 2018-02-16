@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Timespan } from '@helgoland/core';
 import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-import { Timespan } from 'helgoland-toolbox';
 
 @Component({
   selector: 'n52-timespan-selector',

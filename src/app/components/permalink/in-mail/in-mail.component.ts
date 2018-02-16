@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PermalinkInMailComponent } from 'helgoland-toolbox';
+import { PermalinkInMailComponent } from '@helgoland/permalink';
 
 @Component({
   selector: 'n52-custom-permalink-in-mail',

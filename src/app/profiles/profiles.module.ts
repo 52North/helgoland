@@ -1,18 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HelgolandDatasetlistModule } from '@helgoland/depiction/datasetlist';
+import { HelgolandMapSelectorModule } from '@helgoland/map/selector';
+import { HelgolandMapViewModule } from '@helgoland/map/view';
+import { HelgolandModificationModule } from '@helgoland/modification';
+import { HelgolandPlotlyModule } from '@helgoland/plotly';
+import { HelgolandSelectorModule } from '@helgoland/selector';
+import { HelgolandTimeModule } from '@helgoland/time';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-    HelgolandDatasetlistModule,
-    HelgolandDepictionModule,
-    HelgolandMapSelectorModule,
-    HelgolandMapViewModule,
-    HelgolandModificationModule,
-    HelgolandPlotlyGraphModule,
-    HelgolandSelectorModule,
-    HelgolandTimeModule,
-} from 'helgoland-toolbox';
 
 import { ComponentsModule } from '../components/components.module';
 import { ProfilesCombiViewPermalink } from './combi-view/combi-view-permalink.service';
@@ -56,14 +53,13 @@ const profilesRoutes: Routes = [
     imports: [
         CommonModule,
         TranslateModule,
-        HelgolandSelectorModule,
-        HelgolandDepictionModule,
+        HelgolandPlotlyModule,
+        HelgolandMapViewModule,
+        HelgolandDatasetlistModule,
+        HelgolandModificationModule,
         HelgolandMapSelectorModule,
         HelgolandTimeModule,
-        HelgolandDatasetlistModule,
-        HelgolandMapViewModule,
-        HelgolandPlotlyGraphModule,
-        HelgolandModificationModule,
+        HelgolandSelectorModule,
         RouterModule.forChild(
             profilesRoutes
         ),

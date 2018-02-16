@@ -1,28 +1,28 @@
 import {
-    AfterViewInit,
-    ChangeDetectorRef,
-    Component,
-    Injectable,
-    OnInit,
-    TemplateRef,
-    ViewChild,
-    ViewEncapsulation,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  Injectable,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  BlacklistedService,
+  Dataset,
+  ParameterFilter,
+  Phenomenon,
+  Platform,
+  PlatformTypes,
+  Service,
+  Settings,
+  SettingsService,
+  ValueTypes,
+} from '@helgoland/core';
 import { NgbModal, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
-import {
-    BlacklistedService,
-    Dataset,
-    ParameterFilter,
-    Phenomenon,
-    Platform,
-    PlatformTypes,
-    Service,
-    Settings,
-    ValueTypes,
-} from 'helgoland-toolbox';
-import { SettingsService } from 'helgoland-toolbox';
 
 import { TimeseriesService } from './../services/timeseries.service';
 

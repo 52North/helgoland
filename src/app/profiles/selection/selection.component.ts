@@ -1,7 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 import {
     ApiInterface,
     BlacklistedService,
@@ -20,9 +18,11 @@ import {
     SettingsService,
     TimedDatasetOptions,
     Timespan,
-    TrajectoryResult,
     ValueTypes,
-} from 'helgoland-toolbox';
+} from '@helgoland/core';
+import { TrajectoryResult } from '@helgoland/map/selector';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 
 import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';

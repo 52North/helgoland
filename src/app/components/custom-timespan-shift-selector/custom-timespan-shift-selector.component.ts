@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Time, TimespanShiftSelectorComponent } from 'helgoland-toolbox';
+import { Time } from '@helgoland/core';
+import { TimespanShiftSelectorComponent } from '@helgoland/time';
 
 @Component({
   selector: 'n52-custom-timespan-shift-selector',

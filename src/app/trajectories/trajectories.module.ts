@@ -1,16 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HelgolandControlModule } from '@helgoland/control';
+import { HelgolandD3Module } from '@helgoland/d3';
+import { HelgolandDatasetlistModule } from '@helgoland/depiction/datasetlist';
+import { HelgolandMapViewModule } from '@helgoland/map/view';
+import { HelgolandModificationModule } from '@helgoland/modification';
+import { HelgolandSelectorModule } from '@helgoland/selector';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-  HelgolandControlModule,
-  HelgolandD3GraphModule,
-  HelgolandDatasetlistModule,
-  HelgolandMapViewModule,
-  HelgolandModificationModule,
-  HelgolandSelectorModule,
-} from 'helgoland-toolbox';
 
 import { ComponentsModule } from '../components/components.module';
 import { TrajectoriesNavigationComponent } from './navigation/navigation.component';
@@ -46,12 +44,12 @@ const trajectoriesRoutes: Routes = [
   imports: [
     CommonModule,
     TranslateModule,
-    HelgolandSelectorModule,
     HelgolandControlModule,
-    HelgolandMapViewModule,
-    HelgolandD3GraphModule,
     HelgolandDatasetlistModule,
+    HelgolandMapViewModule,
     HelgolandModificationModule,
+    HelgolandD3Module,
+    HelgolandSelectorModule,
     RouterModule.forChild(
       trajectoriesRoutes
     ),

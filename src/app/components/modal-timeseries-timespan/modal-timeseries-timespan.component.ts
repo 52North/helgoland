@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { Timespan } from 'helgoland-toolbox';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Timespan } from '@helgoland/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

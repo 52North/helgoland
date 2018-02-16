@@ -1,16 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ApiInterface, DatasetOptions, IDataset, InternalIdHandler, LocatedTimeValueEntry, Timespan } from '@helgoland/core';
+import { D3AxisType, D3GraphOptions, D3SelectionRange } from '@helgoland/d3';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
-import {
-    ApiInterface,
-    D3AxisType,
-    D3GraphOptions,
-    D3SelectionRange,
-    DatasetOptions,
-    IDataset,
-    InternalIdHandler,
-    LocatedTimeValueEntry,
-    Timespan,
-} from 'helgoland-toolbox';
 
 import { TrajectoriesService } from './../services/trajectories.service';
 import { TrajectoriesViewPermalink } from './view-permalink';

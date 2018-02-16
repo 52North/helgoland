@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { LocalSelectorComponent } from '@helgoland/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LocalSelectorComponent } from 'helgoland-toolbox';
 
 @Component({
   selector: 'n52-local-selector',

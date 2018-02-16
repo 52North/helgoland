@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ColorService, DatasetOptions, PermalinkService } from 'helgoland-toolbox';
+import { ColorService, DatasetOptions } from '@helgoland/core';
+import { PermalinkService } from '@helgoland/permalink';
 
 import { TrajectoriesService } from './../services/trajectories.service';
 

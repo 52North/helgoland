@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Data, DatasetOptions, IDataEntry, IDataset, PlotOptions, Service, Time, Timespan } from 'helgoland-toolbox';
 
 import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
 import { ModalOptionsEditorComponent } from '../../components/modal-options-editor/modal-options-editor.component';
@@ -9,7 +8,8 @@ import {
 } from '../../components/modal-timeseries-timespan/modal-timeseries-timespan.component';
 import { TimeseriesService } from './../services/timeseries.service';
 import { TimeseriesDiagramPermalink } from './diagram-permalink.service';
-
+import { IDataset, DatasetOptions, IDataEntry, Data, Timespan, Service, Time } from '@helgoland/core';
+import { PlotOptions } from '@helgoland/flot';
 @Component({
     selector: 'n52-diagram',
     templateUrl: './diagram.component.html',
@@ -67,7 +67,8 @@ export class TimeseriesDiagramComponent implements OnInit {
         generalizeAllways: true
     };
 
-    public overviewLoading: boolean;
+    public overviewGraphLoading: boolean;
+    public graphLoading: boolean;
 
     constructor(
         private timeseriesService: TimeseriesService,
@@ -143,8 +144,12 @@ export class TimeseriesDiagramComponent implements OnInit {
     }
 
     public onOverviewLoading(loading: boolean) {
-        this.overviewLoading = loading;
+        this.overviewGraphLoading = loading;
         this.cdr.detectChanges();
+    }
+
+    public onGraphLoading(loading: boolean) {
+        this.graphLoading = loading;
     }
 
 }

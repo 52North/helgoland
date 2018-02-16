@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { Language } from '@helgoland/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Language } from 'helgoland-toolbox/dist';
 
 @Component({
   selector: 'n52-root',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PermalinkService, Timespan } from 'helgoland-toolbox';
-import { DefinedTimespan, DefinedTimespanService } from 'helgoland-toolbox/dist/services/time/defined-timespan.service';
+import { DefinedTimespan, DefinedTimespanService, Timespan } from '@helgoland/core';
+import { PermalinkService } from '@helgoland/permalink';
 
 import { TimeseriesService } from '../services/timeseries.service';
 

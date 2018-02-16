@@ -1,15 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HelgolandMapViewModule } from '@helgoland/map/view';
+import { HelgolandModificationModule } from '@helgoland/modification';
+import { HelgolandSelectorModule } from '@helgoland/selector';
+import { HelgolandTimeModule } from '@helgoland/time';
 import { NgbAccordionModule, NgbDatepickerModule, NgbDropdownModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-  HelgolandMapViewModule,
-  HelgolandModificationModule,
-  HelgolandPermalinkModule,
-  HelgolandSelectorModule,
-  HelgolandTimeModule,
-} from 'helgoland-toolbox';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { CustomListSelectorComponent } from './custom-list-selector/custom-list-selector.component';
@@ -20,9 +17,9 @@ import { LocalSelectorImplComponent } from './local-selector/local-selector.comp
 import { ModalGeometryViewerComponent } from './modal-geometry-viewer/modal-geometry-viewer.component';
 import { ModalOptionsEditorComponent } from './modal-options-editor/modal-options-editor.component';
 import { ModalTimeseriesTimespanComponent } from './modal-timeseries-timespan/modal-timeseries-timespan.component';
-import { PermalinkButtonComponent } from './permalink/permalink-button/permalink-button.component';
 import { InMailComponent } from './permalink/in-mail/in-mail.component';
 import { InNewWindowComponent } from './permalink/in-new-window/in-new-window.component';
+import { PermalinkButtonComponent } from './permalink/permalink-button/permalink-button.component';
 import { ToClipboardComponent } from './permalink/to-clipboard/to-clipboard.component';
 import { TimespanSelectorComponent } from './timespan-selector/timespan-selector.component';
 
@@ -34,11 +31,10 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     NgbDatepickerModule,
     NgbTimepickerModule,
     NgbAccordionModule,
-    HelgolandMapViewModule,
     HelgolandTimeModule,
-    HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandModificationModule,
+    HelgolandMapViewModule,
     ClipboardModule,
     TranslateModule.forChild()
   ],

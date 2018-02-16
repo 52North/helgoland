@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DatasetService, LocalStorage, TimedDatasetOptions } from 'helgoland-toolbox';
+import { DatasetService, LocalStorage, TimedDatasetOptions } from '@helgoland/core';
 
 const COMBI_PROFILES_OPTIONS_CACHE_PARAM = 'combiProfilesOptions';
 const COMBI_PROFILES_IDS_CACHE_PARAM = 'combiProfilesIds';

@@ -1,4 +1,4 @@
-import { Settings } from 'helgoland-toolbox';
+import { Settings } from '@helgoland/core';
 
 export const environment = {
   production: true

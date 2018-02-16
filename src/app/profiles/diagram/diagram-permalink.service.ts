@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ColorService, PermalinkService, TimedDatasetOptions } from 'helgoland-toolbox';
+import { ColorService, TimedDatasetOptions } from '@helgoland/core';
+import { PermalinkService } from '@helgoland/permalink';
 
 import { ProfilesService } from './../services/profiles.service';
 

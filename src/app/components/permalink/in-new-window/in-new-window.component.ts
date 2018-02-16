@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PermalinkNewWindowComponent } from 'helgoland-toolbox';
+import { PermalinkNewWindowComponent } from '@helgoland/permalink';
 
 @Component({
   selector: 'n52-custom-permalink-new-window',

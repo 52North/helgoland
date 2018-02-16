@@ -29,7 +29,8 @@
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/Flot/jquery.flot.js",
         "../node_modules/Flot/jquery.flot.time.js",
-        "../node_modules/Flot/jquery.flot.crosshair.js"
+        "../node_modules/Flot/jquery.flot.crosshair.js",
+        "../node_modules/plotly.js/dist/plotly-basic.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

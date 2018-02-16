@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 import {
-    BlacklistedService,
-    ColorService,
-    Dataset,
-    DatasetOptions,
-    ListSelectorParameter,
-    ParameterFilter,
-    PlatformTypes,
-    Provider,
-    Service,
-    Settings,
-    SettingsService,
-    ValueTypes,
-} from 'helgoland-toolbox';
+  BlacklistedService,
+  ColorService,
+  Dataset,
+  DatasetOptions,
+  ParameterFilter,
+  PlatformTypes,
+  Provider,
+  Service,
+  Settings,
+  SettingsService,
+  ValueTypes,
+} from '@helgoland/core';
+import { ListSelectorParameter } from '@helgoland/selector';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 
 import { TrajectoriesService } from './../services/trajectories.service';
 

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TimeseriesService } from '../services/timeseries.service';
-import { Timespan, DatasetOptions, Time } from 'helgoland-toolbox';
+import { DatasetOptions, Time, Timespan } from '@helgoland/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
+import { ModalOptionsEditorComponent } from '../../components/modal-options-editor/modal-options-editor.component';
 import {
   ModalTimeseriesTimespanComponent,
 } from '../../components/modal-timeseries-timespan/modal-timeseries-timespan.component';
-import { ModalOptionsEditorComponent } from '../../components/modal-options-editor/modal-options-editor.component';
-import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
+import { TimeseriesService } from '../services/timeseries.service';
 
 @Component({
   selector: 'n52-table',
@@ -35,9 +36,9 @@ export class TimeseriesTableComponent implements OnInit {
 
   public selectTimeseries(selected: boolean, internalId: string) {
     if (selected) {
-        this.selectedIds.push(internalId);
+      this.selectedIds.push(internalId);
     } else {
-        this.selectedIds.splice(this.selectedIds.findIndex(entry => entry === internalId), 1);
+      this.selectedIds.splice(this.selectedIds.findIndex(entry => entry === internalId), 1);
     }
   }
 
@@ -50,14 +51,14 @@ export class TimeseriesTableComponent implements OnInit {
   }
 
   public jumpToDate(date: Date) {
-      this.updateTime(this.timeSrvc.centerTimespan(this.timespan, date));
+    this.updateTime(this.timeSrvc.centerTimespan(this.timespan, date));
   }
 
   public openTimeSettings() {
     const ref = this.modalService.open(ModalTimeseriesTimespanComponent);
     (ref.componentInstance as ModalTimeseriesTimespanComponent).timespan = this.timespan;
     (ref.componentInstance as ModalTimeseriesTimespanComponent).onTimespanChanged
-        .subscribe((timespan: Timespan) => this.updateTime(timespan));
+      .subscribe((timespan: Timespan) => this.updateTime(timespan));
   }
 
   private updateTime(timespan: Timespan) {
@@ -75,8 +76,8 @@ export class TimeseriesTableComponent implements OnInit {
   }
 
   public showGeometry(geometry: GeoJSON.GeoJsonObject) {
-      const ref = this.modalService.open(ModalGeometryViewerComponent);
-      (ref.componentInstance as ModalGeometryViewerComponent).geometry = geometry;
+    const ref = this.modalService.open(ModalGeometryViewerComponent);
+    (ref.componentInstance as ModalGeometryViewerComponent).geometry = geometry;
   }
 
 }

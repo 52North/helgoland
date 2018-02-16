@@ -1,30 +1,21 @@
-import { HttpClient } from '@angular/common/http';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router/src/config';
+import { CachingInterceptor, HttpCache, LocalHttpCache, LocalOngoingHttpCache, OnGoingHttpCache } from '@helgoland/caching';
+import { ApiInterface, GetDataApiInterface, SettingsService } from '@helgoland/core';
+import { JsonFavoriteExporterService } from '@helgoland/favorite';
 import {
-    NgbAccordionModule,
-    NgbDatepickerModule,
-    NgbDropdownModule,
-    NgbModalModule,
-    NgbTabsetModule,
-    NgbTimepickerModule,
+  NgbAccordionModule,
+  NgbDatepickerModule,
+  NgbDropdownModule,
+  NgbModalModule,
+  NgbTabsetModule,
+  NgbTimepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {
-    ApiInterface,
-    CachingInterceptor,
-    GetDataApiInterface,
-    HttpCache,
-    JsonFavoriteExporterService,
-    LocalHttpCache,
-    LocalOngoingHttpCache,
-    OnGoingHttpCache,
-    SettingsService,
-} from 'helgoland-toolbox';
 
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
@@ -32,7 +23,6 @@ import { ProfilesModule } from './profiles/profiles.module';
 import { ExtendedSettingsService } from './services/settings.service';
 import { TimeseriesModule } from './timeseries/timeseries.module';
 import { TrajectoriesModule } from './trajectories/trajectories.module';
-
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

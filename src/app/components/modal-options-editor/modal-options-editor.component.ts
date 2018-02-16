@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DatasetOptions } from '@helgoland/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { DatasetOptions } from 'helgoland-toolbox';
 
 @Component({
   selector: 'n52-options-editor',

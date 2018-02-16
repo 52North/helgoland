@@ -1,7 +1,6 @@
-import { ListSelectorService } from 'helgoland-toolbox/dist/components/selector/list-selector/list-selector.service';
-import { ListSelectorComponent } from 'helgoland-toolbox/dist/components/selector/list-selector/list-selector.component';
-import { Component, OnInit } from '@angular/core';
-import { ApiInterface, ApiMapping } from 'helgoland-toolbox';
+import { Component } from '@angular/core';
+import { ApiInterface, ApiMapping } from '@helgoland/core';
+import { ListSelectorComponent, ListSelectorService } from '@helgoland/selector';
 
 @Component({
   selector: 'n52-custom-list-selector',

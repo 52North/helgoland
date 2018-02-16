@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PermalinkToClipboardComponent } from 'helgoland-toolbox';
+import { PermalinkToClipboardComponent } from '@helgoland/permalink';
 
 @Component({
   selector: 'n52-custom-permalink-to-clipboard',

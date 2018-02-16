@@ -1,7 +1,7 @@
 import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { NotifierService } from '@helgoland/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { NotifierService } from 'helgoland-toolbox';
 
 @Component({
   selector: 'n52-permalink-button',

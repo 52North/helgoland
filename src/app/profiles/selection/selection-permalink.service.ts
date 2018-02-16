@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ApiInterface, Feature, Offering, PermalinkService, Phenomenon, Procedure, Service } from 'helgoland-toolbox';
+import { ApiInterface, Feature, Offering, Phenomenon, Procedure, Service } from '@helgoland/core';
+import { PermalinkService } from '@helgoland/permalink';
 import { Observable, Observer } from 'rxjs/Rx';
 
 import { ProfilesSelectionCache } from './selection.service';

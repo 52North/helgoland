@@ -1,11 +1,11 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TimedDatasetOptions } from 'helgoland-toolbox';
 
 import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';
 import { ProfilesDiagramPermalink } from './diagram-permalink.service';
+import { TimedDatasetOptions } from '@helgoland/core';
 
 @Component({
     selector: 'n52-diagram',
