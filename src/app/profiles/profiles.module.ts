@@ -10,6 +10,7 @@ import {
     HelgolandMapViewModule,
     HelgolandModificationModule,
     HelgolandPlotlyGraphModule,
+    HelgolandPipesModule,
     HelgolandSelectorModule,
     HelgolandTimeModule,
 } from 'helgoland-toolbox';
@@ -63,6 +64,7 @@ const profilesRoutes: Routes = [
         HelgolandDatasetlistModule,
         HelgolandMapViewModule,
         HelgolandPlotlyGraphModule,
+        HelgolandPipesModule,
         HelgolandModificationModule,
         RouterModule.forChild(
             profilesRoutes

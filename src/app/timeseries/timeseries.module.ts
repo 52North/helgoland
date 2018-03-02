@@ -10,6 +10,7 @@ import {
   HelgolandMapControlModule,
   HelgolandMapSelectorModule,
   HelgolandModificationModule,
+  HelgolandPipesModule,
   HelgolandSelectorModule,
   HelgolandTimeModule,
 } from 'helgoland-toolbox';
@@ -74,6 +75,7 @@ const timeseriesRoutes: Routes = [
     HelgolandSelectorModule,
     HelgolandMapSelectorModule,
     HelgolandMapControlModule,
+    HelgolandPipesModule,
     HelgolandTimeModule,
     HelgolandTableModule,
     HelgolandDatasetlistModule,

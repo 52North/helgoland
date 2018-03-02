@@ -7,6 +7,7 @@ import {
 } from '../../components/modal-timeseries-timespan/modal-timeseries-timespan.component';
 import { ModalOptionsEditorComponent } from '../../components/modal-options-editor/modal-options-editor.component';
 import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
+import { TimeseriesDiagramPermalink } from '../diagram/diagram-permalink.service';
 
 @Component({
   selector: 'n52-table',
@@ -24,14 +25,20 @@ export class TimeseriesTableComponent implements OnInit {
   constructor(
     private timeseriesService: TimeseriesService,
     private timeSrvc: Time,
+    private permalinkSrvc: TimeseriesDiagramPermalink,
     private modalService: NgbModal,
   ) { }
 
   public ngOnInit() {
+    this.permalinkSrvc.validatePeramlink();
     this.datasetIds = this.timeseriesService.datasetIds;
     this.timespan = this.timeseriesService.timespan;
     this.datasetOptions = this.timeseriesService.datasetOptions;
   }
+
+  public deleteTimeseries(internalId: string) {
+    this.timeseriesService.removeDataset(internalId);
+}
 
   public selectTimeseries(selected: boolean, internalId: string) {
     if (selected) {

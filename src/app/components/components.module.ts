@@ -9,6 +9,7 @@ import {
   HelgolandPermalinkModule,
   HelgolandSelectorModule,
   HelgolandTimeModule,
+  HelgolandPipesModule,
 } from 'helgoland-toolbox';
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -37,6 +38,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     HelgolandMapViewModule,
     HelgolandTimeModule,
     HelgolandPermalinkModule,
+    HelgolandPipesModule,
     HelgolandSelectorModule,
     HelgolandModificationModule,
     ClipboardModule,
