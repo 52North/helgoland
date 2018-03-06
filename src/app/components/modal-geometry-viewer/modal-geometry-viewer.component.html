@@ -5,7 +5,7 @@
   </button>
 </div>
 <div class="modal-body geometryViewer">
-  <n52-geometry-map-viewer [mapId]="'mapGeometryViewerModal'" [geometry]="geometry" [maxMapZoom]="15"></n52-geometry-map-viewer>
+  <n52-geometry-map-viewer [mapId]="mapId" [geometry]="geometry"></n52-geometry-map-viewer>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">{{'controls.close' | translate}}</button>
