@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HelgolandMapViewModule } from '@helgoland/map/view';
 import { HelgolandModificationModule } from '@helgoland/modification';
+import { HelgolandPermalinkModule } from '@helgoland/permalink';
 import { HelgolandSelectorModule } from '@helgoland/selector';
 import { HelgolandTimeModule } from '@helgoland/time';
 import { NgbAccordionModule, NgbDatepickerModule, NgbDropdownModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
@@ -32,6 +33,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     NgbTimepickerModule,
     NgbAccordionModule,
     HelgolandTimeModule,
+    HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandModificationModule,
     HelgolandMapViewModule,

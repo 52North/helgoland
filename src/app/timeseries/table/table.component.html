@@ -1,4 +1,4 @@
-<!--<n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>-->
+<n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
 <div *ngIf="datasetIds.length == 0" class="container n52-alert">
   <div class="alert alert-primary" role="alert">
     <a routerLink="/timeseries/map-selection" class="alert-link">{{'timeseries.diagram.hint.select-timeseries-first' | translate}}</a>
@@ -7,7 +7,7 @@
 <div class="container-fluid" *ngIf="datasetIds.length > 0">
   <div class="row row-offcanvas row-offcanvas-right" [ngClass]="{active: legendToggled}">
     <div class="col-12 col-md-8 col-xl-9 diagram-wrapper">
-      <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">Legend</button>
+      <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.legend.header' | translate}}</button>
       <n52-dataset-table [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [timeInterval]="timespan" [datasetOptions]="datasetOptions"></n52-dataset-table>
       <div class="control-bar">
         <n52-custom-timespan-shift-selector [timespan]="timespan" (onTimespanChange)="timeChanged($event)" (onOpenTimeSettings)="openTimeSettings($event)"></n52-custom-timespan-shift-selector>

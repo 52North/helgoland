@@ -7,7 +7,9 @@ import { HelgolandDatasetlistModule } from '@helgoland/depiction/datasetlist';
 import { HelgolandFlotModule } from '@helgoland/flot';
 import { HelgolandMapControlModule } from '@helgoland/map/control';
 import { HelgolandMapSelectorModule } from '@helgoland/map/selector';
+import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandSelectorModule } from '@helgoland/selector';
+import { HelgolandTimeModule } from '@helgoland/time';
 import { NgbAccordionModule, NgbDropdownModule, NgbModalModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -72,6 +74,10 @@ const timeseriesRoutes: Routes = [
     HelgolandSelectorModule,
     HelgolandMapSelectorModule,
     HelgolandMapControlModule,
+    HelgolandTimeModule,
+    HelgolandDatasetTableModule,
+    HelgolandDatasetlistModule,
+    HelgolandModificationModule,
     RouterModule.forChild(
       timeseriesRoutes
     ),

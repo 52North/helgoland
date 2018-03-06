@@ -7,6 +7,7 @@ import { ModalOptionsEditorComponent } from '../../components/modal-options-edit
 import {
   ModalTimeseriesTimespanComponent,
 } from '../../components/modal-timeseries-timespan/modal-timeseries-timespan.component';
+import { TimeseriesDiagramPermalink } from '../diagram/diagram-permalink.service';
 import { TimeseriesService } from '../services/timeseries.service';
 
 @Component({
@@ -25,13 +26,19 @@ export class TimeseriesTableComponent implements OnInit {
   constructor(
     private timeseriesService: TimeseriesService,
     private timeSrvc: Time,
+    private permalinkSrvc: TimeseriesDiagramPermalink,
     private modalService: NgbModal,
   ) { }
 
   public ngOnInit() {
+    this.permalinkSrvc.validatePeramlink();
     this.datasetIds = this.timeseriesService.datasetIds;
     this.timespan = this.timeseriesService.timespan;
     this.datasetOptions = this.timeseriesService.datasetOptions;
+  }
+
+  public deleteTimeseries(internalId: string) {
+    this.timeseriesService.removeDataset(internalId);
   }
 
   public selectTimeseries(selected: boolean, internalId: string) {
