@@ -5,32 +5,78 @@
   },
   "apps": [
     {
-      "root": "src",
-      "outDir": "dist",
+      "name": "complete",
+      "root": "src/complete",
+      "outDir": "dist/complete",
       "assets": [
-        "assets",
-        "favicon.ico"
+        {
+          "glob": "**/*",
+          "input": "../assets/",
+          "output": "./assets/"
+        },
+        "../favicon.ico",
+        "settings.json"
       ],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
-      "test": "test.ts",
+      "test": "../test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "complete",
       "styles": [
-        "../node_modules/leaflet/dist/leaflet.css",
-        "../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
-        "../node_modules/leaflet.markercluster/dist/MarkerCluster.css",
+        "../../node_modules/leaflet/dist/leaflet.css",
+        "../../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+        "../../node_modules/leaflet.markercluster/dist/MarkerCluster.css",
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/moment/moment.js",
-        "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/Flot/jquery.flot.js",
-        "../node_modules/Flot/jquery.flot.time.js",
-        "../node_modules/Flot/jquery.flot.crosshair.js",
-        "../node_modules/plotly.js/dist/plotly-basic.js"
+        "../../node_modules/moment/moment.js",
+        "../../node_modules/jquery/dist/jquery.js",
+        "../../node_modules/Flot/jquery.flot.js",
+        "../../node_modules/Flot/jquery.flot.time.js",
+        "../../node_modules/Flot/jquery.flot.crosshair.js",
+        "../../node_modules/plotly.js/dist/plotly-basic.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "name": "timeseries",
+      "root": "src/timeseries",
+      "outDir": "dist/timeseries",
+      "assets": [
+        {
+          "glob": "**/*",
+          "input": "../assets/",
+          "output": "./assets/"
+        },
+        "../favicon.ico",
+        "settings.json"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "../test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "timeseries",
+      "styles": [
+        "../../node_modules/leaflet/dist/leaflet.css",
+        "../../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+        "../../node_modules/leaflet.markercluster/dist/MarkerCluster.css",
+        "styles.scss"
+      ],
+      "scripts": [
+        "../../node_modules/moment/moment.js",
+        "../../node_modules/jquery/dist/jquery.js",
+        "../../node_modules/Flot/jquery.flot.js",
+        "../../node_modules/Flot/jquery.flot.time.js",
+        "../../node_modules/Flot/jquery.flot.crosshair.js",
+        "../../node_modules/plotly.js/dist/plotly-basic.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

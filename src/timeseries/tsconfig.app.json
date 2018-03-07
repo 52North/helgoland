@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "module": "es2015",
+    "types": [
+      "leaflet",
+      "node",
+      "leaflet.markercluster",
+      "flot"
+    ]
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts",
+    "../node_modules/ngx-clipboard/**/*.spec.ts"
+  ],
+  "include": [
+    "**/*.ts",
+    "../node_modules/ngx-clipboard/*/**.ts"
+  ]
+}

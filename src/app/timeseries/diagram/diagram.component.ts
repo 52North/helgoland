@@ -1,4 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Data, DatasetOptions, IDataEntry, IDataset, Service, Time, Timespan } from '@helgoland/core';
+import { PlotOptions } from '@helgoland/flot';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
@@ -8,8 +10,7 @@ import {
 } from '../../components/modal-timeseries-timespan/modal-timeseries-timespan.component';
 import { TimeseriesService } from './../services/timeseries.service';
 import { TimeseriesDiagramPermalink } from './diagram-permalink.service';
-import { IDataset, DatasetOptions, IDataEntry, Data, Timespan, Service, Time } from '@helgoland/core';
-import { PlotOptions } from '@helgoland/flot';
+
 @Component({
     selector: 'n52-diagram',
     templateUrl: './diagram.component.html',

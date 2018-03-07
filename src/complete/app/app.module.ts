@@ -1,10 +1,10 @@
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router/src/config';
 import { CachingInterceptor, HttpCache, LocalHttpCache, LocalOngoingHttpCache, OnGoingHttpCache } from '@helgoland/caching';
-import { ApiInterface, GetDataApiInterface, SettingsService } from '@helgoland/core';
+import { ApiInterface, GetDataApiInterface, Settings, SettingsService } from '@helgoland/core';
 import { JsonFavoriteExporterService } from '@helgoland/favorite';
 import {
   NgbAccordionModule,
@@ -17,12 +17,12 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { ComponentsModule } from '../../app/components/components.module';
+import { ProfilesModule } from '../../app/profiles/profiles.module';
+import { TimeseriesModule } from '../../app/timeseries/timeseries.module';
+import { TrajectoriesModule } from '../../app/trajectories/trajectories.module';
+import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { ComponentsModule } from './components/components.module';
-import { ProfilesModule } from './profiles/profiles.module';
-import { ExtendedSettingsService } from './services/settings.service';
-import { TimeseriesModule } from './timeseries/timeseries.module';
-import { TrajectoriesModule } from './trajectories/trajectories.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -35,6 +35,16 @@ const baseRoutes: Routes = [
     redirectTo: 'timeseries'
   }
 ];
+
+@Injectable()
+export class ExtendedSettingsService extends SettingsService<Settings> {
+
+  constructor() {
+    super();
+    this.setSettings(settings);
+  }
+
+}
 
 @NgModule({
   declarations: [

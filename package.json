@@ -5,8 +5,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot",
+    "start:timeseries": "ng serve --aot --app=timeseries",
+    "start:complete": "ng serve --aot --app=complete",
     "prod": "ng serve --prod",
     "build": "ng build --prod",
+    "build:timeseries": "ng build --prod --app=timeseries",
+    "build:complete": "ng build --prod --app=complete",
     "test": "ng test",
     "lint": "ng lint --type-check",
     "e2e": "ng e2e",

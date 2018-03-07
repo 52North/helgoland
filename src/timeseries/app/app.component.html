@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-primary">
+  <a class="navbar-brand" href="#">52N-Helgoland</a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/diagram" routerLinkActive="active">{{'navigation.timeseries.diagram' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/table" routerLinkActive="active">{{'navigation.timeseries.table' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/map-selection" routerLinkActive="active">{{'navigation.timeseries.map' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/list-selection" routerLinkActive="active">{{'navigation.timeseries.list-selection' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/favorites" routerLinkActive="active">{{'navigation.timeseries.favorites' | translate}}</a>
+      </li>
+    </ul>
+    <n52-local-selector [languageList]="languageList"></n52-local-selector>
+  </div>
+</nav>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

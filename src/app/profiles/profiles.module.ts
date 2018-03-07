@@ -10,6 +10,7 @@ import { HelgolandSelectorModule } from '@helgoland/selector';
 import { HelgolandTimeModule } from '@helgoland/time';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+
 import { ComponentsModule } from '../components/components.module';
 import { ProfilesCombiViewPermalink } from './combi-view/combi-view-permalink.service';
 import { ProfilesCombiViewComponent } from './combi-view/combi-view.component';
