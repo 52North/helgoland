@@ -17,7 +17,7 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { ComponentsModule } from '../../app/components/components.module';
+import { ComponentsModule } from '../../common/components/components.module';
 import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { TimeseriesModule } from './timeseries.module';

@@ -17,11 +17,11 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { ComponentsModule } from '../../app/components/components.module';
-import { ProfilesModule } from '../../app/profiles/profiles.module';
-import { TimeseriesRouter } from '../../app/timeseries/services/timeseries-router.service';
-import { TimeseriesModule } from '../../app/timeseries/timeseries.module';
-import { TrajectoriesModule } from '../../app/trajectories/trajectories.module';
+import { ComponentsModule } from '../../common/components/components.module';
+import { ProfilesModule } from '../../common/profiles/profiles.module';
+import { TimeseriesRouter } from '../../common/timeseries/services/timeseries-router.service';
+import { TimeseriesModule } from '../../common/timeseries/timeseries.module';
+import { TrajectoriesModule } from '../../common/trajectories/trajectories.module';
 import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { CustomTimeseriesRouter } from './router.service';
