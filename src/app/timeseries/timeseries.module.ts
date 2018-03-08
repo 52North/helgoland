@@ -20,7 +20,6 @@ import { TimeseriesFavoritesComponent } from './favorites/favorites.component';
 import { TimeseriesListSelectionCache, TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
 import { TimeseriesMapSelectionCache, TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
 import { TimeseriesNavigationComponent } from './navigation/navigation.component';
-import { TimeseriesConditionalRouter } from './services/timeseries-router.service';
 import { TimeseriesService } from './services/timeseries.service';
 import { TimeseriesTableComponent } from './table/table.component';
 
@@ -97,7 +96,6 @@ const timeseriesRoutes: Routes = [
   ],
   providers: [
     TimeseriesService,
-    TimeseriesConditionalRouter,
     TimeseriesDiagramPermalink,
     TimeseriesListSelectionCache,
     TimeseriesMapSelectionCache

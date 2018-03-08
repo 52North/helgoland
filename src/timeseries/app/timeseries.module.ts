@@ -26,9 +26,10 @@ import {
   TimeseriesMapSelectionComponent,
 } from '../../app/timeseries/map-selection/map-selection.component';
 import { TimeseriesNavigationComponent } from '../../app/timeseries/navigation/navigation.component';
-import { TimeseriesConditionalRouter } from '../../app/timeseries/services/timeseries-router.service';
+import { TimeseriesRouter } from '../../app/timeseries/services/timeseries-router.service';
 import { TimeseriesService } from '../../app/timeseries/services/timeseries.service';
 import { TimeseriesTableComponent } from '../../app/timeseries/table/table.component';
+import { CustomTimeseriesRouter } from './router.service';
 
 const timeseriesRoutes: Routes = [
   {
@@ -92,7 +93,10 @@ const timeseriesRoutes: Routes = [
   ],
   providers: [
     TimeseriesService,
-    TimeseriesConditionalRouter,
+    {
+      provide: TimeseriesRouter,
+      useClass: CustomTimeseriesRouter
+    },
     TimeseriesDiagramPermalink,
     TimeseriesListSelectionCache,
     TimeseriesMapSelectionCache

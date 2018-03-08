@@ -7,7 +7,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { Router } from '@angular/router';
 import {
   BlacklistedService,
   IDataset,
@@ -22,6 +21,7 @@ import { ListSelectorParameter } from '@helgoland/selector';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 
+import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from './../services/timeseries.service';
 
 @Component({
@@ -103,7 +103,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
     private settingsSrvc: SettingsService<Settings>,
     private cache: TimeseriesListSelectionCache,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: TimeseriesRouter
   ) { }
 
   public ngOnInit() {
@@ -140,7 +140,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
   public onDatasetSelected(datasetList: Array<IDataset>) {
     if (datasetList instanceof Array && datasetList.length === 1) {
       this.timeseriesService.addDataset(datasetList[0].internalId);
-      this.router.navigate(['timeseries/diagram']);
+      this.router.navigateToDiagram();
     } else {
       console.error('datasetList is no array or has not the length of 1');
     }

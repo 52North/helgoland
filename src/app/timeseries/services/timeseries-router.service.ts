@@ -26,3 +26,7 @@ export class TimeseriesConditionalRouter {
         // }
     }
 }
+
+export abstract class TimeseriesRouter {
+    public abstract navigateToDiagram(): void;
+}

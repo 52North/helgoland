@@ -1,10 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { DatasetOptions, Timespan } from '@helgoland/core';
 import { FavoriteService, JsonFavoriteExporterService, SingleFavorite } from '@helgoland/favorite';
 
+import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from '../services/timeseries.service';
-
 
 @Component({
   selector: 'n52-timeseries-favorites',
@@ -20,14 +19,14 @@ export class TimeseriesFavoritesComponent {
     private favoriteSrvc: FavoriteService,
     private timeseriesService: TimeseriesService,
     private jsonExporter: JsonFavoriteExporterService,
-    private router: Router
+    private router: TimeseriesRouter
   ) {
     this.loadFavorites();
   }
 
   public addToDiagram(favorite: ExtendedSingleFavorite) {
     this.timeseriesService.addDataset(favorite.favorite.internalId);
-    this.router.navigate(['timeseries/diagram']);
+    this.router.navigateToDiagram();
   }
 
   public deleteFavorite(favorite: ExtendedSingleFavorite) {

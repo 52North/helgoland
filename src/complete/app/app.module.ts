@@ -19,10 +19,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ComponentsModule } from '../../app/components/components.module';
 import { ProfilesModule } from '../../app/profiles/profiles.module';
+import { TimeseriesRouter } from '../../app/timeseries/services/timeseries-router.service';
 import { TimeseriesModule } from '../../app/timeseries/timeseries.module';
 import { TrajectoriesModule } from '../../app/trajectories/trajectories.module';
 import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { CustomTimeseriesRouter } from './router.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -97,6 +99,10 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     {
       provide: OnGoingHttpCache,
       useClass: LocalOngoingHttpCache
+    },
+    {
+      provide: TimeseriesRouter,
+      useClass: CustomTimeseriesRouter
     }
   ],
   bootstrap: [AppComponent]

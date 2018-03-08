@@ -8,7 +8,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { Router } from '@angular/router';
 import {
   BlacklistedService,
   Dataset,
@@ -24,6 +23,7 @@ import {
 import { NgbModal, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 
+import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from './../services/timeseries.service';
 
 @Component({
@@ -61,7 +61,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     private settingsSrvc: SettingsService<Settings>,
     private cache: TimeseriesMapSelectionCache,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: TimeseriesRouter
   ) { }
 
   public ngOnInit() {
@@ -116,7 +116,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     if (this.datasetSelections.length > 0) {
       this.datasetSelections.forEach((entry) => {
         this.timeseriesService.addDataset(entry.internalId);
-        this.router.navigate(['timeseries/diagram']);
+        this.router.navigateToDiagram();
       });
     }
   }
