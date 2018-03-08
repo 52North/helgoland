@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '../../bootstrap';
+@import '../../../node_modules/font-awesome/scss/font-awesome';
+@import '../../styles/map';
+@import '../../styles/selection';
+@import '../../styles/alert';
+@import '../../styles/graph';
+@import '../../styles/legend';
+@import '../../styles/loading';
+@import '../../styles/notifier';
+@import '../../styles/miscellaneous';
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}

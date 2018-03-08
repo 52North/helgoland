@@ -17,23 +17,35 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { ComponentsModule } from '../../common/components/components.module';
+import { ComponentsModule } from '../../../common/components/components.module';
+import { ProfilesModule } from '../../../common/profiles/profiles.module';
+import { TimeseriesRouter } from '../../../common/timeseries/services/timeseries-router.service';
+import { TimeseriesModule } from '../../../common/timeseries/timeseries.module';
+import { TrajectoriesModule } from '../../../common/trajectories/trajectories.module';
 import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { TimeseriesModule } from './timeseries.module';
+import { CustomTimeseriesRouter } from './router.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-const baseRoutes: Routes = [];
+const baseRoutes: Routes = [
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'timeseries'
+  }
+];
 
 @Injectable()
 export class ExtendedSettingsService extends SettingsService<Settings> {
+
   constructor() {
     super();
     this.setSettings(settings);
   }
+
 }
 
 @NgModule({
@@ -52,6 +64,8 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     }),
     ComponentsModule,
     TimeseriesModule,
+    TrajectoriesModule,
+    ProfilesModule,
     HttpClientModule,
     NgbTabsetModule.forRoot(),
     NgbAccordionModule.forRoot(),
@@ -85,6 +99,10 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     {
       provide: OnGoingHttpCache,
       useClass: LocalOngoingHttpCache
+    },
+    {
+      provide: TimeseriesRouter,
+      useClass: CustomTimeseriesRouter
     }
   ],
   bootstrap: [AppComponent]

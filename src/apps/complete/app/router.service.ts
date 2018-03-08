@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TimeseriesRouter } from '../../common/timeseries/services/timeseries-router.service';
+import { TimeseriesRouter } from '../../../common/timeseries/services/timeseries-router.service';
 
 @Injectable()
 export class CustomTimeseriesRouter extends TimeseriesRouter {
@@ -13,6 +13,6 @@ export class CustomTimeseriesRouter extends TimeseriesRouter {
     }
 
     public navigateToDiagram(): void {
-        this.router.navigate(['diagram']);
+        this.router.navigate(['timeseries/diagram']);
     }
 }
