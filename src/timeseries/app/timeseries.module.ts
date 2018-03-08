@@ -33,11 +33,6 @@ import { CustomTimeseriesRouter } from './router.service';
 
 const timeseriesRoutes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'diagram'
-  },
-  {
     path: 'diagram',
     component: TimeseriesDiagramComponent
   },
@@ -56,6 +51,11 @@ const timeseriesRoutes: Routes = [
   {
     path: 'favorites',
     component: TimeseriesFavoritesComponent
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'diagram'
   }
 ];
 

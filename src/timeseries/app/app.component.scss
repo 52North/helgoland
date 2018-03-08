@@ -1,4 +1,4 @@
-:host {
+n52-root {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -9,5 +9,29 @@
     .content {
         flex: 1;
         position: relative;
+        n52-map-selection,
+        n52-list-selection,
+        n52-timeseries-favorites,
+        n52-table {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            .wrapper {
+                width: 100%;
+            }
+            .main {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                .content {
+                    flex: 1;
+                    display: flex;
+                    min-height: 0;
+                }
+            }
+        }
     }
 }
