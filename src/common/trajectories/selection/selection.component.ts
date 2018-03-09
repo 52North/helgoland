@@ -79,7 +79,7 @@ export class TrajectoriesSelectionComponent implements OnInit {
   public providerSelected(provider: Service) {
     this.selectedProvider = [{
       id: provider.id,
-      url: provider.providerUrl
+      url: provider.apiUrl
     }];
     this.paramFilter = this.createFilter();
     const id = 'selectByPlatform';

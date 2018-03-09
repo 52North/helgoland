@@ -197,7 +197,7 @@ export class ProfilesSelectionComponent implements OnInit {
         this.stationaryPlatformLoading = true;
         platform.datasets.forEach(dataset => {
             this.stationaryPlatformDataset = dataset;
-            this.api.getDataset(dataset.id, this.selectedProvider.providerUrl).subscribe(res => {
+            this.api.getDataset(dataset.id, this.selectedProvider.apiUrl).subscribe(res => {
                 this.stationaryPlatformDataset = res;
                 const timespan = new Timespan(res.firstValue.timestamp, res.lastValue.timestamp);
                 this.api.getData<ProfileDataEntry>(res.id, res.url, timespan).subscribe(data => {

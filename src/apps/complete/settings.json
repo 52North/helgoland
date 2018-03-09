@@ -1,13 +1,10 @@
 {
-  "selectedLineWidth": 4,
-  "commonLineWidth": 1,
-  "undefinedUomString": "-",
-  "aggregateServices": true,
-  "saveStatus": true,
-  "providerBlackList": [{
-    "serviceId": "xyz",
-    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-  }],
+  "providerBlackList": [
+    {
+      "serviceId": "xyz",
+      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+    }
+  ],
   "restApiUrls": [
     "http://nexos.dev.52north.org/52n-sos-upc/api/",
     "http://nexos.demo.52north.org/52n-sos-nexos-test/api/",
@@ -19,114 +16,29 @@
     "http://inspire.rivm.nl/sos/eaq/api/v1/",
     "http://monalisasos.eurac.edu/sos/api/v1/"
   ],
-  "chartOptions": {
-    "yaxis": {
-      "tickDecimals": 2
-    }
-  },
-  "supportedLanguages": [{
-    "code": "de",
-    "label": "Deutsch"
-  }, {
-    "code": "en",
-    "label": "English"
-  }, {
-    "code": "pt",
-    "label": "Portuguese"
-  }],
-  "selectColorFromList": true,
-  "colorList": [
-    "#078D53",
-    "#00F3FF",
-    "#0043FF",
-    "#E22985",
-    "#8D00A9",
-    "#FF783D",
-    "#AD3500",
-    "#FFCB00",
-    "#927711",
-    "#53EA42"
-  ],
-  "refColorList": [
-    "#668B7B",
-    "#A6D5D7",
-    "#7C90C8",
-    "#D48DB0",
-    "#84518E",
-    "#DA9B7F",
-    "#9D7D6F",
-    "#D7C57E",
-    "#BAA760",
-    "#A1BE9D"
-  ],
-  "baselayer": {
-    "osm": {
-      "name": "Open Street Map",
-      "type": "xyz",
-      "url": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      "layerOptions": {
-        "showOnSelector": true
-      }
+  "languages": [
+    {
+      "label": "Deutsch",
+      "code": "de"
     },
-    "cycle": {
-      "name": "OpenCycleMap",
-      "type": "xyz",
-      "url": "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
-      "layerOptions": {
-        "subdomains": [
-          "a",
-          "b",
-          "c"
-        ],
-        "attribution": "&copy; <a href='http://www.opencyclemap.org/copyright'>OpenCycleMap</a> contributors - &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
-        "continuousWorld": true
-      }
+    {
+      "label": "English",
+      "code": "en"
+    },
+    {
+      "label": "Portuguese",
+      "code": "pt"
     }
-  },
-  "overlays": {
-    "hillshade": {
-      "name": "Hillshade Europa",
-      "type": "wms",
-      "url": "http://129.206.228.72/cached/hillshade",
-      "visible": false,
-      "layerOptions": {
-        "layers": "europe_wms:hs_srtm_europa",
-        "format": "image/png",
-        "opacity": 0.25,
-        "attribution": "Hillshade layer by GIScience http://www.osm-wms.de"
-      },
-      "group": "Raster"
-    }
-  },
-  "showScale": true,
-  "timebufferFactor": 0.3,
+  ],
   "solveLabels": false,
   "proxyUrl": "https://cors-anywhere.herokuapp.com/",
-  "datasetPresenter": {
-    "quantity-profile": [{
-      "platformType": "stationary_insitu",
-      "service": "profilePresentDataset"
-    }],
-    "measurement": [{
-      "service": "mobilePresentDataset",
-      "platformType": "mobile_insitu"
-    }]
-  },
-  "menuItems": [
-    "timeseries",
-    "profiles",
-    "trajectory",
-    "favorite",
-    "settings"
-  ],
-  "datelineMarkerGrouping": false,
   "timespanPresets": [
     {
       "name": "lastHour",
       "label": "timeSelection.presets.lastHour",
       "timespan": {
         "from": "moment().subtract(1, 'hours')",
-        "to":   "moment()"
+        "to": "moment()"
       },
       "seperatorAfterThisItem": true
     },
@@ -135,7 +47,7 @@
       "label": "timeSelection.presets.today",
       "timespan": {
         "from": "moment().startOf('day')",
-        "to":   "moment().endOf('day')"
+        "to": "moment().endOf('day')"
       }
     },
     {
@@ -143,7 +55,7 @@
       "label": "timeSelection.presets.yesterday",
       "timespan": {
         "from": "moment().subtract(1, 'days').startOf('day')",
-        "to":   "moment().subtract(1, 'days').endOf('day')"
+        "to": "moment().subtract(1, 'days').endOf('day')"
       }
     },
     {
@@ -151,7 +63,7 @@
       "label": "timeSelection.presets.todayYesterday",
       "timespan": {
         "from": "moment().subtract(1, 'days').startOf('day')",
-        "to":   "moment().endOf('day')"
+        "to": "moment().endOf('day')"
       },
       "seperatorAfterThisItem": true
     },
@@ -160,7 +72,7 @@
       "label": "timeSelection.presets.thisWeek",
       "timespan": {
         "from": "moment().startOf('isoWeek')",
-        "to":   "moment().endOf('isoWeek')"
+        "to": "moment().endOf('isoWeek')"
       }
     },
     {
@@ -168,7 +80,7 @@
       "label": "timeSelection.presets.lastWeek",
       "timespan": {
         "from": "moment().subtract(1, 'weeks').startOf('isoWeek')",
-        "to":   "moment().subtract(1, 'weeks').endOf('isoWeek')"
+        "to": "moment().subtract(1, 'weeks').endOf('isoWeek')"
       },
       "seperatorAfterThisItem": true
     },
@@ -177,7 +89,7 @@
       "label": "timeSelection.presets.thisMonth",
       "timespan": {
         "from": "moment().startOf('month')",
-        "to":   "moment().endOf('month')"
+        "to": "moment().endOf('month')"
       }
     },
     {
@@ -185,7 +97,7 @@
       "label": "timeSelection.presets.lastMonth",
       "timespan": {
         "from": "moment().subtract(1, 'months').startOf('month')",
-        "to":   "moment().subtract(1, 'months').endOf('month')"
+        "to": "moment().subtract(1, 'months').endOf('month')"
       },
       "seperatorAfterThisItem": true
     },
@@ -194,7 +106,7 @@
       "label": "timeSelection.presets.thisYear",
       "timespan": {
         "from": "moment().startOf('year')",
-        "to":   "moment().endOf('year')"
+        "to": "moment().endOf('year')"
       }
     },
     {
@@ -202,7 +114,7 @@
       "label": "timeSelection.presets.lastYear",
       "timespan": {
         "from": "moment().subtract(1, 'years').startOf('year')",
-        "to":   "moment().subtract(1, 'years').endOf('year')"
+        "to": "moment().subtract(1, 'years').endOf('year')"
       }
     }
   ]

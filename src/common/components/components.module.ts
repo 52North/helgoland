@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HelgolandLabelMapperModule } from '@helgoland/depiction/label-mapper';
 import { HelgolandMapViewModule } from '@helgoland/map/view';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandPermalinkModule } from '@helgoland/permalink';
@@ -11,6 +12,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { CustomListSelectorComponent } from './custom-list-selector/custom-list-selector.component';
+import {
+  CustomMultiServiceFilterSelectorComponent,
+} from './custom-multi-service-filter-selector/custom-multi-service-filter-selector.component';
+import { CustomServiceSelectorComponent } from './custom-service-selector/custom-service-selector.component';
 import {
   CustomTimespanShiftSelectorComponent,
 } from './custom-timespan-shift-selector/custom-timespan-shift-selector.component';
@@ -36,6 +41,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
     HelgolandModificationModule,
+    HelgolandLabelMapperModule,
     HelgolandMapViewModule,
     ClipboardModule,
     TranslateModule.forChild()
@@ -51,7 +57,9 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     CustomTimespanShiftSelectorComponent,
     InMailComponent,
     InNewWindowComponent,
-    ToClipboardComponent
+    ToClipboardComponent,
+    CustomServiceSelectorComponent,
+    CustomMultiServiceFilterSelectorComponent
   ],
   entryComponents: [
     LocalSelectorImplComponent,
@@ -63,7 +71,8 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     LocalSelectorImplComponent,
     PermalinkButtonComponent,
     CustomListSelectorComponent,
-    CustomTimespanShiftSelectorComponent
+    CustomTimespanShiftSelectorComponent,
+    CustomServiceSelectorComponent
   ]
 })
 export class ComponentsModule { }

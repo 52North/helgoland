@@ -1,0 +1,26 @@
+:host {
+    .legendItem {
+        background-color: white;
+        padding: 5px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        .small {
+            font-size: 90%;
+            word-break: break-all;
+        }
+        &.selected {
+            padding: 0px;
+            border-width: 5px;
+            border-style: solid;
+        }
+        .legendItemheader {
+            cursor: pointer;
+        }
+        .toCombiView {
+            cursor: pointer;
+        }
+        .fa {
+            cursor: pointer;
+        }
+    }
+}

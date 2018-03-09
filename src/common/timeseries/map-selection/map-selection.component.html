@@ -7,7 +7,7 @@
   </div>
   <div class="modal-body">
     <div class="timeseries-hint">{{'timeseries.map-selection.dataset-selection-hint' | translate}}:</div>
-    <n52-dataset-by-station-selector [station]="platform" [url]="selectedService.providerUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector>
+    <n52-dataset-by-station-selector [station]="platform" [url]="selectedService.apiUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector>
   </div>
   <div class="modal-footer">
     <button *ngIf="datasetSelections.length > 0" type="button" class="btn btn-light" (click)="openDatasets();c();">
@@ -25,8 +25,8 @@
       </ng-template>
       <ng-template ngbTabContent>
         <div class="scrollable container">
-          <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [selectedProvider]="selectedService"
-            [supportStations]="true" [filter]="providerFilter" (onProviderSelected)="providerSelected($event)"></n52-provider-selector>
+          <n52-custom-service-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [selectedService]="selectedService"
+            [supportStations]="true" [filter]="providerFilter" (onServiceSelected)="providerSelected($event)"></n52-custom-service-selector>
         </div>
       </ng-template>
     </ngb-tab>
@@ -39,7 +39,7 @@
           <div class="map-content">
             <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.phenomenon.header' | translate}}</button>
             <div class="map">
-              <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService.providerUrl" [filter]="stationFilter"
+              <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService.apiUrl" [filter]="stationFilter"
                 (onSelected)="onStationSelected($event)" [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
               <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
               <n52-locate-control class="locate-control" [mapId]="'timeseries'"></n52-locate-control>
@@ -50,7 +50,7 @@
               </div>
               <hr>
               <div>
-                <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedService.providerUrl"
+                <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedService.apiUrl"
                   [selectionId]="selectedPhenomenonId" (onItemSelected)="onPhenomenonSelected($event)"></n52-service-filter-selector>
               </div>
             </div>

@@ -1,0 +1,14 @@
+:host {
+    .service-list {
+        .service-item {
+            padding: 5px;
+            &+.add-provider,
+            &+.service-item {
+                margin-top: 10px;
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

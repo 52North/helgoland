@@ -130,7 +130,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
     this.selectedService = this.cache.selectedService = service;
     this.selectedProviderList = [{
       id: service.id,
-      url: service.providerUrl
+      url: service.apiUrl
     }];
     const id = 'selectByCategory';
     this.tabset.tabs.find(entry => entry.id === id).disabled = false;

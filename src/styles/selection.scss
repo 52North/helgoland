@@ -13,10 +13,10 @@
     }
 }
 
-n52-provider-selector {
-    .provider-list {
+n52-custom-service-selector {
+    .service-list {
         color: $text-color;
-        .provider-item {
+        .service-item {
             &:hover {
                 background-color: $hover-background-color;
                 color: $hover-color;

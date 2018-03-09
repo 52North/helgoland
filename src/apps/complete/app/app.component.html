@@ -16,7 +16,7 @@
         <a routerLink="/profiles" class="nav-link">{{'navigation.profiles.main' | translate}}</a>
       </li>
     </ul>
-    <n52-local-selector [languageList]="languageList"></n52-local-selector>
+    <n52-local-selector *ngIf="languageList" [languageList]="languageList"></n52-local-selector>
   </div>
 </nav>
 <div class="content">

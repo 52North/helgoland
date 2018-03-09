@@ -15,7 +15,7 @@
     "lint": "ng lint --type-check",
     "e2e": "ng e2e",
     "build-netlify": "npm run build && cp ./netlify/* ./dist -r",
-    "i18n-extract": "ngx-translate-extract -i ./src ./node_modules/helgoland-toolbox/src -o ./src/assets/i18n/*.json --clean --sort --format namespaced-json"
+    "i18n-extract": "ngx-translate-extract -i ./src -o ./src/assets/i18n/*.json --clean --sort --format namespaced-json"
   },
   "private": true,
   "dependencies": {

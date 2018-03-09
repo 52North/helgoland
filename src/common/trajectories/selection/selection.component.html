@@ -6,7 +6,7 @@
       </ng-template>
       <ng-template ngbTabContent>
         <div class="providerList container">
-          <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onProviderSelected)="providerSelected($event);"></n52-provider-selector>
+          <n52-custom-service-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onServiceSelected)="providerSelected($event);"></n52-custom-service-selector>
         </div>
       </ng-template>
     </ngb-tab>

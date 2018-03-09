@@ -39,85 +39,85 @@
 </ng-template>
 
 <n52-permalink-button [generatedUrlFunction]="selectionPermalink.createPermalink"></n52-permalink-button>
-  <ngb-tabset #profileSelection="ngbTabset" class="wrapper" justify="fill">
-    <ngb-tab id="selectProvider">
-      <ng-template ngbTabTitle>
-        <span>{{'profiles.selection.select-provider' | translate}}</span>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <div class="container">
-          <n52-provider-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onProviderSelected)="providerSelected($event, true);"></n52-provider-selector>
+<ngb-tabset #profileSelection="ngbTabset" class="wrapper" justify="fill">
+  <ngb-tab id="selectProvider">
+    <ng-template ngbTabTitle>
+      <span>{{'profiles.selection.select-provider' | translate}}</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <div class="container">
+        <n52-custom-service-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter"
+          (onServiceSelected)="providerSelected($event, true);"></n52-custom-service-selector>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="selectOffering" [disabled]="selectedProvider == undefined">
+    <ng-template ngbTabTitle>
+      <span>{{'profiles.selection.select-offering' | translate}}</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <div class="container">
+        <n52-service-filter-selector [endpoint]="'offering'" [filter]="offeringFilter" [serviceUrl]="selectedProvider.apiUrl" [selectionId]="selectedOffering?.id"
+          (onItemSelected)="offeringSelected($event, true)"></n52-service-filter-selector>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="selectPhenomenon" [disabled]="selectedOffering == undefined">
+    <ng-template ngbTabTitle>
+      <span>{{'profiles.selection.select-phenomenon' | translate}}</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <div class="container">
+        <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedProvider.apiUrl"
+          [selectionId]="selectedPhenomenon?.id" (onItemSelected)="phenomenonSelected($event, true)"></n52-service-filter-selector>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="selectProcedure" [disabled]="selectedPhenomenon == undefined">
+    <ng-template ngbTabTitle>
+      <span>{{'profiles.selection.select-sensor' | translate}}</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <div class="container">
+        <n52-service-filter-selector [endpoint]="'procedure'" [filter]="procedureFilter" [serviceUrl]="selectedProvider.apiUrl" [selectionId]="selectedProcedure?.id"
+          (onItemSelected)="procedureSelected($event, true)"></n52-service-filter-selector>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="selectPlatform" [disabled]="selectedProcedure == undefined">
+    <ng-template ngbTabTitle>
+      <span>{{'profiles.selection.select-platform.header' | translate}}</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <div class="header">{{'profiles.selection.select-platform.hint' | translate}}:</div>
+      <div class="platform-body">
+        <div class="stationary">
+          <div class="header">{{'profiles.selection.select-platform.stationary' | translate}}:</div>
+          <n52-platform-map-selector class="map" [mapId]="'profiles-stationary'" [serviceUrl]="selectedProvider.apiUrl" [filter]="stationaryPlatformFilter"
+            (onSelected)="onStationaryPlatformSelected($event)"></n52-platform-map-selector>
         </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab id="selectOffering" [disabled]="selectedProvider == undefined">
-      <ng-template ngbTabTitle>
-        <span>{{'profiles.selection.select-offering' | translate}}</span>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <div class="container">
-          <n52-service-filter-selector [endpoint]="'offering'" [filter]="offeringFilter" [serviceUrl]="selectedProvider.providerUrl"
-            [selectionId]="selectedOffering?.id" (onItemSelected)="offeringSelected($event, true)"></n52-service-filter-selector>
-        </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab id="selectPhenomenon" [disabled]="selectedOffering == undefined">
-      <ng-template ngbTabTitle>
-        <span>{{'profiles.selection.select-phenomenon' | translate}}</span>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <div class="container">
-          <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedProvider.providerUrl"
-            [selectionId]="selectedPhenomenon?.id" (onItemSelected)="phenomenonSelected($event, true)"></n52-service-filter-selector>
-        </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab id="selectProcedure" [disabled]="selectedPhenomenon == undefined">
-      <ng-template ngbTabTitle>
-        <span>{{'profiles.selection.select-sensor' | translate}}</span>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <div class="container">
-          <n52-service-filter-selector [endpoint]="'procedure'" [filter]="procedureFilter" [serviceUrl]="selectedProvider.providerUrl"
-            [selectionId]="selectedProcedure?.id" (onItemSelected)="procedureSelected($event, true)"></n52-service-filter-selector>
-        </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab id="selectPlatform" [disabled]="selectedProcedure == undefined">
-      <ng-template ngbTabTitle>
-        <span>{{'profiles.selection.select-platform.header' | translate}}</span>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <div class="header">{{'profiles.selection.select-platform.hint' | translate}}:</div>
-        <div class="platform-body">
-          <div class="stationary">
-            <div class="header">{{'profiles.selection.select-platform.stationary' | translate}}:</div>
-            <n52-platform-map-selector class="map" [mapId]="'profiles-stationary'" [serviceUrl]="selectedProvider.providerUrl" [filter]="stationaryPlatformFilter"
-              (onSelected)="onStationaryPlatformSelected($event)"></n52-platform-map-selector>
+        <div class="mobile">
+          <div class="header">{{'profiles.selection.select-platform.mobile' | translate}}:</div>
+          <div class="body">
+            <n52-service-filter-selector [endpoint]="'feature'" [filter]="mobilePlatformFilter" [serviceUrl]="selectedProvider.apiUrl"
+              [selectionId]="selectedFeature?.id" (onItemSelected)="featureSelected($event, true)"></n52-service-filter-selector>
           </div>
-          <div class="mobile">
-            <div class="header">{{'profiles.selection.select-platform.mobile' | translate}}:</div>
-            <div class="body">
-              <n52-service-filter-selector [endpoint]="'feature'" [filter]="mobilePlatformFilter" [serviceUrl]="selectedProvider.providerUrl"
-                [selectionId]="selectedFeature?.id" (onItemSelected)="featureSelected($event, true)"></n52-service-filter-selector>
-            </div>
-          </div>
         </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab id="selectProfile" [disabled]="selectedFeature == undefined">
-      <ng-template ngbTabTitle>
-        <span>{{'profiles.selection.select-profile' | translate}}</span>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <div class="timeslider">
-          <n52-time-range-slider-selector id="profile-time-slider" [timeList]="mobileTimestamps" (onTimespanSelected)="onTimespanSelected($event)"></n52-time-range-slider-selector>
-        </div>
-        <div class="trajectory-map">
-          <n52-profile-trajectory-map-selector class="map" [mapId]="'profiles-stationary'" [serviceUrl]="selectedProvider.providerUrl"
-            [filter]="mobilePlatformFilter" [selectedTimespan]="selectedMobileTimespan" (onSelected)="onMobileSelected($event)"
-            (onTimeListDetermined)="timelistDetermined($event)"></n52-profile-trajectory-map-selector>
-        </div>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="selectProfile" [disabled]="selectedFeature == undefined">
+    <ng-template ngbTabTitle>
+      <span>{{'profiles.selection.select-profile' | translate}}</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <div class="timeslider">
+        <n52-time-range-slider-selector id="profile-time-slider" [timeList]="mobileTimestamps" (onTimespanSelected)="onTimespanSelected($event)"></n52-time-range-slider-selector>
+      </div>
+      <div class="trajectory-map">
+        <n52-profile-trajectory-map-selector class="map" [mapId]="'profiles-stationary'" [serviceUrl]="selectedProvider.apiUrl" [filter]="mobilePlatformFilter"
+          [selectedTimespan]="selectedMobileTimespan" (onSelected)="onMobileSelected($event)" (onTimeListDetermined)="timelistDetermined($event)"></n52-profile-trajectory-map-selector>
+      </div>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

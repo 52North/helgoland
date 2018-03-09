@@ -4,14 +4,8 @@
 		"close": "Schließen",
 		"ok": "OK"
 	},
-	"favorite": {
-		"notifier": {
-			"add-favorite": "Füge Favoriten hinzu",
-			"remove-favorite": "Entferne Favoriten"
-		}
-	},
 	"listSelection": {
-		"loading": ""
+		"loading": "Lade weitere Parameterliste..."
 	},
 	"navigation": {
 		"profiles": {
@@ -73,7 +67,7 @@
 			"to-diagram-view": "Diagram Ansicht"
 		}
 	},
-	"provider-selector": {
+	"service-selector": {
 		"datasets": "Datensätze",
 		"phenomena": "Phänomene",
 		"platforms": "Platformen",

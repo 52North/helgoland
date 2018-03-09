@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HelgolandDatasetlistModule } from '@helgoland/depiction/datasetlist';
+import { HelgolandLabelMapperModule } from '@helgoland/depiction/label-mapper';
 import { HelgolandMapSelectorModule } from '@helgoland/map/selector';
 import { HelgolandMapViewModule } from '@helgoland/map/view';
 import { HelgolandModificationModule } from '@helgoland/modification';
@@ -17,6 +18,7 @@ import { ProfilesCombiViewComponent } from './combi-view/combi-view.component';
 import { ProfilesCombiService } from './combi-view/combi-view.service';
 import { ProfilesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { ProfilesDiagramComponent } from './diagram/diagram.component';
+import { CustomProfileEntryComponent } from './diagram/profile-entry/custom-profile-entry.component';
 import { ProfilesNavigationComponent } from './navigation/navigation.component';
 import { ProfilesSelectionPermalink } from './selection/selection-permalink.service';
 import { ProfilesSelectionComponent } from './selection/selection.component';
@@ -58,6 +60,7 @@ const profilesRoutes: Routes = [
         HelgolandDatasetlistModule,
         HelgolandModificationModule,
         HelgolandMapSelectorModule,
+        HelgolandLabelMapperModule,
         HelgolandTimeModule,
         HelgolandSelectorModule,
         RouterModule.forChild(
@@ -70,7 +73,8 @@ const profilesRoutes: Routes = [
         ProfilesDiagramComponent,
         ProfilesSelectionComponent,
         ProfilesCombiViewComponent,
-        ProfilesNavigationComponent
+        ProfilesNavigationComponent,
+        CustomProfileEntryComponent
     ],
     providers: [
         ProfilesDiagramPermalink,

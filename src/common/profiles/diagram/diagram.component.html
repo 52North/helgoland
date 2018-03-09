@@ -38,9 +38,9 @@
     <h3>Legende</h3>
     <div class="legend-entry">
         <div *ngFor="let id of datasetIds">
-            <n52-profile-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" (onDeleteDatasetOptions)="deleteProfileOptions($event)"
+            <n52-custom-profile-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" (onDeleteDatasetOptions)="deleteProfileOptions($event)"
                 (onSelectDataset)="selectProfile($event, id)" (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)"
-                (onShowGeometry)="showGeometry($event)" (onOpenInCombiView)="openCombiView($event)"></n52-profile-entry>
+                (onShowGeometry)="showGeometry($event)" (onOpenInCombiView)="openCombiView($event)"></n52-custom-profile-entry>
         </div>
     </div>
 </div>

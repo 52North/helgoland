@@ -1,0 +1,152 @@
+{
+	"controls": {
+		"cancel": "",
+		"close": "",
+		"ok": ""
+	},
+	"listSelection": {
+		"loading": ""
+	},
+	"navigation": {
+		"profiles": {
+			"combi": "",
+			"diagram": "",
+			"main": "",
+			"selection": ""
+		},
+		"timeseries": {
+			"diagram": "",
+			"favorites": "",
+			"list-selection": "",
+			"main": "",
+			"map": "",
+			"table": ""
+		},
+		"trajectories": {
+			"main": "",
+			"selection": "",
+			"view": ""
+		}
+	},
+	"permalink": {
+		"button": {
+			"in-mail": "",
+			"in-window": "",
+			"to-clipboard": ""
+		},
+		"confirm-to-clipboard": ""
+	},
+	"profiles": {
+		"hint": {
+			"select-profile": ""
+		},
+		"legend": {
+			"delete-subentry": "",
+			"edit-style": "",
+			"go-to-combi-view": "",
+			"show-geometry": "",
+			"visibility": ""
+		},
+		"selection": {
+			"load-timestamps": "",
+			"platform": "",
+			"select-offering": "",
+			"select-phenomenon": "",
+			"select-platform": {
+				"header": "",
+				"hint": "",
+				"mobile": "",
+				"stationary": ""
+			},
+			"select-profile": "",
+			"select-provider": "",
+			"select-sensor": "",
+			"select-timestamp": "",
+			"timestamp": "",
+			"to-combi-view": "",
+			"to-diagram-view": ""
+		}
+	},
+	"service-selector": {
+		"datasets": "",
+		"phenomena": "",
+		"platforms": "",
+		"service-url": "",
+		"stations": "",
+		"timeseries": ""
+	},
+	"timeseries": {
+		"diagram": {
+			"hint": {
+				"select-timeseries-first": ""
+			},
+			"legend": {
+				"header": "",
+				"show-geometry-header": "",
+				"style-edit": {
+					"generalize": "",
+					"header": "",
+					"zeroBasedYAxe": ""
+				}
+			},
+			"phenomenon": {
+				"header": "",
+				"show-all": ""
+			}
+		},
+		"favorites": {
+			"addToDiagram": "",
+			"export": "",
+			"import": "",
+			"lastMeasurements": ""
+		},
+		"list-selection": {
+			"category": "",
+			"phenomenon": "",
+			"provider": "",
+			"sensor": "",
+			"station": ""
+		},
+		"map-selection": {
+			"dataset-selection-hint": "",
+			"map": "",
+			"provider": "",
+			"show-in-diagram": ""
+		},
+		"timespan-selector": {
+			"current_month": "",
+			"current_week": "",
+			"current_year": "",
+			"header": "",
+			"last_hour": "",
+			"last_month": "",
+			"last_week": "",
+			"last_year": "",
+			"today": "",
+			"today_yesterday": "",
+			"yesterday": ""
+		}
+	},
+	"trajectories": {
+		"diagram": {
+			"hint": ""
+		},
+		"map": {
+			"loading": ""
+		},
+		"selection": {
+			"select-by-phenomenon": "",
+			"select-by-platform": "",
+			"select-provider": ""
+		},
+		"view": {
+			"change-color-header": "",
+			"graph-distance-tooltip": "",
+			"graph-dotted-tooltip": "",
+			"graph-information-tooltip": "",
+			"graph-ticks-tooltip": "",
+			"graph-time-tooltip": "",
+			"hint": ""
+		}
+	}
+}

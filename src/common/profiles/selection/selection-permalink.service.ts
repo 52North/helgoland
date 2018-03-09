@@ -35,7 +35,7 @@ export class ProfilesSelectionPermalink extends PermalinkService<Observable<Prof
     public generatePermalink(): string {
         let parameter = '';
         if (this.selectionCache.selectedProvider) {
-            parameter += PROVIDER_URL_PARAM + '=' + this.selectionCache.selectedProvider.providerUrl;
+            parameter += PROVIDER_URL_PARAM + '=' + this.selectionCache.selectedProvider.apiUrl;
             parameter += '&' + PROVIDER_ID_PARAM + '=' + this.selectionCache.selectedProvider.id;
             if (this.selectionCache.selectedOffering) {
                 parameter += '&' + OFFERING_PARAM + '=' + this.selectionCache.selectedOffering.id;
