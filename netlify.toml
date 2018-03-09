@@ -1,6 +1,6 @@
 [context."feature/angularUpgrade"]
   command = "yarn build:complete"
-  publish = "dist"
+  publish = "dist/complete"
 
 [context.production.environment]
   YARN_FLAGS = "--frozen-lockfile"
