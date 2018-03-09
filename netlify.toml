@@ -1,2 +1,7 @@
 [context."feature/angularUpgrade"]
-  command = "npm run build-netlify"
+  command = "yarn build:complete"
+  publish = "dist"
+
+[context.production.environment]
+  YARN_FLAGS = "--frozen-lockfile"
+  YARN_VERSION = "1.3.2"
