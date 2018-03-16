@@ -1,9 +1,9 @@
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router/src/config';
-import { CachingInterceptor, HttpCache, LocalHttpCache, LocalOngoingHttpCache, OnGoingHttpCache } from '@helgoland/caching';
+import { HelgolandCachingModule } from '@helgoland/caching';
 import { ApiInterface, GetDataApiInterface, Settings, SettingsService } from '@helgoland/core';
 import { JsonFavoriteExporterService } from '@helgoland/favorite';
 import {
@@ -67,6 +67,7 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     TrajectoriesModule,
     ProfilesModule,
     HttpClientModule,
+    HelgolandCachingModule,
     NgbTabsetModule.forRoot(),
     NgbAccordionModule.forRoot(),
     NgbModalModule.forRoot(),
@@ -84,21 +85,8 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
       useClass: ExtendedSettingsService
     },
     {
-      provide: HttpCache,
-      useClass: LocalHttpCache
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CachingInterceptor,
-      multi: true
-    },
-    {
       provide: ApiInterface,
       useClass: GetDataApiInterface
-    },
-    {
-      provide: OnGoingHttpCache,
-      useClass: LocalOngoingHttpCache
     },
     {
       provide: TimeseriesRouter,

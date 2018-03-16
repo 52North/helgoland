@@ -194,16 +194,16 @@
     yargs "8.0.2"
 
 "@helgoland/caching@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/caching/-/caching-0.0.1-alpha.37.tgz#92aa727e1daa8440b9fc4ffb4e8aef2cbd822673"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/caching/-/caching-0.0.1-alpha.39.tgz#3fec44922de1dd716b20bb47a476b2ab7fea364c"
 
 "@helgoland/control@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/control/-/control-0.0.1-alpha.37.tgz#bb848b8345338d9677e73ca9f6eb84748c72c332"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/control/-/control-0.0.1-alpha.39.tgz#aaecdd4e489ec0a6b360daa9d79ab8f6b4129c91"
 
 "@helgoland/core@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/core/-/core-0.0.1-alpha.37.tgz#a9632bd068635298109388f95b448cf1874e95d4"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/core/-/core-0.0.1-alpha.39.tgz#2e3b7b35a26a47bae68d92bbc9199012847806de"
   dependencies:
     "@ngx-translate/core" "^9.1.1"
     "@types/deep-equal" "^0.0.30"
@@ -213,22 +213,22 @@
     moment "^2.20.1"
 
 "@helgoland/d3@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/d3/-/d3-0.0.1-alpha.37.tgz#afa2ca16f915063da26500187a985aa342f48231"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/d3/-/d3-0.0.1-alpha.39.tgz#d076fb10e8c32054d169acf51e2ca425a8e00f24"
   dependencies:
     d3 "^4.13.0"
 
 "@helgoland/depiction@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/depiction/-/depiction-0.0.1-alpha.37.tgz#b0af805ffc4fd1f82a85c79208fb71c94f2d1886"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/depiction/-/depiction-0.0.1-alpha.39.tgz#0498303c5b2286bce5b680299f7c336b24020e45"
 
 "@helgoland/favorite@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/favorite/-/favorite-0.0.1-alpha.37.tgz#37e2205cfb4829d15ef4204e2717f488fc793a34"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/favorite/-/favorite-0.0.1-alpha.39.tgz#9244717631399d6641e732f9c1c0ab83d5df3c4b"
 
 "@helgoland/flot@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/flot/-/flot-0.0.1-alpha.37.tgz#124bf6d8dad31c1beebfbf2fc38f4ed9741ba703"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/flot/-/flot-0.0.1-alpha.39.tgz#4dd86dfa03ec4cd7dae3458e4727984fb5657449"
   dependencies:
     "@types/flot" "^0.0.31"
     "@types/jquery" "^3.3.0"
@@ -236,8 +236,8 @@
     jquery "^3.2.1"
 
 "@helgoland/map@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/map/-/map-0.0.1-alpha.37.tgz#62776f906df59c75a88875e0ae172aab42841413"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/map/-/map-0.0.1-alpha.39.tgz#1a83388b914b45d5ba46f1c5ee22810c0b1c1807"
   dependencies:
     "@types/leaflet" "^1.2.5"
     "@types/leaflet.markercluster" "^1.0.2"
@@ -245,30 +245,30 @@
     leaflet.markercluster "^1.3.0"
 
 "@helgoland/modification@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/modification/-/modification-0.0.1-alpha.37.tgz#dc6c0a657d009d81e8b6e1e98c3193b75c026577"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/modification/-/modification-0.0.1-alpha.39.tgz#35c18d5f4029ccbcdee4e064b2ef7e04a7832293"
   dependencies:
     ngx-color-picker "^5.3.1"
 
 "@helgoland/permalink@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/permalink/-/permalink-0.0.1-alpha.37.tgz#6a1f2ac93491b6678b8cfa3e5d65cf179f5f0806"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/permalink/-/permalink-0.0.1-alpha.39.tgz#14f9948a8db6b48b9abea69f0cb94b9214ac055c"
   dependencies:
     ngx-clipboard "^9.1.3"
 
 "@helgoland/plotly@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/plotly/-/plotly-0.0.1-alpha.37.tgz#3bbb8749ce3e7689df5ad3ad5203930a3d04acc1"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/plotly/-/plotly-0.0.1-alpha.39.tgz#d610c68a048eb88d52aa58c845ccbeeed78962d5"
   dependencies:
     plotly.js "^1.34.0"
 
 "@helgoland/selector@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/selector/-/selector-0.0.1-alpha.37.tgz#e1c88a8d1132b9791409200808063a448b4cfaf1"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/selector/-/selector-0.0.1-alpha.39.tgz#ddd9e678969a12848ec8730d209f0f93bdafd04b"
 
 "@helgoland/time@^0.0.1-alpha.31":
-  version "0.0.1-alpha.37"
-  resolved "https://registry.yarnpkg.com/@helgoland/time/-/time-0.0.1-alpha.37.tgz#f3b3602e9b80131359c5f2ed02cf43a9a47fa904"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/time/-/time-0.0.1-alpha.39.tgz#768915a038f1bec8bf8e55f5446199e14136b48a"
 
 "@mapbox/geojson-area@0.2.2":
   version "0.2.2"
@@ -634,6 +634,10 @@ ansi-styles@^3.1.0, ansi-styles@^3.2.0, ansi-styles@^3.2.1:
 ansi-styles@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-1.0.0.tgz#cb102df1c56f5123eab8b67cd7b98027a0279178"
+
+ansicolors@~0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ansicolors/-/ansicolors-0.2.1.tgz#be089599097b74a5c9c4a84a0cdbcdb62bd87aef"
 
 anymatch@^1.3.0:
   version "1.3.2"
@@ -1535,6 +1539,13 @@ canvas-fit@^1.5.0:
   resolved "https://registry.yarnpkg.com/canvas-fit/-/canvas-fit-1.5.0.tgz#ae13be66ade42f5be0e487e345fce30a5e5b5e5f"
   dependencies:
     element-size "^1.1.1"
+
+cardinal@~0.4.2:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/cardinal/-/cardinal-0.4.4.tgz#ca5bb68a5b511b90fe93b9acea49bdee5c32bfe2"
+  dependencies:
+    ansicolors "~0.2.1"
+    redeyed "~0.4.0"
 
 caseless@~0.11.0:
   version "0.11.0"
@@ -3087,7 +3098,7 @@ esprima@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
 
-esprima@~1.0.2:
+esprima@~1.0.2, esprima@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-1.0.4.tgz#9f557e08fc3b4d26ece9dd34f8fbf476b62585ad"
 
@@ -3213,6 +3224,10 @@ expand-range@^1.8.1:
   resolved "https://registry.yarnpkg.com/expand-range/-/expand-range-1.8.2.tgz#a299effd335fe2721ebae8e257ec79644fc85337"
   dependencies:
     fill-range "^2.1.0"
+
+expect.js@~0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/expect.js/-/expect.js-0.2.0.tgz#1028533d2c1c363f74a6796ff57ec0520ded2be1"
 
 express@^4.16.2:
   version "4.16.2"
@@ -3663,12 +3678,13 @@ generate-object-property@^1.1.0:
     is-property "^1.0.0"
 
 geojson-rewind@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/geojson-rewind/-/geojson-rewind-0.3.0.tgz#d5c35025fa708910e2da1a97fc23a2e2478a876a"
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/geojson-rewind/-/geojson-rewind-0.3.1.tgz#22240797c847cc2f0c1d313e4aa0c915afa7f29d"
   dependencies:
     "@mapbox/geojson-area" "0.2.2"
     concat-stream "~1.6.0"
     minimist "1.2.0"
+    sharkdown "^0.1.0"
 
 geojson-vt@^3.0.0:
   version "3.0.0"
@@ -5587,11 +5603,17 @@ magic-string@^0.14.0:
   dependencies:
     vlq "^0.2.1"
 
-magic-string@^0.22.3, magic-string@^0.22.4:
+magic-string@^0.22.3:
   version "0.22.4"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.22.4.tgz#31039b4e40366395618c1d6cf8193c53917475ff"
   dependencies:
     vlq "^0.2.1"
+
+magic-string@^0.22.4:
+  version "0.22.5"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.22.5.tgz#8e9cf5afddf44385c1da5bc2a6a0dbd10b03657e"
+  dependencies:
+    vlq "^0.2.2"
 
 mailcomposer@4.0.1:
   version "4.0.1"
@@ -5644,7 +5666,7 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-mapbox-gl@^0.44.0:
+mapbox-gl@0.44.1:
   version "0.44.1"
   resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-0.44.1.tgz#bd4964f71a937c0eca4cc8b00330f2bfcbddc37c"
   dependencies:
@@ -5849,6 +5871,10 @@ minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   dependencies:
     brace-expansion "^1.1.7"
+
+minimist@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.5.tgz#d7aa327bcecf518f9106ac6b8f003fa3bcea8566"
 
 minimist@0.0.8:
   version "0.0.8"
@@ -6118,8 +6144,8 @@ ngx-clipboard@^9.1.3:
     ngx-window-token "0.0.4"
 
 ngx-color-picker@^5.3.1:
-  version "5.3.5"
-  resolved "https://registry.yarnpkg.com/ngx-color-picker/-/ngx-color-picker-5.3.5.tgz#7dfa68893fb61bc809a9a4891bde5aa4baadc7ad"
+  version "5.3.7"
+  resolved "https://registry.yarnpkg.com/ngx-color-picker/-/ngx-color-picker-5.3.7.tgz#51ba5f9aa67044c181a15504ac81b654119cdc89"
 
 ngx-window-token@0.0.4:
   version "0.0.4"
@@ -6847,8 +6873,8 @@ planar-graph-to-polyline@^1.0.0:
     uniq "^1.0.0"
 
 plotly.js@^1.34.0:
-  version "1.35.1"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.35.1.tgz#2f8a697844455637ba62f6b186a1c2d79fee301a"
+  version "1.35.2"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.35.2.tgz#543d914d4384eca1bddae1f6df6b42c1b85b749a"
   dependencies:
     "3d-view" "^2.0.0"
     "@plotly/d3-sankey" "^0.5.0"
@@ -6883,7 +6909,7 @@ plotly.js@^1.34.0:
     has-hover "^1.0.1"
     has-passive-events "^1.0.0"
     kdgrass "^1.0.1"
-    mapbox-gl "^0.44.0"
+    mapbox-gl "0.44.1"
     matrix-camera-controller "^2.1.3"
     mouse-change "^1.4.0"
     mouse-event-offset "^3.0.2"
@@ -7308,7 +7334,7 @@ readable-stream@1.0, "readable-stream@>=1.0.33-1 <1.1.0-0", readable-stream@~1.0
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@1.1.x, "readable-stream@1.x >=1.1.9", readable-stream@~1.1.9:
+readable-stream@1.1.x, "readable-stream@1.x >=1.1.9", readable-stream@~1.1.0, readable-stream@~1.1.9:
   version "1.1.14"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
   dependencies:
@@ -7355,6 +7381,12 @@ redent@^1.0.0:
   dependencies:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
+
+redeyed@~0.4.0:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/redeyed/-/redeyed-0.4.4.tgz#37e990a6f2b21b2a11c2e6a48fd4135698cba97f"
+  dependencies:
+    esprima "~1.0.4"
 
 redis-commands@^1.2.0:
   version "1.3.5"
@@ -8031,6 +8063,17 @@ shallow-copy@0.0.1, shallow-copy@~0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/shallow-copy/-/shallow-copy-0.0.1.tgz#415f42702d73d810330292cc5ee86eae1a11a170"
 
+sharkdown@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/sharkdown/-/sharkdown-0.1.0.tgz#61d4fe529e75d02442127cc9234362265099214f"
+  dependencies:
+    cardinal "~0.4.2"
+    expect.js "~0.2.0"
+    minimist "0.0.5"
+    split "~0.2.10"
+    stream-spigot "~2.1.2"
+    through "~2.3.4"
+
 shasum@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/shasum/-/shasum-1.0.2.tgz#e7012310d8f417f4deb5712150e5678b87ae565f"
@@ -8404,6 +8447,12 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
+split@~0.2.10:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/split/-/split-0.2.10.tgz#67097c601d697ce1368f418f06cd201cf0521a57"
+  dependencies:
+    through "2"
+
 sprintf-js@^1.0.3:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.1.tgz#36be78320afe5801f6cea3ee78b6e5aab940ea0c"
@@ -8538,6 +8587,12 @@ stream-http@^2.0.0, stream-http@^2.7.2:
 stream-shift@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
+
+stream-spigot@~2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/stream-spigot/-/stream-spigot-2.1.2.tgz#7de145e819f8dd0db45090d13dcf73a8ed3cc035"
+  dependencies:
+    readable-stream "~1.1.0"
 
 stream-splicer@^2.0.0:
   version "2.0.0"
@@ -8719,8 +8774,8 @@ surface-nets@^1.0.0, surface-nets@^1.0.2:
     zero-crossings "^1.0.0"
 
 svg-arc-to-cubic-bezier@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/svg-arc-to-cubic-bezier/-/svg-arc-to-cubic-bezier-3.0.0.tgz#88569aa18a8bad638403bfad681f7b5a9f2f6685"
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/svg-arc-to-cubic-bezier/-/svg-arc-to-cubic-bezier-3.1.0.tgz#69869eea070a8a56a06a1f0dc906e2ec14babcec"
 
 svg-path-bounds@^1.0.1:
   version "1.0.1"
@@ -8821,7 +8876,7 @@ through2@~0.4.1:
     readable-stream "~1.0.17"
     xtend "~2.1.1"
 
-"through@>=2.2.7 <3", through@X.X.X, through@^2.3.7, through@^2.3.8, through@~2.3.4, through@~2.3.8:
+through@2, "through@>=2.2.7 <3", through@X.X.X, through@^2.3.7, through@^2.3.8, through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
