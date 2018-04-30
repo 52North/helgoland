@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
-    ApiInterface,
-    GraphHighlight,
+    DatasetApiInterface,
     InternalIdHandler,
     LocatedProfileDataEntry,
+    PresenterHighlight,
     TimedDatasetOptions,
     Timespan,
 } from '@helgoland/core';
@@ -30,7 +30,7 @@ export class ProfilesCombiViewComponent implements OnInit {
 
     constructor(
         private service: ProfilesCombiService,
-        private api: ApiInterface,
+        private api: DatasetApiInterface,
         private internalIdHandler: InternalIdHandler,
         private permalinkSrvc: ProfilesCombiViewPermalink
     ) {
@@ -57,7 +57,7 @@ export class ProfilesCombiViewComponent implements OnInit {
         });
     }
 
-    public onChartHighlight(highlight: GraphHighlight) {
+    public onChartHighlight(highlight: PresenterHighlight) {
         this.highlightGeometry = {
             type: 'Point',
             coordinates: this.geometry.coordinates[highlight.dataIndex]

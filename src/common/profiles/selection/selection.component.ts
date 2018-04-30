@@ -1,9 +1,9 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-    ApiInterface,
     BlacklistedService,
     ColorService,
+    DatasetApiInterface,
     Feature,
     IDataset,
     Offering,
@@ -79,7 +79,7 @@ export class ProfilesSelectionComponent implements OnInit {
         private settingsSrvc: SettingsService<Settings>,
         private cache: ProfilesSelectionCache,
         private modalService: NgbModal,
-        private api: ApiInterface,
+        private api: DatasetApiInterface,
         private router: Router,
         private profilesSrvc: ProfilesService,
         private combiSrvc: ProfilesCombiService,

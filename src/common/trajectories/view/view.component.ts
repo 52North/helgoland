@@ -1,5 +1,12 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ApiInterface, DatasetOptions, IDataset, InternalIdHandler, LocatedTimeValueEntry, Timespan } from '@helgoland/core';
+import {
+    DatasetApiInterface,
+    DatasetOptions,
+    IDataset,
+    InternalIdHandler,
+    LocatedTimeValueEntry,
+    Timespan,
+} from '@helgoland/core';
 import { D3AxisType, D3GraphOptions, D3SelectionRange } from '@helgoland/d3';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 
@@ -51,7 +58,7 @@ export class TrajectoriesViewComponent implements OnInit {
     constructor(
         private trajectorySrvc: TrajectoriesService,
         private permalinkSrvc: TrajectoriesViewPermalink,
-        private api: ApiInterface,
+        private api: DatasetApiInterface,
         private internalIdHandler: InternalIdHandler,
         private modalService: NgbModal
     ) { }

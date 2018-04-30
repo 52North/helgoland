@@ -193,17 +193,17 @@
     typescript "2.4.1"
     yargs "8.0.2"
 
-"@helgoland/caching@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/caching/-/caching-0.0.1-alpha.39.tgz#3fec44922de1dd716b20bb47a476b2ab7fea364c"
+"@helgoland/caching@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/caching/-/caching-0.0.1-alpha.45.tgz#e23439f7e78651234bce9f2b9cb1df34afbf0a18"
 
-"@helgoland/control@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/control/-/control-0.0.1-alpha.39.tgz#aaecdd4e489ec0a6b360daa9d79ab8f6b4129c91"
+"@helgoland/control@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/control/-/control-0.0.1-alpha.45.tgz#5002b03c844852471a570d7398c4000546f02fe0"
 
-"@helgoland/core@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/core/-/core-0.0.1-alpha.39.tgz#2e3b7b35a26a47bae68d92bbc9199012847806de"
+"@helgoland/core@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/core/-/core-0.0.1-alpha.45.tgz#86180dbd52270bbc6595710d597b640f68dc77e5"
   dependencies:
     "@ngx-translate/core" "^9.1.1"
     "@types/deep-equal" "^0.0.30"
@@ -212,63 +212,63 @@
     deep-equal "^1.0.1"
     moment "^2.20.1"
 
-"@helgoland/d3@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/d3/-/d3-0.0.1-alpha.39.tgz#d076fb10e8c32054d169acf51e2ca425a8e00f24"
+"@helgoland/d3@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/d3/-/d3-0.0.1-alpha.45.tgz#e32bf19027c024f5288d16c37a84e5c33e0de1e2"
   dependencies:
     d3 "^4.13.0"
 
-"@helgoland/depiction@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/depiction/-/depiction-0.0.1-alpha.39.tgz#0498303c5b2286bce5b680299f7c336b24020e45"
+"@helgoland/depiction@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/depiction/-/depiction-0.0.1-alpha.45.tgz#37ec4147363526f2dbfb21470b6d866a605958cf"
 
-"@helgoland/favorite@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/favorite/-/favorite-0.0.1-alpha.39.tgz#9244717631399d6641e732f9c1c0ab83d5df3c4b"
+"@helgoland/favorite@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/favorite/-/favorite-0.0.1-alpha.45.tgz#dd9282a0dde88d516c48bfe39dda3f08618a43de"
 
-"@helgoland/flot@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/flot/-/flot-0.0.1-alpha.39.tgz#4dd86dfa03ec4cd7dae3458e4727984fb5657449"
+"@helgoland/flot@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/flot/-/flot-0.0.1-alpha.45.tgz#8a11239d17df11e82ee890b86ef72ad472f49e79"
   dependencies:
     "@types/flot" "^0.0.31"
     "@types/jquery" "^3.3.0"
     Flot "github:flot/flot"
     jquery "^3.2.1"
 
-"@helgoland/map@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/map/-/map-0.0.1-alpha.39.tgz#1a83388b914b45d5ba46f1c5ee22810c0b1c1807"
+"@helgoland/map@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/map/-/map-0.0.1-alpha.45.tgz#879d15db34ea018e5e94729c257c5fb3d6320c63"
   dependencies:
     "@types/leaflet" "^1.2.5"
     "@types/leaflet.markercluster" "^1.0.2"
     leaflet "^1.3.1"
     leaflet.markercluster "^1.3.0"
 
-"@helgoland/modification@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/modification/-/modification-0.0.1-alpha.39.tgz#35c18d5f4029ccbcdee4e064b2ef7e04a7832293"
+"@helgoland/modification@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/modification/-/modification-0.0.1-alpha.45.tgz#6c039385d2d9c5d6fd9f8c1ebeb22dfd1bd2e4d8"
   dependencies:
     ngx-color-picker "^5.3.1"
 
-"@helgoland/permalink@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/permalink/-/permalink-0.0.1-alpha.39.tgz#14f9948a8db6b48b9abea69f0cb94b9214ac055c"
+"@helgoland/permalink@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/permalink/-/permalink-0.0.1-alpha.45.tgz#c509a029b3bcf8b215c17ef4a39eebf524cdcfaf"
   dependencies:
     ngx-clipboard "^9.1.3"
 
-"@helgoland/plotly@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/plotly/-/plotly-0.0.1-alpha.39.tgz#d610c68a048eb88d52aa58c845ccbeeed78962d5"
+"@helgoland/plotly@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/plotly/-/plotly-0.0.1-alpha.45.tgz#54213dcaafc6aa877526d821a8508de18be54531"
   dependencies:
     plotly.js "^1.34.0"
 
-"@helgoland/selector@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/selector/-/selector-0.0.1-alpha.39.tgz#ddd9e678969a12848ec8730d209f0f93bdafd04b"
+"@helgoland/selector@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/selector/-/selector-0.0.1-alpha.45.tgz#6e717e986c9448d75267f7845699461ebeaefc4c"
 
-"@helgoland/time@^0.0.1-alpha.31":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/time/-/time-0.0.1-alpha.39.tgz#768915a038f1bec8bf8e55f5446199e14136b48a"
+"@helgoland/time@^0.0.1-alpha.45":
+  version "0.0.1-alpha.45"
+  resolved "https://registry.yarnpkg.com/@helgoland/time/-/time-0.0.1-alpha.45.tgz#bc978c72a7e73b6817ad30331fd64a03fed81502"
 
 "@mapbox/geojson-area@0.2.2":
   version "0.2.2"

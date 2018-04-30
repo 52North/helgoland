@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiInterface, ApiMapping } from '@helgoland/core';
+import { DatasetApiInterface, DatasetApiMapping } from '@helgoland/core';
 import { ListSelectorComponent, ListSelectorService } from '@helgoland/selector';
 
 @Component({
@@ -11,8 +11,8 @@ export class CustomListSelectorComponent extends ListSelectorComponent {
 
   constructor(
     protected listSelectorService: ListSelectorService,
-    protected apiInterface: ApiInterface,
-    protected apiMapping: ApiMapping
+    protected apiInterface: DatasetApiInterface,
+    protected apiMapping: DatasetApiMapping
   ) {
     super(listSelectorService, apiInterface, apiMapping);
   }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ApiInterface, Feature, Offering, Phenomenon, Procedure, Service } from '@helgoland/core';
+import { Feature, Offering, Phenomenon, Procedure, Service, DatasetApiInterface } from '@helgoland/core';
 import { PermalinkService } from '@helgoland/permalink';
-import { Observable, Observer } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 
 import { ProfilesSelectionCache } from './selection.service';
 
@@ -27,7 +28,7 @@ export class ProfilesSelectionPermalink extends PermalinkService<Observable<Prof
     constructor(
         private selectionCache: ProfilesSelectionCache,
         private activatedRoute: ActivatedRoute,
-        private api: ApiInterface
+        private api: DatasetApiInterface
     ) {
         super();
     }

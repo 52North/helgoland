@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HelgolandDatasetlistModule } from '@helgoland/depiction/datasetlist';
 import { HelgolandLabelMapperModule } from '@helgoland/depiction/label-mapper';
 import { HelgolandMapSelectorModule } from '@helgoland/map/selector';
+import { HelgolandTimeRangeSliderModule } from '@helgoland/time/time-range-slider';
 import { HelgolandMapViewModule } from '@helgoland/map/view';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandPlotlyModule } from '@helgoland/plotly';
@@ -62,6 +63,7 @@ const profilesRoutes: Routes = [
         HelgolandMapSelectorModule,
         HelgolandLabelMapperModule,
         HelgolandTimeModule,
+        HelgolandTimeRangeSliderModule,
         HelgolandSelectorModule,
         RouterModule.forChild(
             profilesRoutes

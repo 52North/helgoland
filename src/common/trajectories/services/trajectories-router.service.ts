@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import 'rxjs/add/operator/filter';
 
 @Injectable()
 export class TrajectoriesConditionalRouter {
