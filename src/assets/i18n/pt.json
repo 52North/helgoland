@@ -86,6 +86,8 @@
 				"style-edit": {
 					"generalize": "",
 					"header": "",
+					"lineWidth": "",
+					"pointRadius": "",
 					"zeroBasedYAxe": ""
 				}
 			},

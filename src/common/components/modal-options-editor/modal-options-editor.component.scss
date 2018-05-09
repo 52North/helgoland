@@ -6,6 +6,9 @@
         .column {
             flex: 1;
             padding: 10px;
+            .input-group {
+                padding: 3px 0px;
+            }
         }
     }
 }

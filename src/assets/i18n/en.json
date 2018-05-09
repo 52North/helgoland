@@ -86,6 +86,8 @@
 				"style-edit": {
 					"generalize": "Generalize data",
 					"header": "Change style of this timeseries",
+					"lineWidth": "Line width",
+					"pointRadius": "Point radius",
 					"zeroBasedYAxe": "Timeseries zero based"
 				}
 			},
