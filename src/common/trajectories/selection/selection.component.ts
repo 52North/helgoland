@@ -98,7 +98,7 @@ export class TrajectoriesSelectionComponent implements OnInit {
 
   private createFilter(): ParameterFilter {
     return {
-      valueTypes: ValueTypes.quantityProfile,
+      valueTypes: ValueTypes.quantity,
       platformTypes: PlatformTypes.mobile
     };
   }
