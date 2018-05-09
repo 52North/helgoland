@@ -20,6 +20,7 @@ import {
   CustomTimespanShiftSelectorComponent,
 } from './custom-timespan-shift-selector/custom-timespan-shift-selector.component';
 import { LocalSelectorImplComponent } from './local-selector/local-selector.component';
+import { LocateButtonComponent } from './locate-button/locate-button.component';
 import { ModalGeometryViewerComponent } from './modal-geometry-viewer/modal-geometry-viewer.component';
 import { ModalOptionsEditorComponent } from './modal-options-editor/modal-options-editor.component';
 import { ModalTimeseriesTimespanComponent } from './modal-timeseries-timespan/modal-timeseries-timespan.component';
@@ -47,6 +48,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     TranslateModule.forChild()
   ],
   declarations: [
+    LocateButtonComponent,
     LocalSelectorImplComponent,
     ModalOptionsEditorComponent,
     ModalGeometryViewerComponent,
@@ -68,6 +70,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     ModalTimeseriesTimespanComponent
   ],
   exports: [
+    LocateButtonComponent,
     LocalSelectorImplComponent,
     PermalinkButtonComponent,
     CustomListSelectorComponent,
