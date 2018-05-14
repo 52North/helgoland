@@ -41,7 +41,7 @@ Download the latest version of [Helgoland](https://github.com/52North/helgoland/
 Configure your client in the settings.json in the root folder. Check this(link) site for the different configuration parameter in the settings.json. The main parameters are:
 
 * `defaultProvider` - this is the default selected provider, when the user starts the client
-* `restApiUrls` - this is a list of all supported providers by the client
+* `datasetApis` - this is a list of all supported providers by the client
 
 
 ## License

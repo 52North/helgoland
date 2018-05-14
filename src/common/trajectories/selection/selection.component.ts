@@ -4,6 +4,7 @@ import {
   BlacklistedService,
   ColorService,
   Dataset,
+  DatasetApi,
   DatasetOptions,
   ParameterFilter,
   PlatformTypes,
@@ -56,7 +57,7 @@ export class TrajectoriesSelectionComponent implements OnInit {
   public tabset: NgbTabset;
 
   public paramFilter: ParameterFilter;
-  public providerList: Array<string>;
+  public datasetApis: Array<DatasetApi>;
   public providerBlacklist: Array<BlacklistedService>;
   public providerFilter: ParameterFilter;
   public selectedProvider: Array<Provider>;
@@ -70,7 +71,7 @@ export class TrajectoriesSelectionComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.providerList = this.settingsSrvc.getSettings().restApiUrls;
+    this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
     this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
     this.providerFilter = this.createFilter();
     this.paramFilter = this.createFilter();

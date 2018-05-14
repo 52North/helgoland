@@ -5,8 +5,9 @@
         <span>{{'trajectories.selection.select-provider' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
-        <div class="providerList container">
-          <n52-custom-service-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter" (onServiceSelected)="providerSelected($event);"></n52-custom-service-selector>
+        <div class="datasetApis container">
+          <n52-custom-service-selector [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist" [filter]="providerFilter"
+            [showUnresolvableServices]="true" (onServiceSelected)="providerSelected($event);"></n52-custom-service-selector>
         </div>
       </ng-template>
     </ngb-tab>

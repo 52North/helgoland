@@ -25,8 +25,8 @@
       </ng-template>
       <ng-template ngbTabContent>
         <div class="scrollable container">
-          <n52-custom-service-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [selectedService]="selectedService"
-            [supportStations]="true" [filter]="providerFilter" (onServiceSelected)="providerSelected($event)"></n52-custom-service-selector>
+          <n52-custom-service-selector [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist" [selectedService]="selectedService"
+            [supportStations]="true" [filter]="providerFilter" [showUnresolvableServices]="true" (onServiceSelected)="providerSelected($event)"></n52-custom-service-selector>
         </div>
       </ng-template>
     </ngb-tab>

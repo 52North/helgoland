@@ -19,6 +19,7 @@ import {
     TimedDatasetOptions,
     Timespan,
     ValueTypes,
+    DatasetApi,
 } from '@helgoland/core';
 import { TrajectoryResult } from '@helgoland/map/selector';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -37,7 +38,7 @@ import { ProfilesSelectionCache } from './selection.service';
 })
 export class ProfilesSelectionComponent implements OnInit {
 
-    public providerList: Array<string>;
+    public datasetApis: Array<DatasetApi>;
     public providerBlacklist: Array<BlacklistedService>;
 
     public providerFilter: ParameterFilter;
@@ -95,7 +96,7 @@ export class ProfilesSelectionComponent implements OnInit {
             if (selection.selectedProcedure) { this.procedureSelected(selection.selectedProcedure, false); }
             if (selection.selectedFeature) { this.featureSelected(selection.selectedFeature); }
         });
-        this.providerList = this.settingsSrvc.getSettings().restApiUrls;
+        this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
         this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
         this.providerFilter = this.createFilter();
     }

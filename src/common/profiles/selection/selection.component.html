@@ -46,8 +46,8 @@
     </ng-template>
     <ng-template ngbTabContent>
       <div class="container">
-        <n52-custom-service-selector [providerList]="providerList" [providerBlacklist]="providerBlacklist" [filter]="providerFilter"
-          (onServiceSelected)="providerSelected($event, true);"></n52-custom-service-selector>
+        <n52-custom-service-selector [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist" [filter]="providerFilter"
+          [showUnresolvableServices]="true" (onServiceSelected)="providerSelected($event, true);"></n52-custom-service-selector>
       </div>
     </ng-template>
   </ngb-tab>

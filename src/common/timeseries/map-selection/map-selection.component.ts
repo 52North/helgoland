@@ -19,6 +19,7 @@ import {
   Settings,
   SettingsService,
   ValueTypes,
+  DatasetApi,
 } from '@helgoland/core';
 import { NgbModal, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
@@ -40,7 +41,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   @ViewChild('tabset')
   public tabset: NgbTabset;
 
-  public providerList: Array<string>;
+  public datasetApis: Array<DatasetApi>;
   public providerBlacklist: Array<BlacklistedService>;
   public providerFilter: ParameterFilter;
   public selectedService: Service;
@@ -65,7 +66,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   ) { }
 
   public ngOnInit() {
-    this.providerList = this.settingsSrvc.getSettings().restApiUrls;
+    this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
     this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
     this.providerFilter = { valueTypes: ValueTypes.quantity };
   }
