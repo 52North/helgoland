@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router/src/config';
 import { HelgolandCachingModule } from '@helgoland/caching';
-import { ApiInterface, GetDataApiInterface, Settings, SettingsService } from '@helgoland/core';
+import { DatasetApiInterface, Settings, SettingsService, SplittedDataDatasetApiInterface } from '@helgoland/core';
 import { JsonFavoriteExporterService } from '@helgoland/favorite';
 import {
   NgbAccordionModule,
@@ -71,8 +71,8 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
       useClass: ExtendedSettingsService
     },
     {
-      provide: ApiInterface,
-      useClass: GetDataApiInterface
+      provide: DatasetApiInterface,
+      useClass: SplittedDataDatasetApiInterface
     }
   ],
   bootstrap: [AppComponent]

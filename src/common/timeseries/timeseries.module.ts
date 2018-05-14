@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HelgolandDatasetTableModule } from '@helgoland/depiction/dataset-table';
 import { HelgolandDatasetlistModule } from '@helgoland/depiction/datasetlist';
+import { HelgolandFavoriteModule } from '@helgoland/favorite';
 import { HelgolandFlotModule } from '@helgoland/flot';
 import { HelgolandMapControlModule } from '@helgoland/map/control';
 import { HelgolandMapSelectorModule } from '@helgoland/map/selector';
@@ -74,6 +75,7 @@ const timeseriesRoutes: Routes = [
     HelgolandMapSelectorModule,
     HelgolandMapControlModule,
     HelgolandTimeModule,
+    HelgolandFavoriteModule,
     HelgolandDatasetTableModule,
     HelgolandDatasetlistModule,
     HelgolandModificationModule,
