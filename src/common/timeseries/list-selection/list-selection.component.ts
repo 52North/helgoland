@@ -1,14 +1,7 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  Injectable,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   BlacklistedService,
+  DatasetApi,
   IDataset,
   ParameterFilter,
   Provider,
@@ -16,12 +9,12 @@ import {
   Settings,
   SettingsService,
   ValueTypes,
-  DatasetApi,
 } from '@helgoland/core';
 import { ListSelectorParameter } from '@helgoland/selector';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 
+import { TimeseriesListSelectionCache } from '../services/list-selection-cache.service';
 import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from './../services/timeseries.service';
 
@@ -146,10 +139,4 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
       console.error('datasetList is no array or has not the length of 1');
     }
   }
-}
-
-@Injectable()
-export class TimeseriesListSelectionCache {
-  public selectedService: Service;
-  public lastTab: string;
 }

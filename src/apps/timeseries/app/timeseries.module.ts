@@ -17,15 +17,11 @@ import { ComponentsModule } from '../../../common/components/components.module';
 import { TimeseriesDiagramPermalink } from '../../../common/timeseries/diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from '../../../common/timeseries/diagram/diagram.component';
 import { TimeseriesFavoritesComponent } from '../../../common/timeseries/favorites/favorites.component';
-import {
-  TimeseriesListSelectionCache,
-  TimeseriesListSelectionComponent,
-} from '../../../common/timeseries/list-selection/list-selection.component';
-import {
-  TimeseriesMapSelectionCache,
-  TimeseriesMapSelectionComponent,
-} from '../../../common/timeseries/map-selection/map-selection.component';
+import { TimeseriesListSelectionComponent } from '../../../common/timeseries/list-selection/list-selection.component';
+import { TimeseriesMapSelectionComponent } from '../../../common/timeseries/map-selection/map-selection.component';
 import { TimeseriesNavigationComponent } from '../../../common/timeseries/navigation/navigation.component';
+import { TimeseriesListSelectionCache } from '../../../common/timeseries/services/list-selection-cache.service';
+import { TimeseriesMapSelectionCache } from '../../../common/timeseries/services/map-selection-cache.service';
 import { TimeseriesRouter } from '../../../common/timeseries/services/timeseries-router.service';
 import { TimeseriesService } from '../../../common/timeseries/services/timeseries.service';
 import { TimeseriesTableComponent } from '../../../common/timeseries/table/table.component';

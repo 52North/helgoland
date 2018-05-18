@@ -2,7 +2,6 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  Injectable,
   OnInit,
   TemplateRef,
   ViewChild,
@@ -11,6 +10,7 @@ import {
 import {
   BlacklistedService,
   Dataset,
+  DatasetApi,
   ParameterFilter,
   Phenomenon,
   Platform,
@@ -19,11 +19,11 @@ import {
   Settings,
   SettingsService,
   ValueTypes,
-  DatasetApi,
 } from '@helgoland/core';
 import { NgbModal, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 
+import { TimeseriesMapSelectionCache } from '../services/map-selection-cache.service';
 import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from './../services/timeseries.service';
 
@@ -138,10 +138,4 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
       service: this.selectedService.id
     };
   }
-}
-
-@Injectable()
-export class TimeseriesMapSelectionCache {
-  public selectedService: Service;
-  public lastTab: string;
 }

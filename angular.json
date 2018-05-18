@@ -1,0 +1,323 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "complete": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/complete",
+            "index": "src/apps/complete/index.html",
+            "main": "src/apps/complete/main.ts",
+            "tsConfig": "src/apps/complete/tsconfig.app.json",
+            "polyfills": "src/apps/complete/polyfills.ts",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/apps/complete/assets",
+                "output": "/assets"
+              },
+              "src/apps/complete/favicon.ico"
+            ],
+            "styles": [
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.css",
+              "src/apps/complete/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/moment/moment.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/Flot/jquery.flot.js",
+              "node_modules/Flot/jquery.flot.time.js",
+              "node_modules/Flot/jquery.flot.crosshair.js",
+              "node_modules/plotly.js/dist/plotly-basic.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/apps/complete/environments/environment.ts",
+                  "with": "src/apps/complete/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "complete:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "complete:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "complete:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/apps/complete/../../test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/apps/complete/polyfills.ts",
+            "tsConfig": "src/apps/complete/tsconfig.spec.json",
+            "scripts": [
+              "node_modules/moment/moment.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/Flot/jquery.flot.js",
+              "node_modules/Flot/jquery.flot.time.js",
+              "node_modules/Flot/jquery.flot.crosshair.js",
+              "node_modules/plotly.js/dist/plotly-basic.js"
+            ],
+            "styles": [
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.css",
+              "src/apps/complete/styles.scss"
+            ],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/apps/complete/assets",
+                "output": "/assets"
+              },
+              "src/apps/complete/favicon.ico"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "complete-e2e": {
+      "root": "",
+      "sourceRoot": "",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "complete:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "timeseries": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/timeseries",
+            "index": "src/apps/timeseries/index.html",
+            "main": "src/apps/timeseries/main.ts",
+            "tsConfig": "src/apps/timeseries/tsconfig.app.json",
+            "polyfills": "src/apps/timeseries/polyfills.ts",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/apps/complete/assets",
+                "output": "/assets"
+              },
+              "src/apps/complete/favicon.ico"
+            ],
+            "styles": [
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.css",
+              "src/apps/timeseries/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/moment/moment.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/Flot/jquery.flot.js",
+              "node_modules/Flot/jquery.flot.time.js",
+              "node_modules/Flot/jquery.flot.crosshair.js",
+              "node_modules/plotly.js/dist/plotly-basic.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/apps/timeseries/environments/environment.ts",
+                  "with": "src/apps/timeseries/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "timeseries:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "timeseries:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "timeseries:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/apps/timeseries/../../test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/apps/timeseries/polyfills.ts",
+            "tsConfig": "src/apps/timeseries/tsconfig.spec.json",
+            "scripts": [
+              "node_modules/moment/moment.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/Flot/jquery.flot.js",
+              "node_modules/Flot/jquery.flot.time.js",
+              "node_modules/Flot/jquery.flot.crosshair.js",
+              "node_modules/plotly.js/dist/plotly-basic.js"
+            ],
+            "styles": [
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.css",
+              "src/apps/timeseries/styles.scss"
+            ],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/apps/complete/assets",
+                "output": "/assets"
+              },
+              "src/apps/complete/favicon.ico"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "timeseries-e2e": {
+      "root": "",
+      "sourceRoot": "",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "timeseries:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "complete",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "complete",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "complete"
+    }
+  }
+}
