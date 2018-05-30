@@ -1,7 +1,7 @@
 [context."feature/angularUpgrade"]
-  command = "yarn build:complete"
+  command = "npm run build:complete"
   publish = "dist/complete"
 
-[context.production.environment]
-  YARN_FLAGS = "--frozen-lockfile"
-  YARN_VERSION = "1.3.2"
+# [context.production.environment]
+#   YARN_FLAGS = "--frozen-lockfile"
+#   YARN_VERSION = "1.3.2"
