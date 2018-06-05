@@ -12,6 +12,8 @@
         <n52-flot-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
           [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"
           (onHighlight)="highlight($event)" (onContentLoading)="onGraphLoading($event)"></n52-flot-timeseries-graph>
+        <!-- <n52-d3-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions" [timeInterval]="timespan"
+          [graphOptions]="diagramOptions" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onGraphLoading($event)"></n52-d3-timeseries-graph> -->
         <div class="loading-overlay" *ngIf="graphLoading">
           <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
         </div>

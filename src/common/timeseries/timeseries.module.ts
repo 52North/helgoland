@@ -71,6 +71,7 @@ const timeseriesRoutes: Routes = [
     TranslateModule,
     FormsModule,
     HelgolandDatasetlistModule,
+    // HelgolandD3Module,
     HelgolandFlotModule,
     HelgolandDatasetTableModule,
     HelgolandSelectorModule,
