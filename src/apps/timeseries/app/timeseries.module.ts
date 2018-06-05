@@ -2,11 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HelgolandDatasetTableModule } from '@helgoland/depiction/dataset-table';
-import { HelgolandDatasetlistModule } from '@helgoland/depiction/datasetlist';
+import { HelgolandDatasetlistModule, HelgolandDatasetTableModule } from '@helgoland/depiction';
 import { HelgolandFlotModule } from '@helgoland/flot';
-import { HelgolandMapControlModule } from '@helgoland/map/control';
-import { HelgolandMapSelectorModule } from '@helgoland/map/selector';
+import { HelgolandMapControlModule, HelgolandMapSelectorModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandSelectorModule } from '@helgoland/selector';
 import { HelgolandTimeModule } from '@helgoland/time';
@@ -60,9 +58,7 @@ const timeseriesRoutes: Routes = [
     CommonModule,
     TranslateModule,
     FormsModule,
-    HelgolandDatasetlistModule,
     HelgolandFlotModule,
-    HelgolandDatasetTableModule,
     HelgolandSelectorModule,
     HelgolandMapSelectorModule,
     HelgolandMapControlModule,

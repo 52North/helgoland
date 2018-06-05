@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LocateControlComponent } from '@helgoland/map/control';
+import { LocateControlComponent } from '@helgoland/map';
 
 @Component({
   selector: 'n52-locate-button',

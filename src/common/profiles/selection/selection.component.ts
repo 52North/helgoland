@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {
     BlacklistedService,
     ColorService,
+    DatasetApi,
     DatasetApiInterface,
     Feature,
     IDataset,
@@ -19,9 +20,8 @@ import {
     TimedDatasetOptions,
     Timespan,
     ValueTypes,
-    DatasetApi,
 } from '@helgoland/core';
-import { TrajectoryResult } from '@helgoland/map/selector';
+import { TrajectoryResult } from '@helgoland/map';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
 

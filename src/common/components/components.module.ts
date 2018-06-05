@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HelgolandLabelMapperModule } from '@helgoland/depiction/label-mapper';
-import { HelgolandMapViewModule } from '@helgoland/map/view';
+import { HelgolandLabelMapperModule } from '@helgoland/depiction';
+import { HelgolandMapViewModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandPermalinkModule } from '@helgoland/permalink';
 import { HelgolandSelectorModule } from '@helgoland/selector';

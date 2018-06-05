@@ -1,15 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HelgolandDatasetlistModule } from '@helgoland/depiction/datasetlist';
-import { HelgolandLabelMapperModule } from '@helgoland/depiction/label-mapper';
-import { HelgolandMapSelectorModule } from '@helgoland/map/selector';
-import { HelgolandTimeRangeSliderModule } from '@helgoland/time/time-range-slider';
-import { HelgolandMapViewModule } from '@helgoland/map/view';
+import { HelgolandDatasetlistModule, HelgolandLabelMapperModule } from '@helgoland/depiction';
+import { HelgolandMapSelectorModule, HelgolandMapViewModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandPlotlyModule } from '@helgoland/plotly';
 import { HelgolandSelectorModule } from '@helgoland/selector';
 import { HelgolandTimeModule } from '@helgoland/time';
+import { HelgolandTimeRangeSliderModule } from '@helgoland/time-range-slider';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 

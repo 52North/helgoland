@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ProfileEntryComponent } from '@helgoland/depiction/datasetlist';
+import { Component } from '@angular/core';
+import { ProfileEntryComponent } from '@helgoland/depiction';
 
 @Component({
   selector: 'n52-custom-profile-entry',
