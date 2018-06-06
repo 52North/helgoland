@@ -13,7 +13,7 @@ export class ModalTimeseriesTimespanComponent {
   public timespan: Timespan;
 
   @Output()
-  public onTimespanChanged: EventEmitter<Timespan> = new EventEmitter();
+  public timespanChanged: EventEmitter<Timespan> = new EventEmitter();
 
   public tempTimespan: Timespan;
   public tempTimespanIsValid: boolean;
@@ -37,7 +37,7 @@ export class ModalTimeseriesTimespanComponent {
 
   public applyNewTimespan() {
     this.timespan = this.tempTimespan;
-    this.onTimespanChanged.emit(this.timespan);
+    this.timespanChanged.emit(this.timespan);
     this.cancel();
   }
 

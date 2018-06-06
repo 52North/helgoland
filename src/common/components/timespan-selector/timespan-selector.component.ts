@@ -13,10 +13,10 @@ export class TimespanSelectorComponent implements OnInit {
   public timespan: Timespan;
 
   @Output()
-  public onTimespanChange: EventEmitter<Timespan> = new EventEmitter<Timespan>();
+  public timespanChange: EventEmitter<Timespan> = new EventEmitter<Timespan>();
 
   @Output()
-  public onInvalidTimespanSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public invalidTimespanSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public dateFrom: NgbDateStruct;
   public timeFrom: NgbTimeStruct;
@@ -51,10 +51,10 @@ export class TimespanSelectorComponent implements OnInit {
 
     if (this.isValidTimespan) {
       this.timespan = new Timespan(dateTimeFrom.getTime(), dateTimeTo.getTime());
-      this.onTimespanChange.emit(this.timespan);
+      this.timespanChange.emit(this.timespan);
       console.log(this.timespan);
     } else {
-      this.onInvalidTimespanSelected.emit(true);
+      this.invalidTimespanSelected.emit(true);
       console.log('Invalid timespan selected!');
     }
   }
