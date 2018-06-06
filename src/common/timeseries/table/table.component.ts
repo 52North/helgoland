@@ -64,7 +64,7 @@ export class TimeseriesTableComponent implements OnInit {
   public openTimeSettings() {
     const ref = this.modalService.open(ModalTimeseriesTimespanComponent);
     (ref.componentInstance as ModalTimeseriesTimespanComponent).timespan = this.timespan;
-    (ref.componentInstance as ModalTimeseriesTimespanComponent).onTimespanChanged
+    (ref.componentInstance as ModalTimeseriesTimespanComponent).timespanChanged
       .subscribe((timespan: Timespan) => this.updateTime(timespan));
   }
 

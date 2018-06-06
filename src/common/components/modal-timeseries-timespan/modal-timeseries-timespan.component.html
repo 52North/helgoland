@@ -17,7 +17,7 @@
   <n52-timespan-button predefined="current_year" label="{{'timeseries.timespan-selector.current_year' | translate}}" (onTimespanSelected)="tempTimespan = $event; applyNewTimespan();"></n52-timespan-button>
   <n52-timespan-button predefined="last_year" label="{{'timeseries.timespan-selector.last_year' | translate}}" (onTimespanSelected)="tempTimespan = $event; applyNewTimespan();"></n52-timespan-button>
   <h5 style="margin-top:15px">Custom</h5>
-  <n52-timespan-selector [timespan]="timespan" (onTimespanChange)="noteChangedTimespan($event)" (onInvalidTimespanSelected)="noteInvalidTimespan($event)"></n52-timespan-selector>
+  <n52-timespan-selector [timespan]="timespan" (timespanChange)="noteChangedTimespan($event)" (invalidTimespanSelected)="noteInvalidTimespan($event)"></n52-timespan-selector>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-light" (click)="applyNewTimespan();" [disabled]="!tempTimespanIsValid">Ok</button>
