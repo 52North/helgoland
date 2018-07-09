@@ -18,9 +18,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ComponentsModule } from '../../../common/components/components.module';
+import { TimeseriesModule } from '../../../common/timeseries/timeseries.module';
 import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { TimeseriesModule } from './timeseries.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

@@ -9,18 +9,15 @@
     <div class="col-12 col-md-8 col-xl-9 diagram-wrapper">
       <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.legend.header' | translate}}</button>
       <div class="diagram">
-        <n52-flot-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
-          [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"
-          (onHighlight)="highlight($event)" (onContentLoading)="onGraphLoading($event)"></n52-flot-timeseries-graph>
-        <!-- <n52-d3-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions" [timeInterval]="timespan"
-          [graphOptions]="diagramOptions" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onGraphLoading($event)"></n52-d3-timeseries-graph> -->
+        <n52-d3-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions" [timeInterval]="timespan"
+          [graphOptions]="diagramOptions" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onGraphLoading($event)"></n52-d3-timeseries-graph>
         <div class="loading-overlay" *ngIf="graphLoading">
           <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
         </div>
       </div>
       <div class="overview-diagram d-none d-md-block">
-        <n52-flot-overview-timeseries-graph [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions" [graphOptions]="overviewOptions"
-          [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onOverviewLoading($event)"></n52-flot-overview-timeseries-graph>
+        <n52-d3-overview-timeseries-graph [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions" [graphOptions]="overviewOptions"
+          [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onOverviewLoading($event)"></n52-d3-overview-timeseries-graph>
         <div class="loading-overlay" *ngIf="overviewGraphLoading">
           <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
         </div>
@@ -34,10 +31,10 @@
         <h3 class="header d-none d-md-block">{{'timeseries.diagram.legend.header' | translate}}</h3>
         <div class="legend-entry">
           <div *ngFor="let id of datasetIds">
-            <n52-timeseries-entry [datasetId]="id" [selected]="isSelected(id)" [highlight]="id === highlightId" [datasetOptions]="datasetOptions.get(id)"
+            <n52-legend-entry [datasetId]="id" [selected]="isSelected(id)" [highlight]="id === highlightId" [datasetOptions]="datasetOptions.get(id)"
               [timeInterval]="timespan" (onDeleteDataset)="deleteTimeseries(id)" (onSelectDataset)="selectTimeseries($event, id)"
               (onSelectDate)="jumpToDate($event)" (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)"
-              (onShowGeometry)="showGeometry($event)"></n52-timeseries-entry>
+              (onShowGeometry)="showGeometry($event)"></n52-legend-entry>
           </div>
         </div>
       </div>

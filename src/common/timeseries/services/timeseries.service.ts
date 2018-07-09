@@ -37,9 +37,9 @@ export class TimeseriesService extends DatasetService<DatasetOptions> {
     }
 
     protected loadState(): void {
-        this.localStorage.loadArray<DatasetOptions>(TIMESERIES_OPTIONS_CACHE_PARAM)
-            .forEach(e => this.datasetOptions.set(e.internalId, e));
-        this.datasetIds = this.localStorage.loadArray<string>(TIMESERIES_IDS_CACHE_PARAM);
+        const options = this.localStorage.loadArray<DatasetOptions>(TIMESERIES_OPTIONS_CACHE_PARAM);
+        if (options) { options.forEach(e => this.datasetOptions.set(e.internalId, e)); }
+        this.datasetIds = this.localStorage.loadArray<string>(TIMESERIES_IDS_CACHE_PARAM) || [];
         this.timespan = this.timeSrvc.loadTimespan(TIME_CACHE_PARAM) || this.timeSrvc.initTimespan();
     }
 

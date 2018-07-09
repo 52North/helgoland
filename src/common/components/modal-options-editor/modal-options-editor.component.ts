@@ -17,7 +17,7 @@ export class ModalOptionsEditorComponent implements OnInit {
 
   public color: string;
   public generalize: boolean;
-  public zeroBasedYAxe: boolean;
+  public zeroBasedYAxis: boolean;
   public pointRadius: number;
   public lineWidth: number;
 
@@ -28,7 +28,7 @@ export class ModalOptionsEditorComponent implements OnInit {
   ngOnInit() {
     if (this.options) {
       this.generalize = this.options.generalize;
-      this.zeroBasedYAxe = this.options.zeroBasedYAxe;
+      this.zeroBasedYAxis = this.options.zeroBasedYAxis;
       this.pointRadius = this.options.pointRadius;
       this.lineWidth = this.options.lineWidth;
     }
@@ -37,7 +37,7 @@ export class ModalOptionsEditorComponent implements OnInit {
   public updateOption() {
     if (this.color) { this.options.color = this.color; }
     this.options.generalize = this.generalize;
-    this.options.zeroBasedYAxe = this.zeroBasedYAxe;
+    this.options.zeroBasedYAxis = this.zeroBasedYAxis;
     this.options.pointRadius = this.pointRadius;
     this.options.lineWidth = this.lineWidth;
     this.out.emit(this.options);

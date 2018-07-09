@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Data, DatasetOptions, IDataEntry, IDataset, Service, Time, Timespan } from '@helgoland/core';
-import { PlotOptions } from '@helgoland/flot';
+import { D3PlotOptions } from '@helgoland/d3';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
@@ -27,45 +27,10 @@ export class TimeseriesDiagramComponent implements OnInit {
     public timespan: Timespan;
     public selectedProvider: Service;
 
-    public diagramOptions: PlotOptions = {
-        pan: {
-            frameRate: 10,
-            interactive: true
-        },
-        showReferenceValues: true,
-        touch: {
-            delayTouchEnded: 200,
-            pan: 'x',
-            scale: ''
-        },
-        yaxis: {
-            additionalWidth: 17,
-            labelWidth: 50,
-            min: null,
-            panRange: false,
-            show: true
-        }
-    };
-
-    public overviewOptions: PlotOptions = {
-        selection: {
-            mode: 'overview',
-            color: '#718296',
-            shape: 'butt',
-            minSize: 30
-        },
-        grid: {
-            hoverable: false,
-            autoHighlight: false
-        },
-        yaxis: {
-            show: false
-        },
-        touch: {
-            pan: '',
-            scale: ''
-        },
-        generalizeAllways: true
+    public diagramOptions: D3PlotOptions = {};
+    public overviewOptions: D3PlotOptions = {
+        grid: true,
+        yaxis: false
     };
 
     public overviewGraphLoading: boolean;

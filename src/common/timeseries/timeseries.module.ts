@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HelgolandDatasetlistModule, HelgolandDatasetTableModule } from '@helgoland/depiction';
+import { HelgolandD3Module } from '@helgoland/d3';
+import { HelgolandDatasetlistModule, HelgolandDatasetTableModule, HelgolandLabelMapperModule } from '@helgoland/depiction';
 import { HelgolandFavoriteModule } from '@helgoland/favorite';
-import { HelgolandFlotModule } from '@helgoland/flot';
 import { HelgolandMapControlModule, HelgolandMapSelectorModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandSelectorModule } from '@helgoland/selector';
@@ -12,94 +12,102 @@ import { HelgolandTimeModule } from '@helgoland/time';
 import { NgbAccordionModule, NgbDropdownModule, NgbModalModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { CustomTimeseriesRouter } from '../../apps/timeseries/app/router.service';
 import { ComponentsModule } from '../components/components.module';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
+import { LegendEntryComponent } from './diagram/legend-entry/legend-entry.component';
 import { TimeseriesFavoritesComponent } from './favorites/favorites.component';
 import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
 import { TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
 import { TimeseriesNavigationComponent } from './navigation/navigation.component';
 import { TimeseriesListSelectionCache } from './services/list-selection-cache.service';
 import { TimeseriesMapSelectionCache } from './services/map-selection-cache.service';
+import { TimeseriesRouter } from './services/timeseries-router.service';
 import { TimeseriesService } from './services/timeseries.service';
 import { TimeseriesTableComponent } from './table/table.component';
 
 const timeseriesRoutes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'timeseries'
-  },
-  {
-    path: 'timeseries',
-    component: TimeseriesNavigationComponent,
-    children: [
-      {
+    {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'diagram'
-      },
-      {
-        path: 'diagram',
-        component: TimeseriesDiagramComponent
-      },
-      {
-        path: 'table',
-        component: TimeseriesTableComponent
-      },
-      {
-        path: 'map-selection',
-        component: TimeseriesMapSelectionComponent
-      },
-      {
-        path: 'list-selection',
-        component: TimeseriesListSelectionComponent
-      },
-      {
-        path: 'favorites',
-        component: TimeseriesFavoritesComponent
-      }
-    ]
-  }
+        redirectTo: 'timeseries'
+    },
+    {
+        path: 'timeseries',
+        component: TimeseriesNavigationComponent,
+        children: [
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'diagram'
+            },
+            {
+                path: 'diagram',
+                component: TimeseriesDiagramComponent
+            },
+            {
+                path: 'table',
+                component: TimeseriesTableComponent
+            },
+            {
+                path: 'map-selection',
+                component: TimeseriesMapSelectionComponent
+            },
+            {
+                path: 'list-selection',
+                component: TimeseriesListSelectionComponent
+            },
+            {
+                path: 'favorites',
+                component: TimeseriesFavoritesComponent
+            }
+        ]
+    }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TranslateModule,
-    FormsModule,
-    HelgolandDatasetlistModule,
-    // HelgolandD3Module,
-    HelgolandFlotModule,
-    HelgolandDatasetTableModule,
-    HelgolandSelectorModule,
-    HelgolandMapSelectorModule,
-    HelgolandMapControlModule,
-    HelgolandTimeModule,
-    HelgolandFavoriteModule,
-    HelgolandModificationModule,
-    RouterModule.forChild(
-      timeseriesRoutes
-    ),
-    NgbTabsetModule,
-    NgbAccordionModule,
-    NgbModalModule,
-    NgbDropdownModule,
-    ComponentsModule
-  ],
-  declarations: [
-    TimeseriesNavigationComponent,
-    TimeseriesDiagramComponent,
-    TimeseriesTableComponent,
-    TimeseriesListSelectionComponent,
-    TimeseriesMapSelectionComponent,
-    TimeseriesFavoritesComponent
-  ],
-  providers: [
-    TimeseriesService,
-    TimeseriesDiagramPermalink,
-    TimeseriesListSelectionCache,
-    TimeseriesMapSelectionCache
-  ]
+    imports: [
+        CommonModule,
+        TranslateModule,
+        FormsModule,
+        HelgolandDatasetlistModule,
+        HelgolandD3Module,
+        HelgolandDatasetTableModule,
+        HelgolandSelectorModule,
+        HelgolandMapSelectorModule,
+        HelgolandMapControlModule,
+        HelgolandLabelMapperModule,
+        HelgolandTimeModule,
+        HelgolandFavoriteModule,
+        HelgolandModificationModule,
+        RouterModule.forChild(
+            timeseriesRoutes
+        ),
+        NgbTabsetModule,
+        NgbAccordionModule,
+        NgbModalModule,
+        NgbDropdownModule,
+        ComponentsModule
+    ],
+    declarations: [
+        TimeseriesNavigationComponent,
+        TimeseriesDiagramComponent,
+        TimeseriesTableComponent,
+        TimeseriesListSelectionComponent,
+        TimeseriesMapSelectionComponent,
+        TimeseriesFavoritesComponent,
+        LegendEntryComponent
+    ],
+    providers: [
+        TimeseriesService,
+        TimeseriesDiagramPermalink,
+        TimeseriesListSelectionCache,
+        TimeseriesMapSelectionCache,
+        {
+            provide: TimeseriesRouter,
+            useClass: CustomTimeseriesRouter
+        }
+    ]
 })
 export class TimeseriesModule { }
