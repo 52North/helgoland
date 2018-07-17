@@ -87,6 +87,8 @@
 					"generalize": "",
 					"header": "",
 					"lineWidth": "",
+					"max": "",
+					"min": "",
 					"pointRadius": "",
 					"zeroBasedYAxis": ""
 				}

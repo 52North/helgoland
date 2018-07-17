@@ -87,6 +87,8 @@
 					"generalize": "Generalize data",
 					"header": "Change style of this timeseries",
 					"lineWidth": "Line width",
+					"max": "Max",
+					"min": "Min",
 					"pointRadius": "Point radius",
 					"zeroBasedYAxis": "Timeseries zero based"
 				}

@@ -29,18 +29,19 @@
       </select>
     </div>
     <div class="input-group">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="lineWidthSelect">{{'timeseries.diagram.legend.style-edit.lineWidth' | translate}}</label>
-        </div>
-        <select class="custom-select" id="lineWidthSelect" [(ngModel)]="lineWidth">
-          <option [ngValue]="0">0px</option>
-          <option [ngValue]="1">1px</option>
-          <option [ngValue]="2">2px</option>
-          <option [ngValue]="3">3px</option>
-          <option [ngValue]="4">4px</option>
-          <option [ngValue]="5">5px</option>
-        </select>
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="lineWidthSelect">{{'timeseries.diagram.legend.style-edit.lineWidth' | translate}}</label>
       </div>
+      <select class="custom-select" id="lineWidthSelect" [(ngModel)]="lineWidth">
+        <option [ngValue]="0">0px</option>
+        <option [ngValue]="1">1px</option>
+        <option [ngValue]="2">2px</option>
+        <option [ngValue]="3">3px</option>
+        <option [ngValue]="4">4px</option>
+        <option [ngValue]="5">5px</option>
+      </select>
+    </div>
+    <n52-custom-min-max-range [range]="range" (onRangeChange)="rangeChanged($event)"></n52-custom-min-max-range>
   </div>
 </div>
 <div class="modal-footer">

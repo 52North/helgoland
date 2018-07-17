@@ -87,6 +87,8 @@
 					"generalize": "Daten generalisieren",
 					"header": "Zeitreihenerscheinung ändern",
 					"lineWidth": "Linienbreite",
+					"max": "Max",
+					"min": "Min",
 					"pointRadius": "Punktradius",
 					"zeroBasedYAxis": "Zeitreihe null-basiert"
 				}

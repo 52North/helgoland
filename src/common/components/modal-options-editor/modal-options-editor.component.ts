@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DatasetOptions } from '@helgoland/core';
+import { DatasetOptions, MinMaxRange } from '@helgoland/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -20,6 +20,7 @@ export class ModalOptionsEditorComponent implements OnInit {
   public zeroBasedYAxis: boolean;
   public pointRadius: number;
   public lineWidth: number;
+  public range: MinMaxRange;
 
   constructor(
     public activeModal: NgbActiveModal
@@ -31,7 +32,12 @@ export class ModalOptionsEditorComponent implements OnInit {
       this.zeroBasedYAxis = this.options.zeroBasedYAxis;
       this.pointRadius = this.options.pointRadius;
       this.lineWidth = this.options.lineWidth;
+      this.range = this.options.yAxisRange;
     }
+  }
+
+  public rangeChanged(range: MinMaxRange) {
+    this.range = range;
   }
 
   public updateOption() {
@@ -40,6 +46,7 @@ export class ModalOptionsEditorComponent implements OnInit {
     this.options.zeroBasedYAxis = this.zeroBasedYAxis;
     this.options.pointRadius = this.pointRadius;
     this.options.lineWidth = this.lineWidth;
+    this.options.yAxisRange = this.range;
     this.out.emit(this.options);
   }
 

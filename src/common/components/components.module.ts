@@ -29,53 +29,55 @@ import { InNewWindowComponent } from './permalink/in-new-window/in-new-window.co
 import { PermalinkButtonComponent } from './permalink/permalink-button/permalink-button.component';
 import { ToClipboardComponent } from './permalink/to-clipboard/to-clipboard.component';
 import { TimespanSelectorComponent } from './timespan-selector/timespan-selector.component';
+import { CustomMinMaxRangeComponent } from './custom-min-max-range/custom-min-max-range.component';
 
 @NgModule({
   imports: [
+    ClipboardModule,
     CommonModule,
     FormsModule,
-    NgbDropdownModule,
-    NgbDatepickerModule,
-    NgbTimepickerModule,
-    NgbAccordionModule,
-    HelgolandTimeModule,
-    HelgolandPermalinkModule,
-    HelgolandSelectorModule,
-    HelgolandModificationModule,
     HelgolandLabelMapperModule,
     HelgolandMapViewModule,
-    ClipboardModule,
+    HelgolandModificationModule,
+    HelgolandPermalinkModule,
+    HelgolandSelectorModule,
+    HelgolandTimeModule,
+    NgbAccordionModule,
+    NgbDatepickerModule,
+    NgbDropdownModule,
+    NgbTimepickerModule,
     TranslateModule.forChild()
   ],
   declarations: [
-    LocateButtonComponent,
-    LocalSelectorImplComponent,
-    ModalOptionsEditorComponent,
-    ModalGeometryViewerComponent,
-    ModalTimeseriesTimespanComponent,
-    PermalinkButtonComponent,
-    TimespanSelectorComponent,
     CustomListSelectorComponent,
+    CustomMinMaxRangeComponent,
+    CustomMultiServiceFilterSelectorComponent,
+    CustomServiceSelectorComponent,
     CustomTimespanShiftSelectorComponent,
     InMailComponent,
     InNewWindowComponent,
+    LocalSelectorImplComponent,
+    LocateButtonComponent,
+    ModalGeometryViewerComponent,
+    ModalOptionsEditorComponent,
+    ModalTimeseriesTimespanComponent,
+    PermalinkButtonComponent,
+    TimespanSelectorComponent,
     ToClipboardComponent,
-    CustomServiceSelectorComponent,
-    CustomMultiServiceFilterSelectorComponent
   ],
   entryComponents: [
     LocalSelectorImplComponent,
-    ModalOptionsEditorComponent,
     ModalGeometryViewerComponent,
+    ModalOptionsEditorComponent,
     ModalTimeseriesTimespanComponent
   ],
   exports: [
-    LocateButtonComponent,
-    LocalSelectorImplComponent,
-    PermalinkButtonComponent,
     CustomListSelectorComponent,
+    CustomServiceSelectorComponent,
     CustomTimespanShiftSelectorComponent,
-    CustomServiceSelectorComponent
+    LocalSelectorImplComponent,
+    LocateButtonComponent,
+    PermalinkButtonComponent,
   ]
 })
 export class ComponentsModule { }

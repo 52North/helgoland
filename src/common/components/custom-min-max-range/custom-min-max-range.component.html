@@ -1,0 +1,16 @@
+<div>
+  Select Y-Axis-Range:
+</div>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text">{{'timeseries.diagram.legend.style-edit.min' | translate}}</span>
+  </div>
+  <input type="number" [(ngModel)]="rangeMin" (ngModelChange)="setYaxisRange()" class="form-control">
+</div>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text">{{'timeseries.diagram.legend.style-edit.max' | translate}}</span>
+  </div>
+  <input type="number" [(ngModel)]="rangeMax" (ngModelChange)="setYaxisRange()" class="form-control">
+</div>
+<button type="button" class="btn btn-light" (click)="resetYaxisRange()" style="float: right;">Reset range</button>

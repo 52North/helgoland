@@ -27,10 +27,13 @@ export class TimeseriesDiagramComponent implements OnInit {
     public timespan: Timespan;
     public selectedProvider: Service;
 
-    public diagramOptions: D3PlotOptions = {};
+    public diagramOptions: D3PlotOptions = {
+        grid: true
+    };
     public overviewOptions: D3PlotOptions = {
         grid: true,
-        yaxis: false
+        yaxis: false,
+        overview: true
     };
 
     public overviewGraphLoading: boolean;
