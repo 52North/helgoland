@@ -12,7 +12,7 @@ export class ProfilesCombiService extends DatasetService<Array<TimedDatasetOptio
     constructor(
         protected localStorage: LocalStorage
     ) {
-        super(localStorage);
+        super();
         this.loadState();
     }
 

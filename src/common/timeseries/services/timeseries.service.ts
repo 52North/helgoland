@@ -15,7 +15,7 @@ export class TimeseriesService extends DatasetService<DatasetOptions> {
         protected timeSrvc: Time,
         private color: ColorService
     ) {
-        super(localStorage);
+        super();
         this.loadState();
     }
 

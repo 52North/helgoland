@@ -29,7 +29,7 @@ The following main frameworks are used to provide this application:
 * [Leaflet](http://leafletjs.com/)
 * [Bootstrap](http://getbootstrap.com/)
 * [momentJs](http://momentjs.com/)
-* [flot](http://www.flotcharts.org/)
+* [d3](https://d3js.org/)
 
 ## Quick Start (Configuration)
 

@@ -11,7 +11,7 @@ export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> 
         protected localStorage: LocalStorage,
         private color: ColorService
     ) {
-        super(localStorage);
+        super();
         this.loadState();
     }
 
