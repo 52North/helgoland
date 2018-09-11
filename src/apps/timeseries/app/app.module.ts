@@ -18,6 +18,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ComponentsModule } from '../../../common/components/components.module';
+import { InfoModule } from '../../../common/info/info.module';
 import { TimeseriesModule } from '../../../common/timeseries/timeseries.module';
 import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -52,6 +53,7 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     }),
     ComponentsModule,
     TimeseriesModule,
+    InfoModule,
     HttpClientModule,
     HelgolandCachingModule,
     NgbTabsetModule.forRoot(),

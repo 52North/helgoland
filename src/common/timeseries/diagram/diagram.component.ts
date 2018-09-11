@@ -28,12 +28,14 @@ export class TimeseriesDiagramComponent implements OnInit {
     public selectedProvider: Service;
 
     public diagramOptions: D3PlotOptions = {
-        grid: true
+        grid: true,
+        showTimeLabel: false
     };
     public overviewOptions: D3PlotOptions = {
         grid: true,
         yaxis: false,
-        overview: true
+        overview: true,
+        showTimeLabel: false
     };
 
     public overviewGraphLoading: boolean;
