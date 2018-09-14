@@ -10,13 +10,13 @@
       <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.legend.header' | translate}}</button>
       <div class="diagram">
         <n52-d3-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions" [timeInterval]="timespan"
-          [graphOptions]="diagramOptions" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onGraphLoading($event)"></n52-d3-timeseries-graph>
+          [presenterOptions]="diagramOptions" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onGraphLoading($event)"></n52-d3-timeseries-graph>
         <div class="loading-overlay" *ngIf="graphLoading">
           <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
         </div>
       </div>
       <div class="overview-diagram d-none d-md-block">
-        <n52-d3-overview-timeseries-graph [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions" [graphOptions]="overviewOptions"
+        <n52-d3-overview-timeseries-graph [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions" [presenterOptions]="overviewOptions"
           [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onOverviewLoading($event)"></n52-d3-overview-timeseries-graph>
         <div class="loading-overlay" *ngIf="overviewGraphLoading">
           <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>

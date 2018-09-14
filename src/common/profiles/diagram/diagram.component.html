@@ -32,7 +32,7 @@
 <n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
 <div class="chart" *ngIf="datasetIds.length !== 0">
     <n52-plotly-profile-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
-        [graphOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-plotly-profile-graph>
+        [presenterOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-plotly-profile-graph>
 </div>
 <div class="legend" *ngIf="datasetIds.length !== 0">
     <h3>Legende</h3>
