@@ -8,10 +8,10 @@
     </div>
     <div class="small" *ngIf="service.serviceUrl">{{'service-selector.service-url' | translate}}: {{service.serviceUrl}}</div>
     <div class="small">
-      <span *ngIf="service.quantities.stations">{{'service-selector.stations' | translate}}: {{service.quantities.stations}}</span>
-      <span *ngIf="service.quantities.platforms">{{'service-selector.platforms' | translate}}: {{service.quantities.platforms}}</span>
-      <span *ngIf="service.quantities.timeseries">{{'service-selector.timeseries' | translate}}: {{service.quantities.timeseries}}</span>
-      <span *ngIf="service.quantities.datasets">{{'service-selector.datasets' | translate}}: {{service.quantities.datasets}}</span>
+      <span *ngIf="service.quantities.stations"> {{'service-selector.stations' | translate}}: {{service.quantities.stations}} </span>
+      <span *ngIf="service.quantities.platforms"> {{'service-selector.platforms' | translate}}: {{service.quantities.platforms}} </span>
+      <span *ngIf="service.quantities.timeseries"> {{'service-selector.timeseries' | translate}}: {{service.quantities.timeseries}} </span>
+      <span *ngIf="service.quantities.datasets"> {{'service-selector.datasets' | translate}}: {{service.quantities.datasets}} </span>
       <span>{{'service-selector.phenomena' | translate}}: {{service.quantities.phenomena}}</span>
     </div>
   </div>
