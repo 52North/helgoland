@@ -2,6 +2,6 @@
 export const versions = {
     version: '0.0.0',
     toolbox: '0.0.1-alpha.67',
-    revision: '3f390f7',
+    revision: '824523e',
     branch: 'feature/angularUpgrade'
 };
