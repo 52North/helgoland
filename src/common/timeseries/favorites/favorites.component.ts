@@ -4,6 +4,13 @@ import { FavoriteService, JsonFavoriteExporterService, SingleFavorite } from '@h
 
 import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from '../services/timeseries.service';
+import { D3PlotOptions } from '@helgoland/d3';
+
+interface EditableExtendedSingleFavorite extends ExtendedSingleFavorite {
+  editLabel: boolean;
+  editedLabel: string;
+  loading: boolean;
+}
 
 @Component({
   selector: 'n52-timeseries-favorites',
@@ -13,7 +20,12 @@ import { TimeseriesService } from '../services/timeseries.service';
 })
 export class TimeseriesFavoritesComponent {
 
-  public favorites: ExtendedSingleFavorite[];
+  public favorites: EditableExtendedSingleFavorite[];
+
+  public presenterOptions: D3PlotOptions = {
+    hoverable: false,
+    showTimeLabel: false
+  };
 
   constructor(
     private favoriteSrvc: FavoriteService,
@@ -57,6 +69,9 @@ export class TimeseriesFavoritesComponent {
         id: entry.id,
         label: entry.label,
         favorite: entry.favorite,
+        editLabel: false,
+        editedLabel: entry.label,
+        loading: false,
         timespan,
         option: new Map([[entry.favorite.internalId, option]])
       });

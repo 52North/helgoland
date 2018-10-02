@@ -1,19 +1,19 @@
-<ng-template #permalinkModal let-c="close" let-d="dismiss">
+<ng-template #permalinkModal let-c="close()" let-d="dismiss()">
   <div class="modal-header">
     <h4 class="modal-title">Erstelle Permalink</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d()">
+    <button type="button" class="close" aria-label="Close" (click)="d">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <div class="permalink-button">
-      <n52-custom-permalink-in-mail [url]="permalinkUrl" (onTriggered)="c()"></n52-custom-permalink-in-mail>
+      <n52-custom-permalink-in-mail [url]="permalinkUrl" (onTriggered)="c"></n52-custom-permalink-in-mail>
     </div>
     <div class="permalink-button">
-      <n52-custom-permalink-new-window [url]="permalinkUrl" (onTriggered)="c()"></n52-custom-permalink-new-window>
+      <n52-custom-permalink-new-window [url]="permalinkUrl" (onTriggered)="c"></n52-custom-permalink-new-window>
     </div>
     <div class="permalink-button">
-      <n52-custom-permalink-to-clipboard [url]="permalinkUrl" (onTriggered)="confirmClipboard(); c();"></n52-custom-permalink-to-clipboard>
+      <n52-custom-permalink-to-clipboard [url]="permalinkUrl" (onTriggered)="confirmClipboard(); c"></n52-custom-permalink-to-clipboard>
     </div>
   </div>
 </ng-template>

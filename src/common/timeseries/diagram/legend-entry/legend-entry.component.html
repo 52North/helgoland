@@ -35,8 +35,10 @@
       </div>
     </div>
     <div class="legendicons">
-      <span class="fa" [ngClass]="{'fa-chevron-down': !informationVisible, 'fa-chevron-up': informationVisible}" (click)="toggleInformation(); $event.stopPropagation();"></span>
-      <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}" (click)="toggleVisibility(); $event.stopPropagation();"></span>
+      <span class="fa" [ngClass]="{'fa-chevron-down': !informationVisible, 'fa-chevron-up': informationVisible}"
+        (click)="toggleInformation(); $event.stopPropagation();"></span>
+      <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
+        (click)="toggleVisibility(); $event.stopPropagation();"></span>
       <span class="fa fa-map-marker" (click)="showGeometry(); $event.stopPropagation();"></span>
       <span class="fa fa-pencil" (click)="editDatasetOptions(); $event.stopPropagation();" [ngStyle]="{color: datasetOptions?.color}"></span>
       <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();"></span>
@@ -55,7 +57,8 @@
         <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
       </div>
       <div *ngIf="dataset?.referenceValues">
-        <div class="additionalLegendEntry" *ngFor="let ref of dataset.referenceValues" (click)="toggleReferenceValue(ref); $event.stopPropagation();" [ngClass]="{'selected': ref.visible}" [ngStyle]="{color: ref.color}">
+        <div class="additionalLegendEntry" *ngFor="let ref of dataset.referenceValues" (click)="toggleReferenceValue(ref); $event.stopPropagation();"
+          [ngClass]="{'selected': ref.visible}" [ngStyle]="{color: ref.color}">
           <span class="fa fa-chevron-right"></span>
           <span>{{ref.label}}</span>
         </div>

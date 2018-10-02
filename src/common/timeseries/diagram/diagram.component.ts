@@ -44,7 +44,7 @@ export class TimeseriesDiagramComponent implements OnInit {
     constructor(
         private timeseriesService: TimeseriesService,
         private timeSrvc: Time,
-        private permalinkSrvc: TimeseriesDiagramPermalink,
+        public permalinkSrvc: TimeseriesDiagramPermalink,
         private modalService: NgbModal,
         private cdr: ChangeDetectorRef
     ) { }

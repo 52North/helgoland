@@ -32,7 +32,7 @@ export class ProfilesCombiViewComponent implements OnInit {
         private service: ProfilesCombiService,
         private api: DatasetApiInterface,
         private internalIdHandler: InternalIdHandler,
-        private permalinkSrvc: ProfilesCombiViewPermalink
+        public permalinkSrvc: ProfilesCombiViewPermalink
     ) {
         this.permalinkSrvc.validatePeramlink();
     }

@@ -57,7 +57,7 @@ export class TrajectoriesViewComponent implements OnInit {
 
     constructor(
         private trajectorySrvc: TrajectoriesService,
-        private permalinkSrvc: TrajectoriesViewPermalink,
+        public permalinkSrvc: TrajectoriesViewPermalink,
         private api: DatasetApiInterface,
         private internalIdHandler: InternalIdHandler,
         private modalService: NgbModal

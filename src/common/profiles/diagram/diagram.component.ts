@@ -34,7 +34,7 @@ export class ProfilesDiagramComponent implements OnInit {
     constructor(
         private modalService: NgbModal,
         private profilesSrvc: ProfilesService,
-        private permalinkSrvc: ProfilesDiagramPermalink,
+        public permalinkSrvc: ProfilesDiagramPermalink,
         private combiSrvc: ProfilesCombiService,
         private router: Router
     ) {

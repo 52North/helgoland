@@ -1,52 +1,52 @@
-<ng-template #modalProfileOptionsEditor let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">Timeseries style</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <n52-color-selector [color]="editableOptions.color" (onColorChange)="tempColor = $event"></n52-color-selector>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="updateOption(); c();">Ok</button>
-        <button type="button" class="btn btn-light" (click)="c();">Cancel</button>
-    </div>
+<ng-template #modalProfileOptionsEditor let-c="close()" let-d="dismiss()">
+  <div class="modal-header">
+    <h4 class="modal-title">Timeseries style</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <n52-color-selector [color]="editableOptions.color" (onColorChange)="tempColor = $event"></n52-color-selector>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="updateOption(); c">Ok</button>
+    <button type="button" class="btn btn-light" (click)="c">Cancel</button>
+  </div>
 </ng-template>
 
-<ng-template #modalGeometryViewer let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">Station location</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body profileGeometryViewer">
-        <n52-geometry-map-viewer [mapId]="'mapGeometryViewerModal'" [geometry]="geometry"></n52-geometry-map-viewer>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="c();">Close</button>
-    </div>
-</ng-template> 
+<ng-template #modalGeometryViewer let-c="close()" let-d="dismiss()">
+  <div class="modal-header">
+    <h4 class="modal-title">Station location</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body profileGeometryViewer">
+    <n52-geometry-map-viewer [mapId]="'mapGeometryViewerModal'" [geometry]="geometry"></n52-geometry-map-viewer>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="c">Close</button>
+  </div>
+</ng-template>
 
 <n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
 <div class="chart" *ngIf="datasetIds.length !== 0">
-    <n52-plotly-profile-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"
-        [presenterOptions]="diagramOptions" [timeInterval]="timespan" (onDatasetSelected)="timeseriesSelected($event)" (onTimespanChanged)="timeChanged($event)"></n52-plotly-profile-graph>
+  <n52-plotly-profile-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"></n52-plotly-profile-graph>
 </div>
 <div class="legend" *ngIf="datasetIds.length !== 0">
-    <h3>Legende</h3>
-    <div class="legend-entry">
-        <div *ngFor="let id of datasetIds">
-            <n52-custom-profile-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)" (onDeleteDatasetOptions)="deleteProfileOptions($event)"
-                (onSelectDataset)="selectProfile($event, id)" (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)"
-                (onShowGeometry)="showGeometry($event)" (onOpenInCombiView)="openCombiView($event)"></n52-custom-profile-entry>
-        </div>
+  <h3>Legende</h3>
+  <div class="legend-entry">
+    <div *ngFor="let id of datasetIds">
+      <n52-custom-profile-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)"
+        (onDeleteDatasetOptions)="deleteProfileOptions($event)" (onSelectDataset)="selectProfile($event, id)"
+        (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)" (onShowGeometry)="showGeometry($event)"
+        (onOpenInCombiView)="openCombiView($event)"></n52-custom-profile-entry>
     </div>
+  </div>
 </div>
 
 <div *ngIf="datasetIds.length === 0" class="container n52-alert">
-    <div class="alert alert-primary" role="alert">
-        <a routerLink='/profiles/selection' class='alert-link'>{{'profiles.hint.select-profile' | translate}}</a>
-    </div>
+  <div class="alert alert-primary" role="alert">
+    <a routerLink='/profiles/selection' class='alert-link'>{{'profiles.hint.select-profile' | translate}}</a>
+  </div>
 </div>

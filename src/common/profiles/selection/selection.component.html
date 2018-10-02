@@ -1,7 +1,7 @@
-<ng-template #modalStationaryPlatform let-c="close" let-d="dismiss">
+<ng-template #modalStationaryPlatform let-c="close()" let-d="dismiss()">
   <div class="modal-header">
     <h4 class="modal-title">{{'profiles.selection.platform' | translate}}: {{stationaryPlatform.label}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d()">
+    <button type="button" class="close" aria-label="Close" (click)="d">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -10,15 +10,15 @@
     <div *ngIf="stationaryPlatformLoading">{{'profiles.selection.load-timestamps' | translate}}...</div>
     <div *ngIf="!stationaryPlatformLoading" style="padding: 10px;">
       <div>{{'profiles.selection.select-timestamp' | translate}}:</div>
-      <n52-time-list-selector [timeList]="stationaryTimestamps" (onTimeSelected)="onTimeselected($event); c();"></n52-time-list-selector>
+      <n52-time-list-selector [timeList]="stationaryTimestamps" (onTimeSelected)="onTimeselected($event); c"></n52-time-list-selector>
     </div>
   </div>
 </ng-template>
 
-<ng-template #modalMobilePreview let-c="close" let-d="dismiss">
+<ng-template #modalMobilePreview let-c="close()" let-d="dismiss()">
   <div class="modal-header">
-    <h4 class="modal-title" style="word-break: break-word;">{{mobilePreviewDataset.header}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d()">
+    <h4 class="modal-title" style="word-break: break-word;">{{mobilePreviewDataset.label}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -32,9 +32,9 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="addToCombiView();c();">{{'profiles.selection.to-combi-view' | translate}}</button>
-    <button type="button" class="btn btn-light" (click)="addToChart();c();">{{'profiles.selection.to-diagram-view' | translate}}</button>
-    <button type="button" class="btn btn-light" (click)="c();">{{'controls.close' | translate}}</button>
+    <button type="button" class="btn btn-light" (click)="addToCombiView();c">{{'profiles.selection.to-combi-view' | translate}}</button>
+    <button type="button" class="btn btn-light" (click)="addToChart();c">{{'profiles.selection.to-diagram-view' | translate}}</button>
+    <button type="button" class="btn btn-light" (click)="c">{{'controls.close' | translate}}</button>
   </div>
 </ng-template>
 
