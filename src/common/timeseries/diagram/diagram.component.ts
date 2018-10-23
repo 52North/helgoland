@@ -29,7 +29,8 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     public diagramOptions: D3PlotOptions = {
         grid: true,
-        showTimeLabel: false
+        showTimeLabel: false,
+        requestBeforeAfterValues: true
     };
     public overviewOptions: D3PlotOptions = {
         grid: true,

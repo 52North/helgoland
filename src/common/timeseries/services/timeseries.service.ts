@@ -1,21 +1,30 @@
 import { Injectable } from '@angular/core';
-import { ColorService, DatasetOptions, DatasetService, LocalStorage, Time, Timespan } from '@helgoland/core';
+import {
+    ColorService,
+    DatasetApiInterface,
+    DatasetOptions,
+    LocalStorage,
+    RenderingHintsDatasetService,
+    Time,
+    Timespan,
+} from '@helgoland/core';
 
 const TIMESERIES_OPTIONS_CACHE_PARAM = 'timeseriesOptions';
 const TIMESERIES_IDS_CACHE_PARAM = 'timeseriesIds';
 const TIME_CACHE_PARAM = 'timeseriesTime';
 
 @Injectable()
-export class TimeseriesService extends DatasetService<DatasetOptions> {
+export class TimeseriesService extends RenderingHintsDatasetService<DatasetOptions> {
 
     public timespan: Timespan;
 
     constructor(
         protected localStorage: LocalStorage,
         protected timeSrvc: Time,
+        protected api: DatasetApiInterface,
         private color: ColorService
     ) {
-        super();
+        super(api);
         this.loadState();
     }
 
