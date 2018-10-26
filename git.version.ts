@@ -4,7 +4,7 @@ import { combineLatest, Observable } from 'rxjs';
 const exec = require('child_process').exec;
 
 const revisionObs = new Observable<string>(s => {
-    exec('git rev-parse --short HEAD',
+    exec('git rev-parse HEAD',
         function (error: Error, stdout: Buffer, stderr: Buffer) {
             if (error !== null) {
                 console.log('git error: ' + error + stderr);

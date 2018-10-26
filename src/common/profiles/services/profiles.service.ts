@@ -38,9 +38,9 @@ export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> 
     }
 
     protected loadState(): void {
-        this.localStorage.loadArray<Array<TimedDatasetOptions>>(PROFILES_OPTIONS_CACHE_PARAM)
-            .forEach(e => this.datasetOptions.set(e[0].internalId, e));
-        this.datasetIds = this.localStorage.loadArray<string>(PROFILES_IDS_CACHE_PARAM);
+        const options = this.localStorage.loadArray<Array<TimedDatasetOptions>>(PROFILES_OPTIONS_CACHE_PARAM) || [];
+        options.forEach(e => this.datasetOptions.set(e[0].internalId, e));
+        this.datasetIds = this.localStorage.loadArray<string>(PROFILES_IDS_CACHE_PARAM) || [];
     }
 
     public removeDatasetOptions(options: TimedDatasetOptions) {

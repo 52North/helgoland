@@ -33,8 +33,8 @@ export class ProfilesCombiService extends DatasetService<Array<TimedDatasetOptio
     }
 
     protected loadState(): void {
-        this.datasetIds = this.localStorage.loadArray<string>(COMBI_PROFILES_IDS_CACHE_PARAM);
-        this.localStorage.loadArray<Array<TimedDatasetOptions>>(COMBI_PROFILES_OPTIONS_CACHE_PARAM)
-            .forEach(e => this.datasetOptions.set(e[0].internalId, e));
+        this.datasetIds = this.localStorage.loadArray<string>(COMBI_PROFILES_IDS_CACHE_PARAM) || [];
+        const options = this.localStorage.loadArray<Array<TimedDatasetOptions>>(COMBI_PROFILES_OPTIONS_CACHE_PARAM) || [];
+        options.forEach(e => this.datasetOptions.set(e[0].internalId, e));
     }
 }

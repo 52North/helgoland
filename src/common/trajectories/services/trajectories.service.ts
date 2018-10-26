@@ -25,7 +25,8 @@ export class TrajectoriesService extends DatasetService<DatasetOptions> {
     }
 
     protected loadState() {
-        this.datasetIds = this.localStorage.loadArray<string>(TRAJECTORY_IDS_PARAM);
-        this.localStorage.loadArray<DatasetOptions>(TRAJECTORY_OPTIONS_PARAM).forEach(e => this.datasetOptions.set(e.internalId, e));
+        this.datasetIds = this.localStorage.loadArray<string>(TRAJECTORY_IDS_PARAM) || [];
+        const datasetOptions = this.localStorage.loadArray<DatasetOptions>(TRAJECTORY_OPTIONS_PARAM) || [];
+        datasetOptions.forEach(e => this.datasetOptions.set(e.internalId, e));
     }
 }
