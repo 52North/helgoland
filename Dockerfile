@@ -1,8 +1,4 @@
-FROM node:8-alpine AS BUILD
-
-RUN apk --update add git openssh && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm /var/cache/apk/*
+FROM node:latest AS BUILD
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
