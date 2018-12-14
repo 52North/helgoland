@@ -1,15 +1,19 @@
-FROM node
+FROM node:8-alpine AS BUILD
+
+RUN apk --update add git openssh && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm /var/cache/apk/*
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app/
-RUN npm --quiet install --silent --allow-root install && npm --quiet install grunt-cli
+# copy package.json and install dependencies
+COPY package.json package-lock.json /usr/src/app/
+RUN npm install
 
+# copy the app and build it
 COPY . /usr/src/app
+RUN npm run build
 
-RUN ./node_modules/grunt-cli/bin/grunt
-
-EXPOSE 8080
-
-CMD [ "./node_modules/http-server/bin/http-server", "--cors", "-p", "8080", "dist"]
+FROM nginx:alpine
+COPY --from=BUILD /usr/src/app/dist /usr/share/nginx/html
