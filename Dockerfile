@@ -12,4 +12,4 @@ COPY . /usr/src/app
 RUN npm run build
 
 FROM nginx:alpine
-COPY --from=BUILD /usr/src/app/dist /usr/share/nginx/html
+COPY --from=BUILD /usr/src/app/dist/complete /usr/share/nginx/html
