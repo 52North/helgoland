@@ -39,6 +39,7 @@ combineLatest(revisionObs, branchObs)
     branch: '${branch}'
 };
 `;
+        fs.mkdirSync('src/environments', {recursive: true, mode: 0o755});
 
         fs.writeFileSync(
             'src/environments/versions.ts',
