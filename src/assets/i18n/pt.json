@@ -138,6 +138,12 @@
 		"map": {
 			"loading": ""
 		},
+		"parameter": {
+			"mobile-platform": "",
+			"offering": "",
+			"path": "",
+			"phenomenon": ""
+		},
 		"selection": {
 			"select-by-phenomenon": "",
 			"select-by-platform": "",

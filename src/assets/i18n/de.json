@@ -138,6 +138,12 @@
 		"map": {
 			"loading": ""
 		},
+		"parameter": {
+			"mobile-platform": "Mobile Platform",
+			"offering": "Offering",
+			"path": "Pfad",
+			"phenomenon": "Phänomen"
+		},
 		"selection": {
 			"select-by-phenomenon": "Wähle über Phänomen",
 			"select-by-platform": "Wähle über Platform",

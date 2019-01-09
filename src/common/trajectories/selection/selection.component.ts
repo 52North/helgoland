@@ -30,26 +30,26 @@ export class TrajectoriesSelectionComponent implements OnInit {
   public platformParams: Array<ListSelectorParameter> = [
     {
       type: 'platform',
-      header: 'Mobile Platform'
+      header: 'trajectories.parameter.mobile-platform'
     }, {
       type: 'offering',
-      header: 'Offering'
+      header: 'trajectories.parameter.offering'
     }, {
       type: 'feature',
-      header: 'Pfad'
+      header: 'trajectories.parameter.path'
     }
   ];
 
   public phenomenonParams: Array<ListSelectorParameter> = [
     {
       type: 'phenomenon',
-      header: 'Phänomen'
+      header: 'trajectories.parameter.phenomenon'
     }, {
       type: 'offering',
-      header: 'Offering'
+      header: 'trajectories.parameter.offering'
     }, {
       type: 'feature',
-      header: 'Pfad'
+      header: 'trajectories.parameter.path'
     }
   ];
 
@@ -89,6 +89,7 @@ export class TrajectoriesSelectionComponent implements OnInit {
   }
 
   public datasetSelected(dataset: Array<Dataset>) {
+    this.trajectory.removeAllDatasets();
     dataset.forEach(entry => {
       const options = new DatasetOptions(entry.internalId, this.color.getColor());
       options.visible = false;

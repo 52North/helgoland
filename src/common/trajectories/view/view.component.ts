@@ -1,8 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
+    Dataset,
     DatasetApiInterface,
     DatasetOptions,
-    IDataset,
     InternalIdHandler,
     LocatedTimeValueEntry,
     Timespan,
@@ -31,7 +31,7 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public datasetIds: Array<string>;
 
-    public trajectory: IDataset;
+    public trajectory: Dataset;
 
     public loading: boolean;
 

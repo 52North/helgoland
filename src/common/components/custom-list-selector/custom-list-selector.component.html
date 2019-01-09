@@ -1,16 +1,17 @@
 <ngb-accordion #acc="ngbAccordion" activeIds="{{activePanel}}" closeOthers="true">
   <ngb-panel id="{{selectorId}}-{{i}}" *ngFor="let param of parameters; let i = index" [disabled]="param.isDisabled">
-      <ng-template ngbPanelTitle>
-          <span ng-class="{'text-muted' : param.isDisabled}">
-              <span>{{param.header}}</span>
-              <span *ngIf="param.headerAddition">-</span>
-              <span>{{param.headerAddition}}</span>
-          </span>
-      </ng-template>
-      <ng-template ngbPanelContent>
-          <div class="panel-content">
-              <n52-custom-multi-service-filter-selector [endpoint]="param.type" [filterList]="param.filterList" (onItemSelected)="itemSelected($event, i)"></n52-custom-multi-service-filter-selector>
-          </div>
-      </ng-template>
+    <ng-template ngbPanelTitle>
+      <span ng-class="{'text-muted' : param.isDisabled}">
+        <span>{{param.header | translate}}</span>
+        <span *ngIf="param.headerAddition">-</span>
+        <span>{{param.headerAddition}} </span>
+      </span>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <div class="panel-content">
+        <n52-custom-multi-service-filter-selector [endpoint]="param.type" [filterList]="param.filterList"
+          (onItemSelected)="itemSelected($event, i)"></n52-custom-multi-service-filter-selector>
+      </div>
+    </ng-template>
   </ngb-panel>
 </ngb-accordion>

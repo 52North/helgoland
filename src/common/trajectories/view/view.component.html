@@ -16,10 +16,16 @@
 
 <n52-permalink-button *ngIf="datasetIds.length > 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
 <div class="combi-mobile" *ngIf="datasetIds.length > 0">
-  <div class="combi-header" *ngIf="trajectory?.label">
-    <div>
-      <span>{{trajectory.label}}</span>
-    </div>
+  <div class="combi-header" *ngIf="trajectory">
+    <span *ngIf="trajectory.parameters.platform.label">
+      <span>{{'trajectories.parameter.mobile-platform' | translate}}: </span>
+      <span style="font-weight: bold">{{trajectory.parameters.platform.label}}</span>
+    </span>
+    <span *ngIf="trajectory.parameters.platform.label && trajectory.parameters.feature.label"> - </span>
+    <span *ngIf="trajectory.parameters.feature.label">
+      <span>{{'trajectories.parameter.path' | translate}}: </span>
+      <span style="font-weight: bold">{{trajectory.parameters.feature.label}}</span>
+    </span>
   </div>
   <div class="combi-body">
     <div class="map-container">
@@ -35,9 +41,9 @@
     <div class="chart-container">
       <div class="chart">
         <div *ngIf="hasVisibleDatasets();else emptyChart" style="height: 100%;">
-          <n52-d3-trajectory-graph [datasetIds]="datasetIds" [timeInterval]="timespan" [datasetOptions]="options" [presenterOptions]="graphOptions"
-            [selection]="selection" (onSelectionChanged)="onChartSelectionChanged($event)" (onSelectionChangedFinished)="onChartSelectionChangedFinished($event)"
-            (onHoverHighlight)="onChartHighlightChanged($event)"></n52-d3-trajectory-graph>
+          <n52-d3-trajectory-graph [datasetIds]="datasetIds" [timeInterval]="timespan" [datasetOptions]="options"
+            [presenterOptions]="graphOptions" [selection]="selection" (onSelectionChanged)="onChartSelectionChanged($event)"
+            (onSelectionChangedFinished)="onChartSelectionChangedFinished($event)" (onHoverHighlight)="onChartHighlightChanged($event)"></n52-d3-trajectory-graph>
           <div class="chart-information">
             <span class="fa fa-info-circle" title="{{'trajectories.view.graph-information-tooltip' | translate}}"></span>
           </div>
