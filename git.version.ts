@@ -36,13 +36,17 @@ combineLatest(revisionObs, branchObs)
     version: '${process.env.npm_package_version}',
     toolbox: '${toolboxVersion}',
     revision: '${revision}',
-    branch: '${branch}'
+    branch: '${branch}',
+    buildDate: '${new Date()}'
 };
 `;
-        fs.mkdirSync('src/environments', {recursive: true, mode: 0o755});
+        const folder = 'src/environments';
+        if (!fs.existsSync(folder)) {
+            fs.mkdirSync(folder, { recursive: true, mode: 0o755 });
+        }
 
         fs.writeFileSync(
-            'src/environments/versions.ts',
+            `${folder}/versions.ts`,
             content,
             { encoding: 'utf8' }
         );

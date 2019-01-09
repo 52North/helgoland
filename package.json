@@ -64,7 +64,7 @@
     "@biesbjerg/ngx-translate-extract": "^2.3.4",
     "@types/jasmine": "^2.8.8",
     "@types/jasminewd2": "~2.0.2",
-    "@types/node": "^9.4.6",
+    "@types/node": "^10.12.18",
     "codelyzer": "^4.4.3",
     "file-loader": "^1.1.6",
     "har-validator": "^5.1.0",
@@ -79,7 +79,7 @@
     "node-sass": "^4.9.3",
     "protractor": "^5.4.0",
     "qs": "^6.5.0",
-    "ts-node": "^5.0.1",
+    "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "typescript": "2.9.2"
   }
