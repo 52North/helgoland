@@ -19,7 +19,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ComponentsModule } from '../../../common/components/components.module';
 import { InfoModule } from '../../../common/info/info.module';
-import { TimeseriesModule } from '../../../common/timeseries/timeseries.module';
+import { TimeseriesModule, timeseriesRoutes } from '../../../common/timeseries/timeseries.module';
 import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
 
@@ -27,7 +27,14 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-const baseRoutes: Routes = [];
+const baseRoutes: Routes = [
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'diagram'
+  },
+  ...timeseriesRoutes
+];
 
 @Injectable()
 export class ExtendedSettingsService extends SettingsService<Settings> {

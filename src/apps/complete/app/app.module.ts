@@ -21,7 +21,7 @@ import { ComponentsModule } from '../../../common/components/components.module';
 import { InfoModule } from '../../../common/info/info.module';
 import { ProfilesModule } from '../../../common/profiles/profiles.module';
 import { TimeseriesRouter } from '../../../common/timeseries/services/timeseries-router.service';
-import { TimeseriesModule } from '../../../common/timeseries/timeseries.module';
+import { nestedTimeseriesRoutes, TimeseriesModule } from '../../../common/timeseries/timeseries.module';
 import { TrajectoriesModule } from '../../../common/trajectories/trajectories.module';
 import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -36,7 +36,8 @@ const baseRoutes: Routes = [
     path: '**',
     pathMatch: 'full',
     redirectTo: 'timeseries'
-  }
+  },
+  ...nestedTimeseriesRoutes
 ];
 
 @Injectable()

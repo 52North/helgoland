@@ -27,7 +27,30 @@ import { TimeseriesRouter } from './services/timeseries-router.service';
 import { TimeseriesService } from './services/timeseries.service';
 import { TimeseriesTableComponent } from './table/table.component';
 
-const timeseriesRoutes: Routes = [
+export const timeseriesRoutes: Routes = [
+    {
+        path: 'diagram',
+        component: TimeseriesDiagramComponent
+    },
+    {
+        path: 'table',
+        component: TimeseriesTableComponent
+    },
+    {
+        path: 'map-selection',
+        component: TimeseriesMapSelectionComponent
+    },
+    {
+        path: 'list-selection',
+        component: TimeseriesListSelectionComponent
+    },
+    {
+        path: 'favorites',
+        component: TimeseriesFavoritesComponent
+    }
+];
+
+export const nestedTimeseriesRoutes: Routes = [
     {
         path: '',
         pathMatch: 'full',
@@ -42,26 +65,7 @@ const timeseriesRoutes: Routes = [
                 pathMatch: 'full',
                 redirectTo: 'diagram'
             },
-            {
-                path: 'diagram',
-                component: TimeseriesDiagramComponent
-            },
-            {
-                path: 'table',
-                component: TimeseriesTableComponent
-            },
-            {
-                path: 'map-selection',
-                component: TimeseriesMapSelectionComponent
-            },
-            {
-                path: 'list-selection',
-                component: TimeseriesListSelectionComponent
-            },
-            {
-                path: 'favorites',
-                component: TimeseriesFavoritesComponent
-            }
+            ...timeseriesRoutes
         ]
     }
 ];
@@ -81,9 +85,7 @@ const timeseriesRoutes: Routes = [
         HelgolandTimeModule,
         HelgolandFavoriteModule,
         HelgolandModificationModule,
-        RouterModule.forChild(
-            timeseriesRoutes
-        ),
+        RouterModule,
         NgbTabsetModule,
         NgbAccordionModule,
         NgbModalModule,
