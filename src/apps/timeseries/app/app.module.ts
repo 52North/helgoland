@@ -28,12 +28,12 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 const baseRoutes: Routes = [
+  ...timeseriesRoutes,
   {
     path: '**',
     pathMatch: 'full',
     redirectTo: 'diagram'
-  },
-  ...timeseriesRoutes
+  }
 ];
 
 @Injectable()
