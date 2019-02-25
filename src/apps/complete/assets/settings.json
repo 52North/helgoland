@@ -41,6 +41,10 @@
     {
       "name": "Monalisa-Sos",
       "url": "http://monalisasos.eurac.edu/sos/api/v1/"
+    },
+    {
+      "name": "BSH-Timeseries",
+      "url": "http://service25.eggits.net/52n-sos-bsh-webapp/api/"
     }
   ],
   "languages": [
