@@ -26,6 +26,7 @@ import { TimeseriesMapSelectionCache } from './services/map-selection-cache.serv
 import { TimeseriesRouter } from './services/timeseries-router.service';
 import { TimeseriesService } from './services/timeseries.service';
 import { TimeseriesTableComponent } from './table/table.component';
+import { CategorySelectorComponent } from './category-selection/category-selector.component';
 
 export const timeseriesRoutes: Routes = [
     {
@@ -99,13 +100,15 @@ export const nestedTimeseriesRoutes: Routes = [
         TimeseriesListSelectionComponent,
         TimeseriesMapSelectionComponent,
         TimeseriesFavoritesComponent,
-        LegendEntryComponent
+        LegendEntryComponent,
+        CategorySelectorComponent
     ],
     providers: [
         TimeseriesService,
         TimeseriesDiagramPermalink,
         TimeseriesListSelectionCache,
         TimeseriesMapSelectionCache,
+
         {
             provide: TimeseriesRouter,
             useClass: CustomTimeseriesRouter

@@ -1,0 +1,42 @@
+<div *ngIf="counter">
+    {{counter}} timeseries are loading...
+</div>
+<div class="btn-group btn-group-toggle" id="filterCategory" data-toggle="buttons">
+    <label class="btn btn-secondary active"
+          [ngClass]="{active : currentButton == 'first'}"
+          (click) = "currentButton='first'"
+           >
+      <input type="radio" name="options" autocomplete="off" checked>Phenomenon
+    </label>
+    <label class="btn btn-secondary"
+           [ngClass]="{active : currentButton == 'second'}"
+          (click) = "currentButton='second'"
+      >
+      <input type="radio" name="options" autocomplete="off">Category
+    </label>
+  </div>
+<div  *ngIf="currentButton == 'first'">
+<div class="item" *ngFor="let timeseriesGroup of phenomenonMap | keyvalue">
+    <span> {{timeseriesGroup.value[0].parameters.phenomenon.label}}</span>
+    <div class="item" *ngFor="let timeseries of timeseriesGroup.value" (click)="toggle(timeseries)">
+
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="{{timeseries.id}}" (click)="toggle(timeseries)">
+            <label class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.category.label}}</label>
+        </div> 
+    </div>
+</div>
+</div>
+<div  *ngIf="currentButton == 'second'">
+<div class="item" *ngFor="let timeseriesGroup of categoryMap | keyvalue">
+    <div>
+        <span> {{timeseriesGroup.value[0].parameters.category.label}}</span>
+        <div class="item" *ngFor="let timeseries of timeseriesGroup.value" (click)="toggle(timeseries)">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="{{timeseries.id}}" (click)="toggle(timeseries)">
+                <label class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.phenomenon.label}}</label>
+            </div> 
+        </div>
+    </div>
+</div>
+</div>

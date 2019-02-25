@@ -1,0 +1,13 @@
+:host {
+    .item {
+        &+.item {
+            padding-top: 10px;
+        }
+        &.error {
+            display: none;
+        }
+        label {
+            margin-bottom: 0;
+        }
+    }
+}
