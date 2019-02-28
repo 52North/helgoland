@@ -1,42 +1,35 @@
 <div *ngIf="counter">
     {{counter}} timeseries are loading...
 </div>
-<div class="btn-group btn-group-toggle" id="filterCategory" data-toggle="buttons">
-    <label class="btn btn-secondary active"
-          [ngClass]="{active : currentButton == 'first'}"
-          (click) = "currentButton='first'"
-           >
-      <input type="radio" name="options" autocomplete="off" checked>Phenomenon
-    </label>
-    <label class="btn btn-secondary"
-           [ngClass]="{active : currentButton == 'second'}"
-          (click) = "currentButton='second'"
-      >
-      <input type="radio" name="options" autocomplete="off">Category
-    </label>
-  </div>
-<div  *ngIf="currentButton == 'first'">
-<div class="item" *ngFor="let timeseriesGroup of phenomenonMap | keyvalue">
-    <span> {{timeseriesGroup.value[0].parameters.phenomenon.label}}</span>
-    <div class="item" *ngFor="let timeseries of timeseriesGroup.value" (click)="toggle(timeseries)">
 
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="{{timeseries.id}}" (click)="toggle(timeseries)">
-            <label class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.category.label}}</label>
-        </div> 
-    </div>
+<div class="btn-group btn-group-toggle d-flex justify-content-center" ngbRadioGroup name="radioBasic" [(ngModel)]="filterCategory">
+    <label ngbButtonLabel class="btn-primary">
+      <input ngbButton type="radio" value="phenomenon">{{'timeseries.map-selection.group-phenomenon' | translate}}
+    </label>
+    <label ngbButtonLabel class="btn-primary">
+      <input ngbButton type="radio" value="category">{{'timeseries.map-selection.group-depth' | translate}}
+    </label>
 </div>
-</div>
-<div  *ngIf="currentButton == 'second'">
-<div class="item" *ngFor="let timeseriesGroup of categoryMap | keyvalue">
-    <div>
-        <span> {{timeseriesGroup.value[0].parameters.category.label}}</span>
-        <div class="item" *ngFor="let timeseries of timeseriesGroup.value" (click)="toggle(timeseries)">
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="{{timeseries.id}}" (click)="toggle(timeseries)">
-                <label class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.phenomenon.label}}</label>
-            </div> 
+<div>
+    <div class="item" *ngFor="let timeseriesGroup of (filterCategory == 'phenomenon' ? phenomenonMap : categoryMap) | keyvalue">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto"><span class="fa fa-caret-right"></span></div>
+                <div>
+                    <div *ngIf="filterCategory == 'phenomenon'">{{timeseriesGroup.value[0].parameters.phenomenon.label}}</div>
+                    <div *ngIf="filterCategory == 'category'">{{timeseriesGroup.value[0].parameters.category.label}}</div>
+                    <div>        
+                        <div class="item" *ngFor="let timeseries of timeseriesGroup.value">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="{{timeseries.id}}" (click)="toggle(timeseries)" [(ngModel)]="timeseries.selected">
+                                <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.category.label}}</label>
+                                <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.phenomenon.label}}</label>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-</div>
+

@@ -113,6 +113,8 @@
 		},
 		"map-selection": {
 			"dataset-selection-hint": "",
+			"group-depth": "",
+			"group-phenomenon": "",
 			"map": "",
 			"provider": "",
 			"show-in-diagram": ""
@@ -140,9 +142,7 @@
 		},
 		"parameter": {
 			"mobile-platform": "",
-			"offering": "",
-			"path": "",
-			"phenomenon": ""
+			"path": ""
 		},
 		"selection": {
 			"select-by-phenomenon": "",

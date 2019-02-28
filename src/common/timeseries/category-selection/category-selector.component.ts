@@ -5,8 +5,6 @@ import {
   Timeseries,
   Phenomenon
 } from "@helgoland/core";
-import { groupBy, mergeMap, toArray } from "rxjs/operators";
-import { from } from "rxjs";
 
 export class ExtendedTimeseries extends Timeseries {
   public selected: boolean;
@@ -42,6 +40,8 @@ export class CategorySelectorComponent implements OnInit {
 
   public counter: number;
 
+  public filterCategory = "phenomenon";
+  
   constructor(protected apiInterface: DatasetApiInterface) {}
 
   public ngOnInit() {

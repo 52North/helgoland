@@ -113,6 +113,8 @@
 		},
 		"map-selection": {
 			"dataset-selection-hint": "Please select one or more timeseries to displa in diagram",
+			"group-depth": "Depth",
+			"group-phenomenon": "Phenomenon",
 			"map": "Map",
 			"provider": "Provider",
 			"show-in-diagram": "Show {{value}} timeseries in diagram"
@@ -140,9 +142,7 @@
 		},
 		"parameter": {
 			"mobile-platform": "Mobil platform",
-			"offering": "Offering",
-			"path": "Path",
-			"phenomenon": "Phenomenon"
+			"path": "Path"
 		},
 		"selection": {
 			"select-by-phenomenon": "Select by phenomenon",
