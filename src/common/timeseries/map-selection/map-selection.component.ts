@@ -21,7 +21,7 @@ import {
   ValueTypes,
 } from '@helgoland/core';
 import { NgbModal, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 import { TimeseriesMapSelectionCache } from '../services/map-selection-cache.service';
 import { TimeseriesRouter } from '../services/timeseries-router.service';
