@@ -6,4 +6,6 @@ import { TimeseriesEntryComponent } from '@helgoland/depiction';
   templateUrl: './legend-entry.component.html',
   styleUrls: ['./legend-entry.component.scss']
 })
-export class LegendEntryComponent extends TimeseriesEntryComponent { }
+export class LegendEntryComponent extends TimeseriesEntryComponent {
+  public isCollapsed = true;
+ }
