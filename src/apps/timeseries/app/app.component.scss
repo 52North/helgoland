@@ -5,7 +5,18 @@ n52-root {
     height: 100%;
     .navbar {
         flex: 0 0 56px;
+        .navbar-brand {
+            height: 100%;
+            width: auto;
+            padding-top: 0;
+            padding-bottom: 0;
+            img {
+                height: 100%;
+                width: auto;
+            }
+        }
     }
+
     .content {
         flex: 1;
         position: relative;
