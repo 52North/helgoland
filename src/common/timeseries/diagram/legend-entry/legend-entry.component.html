@@ -6,8 +6,8 @@
     <div [ngClass]="{'highlight': highlight}">
       <div class="container">
         <div class="row d-flex ">
-          <div class="legendItemLabel flex-grow-1" [ngStyle]="{'color': datasetOptions?.color}" (click)="toggleSelection()">
-            <n52-label-mapper  class="legendItemheader" label="{{platformLabel}}"></n52-label-mapper>
+          <div class="legendItemLabel flex-grow-1" [ngStyle]="{'color': datasetOptions?.color}">
+            <n52-label-mapper  class="legendItemheader" label="{{platformLabel}}" (click)="toggleSelection()"></n52-label-mapper>
             <n52-favorite-toggler [dataset]="dataset"></n52-favorite-toggler>
           </div>
           <div ><span class="fa" [ngClass]="{'fa-chevron-right': isCollapsed, 'fa-chevron-down': !isCollapsed}" (click)="isCollapsed = !isCollapsed"></span></div>
