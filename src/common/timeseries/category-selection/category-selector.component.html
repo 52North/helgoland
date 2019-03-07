@@ -2,13 +2,15 @@
     {{counter}} timeseries are loading...
 </div>
 
-<div class="btn-group btn-group-toggle d-flex justify-content-center" ngbRadioGroup name="radioBasic" [(ngModel)]="filterCategory">
-    <label ngbButtonLabel class="btn-primary">
-      <input ngbButton type="radio" value="phenomenon">{{'timeseries.map-selection.group-phenomenon' | translate}}
-    </label>
-    <label ngbButtonLabel class="btn-primary">
-      <input ngbButton type="radio" value="category">{{'timeseries.map-selection.group-depth' | translate}}
-    </label>
+<div class="container">
+    <div class="btn-group btn-group-toggle d-flex justify-content-center row" ngbRadioGroup name="radioBasic" [(ngModel)]="filterCategory">
+        <label ngbButtonLabel class="col btn-primary">
+            <input ngbButton type="radio" value="phenomenon">{{'timeseries.map-selection.group-phenomenon' | translate}}
+        </label>
+        <label ngbButtonLabel class="col btn-primary">
+            <input ngbButton type="radio" value="category">{{'timeseries.map-selection.group-depth' | translate}}
+        </label>
+    </div>
 </div>
 <div>
     <div class="item" *ngFor="let timeseriesGroup of (filterCategory == 'phenomenon' ? phenomenonMap : categoryMap) | keyvalue">
