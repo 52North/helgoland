@@ -40,6 +40,9 @@ export class CategorySelectorComponent implements OnInit {
   @Input()
   public phenomenonId: string;
 
+  @Input()
+  public orderGroup = false;
+
   @Output()
   public onSelectionChanged: EventEmitter<Timeseries[]> = new EventEmitter<
     Timeseries[]
@@ -50,11 +53,14 @@ export class CategorySelectorComponent implements OnInit {
   public phenomenonMap: Map<string, TimeSeriesGroup> = new Map();
   public categoryMap: Map<string, TimeSeriesGroup> = new Map();
 
+  public categoryList: TimeSeriesGroup[] = [];
+  public phenomenonList: TimeSeriesGroup[] = [];
+
   public counter: number;
 
   public filterCategory = "phenomenon";
 
-  public isCollapsed = true;
+  public isCollapsed = true; 
   
   constructor(protected apiInterface: DatasetApiInterface) {}
 
@@ -95,8 +101,14 @@ export class CategorySelectorComponent implements OnInit {
 
   protected prepareResult(result: ExtendedTimeseries, selection: boolean) {
     result.selected = selection;
-    this.prepareCategoryGroup(result);
-    this.preparePhenomenonGroup(result);
+
+    if(this.orderGroup){
+      this.prepareCategories(result);
+      this.preparePhenomenons(result);  
+    }else{
+      this.preparePhenomenonGroup(result);
+      this.prepareCategoryGroup(result);
+    }
 
     this.timeseriesList.push(result);
     this.updateSelection();
@@ -124,6 +136,49 @@ export class CategorySelectorComponent implements OnInit {
       collection.timeseries.push(result);
     }
   }
+
+  private prepareCategories(result: ExtendedTimeseries) {
+    const length = this.categoryList.length;
+    const resValue = parseInt(result.parameters.category.label.slice(0, -1));
+      for (var _i = 0; _i < length; _i++) {
+        let actValue = parseInt(this.categoryList[_i].label.slice(0, -1));
+        if(resValue === actValue){
+          this.categoryList[_i].timeseries.push(result);
+          return;
+        }
+        if(resValue < actValue){
+          let group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
+          this.categoryList.splice(_i, 0, group);
+          return;
+        }
+      }
+      let group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
+      this.categoryList.push(group);
+  }
+
+  private preparePhenomenons(result: ExtendedTimeseries) {
+    const length = this.phenomenonList.length;
+    const resValue = parseInt(result.parameters.category.label.slice(0, -1));
+      for (var _i = 0; _i < length; _i++) {
+        if(result.parameters.phenomenon.label === this.phenomenonList[_i].label){
+          const timeseriesLength = this.phenomenonList[_i].timeseries.length;
+          for(var _j = 0; _j < timeseriesLength; _j++){
+            let actValue = parseInt(this.phenomenonList[_i].timeseries[_j].parameters.category.label.slice(0, -1));
+            if(resValue === actValue){
+              this.phenomenonList[_i].timeseries.push(result);
+              return;
+            }
+            if(resValue < actValue){
+              this.phenomenonList[_i].timeseries.splice(_j, 0, result);
+              return;
+            }
+          }
+        }
+      }
+      let group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
+      this.phenomenonList.push(group);
+  }
+
 
   private updateSelection() {
     const selection = this.timeseriesList.filter(entry => entry.selected);

@@ -13,7 +13,8 @@
     </div>
 </div>
 <div>
-    <div class="item" *ngFor="let timeseriesGroup of (filterCategory == 'phenomenon' ? phenomenonMap : categoryMap) | keyvalue">
+    <div *ngIf="!orderGroup">
+    <div class="item" *ngFor="let timeseriesGroup of (filterCategory == 'phenomenon' ? phenomenonMap : categoryMap) | keyvalue ">
         <div class="container">
             <div class="row">
                 <div class="flex-grow-1"  *ngIf="filterCategory == 'phenomenon'">{{timeseriesGroup.value.label}}</div>
@@ -32,6 +33,29 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+    <div  *ngIf="orderGroup">
+    <div class="item" *ngFor="let timeseriesGroup of (filterCategory == 'phenomenon' ? phenomenonList : categoryList)">
+            <div class="container">
+                <div class="row">
+                    <div class="flex-grow-1"  *ngIf="filterCategory == 'phenomenon'">{{timeseriesGroup.label}}</div>
+                    <div class="flex-grow-1"  *ngIf="filterCategory == 'category'">{{timeseriesGroup.label}}</div>
+                    <div class="collapse-toggle"><span class="fa" [ngClass]="{'fa-chevron-right': timeseriesGroup.collapsed, 'fa-chevron-down': !timeseriesGroup.collapsed}" (click)="timeseriesGroup.collapsed = !timeseriesGroup.collapsed"></span></div>
+                </div>
+                <div class="row">
+                    <div [ngbCollapse]="timeseriesGroup.collapsed">        
+                        <div class="item" *ngFor="let timeseries of timeseriesGroup.timeseries">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="{{timeseries.id}}" (click)="toggle(timeseries)" [(ngModel)]="timeseries.selected">
+                                <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.category.label}}</label>
+                                <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.phenomenon.label}}</label>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
     </div>
 </div>
 
