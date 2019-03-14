@@ -10,7 +10,7 @@
             <n52-label-mapper  class="legendItemheader" label="{{platformLabel}}" (click)="toggleSelection()"></n52-label-mapper>
             <n52-favorite-toggler [dataset]="dataset"></n52-favorite-toggler>
           </div>
-          <div ><span class="fa" [ngClass]="{'fa-chevron-right': isCollapsed, 'fa-chevron-down': !isCollapsed}" (click)="isCollapsed = !isCollapsed"></span></div>
+          <div class="collapse-toggle"><span class="fa" [ngClass]="{'fa-chevron-right': isCollapsed, 'fa-chevron-down': !isCollapsed}" (click)="isCollapsed = !isCollapsed"></span></div>
         </div>
       </div>
       <div class="noDataWarning firstLastEntry" *ngIf="!hasData">
