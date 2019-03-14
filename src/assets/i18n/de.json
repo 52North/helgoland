@@ -114,7 +114,7 @@
 		"map-selection": {
 			"dataset-selection-hint": "Bitte wählen Sie eine oder mehrere Zeitreihen zur Darstellung aus",
 			"group-depth": "Tiefe",
-			"group-phenomenon": "Phänomen",
+			"group-phenomenon": "Parameter",
 			"map": "Karte",
 			"provider": "Anbieter",
 			"show-in-diagram": "Zeige {{value}} Zeitreihen im Diagramm"

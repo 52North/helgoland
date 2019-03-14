@@ -114,7 +114,7 @@
 		"map-selection": {
 			"dataset-selection-hint": "Please select one or more timeseries to displa in diagram",
 			"group-depth": "Depth",
-			"group-phenomenon": "Phenomenon",
+			"group-phenomenon": "Parameter",
 			"map": "Map",
 			"provider": "Provider",
 			"show-in-diagram": "Show {{value}} timeseries in diagram"
