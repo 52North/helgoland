@@ -10,6 +10,18 @@ export class ExtendedTimeseries extends Timeseries {
   public selected: boolean;
 }
 
+export class TimeSeriesGroup {
+  public timeseries: ExtendedTimeseries[];
+  public collapsed: boolean;
+  public label: string;
+
+  constructor(timeseries: ExtendedTimeseries[], collapsed: boolean, label: string) {
+    this.timeseries = timeseries;
+    this.collapsed = collapsed;
+    this.label = label;
+  }
+}
+
 @Component({
   selector: "n52-category-selector",
   templateUrl: "./category-selector.component.html",
@@ -35,12 +47,14 @@ export class CategorySelectorComponent implements OnInit {
 
   public timeseriesList: ExtendedTimeseries[] = [];
 
-  public phenomenonMap: Map<string, ExtendedTimeseries[]> = new Map();
-  public categoryMap: Map<string, ExtendedTimeseries[]> = new Map();
+  public phenomenonMap: Map<string, TimeSeriesGroup> = new Map();
+  public categoryMap: Map<string, TimeSeriesGroup> = new Map();
 
   public counter: number;
 
   public filterCategory = "phenomenon";
+
+  public isCollapsed = true;
   
   constructor(protected apiInterface: DatasetApiInterface) {}
 
@@ -88,13 +102,15 @@ export class CategorySelectorComponent implements OnInit {
     this.updateSelection();
   }
 
+
   private preparePhenomenonGroup(result: ExtendedTimeseries) {
     const key = result.parameters.phenomenon.id;
     const collection = this.phenomenonMap.get(key);
     if (!collection) {
-      this.phenomenonMap.set(key, [result]);
+      let group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
+      this.phenomenonMap.set(key, group);
     } else {
-      collection.push(result);
+      collection.timeseries.push(result);
     }
   }
 
@@ -102,9 +118,10 @@ export class CategorySelectorComponent implements OnInit {
     const key = result.parameters.category.id;
     const collection = this.categoryMap.get(key);
     if (!collection) {
-      this.categoryMap.set(key, [result]);
+      let group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
+      this.categoryMap.set(key, group);
     } else {
-      collection.push(result);
+      collection.timeseries.push(result);
     }
   }
 
