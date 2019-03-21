@@ -1,11 +1,67 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { Timespan } from '@helgoland/core';
-import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerI18n, NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+
+type I18n_Dict = {[key: string]: any}
+
+const I18N_VALUES: I18n_Dict = {
+  'de': {
+    weekdays: {
+      short: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+      full: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag']
+    },
+    months: {
+      short: ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+      full: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+    }
+  },
+  'en': {
+    weekdays: {
+      short: ['Mo', 'Tu', 'Wed', 'Thu', 'Fri', 'Sat', 'Su'],
+      full: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    },
+    months: {
+      short: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      full: ['January', 'February', 'March', 'April', 'May', 'June', 'Jule', 'August', 'September', 'October', 'November', 'December'],
+    }
+  }
+};
+
+@Injectable()
+export class LocalizedDatepickerI18n extends NgbDatepickerI18n {
+
+  constructor(protected translate: TranslateService) {
+    super();
+    
+  }
+
+  getWeekdayShortName(weekday: number): string {
+    return I18N_VALUES[this.translate.currentLang]
+      ? I18N_VALUES[this.translate.currentLang].weekdays.short[weekday - 1]
+      : I18N_VALUES["en"].weekdays.short[weekday - 1];
+  }
+  getMonthShortName(month: number): string {
+    return I18N_VALUES[this.translate.currentLang]
+      ? I18N_VALUES[this.translate.currentLang].months.short[month - 1]
+      : I18N_VALUES["en"].months.short[month - 1];
+  }
+  getMonthFullName(month: number): string {
+    return  I18N_VALUES[this.translate.currentLang]
+      ? I18N_VALUES[this.translate.currentLang].months.full[month - 1]
+      : I18N_VALUES["en"].months.full[month - 1];
+  }
+
+  getDayAriaLabel(date: NgbDateStruct): string {
+    return `${date.day}-${date.month}-${date.year}`;
+  }
+}
 
 @Component({
   selector: 'n52-timespan-selector',
   templateUrl: './timespan-selector.component.html',
-  styleUrls: ['./timespan-selector.component.scss']
+  styleUrls: ['./timespan-selector.component.scss'],
+  providers: [{provide: NgbDatepickerI18n, useClass: LocalizedDatepickerI18n}]
 })
 export class TimespanSelectorComponent implements OnInit {
 
