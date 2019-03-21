@@ -51,7 +51,7 @@
 			"load-timestamps": "Läd die verfügbaren Zeitpunkte",
 			"platform": "Platform",
 			"select-offering": "Wähle Offering",
-			"select-phenomenon": "Wähle Phänomen",
+			"select-phenomenon": "Wähle Parameter",
 			"select-platform": {
 				"header": "Wähle Platform",
 				"hint": "Wähle entweder eine stationäre oder mobile Platform",
@@ -69,7 +69,7 @@
 	},
 	"service-selector": {
 		"datasets": "Datensätze",
-		"phenomena": "Phänomene",
+		"phenomena": "Parameter",
 		"platforms": "Platformen",
 		"service-url": "Service-Url",
 		"stations": "Stationen",
@@ -94,8 +94,8 @@
 				}
 			},
 			"phenomenon": {
-				"header": "Phänomene",
-				"show-all": "Alle Phänomene"
+				"header": "Parameter",
+				"show-all": "Alle Parameter"
 			}
 		},
 		"favorites": {
@@ -106,7 +106,7 @@
 		},
 		"list-selection": {
 			"category": "Kategorie",
-			"phenomenon": "Phänomen",
+			"phenomenon": "Parameter",
 			"provider": "Anbieter",
 			"sensor": "Sensor",
 			"station": "Station"
@@ -135,7 +135,7 @@
 	},
 	"trajectories": {
 		"diagram": {
-			"hint": "Bitte wählen Sie mindestens ein Phänomen aus auf der rechten Seite aus."
+			"hint": "Bitte wählen Sie mindestens einen Parameter aus auf der rechten Seite aus."
 		},
 		"map": {
 			"loading": ""
@@ -145,7 +145,7 @@
 			"path": "Pfad"
 		},
 		"selection": {
-			"select-by-phenomenon": "Wähle über Phänomen",
+			"select-by-phenomenon": "Wähle über Parameter",
 			"select-by-platform": "Wähle über Platform",
 			"select-provider": "Wähle Anbieter"
 		},
