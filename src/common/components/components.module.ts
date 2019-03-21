@@ -30,7 +30,6 @@ import { PermalinkButtonComponent } from './permalink/permalink-button/permalink
 import { ToClipboardComponent } from './permalink/to-clipboard/to-clipboard.component';
 import { TimespanSelectorComponent } from './timespan-selector/timespan-selector.component';
 import { CustomMinMaxRangeComponent } from './custom-min-max-range/custom-min-max-range.component';
-import { CustomDatePipe } from './pipes/customdate.pipe';
 import { HelgolandCoreModule } from '@helgoland/core';
 
 @NgModule({
