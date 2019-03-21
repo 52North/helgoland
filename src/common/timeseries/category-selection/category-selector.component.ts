@@ -43,6 +43,9 @@ export class CategorySelectorComponent implements OnInit {
   @Input()
   public orderGroup = false;
 
+  @Input()
+  public sortAscending = false;
+
   @Output()
   public onSelectionChanged: EventEmitter<Timeseries[]> = new EventEmitter<
     Timeseries[]
@@ -103,8 +106,8 @@ export class CategorySelectorComponent implements OnInit {
     result.selected = selection;
 
     if(this.orderGroup){
-      this.prepareCategories(result);
-      this.preparePhenomenons(result);  
+      this.prepareOrderedCategoryGroup(result, this.sortAscending);
+      this.prepareOrderedPhenomenonGroup(result, this.sortAscending);  
     }else{
       this.preparePhenomenonGroup(result);
       this.prepareCategoryGroup(result);
@@ -115,6 +118,11 @@ export class CategorySelectorComponent implements OnInit {
   }
 
 
+  /**
+   * Inserts a Timeseries result in an unordered map of {Timeseries} results
+   * grouped by Phenomenons
+   * @param result {Timeseries} result to insert
+   */
   private preparePhenomenonGroup(result: ExtendedTimeseries) {
     const key = result.parameters.phenomenon.id;
     const collection = this.phenomenonMap.get(key);
@@ -126,6 +134,11 @@ export class CategorySelectorComponent implements OnInit {
     }
   }
 
+  /**
+   * Inserts a Timeseries result in an unordered map of Timeseries results
+   * grouped by Categories
+   * @param result {Timeseries} result to insert
+   */
   private prepareCategoryGroup(result: ExtendedTimeseries) {
     const key = result.parameters.category.id;
     const collection = this.categoryMap.get(key);
@@ -137,7 +150,13 @@ export class CategorySelectorComponent implements OnInit {
     }
   }
 
-  private prepareCategories(result: ExtendedTimeseries) {
+  /**
+   * Inserts a Timeseries result into an ordered list of Timeseries results
+   * grouped by Categories and dependent on the specified order strategey
+   * @param result {Timeseries} result to insert
+   * @param asc the ordering strategy (true for ascending ordering, false for descending ordering)
+   */
+  private prepareOrderedCategoryGroup(result: ExtendedTimeseries, asc: Boolean) {
     const length = this.categoryList.length;
     const resValue = parseInt(result.parameters.category.label.slice(0, -1));
       for (var _i = 0; _i < length; _i++) {
@@ -146,7 +165,8 @@ export class CategorySelectorComponent implements OnInit {
           this.categoryList[_i].timeseries.push(result);
           return;
         }
-        if(resValue < actValue){
+        // check if result values should be sorted ascending or descending
+        if(asc ? resValue < actValue : resValue > actValue){
           let group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
           this.categoryList.splice(_i, 0, group);
           return;
@@ -156,7 +176,13 @@ export class CategorySelectorComponent implements OnInit {
       this.categoryList.push(group);
   }
 
-  private preparePhenomenons(result: ExtendedTimeseries) {
+    /**
+   * Inserts a Timeseries result into an ordered list of Timeseries results
+   * grouped by Phenomenons and dependent on the specified order strategey
+   * @param result the Timeseries result to inster
+   * @param asc the ordering strategy (true for ascending ordering, false for descending ordering)
+   */
+  private prepareOrderedPhenomenonGroup(result: ExtendedTimeseries, asc: Boolean) {
     const length = this.phenomenonList.length;
     const resValue = parseInt(result.parameters.category.label.slice(0, -1));
       for (var _i = 0; _i < length; _i++) {
@@ -168,10 +194,13 @@ export class CategorySelectorComponent implements OnInit {
               this.phenomenonList[_i].timeseries.push(result);
               return;
             }
-            if(resValue < actValue){
+            // check if result values should be sorted ascending or descending
+            if(asc ? resValue < actValue : resValue > actValue){
               this.phenomenonList[_i].timeseries.splice(_j, 0, result);
               return;
             }
+            this.phenomenonList[_i].timeseries.push(result);
+            return;
           }
         }
       }
