@@ -17,6 +17,9 @@
     .collapse-toggle {
         width: 20px;
         text-align: center;
+        &:hover {
+            cursor: pointer;
+        }
     }
     .item-label{
         word-break: break-all;
