@@ -17,9 +17,9 @@
     <div class="item" *ngFor="let timeseriesGroup of (filterCategory == 'phenomenon' ? phenomenonMap : categoryMap) | keyvalue ">
         <div class="container">
             <div class="row">
-                <div class="col-auto collapse-toggle"><span class="fa" [ngClass]="{'fa-chevron-right': timeseriesGroup.value.collapsed, 'fa-chevron-down': !timeseriesGroup.value.collapsed}" (click)="timeseriesGroup.value.collapsed = !timeseriesGroup.value.collapsed"></span></div>
+                <div class="col-auto collapse-toggle"  (click)="timeseriesGroup.value.collapsed = !timeseriesGroup.value.collapsed"><span class="fa" [ngClass]="{'fa-chevron-right': timeseriesGroup.value.collapsed, 'fa-chevron-down': !timeseriesGroup.value.collapsed}"></span></div>
                 <div class="col">
-                    <div class="item-label"  *ngIf="filterCategory == 'phenomenon'">{{timeseriesGroup.value.label}}</div>
+                    <div class="item-label"  *ngIf="filterCategory == 'phenomenon'" >{{timeseriesGroup.value.label}}</div>
                     <div class="item-label"  *ngIf="filterCategory == 'category'">{{timeseriesGroup.value.label}}</div>
                     <div>
                         <div [ngbCollapse]="timeseriesGroup.value.collapsed">        
@@ -41,7 +41,7 @@
         <div class="item" *ngFor="let timeseriesGroup of (filterCategory == 'phenomenon' ? phenomenonList : categoryList)">
             <div class="container">
                 <div class="row">
-                    <div class="col-auto collapse-toggle"><span class="fa" [ngClass]="{'fa-chevron-right': timeseriesGroup.collapsed, 'fa-chevron-down': !timeseriesGroup.collapsed}" (click)="timeseriesGroup.collapsed = !timeseriesGroup.collapsed"></span></div>
+                    <div class="col-auto collapse-toggle" (click)="timeseriesGroup.collapsed = !timeseriesGroup.collapsed"><span class="fa" [ngClass]="{'fa-chevron-right': timeseriesGroup.collapsed, 'fa-chevron-down': !timeseriesGroup.collapsed}" ></span></div>
                     <div class="col">
                         <div class="item-label"  *ngIf="filterCategory == 'phenomenon'"><label>{{timeseriesGroup.label}}</label></div>
                         <div class="item-label"  *ngIf="filterCategory == 'category'"><label>{{timeseriesGroup.label}}</label></div>
