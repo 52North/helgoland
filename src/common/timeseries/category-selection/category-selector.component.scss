@@ -10,9 +10,6 @@
             margin-bottom: 0;
             word-break: break-all;
         }
-        .item-group{
-            padding-left: 20px;
-        }
     }
     .btn{
         flex: 1 0 0
@@ -20,5 +17,8 @@
     .collapse-toggle {
         width: 20px;
         text-align: center;
+    }
+    .item-label{
+        word-break: break-all;
     }
 }
