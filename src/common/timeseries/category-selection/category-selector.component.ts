@@ -120,6 +120,7 @@ export class CategorySelectorComponent implements OnInit {
       for (var _i = 0; _i < timeSeriesGroup.timeseries.length; _i++) {
         timeSeriesGroup.timeseries[_i].selected = timeSeriesGroup.selectAll;
       } 
+    this.updateSelection();
   }
 
   protected prepareResult(result: ExtendedTimeseries, selection: boolean) {
