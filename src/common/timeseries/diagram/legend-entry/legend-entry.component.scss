@@ -85,8 +85,11 @@
         cursor: pointer;
       }
     }
-    .legendItemLabel{
+    .legend-item-label{
       word-break: break-word;
+    }
+    .small-label{
+      margin-right: 5px;
     }
   }
 }

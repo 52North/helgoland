@@ -6,7 +6,7 @@
     <div [ngClass]="{'highlight': highlight}">
       <div class="container">
         <div class="row flex-nowrap">
-          <div class="legendItemLabel flex-grow-1" [ngStyle]="{'color': datasetOptions?.color}">
+          <div class="legend-item-label flex-grow-1" [ngStyle]="{'color': datasetOptions?.color}">
             <n52-label-mapper  class="legendItemheader" label="{{platformLabel}}" (click)="toggleSelection()"></n52-label-mapper>
             <n52-favorite-toggler [dataset]="dataset"></n52-favorite-toggler>
           </div>
@@ -23,23 +23,34 @@
           <span class="small-label">Springe zur letzten Messung</span>
         </div>
       </div>
-      <div class="container small-label">
+      <div class="container">
         <div class="row">
-            <n52-label-mapper label="{{phenomenonLabel}}"></n52-label-mapper>
-            <div class="small-label" *ngIf="categoryLabel != phenomenonLabel">
-                <n52-label-mapper class="pl-1" label="({{categoryLabel}})"></n52-label-mapper>
+            <n52-label-mapper class="small-label" label="{{phenomenonLabel}}"></n52-label-mapper>
+            <div class="small-label">
+              <!-- <n52-label-mapper label="{{phenomenonLabel}}"></n52-label-mapper> -->
+              <span *ngIf="uom">
+                <span>[</span>
+                <n52-label-mapper label="{{uom}}"></n52-label-mapper>
+                <span>]</span>
+              </span>
+            </div>
+            <div class="small-label">
+              <!-- <n52-label-mapper label="{{phenomenonLabel}}"></n52-label-mapper> -->
+              <span *ngIf="categoryLabel">
+                <span>in</span>
+                <n52-label-mapper class="pl-1" label="{{categoryLabel}}"></n52-label-mapper>
+              </span>
             </div>
           </div>
       </div>
       <div  [ngbCollapse]="isCollapsed">
-        <div class="small-label">
-          <!-- <n52-label-mapper label="{{phenomenonLabel}}"></n52-label-mapper> -->
+        <!-- <div class="small-label">
           <span *ngIf="uom">
             <span>[</span>
             <n52-label-mapper label="{{uom}}"></n52-label-mapper>
             <span>]</span>
           </span>
-        </div>
+        </div> -->
         <div class="small-label">
           <n52-label-mapper label="{{procedureLabel}}"></n52-label-mapper>
         </div>
