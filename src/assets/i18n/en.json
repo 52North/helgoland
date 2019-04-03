@@ -112,9 +112,11 @@
 			"station": "Station"
 		},
 		"map-selection": {
-			"dataset-selection-hint": "Please select one or more timeseries to displa in diagram",
+			"dataset-selection-hint": "Please select one or more timeseries to display in diagram",
 			"group-depth": "Depth",
 			"group-phenomenon": "Parameter",
+			"group-select-all-categories": "select all depths",
+			"group-select-all-phenomenons": "select all parameters",
 			"map": "Map",
 			"provider": "Provider",
 			"show-in-diagram": "Show {{value}} timeseries in diagram"

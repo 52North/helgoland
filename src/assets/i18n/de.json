@@ -115,6 +115,8 @@
 			"dataset-selection-hint": "Bitte wählen Sie eine oder mehrere Zeitreihen zur Darstellung aus",
 			"group-depth": "Tiefe",
 			"group-phenomenon": "Parameter",
+			"group-select-all-categories": "wähle alle Tiefen",
+			"group-select-all-phenomenons": "wähle alle Parameter",
 			"map": "Karte",
 			"provider": "Anbieter",
 			"show-in-diagram": "Zeige {{value}} Zeitreihen im Diagramm"

@@ -13,12 +13,14 @@ export class ExtendedTimeseries extends Timeseries {
 export class TimeSeriesGroup {
   public timeseries: ExtendedTimeseries[];
   public collapsed: boolean;
+  public selectAll: boolean;
   public label: string;
 
   constructor(timeseries: ExtendedTimeseries[], collapsed: boolean, label: string) {
     this.timeseries = timeseries;
     this.collapsed = collapsed;
     this.label = label;
+    this.selectAll = false;
   }
 }
 
@@ -97,9 +99,27 @@ export class CategorySelectorComponent implements OnInit {
     }
   }
 
-  public toggle(timeseries: ExtendedTimeseries) {
+  public toggle(timeseries: ExtendedTimeseries, timeSeriesGroup: TimeSeriesGroup) {
     timeseries.selected = !timeseries.selected;
     this.updateSelection();
+    this.checkSelectedAll(timeSeriesGroup);
+  }
+
+  protected checkSelectedAll(timeSeriesGroup: TimeSeriesGroup){
+    for (var _i = 0; _i < timeSeriesGroup.timeseries.length; _i++) {
+      if(timeSeriesGroup.timeseries[_i].selected === false){
+        timeSeriesGroup.selectAll = false;
+        return;
+      };
+    }
+    timeSeriesGroup.selectAll = true;
+  }
+
+  public toggleAll(timeSeriesGroup: TimeSeriesGroup) {
+    timeSeriesGroup.selectAll = !timeSeriesGroup.selectAll;
+      for (var _i = 0; _i < timeSeriesGroup.timeseries.length; _i++) {
+        timeSeriesGroup.timeseries[_i].selected = timeSeriesGroup.selectAll;
+      } 
   }
 
   protected prepareResult(result: ExtendedTimeseries, selection: boolean) {
