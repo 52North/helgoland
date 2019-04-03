@@ -15,11 +15,15 @@
         flex: 1 0 0
     }
     .collapse-toggle {
+        div, label{
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .collapse-icon {
         width: 20px;
         text-align: center;
-              &:hover {
-        cursor: pointer;
-      }
     }
     .item-label{
         word-break: break-all;

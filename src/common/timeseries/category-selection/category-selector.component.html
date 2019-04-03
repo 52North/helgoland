@@ -16,26 +16,29 @@
     <div *ngIf="!orderGroup">
     <div class="item" *ngFor="let timeseriesGroup of (filterCategory == 'phenomenon' ? phenomenonMap : categoryMap) | keyvalue ">
         <div class="container">
-            <div class="row">
-                <div class="col-auto collapse-toggle"  (click)="timeseriesGroup.value.collapsed = !timeseriesGroup.value.collapsed"><span class="fa" [ngClass]="{'fa-chevron-right': timeseriesGroup.value.collapsed, 'fa-chevron-down': !timeseriesGroup.value.collapsed}"></span></div>
+            <div class="row collapse-toggle" (click)="timeseriesGroup.value.collapsed = !timeseriesGroup.value.collapsed">
+                <div class="col-auto collapse-icon"><span class="fa" [ngClass]="{'fa-chevron-right': timeseriesGroup.value.collapsed, 'fa-chevron-down': !timeseriesGroup.value.collapsed}"></span></div>
                 <div class="col">
                     <div class="item-label"  *ngIf="filterCategory == 'phenomenon'" >{{timeseriesGroup.value.label}}</div>
                     <div class="item-label"  *ngIf="filterCategory == 'category'">{{timeseriesGroup.value.label}}</div>
-                    <div>
-                        <div [ngbCollapse]="timeseriesGroup.value.collapsed">        
-                            <div class="item" *ngFor="let timeseries of timeseriesGroup.value.timeseries">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="{{timeseries.id}}" (click)="toggle(timeseries, timeseriesGroup.value)" [(ngModel)]="timeseries.selected">
-                                    <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.category.label}}</label>
-                                    <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.phenomenon.label}}</label>
-                                </div> 
-                            </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-auto offset"></div>
+                <div class="col">
+                    <div [ngbCollapse]="timeseriesGroup.value.collapsed">        
+                        <div class="item" *ngFor="let timeseries of timeseriesGroup.value.timeseries">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="{{timeseriesGroup.value.label}}" (click)="toggleAll(timeseriesGroup.value)" [(ngModel)]="timeseriesGroup.value.selectAll">
-                                <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseriesGroup.value.label}}">{{'timeseries.map-selection.group-select-all-categories' | translate}}</label>
-                                <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseriesGroup.value.label}}">{{'timeseries.map-selection.group-select-all-phenomenons' | translate}}</label>
+                                <input type="checkbox" class="custom-control-input" id="{{timeseries.id}}" (click)="toggle(timeseries, timeseriesGroup.value)" [(ngModel)]="timeseries.selected">
+                                <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.category.label}}</label>
+                                <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.phenomenon.label}}</label>
                             </div> 
                         </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="{{timeseriesGroup.value.label}}" (click)="toggleAll(timeseriesGroup.value)" [(ngModel)]="timeseriesGroup.value.selectAll">
+                            <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseriesGroup.value.label}}">{{'timeseries.map-selection.group-select-all-categories' | translate}}</label>
+                            <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseriesGroup.value.label}}">{{'timeseries.map-selection.group-select-all-phenomenons' | translate}}</label>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -45,27 +48,30 @@
     <div  *ngIf="orderGroup">
         <div class="item" *ngFor="let timeseriesGroup of (filterCategory == 'phenomenon' ? phenomenonList : categoryList)">
             <div class="container">
-                <div class="row">
-                    <div class="col-auto collapse-toggle" (click)="timeseriesGroup.collapsed = !timeseriesGroup.collapsed"><span class="fa" [ngClass]="{'fa-chevron-right': timeseriesGroup.collapsed, 'fa-chevron-down': !timeseriesGroup.collapsed}" ></span></div>
+                <div class="row collapse-toggle" (click)="timeseriesGroup.collapsed = !timeseriesGroup.collapsed">
+                    <div class="col-auto collapse-icon" ><span class="fa" [ngClass]="{'fa-chevron-right': timeseriesGroup.collapsed, 'fa-chevron-down': !timeseriesGroup.collapsed}" ></span></div>
                     <div class="col">
                         <div class="item-label"  *ngIf="filterCategory == 'phenomenon'"><label>{{timeseriesGroup.label}}</label></div>
                         <div class="item-label"  *ngIf="filterCategory == 'category'"><label>{{timeseriesGroup.label}}</label></div>
-                        <div>
-                            <div [ngbCollapse]="timeseriesGroup.collapsed">        
-                                <div class="item" *ngFor="let timeseries of timeseriesGroup.timeseries">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="{{timeseries.id}}" (click)="toggle(timeseries, timeseriesGroup)" [(ngModel)]="timeseries.selected">
-                                        <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.category.label}}</label>
-                                        <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.phenomenon.label}}</label>
-                                    </div> 
-                                </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto offset"></div>
+                    <div class="col">
+                        <div [ngbCollapse]="timeseriesGroup.collapsed">        
+                            <div class="item" *ngFor="let timeseries of timeseriesGroup.timeseries">
                                 <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="{{timeseriesGroup.label}}" (click)="toggleAll(timeseriesGroup)" [(ngModel)]="timeseriesGroup.selectAll">
-                                        <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseriesGroup.label}}">{{'timeseries.map-selection.group-select-all-categories' | translate}}</label>
-                                        <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseriesGroup.label}}">{{'timeseries.map-selection.group-select-all-phenomenons' | translate}}</label>
+                                    <input type="checkbox" class="custom-control-input" id="{{timeseries.id}}" (click)="toggle(timeseries, timeseriesGroup)" [(ngModel)]="timeseries.selected">
+                                    <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.category.label}}</label>
+                                    <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.phenomenon.label}}</label>
                                 </div> 
                             </div>
-                        </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="{{timeseriesGroup.label}}" (click)="toggleAll(timeseriesGroup)" [(ngModel)]="timeseriesGroup.selectAll">
+                                <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseriesGroup.label}}">{{'timeseries.map-selection.group-select-all-categories' | translate}}</label>
+                                <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseriesGroup.label}}">{{'timeseries.map-selection.group-select-all-phenomenons' | translate}}</label>
+                            </div> 
+                         </div>
                     </div>
                 </div>
             </div>
