@@ -26,6 +26,7 @@ export class TimeseriesDiagramComponent implements OnInit {
     public data: Array<Data<IDataEntry>>;
     public timespan: Timespan;
     public selectedProvider: Service;
+    public timeriesView = "diagram";
 
     public diagramOptions: D3PlotOptions = {
         grid: true,

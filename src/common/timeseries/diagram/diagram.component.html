@@ -4,18 +4,21 @@
     <a routerLink="/timeseries/map-selection" class="alert-link">{{'timeseries.diagram.hint.select-timeseries-first' | translate}}</a>
   </div>
 </div>
-<div class="container-fluid" *ngIf="datasetIds.length > 0">
+<div class="container-fluid" [ngClass]="{ 'table-view': timeriesView === 'table'}" *ngIf="datasetIds.length > 0">
   <div class="row row-offcanvas row-offcanvas-right" [ngClass]="{active: legendToggled}">
     <div class="col-12 col-md-8 col-xl-9 diagram-wrapper">
       <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.legend.header' | translate}}</button>
-      <div class="diagram">
+
+      <n52-dataset-table *ngIf="timeriesView == 'table'" [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [timeInterval]="timespan" [datasetOptions]="datasetOptions"></n52-dataset-table>  
+      
+      <div *ngIf="timeriesView === 'diagram'" class="diagram">
         <n52-d3-timeseries-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions" [timeInterval]="timespan"
           [presenterOptions]="diagramOptions" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onGraphLoading($event)"></n52-d3-timeseries-graph>
         <div class="loading-overlay" *ngIf="graphLoading">
           <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
         </div>
       </div>
-      <div class="overview-diagram d-none d-md-block">
+      <div *ngIf="timeriesView === 'diagram'" class="overview-diagram d-none d-md-block">
         <n52-d3-overview-timeseries-graph [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions" [presenterOptions]="overviewOptions"
           [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)" (onContentLoading)="onOverviewLoading($event)"></n52-d3-overview-timeseries-graph>
         <div class="loading-overlay" *ngIf="overviewGraphLoading">
@@ -23,7 +26,21 @@
         </div>
       </div>
       <div class="control-bar">
-        <n52-custom-timespan-shift-selector [timespan]="timespan" (onTimespanChange)="timeChanged($event)" (onOpenTimeSettings)="openTimeSettings($event)"></n52-custom-timespan-shift-selector>
+        <div class="row">
+            <div class="col">
+                <n52-custom-timespan-shift-selector [timespan]="timespan" (onTimespanChange)="timeChanged($event)" (onOpenTimeSettings)="openTimeSettings($event)"></n52-custom-timespan-shift-selector>
+            </div>
+            <div class="col">
+                    <div class="btn-group btn-group-toggle d-flex justify-content-center row" ngbRadioGroup name="radioBasic" [(ngModel)]="timeriesView">
+                        <label ngbButtonLabel class="col btn-light">
+                            <input ngbButton type="radio" value="diagram"><span class="fa fa-line-chart"></span>
+                        </label>
+                        <label ngbButtonLabel class="col btn-light">
+                            <input ngbButton type="radio" value="table"><span class="fa fa-table"></span>
+                        </label>
+                    </div>
+            </div>
+        </div>
       </div>
     </div>
     <div class="col-9 col-md-4 col-xl-3 sidebar-offcanvas" id="sidebar">
