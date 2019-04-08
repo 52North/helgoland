@@ -66,7 +66,7 @@
                                     <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseries.id}}">{{timeseries.parameters.phenomenon.label}}</label>
                                 </div> 
                             </div>
-                            <div class="custom-control custom-checkbox">
+                            <div class="item custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="{{timeseriesGroup.label}}" (click)="toggleAll(timeseriesGroup)" [(ngModel)]="timeseriesGroup.selectAll">
                                 <label *ngIf="filterCategory == 'phenomenon'" class="custom-control-label" for="{{timeseriesGroup.label}}">{{'timeseries.map-selection.group-select-all-categories' | translate}}</label>
                                 <label *ngIf="filterCategory == 'category'" class="custom-control-label" for="{{timeseriesGroup.label}}">{{'timeseries.map-selection.group-select-all-phenomenons' | translate}}</label>
