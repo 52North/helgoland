@@ -25,78 +25,71 @@
       </div>
       <div class="container">
         <div class="row">
-            <n52-label-mapper class="small-label" label="{{phenomenonLabel}}"></n52-label-mapper>
-            <div class="small-label">
-              <!-- <n52-label-mapper label="{{phenomenonLabel}}"></n52-label-mapper> -->
-              <span *ngIf="uom">
-                <span>[</span>
-                <n52-label-mapper label="{{uom}}"></n52-label-mapper>
-                <span>]</span>
-              </span>
-            </div>
-            <div class="small-label">
-              <!-- <n52-label-mapper label="{{phenomenonLabel}}"></n52-label-mapper> -->
-              <span *ngIf="categoryLabel">
-                <span>in</span>
-                <n52-label-mapper class="pl-1" label="{{categoryLabel}}"></n52-label-mapper>
-              </span>
-            </div>
+          <n52-label-mapper class="small-label" label="{{phenomenonLabel}}"></n52-label-mapper>
+          <div class="small-label">
+            <span *ngIf="uom">
+              <span>[</span>
+              <n52-label-mapper label="{{uom}}"></n52-label-mapper>
+              <span>]</span>
+            </span>
           </div>
-      </div>
-      <div  [ngbCollapse]="isCollapsed">
-        <!-- <div class="small-label">
-          <span *ngIf="uom">
-            <span>[</span>
-            <n52-label-mapper label="{{uom}}"></n52-label-mapper>
-            <span>]</span>
-          </span>
-        </div> -->
-        <div class="small-label">
-          <n52-label-mapper label="{{procedureLabel}}"></n52-label-mapper>
+          <div class="small-label">
+            <span *ngIf="categoryLabel">
+              <span>in</span>
+              <n52-label-mapper class="pl-1" label="{{categoryLabel}}"></n52-label-mapper>
+            </span>
+          </div>
         </div>
-      <!-- <div class="small-label" *ngIf="categoryLabel != phenomenonLabel">
-        <n52-label-mapper label="{{categoryLabel}}"></n52-label-mapper>
-      </div> -->
-        <div class="legendicons" >
-          <span class="fa" [ngClass]="{'fa-chevron-down': !informationVisible, 'fa-chevron-up': informationVisible}"
-            (click)="toggleInformation(); $event.stopPropagation();"></span>
-          <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
-            (click)="toggleVisibility(); $event.stopPropagation();"></span>
-          <span class="fa fa-map-marker" (click)="showGeometry(); $event.stopPropagation();"></span>
-          <span class="fa fa-pencil" (click)="editDatasetOptions(); $event.stopPropagation();" [ngStyle]="{color: datasetOptions?.color}"></span>
-          <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();"></span>
-        </div>
-        <div class="collapseLegendEntry small-label" *ngIf="informationVisible">
-          <div class="firstLastEntry additionalLegendEntry" *ngIf="firstValue" (click)="jumpToFirstTimeStamp(); $event.stopPropagation();">
-            <span class="fa fa-chevron-right"></span>
-            <span>Erster Wert bei</span>
-            <span>{{firstValue.timestamp| date: 'short'}}</span>
-            <span class="hidden-medium">({{firstValue.value}} {{uom}})</span>
+        <div class="row" [ngbCollapse]="isCollapsed">
+          <div class="col legendicons" >
+            <span class="fa" [ngClass]="{'fa-chevron-down': !informationVisible, 'fa-chevron-up': informationVisible}"
+              (click)="toggleInformation(); $event.stopPropagation();" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.extended-infos-tooltip' | translate}}"></span>
+            <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
+              (click)="toggleVisibility(); $event.stopPropagation();" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.toggle-visibility-tooltip' | translate}}"></span>
+            <span class="fa fa-map-marker" (click)="showGeometry(); $event.stopPropagation();" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.map-marker-tooltip' | translate}}"></span>
+            <span class="fa fa-pencil" (click)="editDatasetOptions(); $event.stopPropagation();" [ngStyle]="{color: datasetOptions?.color}" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.style-edit-tooltip' | translate}}"></span>
+            <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.remove-timeseries-tooltip' | translate}}"></span>
           </div>
-          <div class="firstLastEntry additionalLegendEntry" *ngIf="lastValue" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
-            <span class="fa fa-chevron-right"></span>
-            <span>Letzter Wert bei</span>
-            <span>{{lastValue.timestamp| date: 'short'}}</span>
-            <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
-          </div>
-          <div *ngIf="dataset?.referenceValues">
-            <div class="additionalLegendEntry" *ngFor="let ref of dataset.referenceValues" (click)="toggleReferenceValue(ref); $event.stopPropagation();"
-              [ngClass]="{'selected': ref.visible}" [ngStyle]="{color: ref.color}">
+          <div class="w-100"></div>
+          <div class="collapseLegendEntry small-label" *ngIf="informationVisible">
+            <div class="firstLastEntry additionalLegendEntry" *ngIf="firstValue" (click)="jumpToFirstTimeStamp(); $event.stopPropagation();">
               <span class="fa fa-chevron-right"></span>
-              <span>{{ref.label}}</span>
+              <span>Erster Wert bei</span>
+              <span>{{firstValue.timestamp| date: 'short'}}</span>
+              <span class="hidden-medium">({{firstValue.value}} {{uom}})</span>
             </div>
+            <div class="firstLastEntry additionalLegendEntry" *ngIf="lastValue" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
+              <span class="fa fa-chevron-right"></span>
+              <span>Letzter Wert bei</span>
+              <span>{{lastValue.timestamp| date: 'short'}}</span>
+              <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
+            </div>
+            <!-- <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData">
+                <a href="http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/timeseries/95/getData.zip?generalize=false&timespan=2018-03-07T23%3A59%3A59%2B01%3A00%2F2018-03-08T23%3A59%3A59%2B01%3A00&locale=de&zip=true&bom=true">
+                  <span class="fa fa-download"></span>
+                  <span >Daten als CSV (Zip-Archiv)</span>
+                </a>
+            </div> -->
+            <div *ngIf="dataset?.referenceValues">
+              <div class="additionalLegendEntry" *ngFor="let ref of dataset.referenceValues" (click)="toggleReferenceValue(ref); $event.stopPropagation();"
+                [ngClass]="{'selected': ref.visible}" [ngStyle]="{color: ref.color}">
+                <span class="fa fa-chevron-right"></span>
+                <span>{{ref.label}}</span>
+              </div>
+            </div>
+            <!-- <div class="additionalLegendEntry" ng-click="$event.stopPropagation(); createExportCsv(timeseries)">
+                      <span class="glyphicon glyphicon-download"></span>
+                      <span translate="export.label"></span>
+                  </div> -->
+            <!-- <div class="additionalLegendEntry">
+                      <swc-procedure-metadata timeseries='timeseries'></swc-procedure-metadata>
+                      <swc-timeseries-raw-data-output timeseries='timeseries'></swc-timeseries-raw-data-output>
+                      <swc-sos-url timeseries='timeseries'></swc-sos-url>
+                  </div> -->
           </div>
-          <!-- <div class="additionalLegendEntry" ng-click="$event.stopPropagation(); createExportCsv(timeseries)">
-                    <span class="glyphicon glyphicon-download"></span>
-                    <span translate="export.label"></span>
-                </div> -->
-          <!-- <div class="additionalLegendEntry">
-                    <swc-procedure-metadata timeseries='timeseries'></swc-procedure-metadata>
-                    <swc-timeseries-raw-data-output timeseries='timeseries'></swc-timeseries-raw-data-output>
-                    <swc-sos-url timeseries='timeseries'></swc-sos-url>
-                </div> -->
         </div>
       </div>
+
     </div>
   </div>
 </div>

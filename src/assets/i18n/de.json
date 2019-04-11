@@ -82,6 +82,11 @@
 			},
 			"legend": {
 				"header": "Legende",
+				"extended-infos-tooltip": "Weitere Infos",
+				"toggle-visibility-tooltip": "Zeitreihe ausblenden",
+				"map-marker-tooltip": "Position zeigen",
+				"style-edit-tooltip": "Style bearbeiten",
+				"remove-timeseries-tooltip": "Zeitreihe entfernen",
 				"show-geometry-header": "Position der Station",
 				"style-edit": {
 					"generalize": "Daten generalisieren",
