@@ -1,0 +1,17 @@
+<div class="mt-3">
+  <ngb-alert *ngIf="showSuccessMessage" type="success" (close)="showSuccessMessage = false">
+      {{'service-provider-manager.success' | translate}}
+  </ngb-alert>
+  <ngb-alert *ngIf="showErrorMessage" type="danger" (close)="showErrorMessage = false">
+      {{'service-provider-manager.error' | translate}}
+  </ngb-alert>
+  <ngb-alert *ngIf="showWarningMessage" type="warning" (close)="showWarningMessage = false">
+      {{'service-provider-manager.warning' | translate}}
+  </ngb-alert>
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="{{'service-provider-manager.new-provider.placeholder' | translate}}" [(ngModel)]="providerUrl">
+    <span class="input-group-btn">
+      <button class="btn btn-primary" type="button" (click)="addProvider(providerUrl)"> {{'service-provider-manager.new-provider.add' | translate}}</button>
+    </span>
+  </div>
+</div>  

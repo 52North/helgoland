@@ -75,6 +75,15 @@
 		"stations": "Stations",
 		"timeseries": "Timeseries"
 	},
+	"service-provider-manager": {
+		"error": "Could not load provider with this url",
+		"success": "New provider added succesfully",
+		"warning": "Provider already exists",
+		"new-provider": {
+			"placeholder": "Add new provider by URL ...",
+			"add": "Add"
+		}
+	},
 	"timeseries": {
 		"diagram": {
 			"hint": {

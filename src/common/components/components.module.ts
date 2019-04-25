@@ -7,7 +7,7 @@ import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandPermalinkModule } from '@helgoland/permalink';
 import { HelgolandSelectorModule } from '@helgoland/selector';
 import { HelgolandTimeModule } from '@helgoland/time';
-import { NgbAccordionModule, NgbDatepickerModule, NgbDropdownModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbAlertModule, NgbDatepickerModule, NgbDropdownModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -19,6 +19,7 @@ import { CustomServiceSelectorComponent } from './custom-service-selector/custom
 import {
   CustomTimespanShiftSelectorComponent,
 } from './custom-timespan-shift-selector/custom-timespan-shift-selector.component';
+import { CustomServiceProviderManagerComponent } from './custom-service-provider-manager/custom-service-provider-manager.component';
 import { LocalSelectorImplComponent } from './local-selector/local-selector.component';
 import { LocateButtonComponent } from './locate-button/locate-button.component';
 import { ModalGeometryViewerComponent } from './modal-geometry-viewer/modal-geometry-viewer.component';
@@ -45,6 +46,7 @@ import { HelgolandCoreModule } from '@helgoland/core';
     HelgolandSelectorModule,
     HelgolandTimeModule,
     NgbAccordionModule,
+    NgbAlertModule,
     NgbDatepickerModule,
     NgbDropdownModule,
     NgbTimepickerModule,
@@ -56,6 +58,7 @@ import { HelgolandCoreModule } from '@helgoland/core';
     CustomMultiServiceFilterSelectorComponent,
     CustomServiceSelectorComponent,
     CustomTimespanShiftSelectorComponent,
+    CustomServiceProviderManagerComponent,
     InMailComponent,
     InNewWindowComponent,
     LocalSelectorImplComponent,
@@ -76,6 +79,7 @@ import { HelgolandCoreModule } from '@helgoland/core';
   exports: [
     CustomListSelectorComponent,
     CustomServiceSelectorComponent,
+    CustomServiceProviderManagerComponent,
     CustomTimespanShiftSelectorComponent,
     LocalSelectorImplComponent,
     LocateButtonComponent,

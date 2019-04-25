@@ -75,6 +75,15 @@
 		"stations": "Stationen",
 		"timeseries": "Zeitreihen"
 	},
+	"service-provider-manager": {
+		"error": "Provider zu dieser URL konnte nicht hinzugefügt werden",
+		"success": "Neuer Provider wurde erfolgreich hinzugefügt",
+		"warning": "Provider ist bereits vorhanden",
+		"new-provider": {
+			"placeholder": "URL für neuen Provider hinzufügen ...",
+			"add": "Hinzufügen"
+		}
+	},
 	"timeseries": {
 		"diagram": {
 			"hint": {

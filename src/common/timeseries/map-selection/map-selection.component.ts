@@ -45,6 +45,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   public providerBlacklist: Array<BlacklistedService>;
   public providerFilter: ParameterFilter;
   public selectedService: Service;
+  public addedService: Service;
 
   public stationFilter: ParameterFilter;
   public phenomenonFilter: ParameterFilter;
@@ -55,6 +56,9 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
 
   private defaultPlatformTypes = PlatformTypes.stationary;
   private defaultValueTypes = ValueTypes.quantity;
+
+  private showErrorMessage= false;
+
 
   constructor(
     private timeseriesService: TimeseriesService,
@@ -69,6 +73,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
     this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
     this.providerFilter = { valueTypes: ValueTypes.quantity };
+    // this.
   }
 
   public ngAfterViewInit(): void {
@@ -92,6 +97,10 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     const id = 'selectByMap';
     this.tabset.tabs.find(entry => entry.id === id).disabled = false;
     this.tabset.select(id);
+  }
+
+  public serviceAdded(service: Service) {
+    this.addedService = service;
   }
 
   public onStationSelected(platform: Platform) {
