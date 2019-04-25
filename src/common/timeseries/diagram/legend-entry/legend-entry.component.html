@@ -64,12 +64,12 @@
               <span>{{lastValue.timestamp| date: 'short'}}</span>
               <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
             </div>
-            <!-- <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData">
-                <a href="http://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/timeseries/95/getData.zip?generalize=false&timespan=2018-03-07T23%3A59%3A59%2B01%3A00%2F2018-03-08T23%3A59%3A59%2B01%3A00&locale=de&zip=true&bom=true">
+            <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData">
+                <a href="{{downloadLink}}">
                   <span class="fa fa-download"></span>
                   <span >Daten als CSV (Zip-Archiv)</span>
                 </a>
-            </div> -->
+            </div>
             <div *ngIf="dataset?.referenceValues">
               <div class="additionalLegendEntry" *ngFor="let ref of dataset.referenceValues" (click)="toggleReferenceValue(ref); $event.stopPropagation();"
                 [ngClass]="{'selected': ref.visible}" [ngStyle]="{color: ref.color}">
