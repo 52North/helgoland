@@ -29,9 +29,10 @@ export class CustomServiceProviderManagerComponent  {
   @Output()
   public onServiceAdded: EventEmitter<Service> = new EventEmitter<Service>();
 
-  private showErrorMessage = false;
-  private showSuccessMessage = false;
-  private showWarningMessage = false;
+  public showErrorMessage = false;
+  public showSuccessMessage = false;
+  public showWarningMessage = false;
+  public providerUrl: string;
 
   constructor(
     protected serviceSelectorService: ServiceSelectorService,
