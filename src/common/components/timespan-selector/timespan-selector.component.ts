@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { Timespan } from '@helgoland/core';
-import { NgbDatepickerI18n, NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerI18n, NgbDateStruct, NgbTimeStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { CustomDateParserFormatter } from "./timespan-selector-date-parser-formatter.service"
 
 type I18n_Dict = {[key: string]: any}
 
@@ -61,7 +62,8 @@ export class LocalizedDatepickerI18n extends NgbDatepickerI18n {
   selector: 'n52-timespan-selector',
   templateUrl: './timespan-selector.component.html',
   styleUrls: ['./timespan-selector.component.scss'],
-  providers: [{provide: NgbDatepickerI18n, useClass: LocalizedDatepickerI18n}]
+  providers: [{provide: NgbDatepickerI18n, useClass: LocalizedDatepickerI18n},
+    {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter}]
 })
 export class TimespanSelectorComponent implements OnInit {
 
