@@ -5,7 +5,7 @@
   </button>
 </div>
 <div class="modal-body">
-  <h5>Pre-defined</h5>
+  <h5>{{'timeseries.timespan-selector.pre-defined' | translate}}</h5>
   <n52-timespan-button predefined="last_hour" label="{{'timeseries.timespan-selector.last_hour' | translate}}" (onTimespanSelected)="tempTimespan = $event; applyNewTimespan();"></n52-timespan-button>
   <n52-timespan-button predefined="today" label="{{'timeseries.timespan-selector.today' | translate}}" (onTimespanSelected)="tempTimespan = $event; applyNewTimespan();"></n52-timespan-button>
   <n52-timespan-button predefined="yesterday" label="{{'timeseries.timespan-selector.yesterday' | translate}}" (onTimespanSelected)="tempTimespan = $event; applyNewTimespan();"></n52-timespan-button>
@@ -16,7 +16,7 @@
   <n52-timespan-button predefined="last_month" label="{{'timeseries.timespan-selector.last_month' | translate}}" (onTimespanSelected)="tempTimespan = $event; applyNewTimespan();"></n52-timespan-button>
   <n52-timespan-button predefined="current_year" label="{{'timeseries.timespan-selector.current_year' | translate}}" (onTimespanSelected)="tempTimespan = $event; applyNewTimespan();"></n52-timespan-button>
   <n52-timespan-button predefined="last_year" label="{{'timeseries.timespan-selector.last_year' | translate}}" (onTimespanSelected)="tempTimespan = $event; applyNewTimespan();"></n52-timespan-button>
-  <h5 style="margin-top:15px">Custom</h5>
+  <h5 style="margin-top:15px">{{'timeseries.timespan-selector.custom' | translate}}</h5>
   <n52-timespan-selector [timespan]="timespan" (timespanChange)="noteChangedTimespan($event)" (invalidTimespanSelected)="noteInvalidTimespan($event)"></n52-timespan-selector>
 </div>
 <div class="modal-footer">

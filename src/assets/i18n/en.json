@@ -134,13 +134,18 @@
 			"current_month": "Last Month",
 			"current_week": "Last Week",
 			"current_year": "Last Year",
+			"custom": "Custom",
+			"from-date": "Start",
 			"header": "Select Timespan",
+			"invalid-timespan-error": "Invalid timespan: start must be BEFORE end",
 			"last_hour": "Last Hour",
 			"last_month": "Last Month",
 			"last_week": "Last Week",
 			"last_year": "Last Year",
+			"pre-defined": "Pre defined",
 			"today": "Today",
 			"today_yesterday": "Today & Yesterday",
+			"to-date": "End",
 			"yesterday": "Yesterday"
 		}
 	},

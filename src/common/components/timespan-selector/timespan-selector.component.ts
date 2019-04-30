@@ -81,6 +81,7 @@ export class TimespanSelectorComponent implements OnInit {
   public dateTo: NgbDateStruct;
   public timeTo: NgbTimeStruct;
   public isValidTimespan: boolean;
+  public showErrorMessage = true;
 
   public ngOnInit() {
     const from = new Date(this.timespan.from);
@@ -97,6 +98,13 @@ export class TimespanSelectorComponent implements OnInit {
     this.timeTo = {
       hour: to.getHours(), minute: to.getMinutes(), second: to.getSeconds()
     };
+
+    const dateTimeFrom = new Date(this.dateFrom.year, this.dateFrom.month - 1, this.dateFrom.day,
+      this.timeFrom.hour, this.timeFrom.minute, this.timeFrom.second);
+    const dateTimeTo = new Date(this.dateTo.year, this.dateTo.month - 1, this.dateTo.day,
+      this.timeTo.hour, this.timeTo.minute, this.timeTo.second);
+
+    this.validateTimespan(dateTimeFrom, dateTimeTo);
   }
 
   public timespanChanged() {
@@ -105,13 +113,21 @@ export class TimespanSelectorComponent implements OnInit {
     const dateTimeTo = new Date(this.dateTo.year, this.dateTo.month - 1, this.dateTo.day,
       this.timeTo.hour, this.timeTo.minute, this.timeTo.second);
 
+      this.validateTimespan(dateTimeFrom, dateTimeTo);
+
+    
+  }
+
+  public validateTimespan(dateTimeFrom: Date, dateTimeTo: Date){
     this.isValidTimespan = (dateTimeFrom < dateTimeTo);
 
     if (this.isValidTimespan) {
+      this.showErrorMessage = false;
       this.timespan = new Timespan(dateTimeFrom.getTime(), dateTimeTo.getTime());
       this.timespanChange.emit(this.timespan);
       console.log(this.timespan);
     } else {
+      this.showErrorMessage = true;
       this.invalidTimespanSelected.emit(true);
       console.log('Invalid timespan selected!');
     }

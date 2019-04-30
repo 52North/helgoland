@@ -139,13 +139,18 @@
 			"current_month": "Derzeitiger Monat",
 			"current_week": "Derzeitige Woche",
 			"current_year": "Derzeitiges Jahr",
+			"custom": "Freidefiniert",
+			"from-date": "Beginn",
 			"header": "Zeitraumauswahl",
+			"invalid-timespan-error": "Ungültige Zeitspanne: Beginn muss VOR dem Ende liegen",
 			"last_hour": "Letzte Stunde",
 			"last_month": "Letzter Monat",
 			"last_week": "Letzte Woche",
 			"last_year": "Letztes Jahr",
+			"pre-defined": "Vordefiniert",
 			"today": "Heute",
 			"today_yesterday": "Heute & Gestern",
+			"to-date": "Ende",
 			"yesterday": "Gestern"
 		}
 	},

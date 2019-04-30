@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row timespanpicker">
-    <div class="col datetimepicker">
-      <h6>From</h6>
-      <div class="container">
+    <div class="datetimepicker">
+      <h6>{{'timeseries.timespan-selector.from-date' | translate}}</h6>
+      <div>
         <div class="row">
           <div class="col input-group align-items-center">
             <input class="form-control" placeholder="yyyy-mm-dd" name="dp-from" readonly ngbDatepicker #datepickerFrom="ngbDatepicker" [(ngModel)]="dateFrom" (ngModelChange)="timespanChanged()" [startDate]="{year: dateFrom.year, month: dateFrom.month}">
@@ -18,9 +18,9 @@
         </div>
       </div>
     </div>
-    <div class="col datetimepicker">
-      <h6>To</h6>
-      <div class="container">
+    <div class="datetimepicker">
+      <h6>{{'timeseries.timespan-selector.to-date' | translate}}</h6>
+      <div>
         <div class="row">
           <div class="col input-group align-items-center">
             <input class="form-control" placeholder="yyyy-mm-dd" name="dp-To" readonly ngbDatepicker #datepickerTo="ngbDatepicker" [(ngModel)]="dateTo" (ngModelChange)="timespanChanged()" [startDate]="{year: dateTo.year, month: dateTo.month}">
@@ -38,10 +38,9 @@
       <!-- TODO-CF: Provide easy "resets" for time (e.g. midnight, noon etc., or at least seconds=00 and minutes=00) -->
     </div>
   </div>
-
-  <div class="row invalid-notice" [style.visibility]="isValidTimespan ? 'hidden' : 'visible'">
-    <div class="col">
-      Invalid Timespan: "From" must be BEFORE "To"!
-    </div>
+  <div class="row">
+      <ngb-alert class="col" *ngIf="showErrorMessage" type="danger" (close)="showErrorMessage = false">
+          {{'timeseries.timespan-selector.invalid-timespan-error' | translate}}
+      </ngb-alert>
   </div>
 </div>
