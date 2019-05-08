@@ -4,26 +4,24 @@
   </div>
   <div>
     <div [ngClass]="{'highlight': highlight}">
-      <div class="container">
+      <div class="col">
         <div class="row flex-nowrap">
+          <div class="collapse-toggle"><span class="fa" [ngClass]="{'fa-chevron-right': isCollapsed, 'fa-chevron-down': !isCollapsed}" (click)="isCollapsed = !isCollapsed"></span></div>
           <div class="legend-item-label flex-grow-1" [ngStyle]="{'color': datasetOptions?.color}">
             <n52-label-mapper  class="legendItemheader" label="{{platformLabel}}" (click)="toggleSelection()"></n52-label-mapper>
             <n52-favorite-toggler [dataset]="dataset"></n52-favorite-toggler>
+          </div>   
+        </div>
+        <div class="noDataWarning firstLastEntry" *ngIf="!hasData">
+          <div>
+            <span class="fa fa-exclamation-triangle red"></span>
+            <span class="small-label">Keine Daten verfügbar</span>
           </div>
-          <div class="collapse-toggle"><span class="fa" [ngClass]="{'fa-chevron-right': isCollapsed, 'fa-chevron-down': !isCollapsed}" (click)="isCollapsed = !isCollapsed"></span></div>
+          <div class="additionalLegendEntry" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
+            <span class="fa fa-chevron-right"></span>
+            <span class="small-label">Springe zur letzten Messung</span>
+          </div>
         </div>
-      </div>
-      <div class="noDataWarning firstLastEntry" *ngIf="!hasData">
-        <div>
-          <span class="fa fa-exclamation-triangle red"></span>
-          <span class="small-label">Keine Daten verfügbar</span>
-        </div>
-        <div class="additionalLegendEntry" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
-          <span class="fa fa-chevron-right"></span>
-          <span class="small-label">Springe zur letzten Messung</span>
-        </div>
-      </div>
-      <div class="container">
         <div class="row">
           <n52-label-mapper class="small-label" label="{{phenomenonLabel}}"></n52-label-mapper>
           <div class="small-label">
@@ -42,7 +40,7 @@
         </div>
         <div class="row" [ngbCollapse]="isCollapsed">
           <div class="col legendicons" >
-            <span class="fa" [ngClass]="{'fa-chevron-down': !informationVisible, 'fa-chevron-up': informationVisible}"
+            <span class="fa fa-info" [ngClass]="{'item-inactive': !informationVisible, 'item-active': informationVisible}"
               (click)="toggleInformation(); $event.stopPropagation();" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.extended-infos-tooltip' | translate}}"></span>
             <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
               (click)="toggleVisibility(); $event.stopPropagation();" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.toggle-visibility-tooltip' | translate}}"></span>
@@ -65,10 +63,10 @@
               <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
             </div>
             <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData">
-                <a href="{{downloadLink}}">
-                  <span class="fa fa-download"></span>
-                  <span >Daten als CSV (Zip-Archiv)</span>
-                </a>
+              <a href="{{downloadLink}}">
+                <span class="fa fa-download"></span>
+                <span >Daten als CSV (Zip-Archiv)</span>
+              </a>
             </div>
             <div *ngIf="dataset?.referenceValues">
               <div class="additionalLegendEntry" *ngFor="let ref of dataset.referenceValues" (click)="toggleReferenceValue(ref); $event.stopPropagation();"
@@ -89,7 +87,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

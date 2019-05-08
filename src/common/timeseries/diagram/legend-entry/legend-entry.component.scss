@@ -5,6 +5,17 @@
 }
 
 :host() {
+  .item-active {
+    background: #dae0e5;
+    width: 30px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  .item-inactive {
+    width: 30px;
+    text-align: center;
+    border-radius: 8px;
+  }
   .legendItem {
     background-color: white;
     padding: 5px;
@@ -36,6 +47,7 @@
       .delete {
         z-index: 5;
       }
+
     }
     .noDataWarning {
       border: red solid 2px;
