@@ -89,6 +89,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
   public providerBlacklist: Array<BlacklistedService>;
   public providerFilter: ParameterFilter;
   public selectedService: Service;
+  public addedService: Service;
 
   public selectedProviderList: Array<Provider>;
 
@@ -129,6 +130,10 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
     const id = 'selectByCategory';
     this.tabset.tabs.find(entry => entry.id === id).disabled = false;
     this.tabset.select(id);
+  }
+
+  public serviceAdded(service: Service) {
+    this.addedService = service;
   }
 
   public onDatasetSelected(datasetList: Array<IDataset>) {

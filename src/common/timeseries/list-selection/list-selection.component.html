@@ -3,10 +3,12 @@
     <ngb-tab id="selectProvider">
       <ng-template ngbTabTitle>{{'timeseries.list-selection.provider' | translate}}</ng-template>
       <ng-template ngbTabContent>
-        <div class="scrollable container">
+        <div class="scrollable border">
           <n52-custom-service-selector [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist" [selectedService]="selectedService"
-            [supportStations]="true" [showUnresolvableServices]="true" [filter]="providerFilter" (onServiceSelected)="providerSelected($event)"></n52-custom-service-selector>
+            [supportStations]="true" [showUnresolvableServices]="true" [filter]="providerFilter" [addedService]="addedService" (onServiceSelected)="providerSelected($event)"></n52-custom-service-selector>
         </div>
+        <n52-custom-service-provider-manager  [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist" [services]="services"
+        [supportStations]="true" [filter]="providerFilter" (onServiceAdded)="serviceAdded($event)"></n52-custom-service-provider-manager>
       </ng-template>
     </ngb-tab>
     <ngb-tab id="selectByCategory" [disabled]="selectedService == undefined">
