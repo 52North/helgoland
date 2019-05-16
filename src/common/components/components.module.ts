@@ -32,6 +32,7 @@ import { ToClipboardComponent } from './permalink/to-clipboard/to-clipboard.comp
 import { TimespanSelectorComponent } from './timespan-selector/timespan-selector.component';
 import { CustomMinMaxRangeComponent } from './custom-min-max-range/custom-min-max-range.component';
 import { HelgolandCoreModule } from '@helgoland/core';
+import {CustomTimespanButtonComponent} from './custom-timespan-button/custom-timespan-button.component';
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import { HelgolandCoreModule } from '@helgoland/core';
     CustomServiceSelectorComponent,
     CustomTimespanShiftSelectorComponent,
     CustomServiceProviderManagerComponent,
+    CustomTimespanButtonComponent,
     InMailComponent,
     InNewWindowComponent,
     LocalSelectorImplComponent,
@@ -84,6 +86,7 @@ import { HelgolandCoreModule } from '@helgoland/core';
     LocalSelectorImplComponent,
     LocateButtonComponent,
     PermalinkButtonComponent,
+    CustomTimespanButtonComponent
   ]
 })
 export class ComponentsModule { }

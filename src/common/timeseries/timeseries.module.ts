@@ -27,7 +27,6 @@ import { TimeseriesRouter } from './services/timeseries-router.service';
 import { TimeseriesService } from './services/timeseries.service';
 import { TimeseriesTableComponent } from './table/table.component';
 import { CategorySelectorComponent } from './category-selection/category-selector.component';
-import { ExtendedStationMapSelectorComponent } from './extended-station-map-selector/extended-station-map-selector.component';
 
 
 export const timeseriesRoutes: Routes = [
@@ -106,8 +105,7 @@ export const nestedTimeseriesRoutes: Routes = [
         TimeseriesMapSelectionComponent,
         TimeseriesFavoritesComponent,
         LegendEntryComponent,
-        CategorySelectorComponent,
-        ExtendedStationMapSelectorComponent
+        CategorySelectorComponent
     ],
     providers: [
         TimeseriesService,
