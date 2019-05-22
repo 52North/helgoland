@@ -5,6 +5,7 @@ import {
   Timeseries,
   Phenomenon
 } from "@helgoland/core";
+import { TimeseriesService } from './../services/timeseries.service';
 
 export class ExtendedTimeseries extends Timeseries {
   public selected: boolean;
@@ -67,7 +68,10 @@ export class CategorySelectorComponent implements OnInit {
 
   public isCollapsed = true; 
   
-  constructor(protected apiInterface: DatasetApiInterface) {}
+  constructor(
+    protected apiInterface: DatasetApiInterface,
+    private timeseriesService: TimeseriesService
+    ) {}
 
   public ngOnInit() {
     if (this.station) {
@@ -126,12 +130,16 @@ export class CategorySelectorComponent implements OnInit {
   protected prepareResult(result: ExtendedTimeseries, selection: boolean) {
     result.selected = selection;
 
+    let group: TimeSeriesGroup;
     if(this.orderGroup){
-      this.prepareOrderedCategoryGroup(result, this.sortAscending);
-      this.prepareOrderedPhenomenonGroup(result, this.sortAscending);  
+      group = this.prepareOrderedCategoryGroup(result, this.sortAscending);
+      group = this.prepareOrderedPhenomenonGroup(result, this.sortAscending);  
     }else{
-      this.preparePhenomenonGroup(result);
-      this.prepareCategoryGroup(result);
+      group = this.preparePhenomenonGroup(result);
+      group = this.prepareCategoryGroup(result);
+    }
+    if(this.timeseriesService.datasetIds.includes(result.internalId)){
+      this.toggle(result, group);
     }
 
     this.timeseriesList.push(result);
@@ -144,15 +152,17 @@ export class CategorySelectorComponent implements OnInit {
    * grouped by Phenomenons
    * @param result {Timeseries} result to insert
    */
-  private preparePhenomenonGroup(result: ExtendedTimeseries) {
+  private preparePhenomenonGroup(result: ExtendedTimeseries): TimeSeriesGroup {
+    let group: TimeSeriesGroup;
     const key = result.parameters.phenomenon.id;
-    const collection = this.phenomenonMap.get(key);
-    if (!collection) {
-      let group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
+    group = this.phenomenonMap.get(key);
+    if (!group) {
+      group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
       this.phenomenonMap.set(key, group);
     } else {
-      collection.timeseries.push(result);
+      group.timeseries.push(result);
     }
+    return group;
   }
 
   /**
@@ -160,15 +170,17 @@ export class CategorySelectorComponent implements OnInit {
    * grouped by Categories
    * @param result {Timeseries} result to insert
    */
-  private prepareCategoryGroup(result: ExtendedTimeseries) {
+  private prepareCategoryGroup(result: ExtendedTimeseries): TimeSeriesGroup {
+    let group: TimeSeriesGroup;
     const key = result.parameters.category.id;
-    const collection = this.categoryMap.get(key);
-    if (!collection) {
-      let group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
+    group = this.categoryMap.get(key);
+    if (!group) {
+      group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
       this.categoryMap.set(key, group);
     } else {
-      collection.timeseries.push(result);
+      group.timeseries.push(result);
     }
+    return group;
   }
 
   /**
@@ -177,24 +189,26 @@ export class CategorySelectorComponent implements OnInit {
    * @param result {Timeseries} result to insert
    * @param asc the ordering strategy (true for ascending ordering, false for descending ordering)
    */
-  private prepareOrderedCategoryGroup(result: ExtendedTimeseries, asc: Boolean) {
+  private prepareOrderedCategoryGroup(result: ExtendedTimeseries, asc: Boolean): TimeSeriesGroup {
     const length = this.categoryList.length;
     const resValue = parseInt(result.parameters.category.label.slice(0, -1));
       for (var _i = 0; _i < length; _i++) {
         let actValue = parseInt(this.categoryList[_i].label.slice(0, -1));
         if(resValue === actValue){
-          this.categoryList[_i].timeseries.push(result);
-          return;
+          let group = this.categoryList[_i];
+          group.timeseries.push(result);
+          return group;
         }
         // check if result values should be sorted ascending or descending
         if(asc ? resValue < actValue : resValue > actValue){
           let group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
           this.categoryList.splice(_i, 0, group);
-          return;
+          return group;
         }
       }
       let group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
       this.categoryList.push(group);
+      return group;
   }
 
     /**
@@ -203,7 +217,7 @@ export class CategorySelectorComponent implements OnInit {
    * @param result the Timeseries result to inster
    * @param asc the ordering strategy (true for ascending ordering, false for descending ordering)
    */
-  private prepareOrderedPhenomenonGroup(result: ExtendedTimeseries, asc: Boolean) {
+  private prepareOrderedPhenomenonGroup(result: ExtendedTimeseries, asc: Boolean): TimeSeriesGroup {
     const length = this.phenomenonList.length;
     const resValue = parseInt(result.parameters.category.label.slice(0, -1));
       for (var _i = 0; _i < length; _i++) {
@@ -212,21 +226,25 @@ export class CategorySelectorComponent implements OnInit {
           for(var _j = 0; _j < timeseriesLength; _j++){
             let actValue = parseInt(this.phenomenonList[_i].timeseries[_j].parameters.category.label.slice(0, -1));
             if(resValue === actValue){
+              let group = this.phenomenonList[_i];
               this.phenomenonList[_i].timeseries.push(result);
-              return;
+              return group;
             }
             // check if result values should be sorted ascending or descending
             if(asc ? resValue < actValue : resValue > actValue){
-              this.phenomenonList[_i].timeseries.splice(_j, 0, result);
-              return;
+              let group = this.phenomenonList[_i];
+              group.timeseries.splice(_j, 0, result);
+              return group;
             }
-            this.phenomenonList[_i].timeseries.push(result);
-            return;
+            let group = this.phenomenonList[_i];
+            group.timeseries.push(result);
+            return group;
           }
         }
       }
       let group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
       this.phenomenonList.push(group);
+      return group;
   }
 
 
