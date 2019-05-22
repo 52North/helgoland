@@ -1,6 +1,7 @@
 import { Component, SimpleChanges } from '@angular/core';
 import { Timespan } from '@helgoland/core';
 import { TimeseriesEntryComponent } from '@helgoland/depiction';
+import { LangChangeEvent} from '@ngx-translate/core';
 import moment from 'moment';
 
 @Component({
@@ -20,8 +21,7 @@ export class LegendEntryComponent extends TimeseriesEntryComponent {
     super.ngOnInit();
     this.prepareRequestParams();
     let timespan = this.createRequestTimespan(this.timeInterval);
-    this.updateRequestParam('timespan', timespan);
-    this.createCsvLink(this.internalId.id, this.internalId.url);
+    this.updateCsvLink('timespan', timespan);
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -29,10 +29,11 @@ export class LegendEntryComponent extends TimeseriesEntryComponent {
     if (changes.timeInterval) {
       if(this.internalId){
         let timespan = this.createRequestTimespan(this.timeInterval);
-        this.updateRequestParam('timespan', timespan);
-        this.createCsvLink(this.internalId.id, this.internalId.url);
+        this.updateCsvLink('timespan', timespan);
       }
     }
+    this.translateSrvc.onLangChange.subscribe((langChangeEvent: LangChangeEvent) => this.onLanguageChanged(langChangeEvent));
+
   }
 
   private createCsvLink(id: string, apiUrl: string) {
@@ -62,12 +63,24 @@ export class LegendEntryComponent extends TimeseriesEntryComponent {
   private prepareRequestParams() {
     this._requestParams = new Map();
     this._requestParams.set('generalize', 'false');
-    this._requestParams.set('locale', 'de');
+    this._requestParams.set('locale', this.translateSrvc.currentLang);
     this._requestParams.set('zip', 'true');
     this._requestParams.set('bom', 'true');
   }
 
   private updateRequestParam(key: string, value: string){
       this._requestParams.set(key, value);
+  }
+
+  private updateCsvLink(key: string, value: string){
+    this.updateRequestParam(key, value);
+    this.createCsvLink(this.internalId.id, this.internalId.url);
+  }
+
+  protected onLanguageChanged(langChangeEvent: LangChangeEvent): void {
+    if (this.internalId) {
+        this.loadDataset(langChangeEvent.lang);
+    }
+    this.updateCsvLink('locale', this.translateSrvc.currentLang);
   }
  }
