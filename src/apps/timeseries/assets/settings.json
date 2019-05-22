@@ -44,7 +44,7 @@
     },
     {
       "name": "BSH-Timeseries",
-      "url": "http://service25.eggits.net/52n-sos-bsh-webapp/api/"
+      "url": "https://nexos.demo.52north.org/52n-sos-bsh-webapp/api/"
     }
   ],
   "languages": [
