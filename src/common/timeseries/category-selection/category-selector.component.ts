@@ -196,6 +196,15 @@ export class CategorySelectorComponent implements OnInit {
         let actValue = parseFloat(this.categoryList[_i].label.slice(0, -1));
         if(resValue === actValue){
           let group = this.categoryList[_i];
+          const tsLength = group.timeseries.length;
+          // Determine position to insert the phenomenon
+          // regarding the lexigraphical order
+          for (var _j = 0; _j < tsLength; _j++){
+            if(result.parameters.phenomenon.label < group.timeseries[_j].parameters.phenomenon.label){
+              group.timeseries.splice(_j, 0, result);
+              return group;
+            }
+          }
           group.timeseries.push(result);
           return group;
         }
@@ -239,6 +248,13 @@ export class CategorySelectorComponent implements OnInit {
           }
           let group = this.phenomenonList[_i];
           group.timeseries.push(result);
+          return group;
+        }
+        // if Phenomenon group does not exist, determine position
+        // to insert new group regarding the lexigraphical order
+        if(result.parameters.phenomenon.label < this.phenomenonList[_i].label){
+          let group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
+          this.phenomenonList.splice(_i, 0, group);
           return group;
         }
       }
