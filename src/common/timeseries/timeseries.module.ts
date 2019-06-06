@@ -28,6 +28,7 @@ import { TimeseriesService } from './services/timeseries.service';
 import { TimeseriesTableComponent } from './table/table.component';
 import { CategorySelectorComponent } from './category-selection/category-selector.component';
 import { ExtendedStationMapSelectorComponent } from './extended-station-map-selector/extended-station-map-selector.component';
+import { CustomServiceProviderCache } from './services/custom-service-provider-cache.service';
 
 
 export const timeseriesRoutes: Routes = [
@@ -115,6 +116,7 @@ export const nestedTimeseriesRoutes: Routes = [
         TimeseriesDiagramPermalink,
         TimeseriesListSelectionCache,
         TimeseriesMapSelectionCache,
+        CustomServiceProviderCache,
 
         {
             provide: TimeseriesRouter,
