@@ -236,10 +236,10 @@ export class CategorySelectorComponent implements OnInit {
               group.timeseries.splice(_j, 0, result);
               return group;
             }
-            let group = this.phenomenonList[_i];
-            group.timeseries.push(result);
-            return group;
           }
+          let group = this.phenomenonList[_i];
+          group.timeseries.push(result);
+          return group;
         }
       }
       let group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
