@@ -16,6 +16,7 @@ import {
 } from '@helgoland/core';
 import { ListSelectorParameter } from '@helgoland/selector';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
+import { TranslateService } from '@ngx-translate/core';
 
 import { TrajectoriesService } from './../services/trajectories.service';
 
@@ -30,26 +31,26 @@ export class TrajectoriesSelectionComponent implements OnInit {
   public platformParams: Array<ListSelectorParameter> = [
     {
       type: 'platform',
-      header: 'trajectories.parameter.mobile-platform'
+      header: this.translate.instant('trajectories.parameter.mobile-platform')
     }, {
       type: 'offering',
-      header: 'trajectories.parameter.offering'
+      header: this.translate.instant('trajectories.parameter.offering')
     }, {
       type: 'feature',
-      header: 'trajectories.parameter.path'
+      header: this.translate.instant('trajectories.parameter.path')
     }
   ];
 
   public phenomenonParams: Array<ListSelectorParameter> = [
     {
       type: 'phenomenon',
-      header: 'trajectories.parameter.phenomenon'
+      header: this.translate.instant('trajectories.parameter.phenomenon')
     }, {
       type: 'offering',
-      header: 'trajectories.parameter.offering'
+      header: this.translate.instant('trajectories.parameter.offering')
     }, {
       type: 'feature',
-      header: 'trajectories.parameter.path'
+      header: this.translate.instant('trajectories.parameter.path')
     }
   ];
 
@@ -66,6 +67,7 @@ export class TrajectoriesSelectionComponent implements OnInit {
   constructor(
     private settingsSrvc: SettingsService<Settings>,
     private trajectory: TrajectoriesService,
+    private translate: TranslateService,
     private router: Router,
     private color: ColorService
   ) { }
