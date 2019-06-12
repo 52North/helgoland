@@ -32,11 +32,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 const baseRoutes: Routes = [
-  {
-    path: '**',
-    pathMatch: 'full',
-    redirectTo: 'timeseries'
-  },
   ...nestedTimeseriesRoutes
 ];
 
