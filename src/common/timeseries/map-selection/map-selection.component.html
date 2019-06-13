@@ -8,11 +8,13 @@
   <div class="modal-body">
     <div class="timeseries-hint">{{'timeseries.map-selection.dataset-selection-hint' | translate}}:</div>
     <!-- <n52-dataset-by-station-selector [station]="platform" [url]="selectedService.apiUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector> -->
-    <n52-category-selector [station]="platform" [url]="selectedService.apiUrl" [orderGroup]="true" [sortAscending]="false"  (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-category-selector>
+    <n52-category-selector [station]="platform" [url]="selectedService.apiUrl" [orderGroup]="true"
+      [sortAscending]="false" (selected)="onDatasetSelected($event)" (deselected)="onDatasetDeselected($event)">
+    </n52-category-selector>
   </div>
   <div class="modal-footer">
-    <button *ngIf="datasetSelections.length > 0" type="button" class="btn btn-light" (click)="openDatasets();c">
-      <span translate [translateParams]="{value: datasetSelections.length}">timeseries.map-selection.show-in-diagram</span>
+    <button *ngIf="datasetSelections.size > 0" type="button" class="btn btn-light" (click)="openDatasets();c">
+      <span translate [translateParams]="{value: datasetSelections.size}">timeseries.map-selection.show-in-diagram</span>
     </button>
     <button type="button" class="btn btn-light" (click)="c">{{'controls.close' | translate}}</button>
   </div>

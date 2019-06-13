@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import {
   BlacklistedService,
-  Dataset,
   DatasetApi,
   ParameterFilter,
   Phenomenon,
@@ -20,8 +19,7 @@ import {
   SettingsService,
   ValueTypes,
 } from '@helgoland/core';
-import { NgbModal, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 import { TimeseriesMapSelectionCache } from '../services/map-selection-cache.service';
 import { TimeseriesRouter } from '../services/timeseries-router.service';
@@ -52,13 +50,13 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   public selectedPhenomenonId: string;
   public cluster = true;
   public platform: Platform;
-  public datasetSelections: Array<Dataset> = [];
+  public datasetSelections: Set<string> = new Set();
+  public datasetRemoves: Set<string> = new Set();
 
   private defaultPlatformTypes = PlatformTypes.stationary;
   private defaultValueTypes = ValueTypes.quantity;
 
-  private showErrorMessage= false;
-
+  private showErrorMessage = false;
 
   constructor(
     private timeseriesService: TimeseriesService,
@@ -73,7 +71,6 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
     this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
     this.providerFilter = { valueTypes: ValueTypes.quantity };
-    // this.
   }
 
   public ngAfterViewInit(): void {
@@ -118,16 +115,21 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     this.updateStationFilter();
   }
 
-  public onDatasetSelectionChanged(datasets: Array<Dataset>) {
-    this.datasetSelections = datasets;
+  public onDatasetSelected(id: string) {
+    this.datasetSelections.add(id);
+    this.datasetRemoves.delete(id);
+  }
+
+  public onDatasetDeselected(id: string) {
+    this.datasetRemoves.add(id);
+    this.datasetSelections.delete(id);
   }
 
   public openDatasets() {
-    if (this.datasetSelections.length > 0) {
-      this.datasetSelections.forEach((entry) => {
-        this.timeseriesService.addDataset(entry.internalId);
-        this.router.navigateToDiagram();
-      });
+    this.datasetRemoves.forEach(e => this.timeseriesService.removeDataset(e));
+    this.datasetSelections.forEach((entry) => this.timeseriesService.addDataset(entry));
+    if (this.datasetSelections.size > 0) {
+      this.router.navigateToDiagram();
     }
   }
 
