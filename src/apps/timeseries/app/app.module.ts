@@ -70,7 +70,8 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     NgbDatepickerModule.forRoot(),
     NgbTimepickerModule.forRoot(),
     RouterModule.forRoot(
-      baseRoutes
+      baseRoutes,
+      { useHash: true }
     )
   ],
   providers: [
