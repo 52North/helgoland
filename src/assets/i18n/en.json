@@ -90,6 +90,10 @@
 				"select-timeseries-first": "Please select a timeseries first."
 			},
 			"legend": {
+				"entry": {
+					"first-value-at": "First value at",
+					"last-value-at": "Last value at"
+				},
 				"header": "Legend",
 				"show-geometry-header": "Position of the station",
 				"style-edit": {

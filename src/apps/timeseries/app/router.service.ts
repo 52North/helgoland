@@ -12,7 +12,11 @@ export class CustomTimeseriesRouter extends TimeseriesRouter {
         super();
     }
 
-    public navigateToDiagram(): void {
+    public navigateToDiagram() {
         this.router.navigate(['diagram']);
+    }
+
+    public navigateToMapSelection() {
+        this.router.navigate(['map-selection']);
     }
 }

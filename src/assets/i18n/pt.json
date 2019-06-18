@@ -81,6 +81,10 @@
 				"select-timeseries-first": ""
 			},
 			"legend": {
+				"entry": {
+					"first-value-at": "",
+					"last-value-at": ""
+				},
 				"header": "",
 				"show-geometry-header": "",
 				"style-edit": {

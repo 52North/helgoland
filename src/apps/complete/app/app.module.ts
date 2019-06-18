@@ -32,12 +32,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 const baseRoutes: Routes = [
-  ...nestedTimeseriesRoutes,
-  {
-    path: '**',
-    pathMatch: 'full',
-    redirectTo: 'timeseries'
-  },
+  ...nestedTimeseriesRoutes
 ];
 
 @Injectable()

@@ -8,6 +8,7 @@ import {
   ModalTimeseriesTimespanComponent,
 } from '../../components/modal-timeseries-timespan/modal-timeseries-timespan.component';
 import { TimeseriesDiagramPermalink } from '../diagram/diagram-permalink.service';
+import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from '../services/timeseries.service';
 
 @Component({
@@ -28,6 +29,7 @@ export class TimeseriesTableComponent implements OnInit {
     private timeSrvc: Time,
     public permalinkSrvc: TimeseriesDiagramPermalink,
     private modalService: NgbModal,
+    public router: TimeseriesRouter
   ) { }
 
   public ngOnInit() {

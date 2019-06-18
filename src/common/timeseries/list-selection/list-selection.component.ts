@@ -11,8 +11,7 @@ import {
   ValueTypes,
 } from '@helgoland/core';
 import { ListSelectorParameter } from '@helgoland/selector';
-import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 import { TimeseriesListSelectionCache } from '../services/list-selection-cache.service';
 import { TimeseriesRouter } from '../services/timeseries-router.service';
