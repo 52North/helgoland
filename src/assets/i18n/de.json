@@ -67,6 +67,15 @@
 			"to-diagram-view": "Diagram Ansicht"
 		}
 	},
+	"service-provider-manager": {
+		"error": "Provider zu dieser URL konnte nicht hinzugefügt werden",
+		"new-provider": {
+			"add": "Hinzufügen",
+			"placeholder": "URL für neuen Provider hinzufügen ..."
+		},
+		"success": "Neuer Provider wurde erfolgreich hinzugefügt",
+		"warning": "Provider ist bereits vorhanden"
+	},
 	"service-selector": {
 		"datasets": "Datensätze",
 		"phenomena": "Parameter",
@@ -75,15 +84,6 @@
 		"stations": "Stationen",
 		"timeseries": "Zeitreihen"
 	},
-	"service-provider-manager": {
-		"error": "Provider zu dieser URL konnte nicht hinzugefügt werden",
-		"success": "Neuer Provider wurde erfolgreich hinzugefügt",
-		"warning": "Provider ist bereits vorhanden",
-		"new-provider": {
-			"placeholder": "URL für neuen Provider hinzufügen ...",
-			"add": "Hinzufügen"
-		}
-	},
 	"timeseries": {
 		"diagram": {
 			"hint": {
@@ -91,16 +91,16 @@
 			},
 			"legend": {
 				"entry": {
+					"csv-download": "Daten als CSV (Zip-Archiv)",
 					"first-value-at": "Erster Wert am",
 					"last-value-at": "Letzter Wert am"
 				},
-				"header": "Legende",
 				"extended-infos-tooltip": "Weitere Infos",
-				"toggle-visibility-tooltip": "Zeitreihe ausblenden",
+				"header": "Legende",
 				"map-marker-tooltip": "Position zeigen",
-				"style-edit-tooltip": "Style bearbeiten",
 				"remove-timeseries-tooltip": "Zeitreihe entfernen",
 				"show-geometry-header": "Position der Station",
+				"style-edit-tooltip": "Style bearbeiten",
 				"style-edit": {
 					"generalize": "Daten generalisieren",
 					"header": "Zeitreihenerscheinung ändern",
@@ -109,7 +109,8 @@
 					"min": "Min",
 					"pointRadius": "Punktradius",
 					"zeroBasedYAxis": "Zeitreihe null-basiert"
-				}
+				},
+				"toggle-visibility-tooltip": "Zeitreihe ausblenden"
 			},
 			"phenomenon": {
 				"header": "Parameter",
@@ -152,9 +153,9 @@
 			"last_week": "Letzte Woche",
 			"last_year": "Letztes Jahr",
 			"pre-defined": "Vordefiniert",
+			"to-date": "Ende",
 			"today": "Heute",
 			"today_yesterday": "Heute & Gestern",
-			"to-date": "Ende",
 			"yesterday": "Gestern"
 		}
 	},
@@ -167,7 +168,9 @@
 		},
 		"parameter": {
 			"mobile-platform": "Mobile Platform",
-			"path": "Pfad"
+			"offering": "Offering",
+			"path": "Pfad",
+			"phenomenon": "Phänomen"
 		},
 		"selection": {
 			"select-by-phenomenon": "Wähle über Parameter",
