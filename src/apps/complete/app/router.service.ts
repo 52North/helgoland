@@ -15,4 +15,8 @@ export class CustomTimeseriesRouter extends TimeseriesRouter {
     public navigateToDiagram(): void {
         this.router.navigate(['timeseries/diagram']);
     }
+
+    public navigateToMapSelection(): void {
+        this.router.navigate(['timeseries/map-selection']);
+    }
 }
