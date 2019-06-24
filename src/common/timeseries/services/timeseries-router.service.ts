@@ -1,6 +1,7 @@
+import 'rxjs/add/operator/filter';
+
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import 'rxjs/add/operator/filter';
 
 @Injectable()
 export class TimeseriesConditionalRouter {
@@ -30,4 +31,5 @@ export class TimeseriesConditionalRouter {
 
 export abstract class TimeseriesRouter {
     public abstract navigateToDiagram(): void;
+    public abstract navigateToMapSelection(): void;
 }

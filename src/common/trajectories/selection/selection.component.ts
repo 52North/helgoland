@@ -15,7 +15,7 @@ import {
   ValueTypes,
 } from '@helgoland/core';
 import { ListSelectorParameter } from '@helgoland/selector';
-import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { TrajectoriesService } from './../services/trajectories.service';

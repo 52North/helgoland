@@ -22,8 +22,7 @@ import {
     ValueTypes,
 } from '@helgoland/core';
 import { TrajectoryResult } from '@helgoland/map';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgbTabset } from '@ng-bootstrap/ng-bootstrap/tabset/tabset.module';
+import { NgbModal, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';

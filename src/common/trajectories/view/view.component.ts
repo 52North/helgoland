@@ -8,7 +8,7 @@ import {
     Timespan,
 } from '@helgoland/core';
 import { D3AxisType, D3GraphOptions, D3SelectionRange } from '@helgoland/d3';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TrajectoriesService } from './../services/trajectories.service';
 import { TrajectoriesViewPermalink } from './view-permalink';
