@@ -1,24 +1,34 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-primary">
-  <a class="navbar-brand" href="#">52N-Helgoland</a>
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/timeseries" class="nav-link">{{'navigation.timeseries.main' | translate}}</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/trajectories" class="nav-link">{{'navigation.trajectories.main' | translate}}</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/profiles" class="nav-link">{{'navigation.profiles.main' | translate}}</a>
-      </li>
-    </ul>
-    <n52-local-selector *ngIf="languageList" [languageList]="languageList"></n52-local-selector>
+<div class="header container-fluid">
+  <div class="row">
+    <div class="logo-wrapper">
+      <img src="https://www.seadatanet.org/bundles/ifremersnsseadatanet3skin/images/logos/logo.png" alt="Back to home">
+    </div>
+    <div class="header-title">
+      <div class="title">
+        Pan-European infrastructure for ocean & marine data management
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <div class="controls">
+        <div routerLink="/timeseries" class="control" routerLinkActive="active">
+          {{'navigation.timeseries.main' | translate}}</div>
+        <div routerLink="/trajectories" class="control" routerLinkActive="active">
+          {{'navigation.trajectories.main' | translate}}</div>
+        <div routerLink="/profiles" class="control" routerLinkActive="active">{{'navigation.profiles.main' | translate}}
+        </div>
+      </div>
+    </div>
+
+    <div class="header-controls language-selector">
+      <div class="controls">
+        <n52-local-selector *ngIf="languageList" [languageList]="languageList"></n52-local-selector>
+      </div>
+    </div>
+
   </div>
-</nav>
+</div>
+
 <div class="content">
   <router-outlet></router-outlet>
 </div>

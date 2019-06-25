@@ -20,3 +20,23 @@ $theme-colors: map-merge((
 ), $theme-colors);
 
 @import '~bootstrap/scss/bootstrap';
+
+
+.nav-pills {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bold;
+
+    .nav-link {
+        color: $primary;
+
+        &.active {
+            color: $secondary;
+            background-color: white;
+        }
+
+        &:hover {
+            color: $secondary;
+        }
+    }
+}

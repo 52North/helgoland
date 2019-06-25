@@ -1,16 +1,16 @@
 $enable-rounded: false;
 
-$primary: rgba(102, 197, 228, 1.0);
-$secondary: rgba(98, 98, 80, 1.0);
+$primary: #004f9e;
+$secondary: #01bbf4;
 
 $component-active-color: $secondary;
 $component-active-bg: $primary;
 $link-color: $secondary;
 
-$text-color: $secondary;
-$hover-background-color: lighten($primary, 20%);
+$text-color: $primary;
+$hover-background-color: white;
 $hover-color: $secondary;
-$selection-background-color: $primary;
+$selection-background-color: white;
 $selection-color: $secondary;
 
 $responsive-mobile-width: 768px;
@@ -19,12 +19,6 @@ $responsive-tablet-width: 992px;
 $fa-font-path: '../../../node_modules/font-awesome/fonts';
 
 body {
-    font-family: "Comic Sans","Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 14px;
 }
-
-
-// colors:
-// #004f9e - dark blue
-// #01bbf4 - selection light blue
-// #0194c1
-// 
