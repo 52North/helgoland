@@ -10,6 +10,7 @@ before_script:
   - npm install -g @angular/cli
 script:
   - ng lint
+  - npm run prebuild
   - ng build --prod --base-href https://52north.github.io/helgoland/
 deploy:
   provider: pages
