@@ -1,36 +1,15 @@
 {
-  "providerBlackList": [{
-      "serviceId": "srv_42c69c781d20426f2d383c11625a26b5",
-      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-    },
-    {
-      "serviceId": "srv_9d58c5df42e02e2a533ca2ce3c0096f5",
-      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-    },
-    {
-      "serviceId": "srv_3ece93835fe20251956114f6a1778299",
-      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-    },
-    {
-      "serviceId": "srv_d40aa3b33600e7b6c3cf19803332eb74",
-      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-    },
-    {
-      "serviceId": "srv_6d9ccea8d609ecb74d4a512922bb7cee",
-      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-    }
-  ],
   "datasetApis": [{
       "name": "esonet",
       "url": "https://esonet.epsevg.upc.es:8082/obsea-sos-webapp/api/v1/"
     },
     {
       "name": "52nupc",
-      "url": "https://nexos.dev.52north.org/52n-sos-upc/api/"
+      "url": "http://nexos.dev.52north.org/52n-sos-upc/api/"
     },
     {
       "name": "nexosTest",
-      "url": "https://nexos.demo.52north.org/52n-sos-nexos-test/api/"
+      "url": "https://nexos.demo.52north.org/52n-sos-nexos/api/"
     },
     {
       "name": "codmhzg",
@@ -38,7 +17,11 @@
     },
     {
       "name": "sosProxy",
-      "url": "https://nexos.demo.52north.org/series-sos-proxy/api/"
+      "url": "https://nexos.demo.52north.org/nexos-sos-proxy/api/"
+    },
+    {
+      "name": "sensorwebclient-webapp-stable",
+      "url": "https://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
     }
   ],
   "_DatasetApis": [{
