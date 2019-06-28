@@ -17,5 +17,7 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: dist/complete
+  target_branch: gh-pages
+  verbose: true
   on:
-    branch: master
+    branch: feature/angularUpgrade
