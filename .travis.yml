@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "9"
+dist: trusty
+sudo: required
+branches:
+  only:
+  - feature/angularUpgrade
+before_script:
+  - npm install -g @angular/cli
+script:
+  - ng lint
+  - ng build --prod --base-href https://52north.github.io/helgoland/
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/complete
+  on:
+    branch: feature/angularUpgrade
