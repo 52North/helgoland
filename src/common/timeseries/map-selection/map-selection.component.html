@@ -1,14 +1,14 @@
 <ng-template #modalStation let-c="close()" let-d="dismiss()">
   <div class="modal-header">
-    <h4 class="modal-title">{{platform.properties.label}}</h4>
+    <h4 class="modal-title">{{station.properties.label}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div class="timeseries-hint">{{'timeseries.map-selection.dataset-selection-hint' | translate}}:</div>
+    <p class="timeseries-hint">{{'timeseries.map-selection.dataset-selection-hint' | translate}}:</p>
     <!-- <n52-dataset-by-station-selector [station]="platform" [url]="selectedService.apiUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector> -->
-    <n52-category-selector [station]="platform" [url]="selectedService.apiUrl" [orderGroup]="true"
+    <n52-category-selector [station]="station" [url]="selectedService.apiUrl" [orderGroup]="true"
       [sortAscending]="false" (selected)="onDatasetSelected($event)" (deselected)="onDatasetDeselected($event)">
     </n52-category-selector>
   </div>

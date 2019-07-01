@@ -12,11 +12,11 @@ import {
   DatasetApi,
   ParameterFilter,
   Phenomenon,
-  Platform,
   PlatformTypes,
   Service,
   Settings,
   SettingsService,
+  Station,
   ValueTypes,
 } from '@helgoland/core';
 import { NgbModal, NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
@@ -49,7 +49,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   public phenomenonFilter: ParameterFilter;
   public selectedPhenomenonId: string;
   public cluster = true;
-  public platform: Platform;
+  public station: Station;
   public datasetSelections: Set<string> = new Set();
   public datasetRemoves: Set<string> = new Set();
 
@@ -100,8 +100,8 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     this.addedService = service;
   }
 
-  public onStationSelected(platform: Platform) {
-    this.platform = platform;
+  public onStationSelected(station: Station) {
+    this.station = station;
     this.modalService.open(this.modalTemplate);
   }
 
