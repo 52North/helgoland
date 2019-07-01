@@ -1,3 +1,7 @@
 [context."feature/angularUpgrade"]
-  command = "npm run build:complete"
+  command = "npm run build-netlify"
+  publish = "dist/complete"
+
+[context."feature/sea-data-cloud"]
+  command = "npm run build-netlify"
   publish = "dist/complete"
