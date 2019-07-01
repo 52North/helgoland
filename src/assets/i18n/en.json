@@ -116,7 +116,7 @@
 			"station": "Station"
 		},
 		"map-selection": {
-			"dataset-selection-hint": "Please select one or more timeseries to displa in diagram",
+			"dataset-selection-hint": "Please select one or more timeseries to display in diagram",
 			"map": "Map",
 			"provider": "Provider",
 			"show-in-diagram": "Show {{value}} timeseries in diagram"
