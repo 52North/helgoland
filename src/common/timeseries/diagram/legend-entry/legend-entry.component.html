@@ -12,11 +12,11 @@
       <div class="noDataWarning firstLastEntry" *ngIf="!hasData">
         <div>
           <span class="fa fa-exclamation-triangle red"></span>
-          <span class="small-label">Keine Daten verfügbar</span>
+          <span class="small-label">{{'timeseries.diagram.legend.entry.no-data-available' | translate}}</span>
         </div>
         <div class="additionalLegendEntry" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
           <span class="fa fa-chevron-right"></span>
-          <span class="small-label">Springe zur letzten Messung</span>
+          <span class="small-label">{{'timeseries.diagram.legend.entry.jumpToLastTimeStamp' | translate}}</span>
         </div>
       </div>
       <div class="small-label">

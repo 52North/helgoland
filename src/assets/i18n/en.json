@@ -83,7 +83,9 @@
 			"legend": {
 				"entry": {
 					"first-value-at": "First value at",
-					"last-value-at": "Last value at"
+					"jumpToLastTimeStamp": "Jump to last measurement",
+					"last-value-at": "Last value at",
+					"no-data-available": "No data available"
 				},
 				"header": "Legend",
 				"show-geometry-header": "Position of the station",

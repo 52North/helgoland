@@ -83,7 +83,9 @@
 			"legend": {
 				"entry": {
 					"first-value-at": "",
-					"last-value-at": ""
+					"jumpToLastTimeStamp": "",
+					"last-value-at": "",
+					"no-data-available": ""
 				},
 				"header": "",
 				"show-geometry-header": "",

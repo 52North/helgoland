@@ -19,7 +19,7 @@
 			"favorites": "Favoriten",
 			"list-selection": "Listenauswahl",
 			"main": "Zeitreihen",
-			"map": "Karteauswahl",
+			"map": "Kartenauswahl",
 			"table": "Tabelle"
 		},
 		"trajectories": {
@@ -83,7 +83,9 @@
 			"legend": {
 				"entry": {
 					"first-value-at": "Erster Wert am",
-					"last-value-at": "Letzter Wert am"
+					"jumpToLastTimeStamp": "Springe zur letzten Messung",
+					"last-value-at": "Letzter Wert am",
+					"no-data-available": "Keine Daten verfügbar"
 				},
 				"header": "Legende",
 				"show-geometry-header": "Position der Station",
