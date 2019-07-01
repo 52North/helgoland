@@ -93,7 +93,9 @@
 				"entry": {
 					"csv-download": "",
 					"first-value-at": "",
-					"last-value-at": ""
+					"jumpToLastTimeStamp": "",
+					"last-value-at": "",
+					"no-data-available": ""
 				},
 				"extended-infos-tooltip": "",
 				"header": "",

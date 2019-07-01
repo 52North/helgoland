@@ -93,7 +93,9 @@
 				"entry": {
 					"csv-download": "Daten als CSV (Zip-Archiv)",
 					"first-value-at": "Erster Wert am",
-					"last-value-at": "Letzter Wert am"
+					"jumpToLastTimeStamp": "Springe zur letzten Messung",
+					"last-value-at": "Letzter Wert am",
+					"no-data-available": "Keine Daten verfügbar"
 				},
 				"extended-infos-tooltip": "Weitere Infos",
 				"header": "Legende",
