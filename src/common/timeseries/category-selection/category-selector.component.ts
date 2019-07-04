@@ -115,21 +115,19 @@ export class CategorySelectorComponent implements OnInit {
   }
 
   protected checkSelectedAll(timeSeriesGroup: TimeSeriesGroup) {
-    for (let _i = 0; _i < timeSeriesGroup.timeseries.length; _i++) {
-      if (timeSeriesGroup.timeseries[_i].selected === false) {
-        timeSeriesGroup.selectAll = false;
-        return;
-      }
-    }
-    timeSeriesGroup.selectAll = true;
+    return timeSeriesGroup.timeseries.every(e => e.selected === true);
   }
 
   public toggleAll(timeSeriesGroup: TimeSeriesGroup) {
     timeSeriesGroup.selectAll = !timeSeriesGroup.selectAll;
-    for (let _i = 0; _i < timeSeriesGroup.timeseries.length; _i++) {
-      timeSeriesGroup.timeseries[_i].selected = timeSeriesGroup.selectAll;
-      this.fireEvent(timeSeriesGroup.timeseries[_i]);
-    }
+    timeSeriesGroup.timeseries.forEach(ts => {
+      ts.selected = timeSeriesGroup.selectAll;
+      this.fireEvent(ts);
+    });
+  }
+
+  public hasSelectedItems(timeSeriesGroup: TimeSeriesGroup) {
+    return timeSeriesGroup.timeseries.some((val) => val.selected);
   }
 
   protected prepareResult(result: ExtendedTimeseries, selection: boolean) {
