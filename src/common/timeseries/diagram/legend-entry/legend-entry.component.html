@@ -7,11 +7,12 @@
     <div [ngClass]="{'highlight': highlight}">
       <div class="col">
         <div class="row flex-nowrap">
-          <div class="collapse-toggle"><span class="fa"
-              [ngClass]="{'fa-chevron-right': isCollapsed, 'fa-chevron-down': !isCollapsed}"
-              (click)="isCollapsed = !isCollapsed"></span></div>
+          <div class="collapse-toggle">
+            <span class="fa" [ngClass]="{'fa-chevron-right': isCollapsed, 'fa-chevron-down': !isCollapsed}"
+              (click)="isCollapsed = !isCollapsed; $event.stopPropagation();"></span>
+          </div>
           <div class="legend-item-label flex-grow-1" [ngStyle]="{'color': datasetOptions?.color}">
-            <n52-label-mapper class="legendItemheader" label="{{platformLabel}}" (click)="toggleSelection()">
+            <n52-label-mapper class="legendItemheader" label="{{platformLabel}}">
             </n52-label-mapper>
             <n52-favorite-toggler [dataset]="dataset"></n52-favorite-toggler>
           </div>
