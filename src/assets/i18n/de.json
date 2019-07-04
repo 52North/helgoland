@@ -140,7 +140,7 @@
 			"group-select-all-phenomenons": "wähle alle Parameter",
 			"map": "Karte",
 			"provider": "Anbieter",
-			"show-in-diagram": "Zeige {{value}} Zeitreihen im Diagramm"
+			"show-in-diagram": "Anpassungen im Diagramm anzeigen"
 		},
 		"timespan-selector": {
 			"current_month": "Derzeitiger Monat",

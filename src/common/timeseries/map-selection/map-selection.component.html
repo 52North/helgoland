@@ -13,7 +13,7 @@
     </n52-category-selector>
   </div>
   <div class="modal-footer">
-    <button *ngIf="datasetSelections.size > 0" type="button" class="btn btn-light" (click)="openDatasets();c">
+    <button type="button" class="btn btn-light" (click)="openDatasets();c">
       <span translate [translateParams]="{value: datasetSelections.size}">timeseries.map-selection.show-in-diagram</span>
     </button>
     <button type="button" class="btn btn-light" (click)="c">{{'controls.close' | translate}}</button>

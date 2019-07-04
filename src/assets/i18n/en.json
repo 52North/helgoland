@@ -140,7 +140,7 @@
 			"group-select-all-phenomenons": "select all parameters",
 			"map": "Map",
 			"provider": "Provider",
-			"show-in-diagram": "Show {{value}} timeseries in diagram"
+			"show-in-diagram": "Show adjustments in diagram"
 		},
 		"timespan-selector": {
 			"current_month": "Last Month",
