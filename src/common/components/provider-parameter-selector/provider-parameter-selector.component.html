@@ -1,0 +1,34 @@
+<ngb-accordion #acc="ngbAccordion" (panelChange)="onPanelChange($event)" activeIds="{{selectorId}}-{{activePanel}}"
+  closeOthers="true">
+  <ngb-panel id="{{selectorId}}-provider">
+    <ng-template ngbPanelTitle>
+      <span ng-class="{'text-muted' : param.isDisabled}">
+        <span>{{'provider-parameter-selector.provider-header' | translate}}</span>
+        <span *ngIf="selectedProviderLabel"> - </span>
+        <span>{{selectedProviderLabel}} </span>
+      </span>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <div class="panel-content">
+        <n52-custom-service-selector [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist"
+          [filter]="providerFilter" [showUnresolvableServices]="false" (onServiceSelected)="providerSelected($event);">
+        </n52-custom-service-selector>
+      </div>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="{{selectorId}}-{{i}}" *ngFor="let param of parameters; let i = index" [disabled]="true">
+    <ng-template ngbPanelTitle>
+      <span ng-class="{'text-muted' : param.isDisabled}">
+        <span>{{param.header | translate}}</span>
+        <span *ngIf="param.headerAddition"> - </span>
+        <span>{{param.headerAddition}} </span>
+      </span>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <div class="panel-content">
+        <n52-custom-multi-service-filter-selector [endpoint]="param.type" [filterList]="param.filterList"
+          (onItemSelected)="itemSelected($event, i)"></n52-custom-multi-service-filter-selector>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
