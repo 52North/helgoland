@@ -1,22 +1,11 @@
 {
-  "datasetApis": [{
-      "name": "esonet",
-      "url": "https://esonet.epsevg.upc.es:8082/obsea-sos-webapp/api/v1/"
-    },
-    {
-      "name": "52nupc",
-      "url": "http://nexos.dev.52north.org/52n-sos-upc/api/"
-    },
-    {
-      "name": "nexosTest",
-      "url": "https://nexos.demo.52north.org/52n-sos-nexos/api/"
-    },
+  "datasetApis": [
     {
       "name": "codmhzg",
       "url": "https://codm.hzg.de/52n-sos-webapp/api/v1/"
     },
     {
-      "name": "sosProxy",
+      "name": "NexosProxy",
       "url": "https://nexos.demo.52north.org/nexos-sos-proxy/api/"
     },
     {
