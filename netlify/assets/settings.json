@@ -50,7 +50,8 @@
       "code": "en"
     }
   ],
-  "solveLabels": false,
+  "showScale": true,
+  "timebufferFactor": 0.3,
   "proxyUrl": "https://cors-anywhere.herokuapp.com/",
   "timespanPresets": [{
       "name": "lastHour",
