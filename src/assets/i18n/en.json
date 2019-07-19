@@ -4,6 +4,9 @@
 		"close": "Close",
 		"ok": "Ok"
 	},
+	"list-selection": {
+		"provider": "Provider"
+	},
 	"listSelection": {
 		"loading": "Load new parameter list..."
 	},
@@ -54,7 +57,8 @@
 			"select-phenomenon": "Select phenomenon",
 			"select-platform": {
 				"header": "Select platform",
-				"hint": "Select either a stationary or mobile platform",
+				"loading-mobile-platforms": "Load mobile platforms",
+				"loading-stationary-platforms": "Load stationary platforms",
 				"mobile": "Mobile platforms",
 				"stationary": "Stationary platforms"
 			},
@@ -152,8 +156,7 @@
 		},
 		"selection": {
 			"select-by-phenomenon": "Select by phenomenon",
-			"select-by-platform": "Select by platform",
-			"select-provider": "Select provider"
+			"select-by-platform": "Select by platform"
 		},
 		"view": {
 			"change-color-header": "Change color",

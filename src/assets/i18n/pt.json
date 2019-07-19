@@ -4,6 +4,9 @@
 		"close": "",
 		"ok": ""
 	},
+	"list-selection": {
+		"provider": ""
+	},
 	"listSelection": {
 		"loading": ""
 	},
@@ -54,7 +57,8 @@
 			"select-phenomenon": "",
 			"select-platform": {
 				"header": "",
-				"hint": "",
+				"loading-mobile-platforms": "",
+				"loading-stationary-platforms": "",
 				"mobile": "",
 				"stationary": ""
 			},
@@ -152,8 +156,7 @@
 		},
 		"selection": {
 			"select-by-phenomenon": "",
-			"select-by-platform": "",
-			"select-provider": ""
+			"select-by-platform": ""
 		},
 		"view": {
 			"change-color-header": "",
