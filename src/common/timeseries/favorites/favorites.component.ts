@@ -6,6 +6,11 @@ import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from '../services/timeseries.service';
 import { D3PlotOptions } from '@helgoland/d3';
 
+interface ExtendedSingleFavorite extends SingleFavorite {
+  timespan: Timespan;
+  option: Map<string, DatasetOptions>;
+}
+
 interface EditableExtendedSingleFavorite extends ExtendedSingleFavorite {
   editLabel: boolean;
   editedLabel: string;
@@ -77,9 +82,4 @@ export class TimeseriesFavoritesComponent {
       });
     });
   }
-}
-
-interface ExtendedSingleFavorite extends SingleFavorite {
-  timespan: Timespan;
-  option: Map<string, DatasetOptions>;
 }

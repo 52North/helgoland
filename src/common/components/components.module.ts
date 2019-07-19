@@ -12,10 +12,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { CustomListSelectorComponent } from './custom-list-selector/custom-list-selector.component';
+import { CustomMinMaxRangeComponent } from './custom-min-max-range/custom-min-max-range.component';
 import {
   CustomMultiServiceFilterSelectorComponent,
 } from './custom-multi-service-filter-selector/custom-multi-service-filter-selector.component';
 import { CustomServiceSelectorComponent } from './custom-service-selector/custom-service-selector.component';
+import { CustomTimeRangeSliderComponent } from './custom-time-range-slider/custom-time-range-slider.component';
 import {
   CustomTimespanShiftSelectorComponent,
 } from './custom-timespan-shift-selector/custom-timespan-shift-selector.component';
@@ -28,8 +30,8 @@ import { InMailComponent } from './permalink/in-mail/in-mail.component';
 import { InNewWindowComponent } from './permalink/in-new-window/in-new-window.component';
 import { PermalinkButtonComponent } from './permalink/permalink-button/permalink-button.component';
 import { ToClipboardComponent } from './permalink/to-clipboard/to-clipboard.component';
+import { ProviderParameterSeletorComponent } from './provider-parameter-selector/provider-parameter-selector.component';
 import { TimespanSelectorComponent } from './timespan-selector/timespan-selector.component';
-import { CustomMinMaxRangeComponent } from './custom-min-max-range/custom-min-max-range.component';
 
 @NgModule({
   imports: [
@@ -53,6 +55,7 @@ import { CustomMinMaxRangeComponent } from './custom-min-max-range/custom-min-ma
     CustomMinMaxRangeComponent,
     CustomMultiServiceFilterSelectorComponent,
     CustomServiceSelectorComponent,
+    CustomTimeRangeSliderComponent,
     CustomTimespanShiftSelectorComponent,
     InMailComponent,
     InNewWindowComponent,
@@ -62,6 +65,7 @@ import { CustomMinMaxRangeComponent } from './custom-min-max-range/custom-min-ma
     ModalOptionsEditorComponent,
     ModalTimeseriesTimespanComponent,
     PermalinkButtonComponent,
+    ProviderParameterSeletorComponent,
     TimespanSelectorComponent,
     ToClipboardComponent,
   ],
@@ -74,10 +78,12 @@ import { CustomMinMaxRangeComponent } from './custom-min-max-range/custom-min-ma
   exports: [
     CustomListSelectorComponent,
     CustomServiceSelectorComponent,
+    CustomTimeRangeSliderComponent,
     CustomTimespanShiftSelectorComponent,
     LocalSelectorImplComponent,
     LocateButtonComponent,
     PermalinkButtonComponent,
+    ProviderParameterSeletorComponent,
   ]
 })
 export class ComponentsModule { }

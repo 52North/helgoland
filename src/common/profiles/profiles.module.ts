@@ -8,7 +8,7 @@ import { HelgolandPlotlyModule } from '@helgoland/plotly';
 import { HelgolandSelectorModule } from '@helgoland/selector';
 import { HelgolandTimeModule } from '@helgoland/time';
 import { HelgolandTimeRangeSliderModule } from '@helgoland/time-range-slider';
-import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ComponentsModule } from '../components/components.module';
@@ -25,64 +25,65 @@ import { ProfilesSelectionCache } from './selection/selection.service';
 import { ProfilesService } from './services/profiles.service';
 
 const profilesRoutes: Routes = [
-    {
-        path: 'profiles',
-        component: ProfilesNavigationComponent,
-        children: [
-            {
-                path: '',
-                pathMatch: 'full',
-                redirectTo: 'diagram'
-            },
-            {
-                path: 'diagram',
-                component: ProfilesDiagramComponent
-            },
-            {
-                path: 'selection',
-                component: ProfilesSelectionComponent
-            },
-            {
-                path: 'combi',
-                component: ProfilesCombiViewComponent
-            }
-        ]
-    }
+  {
+    path: 'profiles',
+    component: ProfilesNavigationComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'diagram'
+      },
+      {
+        path: 'diagram',
+        component: ProfilesDiagramComponent
+      },
+      {
+        path: 'selection',
+        component: ProfilesSelectionComponent
+      },
+      {
+        path: 'combi',
+        component: ProfilesCombiViewComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        TranslateModule,
-        HelgolandPlotlyModule,
-        HelgolandMapViewModule,
-        HelgolandDatasetlistModule,
-        HelgolandModificationModule,
-        HelgolandMapSelectorModule,
-        HelgolandLabelMapperModule,
-        HelgolandTimeModule,
-        HelgolandTimeRangeSliderModule,
-        HelgolandSelectorModule,
-        RouterModule.forChild(
-            profilesRoutes
-        ),
-        NgbTabsetModule,
-        ComponentsModule
-    ],
-    declarations: [
-        ProfilesDiagramComponent,
-        ProfilesSelectionComponent,
-        ProfilesCombiViewComponent,
-        ProfilesNavigationComponent,
-        CustomProfileEntryComponent
-    ],
-    providers: [
-        ProfilesDiagramPermalink,
-        ProfilesSelectionCache,
-        ProfilesSelectionPermalink,
-        ProfilesService,
-        ProfilesCombiService,
-        ProfilesCombiViewPermalink
-    ]
+  imports: [
+    CommonModule,
+    TranslateModule,
+    HelgolandPlotlyModule,
+    HelgolandMapViewModule,
+    HelgolandDatasetlistModule,
+    HelgolandModificationModule,
+    HelgolandMapSelectorModule,
+    HelgolandLabelMapperModule,
+    HelgolandTimeModule,
+    HelgolandTimeRangeSliderModule,
+    HelgolandSelectorModule,
+    RouterModule.forChild(
+      profilesRoutes
+    ),
+    NgbTabsetModule,
+    NgbAccordionModule,
+    ComponentsModule
+  ],
+  declarations: [
+    ProfilesDiagramComponent,
+    ProfilesSelectionComponent,
+    ProfilesCombiViewComponent,
+    ProfilesNavigationComponent,
+    CustomProfileEntryComponent
+  ],
+  providers: [
+    ProfilesDiagramPermalink,
+    ProfilesSelectionCache,
+    ProfilesSelectionPermalink,
+    ProfilesService,
+    ProfilesCombiService,
+    ProfilesCombiViewPermalink
+  ]
 })
 export class ProfilesModule { }

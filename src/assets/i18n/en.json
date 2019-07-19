@@ -4,6 +4,9 @@
 		"close": "Close",
 		"ok": "Ok"
 	},
+	"list-selection": {
+		"provider": "Provider"
+	},
 	"listSelection": {
 		"loading": "Load new parameter list..."
 	},
@@ -54,7 +57,8 @@
 			"select-phenomenon": "Select phenomenon",
 			"select-platform": {
 				"header": "Select platform",
-				"hint": "Select either a stationary or mobile platform",
+				"loading-mobile-platforms": "Load mobile platforms",
+				"loading-stationary-platforms": "Load stationary platforms",
 				"mobile": "Mobile platforms",
 				"stationary": "Stationary platforms"
 			},
@@ -83,7 +87,9 @@
 			"legend": {
 				"entry": {
 					"first-value-at": "First value at",
-					"last-value-at": "Last value at"
+					"jumpToLastTimeStamp": "Jump to last measurement",
+					"last-value-at": "Last value at",
+					"no-data-available": "No data available"
 				},
 				"header": "Legend",
 				"show-geometry-header": "Position of the station",
@@ -116,7 +122,7 @@
 			"station": "Station"
 		},
 		"map-selection": {
-			"dataset-selection-hint": "Please select one or more timeseries to displa in diagram",
+			"dataset-selection-hint": "Please select one or more timeseries to display in diagram",
 			"map": "Map",
 			"provider": "Provider",
 			"show-in-diagram": "Show {{value}} timeseries in diagram"
@@ -150,8 +156,7 @@
 		},
 		"selection": {
 			"select-by-phenomenon": "Select by phenomenon",
-			"select-by-platform": "Select by platform",
-			"select-provider": "Select provider"
+			"select-by-platform": "Select by platform"
 		},
 		"view": {
 			"change-color-header": "Change color",

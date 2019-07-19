@@ -4,6 +4,9 @@
 		"close": "Schließen",
 		"ok": "OK"
 	},
+	"list-selection": {
+		"provider": "Anbieter"
+	},
 	"listSelection": {
 		"loading": "Lade weitere Parameterliste..."
 	},
@@ -19,7 +22,7 @@
 			"favorites": "Favoriten",
 			"list-selection": "Listenauswahl",
 			"main": "Zeitreihen",
-			"map": "Karteauswahl",
+			"map": "Kartenauswahl",
 			"table": "Tabelle"
 		},
 		"trajectories": {
@@ -54,7 +57,8 @@
 			"select-phenomenon": "Wähle Phänomen",
 			"select-platform": {
 				"header": "Wähle Platform",
-				"hint": "Wähle entweder eine stationäre oder mobile Platform",
+				"loading-mobile-platforms": "Lade mobile Platformen",
+				"loading-stationary-platforms": "Lade stationäre Platformen",
 				"mobile": "Mobile Platform",
 				"stationary": "Stationäre Platform"
 			},
@@ -83,7 +87,9 @@
 			"legend": {
 				"entry": {
 					"first-value-at": "Erster Wert am",
-					"last-value-at": "Letzter Wert am"
+					"jumpToLastTimeStamp": "Springe zur letzten Messung",
+					"last-value-at": "Letzter Wert am",
+					"no-data-available": "Keine Daten verfügbar"
 				},
 				"header": "Legende",
 				"show-geometry-header": "Position der Station",
@@ -150,8 +156,7 @@
 		},
 		"selection": {
 			"select-by-phenomenon": "Wähle über Phänomen",
-			"select-by-platform": "Wähle über Platform",
-			"select-provider": "Wähle Anbieter"
+			"select-by-platform": "Wähle über Platform"
 		},
 		"view": {
 			"change-color-header": "Farbe ändern",
