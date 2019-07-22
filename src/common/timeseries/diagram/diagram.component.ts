@@ -63,6 +63,10 @@ export class TimeseriesDiagramComponent implements OnInit {
         this.timeseriesService.removeDataset(internalId);
     }
 
+    public deleteAllTs() {
+        this.timeseriesService.removeAllDatasets();
+    }
+
     public selectTimeseries(selected: boolean, internalId: string) {
         if (selected) {
             this.selectedIds.push(internalId);

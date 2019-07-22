@@ -92,6 +92,7 @@
 					"no-data-available": "Keine Daten verfügbar"
 				},
 				"header": "Legende",
+				"remove-all": "Zeitreihen entfernen",
 				"show-geometry-header": "Position der Station",
 				"style-edit": {
 					"generalize": "Daten generalisieren",
