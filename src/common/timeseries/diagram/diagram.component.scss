@@ -59,6 +59,20 @@
                 }
             }
 
+            .legend {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+
+                .legend-entries {
+                    flex: 1;
+                    overflow: auto;
+                }
+
+            }
+
+
             .sidebar-offcanvas {
                 overflow-y: auto;
                 max-height: calc(100vh - 56px - 81px);

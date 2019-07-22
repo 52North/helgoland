@@ -92,6 +92,7 @@
 					"no-data-available": ""
 				},
 				"header": "",
+				"remove-all": "",
 				"show-geometry-header": "",
 				"style-edit": {
 					"generalize": "",
