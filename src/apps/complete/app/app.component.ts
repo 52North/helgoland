@@ -18,7 +18,8 @@ export class AppComponent {
     settings: SettingsService<Settings>
   ) {
     translate.setDefaultLang('en');
-    translate.use('de');
+    const browserLang = translate.getBrowserLang() || 'en';
+    translate.use(browserLang);
 
     // necessary to load information on e.g. what 'medium' date format should look like in German etc.
     registerLocaleData(localeDe);
