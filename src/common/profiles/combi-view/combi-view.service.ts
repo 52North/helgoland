@@ -16,11 +16,12 @@ export class ProfilesCombiService extends DatasetService<Array<TimedDatasetOptio
         this.loadState();
     }
 
-    public addDataset(internalId: string, options: Array<TimedDatasetOptions>) {
+    public async addDataset(internalId: string, options: Array<TimedDatasetOptions>): Promise<boolean> {
         this.removeAllDatasets();
         this.datasetIds.push(internalId);
         this.datasetOptions.set(internalId, options);
         this.saveState();
+        return true;
     }
 
     protected createStyles(internalId: string): TimedDatasetOptions[] {
