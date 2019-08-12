@@ -59,6 +59,12 @@
         <span> {{lastValue.timestamp | date: 'short' : null : translateSrvc.currentLang}} </span>
         <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
       </div>
+
+      <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData" (click)="$event.stopPropagation();">
+        <n52-download-as-csv [internalId]="internalId" [timeInterval]="timeInterval"
+          [language]="translateSrvc.currentLang"></n52-download-as-csv>
+      </div>
+
       <div *ngIf="dataset?.referenceValues">
         <div class="additionalLegendEntry" *ngFor="let ref of dataset.referenceValues"
           (click)="toggleReferenceValue(ref); $event.stopPropagation();" [ngClass]="{'selected': ref.visible}"
