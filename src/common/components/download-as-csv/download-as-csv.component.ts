@@ -51,8 +51,9 @@ export class DownloadAsCsvComponent implements OnChanges {
     this._requestParams.set('bom', 'true');
   }
 
-  private createCsvLink(id: string, apiUrl: string) {
-    let url = this.createBaseUrl(apiUrl, 'timeseries', id) + '/getData.zip?';
+  private createCsvLink(id: String, apiUrl: string) {
+    const idconv: string = String(id.match(/\d+$/)); // select last set of digits (e.g. id="this3_id_45_is_89" ==> 89)
+    let url = this.createBaseUrl(apiUrl, 'timeseries', idconv) + '/getData.zip?'; // timeseries vs datasets
     url = this.addUrlParams(url, this._requestParams);
     this.downloadLink = url;
   }
