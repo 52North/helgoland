@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Timespan, InternalDatasetId } from '@helgoland/core';
+import { Timespan, InternalDatasetId, DatasetApiMapping, DatasetApiVersion } from '@helgoland/core';
 import moment from 'moment';
+import { D3SelectionRange } from '@helgoland/d3';
 
 @Component({
   selector: 'n52-download-as-csv',
@@ -13,6 +14,12 @@ export class DownloadAsCsvComponent implements OnChanges {
   public internalId: InternalDatasetId;
 
   @Input()
+  public data: any[];
+
+  @Input()
+  public range: D3SelectionRange;
+
+  @Input()
   public timeInterval: Timespan;
 
   @Input()
@@ -21,7 +28,9 @@ export class DownloadAsCsvComponent implements OnChanges {
   public downloadLink: string;
   private _requestParams: Map<string, string>;
 
-  constructor() { }
+  constructor(
+    protected apiMapping: DatasetApiMapping,
+  ) { }
 
   // ngOnInit() {
   //   if (!this._requestParams) {
@@ -35,12 +44,25 @@ export class DownloadAsCsvComponent implements OnChanges {
       this.prepareRequestParams();
       this.createCsvLink(this.internalId.id, this.internalId.url);
     }
-    if (changes.timeInterval) {
-      if (this.internalId && this.timeInterval) {
-        const timespan = this.createRequestTimespan(this.timeInterval);
-        this.updateCsvLink('timespan', timespan);
+    if (changes.range && this.data && this.data.length > 0) {
+      const currData = this.data.find(el => el[0] === this.internalId.id);
+      if (currData) {
+        const from = currData[1][this.range.from].timestamp;
+        const to = this.range.to === currData[1].length ? this.timeInterval.to : currData[1][this.range.to].timestamp;
+        const timeInt = new Timespan(from, to);
+        this.prepareTimeSpan(timeInt);
       }
     }
+    if (changes.timeInterval) {
+      if (this.internalId && this.timeInterval) {
+        this.prepareTimeSpan(this.timeInterval);
+      }
+    }
+  }
+
+  private prepareTimeSpan(ts: Timespan) {
+    const timespan = this.createRequestTimespan(ts);
+    this.updateCsvLink('timespan', timespan);
   }
 
   private prepareRequestParams() {
@@ -51,11 +73,20 @@ export class DownloadAsCsvComponent implements OnChanges {
     this._requestParams.set('bom', 'true');
   }
 
-  private createCsvLink(id: String, apiUrl: string) {
-    const idconv: string = String(id.match(/\d+$/)); // select last set of digits (e.g. id="this3_id_45_is_89" ==> 89)
-    let url = this.createBaseUrl(apiUrl, 'timeseries', idconv) + '/getData.zip?'; // timeseries vs datasets
-    url = this.addUrlParams(url, this._requestParams);
-    this.downloadLink = url;
+  private createCsvLink(id: string, apiUrl: string) {
+    this.apiMapping.getApiVersion(apiUrl).subscribe((apiVersionId) => {
+      let url;
+      if (apiVersionId === DatasetApiVersion.V1) {    // datasets (V2) - todo: change
+        url = this.createBaseUrl(apiUrl, 'datasets', id) + '/getData.zip?';
+      } else if (apiVersionId === DatasetApiVersion.V2) {   // timeseries (V1) - todo: change
+        const idconv: string = String(id.match(/\d+$/)); // select last set of digits (e.g. id="this3_id_45_is_89" ==> 89)
+        url = this.createBaseUrl(apiUrl, 'timeseries', idconv) + '/getData.zip?';
+      } else {
+        console.log('wrong API version to download data');
+      }
+      url = this.addUrlParams(url, this._requestParams);
+      this.downloadLink = url;
+    });
   }
 
   private createBaseUrl(apiUrl: string, endpoint: string, id?: string) {

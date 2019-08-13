@@ -43,6 +43,8 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public tempColor: string;
 
+    public graphData: any = [];
+
     @ViewChild('modalTrajectoryOptionsEditor')
     public modalTrajectoryOptionsEditor: TemplateRef<any>;
 
@@ -79,6 +81,7 @@ export class TrajectoriesViewComponent implements OnInit {
                             type: 'LineString',
                             coordinates: []
                         };
+                        this.graphData.push([internalId.id, data.values]);
                         data.values.forEach(entry => this.geometry.coordinates.push(entry.geometry.coordinates));
                         this.loading = false;
                     });
