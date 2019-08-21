@@ -191,9 +191,9 @@ export class CategorySelectorComponent implements OnInit {
    */
   private prepareOrderedCategoryGroup(result: ExtendedTimeseries, asc: Boolean): TimeSeriesGroup {
     const length = this.categoryList.length;
-    const resValue = parseFloat(result.parameters.category.label.slice(0, -1));
+    const resValue = parseFloat(result.parameters.category.label);
       for (var _i = 0; _i < length; _i++) {
-        let actValue = parseFloat(this.categoryList[_i].label.slice(0, -1));
+        let actValue = parseFloat(this.categoryList[_i].label);
         if(resValue === actValue){
           let group = this.categoryList[_i];
           const tsLength = group.timeseries.length;
@@ -228,12 +228,12 @@ export class CategorySelectorComponent implements OnInit {
    */
   private prepareOrderedPhenomenonGroup(result: ExtendedTimeseries, asc: Boolean): TimeSeriesGroup {
     const length = this.phenomenonList.length;
-    const resValue = parseFloat(result.parameters.category.label.slice(0, -1));
+    const resValue = parseFloat(result.parameters.category.label);
       for (var _i = 0; _i < length; _i++) {
         if(result.parameters.phenomenon.label === this.phenomenonList[_i].label){
           const timeseriesLength = this.phenomenonList[_i].timeseries.length;
           for(var _j = 0; _j < timeseriesLength; _j++){
-            let actValue = parseFloat(this.phenomenonList[_i].timeseries[_j].parameters.category.label.slice(0, -1));
+            let actValue = parseFloat(this.phenomenonList[_i].timeseries[_j].parameters.category.label);
             if(resValue === actValue){
               let group = this.phenomenonList[_i];
               this.phenomenonList[_i].timeseries.push(result);
