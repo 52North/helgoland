@@ -67,6 +67,15 @@
 			"to-diagram-view": "Diagram view"
 		}
 	},
+	"service-provider-manager": {
+		"error": "Could not load provider with this url",
+		"new-provider": {
+			"add": "Add",
+			"placeholder": "Add new provider by URL ..."
+		},
+		"success": "New provider added succesfully",
+		"warning": "Provider already exists"
+	},
 	"service-selector": {
 		"datasets": "Datasets",
 		"phenomena": "Parameters",
@@ -75,23 +84,25 @@
 		"stations": "Stations",
 		"timeseries": "Timeseries"
 	},
-	"service-provider-manager": {
-		"error": "Could not load provider with this url",
-		"success": "New provider added succesfully",
-		"warning": "Provider already exists",
-		"new-provider": {
-			"placeholder": "Add new provider by URL ...",
-			"add": "Add"
-		}
-	},
 	"timeseries": {
 		"diagram": {
 			"hint": {
 				"select-timeseries-first": "Please select a timeseries first."
 			},
 			"legend": {
+				"entry": {
+					"csv-download": "Data as CSV (Zip-Archive)",
+					"first-value-at": "First value at",
+					"jumpToLastTimeStamp": "Jump to last measurement",
+					"last-value-at": "Last value at",
+					"no-data-available": "No data available"
+				},
+				"extended-infos-tooltip": "",
 				"header": "Legend",
+				"map-marker-tooltip": "",
+				"remove-timeseries-tooltip": "",
 				"show-geometry-header": "Position of the station",
+				"style-edit-tooltip": "",
 				"style-edit": {
 					"generalize": "Generalize data",
 					"header": "Change style of this timeseries",
@@ -100,7 +111,8 @@
 					"min": "Min",
 					"pointRadius": "Point radius",
 					"zeroBasedYAxis": "Timeseries zero based"
-				}
+				},
+				"toggle-visibility-tooltip": ""
 			},
 			"phenomenon": {
 				"header": "Parameters",
@@ -128,7 +140,7 @@
 			"group-select-all-phenomenons": "select all parameters",
 			"map": "Map",
 			"provider": "Provider",
-			"show-in-diagram": "Show {{value}} timeseries in diagram"
+			"show-in-diagram": "Show adjustments in diagram"
 		},
 		"timespan-selector": {
 			"current_month": "Last Month",
@@ -143,9 +155,9 @@
 			"last_week": "Last Week",
 			"last_year": "Last Year",
 			"pre-defined": "Pre defined",
+			"to-date": "End",
 			"today": "Today",
 			"today_yesterday": "Today & Yesterday",
-			"to-date": "End",
 			"yesterday": "Yesterday"
 		}
 	},
@@ -158,7 +170,9 @@
 		},
 		"parameter": {
 			"mobile-platform": "Mobil platform",
-			"path": "Path"
+			"offering": "",
+			"path": "Path",
+			"phenomenon": ""
 		},
 		"selection": {
 			"select-by-phenomenon": "Select by parameter",

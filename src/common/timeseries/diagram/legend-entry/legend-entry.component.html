@@ -1,4 +1,5 @@
-<div class="legendItem" style="position: relative;" [ngStyle]="{'border-color': datasetOptions?.color}" [ngClass]="{'selected': selected}">
+<div class="legendItem" style="position: relative;" [ngStyle]="{'border-color': datasetOptions?.color}"
+  [ngClass]="{'selected': selected}" (click)="toggleSelection()">
   <div class="loading-overlay" *ngIf="loading" [ngStyle]="{'background-color': datasetOptions?.color}">
     <div class="fa fa-refresh fa-spin fa-3x fa-fw"></div>
   </div>
@@ -6,20 +7,24 @@
     <div [ngClass]="{'highlight': highlight}">
       <div class="col">
         <div class="row flex-nowrap">
-          <div class="collapse-toggle"><span class="fa" [ngClass]="{'fa-chevron-right': isCollapsed, 'fa-chevron-down': !isCollapsed}" (click)="isCollapsed = !isCollapsed"></span></div>
+          <div class="collapse-toggle">
+            <span class="fa" [ngClass]="{'fa-chevron-right': isCollapsed, 'fa-chevron-down': !isCollapsed}"
+              (click)="isCollapsed = !isCollapsed; $event.stopPropagation();"></span>
+          </div>
           <div class="legend-item-label flex-grow-1" [ngStyle]="{'color': datasetOptions?.color}">
-            <n52-label-mapper  class="legendItemheader" label="{{platformLabel}}" (click)="toggleSelection()"></n52-label-mapper>
+            <n52-label-mapper class="legendItemheader" label="{{platformLabel}}">
+            </n52-label-mapper>
             <n52-favorite-toggler [dataset]="dataset"></n52-favorite-toggler>
-          </div>   
+          </div>
         </div>
         <div class="noDataWarning firstLastEntry" *ngIf="!hasData">
           <div>
             <span class="fa fa-exclamation-triangle red"></span>
-            <span class="small-label">Keine Daten verfügbar</span>
+            <span class="small-label">{{'timeseries.diagram.legend.entry.no-data-available' | translate}}</span>
           </div>
           <div class="additionalLegendEntry" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
             <span class="fa fa-chevron-right"></span>
-            <span class="small-label">Springe zur letzten Messung</span>
+            <span class="small-label">{{'timeseries.diagram.legend.entry.no-data-available' | translate}}</span>
           </div>
         </div>
         <div class="row">
@@ -39,38 +44,48 @@
           </div>
         </div>
         <div class="row" [ngbCollapse]="isCollapsed">
-          <div class="col legendicons" >
-            <span class="fa fa-info" [ngClass]="{'item-inactive': !informationVisible, 'item-active': informationVisible}"
-              (click)="toggleInformation(); $event.stopPropagation();" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.extended-infos-tooltip' | translate}}"></span>
+          <div class="col legendicons">
+            <span class="fa fa-info"
+              [ngClass]="{'item-inactive': !informationVisible, 'item-active': informationVisible}"
+              (click)="toggleInformation(); $event.stopPropagation();" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.extended-infos-tooltip' | translate}}"></span>
             <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
-              (click)="toggleVisibility(); $event.stopPropagation();" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.toggle-visibility-tooltip' | translate}}"></span>
-            <span class="fa fa-map-marker" (click)="showGeometry(); $event.stopPropagation();" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.map-marker-tooltip' | translate}}"></span>
-            <span class="fa fa-pencil" (click)="editDatasetOptions(); $event.stopPropagation();" [ngStyle]="{color: datasetOptions?.color}" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.style-edit-tooltip' | translate}}"></span>
-            <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();" placement="bottom" ngbTooltip="{{'timeseries.diagram.legend.remove-timeseries-tooltip' | translate}}"></span>
+              (click)="toggleVisibility(); $event.stopPropagation();" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.toggle-visibility-tooltip' | translate}}"></span>
+            <span class="fa fa-map-marker" (click)="showGeometry(); $event.stopPropagation();" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.map-marker-tooltip' | translate}}"></span>
+            <span class="fa fa-pencil" (click)="editDatasetOptions(); $event.stopPropagation();"
+              [ngStyle]="{color: datasetOptions?.color}" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.style-edit-tooltip' | translate}}"></span>
+            <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.remove-timeseries-tooltip' | translate}}"></span>
           </div>
           <div class="w-100"></div>
           <div class="collapseLegendEntry small-label" *ngIf="informationVisible">
-            <div class="firstLastEntry additionalLegendEntry" *ngIf="firstValue" (click)="jumpToFirstTimeStamp(); $event.stopPropagation();">
+            <div class="firstLastEntry additionalLegendEntry" *ngIf="firstValue"
+              (click)="jumpToFirstTimeStamp(); $event.stopPropagation();">
               <span class="fa fa-chevron-right"></span>
-              <span>Erster Wert bei</span>
-              <span>{{firstValue.timestamp| date: 'short'}}</span>
+              <span>{{'timeseries.diagram.legend.entry.first-value-at' | translate}}</span>
+              <span> {{firstValue.timestamp | date: 'short': null : translateSrvc.currentLang}} </span>
               <span class="hidden-medium">({{firstValue.value}} {{uom}})</span>
             </div>
-            <div class="firstLastEntry additionalLegendEntry" *ngIf="lastValue" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
+            <div class="firstLastEntry additionalLegendEntry" *ngIf="lastValue"
+              (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
               <span class="fa fa-chevron-right"></span>
-              <span>Letzter Wert bei</span>
-              <span>{{lastValue.timestamp| date: 'short'}}</span>
+              <span>{{'timeseries.diagram.legend.entry.last-value-at' | translate}}</span>
+              <span> {{lastValue.timestamp | date: 'short' : null : translateSrvc.currentLang}} </span>
               <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
             </div>
             <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData">
               <a href="{{downloadLink}}">
                 <span class="fa fa-download"></span>
-                <span >Daten als CSV (Zip-Archiv)</span>
+                <span>{{'timeseries.diagram.legend.entry.csv-download' | translate}}</span>
               </a>
             </div>
             <div *ngIf="dataset?.referenceValues">
-              <div class="additionalLegendEntry" *ngFor="let ref of dataset.referenceValues" (click)="toggleReferenceValue(ref); $event.stopPropagation();"
-                [ngClass]="{'selected': ref.visible}" [ngStyle]="{color: ref.color}">
+              <div class="additionalLegendEntry" *ngFor="let ref of dataset.referenceValues"
+                (click)="toggleReferenceValue(ref); $event.stopPropagation();" [ngClass]="{'selected': ref.visible}"
+                [ngStyle]="{color: ref.color}">
                 <span class="fa fa-chevron-right"></span>
                 <span>{{ref.label}}</span>
               </div>

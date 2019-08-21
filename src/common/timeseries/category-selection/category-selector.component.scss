@@ -27,5 +27,9 @@
     }
     .item-label{
         word-break: break-all;
+        &.selected {
+            font-style: italic;
+            font-weight: bold;
+        }
     }
 }

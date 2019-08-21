@@ -1,10 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import {
-  DatasetApiInterface,
-  Station,
-  Timeseries,
-  Phenomenon
-} from "@helgoland/core";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DatasetApiInterface, Station, Timeseries } from '@helgoland/core';
+
 import { TimeseriesService } from './../services/timeseries.service';
 
 export class ExtendedTimeseries extends Timeseries {
@@ -26,9 +22,9 @@ export class TimeSeriesGroup {
 }
 
 @Component({
-  selector: "n52-category-selector",
-  templateUrl: "./category-selector.component.html",
-  styleUrls: ["./category-selector.component.scss"]
+  selector: 'n52-category-selector',
+  templateUrl: './category-selector.component.html',
+  styleUrls: ['./category-selector.component.scss']
 })
 export class CategorySelectorComponent implements OnInit {
   @Input()
@@ -50,9 +46,10 @@ export class CategorySelectorComponent implements OnInit {
   public sortAscending = false;
 
   @Output()
-  public onSelectionChanged: EventEmitter<Timeseries[]> = new EventEmitter<
-    Timeseries[]
-  >();
+  public selected: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  public deselected: EventEmitter<string> = new EventEmitter<string>();
 
   public timeseriesList: ExtendedTimeseries[] = [];
 
@@ -64,14 +61,14 @@ export class CategorySelectorComponent implements OnInit {
 
   public counter: number;
 
-  public filterCategory = "phenomenon";
+  public filterCategory = 'phenomenon';
 
-  public isCollapsed = true; 
-  
+  public isCollapsed = true;
+
   constructor(
     protected apiInterface: DatasetApiInterface,
     private timeseriesService: TimeseriesService
-    ) {}
+  ) { }
 
   public ngOnInit() {
     if (this.station) {
@@ -105,45 +102,50 @@ export class CategorySelectorComponent implements OnInit {
 
   public toggle(timeseries: ExtendedTimeseries, timeSeriesGroup: TimeSeriesGroup) {
     timeseries.selected = !timeseries.selected;
-    this.updateSelection();
+    this.fireEvent(timeseries);
     this.checkSelectedAll(timeSeriesGroup);
   }
 
-  protected checkSelectedAll(timeSeriesGroup: TimeSeriesGroup){
-    for (var _i = 0; _i < timeSeriesGroup.timeseries.length; _i++) {
-      if(timeSeriesGroup.timeseries[_i].selected === false){
-        timeSeriesGroup.selectAll = false;
-        return;
-      };
+  private fireEvent(timeseries: ExtendedTimeseries) {
+    if (timeseries.selected) {
+      this.selected.emit(timeseries.internalId);
+    } else {
+      this.deselected.emit(timeseries.internalId);
     }
-    timeSeriesGroup.selectAll = true;
+  }
+
+  protected checkSelectedAll(timeSeriesGroup: TimeSeriesGroup) {
+    return timeSeriesGroup.timeseries.every(e => e.selected === true);
   }
 
   public toggleAll(timeSeriesGroup: TimeSeriesGroup) {
     timeSeriesGroup.selectAll = !timeSeriesGroup.selectAll;
-      for (var _i = 0; _i < timeSeriesGroup.timeseries.length; _i++) {
-        timeSeriesGroup.timeseries[_i].selected = timeSeriesGroup.selectAll;
-      } 
-    this.updateSelection();
+    timeSeriesGroup.timeseries.forEach(ts => {
+      ts.selected = timeSeriesGroup.selectAll;
+      this.fireEvent(ts);
+    });
+  }
+
+  public hasSelectedItems(timeSeriesGroup: TimeSeriesGroup) {
+    return timeSeriesGroup.timeseries.some((val) => val.selected);
   }
 
   protected prepareResult(result: ExtendedTimeseries, selection: boolean) {
     result.selected = selection;
 
     let group: TimeSeriesGroup;
-    if(this.orderGroup){
+    if (this.orderGroup) {
       group = this.prepareOrderedCategoryGroup(result, this.sortAscending);
-      group = this.prepareOrderedPhenomenonGroup(result, this.sortAscending);  
-    }else{
+      group = this.prepareOrderedPhenomenonGroup(result, this.sortAscending);
+    } else {
       group = this.preparePhenomenonGroup(result);
       group = this.prepareCategoryGroup(result);
     }
-    if(this.timeseriesService.datasetIds.includes(result.internalId)){
+    if (this.timeseriesService.datasetIds.includes(result.internalId)) {
       this.toggle(result, group);
     }
 
     this.timeseriesList.push(result);
-    this.updateSelection();
   }
 
 
@@ -175,7 +177,7 @@ export class CategorySelectorComponent implements OnInit {
     const key = result.parameters.category.id;
     group = this.categoryMap.get(key);
     if (!group) {
-      group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
+      group = new TimeSeriesGroup([result], true, result.parameters.category.label);
       this.categoryMap.set(key, group);
     } else {
       group.timeseries.push(result);
@@ -192,80 +194,75 @@ export class CategorySelectorComponent implements OnInit {
   private prepareOrderedCategoryGroup(result: ExtendedTimeseries, asc: Boolean): TimeSeriesGroup {
     const length = this.categoryList.length;
     const resValue = parseFloat(result.parameters.category.label);
-      for (var _i = 0; _i < length; _i++) {
-        let actValue = parseFloat(this.categoryList[_i].label);
-        if(resValue === actValue){
-          let group = this.categoryList[_i];
-          const tsLength = group.timeseries.length;
-          // Determine position to insert the phenomenon
-          // regarding the lexigraphical order
-          for (var _j = 0; _j < tsLength; _j++){
-            if(result.parameters.phenomenon.label < group.timeseries[_j].parameters.phenomenon.label){
-              group.timeseries.splice(_j, 0, result);
-              return group;
-            }
+    for (let _i = 0; _i < length; _i++) {
+        const actValue = parseFloat(this.categoryList[_i].label);
+      if (resValue === actValue) {
+        const group = this.categoryList[_i];
+        const tsLength = group.timeseries.length;
+        // Determine position to insert the phenomenon
+        // regarding the lexigraphical order
+        for (let _j = 0; _j < tsLength; _j++) {
+          if (result.parameters.phenomenon.label < group.timeseries[_j].parameters.phenomenon.label) {
+            group.timeseries.splice(_j, 0, result);
+            return group;
           }
-          group.timeseries.push(result);
-          return group;
         }
-        // check if result values should be sorted ascending or descending
-        if(asc ? resValue < actValue : resValue > actValue){
-          let group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
-          this.categoryList.splice(_i, 0, group);
-          return group;
-        }
+        group.timeseries.push(result);
+        return group;
       }
-      let group = new TimeSeriesGroup([result], true,  result.parameters.category.label);
-      this.categoryList.push(group);
-      return group;
+      // check if result values should be sorted ascending or descending
+      if (asc ? resValue < actValue : resValue > actValue) {
+        let group = new TimeSeriesGroup([result], true, result.parameters.category.label);
+        this.categoryList.splice(_i, 0, group);
+        return group;
+      }
+    }
+    let group = new TimeSeriesGroup([result], true, result.parameters.category.label);
+    this.categoryList.push(group);
+    return group;
   }
 
-    /**
-   * Inserts a Timeseries result into an ordered list of Timeseries results
-   * grouped by Phenomenons and dependent on the specified order strategey
-   * @param result the Timeseries result to inster
-   * @param asc the ordering strategy (true for ascending ordering, false for descending ordering)
-   */
+  /**
+ * Inserts a Timeseries result into an ordered list of Timeseries results
+ * grouped by Phenomenons and dependent on the specified order strategey
+ * @param result the Timeseries result to inster
+ * @param asc the ordering strategy (true for ascending ordering, false for descending ordering)
+ */
   private prepareOrderedPhenomenonGroup(result: ExtendedTimeseries, asc: Boolean): TimeSeriesGroup {
     const length = this.phenomenonList.length;
     const resValue = parseFloat(result.parameters.category.label);
-      for (var _i = 0; _i < length; _i++) {
-        if(result.parameters.phenomenon.label === this.phenomenonList[_i].label){
-          const timeseriesLength = this.phenomenonList[_i].timeseries.length;
-          for(var _j = 0; _j < timeseriesLength; _j++){
+    for (let _i = 0; _i < length; _i++) {
+      if (result.parameters.phenomenon.label === this.phenomenonList[_i].label) {
+        const timeseriesLength = this.phenomenonList[_i].timeseries.length;
+        for (let _j = 0; _j < timeseriesLength; _j++) {
             let actValue = parseFloat(this.phenomenonList[_i].timeseries[_j].parameters.category.label);
-            if(resValue === actValue){
-              let group = this.phenomenonList[_i];
-              this.phenomenonList[_i].timeseries.push(result);
-              return group;
-            }
-            // check if result values should be sorted ascending or descending
-            if(asc ? resValue < actValue : resValue > actValue){
-              let group = this.phenomenonList[_i];
-              group.timeseries.splice(_j, 0, result);
-              return group;
-            }
+          if (resValue === actValue) {
+            let group = this.phenomenonList[_i];
+            this.phenomenonList[_i].timeseries.push(result);
+            return group;
           }
-          let group = this.phenomenonList[_i];
-          group.timeseries.push(result);
-          return group;
+          // check if result values should be sorted ascending or descending
+          if (asc ? resValue < actValue : resValue > actValue) {
+            let group = this.phenomenonList[_i];
+            group.timeseries.splice(_j, 0, result);
+            return group;
+          }
         }
-        // if Phenomenon group does not exist, determine position
-        // to insert new group regarding the lexigraphical order
-        if(result.parameters.phenomenon.label < this.phenomenonList[_i].label){
-          let group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
-          this.phenomenonList.splice(_i, 0, group);
-          return group;
-        }
+        let group = this.phenomenonList[_i];
+        group.timeseries.push(result);
+        return group;
       }
-      let group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
-      this.phenomenonList.push(group);
-      return group;
+      // if Phenomenon group does not exist, determine position
+      // to insert new group regarding the lexigraphical order
+      if (result.parameters.phenomenon.label < this.phenomenonList[_i].label) {
+        let group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
+        this.phenomenonList.splice(_i, 0, group);
+        return group;
+      }
+    }
+    let group = new TimeSeriesGroup([result], true, result.parameters.phenomenon.label);
+    this.phenomenonList.push(group);
+    return group;
   }
 
-
-  private updateSelection() {
-    const selection = this.timeseriesList.filter(entry => entry.selected);
-    this.onSelectionChanged.emit(selection);
-  }
 }

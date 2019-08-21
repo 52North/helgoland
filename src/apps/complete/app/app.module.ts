@@ -32,12 +32,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 const baseRoutes: Routes = [
-  ...nestedTimeseriesRoutes,
-  {
-    path: '**',
-    pathMatch: 'full',
-    redirectTo: 'timeseries'
-  },
+  ...nestedTimeseriesRoutes
 ];
 
 @Injectable()
@@ -71,12 +66,12 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     InfoModule,
     HttpClientModule,
     HelgolandCachingModule,
-    NgbTabsetModule.forRoot(),
-    NgbAccordionModule.forRoot(),
-    NgbModalModule.forRoot(),
-    NgbDropdownModule.forRoot(),
-    NgbDatepickerModule.forRoot(),
-    NgbTimepickerModule.forRoot(),
+    NgbTabsetModule,
+    NgbAccordionModule,
+    NgbModalModule,
+    NgbDropdownModule,
+    NgbDatepickerModule,
+    NgbTimepickerModule,
     RouterModule.forRoot(
       baseRoutes
     )

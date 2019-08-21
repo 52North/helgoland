@@ -67,6 +67,15 @@
 			"to-diagram-view": ""
 		}
 	},
+	"service-provider-manager": {
+		"error": "",
+		"new-provider": {
+			"add": "",
+			"placeholder": ""
+		},
+		"success": "",
+		"warning": ""
+	},
 	"service-selector": {
 		"datasets": "",
 		"phenomena": "",
@@ -81,8 +90,19 @@
 				"select-timeseries-first": ""
 			},
 			"legend": {
+				"entry": {
+					"csv-download": "",
+					"first-value-at": "",
+					"jumpToLastTimeStamp": "",
+					"last-value-at": "",
+					"no-data-available": ""
+				},
+				"extended-infos-tooltip": "",
 				"header": "",
+				"map-marker-tooltip": "",
+				"remove-timeseries-tooltip": "",
 				"show-geometry-header": "",
+				"style-edit-tooltip": "",
 				"style-edit": {
 					"generalize": "",
 					"header": "",
@@ -91,7 +111,8 @@
 					"min": "",
 					"pointRadius": "",
 					"zeroBasedYAxis": ""
-				}
+				},
+				"toggle-visibility-tooltip": ""
 			},
 			"phenomenon": {
 				"header": "",
@@ -115,6 +136,8 @@
 			"dataset-selection-hint": "",
 			"group-depth": "",
 			"group-phenomenon": "",
+			"group-select-all-categories": "",
+			"group-select-all-phenomenons": "",
 			"map": "",
 			"provider": "",
 			"show-in-diagram": ""
@@ -123,11 +146,16 @@
 			"current_month": "",
 			"current_week": "",
 			"current_year": "",
+			"custom": "",
+			"from-date": "",
 			"header": "",
+			"invalid-timespan-error": "",
 			"last_hour": "",
 			"last_month": "",
 			"last_week": "",
 			"last_year": "",
+			"pre-defined": "",
+			"to-date": "",
 			"today": "",
 			"today_yesterday": "",
 			"yesterday": ""
@@ -142,7 +170,9 @@
 		},
 		"parameter": {
 			"mobile-platform": "",
-			"path": ""
+			"offering": "",
+			"path": "",
+			"phenomenon": ""
 		},
 		"selection": {
 			"select-by-phenomenon": "",
