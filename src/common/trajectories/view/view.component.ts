@@ -43,7 +43,7 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public tempColor: string;
 
-    public graphData: any = [];
+    public graphData: [String, LocatedTimeValueEntry[]][] = [];
 
     @ViewChild('modalTrajectoryOptionsEditor')
     public modalTrajectoryOptionsEditor: TemplateRef<any>;
