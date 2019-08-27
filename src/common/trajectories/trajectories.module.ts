@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HelgolandControlModule } from '@helgoland/control';
 import { HelgolandD3Module } from '@helgoland/d3';
-import { HelgolandDatasetlistModule } from '@helgoland/depiction';
+import { HelgolandDatasetlistModule, HelgolandDatasetDownloadModule } from '@helgoland/depiction';
 import { HelgolandMapViewModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandSelectorModule } from '@helgoland/selector';
@@ -45,6 +45,7 @@ const trajectoriesRoutes: Routes = [
     CommonModule,
     TranslateModule,
     HelgolandControlModule,
+    HelgolandDatasetDownloadModule,
     HelgolandDatasetlistModule,
     HelgolandMapViewModule,
     HelgolandModificationModule,

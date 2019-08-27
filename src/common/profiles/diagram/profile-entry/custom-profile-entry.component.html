@@ -18,15 +18,20 @@
   <div *ngFor="let item of datasetOptions">
     <div>
       <span [ngStyle]="{'color': item.color}">{{item.timestamp | date: 'short'}}</span>
-      <span class="fa" [ngClass]="{'fa-eye-slash': item.visible, 'fa-eye': !item.visible}" (click)="toggleVisibility(item); $event.stopPropagation();"
+      <span class="fa" [ngClass]="{'fa-eye-slash': item.visible, 'fa-eye': !item.visible}"
+        (click)="toggleVisibility(item); $event.stopPropagation();"
         title="{{'profiles.legend.visibility' | translate}}"></span>
-      <span class="fa fa-pencil" (click)="editDatasetOptions(item); $event.stopPropagation();" [ngStyle]="{color: item.color}"
-        title="{{'profiles.legend.edit-style' | translate}}"></span>
-      <span class="fa fa-map-marker" (click)="showGeometry(item); $event.stopPropagation();" title="{{'profiles.legend.show-geometry' | translate}}"></span>
-      <span class="fa fa-times" (click)="removeDatasetOptions(item); $event.stopPropagation();" title="{{'profiles.legend.delete-subentry' | translate}}"></span>
+      <span class="fa fa-pencil" (click)="editDatasetOptions(item); $event.stopPropagation();"
+        [ngStyle]="{color: item.color}" title="{{'profiles.legend.edit-style' | translate}}"></span>
+      <span class="fa fa-map-marker" (click)="showGeometry(item); $event.stopPropagation();"
+        title="{{'profiles.legend.show-geometry' | translate}}"></span>
+      <span class="fa fa-times" (click)="removeDatasetOptions(item); $event.stopPropagation();"
+        title="{{'profiles.legend.delete-subentry' | translate}}"></span>
     </div>
     <div (click)="$event.stopPropagation();">
-      <n52-download-as-csv [internalId]="internalIdHandler.resolveInternalId(item.internalId)" [timeInterval]="{'from': item.timestamp}" [language]=""></n52-download-as-csv>
+      <span class="fa fa-download"></span>
+      <n52-dataset-download [internalId]="internalIdHandler.resolveInternalId(item.internalId)"
+        [timeInterval]="{'from': item.timestamp}" [language]=""></n52-dataset-download>
     </div>
     <div (click)="openInCombiView(item); $event.stopPropagation();" *ngIf="isMobile()" class="toCombiView">
       <span class="fa fa-arrow-right"></span>

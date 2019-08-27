@@ -61,8 +61,9 @@
       </div>
 
       <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData" (click)="$event.stopPropagation();">
-        <n52-download-as-csv [internalId]="internalId" [timeInterval]="timeInterval"
-          [language]="translateSrvc.currentLang"></n52-download-as-csv>
+        <span class="fa fa-download"></span>
+        <n52-dataset-download [internalId]="internalId" [timeInterval]="timeInterval"
+          [language]="translateSrvc.currentLang"></n52-dataset-download>
       </div>
 
       <div *ngIf="dataset?.referenceValues">

@@ -32,7 +32,6 @@ import { PermalinkButtonComponent } from './permalink/permalink-button/permalink
 import { ToClipboardComponent } from './permalink/to-clipboard/to-clipboard.component';
 import { ProviderParameterSeletorComponent } from './provider-parameter-selector/provider-parameter-selector.component';
 import { TimespanSelectorComponent } from './timespan-selector/timespan-selector.component';
-import { DownloadAsCsvComponent } from './download-as-csv/download-as-csv.component';
 
 @NgModule({
   imports: [
@@ -69,7 +68,6 @@ import { DownloadAsCsvComponent } from './download-as-csv/download-as-csv.compon
     ProviderParameterSeletorComponent,
     TimespanSelectorComponent,
     ToClipboardComponent,
-    DownloadAsCsvComponent,
   ],
   entryComponents: [
     LocalSelectorImplComponent,
@@ -86,7 +84,6 @@ import { DownloadAsCsvComponent } from './download-as-csv/download-as-csv.compon
     LocateButtonComponent,
     PermalinkButtonComponent,
     ProviderParameterSeletorComponent,
-    DownloadAsCsvComponent,
   ]
 })
 export class ComponentsModule { }
