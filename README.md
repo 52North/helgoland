@@ -35,6 +35,7 @@ The following main frameworks are used to provide this application:
 Download the latest version of [Helgoland](https://github.com/52North/helgoland/releases).
 
 - Deploy the war-file of the client in your favorite web container (e.g. tomcat)
+  - The war-file can be created with the command `npm run bundle`.
 - Deploy as a static web page in a web server (e.g. apache)
 
 Configure your client in the settings.json in the root folder. Check this(link) site for the different configuration parameter in the settings.json. The main parameters are:
