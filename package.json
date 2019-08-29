@@ -16,7 +16,9 @@
     "lint": "ng lint --type-check",
     "e2e": "ng e2e",
     "build-netlify": "npm run build && cp ./netlify/* ./dist/complete -r",
-    "i18n-extract": "ngx-translate-extract -i ./src -o ./src/assets/i18n/*.json --clean --sort --format namespaced-json"
+    "i18n-extract": "ngx-translate-extract -i ./src -o ./src/assets/i18n/*.json --clean --sort --format namespaced-json",
+    "bundle-webpack": "rimraf dist && webpack --config  webpack.config.js && node bundle.ts",
+    "bundle": "rimraf dist && ng build --prod && node bundle.ts"
   },
   "private": true,
   "dependencies": {
@@ -45,6 +47,7 @@
     "@ng-bootstrap/ng-bootstrap": "^4.2.1",
     "@ngx-translate/http-loader": "^2.0.1",
     "@types/d3": "^5.7.2",
+    "archiver": "^3.1.1",
     "bootstrap": "^4.3.1",
     "bootstrap-slider": "^10.6.1",
     "core-js": "^2.5.7",
@@ -79,6 +82,7 @@
     "qs": "^6.7.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.18.0",
-    "typescript": "2.9.2"
+    "typescript": "2.9.2",
+    "webpack-cli": "^3.3.7"
   }
 }

@@ -4,9 +4,6 @@
 		"close": "Close",
 		"ok": "Ok"
 	},
-	"list-selection": {
-		"provider": "Provider"
-	},
 	"listSelection": {
 		"loading": "Load new parameter list..."
 	},
@@ -22,7 +19,7 @@
 			"favorites": "Favorites",
 			"list-selection": "List selection",
 			"main": "Timeseries",
-			"map": "Map selection",
+			"map": "Map",
 			"table": "Table"
 		},
 		"trajectories": {
@@ -37,7 +34,7 @@
 			"in-window": "Open in a new tab",
 			"to-clipboard": "Copy to clipboard"
 		},
-		"confirm-to-clipboard": "The permalink is copied to the clipboard."
+		"confirm-to-clipboard": "Permalink was copied to clipboard."
 	},
 	"profiles": {
 		"hint": {
@@ -57,23 +54,31 @@
 			"select-phenomenon": "Select phenomenon",
 			"select-platform": {
 				"header": "Select platform",
-				"loading-mobile-platforms": "Load mobile platforms",
-				"loading-stationary-platforms": "Load stationary platforms",
+				"hint": "Select either a stationary or mobile platform",
 				"mobile": "Mobile platforms",
 				"stationary": "Stationary platforms"
 			},
 			"select-profile": "Select profile",
 			"select-provider": "Select provider",
 			"select-sensor": "Select sensor",
-			"select-timestamp": "Select time stamp",
-			"timestamp": "Time stamp",
+			"select-timestamp": "Select timestamp",
+			"timestamp": "Timestamp",
 			"to-combi-view": "Combined view",
 			"to-diagram-view": "Diagram view"
 		}
 	},
+	"service-provider-manager": {
+		"error": "Could not load provider with this url",
+		"new-provider": {
+			"add": "Add",
+			"placeholder": "Add new provider by URL ..."
+		},
+		"success": "New provider added succesfully",
+		"warning": "Provider already exists"
+	},
 	"service-selector": {
 		"datasets": "Datasets",
-		"phenomena": "Phenomena",
+		"phenomena": "phenomena",
 		"platforms": "Platforms",
 		"service-url": "Service-Url",
 		"stations": "Stations",
@@ -86,14 +91,18 @@
 			},
 			"legend": {
 				"entry": {
+					"csv-download": "Data as CSV (Zip-Archive)",
 					"first-value-at": "First value at",
 					"jumpToLastTimeStamp": "Jump to last measurement",
 					"last-value-at": "Last value at",
 					"no-data-available": "No data available"
 				},
+				"extended-infos-tooltip": "More information",
 				"header": "Legend",
-				"remove-all": "Remove series",
+				"map-marker-tooltip": "Show position",
+				"remove-timeseries-tooltip": "Remove timeseries",
 				"show-geometry-header": "Position of the station",
+				"style-edit-tooltip": "Edit style",
 				"style-edit": {
 					"generalize": "Generalize data",
 					"header": "Change style of this timeseries",
@@ -102,7 +111,8 @@
 					"min": "Min",
 					"pointRadius": "Point radius",
 					"zeroBasedYAxis": "Timeseries zero based"
-				}
+				},
+				"toggle-visibility-tooltip": "Show/Hide timeseries"
 			},
 			"phenomenon": {
 				"header": "Phenomena",
@@ -124,19 +134,28 @@
 		},
 		"map-selection": {
 			"dataset-selection-hint": "Please select one or more timeseries to display in diagram",
+			"group-depth": "Depth",
+			"group-phenomenon": "Phenomenon",
+			"group-select-all-categories": "select all depths",
+			"group-select-all-phenomenons": "select all phenomena",
 			"map": "Map",
 			"provider": "Provider",
-			"show-in-diagram": "Show {{value}} timeseries in diagram"
+			"show-in-diagram": "Show adjustments in diagram"
 		},
 		"timespan-selector": {
-			"current_month": "Last Month",
-			"current_week": "Last Week",
-			"current_year": "Last Year",
+			"current_month": "Current Month",
+			"current_week": "Current Week",
+			"current_year": "Current Year",
+			"custom": "Custom",
+			"from-date": "Start",
 			"header": "Select Timespan",
+			"invalid-timespan-error": "Invalid timespan: start must be BEFORE end",
 			"last_hour": "Last Hour",
 			"last_month": "Last Month",
 			"last_week": "Last Week",
 			"last_year": "Last Year",
+			"pre-defined": "Pre defined",
+			"to-date": "End",
 			"today": "Today",
 			"today_yesterday": "Today & Yesterday",
 			"yesterday": "Yesterday"
@@ -144,27 +163,28 @@
 	},
 	"trajectories": {
 		"diagram": {
-			"hint": "Please select at least on phenomenon on the right."
+			"hint": "Please select at least one phenomenon on the right."
 		},
 		"map": {
 			"loading": ""
 		},
 		"parameter": {
-			"mobile-platform": "Mobil platform",
+			"mobile-platform": "Mobile platform",
 			"offering": "Offering",
 			"path": "Path",
 			"phenomenon": "Phenomenon"
 		},
 		"selection": {
 			"select-by-phenomenon": "Select by phenomenon",
-			"select-by-platform": "Select by platform"
+			"select-by-platform": "Select by platform",
+			"select-provider": "Select provider"
 		},
 		"view": {
 			"change-color-header": "Change color",
 			"graph-distance-tooltip": "x-axis figures the disatance",
 			"graph-dotted-tooltip": "Timeseries as line/dots",
 			"graph-information-tooltip": "The observation period can be shrinked by click and draw. A single click on the diagram represents the complete observation period.",
-			"graph-ticks-tooltip": "x-axis figures the measurement ticks linear",
+			"graph-ticks-tooltip": "x-axis figures the measurement ticks linearly",
 			"graph-time-tooltip": "x-axis figures the timeframe",
 			"hint": "Please select a trajectory first."
 		}
