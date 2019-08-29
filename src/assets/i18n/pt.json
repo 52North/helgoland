@@ -4,6 +4,9 @@
 		"close": "Fechar",
 		"ok": "Ok"
 	},
+	"list-selection": {
+		"provider": ""
+	},
 	"listSelection": {
 		"loading": "Carregar a lista..."
 	},
@@ -54,7 +57,8 @@
 			"select-phenomenon": "Selecione parâmetro",
 			"select-platform": {
 				"header": "Selecione a plataforma",
-				"hint": "Selecione uma plataforma fixa ou móvel",
+				"loading-mobile-platforms": "",
+				"loading-stationary-platforms": "",
 				"mobile": "Plataformas móveis",
 				"stationary": "Plataformas fixas"
 			},
@@ -66,15 +70,6 @@
 			"to-combi-view": "Vista conjunta",
 			"to-diagram-view": "Vista de diagrama"
 		}
-	},
-	"service-provider-manager": {
-		"error": "Não foi possível carregar o provedor com esta url",
-		"new-provider": {
-			"add": "Adicionar",
-			"placeholder": "Adicionar novo provedor por URL ..."
-		},
-		"success": "Novo provedor adicionado com sucesso",
-		"warning": "O fornecedor já existe"
 	},
 	"service-selector": {
 		"datasets": "Conjuntos de dados",
@@ -91,18 +86,14 @@
 			},
 			"legend": {
 				"entry": {
-					"csv-download": "Dados como CSV (Zip-Arquivo)",
 					"first-value-at": "Primeiro valor a",
 					"jumpToLastTimeStamp": "Saltar para a última medição",
 					"last-value-at": "Último valor em",
 					"no-data-available": "Nenhum dado disponível"
 				},
-				"extended-infos-tooltip": "Mais informações",
 				"header": "Legenda",
-				"map-marker-tooltip": "Mostrar posição",
-				"remove-timeseries-tooltip": "Remover série temporal",
+				"remove-all": "",
 				"show-geometry-header": "Posição da estação",
-				"style-edit-tooltip": "Editar estilo",
 				"style-edit": {
 					"generalize": "Generalizar dados",
 					"header": "Alterar o estilo desta série temporal",
@@ -111,8 +102,7 @@
 					"min": "Mínimo",
 					"pointRadius": "Raio do ponto",
 					"zeroBasedYAxis": "Série temporal baseado em zero"
-				},
-				"toggle-visibility-tooltip": "Mostrar/Ocultar série temporal"
+				}
 			},
 			"phenomenon": {
 				"header": "Parâmetros",
@@ -134,10 +124,6 @@
 		},
 		"map-selection": {
 			"dataset-selection-hint": "Selecione um ou mais série temporal para exibir no diagrama",
-			"group-depth": "Profundidade",
-			"group-phenomenon": "Parâmetro",
-			"group-select-all-categories": "Selecionar todas as profundidades",
-			"gEstaçãoroup-select-all-phenomenons": "Selecionar todos os parâmetros",
 			"map": "Mapa",
 			"provider": "Provedor",
 			"show-in-diagram": "Mostrar os ajustes no diagrama"
@@ -146,16 +132,11 @@
 			"current_month": "Mês atual",
 			"current_week": "Semana atual",
 			"current_year": "Ano atual",
-			"custom": "Personalizado",
-			"from-date": "Início",
 			"header": "Selecione o perído de tempo",
-			"invalid-timespan-error": "Tempo de espera inválido: o início deve ser ANTES do fim",
 			"last_hour": "Última hora",
 			"last_month": "Último mês",
 			"last_week": "Semana passada",
 			"last_year": "Último ano",
-			"pre-defined": "Predefinido",
-			"to-date": "Fim",
 			"today": "Hoje",
 			"today_yesterday": "Hoje & ontem",
 			"yesterday": "Ontem"
@@ -176,8 +157,7 @@
 		},
 		"selection": {
 			"select-by-phenomenon": "Selecionar por parâmetro",
-			"select-by-platform": "Selecionar por plataforma",
-			"select-provider": "Selecionar por provedor"
+			"select-by-platform": "Selecionar por plataforma"
 		},
 		"view": {
 			"change-color-header": "Alterar cor",
