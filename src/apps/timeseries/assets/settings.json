@@ -1,12 +1,15 @@
 {
-  "providerBlackList": [
-    {
-      "serviceId": "xyz",
-      "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-    }
-  ],
-  "datasetApis": [
-    {
+  "providerBlackList": [{
+    "serviceId": "xyz",
+    "apiUrl": "http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
+  }],
+  "defaultTimeseriesTimeduration": {
+    "duration": {
+      "days": 7
+    },
+    "align": "end"
+  },
+  "datasetApis": [{
       "name": "UPC-SOS",
       "url": "http://nexos.dev.52north.org/52n-sos-upc/api/"
     },
@@ -43,8 +46,7 @@
       "url": "http://monalisasos.eurac.edu/sos/api/v1/"
     }
   ],
-  "languages": [
-    {
+  "languages": [{
       "label": "Deutsch",
       "code": "de"
     },
@@ -58,8 +60,7 @@
     }
   ],
   "proxyUrl": "https://cors-anywhere.herokuapp.com/",
-  "timespanPresets": [
-    {
+  "timespanPresets": [{
       "name": "lastHour",
       "label": "timeSelection.presets.lastHour",
       "timespan": {
