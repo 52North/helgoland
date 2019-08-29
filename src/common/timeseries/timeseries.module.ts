@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HelgolandD3Module } from '@helgoland/d3';
-import { HelgolandDatasetlistModule, HelgolandDatasetTableModule, HelgolandLabelMapperModule } from '@helgoland/depiction';
+import { HelgolandDatasetlistModule, HelgolandDatasetTableModule,
+    HelgolandLabelMapperModule, HelgolandDatasetDownloadModule } from '@helgoland/depiction';
 import { HelgolandFavoriteModule } from '@helgoland/favorite';
 import { HelgolandMapControlModule, HelgolandMapSelectorModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
@@ -76,6 +77,7 @@ export const nestedTimeseriesRoutes: Routes = [
         TranslateModule,
         FormsModule,
         HelgolandDatasetlistModule,
+        HelgolandDatasetDownloadModule,
         HelgolandD3Module,
         HelgolandDatasetTableModule,
         HelgolandSelectorModule,

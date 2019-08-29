@@ -22,7 +22,7 @@
 			"favorites": "Favorites",
 			"list-selection": "List selection",
 			"main": "Timeseries",
-			"map": "Map selection",
+			"map": "Map",
 			"table": "Table"
 		},
 		"trajectories": {
@@ -37,7 +37,7 @@
 			"in-window": "Open in a new tab",
 			"to-clipboard": "Copy to clipboard"
 		},
-		"confirm-to-clipboard": "The permalink is copied to the clipboard."
+		"confirm-to-clipboard": "Permalink was copied to clipboard."
 	},
 	"profiles": {
 		"hint": {
@@ -65,8 +65,8 @@
 			"select-profile": "Select profile",
 			"select-provider": "Select provider",
 			"select-sensor": "Select sensor",
-			"select-timestamp": "Select time stamp",
-			"timestamp": "Time stamp",
+			"select-timestamp": "Select timestamp",
+			"timestamp": "Timestamp",
 			"to-combi-view": "Combined view",
 			"to-diagram-view": "Diagram view"
 		}
@@ -126,12 +126,12 @@
 			"dataset-selection-hint": "Please select one or more timeseries to display in diagram",
 			"map": "Map",
 			"provider": "Provider",
-			"show-in-diagram": "Show {{value}} timeseries in diagram"
+			"show-in-diagram": "Show adjustments in diagram"
 		},
 		"timespan-selector": {
-			"current_month": "Last Month",
-			"current_week": "Last Week",
-			"current_year": "Last Year",
+			"current_month": "Current Month",
+			"current_week": "Current Week",
+			"current_year": "Current Year",
 			"header": "Select Timespan",
 			"last_hour": "Last Hour",
 			"last_month": "Last Month",
@@ -144,13 +144,13 @@
 	},
 	"trajectories": {
 		"diagram": {
-			"hint": "Please select at least on phenomenon on the right."
+			"hint": "Please select at least one phenomenon on the right."
 		},
 		"map": {
 			"loading": ""
 		},
 		"parameter": {
-			"mobile-platform": "Mobil platform",
+			"mobile-platform": "Mobile platform",
 			"offering": "Offering",
 			"path": "Path",
 			"phenomenon": "Phenomenon"
@@ -164,7 +164,7 @@
 			"graph-distance-tooltip": "x-axis figures the disatance",
 			"graph-dotted-tooltip": "Timeseries as line/dots",
 			"graph-information-tooltip": "The observation period can be shrinked by click and draw. A single click on the diagram represents the complete observation period.",
-			"graph-ticks-tooltip": "x-axis figures the measurement ticks linear",
+			"graph-ticks-tooltip": "x-axis figures the measurement ticks linearly",
 			"graph-time-tooltip": "x-axis figures the timeframe",
 			"hint": "Please select a trajectory first."
 		}

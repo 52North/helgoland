@@ -43,6 +43,10 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public tempColor: string;
 
+    public graphData: LocatedTimeValueEntry[];
+
+    public selectedTimespan: Timespan;
+
     @ViewChild('modalTrajectoryOptionsEditor')
     public modalTrajectoryOptionsEditor: TemplateRef<any>;
 
@@ -73,12 +77,14 @@ export class TrajectoriesViewComponent implements OnInit {
             this.api.getDataset(internalId.id, internalId.url).subscribe(dataset => {
                 this.trajectory = dataset;
                 this.timespan = new Timespan(dataset.firstValue.timestamp, dataset.lastValue.timestamp);
+                this.selectedTimespan = this.timespan;
                 this.api.getData<LocatedTimeValueEntry>(internalId.id, internalId.url, this.timespan)
                     .subscribe(data => {
                         this.geometry = {
                             type: 'LineString',
                             coordinates: []
                         };
+                        this.graphData = data.values;
                         data.values.forEach(entry => this.geometry.coordinates.push(entry.geometry.coordinates));
                         this.loading = false;
                     });
@@ -100,6 +106,11 @@ export class TrajectoriesViewComponent implements OnInit {
             type: 'LineString',
             coordinates: this.geometry.coordinates.slice(range.from, range.to)
         };
+        if (this.graphData) {
+            const from = this.graphData[this.selection.from].timestamp;
+            const to = this.selection.to < this.graphData.length ? this.graphData[this.selection.to].timestamp : this.timespan.to;
+            this.selectedTimespan = new Timespan(from, to);
+        }
     }
 
     public onChartHighlightChanged(idx: number) {
