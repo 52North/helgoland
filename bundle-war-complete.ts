@@ -2,7 +2,7 @@ const fs = require('fs');
 const archiver = require('archiver');
 
 // 1
-const out = 'dist/application.war';
+const out = 'dist/helgoland.war';
 
 // 2
 const output = fs.createWriteStream(out);

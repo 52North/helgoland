@@ -18,7 +18,7 @@
     "build-netlify": "npm run build && cp ./netlify/* ./dist/complete -r",
     "i18n-extract": "ngx-translate-extract -i ./src -o ./src/assets/i18n/*.json --clean --sort --format namespaced-json",
     "bundle-webpack": "rimraf dist && webpack --config  webpack.config.js && node bundle.ts",
-    "bundle": "rimraf dist && ng build --prod && node bundle.ts"
+    "bundle-war": "rimraf dist && ng build complete --prod --base-href=/helgoland/ && node bundle-war-complete.ts"
   },
   "private": true,
   "dependencies": {
