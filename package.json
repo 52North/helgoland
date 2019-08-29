@@ -16,7 +16,7 @@
     "lint": "ng lint --type-check",
     "e2e": "ng e2e",
     "build-netlify": "npm run build:complete && cp ./netlify/* ./dist/complete -r",
-    "i18n-extract": "ngx-translate-extract -i ./src -o ./src/assets/i18n/*.json --clean --sort --format namespaced-json",
+    "i18n-extract": "ngx-translate-extract -i ./src -o ./src/assets/i18n/*.json --clean --sort --format namespaced-json --marker marker",
     "bundle-webpack": "rimraf dist && webpack --config  webpack.config.js && node bundle.ts",
     "bundle-war": "./node_modules/ts-node/dist/bin.js bundle-war.ts"
   },
@@ -62,7 +62,8 @@
     "@angular/cli": "^6.1.3",
     "@angular/compiler-cli": "^6.1.2",
     "@angular/language-service": "^6.1.2",
-    "@biesbjerg/ngx-translate-extract": "^2.3.4",
+    "@biesbjerg/ngx-translate-extract": "^3.0.4",
+    "@biesbjerg/ngx-translate-extract-marker": "^1.0.0",
     "@types/jasmine": "^2.8.8",
     "@types/jasminewd2": "^2.0.6",
     "@types/node": "^10.12.18",

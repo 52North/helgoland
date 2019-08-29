@@ -4,6 +4,12 @@
 		"close": "Schließen",
 		"ok": "OK"
 	},
+	"favorite": {
+		"notifier": {
+			"add-favorite": "Favorit erstellt",
+			"remove-favorite": "Favorit entfernt"
+		}
+	},
 	"list-selection": {
 		"provider": "Anbieter"
 	},

@@ -4,6 +4,12 @@
 		"close": "Close",
 		"ok": "Ok"
 	},
+	"favorite": {
+		"notifier": {
+			"add-favorite": "Favorite created:",
+			"remove-favorite": "Favorite removed:"
+		}
+	},
 	"list-selection": {
 		"provider": "Provider"
 	},
