@@ -64,9 +64,10 @@
         <div *ngFor="let id of datasetIds" class="legend-entry">
           <n52-trajectory-entry [datasetId]="id" [datasetOptions]="options.get(id)"
             (onEditOptions)="editOptions($event)"></n52-trajectory-entry>
-          <span class="fa fa-download"></span>
+          <!-- temporarly disabled -->
+          <!-- <span class="fa fa-download"></span>
           <n52-dataset-download [internalId]="internalIdHandler.resolveInternalId(id)" [timeInterval]="selectedTimespan"
-            [language]=""></n52-dataset-download>
+            [language]=""></n52-dataset-download> -->
         </div>
       </div>
       <div class="chart-buttons">

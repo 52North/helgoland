@@ -28,11 +28,12 @@
       <span class="fa fa-times" (click)="removeDatasetOptions(item); $event.stopPropagation();"
         title="{{'profiles.legend.delete-subentry' | translate}}"></span>
     </div>
-    <div (click)="$event.stopPropagation();">
+    <!-- temporarly disabled -->
+    <!-- <div (click)="$event.stopPropagation();">
       <span class="fa fa-download"></span>
       <n52-dataset-download [internalId]="internalIdHandler.resolveInternalId(item.internalId)"
         [timeInterval]="{'from': item.timestamp}" [language]=""></n52-dataset-download>
-    </div>
+    </div> -->
     <div (click)="openInCombiView(item); $event.stopPropagation();" *ngIf="isMobile()" class="toCombiView">
       <span class="fa fa-arrow-right"></span>
       <span>{{'profiles.legend.go-to-combi-view' | translate}}</span>
