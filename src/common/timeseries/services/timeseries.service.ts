@@ -36,6 +36,7 @@ export class TimeseriesService extends RenderingHintsDatasetService<DatasetOptio
     protected createStyles(internalId: string) {
         const options = new DatasetOptions(internalId, this.color.getColor());
         options.generalize = false;
+        options.lineWidth = 2;
         return options;
     }
 

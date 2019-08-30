@@ -62,8 +62,8 @@
       </div>
       <div class="legend">
         <div *ngFor="let id of datasetIds" class="legend-entry">
-          <n52-trajectory-entry [datasetId]="id" [datasetOptions]="options.get(id)"
-            (onEditOptions)="editOptions($event)"></n52-trajectory-entry>
+          <n52-custom-trajectory-entry [datasetId]="id" [datasetOptions]="options.get(id)"
+            (onEditOptions)="editOptions($event)"></n52-custom-trajectory-entry>
           <!-- temporarly disabled -->
           <!-- <span class="fa fa-download"></span>
           <n52-dataset-download [internalId]="internalIdHandler.resolveInternalId(id)" [timeInterval]="selectedTimespan"
