@@ -81,7 +81,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
     header: 'Kategorie'
   }];
 
-  @ViewChild('tabset')
+  @ViewChild('tabset', { static: true })
   public tabset: NgbTabset;
 
   public datasetApis: Array<DatasetApi>;

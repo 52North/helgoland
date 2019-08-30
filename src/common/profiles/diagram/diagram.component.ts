@@ -14,10 +14,10 @@ import { TimedDatasetOptions } from '@helgoland/core';
 })
 export class ProfilesDiagramComponent implements OnInit {
 
-    @ViewChild('modalProfileOptionsEditor')
+    @ViewChild('modalProfileOptionsEditor', {static: true})
     public modalProfileOptionsEditor: TemplateRef<any>;
 
-    @ViewChild('modalGeometryViewer')
+    @ViewChild('modalGeometryViewer', {static: true})
     public modalGeometryViewer: TemplateRef<any>;
 
     public geometry: GeoJSON.GeoJsonObject;

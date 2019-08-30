@@ -22,7 +22,7 @@ import { NgbAccordion, NgbPanel, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bo
 })
 export class ProviderParameterSeletorComponent implements OnInit {
 
-  @ViewChild('acc') accordion: NgbAccordion;
+  @ViewChild('acc', { static: true }) accordion: NgbAccordion;
 
   @Input() filter: ParameterFilter;
   @Input() parameters: Array<ListSelectorParameter>;

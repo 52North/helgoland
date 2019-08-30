@@ -1,4 +1,4 @@
-import fs = require('fs');
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { combineLatest, Observable } from 'rxjs';
 
 const exec = require('child_process').exec;
@@ -41,11 +41,11 @@ combineLatest(revisionObs, branchObs)
 };
 `;
         const folder = 'src/environments';
-        if (!fs.existsSync(folder)) {
-            fs.mkdirSync(folder, { recursive: true, mode: 0o755 });
+        if (!existsSync(folder)) {
+            mkdirSync(folder, { recursive: true, mode: 0o755 });
         }
 
-        fs.writeFileSync(
+        writeFileSync(
             `${folder}/versions.ts`,
             content,
             { encoding: 'utf8' }

@@ -13,7 +13,7 @@ if (process.argv.length > 2) {
 }
 
 console.log(`Build application ${apptype}`);
-execSync(`rimraf dist && ng build ${apptype} --prod --base-href=/${appname}/`, { stdio: [0, 1, 2] });
+execSync(`rimraf dist && npm run ng-high-memory -- build ${apptype} --prod --base-href=/${appname}/`, { stdio: [0, 1, 2] });
 
 // 1
 const out = `dist/${appname}.war`;

@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class PermalinkButtonComponent {
 
-  @ViewChild('permalinkModal')
+  @ViewChild('permalinkModal', { static: true })
   public modal: TemplateRef<any>;
 
   @Input()

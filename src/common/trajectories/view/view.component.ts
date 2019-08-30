@@ -47,7 +47,7 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public selectedTimespan: Timespan;
 
-    @ViewChild('modalTrajectoryOptionsEditor')
+    @ViewChild('modalTrajectoryOptionsEditor', {static: true})
     public modalTrajectoryOptionsEditor: TemplateRef<any>;
 
     public graphOptions: D3GraphOptions = {

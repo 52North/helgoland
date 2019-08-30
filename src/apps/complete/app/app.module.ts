@@ -1,8 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { Routes } from '@angular/router/src/config';
+import { RouterModule, Routes } from '@angular/router';
 import { HelgolandCachingModule } from '@helgoland/caching';
 import { DatasetApiInterface, Settings, SettingsService, SplittedDataDatasetApiInterface } from '@helgoland/core';
 import { VocabNercLabelMapperModule } from '@helgoland/depiction';

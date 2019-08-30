@@ -72,13 +72,13 @@ export class ProfilesSelectionComponent implements OnInit {
   public mobilePreviewTimestamp: number;
   public mobilePreviewOptions: Map<string, Array<TimedDatasetOptions>>;
 
-  @ViewChild('modalStationaryPlatform')
+  @ViewChild('modalStationaryPlatform', { static: true })
   public modalStationaryPlatform: TemplateRef<any>;
 
-  @ViewChild('modalMobilePreview')
+  @ViewChild('modalMobilePreview', { static: true })
   public modalMobilePreview: TemplateRef<any>;
 
-  @ViewChild('profileSelection')
+  @ViewChild('profileSelection', { static: true })
   public accordion: NgbAccordion;
 
   constructor(
