@@ -6,8 +6,8 @@
 	},
 	"favorite": {
 		"notifier": {
-			"add-favorite": "Favorite created:",
-			"remove-favorite": "Favorite removed:"
+			"add-favorite": "Favorite created",
+			"remove-favorite": "Favorite removed"
 		}
 	},
 	"list-selection": {
