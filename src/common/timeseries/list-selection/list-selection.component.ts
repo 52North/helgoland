@@ -12,6 +12,7 @@ import {
 } from '@helgoland/core';
 import { ListSelectorParameter } from '@helgoland/selector';
 import { NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { TimeseriesListSelectionCache } from '../services/list-selection-cache.service';
 import { TimeseriesRouter } from '../services/timeseries-router.service';
@@ -27,58 +28,58 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
 
   public categoryParams: Array<ListSelectorParameter> = [{
     type: 'category',
-    header: 'Kategorie'
+    header: this.translate.instant('list-selection.parameter.category')
   }, {
     type: 'feature',
-    header: 'Station'
+    header: this.translate.instant('list-selection.parameter.station')
   }, {
     type: 'phenomenon',
-    header: 'Phänomen'
+    header: this.translate.instant('list-selection.parameter.phenomenon')
   }, {
     type: 'procedure',
-    header: 'Sensor'
+    header: this.translate.instant('list-selection.parameter.sensor')
   }];
 
   public stationParams: Array<ListSelectorParameter> = [{
     type: 'feature',
-    header: 'Station'
+    header: this.translate.instant('list-selection.parameter.station')
   }, {
     type: 'category',
-    header: 'Kategorie'
+    header: this.translate.instant('list-selection.parameter.category')
   }, {
     type: 'phenomenon',
-    header: 'Phänomen'
+    header: this.translate.instant('list-selection.parameter.phenomenon')
   }, {
     type: 'procedure',
-    header: 'Sensor'
+    header: this.translate.instant('list-selection.parameter.sensor')
   }];
 
   public phenomenonParams: Array<ListSelectorParameter> = [{
     type: 'phenomenon',
-    header: 'Phänomen'
+    header: this.translate.instant('list-selection.parameter.phenomenon')
   }, {
     type: 'category',
-    header: 'Kategorie'
+    header: this.translate.instant('list-selection.parameter.category')
   }, {
     type: 'feature',
-    header: 'Station'
+    header: this.translate.instant('list-selection.parameter.station')
   }, {
     type: 'procedure',
-    header: 'Sensor'
+    header: this.translate.instant('list-selection.parameter.sensor')
   }];
 
   public procedureParams: Array<ListSelectorParameter> = [{
     type: 'procedure',
-    header: 'Sensor'
+    header: this.translate.instant('list-selection.parameter.sensor')
   }, {
     type: 'feature',
-    header: 'Station'
+    header: this.translate.instant('list-selection.parameter.station')
   }, {
     type: 'phenomenon',
-    header: 'Phänomen'
+    header: this.translate.instant('list-selection.parameter.phenomenon')
   }, {
     type: 'category',
-    header: 'Kategorie'
+    header: this.translate.instant('list-selection.parameter.category')
   }];
 
   @ViewChild('tabset')
@@ -93,6 +94,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
 
   constructor(
     private timeseriesService: TimeseriesService,
+    private translate: TranslateService,
     private settingsSrvc: SettingsService<Settings>,
     private cache: TimeseriesListSelectionCache,
     private cdr: ChangeDetectorRef,

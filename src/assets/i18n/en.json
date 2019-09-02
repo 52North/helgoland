@@ -11,10 +11,14 @@
 		}
 	},
 	"list-selection": {
+		"loading": "Load new parameter list...",
+		"parameter": {
+			"category": "Category",
+			"phenomenon": "Phenomenon",
+			"sensor": "Sensor",
+			"station": "Station"
+		},
 		"provider": "Provider"
-	},
-	"listSelection": {
-		"loading": "Load new parameter list..."
 	},
 	"navigation": {
 		"profiles": {
