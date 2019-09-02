@@ -11,10 +11,14 @@
 		}
 	},
 	"list-selection": {
+		"loading": "",
+		"parameter": {
+			"category": "",
+			"phenomenon": "",
+			"sensor": "",
+			"station": ""
+		},
 		"provider": ""
-	},
-	"listSelection": {
-		"loading": "Carregar a lista..."
 	},
 	"navigation": {
 		"profiles": {
