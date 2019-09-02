@@ -116,7 +116,7 @@ export class TimeseriesDiagramComponent implements OnInit {
     }
 
     public showGeometry(geometry: GeoJSON.GeoJsonObject) {
-        const ref = this.modalService.open(ModalGeometryViewerComponent);
+        const ref = this.modalService.open(ModalGeometryViewerComponent, { size: 'lg' });
         (ref.componentInstance as ModalGeometryViewerComponent).geometry = geometry;
     }
 
