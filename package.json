@@ -56,7 +56,6 @@
     "leaflet-geosearch": "^2.7.0",
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.5.2",
-    "xml2json": "^0.11.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

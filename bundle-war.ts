@@ -3,24 +3,27 @@ import { createWriteStream } from 'fs';
 
 const archiver = require('archiver');
 const fs = require('fs');
-const parser = require('xml2json');
 const pjson = require('./package.json');
 
 let apptype = 'timeseries';
 const appname = pjson.name;
-const defaultXMLasJSON = {
-    'web-app': {
-        'version': '3.0',
-        'xmlns': 'http://java.sun.com/xml/ns/javaee',
-        'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-        'xsi:schemaLocation': 'http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd',
-        'display-name': { '$t': 'Helgoland' },
-        'description': { '$t': 'Helgoland client version ' + pjson.version + ' - built at ' + new Date() },
-        'welcome-file-list': { 'welcome-file': 'index.html' },
-        'mime-mapping': { 'extension': 'woff', 'mime-type': 'application/font-woff' },
-        'error-page': { 'error-code': 404, location: '/index.html' }
-    }
-};
+const xmlAsText = `<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>Helgoland</display-name>
+    <description>Helgoland client version ${pjson.version} - built at ${new Date()}</description>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>application/font-woff</mime-type>
+    </mime-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/index.html</location>
+    </error-page>
+</web-app>`;
 
 if (process.argv.length > 2) {
     if (process.argv[2] === 'timeseries' || process.argv[2] === 'complete') {
@@ -28,39 +31,18 @@ if (process.argv.length > 2) {
     }
 }
 
-console.log('Check if web.xml exists ...');
+console.log('Creating web.xml ...');
 
-fs.access('./web.xml', (errAccess: Error) => {
-    if (!errAccess) {
-        fs.readFile('./web.xml', (errorRead: Error, data: any) => {
-            let json = defaultXMLasJSON;
-            if (!errorRead) {
-                json = JSON.parse(parser.toJson(data, { reversible: true }));
-            }
-            json['web-app']['description'] = {
-                '$t': 'Helgoland client version ' + pjson.version + ' - built at ' + new Date()
-            };
-            writeFile(json, 'Updated');
-        });
+fs.writeFile('./web.xml', xmlAsText, (errWrite: Error) => {
+    if (errWrite) {
+        console.log(errWrite);
+        console.log('web.xml could not be updated.');
+        return;
     } else {
-        writeFile(defaultXMLasJSON, 'Created');
+        console.log(`Updated web.xml`);
+        buildApplication();
     }
 });
-
-function writeFile(xmlAsJson: any, update: String) {
-    const stringified = JSON.stringify(xmlAsJson);
-    const xml = parser.toXml(stringified);
-    fs.writeFile('./web.xml', xml, (errWrite: Error) => {
-        if (errWrite) {
-            console.log(errWrite);
-            console.log('web.xml could not be updated.');
-        } else {
-            console.log(`${update} web.xml`);
-
-            buildApplication();
-        }
-    });
-}
 
 function buildApplication() {
     console.log(`Build application ${apptype} ...`);
