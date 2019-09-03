@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { createWriteStream } from 'fs';
+import { createWriteStream, unlinkSync } from 'fs';
 
 const archiver = require('archiver');
 const fs = require('fs');
@@ -10,8 +10,7 @@ const appname = pjson.name;
 const xmlAsText = `<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    <display-name>Helgoland</display-name>
-    <description>Helgoland client version ${pjson.version} - built at ${new Date()}</description>
+    <display-name>Helgoland client version ${pjson.version} - built at ${new Date()}</display-name>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
@@ -52,7 +51,10 @@ function buildApplication() {
     const output = createWriteStream(out);
     const archive = archiver('zip', {});
 
-    output.on('finish', () => console.log('Finished creation of war (' + out + ') with ' + archive.pointer() + ' total bytes.'));
+    output.on('finish', () => {
+        unlinkSync('web.xml');
+        console.log('Finished creation of war (' + out + ') with ' + archive.pointer() + ' total bytes.');
+    });
 
     archive.pipe(output);
     archive.directory(`dist/${apptype}`, '/');
