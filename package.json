@@ -52,6 +52,7 @@
     "bootstrap-slider": "^10.6.1",
     "core-js": "^2.5.7",
     "font-awesome": "^4.7.0",
+    "fs": "0.0.1-security",
     "leaflet-geosearch": "^2.7.0",
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.5.2",
