@@ -1,7 +1,7 @@
 {
   "name": "helgoland",
   "description": "visual exploration and analysis of sensor web data",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Jan Schulte",
   "bugs": {
     "url": "https://github.com/52North/sensorweb-thin-client/issues"
