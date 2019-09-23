@@ -14,16 +14,23 @@ export class AppComponent {
   public languageList: Language[];
 
   constructor(
-    translate: TranslateService,
-    settings: SettingsService<Settings>
+  private    translate: TranslateService,
+    private settings: SettingsService<Settings>
   ) {
-    translate.setDefaultLang('en');
-    const browserLang = translate.getBrowserLang() || 'en';
-    translate.use(browserLang);
-
+    this.setLanguage();
     // necessary to load information on e.g. what 'medium' date format should look like in German etc.
     registerLocaleData(localeDe);
+  }
 
-    this.languageList = settings.getSettings().languages;
+  private setLanguage() {
+    this.languageList = this.settings.getSettings().languages;
+    // else choose browser language
+    const browserLang = this.translate.getBrowserLang();
+    if (this.settings.getSettings().languages.find(e => e.code === browserLang)) {
+      this.translate.use(browserLang);
+    } else {
+      // else set first configured language
+      this.translate.use(this.settings.getSettings().languages[0].code);
+    }
   }
 }

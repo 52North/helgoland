@@ -51,12 +51,12 @@
     }
   ],
   "languages": [{
-      "label": "Deutsch",
-      "code": "de"
-    },
-    {
       "label": "English",
       "code": "en"
+    },
+    {
+      "label": "Deutsch",
+      "code": "de"
     },
     {
       "label": "Portuguese",
