@@ -9,6 +9,10 @@
       "url": "https://nexos.demo.52north.org/nexos-sos-proxy/api/"
     },
     {
+      "name": "",
+      "url": "https://nexos.demo.52north.org/52n-sos-nexos-test/api/"
+    },
+    {
       "name": "sensorwebclient-webapp-stable",
       "url": "https://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
     }
