@@ -34,10 +34,10 @@ import { TimeseriesService } from './../services/timeseries.service';
 })
 export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('modalStation')
+  @ViewChild('modalStation', { static: true })
   public modalTemplate: TemplateRef<any>;
 
-  @ViewChild('tabset')
+  @ViewChild('tabset', { static: true })
   public tabset: NgbTabset;
 
   public datasetApis: Array<DatasetApi>;

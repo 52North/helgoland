@@ -4,11 +4,21 @@
 		"close": "Schließen",
 		"ok": "OK"
 	},
-	"list-selection": {
-		"provider": "Anbieter"
+	"favorite": {
+		"notifier": {
+			"add-favorite": "Favorit erstellt",
+			"remove-favorite": "Favorit entfernt"
+		}
 	},
-	"listSelection": {
-		"loading": "Lade weitere Parameterliste..."
+	"list-selection": {
+		"loading": "Lade weitere Parameterliste...",
+		"parameter": {
+			"category": "Kategorie",
+			"phenomenon": "Phänomen",
+			"sensor": "Sensor",
+			"station": "Station"
+		},
+		"provider": "Anbieter"
 	},
 	"navigation": {
 		"profiles": {

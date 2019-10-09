@@ -14,7 +14,8 @@
   </div>
 </ng-template>
 
-<n52-permalink-button *ngIf="datasetIds.length > 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
+<n52-permalink-button *ngIf="datasetIds.length > 0" [generatedUrlFunction]="permalinkSrvc.createPermalink">
+</n52-permalink-button>
 <div class="combi-mobile" *ngIf="datasetIds.length > 0">
   <div class="combi-header" *ngIf="trajectory">
     <span *ngIf="trajectory.parameters.platform.label">
@@ -42,10 +43,13 @@
       <div class="chart">
         <div *ngIf="hasVisibleDatasets();else emptyChart" style="height: 100%;">
           <n52-d3-trajectory-graph [datasetIds]="datasetIds" [timeInterval]="timespan" [datasetOptions]="options"
-            [presenterOptions]="graphOptions" [selection]="selection" (onSelectionChanged)="onChartSelectionChanged($event)"
-            (onSelectionChangedFinished)="onChartSelectionChangedFinished($event)" (onHoverHighlight)="onChartHighlightChanged($event)"></n52-d3-trajectory-graph>
+            [presenterOptions]="graphOptions" [selection]="selection"
+            (onSelectionChanged)="onChartSelectionChanged($event)"
+            (onSelectionChangedFinished)="onChartSelectionChangedFinished($event)"
+            (onHoverHighlight)="onChartHighlightChanged($event)"></n52-d3-trajectory-graph>
           <div class="chart-information">
-            <span class="fa fa-info-circle" title="{{'trajectories.view.graph-information-tooltip' | translate}}"></span>
+            <span class="fa fa-info-circle"
+              title="{{'trajectories.view.graph-information-tooltip' | translate}}"></span>
           </div>
         </div>
         <ng-template #emptyChart>
@@ -58,26 +62,35 @@
       </div>
       <div class="legend">
         <div *ngFor="let id of datasetIds" class="legend-entry">
-          <n52-trajectory-entry [datasetId]="id" [datasetOptions]="options.get(id)" (onEditOptions)="editOptions($event)"></n52-trajectory-entry>
+          <n52-custom-trajectory-entry [datasetId]="id" [datasetOptions]="options.get(id)"
+            (onEditOptions)="editOptions($event)"></n52-custom-trajectory-entry>
+          <!-- temporarly disabled -->
+          <!-- <span class="fa fa-download"></span>
+          <n52-dataset-download [internalId]="internalIdHandler.resolveInternalId(id)" [timeInterval]="selectedTimespan"
+            [language]=""></n52-dataset-download> -->
         </div>
       </div>
       <div class="chart-buttons">
         <div class="chart-control">
-          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeDistance" icon="road" tooltip="{{'trajectories.view.graph-distance-tooltip' | translate}}"
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeDistance" icon="road"
+            tooltip="{{'trajectories.view.graph-distance-tooltip' | translate}}"
             (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
         </div>
         <div class="chart-control">
-          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTime" icon="clock-o" tooltip="{{'trajectories.view.graph-time-tooltip' | translate}}"
-            (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTime" icon="clock-o"
+            tooltip="{{'trajectories.view.graph-time-tooltip' | translate}}" (onToggled)="onAxisTypeChanged($event)">
+          </n52-string-toggler>
         </div>
         <div class="chart-control">
-          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTicks" icon="ellipsis-h" tooltip="{{'trajectories.view.graph-ticks-tooltip' | translate}}"
-            (onToggled)="onAxisTypeChanged($event)"></n52-string-toggler>
+          <n52-string-toggler [value]="graphOptions.axisType" [option]="axisTypeTicks" icon="ellipsis-h"
+            tooltip="{{'trajectories.view.graph-ticks-tooltip' | translate}}" (onToggled)="onAxisTypeChanged($event)">
+          </n52-string-toggler>
         </div>
         <hr>
         <div class="chart-control">
-          <n52-bool-toggler [value]="graphOptions.dotted" icon="line-chart" tooltip="{{'trajectories.view.graph-dotted-tooltip' | translate}}"
-            (onToggled)="onDottedChanged($event)"></n52-bool-toggler>
+          <n52-bool-toggler [value]="graphOptions.dotted" icon="line-chart"
+            tooltip="{{'trajectories.view.graph-dotted-tooltip' | translate}}" (onToggled)="onDottedChanged($event)">
+          </n52-bool-toggler>
         </div>
       </div>
     </div>

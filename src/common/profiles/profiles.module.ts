@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HelgolandDatasetlistModule, HelgolandLabelMapperModule } from '@helgoland/depiction';
+import { HelgolandDatasetlistModule, HelgolandLabelMapperModule, HelgolandDatasetDownloadModule } from '@helgoland/depiction';
 import { HelgolandMapSelectorModule, HelgolandMapViewModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandPlotlyModule } from '@helgoland/plotly';
@@ -57,6 +57,7 @@ const profilesRoutes: Routes = [
     HelgolandPlotlyModule,
     HelgolandMapViewModule,
     HelgolandDatasetlistModule,
+    HelgolandDatasetDownloadModule,
     HelgolandModificationModule,
     HelgolandMapSelectorModule,
     HelgolandLabelMapperModule,
