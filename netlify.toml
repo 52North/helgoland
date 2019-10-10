@@ -1,4 +1,4 @@
-[context."feature/angularUpgrade"]
+[context."develop"]
   command = "npm run build-netlify"
   publish = "dist/complete"
 
