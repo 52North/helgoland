@@ -31,8 +31,8 @@
       <div class="control-bar">
         <n52-custom-timespan-shift-selector [timespan]="timespan" (onTimespanChange)="timeChanged($event)"
           (onOpenTimeSettings)="openTimeSettings($event)"></n52-custom-timespan-shift-selector>
-        <!-- <n52-custom-auto-update-timespan [currentTimespan]="timespan" (onChangeTimespan)="timeChanged($event)"
-          [refreshInterval]="10"></n52-custom-auto-update-timespan> -->
+        <n52-custom-auto-update-timespan [currentTimespan]="timespan" (onChangeTimespan)="timeChanged($event)"
+          [refreshInterval]="10"></n52-custom-auto-update-timespan>
       </div>
     </div>
     <div class="col-9 col-md-4 col-xl-3 sidebar-offcanvas" id="sidebar">
