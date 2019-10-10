@@ -19,7 +19,7 @@
     "build-netlify": "npm run build:complete && cp ./netlify/* ./dist/complete -r",
     "i18n-extract": "ngx-translate-extract -i ./src -o ./src/assets/i18n/*.json --clean --sort --format namespaced-json --marker marker",
     "bundle-war": "./node_modules/ts-node/dist/bin.js scripts/bundle-war.ts",
-    "ng-high-memory": "node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng"
+    "ng-high-memory-build": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build complete --prod"
   },
   "private": true,
   "dependencies": {
