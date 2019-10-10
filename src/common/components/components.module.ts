@@ -11,6 +11,7 @@ import { NgbAccordionModule, NgbDatepickerModule, NgbDropdownModule, NgbTimepick
 import { TranslateModule } from '@ngx-translate/core';
 import { ClipboardModule } from 'ngx-clipboard';
 
+import { CustomAutoUpdateTimespanComponent } from './custom-auto-update-timespan/custom-auto-update-timespan.component';
 import { CustomListSelectorComponent } from './custom-list-selector/custom-list-selector.component';
 import { CustomMinMaxRangeComponent } from './custom-min-max-range/custom-min-max-range.component';
 import {
@@ -53,6 +54,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
   declarations: [
     CustomListSelectorComponent,
     CustomMinMaxRangeComponent,
+    CustomAutoUpdateTimespanComponent,
     CustomMultiServiceFilterSelectorComponent,
     CustomServiceSelectorComponent,
     CustomTimeRangeSliderComponent,
@@ -78,6 +80,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
   exports: [
     CustomListSelectorComponent,
     CustomServiceSelectorComponent,
+    CustomAutoUpdateTimespanComponent,
     CustomTimeRangeSliderComponent,
     CustomTimespanShiftSelectorComponent,
     LocalSelectorImplComponent,
