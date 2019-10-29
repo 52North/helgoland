@@ -1,4 +1,4 @@
-import 'rxjs/add/operator/filter';
+import { filter } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
@@ -10,7 +10,7 @@ export class TimeseriesConditionalRouter {
         private router: Router
     ) {
         this.router.events
-            .filter((event) => event instanceof NavigationStart)
+            .pipe(filter((event) => event instanceof NavigationStart))
             .subscribe((event: NavigationStart) => this.redirect(event.url));
     }
 

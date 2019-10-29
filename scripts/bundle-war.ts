@@ -45,9 +45,9 @@ fs.writeFile('./web.xml', xmlAsText, (errWrite: Error) => {
 
 function buildApplication() {
     console.log(`Build application ${apptype}`);
-    execSync(`rimraf dist && npm run ng-high-memory -- build ${apptype} --prod --base-href=/${appname}/`, { stdio: [0, 1, 2] });
+    execSync(`rimraf dist && npm run ng-high-memory -- build ${apptype} --prod --base-href=/${appname}-${apptype}/`, { stdio: [0, 1, 2] });
 
-    const out = `dist/${appname}.war`;
+    const out = `dist/${appname}-${apptype}.war`;
     const output = createWriteStream(out);
     const archive = archiver('zip', {});
 

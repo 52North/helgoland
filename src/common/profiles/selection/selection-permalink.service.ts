@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Feature, Offering, Phenomenon, Procedure, Service, DatasetApiInterface } from '@helgoland/core';
 import { PermalinkService } from '@helgoland/permalink';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 
 import { ProfilesSelectionCache } from './selection.service';
+import { Observable, Observer } from 'rxjs';
 
 const PROVIDER_URL_PARAM = 'url';
 const PROVIDER_ID_PARAM = 'id';
