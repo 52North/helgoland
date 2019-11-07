@@ -1,26 +1,32 @@
 @import "../../../variables";
+
 n52-root {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
+
     .navbar {
+        flex: 0 0 56px;
+
         .nav-link {
             color: white;
+
             &:hover {
                 background-color: darken($primary, 20);
             }
+
             &.active {
                 background-color: $primary;
             }
-
         }
-        flex: 0 0 56px;
+
         .navbar-brand {
             height: 56px;
             width: auto;
             padding-top: 0;
             padding-bottom: 0;
+
             img {
                 height: 100%;
                 width: auto;
@@ -31,6 +37,7 @@ n52-root {
     .content {
         flex: 1;
         position: relative;
+
         n52-map-selection,
         n52-list-selection,
         n52-timeseries-favorites,
@@ -41,13 +48,16 @@ n52-root {
             bottom: 0;
             left: 0;
             display: flex;
+
             .wrapper {
                 width: 100%;
             }
+
             .main {
                 flex: 1;
                 display: flex;
                 flex-direction: column;
+
                 .content {
                     flex: 1;
                     display: flex;

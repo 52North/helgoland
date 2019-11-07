@@ -77,7 +77,7 @@
               <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
             </div>
             <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData">
-              <a href="{{downloadLink}}">
+              <a href="{{downloadLink}}" (click)="$event.stopPropagation();">
                 <span class="fa fa-download"></span>
                 <span>{{'timeseries.diagram.legend.entry.csv-download' | translate}}</span>
               </a>

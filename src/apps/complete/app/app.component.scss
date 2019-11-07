@@ -1,11 +1,40 @@
+@import "../../../variables";
+
 :host {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
+
     .navbar {
         flex: 0 0 56px;
+
+        .nav-link {
+            color: white;
+
+            &:hover {
+                background-color: darken($primary, 20);
+            }
+
+            &.active {
+                background-color: $primary;
+            }
+        }
+
+        .navbar-brand {
+            height: 56px;
+            width: auto;
+            padding-top: 0;
+            padding-bottom: 0;
+
+            img {
+                height: 100%;
+                width: auto;
+            }
+        }
+
     }
+
     .content {
         flex: 1;
         position: relative;

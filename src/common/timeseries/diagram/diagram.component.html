@@ -12,7 +12,7 @@
       <button type="button" class="btn btn-primary btn-sm d-md-none legend-button"
         (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.legend.header' | translate}}</button>
 
-      <n52-dataset-table *ngIf="timeriesView == 'table'" [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds"
+      <n52-dataset-table *ngIf="timeriesView === 'table'" [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds"
         [timeInterval]="timespan" [datasetOptions]="datasetOptions"></n52-dataset-table>
 
       <div *ngIf="timeriesView === 'diagram'" class="diagram">

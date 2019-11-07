@@ -1,5 +1,4 @@
 import 'leaflet.markercluster';
-import 'rxjs/add/observable/forkJoin';
 
 import {
     AfterViewInit,
@@ -29,12 +28,11 @@ import {
 
 import GeoJSON from 'geojson';
 import * as L from 'leaflet';
-import { Observable } from 'rxjs/Observable';
 
 // import { MapCache } from '../../base/map-cache.service';
 // import { MapSelectorComponent } from '../map-selector.component';
 import { Layer } from 'leaflet';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 
 @Component({
     selector: 'n52-extended-station-map-selector',
@@ -42,7 +40,7 @@ import { forkJoin } from 'rxjs';
     styleUrls: ['./extended-station-map-selector.component.scss']
 })
 @Mixin([HasLoadableContent])
-export class ExtendedStationMapSelectorComponent extends MapSelectorComponent<Station> implements OnChanges, AfterViewInit{
+export class ExtendedStationMapSelectorComponent extends MapSelectorComponent<Station> implements OnChanges, AfterViewInit {
 
     @Input()
     public serviceUrl: string;
@@ -147,7 +145,7 @@ export class ExtendedStationMapSelectorComponent extends MapSelectorComponent<St
                 fillOpacity: 0.8,
                 radius: 10,
                 weight: 2,
-                
+
             });
         } else {
             geometry = L.geoJSON(station.geometry, {
@@ -161,7 +159,7 @@ export class ExtendedStationMapSelectorComponent extends MapSelectorComponent<St
                 },
                 onEachFeature: function (feature, layer) {
                     layer.bindTooltip(station.properties.label);
-                  }
+                }
             });
         }
         if (geometry) {
@@ -201,13 +199,14 @@ export class ExtendedStationMapSelectorComponent extends MapSelectorComponent<St
             return this.markerSelectorGenerator.createDefaultGeometry(station);
         }
         if (station.geometry) {
-            const geometry = L.geoJSON(station.geometry, {onEachFeature: function (feature, layer) {
-                layer.bindTooltip(station.properties.label);
-              }
+            const geometry = L.geoJSON(station.geometry, {
+                onEachFeature: function (feature, layer) {
+                    layer.bindTooltip(station.properties.label);
+                }
             });
 
-            geometry  
-            .on('click', () => this.onSelected.emit(station));
+            geometry
+                .on('click', () => this.onSelected.emit(station));
             return geometry;
             return geometry;
         } else {
