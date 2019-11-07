@@ -19,7 +19,8 @@
     "build-netlify": "npm run prebuild && npm run ng-high-memory-build && cp ./netlify/* ./dist/complete -r",
     "i18n-extract": "ngx-translate-extract -i ./src -o ./src/assets/i18n/*.json --clean --sort --format namespaced-json --marker marker",
     "bundle-war": "./node_modules/ts-node/dist/bin.js scripts/bundle-war.ts",
-    "ng-high-memory": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng"
+    "ng-high-memory": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng",
+    "build-distribution-files": "./node_modules/ts-node/dist/bin.js scripts/build-distributions.ts"
   },
   "private": true,
   "dependencies": {
@@ -65,6 +66,7 @@
     "@angular/language-service": "^8.2.12",
     "@biesbjerg/ngx-translate-extract": "^3.0.4",
     "@biesbjerg/ngx-translate-extract-marker": "^1.0.0",
+    "@types/archiver": "^3.0.0",
     "@types/jasmine": "^2.8.8",
     "@types/jasminewd2": "^2.0.6",
     "@types/node": "^10.12.18",

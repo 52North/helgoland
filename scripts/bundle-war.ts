@@ -25,42 +25,47 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 </web-app>`;
 
 if (process.argv.length > 2) {
-    if (process.argv[2] === 'timeseries' || process.argv[2] === 'complete') {
-        apptype = process.argv[2];
-    }
+  if (process.argv[2] === 'timeseries' || process.argv[2] === 'complete') {
+    apptype = process.argv[2];
+  }
 }
 
 console.log('Creating web.xml ...');
 
 fs.writeFile('./web.xml', xmlAsText, (errWrite: Error) => {
-    if (errWrite) {
-        console.log(errWrite);
-        console.log('web.xml could not be updated.');
-        return;
-    } else {
-        console.log(`Updated web.xml`);
-        buildApplication();
-    }
+  if (errWrite) {
+    console.log(errWrite);
+    console.log('web.xml could not be updated.');
+    return;
+  } else {
+    console.log(`Updated web.xml`);
+    buildApplication();
+  }
 });
 
 function buildApplication() {
-    console.log(`Build application ${apptype}`);
-    execSync(`rimraf dist && npm run ng-high-memory -- build ${apptype} --prod --base-href=/${appname}-${apptype}/`, { stdio: [0, 1, 2] });
+  console.log(`Build application ${apptype}`);
+  execSync(
+    `rimraf dist/${apptype} && npm run ng-high-memory -- build ${apptype} --prod --base-href=/${appname}-${apptype}/`,
+    { stdio: [0, 1, 2] }
+  );
 
-    const out = `dist/${appname}-${apptype}.war`;
-    const output = createWriteStream(out);
-    const archive = archiver('zip', {});
+  const out = `dist/${appname}-${apptype}.war`;
+  const output = createWriteStream(out);
+  const archive = archiver('zip', {
+    zlib: { level: 9 }
+  });
 
-    output.on('finish', () => {
-        unlinkSync('web.xml');
-        console.log('Finished creation of war (' + out + ') with ' + archive.pointer() + ' total bytes.');
-    });
+  output.on('finish', () => {
+    unlinkSync('web.xml');
+    console.log('Finished creation of war (' + out + ') with ' + archive.pointer() + ' total bytes.');
+  });
 
-    archive.pipe(output);
-    archive.directory(`dist/${apptype}`, '/');
-    archive.file('web.xml', { name: '/WEB-INF/web.xml' });
+  archive.pipe(output);
+  archive.directory(`dist/${apptype}`, '/');
+  archive.file('web.xml', { name: '/WEB-INF/web.xml' });
 
-    console.log(`Finalizing build application ${apptype} ...`);
+  console.log(`Finalizing build application ${apptype} ...`);
 
-    archive.finalize();
+  archive.finalize();
 }
