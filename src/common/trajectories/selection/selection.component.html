@@ -1,35 +1,26 @@
 <div class="wrapper">
-  <ngb-tabset #tabset="ngbTabset" class="boxItem vbox" justify="fill">
-    <ngb-tab id="trajectoryProvider">
-      <ng-template ngbTabTitle>
-        <span>{{'trajectories.selection.select-provider' | translate}}</span>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <div class="datasetApis container">
-          <n52-custom-service-selector [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist" [filter]="providerFilter"
-            [showUnresolvableServices]="true" (onServiceSelected)="providerSelected($event);"></n52-custom-service-selector>
-        </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab id="selectByPlatform" [disabled]="selectedProvider == undefined">
+  <ngb-tabset #tabset="ngbTabset" justify="fill">
+    <ngb-tab id="selectByPlatform">
       <ng-template ngbTabTitle>
         <span>{{'trajectories.selection.select-by-platform' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
         <div class="container">
-          <n52-custom-list-selector [parameters]="platformParams" [selectorId]="'trajectory-platform'" [filter]="paramFilter" [providerList]="selectedProvider"
-            (onDatasetSelection)="datasetSelected($event)"></n52-custom-list-selector>
+          <n52-provider-parameter-selector [parameters]="platformParams" [filter]="providerFilter"
+            selectorId="trajectory-platform" (datasetSelected)="datasetSelected($event)">
+          </n52-provider-parameter-selector>
         </div>
       </ng-template>
     </ngb-tab>
-    <ngb-tab id="selectByPhenomenon" [disabled]="selectedProvider == undefined">
+    <ngb-tab id="selectByPhenomenon">
       <ng-template ngbTabTitle>
         <span>{{'trajectories.selection.select-by-phenomenon' | translate}}</span>
       </ng-template>
       <ng-template ngbTabContent>
         <div class="container">
-          <n52-custom-list-selector [parameters]="phenomenonParams" [selectorId]="'trajectory-phenomenon'" [filter]="paramFilter" [providerList]="selectedProvider"
-            (onDatasetSelection)="datasetSelected($event)"></n52-custom-list-selector>
+          <n52-provider-parameter-selector [parameters]="phenomenonParams" [filter]="providerFilter"
+            selectorId="trajectory-phenomenon" (datasetSelected)="datasetSelected($event)">
+          </n52-provider-parameter-selector>
         </div>
       </ng-template>
     </ngb-tab>

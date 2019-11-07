@@ -53,18 +53,36 @@
                 .control-bar {
                     flex: 0 0 50px;
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
                     justify-content: center;
                     align-items: center;
-                    .btn{
+
+                    .btn {
                         flex: 1 0 0
+                    }
+
+                    >* {
+                        padding: 0px 5px;
                     }
                 }
             }
 
+            .legend {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+
+                .legend-entries {
+                    flex: 1;
+                    overflow: auto;
+                }
+
+            }
+
+
             .sidebar-offcanvas {
                 overflow-y: auto;
-                max-height: calc(100vh - 56px - 81px);
             }
         }
 
@@ -105,20 +123,24 @@
             }
         }
     }
-    .table-view{
+
+    .table-view {
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
         display: flex;
+
         .wrapper {
             width: 100%;
         }
+
         .main {
             flex: 1;
             display: flex;
             flex-direction: column;
+
             .content {
                 flex: 1;
                 display: flex;
@@ -126,5 +148,5 @@
             }
         }
     }
-    
+
 }

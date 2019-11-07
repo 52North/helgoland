@@ -1,10 +1,15 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { DatasetOptions, Timespan } from '@helgoland/core';
+import { D3PlotOptions, HoveringStyle } from '@helgoland/d3';
 import { FavoriteService, JsonFavoriteExporterService, SingleFavorite } from '@helgoland/favorite';
 
 import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from '../services/timeseries.service';
-import { D3PlotOptions } from '@helgoland/d3';
+
+// add i18n fragments
+marker('favorite.notifier.remove-favorite');
+marker('favorite.notifier.add-favorite');
 
 interface ExtendedSingleFavorite extends SingleFavorite {
   timespan: Timespan;
@@ -28,7 +33,8 @@ export class TimeseriesFavoritesComponent {
   public favorites: EditableExtendedSingleFavorite[];
 
   public presenterOptions: D3PlotOptions = {
-    hoverable: false,
+    hoverStyle: HoveringStyle.none,
+    togglePanZoom: true,
     showTimeLabel: false
   };
 

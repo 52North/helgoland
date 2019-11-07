@@ -1,0 +1,27 @@
+n52-custom-time-range-slider {
+  .time-range-slider {
+      width: 100%;
+      .slider-container {
+          display: flex;
+          display: -webkit-flex;
+      }
+      .left-start,
+      .right-end {
+          width: 200px;
+          padding: 0 15px;
+      }
+      .left-start {
+          text-align: right;
+      }
+      .center {
+          -webkit-flex: 1;
+          flex: 1;
+          .slider {
+              width: 100%;
+          }
+      }
+      .selection {
+          text-align: center;
+      }
+  }
+}

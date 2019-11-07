@@ -15,7 +15,7 @@ export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> 
         this.loadState();
     }
 
-    public addDataset(internalId: string, options?: Array<TimedDatasetOptions>) {
+    public async addDataset(internalId: string, options?: Array<TimedDatasetOptions>): Promise<boolean> {
         if (this.datasetOptions.has(internalId)) {
             options.forEach(entry => {
                 if (!this.datasetOptions.get(internalId).find(e => e.timestamp === entry.timestamp)) {
@@ -23,8 +23,9 @@ export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> 
                     this.saveState();
                 }
             });
+            return true;
         } else {
-            super.addDataset(internalId, options);
+            return super.addDataset(internalId, options);
         }
     }
 

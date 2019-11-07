@@ -4,8 +4,21 @@
 		"close": "Close",
 		"ok": "Ok"
 	},
-	"listSelection": {
-		"loading": "Load new parameter list..."
+	"favorite": {
+		"notifier": {
+			"add-favorite": "Favorite created",
+			"remove-favorite": "Favorite removed"
+		}
+	},
+	"list-selection": {
+		"loading": "Load new parameter list...",
+		"parameter": {
+			"category": "Category",
+			"phenomenon": "Phenomenon",
+			"sensor": "Sensor",
+			"station": "Station"
+		},
+		"provider": "Provider"
 	},
 	"navigation": {
 		"profiles": {
@@ -34,7 +47,7 @@
 			"in-window": "Open in a new tab",
 			"to-clipboard": "Copy to clipboard"
 		},
-		"confirm-to-clipboard": "The permalink is copied to the clipboard."
+		"confirm-to-clipboard": "Permalink was copied to clipboard."
 	},
 	"profiles": {
 		"hint": {
@@ -54,15 +67,16 @@
 			"select-phenomenon": "Select parameter",
 			"select-platform": {
 				"header": "Select platform",
-				"hint": "Select either a stationary or mobile platform",
+				"loading-mobile-platforms": "Load mobile platforms",
+				"loading-stationary-platforms": "Load stationary platforms",
 				"mobile": "Mobile platforms",
 				"stationary": "Stationary platforms"
 			},
 			"select-profile": "Select profile",
 			"select-provider": "Select provider",
 			"select-sensor": "Select sensor",
-			"select-timestamp": "Select time stamp",
-			"timestamp": "Time stamp",
+			"select-timestamp": "Select timestamp",
+			"timestamp": "Timestamp",
 			"to-combi-view": "Combined view",
 			"to-diagram-view": "Diagram view"
 		}
@@ -101,6 +115,7 @@
 				"header": "Legend",
 				"map-marker-tooltip": "",
 				"remove-timeseries-tooltip": "",
+				"remove-all": "Remove series",
 				"show-geometry-header": "Position of the station",
 				"style-edit-tooltip": "",
 				"style-edit": {
@@ -143,11 +158,11 @@
 			"show-in-diagram": "Show adjustments in diagram"
 		},
 		"timespan-selector": {
-			"current_month": "Last Month",
-			"current_week": "Last Week",
-			"current_year": "Last Year",
 			"custom": "Custom",
 			"from-date": "Start",
+			"current_month": "Current Month",
+			"current_week": "Current Week",
+			"current_year": "Current Year",
 			"header": "Select Timespan",
 			"invalid-timespan-error": "Invalid timespan: start must be BEFORE end",
 			"last_hour": "Last Hour",
@@ -163,14 +178,14 @@
 	},
 	"trajectories": {
 		"diagram": {
-			"hint": "Please select at least on parameter on the right."
+			"hint": "Please select at least one phenomenon on the right."
 		},
 		"map": {
 			"loading": ""
 		},
 		"parameter": {
-			"mobile-platform": "Mobil platform",
-			"offering": "",
+			"mobile-platform": "Mobile platform",
+			"offering": "Offering",
 			"path": "Path",
 			"phenomenon": ""
 		},
@@ -184,7 +199,7 @@
 			"graph-distance-tooltip": "x-axis figures the disatance",
 			"graph-dotted-tooltip": "Timeseries as line/dots",
 			"graph-information-tooltip": "The observation period can be shrinked by click and draw. A single click on the diagram represents the complete observation period.",
-			"graph-ticks-tooltip": "x-axis figures the measurement ticks linear",
+			"graph-ticks-tooltip": "x-axis figures the measurement ticks linearly",
 			"graph-time-tooltip": "x-axis figures the timeframe",
 			"hint": "Please select a trajectory first."
 		}

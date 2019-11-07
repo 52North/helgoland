@@ -4,8 +4,21 @@
 		"close": "Schließen",
 		"ok": "OK"
 	},
-	"listSelection": {
-		"loading": "Lade weitere Parameterliste..."
+	"favorite": {
+		"notifier": {
+			"add-favorite": "Favorit erstellt",
+			"remove-favorite": "Favorit entfernt"
+		}
+	},
+	"list-selection": {
+		"loading": "Lade weitere Parameterliste...",
+		"parameter": {
+			"category": "Kategorie",
+			"phenomenon": "Phänomen",
+			"sensor": "Sensor",
+			"station": "Station"
+		},
+		"provider": "Anbieter"
 	},
 	"navigation": {
 		"profiles": {
@@ -54,7 +67,8 @@
 			"select-phenomenon": "Wähle Parameter",
 			"select-platform": {
 				"header": "Wähle Platform",
-				"hint": "Wähle entweder eine stationäre oder mobile Platform",
+				"loading-mobile-platforms": "Lade mobile Platformen",
+				"loading-stationary-platforms": "Lade stationäre Platformen",
 				"mobile": "Mobile Platform",
 				"stationary": "Stationäre Platform"
 			},
@@ -101,6 +115,7 @@
 				"header": "Legende",
 				"map-marker-tooltip": "Position zeigen",
 				"remove-timeseries-tooltip": "Zeitreihe entfernen",
+				"remove-all": "Zeitreihen entfernen",
 				"show-geometry-header": "Position der Station",
 				"style-edit-tooltip": "Style bearbeiten",
 				"style-edit": {

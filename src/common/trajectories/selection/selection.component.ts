@@ -9,9 +9,6 @@ import {
   ParameterFilter,
   PlatformTypes,
   Provider,
-  Service,
-  Settings,
-  SettingsService,
   ValueTypes,
 } from '@helgoland/core';
 import { ListSelectorParameter } from '@helgoland/selector';
@@ -54,7 +51,7 @@ export class TrajectoriesSelectionComponent implements OnInit {
     }
   ];
 
-  @ViewChild('tabset')
+  @ViewChild('tabset', {static: true})
   public tabset: NgbTabset;
 
   public paramFilter: ParameterFilter;
@@ -65,7 +62,6 @@ export class TrajectoriesSelectionComponent implements OnInit {
   public activeTab: string;
 
   constructor(
-    private settingsSrvc: SettingsService<Settings>,
     private trajectory: TrajectoriesService,
     private translate: TranslateService,
     private router: Router,
@@ -73,21 +69,7 @@ export class TrajectoriesSelectionComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
-    this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
     this.providerFilter = this.createFilter();
-    this.paramFilter = this.createFilter();
-  }
-
-  public providerSelected(provider: Service) {
-    this.selectedProvider = [{
-      id: provider.id,
-      url: provider.apiUrl
-    }];
-    this.paramFilter = this.createFilter();
-    const id = 'selectByPlatform';
-    this.tabset.tabs.find(entry => entry.id === id).disabled = false;
-    this.tabset.select(id);
   }
 
   public datasetSelected(dataset: Array<Dataset>) {

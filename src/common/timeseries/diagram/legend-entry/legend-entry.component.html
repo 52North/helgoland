@@ -82,6 +82,12 @@
                 <span>{{'timeseries.diagram.legend.entry.csv-download' | translate}}</span>
               </a>
             </div>
+            <!-- temporarly disabled -->
+            <!-- <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData" (click)="$event.stopPropagation();">
+                   <span class="fa fa-download"></span>
+                   <n52-dataset-download [internalId]="internalId" [timeInterval]="timeInterval"
+                    [language]="translateSrvc.currentLang"></n52-dataset-download>
+                  </div> -->
             <div *ngIf="dataset?.referenceValues">
               <div class="additionalLegendEntry" *ngFor="let ref of dataset.referenceValues"
                 (click)="toggleReferenceValue(ref); $event.stopPropagation();" [ngClass]="{'selected': ref.visible}"

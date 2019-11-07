@@ -45,13 +45,15 @@
               <input ngbButton type="radio" value="table"><span class="fa fa-table"></span>
             </label>
           </div>
+          <!-- <n52-custom-auto-update-timespan [currentTimespan]="timespan" (onChangeTimespan)="timeChanged($event)"
+          [refreshInterval]="10"></n52-custom-auto-update-timespan> -->
         </div>
       </div>
     </div>
     <div class="col-9 col-md-4 col-xl-3 sidebar-offcanvas" id="sidebar">
       <div class="legend">
         <h3 class="header d-none d-md-block">{{'timeseries.diagram.legend.header' | translate}}</h3>
-        <div class="legend-entry">
+        <div class="legend-entries">
           <div *ngFor="let id of datasetIds">
             <n52-legend-entry [datasetId]="id" [selected]="isSelected(id)" [highlight]="id === highlightId"
               [datasetOptions]="datasetOptions.get(id)" [timeInterval]="timespan"
@@ -60,6 +62,12 @@
               (onEditOptions)="editOption($event)" (onShowGeometry)="showGeometry($event)"></n52-legend-entry>
           </div>
         </div>
+        <nav class="navbar navbar-light bg-white footer">
+          <a class="navbar-brand" href="#">
+          </a>
+          <button class="btn btn-outline-secondary"
+            (click)="deleteAllTs()">{{'timeseries.diagram.legend.remove-all' | translate}}</button>
+        </nav>
       </div>
     </div>
   </div>

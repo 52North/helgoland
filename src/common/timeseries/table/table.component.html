@@ -1,16 +1,21 @@
-<n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
+<n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink">
+</n52-permalink-button>
 <div *ngIf="datasetIds.length == 0" class="container n52-alert">
   <div class="alert alert-primary" role="alert">
-    <span class="alert-link" (click)="router.navigateToMapSelection()">{{'timeseries.diagram.hint.select-timeseries-first' | translate}}</span>
+    <span class="alert-link"
+      (click)="router.navigateToMapSelection()">{{'timeseries.diagram.hint.select-timeseries-first' | translate}}</span>
   </div>
 </div>
 <div class="container-fluid" *ngIf="datasetIds.length > 0">
   <div class="row row-offcanvas row-offcanvas-right" [ngClass]="{active: legendToggled}">
     <div class="col-12 col-md-8 col-xl-9 diagram-wrapper">
-      <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.legend.header' | translate}}</button>
-      <n52-dataset-table [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [timeInterval]="timespan" [datasetOptions]="datasetOptions"></n52-dataset-table>
+      <button type="button" class="btn btn-primary btn-sm d-md-none legend-button"
+        (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.legend.header' | translate}}</button>
+      <n52-dataset-table [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [timeInterval]="timespan"
+        [datasetOptions]="datasetOptions"></n52-dataset-table>
       <div class="control-bar">
-        <n52-custom-timespan-shift-selector [timespan]="timespan" (onTimespanChange)="timeChanged($event)" (onOpenTimeSettings)="openTimeSettings($event)"></n52-custom-timespan-shift-selector>
+        <n52-custom-timespan-shift-selector [timespan]="timespan" (onTimespanChange)="timeChanged($event)"
+          (onOpenTimeSettings)="openTimeSettings($event)"></n52-custom-timespan-shift-selector>
       </div>
     </div>
     <div class="col-9 col-md-4 col-xl-3 sidebar-offcanvas" id="sidebar">
@@ -18,11 +23,11 @@
         <h3 class="header d-none d-md-block">{{'timeseries.diagram.legend.header' | translate}}</h3>
         <div class="legend-entry">
           <div *ngFor="let id of datasetIds">
-            <!-- not implemented: [highlight]="id === highlightId" -->
-            <n52-timeseries-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)"
-              [timeInterval]="timespan" (onDeleteDataset)="deleteTimeseries(id)" (onSelectDataset)="selectTimeseries($event, id)"
-              (onSelectDate)="jumpToDate($event)" (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)"
-              (onShowGeometry)="showGeometry($event)"></n52-timeseries-entry>
+            <n52-legend-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)"
+              [timeInterval]="timespan" (onDeleteDataset)="deleteTimeseries(id)"
+              (onSelectDataset)="selectTimeseries($event, id)" (onSelectDate)="jumpToDate($event)"
+              (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)"
+              (onShowGeometry)="showGeometry($event)"></n52-legend-entry>
           </div>
         </div>
       </div>

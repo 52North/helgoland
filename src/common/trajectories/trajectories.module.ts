@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HelgolandControlModule } from '@helgoland/control';
 import { HelgolandD3Module } from '@helgoland/d3';
-import { HelgolandDatasetlistModule } from '@helgoland/depiction';
+import { HelgolandDatasetDownloadModule, HelgolandDatasetlistModule } from '@helgoland/depiction';
 import { HelgolandMapViewModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandSelectorModule } from '@helgoland/selector';
@@ -15,6 +15,7 @@ import { TrajectoriesNavigationComponent } from './navigation/navigation.compone
 import { TrajectoriesSelectionComponent } from './selection/selection.component';
 import { TrajectoriesConditionalRouter } from './services/trajectories-router.service';
 import { TrajectoriesService } from './services/trajectories.service';
+import { CustomTrajectoryEntryComponent } from './view/custom-trajectory-entry/custom-trajectory-entry.component';
 import { TrajectoriesViewPermalink } from './view/view-permalink';
 import { TrajectoriesViewComponent } from './view/view.component';
 
@@ -45,6 +46,7 @@ const trajectoriesRoutes: Routes = [
     CommonModule,
     TranslateModule,
     HelgolandControlModule,
+    HelgolandDatasetDownloadModule,
     HelgolandDatasetlistModule,
     HelgolandMapViewModule,
     HelgolandModificationModule,
@@ -59,7 +61,8 @@ const trajectoriesRoutes: Routes = [
   declarations: [
     TrajectoriesViewComponent,
     TrajectoriesSelectionComponent,
-    TrajectoriesNavigationComponent
+    TrajectoriesNavigationComponent,
+    CustomTrajectoryEntryComponent
   ],
   providers: [
     TrajectoriesService,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import 'rxjs/add/operator/filter';
+import { filter } from 'rxjs/operators';
 
 @Injectable()
 export class TrajectoriesConditionalRouter {
@@ -9,7 +9,7 @@ export class TrajectoriesConditionalRouter {
         private router: Router
     ) {
         this.router.events
-            .filter((event: NavigationStart) => event instanceof NavigationStart)
+            .pipe(filter((event: NavigationStart) => event instanceof NavigationStart))
             .subscribe((event: NavigationStart) => this.redirect(event.url));
     }
 
