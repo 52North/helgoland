@@ -17,13 +17,22 @@ export class AppComponent {
     translate: TranslateService,
     settings: SettingsService<Settings>
   ) {
-    translate.setDefaultLang('en');
-    const browserLang = translate.getBrowserLang() || 'en';
-    translate.use(browserLang);
-
-    // necessary to load information on e.g. what 'medium' date format should look like in German etc.
-    registerLocaleData(localeDe);
-
     this.languageList = settings.getSettings().languages;
+
+    if (this.languageList.length > 0) {
+      const defaultLang = translate.getBrowserLang() || 'en';
+      const foundLang = this.languageList.find(l => l.code === defaultLang);
+      if (foundLang) {
+        translate.use(foundLang.code);
+      } else {
+        translate.use(this.languageList[0].code);
+      }
+
+      // necessary to load information on e.g. what 'medium' date format should look like in German etc.
+      registerLocaleData(localeDe);
+    } else {
+      console.error('Please check the language configuration in the settings. You must at least configured one language.');
+    }
+
   }
 }
