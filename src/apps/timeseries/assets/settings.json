@@ -52,6 +52,10 @@
     {
       "name": "Monalisa-Sos",
       "url": "http://monalisasos.eurac.edu/sos/api/v1/"
+    },
+    {
+      "name": "STA-Test",
+      "url": "https://cors-anywhere.herokuapp.com/https://calgary-aq-sta.sensorup.com/v1.0/"
     }
   ],
   "languages": [{

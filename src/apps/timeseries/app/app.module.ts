@@ -3,7 +3,7 @@ import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HelgolandCachingModule } from '@helgoland/caching';
-import { DatasetApiInterface, Settings, SettingsService, SplittedDataDatasetApiInterface } from '@helgoland/core';
+import { DatasetApiInterface, Settings, SettingsService, SplittedDataDatasetApiInterface, MultiDatasetInterface } from '@helgoland/core';
 import { JsonFavoriteExporterService } from '@helgoland/favorite';
 import {
   NgbAccordionModule,
@@ -61,7 +61,10 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     TimeseriesModule,
     InfoModule,
     HttpClientModule,
-    HelgolandCachingModule,
+    HelgolandCachingModule.forRoot({
+      cachingDurationInMilliseconds: 300000,
+      getDataCacheActive: true
+    }),
     NgbTabsetModule,
     NgbAccordionModule,
     NgbModalModule,
@@ -80,8 +83,9 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     },
     {
       provide: DatasetApiInterface,
-      useClass: SplittedDataDatasetApiInterface
-    }
+      useClass: MultiDatasetInterface
+    },
+    SplittedDataDatasetApiInterface
   ],
   bootstrap: [AppComponent]
 })
