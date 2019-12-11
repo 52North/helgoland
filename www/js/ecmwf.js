@@ -1,16 +1,16 @@
 angular.module('n52.core.map')
     .service('ecmwfPlatformPresenter', ['$uibModal', 'mapService',
-        function($uibModal, mapService) {
-            this.presentPlatform = function(platform) {
+        function ($uibModal, mapService) {
+            this.presentPlatform = function (platform) {
                 $uibModal.open({
                     animation: true,
                     templateUrl: 'templates/ecmwf/stationary-insitu-ecmwf.html',
                     resolve: {
-                        selection: function() {
+                        selection: function () {
                             var url = platform.url;
                             var phenomenonId;
                             if (mapService.map.selectedPhenomenon) {
-                                angular.forEach(mapService.map.selectedPhenomenon.provider, function(provider) {
+                                angular.forEach(mapService.map.selectedPhenomenon.provider, function (provider) {
                                     if (url === provider.url)
                                         phenomenonId = provider.phenomenonID;
                                 });
@@ -33,7 +33,7 @@ angular.module('n52.core.map')
         'selection',
         'seriesApiInterface',
         'serviceFinder',
-        function(
+        function (
             $scope,
             $uibModalInstance,
             selection,
@@ -61,15 +61,15 @@ angular.module('n52.core.map')
                     }
                 });
 
-            $scope.close = function() {
+            $scope.close = function () {
                 $uibModalInstance.close();
             };
 
-            $scope.selectProcedure = function(item) {
+            $scope.selectProcedure = function (item) {
                 $scope.selectedProcedure = item;
             };
 
-            $scope.selectResultTime = function(item) {
+            $scope.selectResultTime = function (item) {
                 $scope.selectedResultTime = item;
                 $scope.datasets = [];
                 seriesApiInterface.getDatasets(null, selection.url, {
@@ -89,16 +89,16 @@ angular.module('n52.core.map')
                 });
             };
 
-            $scope.toggled = function() {
+            $scope.toggled = function () {
                 var allSelected = true;
-                angular.forEach($scope.platform.datasets, function(dataset) {
+                angular.forEach($scope.platform.datasets, function (dataset) {
                     if (!dataset.selected)
                         allSelected = false;
                 });
                 $scope.isAllSelected = allSelected;
             };
 
-            $scope.presentSelection = function() {
+            $scope.presentSelection = function () {
                 angular.forEach($scope.datasets, (dataset) => {
                     dataset.filter = {
                         resultTime: $scope.selectedResultTime
@@ -120,10 +120,10 @@ angular.module('n52.core.map')
         },
         templateUrl: 'n52.ecmwf.map.procedure-selection',
         controller: [
-            function() {
-                this.$onInit = function() {};
+            function () {
+                this.$onInit = function () {};
 
-                this.onChange = function() {
+                this.onChange = function () {
                     this.onSelect({
                         item: this.selection
                     });
@@ -138,8 +138,8 @@ angular.module('n52.core.map')
         },
         templateUrl: 'n52.ecmwf.map.result-time-selection',
         controller: [
-            function() {
-                this.onChange = function() {
+            function () {
+                this.onChange = function () {
                     this.onSelect({
                         item: this.selection
                     });
@@ -153,23 +153,23 @@ angular.module('n52.core.map')
         },
         templateUrl: 'n52.ecmwf.legend',
         controller: ['timeseriesService', 'seriesApiInterface',
-            function(timeseriesService, seriesApiInterface) {
+            function (timeseriesService, seriesApiInterface) {
 
-                this.$doCheck = function() {
+                this.$doCheck = function () {
                     if (Object.keys(this.items).length !== this.previousCount) {
                         this.createEntries();
                         this.previousCount = Object.keys(this.items).length;
                     }
                 };
 
-                this.createEntries = function() {
+                this.createEntries = function () {
                     this.entries = [];
                     for (var key in this.items) {
                         if (this.items.hasOwnProperty(key)) {
                             // if (this.items[key].apiUrl.startsWith('http://192.168.52.128:8080/52n-sos-webapp/api/')) {
-                                var platformID = this.items[key].seriesParameters.platform.id;
-                                var resultTime = this.items[key].filter.resultTime;
-                                this.addToEntries(this.items[key], platformID, resultTime);
+                            var platformID = this.items[key].seriesParameters.platform.id;
+                            var resultTime = this.items[key].filter.resultTime;
+                            this.addToEntries(this.items[key], platformID, resultTime);
                             // } else {
                             //     this.entries.push(this.items[key]);
                             // }
@@ -177,7 +177,7 @@ angular.module('n52.core.map')
                     }
                 };
 
-                this.addToEntries = function(item, platformID, resultTime) {
+                this.addToEntries = function (item, platformID, resultTime) {
                     seriesApiInterface.getProcedures(item.seriesParameters.procedure.id, item.apiUrl)
                         .then((procedure) => {
                             var parentProcedureLabel = procedure.parents[0].label;
@@ -213,43 +213,43 @@ angular.module('n52.core.map')
         },
         templateUrl: 'n52.ecmwf.legend-entry',
         controller: ['styleService', 'timeseriesService', 'locateStationService', '$location',
-            function(styleService, timeseriesService, locateStationService, $location) {
+            function (styleService, timeseriesService, locateStationService, $location) {
 
-                this.toggleSelection = function() {
+                this.toggleSelection = function () {
                     this.item.items.forEach((entry) => {
                         styleService.toggleSelection(entry);
                     });
                 };
 
-                this.toggleVisibility = function() {
+                this.toggleVisibility = function () {
                     this.item.items.forEach((entry) => {
                         styleService.toggleTimeseriesVisibility(entry);
                     });
                 };
 
-                this.removeAll = function() {
+                this.removeAll = function () {
                     this.item.items.forEach((entry) => {
                         timeseriesService.removeTimeseries(entry.internalId);
                     });
                 };
 
-                this.showInMap = function() {
+                this.showInMap = function () {
                     locateStationService.showPlatform('mapService', this.item.items[0]);
                     $location.url('/map');
                 };
 
-                this.toggled = function(entry) {
+                this.toggled = function (entry) {
                     styleService.triggerStyleUpdate(entry);
                 };
             }
         ]
     })
     .config(['$provide',
-        function($provide) {
+        function ($provide) {
             $provide.decorator('utils', ['$delegate',
-                function($delegate) {
+                function ($delegate) {
                     $delegate.oldCreateInternalId = $delegate.createInternalId;
-                    $delegate.createInternalId = function(ts) {
+                    $delegate.createInternalId = function (ts) {
                         if (ts.filter && ts.filter.resultTime) {
                             return $delegate.oldCreateInternalId(ts) + ts.filter.resultTime;
                         }
