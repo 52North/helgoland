@@ -12,7 +12,7 @@ The application can be connected to different Sensor Web endpoints (REST-APIs). 
 The following main frameworks are used to provide this application:
 
 - [AngularJS](https://angularjs.org/)
-- [Leaflet](http://leafletjs.com/)
-- [Bootstrap](http://getbootstrap.com/)
-- [momentJs](http://momentjs.com/)
+- [Leaflet](https://leafletjs.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [momentJs](https://momentjs.com/)
 - [d3](https://d3js.org/)

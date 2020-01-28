@@ -25,9 +25,9 @@ Features:
 The following main frameworks are used to provide this application:
 
 - [Angular](https://angular.io/)
-- [Leaflet](http://leafletjs.com/)
-- [Bootstrap](http://getbootstrap.com/)
-- [momentJs](http://momentjs.com/)
+- [Leaflet](https://leafletjs.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [momentJs](https://momentjs.com/)
 - [d3](https://d3js.org/)
 
 ## Quick Start (Configuration)
@@ -45,13 +45,13 @@ Configure your client in the settings.json in the root folder. Check this(link) 
 
 ## License
 
-Helgoland is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
+Helgoland is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
 
 <!-- ## User guide/tutorial -->
 
 <!-- ## Demo
 
-Explore, analyze and visualize sensor web data with our [Helgoland](http://sensorweb.demo.52north.org/client/#/) demo.
+Explore, analyze and visualize sensor web data with our [Helgoland](https://sensorweb.demo.52north.org/client/#/) demo.
 
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/3830314/15780576/ae8cf458-29a2-11e6-89ef-bc6f1453e38b.png" alt="Helgoland map view" width="75%"/>

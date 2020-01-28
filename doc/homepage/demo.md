@@ -1,3 +1,3 @@
 # Demo
 
-* [client on sensorweb.demo](http://sensorweb.demo.52north.org/client/#/)
+* [client on sensorweb.demo](https://sensorweb.demo.52north.org/client/#/)
