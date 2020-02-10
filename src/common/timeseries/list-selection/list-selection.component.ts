@@ -2,13 +2,13 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild, ViewEnc
 import {
   BlacklistedService,
   DatasetApi,
+  DatasetType,
+  HelgolandParameterFilter,
   IDataset,
-  ParameterFilter,
   Provider,
   Service,
   Settings,
   SettingsService,
-  ValueTypes,
 } from '@helgoland/core';
 import { ListSelectorParameter } from '@helgoland/selector';
 import { NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
@@ -87,7 +87,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
 
   public datasetApis: Array<DatasetApi>;
   public providerBlacklist: Array<BlacklistedService>;
-  public providerFilter: ParameterFilter;
+  public providerFilter: HelgolandParameterFilter;
   public selectedService: Service;
 
   public selectedProviderList: Array<Provider>;
@@ -104,7 +104,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
   public ngOnInit() {
     this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
     this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
-    this.providerFilter = { valueTypes: ValueTypes.quantity };
+    this.providerFilter = { type: DatasetType.Timeseries };
   }
 
   public ngAfterViewInit(): void {

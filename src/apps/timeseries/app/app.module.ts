@@ -2,8 +2,18 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { BasicAuthInformer, HelgolandBasicAuthModule } from '@helgoland/auth';
 import { HelgolandCachingModule } from '@helgoland/caching';
-import { DatasetApiInterface, Settings, SettingsService, SplittedDataDatasetApiInterface, MultiDatasetInterface } from '@helgoland/core';
+import {
+  DatasetApiInterface,
+  DatasetApiV1ConnectorProvider,
+  DatasetApiV2ConnectorProvider,
+  DatasetApiV3ConnectorProvider,
+  DatasetStaConnectorProvider,
+  Settings,
+  SettingsService,
+  SplittedDataDatasetApiInterface,
+} from '@helgoland/core';
 import { JsonFavoriteExporterService } from '@helgoland/favorite';
 import {
   NgbAccordionModule,
@@ -16,6 +26,7 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { BasicAuthInformerImplService } from '../../../common/basic-auth-informer-impl.service';
 import { ComponentsModule } from '../../../common/components/components.module';
 import { InfoModule } from '../../../common/info/info.module';
 import { TimeseriesModule, timeseriesRoutes } from '../../../common/timeseries/timeseries.module';
@@ -65,6 +76,7 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
       cachingDurationInMilliseconds: 300000,
       getDataCacheActive: true
     }),
+    HelgolandBasicAuthModule,
     NgbTabsetModule,
     NgbAccordionModule,
     NgbModalModule,
@@ -82,10 +94,17 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
       useClass: ExtendedSettingsService
     },
     {
-      provide: DatasetApiInterface,
-      useClass: MultiDatasetInterface
+      provide: BasicAuthInformer,
+      useClass: BasicAuthInformerImplService
     },
-    SplittedDataDatasetApiInterface
+    {
+      provide: DatasetApiInterface,
+      useClass: SplittedDataDatasetApiInterface
+    },
+    DatasetApiV1ConnectorProvider,
+    DatasetApiV2ConnectorProvider,
+    DatasetApiV3ConnectorProvider,
+    DatasetStaConnectorProvider
   ],
   bootstrap: [AppComponent]
 })

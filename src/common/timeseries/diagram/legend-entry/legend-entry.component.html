@@ -6,7 +6,7 @@
   <div>
     <div class="legendItemheader" [ngClass]="{'highlight': highlight}">
       <div class="legendItemLabel" [ngStyle]="{'color': datasetOptions?.color}">
-        <n52-label-mapper label="{{platformLabel}}"></n52-label-mapper>
+        <n52-label-mapper label="{{dataset?.platform.label}}"></n52-label-mapper>
         <n52-favorite-toggler [dataset]="dataset"></n52-favorite-toggler>
       </div>
       <div class="noDataWarning firstLastEntry" *ngIf="!hasData">

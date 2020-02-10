@@ -34,7 +34,7 @@
       <n52-dataset-download [internalId]="internalIdHandler.resolveInternalId(item.internalId)"
         [timeInterval]="{'from': item.timestamp}" [language]=""></n52-dataset-download>
     </div> -->
-    <div (click)="openInCombiView(item); $event.stopPropagation();" *ngIf="isMobile()" class="toCombiView">
+    <div (click)="openInCombiView(item); $event.stopPropagation();" *ngIf="dataset?.isMobile" class="toCombiView">
       <span class="fa fa-arrow-right"></span>
       <span>{{'profiles.legend.go-to-combi-view' | translate}}</span>
     </div>

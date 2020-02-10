@@ -4,22 +4,21 @@ import {
   BlacklistedService,
   ColorService,
   DatasetApi,
-  DatasetApiInterface,
+  DatasetType,
   Feature,
-  IDataset,
+  HelgolandParameterFilter,
+  HelgolandPlatform,
+  HelgolandProfile,
+  HelgolandServicesConnector,
   Offering,
-  ParameterFilter,
   Phenomenon,
-  Platform,
   PlatformTypes,
   Procedure,
-  ProfileDataEntry,
   Service,
   Settings,
   SettingsService,
   TimedDatasetOptions,
   Timespan,
-  ValueTypes,
 } from '@helgoland/core';
 import { TrajectoryResult } from '@helgoland/map';
 import { NgbAccordion, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -40,13 +39,13 @@ export class ProfilesSelectionComponent implements OnInit {
   public datasetApis: Array<DatasetApi>;
   public providerBlacklist: Array<BlacklistedService>;
 
-  public providerFilter: ParameterFilter;
-  public offeringFilter: ParameterFilter;
-  public phenomenonFilter: ParameterFilter;
-  public procedureFilter: ParameterFilter;
-  public stationaryPlatformFilter: ParameterFilter;
-  public mobilePlatformFilter: ParameterFilter;
-  public trajectoryFilter: ParameterFilter;
+  public providerFilter: HelgolandParameterFilter;
+  public offeringFilter: HelgolandParameterFilter;
+  public phenomenonFilter: HelgolandParameterFilter;
+  public procedureFilter: HelgolandParameterFilter;
+  public stationaryPlatformFilter: HelgolandParameterFilter;
+  public mobilePlatformFilter: HelgolandParameterFilter;
+  public trajectoryFilter: HelgolandParameterFilter;
 
   public selectedProvider: Service;
   public selectedOffering: Offering;
@@ -54,9 +53,9 @@ export class ProfilesSelectionComponent implements OnInit {
   public selectedProcedure: Procedure;
   public selectedFeature: Feature;
 
-  public stationaryPlatform: Platform;
+  public stationaryPlatform: HelgolandPlatform;
   public stationaryPlatformLoading: boolean;
-  public stationaryPlatformDataset: IDataset;
+  public stationaryPlatformDataset: HelgolandProfile;
   public stationaryTimestamps: Array<number>;
 
   public loadingTrajectories: boolean;
@@ -68,7 +67,7 @@ export class ProfilesSelectionComponent implements OnInit {
   public mobileTimestamps: Array<number>;
   public selectedMobileTimespan: Timespan;
 
-  public mobilePreviewDataset: IDataset;
+  public mobilePreviewDataset: HelgolandProfile;
   public mobilePreviewTimestamp: number;
   public mobilePreviewOptions: Map<string, Array<TimedDatasetOptions>>;
 
@@ -85,7 +84,7 @@ export class ProfilesSelectionComponent implements OnInit {
     private settingsSrvc: SettingsService<Settings>,
     private cache: ProfilesSelectionCache,
     private modalService: NgbModal,
-    private api: DatasetApiInterface,
+    private servicesConnector: HelgolandServicesConnector,
     private router: Router,
     private profilesSrvc: ProfilesService,
     private combiSrvc: ProfilesCombiService,
@@ -106,9 +105,9 @@ export class ProfilesSelectionComponent implements OnInit {
     this.providerFilter = this.createFilter();
   }
 
-  private createFilter(): ParameterFilter {
-    const filter: ParameterFilter = {
-      valueTypes: ValueTypes.quantityProfile
+  private createFilter(): HelgolandParameterFilter {
+    const filter: HelgolandParameterFilter = {
+      type: DatasetType.Profile,
     };
     if (this.selectedProvider) { filter.service = this.selectedProvider.id; }
     if (this.selectedOffering) { filter.offering = this.selectedOffering.id; }
@@ -182,8 +181,8 @@ export class ProfilesSelectionComponent implements OnInit {
     this.setSelectedProcedure(procedure);
     this.stationaryPlatformFilter = this.createFilter();
     this.mobilePlatformFilter = this.createFilter();
-    this.stationaryPlatformFilter.platformTypes = PlatformTypes.stationary;
-    this.mobilePlatformFilter.platformTypes = PlatformTypes.mobile;
+    this.stationaryPlatformFilter.platformType = PlatformTypes.stationary;
+    this.mobilePlatformFilter.platformType = PlatformTypes.mobile;
   }
 
   private featureSelected(feature: Feature) {
@@ -197,16 +196,15 @@ export class ProfilesSelectionComponent implements OnInit {
     this.accordion.expand(id);
   }
 
-  public onStationaryPlatformSelected(platform: Platform) {
+  public onStationaryPlatformSelected(platform: HelgolandPlatform) {
     this.modalService.open(this.modalStationaryPlatform);
     this.stationaryPlatform = platform;
     this.stationaryPlatformLoading = true;
-    platform.datasets.forEach(dataset => {
-      this.stationaryPlatformDataset = dataset;
-      this.api.getDataset(dataset.id, this.selectedProvider.apiUrl).subscribe(res => {
-        this.stationaryPlatformDataset = res;
-        const timespan = new Timespan(res.firstValue.timestamp, res.lastValue.timestamp);
-        this.api.getData<ProfileDataEntry>(res.id, res.url, timespan).subscribe(data => {
+    platform.datasetIds.forEach(id => {
+      this.servicesConnector.getDataset({ url: this.selectedProvider.apiUrl, id }, { type: DatasetType.Profile }).subscribe(profile => {
+        this.stationaryPlatformDataset = profile;
+        const timespan = new Timespan(profile.firstValue.timestamp, profile.lastValue.timestamp);
+        this.servicesConnector.getDatasetData(profile, timespan).subscribe(data => {
           this.stationaryTimestamps = [];
           data.values.forEach(entry => {
             this.stationaryTimestamps.push(entry.timestamp);
@@ -222,7 +220,7 @@ export class ProfilesSelectionComponent implements OnInit {
   }
 
   public onMobileSelected(selection: TrajectoryResult) {
-    this.mobilePreviewDataset = selection.dataset;
+    this.mobilePreviewDataset = selection.dataset as HelgolandProfile;
     this.mobilePreviewTimestamp = selection.data.timestamp;
     this.mobilePreviewOptions = new Map();
     const options = new TimedDatasetOptions(selection.dataset.internalId, this.color.getColor(), selection.data.timestamp);
@@ -240,7 +238,7 @@ export class ProfilesSelectionComponent implements OnInit {
     this.router.navigate(['profiles/combi']);
   }
 
-  private addProfileToChart(dataset: IDataset, timestamp: number) {
+  private addProfileToChart(dataset: HelgolandProfile, timestamp: number) {
     const options = new TimedDatasetOptions(dataset.internalId, this.color.getColor(), timestamp);
     this.profilesSrvc.addDataset(dataset.internalId, [options]);
     this.router.navigate(['profiles/diagram']);

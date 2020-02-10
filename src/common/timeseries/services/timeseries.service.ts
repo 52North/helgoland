@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
     ColorService,
-    DatasetApiInterface,
     DatasetOptions,
+    HelgolandServicesConnector,
     LocalStorage,
     RenderingHintsDatasetService,
     SettingsService,
@@ -25,11 +25,11 @@ export class TimeseriesService extends RenderingHintsDatasetService<DatasetOptio
     constructor(
         protected localStorage: LocalStorage,
         protected timeSrvc: Time,
-        protected api: DatasetApiInterface,
+        protected servicesConnector: HelgolandServicesConnector,
         private settingsSrvc: SettingsService<HelgolandSettings>,
         private color: ColorService
     ) {
-        super(api);
+        super(servicesConnector);
         this.loadState();
     }
 

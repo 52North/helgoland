@@ -6,11 +6,11 @@ import {
   DatasetApiMapping,
   DatasetApiVersion,
   IDataset,
-  ParameterFilter,
   Provider,
   Service,
   Settings,
   SettingsService,
+  HelgolandParameterFilter,
 } from '@helgoland/core';
 import { FilteredParameter, ListSelectorParameter, ListSelectorService } from '@helgoland/selector';
 import { NgbAccordion, NgbPanel, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
@@ -24,7 +24,7 @@ export class ProviderParameterSeletorComponent implements OnInit {
 
   @ViewChild('acc', { static: true }) accordion: NgbAccordion;
 
-  @Input() filter: ParameterFilter;
+  @Input() filter: HelgolandParameterFilter;
   @Input() parameters: Array<ListSelectorParameter>;
   @Input() selectorId: string;
 
@@ -32,7 +32,7 @@ export class ProviderParameterSeletorComponent implements OnInit {
 
   public activePanel: string;
 
-  public providerFilter: ParameterFilter;
+  public providerFilter: HelgolandParameterFilter;
   public selectedProvider: Array<Provider>;
   public selectedProviderLabel: string;
   public datasetApis: Array<DatasetApi>;
@@ -88,7 +88,7 @@ export class ProviderParameterSeletorComponent implements OnInit {
     setTimeout(() => this.accordion.expand(`${this.selectorId}-${idx}`), 50);
   }
 
-  private openDataset(url: string, params: ParameterFilter) {
+  private openDataset(url: string, params: HelgolandParameterFilter) {
     this.apiMapping.getApiVersion(url).subscribe((apiVersionId) => {
       if (apiVersionId === DatasetApiVersion.V2) {
         this.apiInterface.getDatasets(url, params).subscribe(result => this.datasetSelected.emit(result));
