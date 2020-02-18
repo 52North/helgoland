@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Data, DatasetOptions, IDataEntry, IDataset, Service, Time, Timespan } from '@helgoland/core';
+import { Data, DatasetOptions, IDataEntry, Service, Time, Timespan } from '@helgoland/core';
 import { D3PlotOptions } from '@helgoland/d3';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -19,7 +19,6 @@ import { TimeseriesDiagramPermalink } from './diagram-permalink.service';
 })
 export class TimeseriesDiagramComponent implements OnInit {
 
-    public timeseries: Array<IDataset>;
     public datasetIds: Array<string>;
     public datasetOptions: Map<string, DatasetOptions>;
     public selectedIds: Array<string> = new Array();

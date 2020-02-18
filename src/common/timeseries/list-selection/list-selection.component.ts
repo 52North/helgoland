@@ -3,8 +3,8 @@ import {
   BlacklistedService,
   DatasetApi,
   DatasetType,
+  HelgolandDataset,
   HelgolandParameterFilter,
-  IDataset,
   Provider,
   Service,
   Settings,
@@ -132,12 +132,8 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
     this.tabset.select(id);
   }
 
-  public onDatasetSelected(datasetList: Array<IDataset>) {
-    if (datasetList instanceof Array && datasetList.length === 1) {
-      this.timeseriesService.addDataset(datasetList[0].internalId);
-      this.router.navigateToDiagram();
-    } else {
-      console.error('datasetList is no array or has not the length of 1');
-    }
+  public onDatasetSelected(datasetList: Array<HelgolandDataset>) {
+    datasetList.forEach(e => this.timeseriesService.addDataset(e.internalId));
+    this.router.navigateToDiagram();
   }
 }
