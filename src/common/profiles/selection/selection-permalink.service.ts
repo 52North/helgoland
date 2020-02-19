@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Feature, Offering, Phenomenon, Procedure, Service, DatasetApiInterface } from '@helgoland/core';
+import { Feature, HelgolandService, HelgolandServicesConnector, Offering, Phenomenon, Procedure } from '@helgoland/core';
 import { PermalinkService } from '@helgoland/permalink';
+import { Observable, Observer } from 'rxjs';
 
 import { ProfilesSelectionCache } from './selection.service';
-import { Observable, Observer } from 'rxjs';
 
 const PROVIDER_URL_PARAM = 'url';
 const PROVIDER_ID_PARAM = 'id';
@@ -14,7 +14,7 @@ const PROCEDURE_PARAM = 'procedure';
 const FEATURE_PARAM = 'feature';
 
 export class ProfilesSelection {
-    public selectedProvider: Service;
+    public selectedProvider: HelgolandService;
     public selectedOffering: Offering;
     public selectedPhenomenon: Phenomenon;
     public selectedProcedure: Procedure;
@@ -27,7 +27,7 @@ export class ProfilesSelectionPermalink extends PermalinkService<Observable<Prof
     constructor(
         private selectionCache: ProfilesSelectionCache,
         private activatedRoute: ActivatedRoute,
-        private api: DatasetApiInterface
+        private servicesConnector: HelgolandServicesConnector
     ) {
         super();
     }
@@ -63,39 +63,43 @@ export class ProfilesSelectionPermalink extends PermalinkService<Observable<Prof
                 const result = new ProfilesSelection();
                 if (params[PROVIDER_URL_PARAM] && params[PROVIDER_ID_PARAM]) {
                     const url = params[PROVIDER_URL_PARAM];
-                    this.api.getService(params[PROVIDER_ID_PARAM], url)
+                    this.servicesConnector.getServices(url, {service: params[PROVIDER_ID_PARAM]})
                         .subscribe(res => {
-                            result.selectedProvider = res;
-                            if (params[OFFERING_PARAM]) {
-                                this.api.getOffering(params[OFFERING_PARAM], url)
-                                    .subscribe(offering => {
-                                        result.selectedOffering = offering;
-                                        if (params[PHENOMENON_PARAM]) {
-                                            this.api.getPhenomenon(params[PHENOMENON_PARAM], url)
-                                                .subscribe(phenomenon => {
-                                                    result.selectedPhenomenon = phenomenon;
-                                                    if (params[PROCEDURE_PARAM]) {
-                                                        this.api.getProcedure(params[PROCEDURE_PARAM], url)
-                                                            .subscribe(procedure => {
-                                                                result.selectedProcedure = procedure;
-                                                                if (params[FEATURE_PARAM]) {
-                                                                    this.api.getFeature(params[FEATURE_PARAM], url)
-                                                                        .subscribe(feature => {
-                                                                            result.selectedFeature = feature;
-                                                                            this.completeObserver(observer, result);
-                                                                        });
-                                                                } else {
-                                                                    this.completeObserver(observer, result);
-                                                                }
-                                                            });
-                                                    } else {
-                                                        this.completeObserver(observer, result);
-                                                    }
-                                                });
-                                        } else {
-                                            this.completeObserver(observer, result);
-                                        }
-                                    });
+                            if (res.length === 1) {
+                                result.selectedProvider = res[0];
+                                if (params[OFFERING_PARAM]) {
+                                    this.servicesConnector.getOffering(params[OFFERING_PARAM], url)
+                                        .subscribe(offering => {
+                                            result.selectedOffering = offering;
+                                            if (params[PHENOMENON_PARAM]) {
+                                                this.servicesConnector.getPhenomenon(params[PHENOMENON_PARAM], url)
+                                                    .subscribe(phenomenon => {
+                                                        result.selectedPhenomenon = phenomenon;
+                                                        if (params[PROCEDURE_PARAM]) {
+                                                            this.servicesConnector.getProcedure(params[PROCEDURE_PARAM], url)
+                                                                .subscribe(procedure => {
+                                                                    result.selectedProcedure = procedure;
+                                                                    if (params[FEATURE_PARAM]) {
+                                                                        this.servicesConnector.getFeature(params[FEATURE_PARAM], url)
+                                                                            .subscribe(feature => {
+                                                                                result.selectedFeature = feature;
+                                                                                this.completeObserver(observer, result);
+                                                                            });
+                                                                    } else {
+                                                                        this.completeObserver(observer, result);
+                                                                    }
+                                                                });
+                                                        } else {
+                                                            this.completeObserver(observer, result);
+                                                        }
+                                                    });
+                                            } else {
+                                                this.completeObserver(observer, result);
+                                            }
+                                        });
+                                } else {
+                                    this.completeObserver(observer, result);
+                                }
                             } else {
                                 this.completeObserver(observer, result);
                             }

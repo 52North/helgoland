@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
-    DatasetApiInterface,
+    DatasetType,
+    HelgolandLocatedProfileData,
+    HelgolandServicesConnector,
     InternalIdHandler,
-    LocatedProfileDataEntry,
     PresenterHighlight,
     TimedDatasetOptions,
     Timespan,
@@ -30,7 +31,7 @@ export class ProfilesCombiViewComponent implements OnInit {
 
     constructor(
         private service: ProfilesCombiService,
-        private api: DatasetApiInterface,
+        private servicesConnector: HelgolandServicesConnector,
         private internalIdHandler: InternalIdHandler,
         public permalinkSrvc: ProfilesCombiViewPermalink
     ) {
@@ -47,14 +48,20 @@ export class ProfilesCombiViewComponent implements OnInit {
 
     private loadDataset(internalId: string) {
         const combination = this.internalIdHandler.resolveInternalId(internalId);
-        this.api.getDataset(combination.id, combination.url).subscribe(ds => {
-            this.datasetLabel = ds.label;
-            const timestamp = this.datasetOptions.get(internalId)[0].timestamp;
-            const timespan = new Timespan(timestamp, timestamp);
-            this.api.getData<LocatedProfileDataEntry>(combination.id, combination.url, timespan).subscribe(data => {
-                this.geometry = data.values[0].geometry as GeoJSON.LineString;
-            });
-        });
+        this.servicesConnector.getDataset(combination, { type: DatasetType.Profile }).subscribe(
+            ds => {
+                this.datasetLabel = ds.label;
+                const timestamp = this.datasetOptions.get(internalId)[0].timestamp;
+                const timespan = new Timespan(timestamp, timestamp);
+                this.servicesConnector.getDatasetData(ds, timespan).subscribe(
+                    data => {
+                        if (data instanceof HelgolandLocatedProfileData) {
+                            this.geometry = data.values[0].geometry as GeoJSON.LineString;
+                        }
+                    }
+                );
+            }
+        );
     }
 
     public onChartHighlight(highlight: PresenterHighlight) {

@@ -2,15 +2,14 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import {
   BlacklistedService,
   DatasetApi,
-  DatasetApiInterface,
   DatasetApiMapping,
-  DatasetApiVersion,
-  IDataset,
+  HelgolandDataset,
+  HelgolandParameterFilter,
+  HelgolandServicesConnector,
   Provider,
   Service,
   Settings,
   SettingsService,
-  HelgolandParameterFilter,
 } from '@helgoland/core';
 import { FilteredParameter, ListSelectorParameter, ListSelectorService } from '@helgoland/selector';
 import { NgbAccordion, NgbPanel, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
@@ -28,7 +27,7 @@ export class ProviderParameterSeletorComponent implements OnInit {
   @Input() parameters: Array<ListSelectorParameter>;
   @Input() selectorId: string;
 
-  @Output() datasetSelected: EventEmitter<IDataset[]> = new EventEmitter<IDataset[]>();
+  @Output() datasetSelected: EventEmitter<HelgolandDataset[]> = new EventEmitter();
 
   public activePanel: string;
 
@@ -40,7 +39,7 @@ export class ProviderParameterSeletorComponent implements OnInit {
 
   constructor(
     protected listSelectorService: ListSelectorService,
-    protected apiInterface: DatasetApiInterface,
+    protected servicesConnector: HelgolandServicesConnector,
     protected apiMapping: DatasetApiMapping,
     protected settingsSrvc: SettingsService<Settings>
   ) { }
@@ -89,13 +88,7 @@ export class ProviderParameterSeletorComponent implements OnInit {
   }
 
   private openDataset(url: string, params: HelgolandParameterFilter) {
-    this.apiMapping.getApiVersion(url).subscribe((apiVersionId) => {
-      if (apiVersionId === DatasetApiVersion.V2) {
-        this.apiInterface.getDatasets(url, params).subscribe(result => this.datasetSelected.emit(result));
-      } else if (apiVersionId === DatasetApiVersion.V1) {
-        this.apiInterface.getTimeseries(url, params).subscribe(result => this.datasetSelected.emit(result));
-      }
-    });
+    this.servicesConnector.getDatasets(url, params).subscribe(result => this.datasetSelected.emit(result));
   }
 
   public onPanelChange(event: NgbPanelChangeEvent) {

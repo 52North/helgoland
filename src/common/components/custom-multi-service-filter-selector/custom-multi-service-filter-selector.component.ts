@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DatasetApiInterface, HelgolandServicesConnector } from '@helgoland/core';
+import { HelgolandServicesConnector } from '@helgoland/core';
 import { MultiServiceFilterSelectorComponent } from '@helgoland/selector';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -12,7 +12,6 @@ export class CustomMultiServiceFilterSelectorComponent extends MultiServiceFilte
 
   constructor(
     protected servicesConnector: HelgolandServicesConnector,
-    protected apiInterface: DatasetApiInterface,
     protected translate: TranslateService
   ) {
     super(servicesConnector, translate);

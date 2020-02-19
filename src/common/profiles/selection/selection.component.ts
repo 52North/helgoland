@@ -9,12 +9,12 @@ import {
   HelgolandParameterFilter,
   HelgolandPlatform,
   HelgolandProfile,
+  HelgolandService,
   HelgolandServicesConnector,
   Offering,
   Phenomenon,
   PlatformTypes,
   Procedure,
-  Service,
   Settings,
   SettingsService,
   TimedDatasetOptions,
@@ -47,7 +47,7 @@ export class ProfilesSelectionComponent implements OnInit {
   public mobilePlatformFilter: HelgolandParameterFilter;
   public trajectoryFilter: HelgolandParameterFilter;
 
-  public selectedProvider: Service;
+  public selectedProvider: HelgolandService;
   public selectedOffering: Offering;
   public selectedPhenomenon: Phenomenon;
   public selectedProcedure: Procedure;
@@ -120,7 +120,7 @@ export class ProfilesSelectionComponent implements OnInit {
     return filter;
   }
 
-  private setSelectedProvider(provider: Service) {
+  private setSelectedProvider(provider: HelgolandService) {
     this.selectedProvider = this.cache.selectedProvider = provider;
   }
 
@@ -140,7 +140,7 @@ export class ProfilesSelectionComponent implements OnInit {
     this.selectedFeature = this.cache.selectedFeature = feature;
   }
 
-  private providerSelected(provider: Service, clearPrevious: boolean) {
+  private providerSelected(provider: HelgolandService, clearPrevious: boolean) {
     this.openPanelById('selectOffering');
     if (clearPrevious) {
       this.setSelectedOffering(null);
