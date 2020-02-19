@@ -20,7 +20,7 @@ const modules = [
 function buildZipApplication(apptype: string) {
     modules.forEach(module => {
         console.log(`Install module ${module}`);
-        execSync(`npm install ../helgoland-toolbox/helgoland-${module}-1.0.0-beta.11.tgz `);
+        execSync(`npm install ../helgoland-toolbox/helgoland-${module}-* `);
     });
 }
 
