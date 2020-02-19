@@ -74,7 +74,7 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     HttpClientModule,
     HelgolandCachingModule.forRoot({
       cachingDurationInMilliseconds: 300000,
-      getDataCacheActive: true
+      getDataCacheActive: false
     }),
     HelgolandBasicAuthModule,
     NgbTabsetModule,
