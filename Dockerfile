@@ -13,4 +13,6 @@ RUN npm run build
 
 FROM nginx:alpine
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=BUILD /usr/src/app/dist/complete /usr/share/nginx/html
+COPY --from=BUILD /usr/src/app/dist/timeseries /usr/share/nginx/html
+# the container can be started like this: docker run -p 80:80 -e PORT=80 helgoland
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'

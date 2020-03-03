@@ -120,11 +120,11 @@
             </div>
             <div class="stationary" [hidden]="loadingPlatforms && noPlatformResults">
               <div class="header">{{'profiles.selection.select-platform.stationary' | translate}}:</div>
-              <n52-platform-map-selector class="map" [mapId]="'profiles-stationary'"
+              <n52-station-map-selector class="map" [mapId]="'profiles-stationary'"
                 [serviceUrl]="selectedProvider.apiUrl" [filter]="stationaryPlatformFilter"
                 (onSelected)="onStationaryPlatformSelected($event)" (onContentLoading)="loadingPlatforms = $event"
                 (onNoResultsFound)="noPlatformResults = $event">
-              </n52-platform-map-selector>
+              </n52-station-map-selector>
             </div>
             <div *ngIf="loadingMobilePlatforms">
               <span class="fa fa-refresh fa-spin fa-1x fa-fw"></span>

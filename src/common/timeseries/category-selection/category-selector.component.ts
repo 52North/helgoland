@@ -1,9 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DatasetApiInterface, Station, Timeseries } from '@helgoland/core';
+import {
+  DatasetType,
+  HelgolandPlatform,
+  HelgolandServicesConnector,
+  HelgolandTimeseries,
+  Timeseries,
+} from '@helgoland/core';
 
 import { TimeseriesService } from './../services/timeseries.service';
 
-export class ExtendedTimeseries extends Timeseries {
+export class ExtendedTimeseries extends HelgolandTimeseries {
   public selected: boolean;
 }
 
@@ -28,7 +34,7 @@ export class TimeSeriesGroup {
 })
 export class CategorySelectorComponent implements OnInit {
   @Input()
-  public station: Station;
+  public station: HelgolandPlatform;
 
   @Input()
   public url: string;
@@ -66,36 +72,22 @@ export class CategorySelectorComponent implements OnInit {
   public isCollapsed = true;
 
   constructor(
-    protected apiInterface: DatasetApiInterface,
+    protected servicesConnector: HelgolandServicesConnector,
     private timeseriesService: TimeseriesService
   ) { }
 
   public ngOnInit() {
     if (this.station) {
-      const stationId =
-        this.station.properties && this.station.properties.id
-          ? this.station.properties.id
-          : this.station.id;
-      this.apiInterface.getStation(stationId, this.url).subscribe(station => {
+      this.servicesConnector.getPlatform(this.station.id, this.url).subscribe(station => {
         this.station = station;
-        this.counter = 0;
-        for (const id in this.station.properties.timeseries) {
-          if (this.station.properties.timeseries.hasOwnProperty(id)) {
-            this.counter++;
-            this.apiInterface.getSingleTimeseries(id, this.url).subscribe(
-              result => {
-                this.prepareResult(
-                  result as ExtendedTimeseries,
-                  this.defaultSelected
-                );
-                this.counter--;
-              },
-              error => {
-                this.counter--;
-              }
-            );
-          }
-        }
+        this.counter = this.station.datasetIds.length;
+        this.station.datasetIds.forEach(id => {
+          this.servicesConnector.getDataset({ id, url: this.url }, { type: DatasetType.Timeseries }).subscribe(
+            ds => this.prepareResult(ds as ExtendedTimeseries, this.defaultSelected),
+            error => console.error(error),
+            () => this.counter--
+          );
+        });
       });
     }
   }
@@ -195,7 +187,7 @@ export class CategorySelectorComponent implements OnInit {
     const length = this.categoryList.length;
     const resValue = parseFloat(result.parameters.category.label);
     for (let _i = 0; _i < length; _i++) {
-        const actValue = parseFloat(this.categoryList[_i].label);
+      const actValue = parseFloat(this.categoryList[_i].label);
       if (resValue === actValue) {
         const group = this.categoryList[_i];
         const tsLength = group.timeseries.length;
@@ -235,7 +227,7 @@ export class CategorySelectorComponent implements OnInit {
       if (result.parameters.phenomenon.label === this.phenomenonList[_i].label) {
         const timeseriesLength = this.phenomenonList[_i].timeseries.length;
         for (let _j = 0; _j < timeseriesLength; _j++) {
-            let actValue = parseFloat(this.phenomenonList[_i].timeseries[_j].parameters.category.label);
+          let actValue = parseFloat(this.phenomenonList[_i].timeseries[_j].parameters.category.label);
           if (resValue === actValue) {
             let group = this.phenomenonList[_i];
             this.phenomenonList[_i].timeseries.push(result);

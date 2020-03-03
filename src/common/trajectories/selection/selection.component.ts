@@ -6,10 +6,9 @@ import {
   Dataset,
   DatasetApi,
   DatasetOptions,
-  ParameterFilter,
-  PlatformTypes,
+  DatasetType,
+  HelgolandParameterFilter,
   Provider,
-  ValueTypes,
 } from '@helgoland/core';
 import { ListSelectorParameter } from '@helgoland/selector';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
@@ -51,13 +50,13 @@ export class TrajectoriesSelectionComponent implements OnInit {
     }
   ];
 
-  @ViewChild('tabset', {static: true})
+  @ViewChild('tabset', { static: true })
   public tabset: NgbTabset;
 
-  public paramFilter: ParameterFilter;
+  public paramFilter: HelgolandParameterFilter;
   public datasetApis: Array<DatasetApi>;
   public providerBlacklist: Array<BlacklistedService>;
-  public providerFilter: ParameterFilter;
+  public providerFilter: HelgolandParameterFilter;
   public selectedProvider: Array<Provider>;
   public activeTab: string;
 
@@ -82,10 +81,9 @@ export class TrajectoriesSelectionComponent implements OnInit {
     this.router.navigate(['trajectories/view']);
   }
 
-  private createFilter(): ParameterFilter {
+  private createFilter(): HelgolandParameterFilter {
     return {
-      valueTypes: ValueTypes.quantity,
-      platformTypes: PlatformTypes.mobile
+      type: DatasetType.Trajectory
     };
   }
 

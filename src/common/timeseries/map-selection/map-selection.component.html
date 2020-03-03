@@ -1,20 +1,20 @@
 <ng-template #modalStation let-c="close()" let-d="dismiss()">
   <div class="modal-header">
-    <h4 class="modal-title">{{station.properties.label}}</h4>
+    <h4 class="modal-title">{{station.label}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <p class="timeseries-hint">{{'timeseries.map-selection.dataset-selection-hint' | translate}}:</p>
-    <!-- <n52-dataset-by-station-selector [station]="platform" [url]="selectedService.apiUrl" (onSelectionChanged)="onDatasetSelectionChanged($event)"></n52-dataset-by-station-selector> -->
     <n52-category-selector [station]="station" [url]="selectedService.apiUrl" [orderGroup]="true"
       [sortAscending]="false" (selected)="onDatasetSelected($event)" (deselected)="onDatasetDeselected($event)">
     </n52-category-selector>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="openDatasets();c">
-      <span translate [translateParams]="{value: datasetSelections.size}">timeseries.map-selection.show-in-diagram</span>
+      <span translate
+        [translateParams]="{value: datasetSelections.size}">timeseries.map-selection.show-in-diagram</span>
     </button>
     <button type="button" class="btn btn-light" (click)="c">{{'controls.close' | translate}}</button>
   </div>
@@ -29,12 +29,15 @@
       <ng-template ngbTabContent>
 
         <div class="scrollable border">
-          <n52-custom-service-selector [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist" [selectedService]="selectedService"
-            [supportStations]="true" [filter]="providerFilter" [showUnresolvableServices]="true" [addedService]="addedService" (onServiceSelected)="providerSelected($event)"></n52-custom-service-selector>
+          <n52-custom-service-selector [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist"
+            [selectedService]="selectedService" [supportStations]="true" [filter]="providerFilter"
+            [showUnresolvableServices]="true" [addedService]="addedService"
+            (onServiceSelected)="providerSelected($event)"></n52-custom-service-selector>
         </div>
-        <n52-custom-service-provider-manager  [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist" [services]="services"
-        [supportStations]="true" [filter]="providerFilter" (onServiceAdded)="serviceAdded($event)"></n52-custom-service-provider-manager>
-          
+        <n52-custom-service-provider-manager [datasetApiList]="datasetApis" [providerBlacklist]="providerBlacklist"
+          [services]="services" [supportStations]="true" [filter]="providerFilter"
+          (onServiceAdded)="serviceAdded($event)"></n52-custom-service-provider-manager>
+
       </ng-template>
     </ngb-tab>
     <ngb-tab id="selectByMap" [disabled]="selectedService == undefined">
@@ -44,21 +47,25 @@
       <ng-template ngbTabContent>
         <div class="row row-offcanvas row-offcanvas-right" [ngClass]="{active: legendToggled}">
           <div class="map-content">
-            <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.phenomenon.header' | translate}}</button>
+            <button type="button" class="btn btn-primary btn-sm d-md-none legend-button"
+              (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.phenomenon.header' | translate}}</button>
             <div class="map">
-              <n52-extended-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService.apiUrl" [filter]="stationFilter"
-                (onSelected)="onStationSelected($event)" [cluster]="cluster" class="vbox boxItem fullHeight"></n52-extended-station-map-selector>
+              <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService.apiUrl"
+                [filter]="stationFilter" (onSelected)="onStationSelected($event)" [cluster]="cluster"
+                class="vbox boxItem fullHeight"></n52-station-map-selector>
               <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
               <n52-locate-button class="locate-control" [mapId]="'timeseries'"></n52-locate-button>
             </div>
             <div class="phenomenon-list sidebar-offcanvas">
-              <div class="selector-entry" [ngClass]="{selected: selectedPhenomenonId == null}" (click)="onAllPhenomenonSelected()">
+              <div class="selector-entry" [ngClass]="{selected: selectedPhenomenonId == null}"
+                (click)="onAllPhenomenonSelected()">
                 <span>{{'timeseries.diagram.phenomenon.show-all' | translate}}</span>
               </div>
               <hr>
               <div>
-                <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter" [serviceUrl]="selectedService.apiUrl"
-                  [selectionId]="selectedPhenomenonId" (onItemSelected)="onPhenomenonSelected($event)"></n52-service-filter-selector>
+                <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter"
+                  [serviceUrl]="selectedService.apiUrl" [selectionId]="selectedPhenomenonId"
+                  (onItemSelected)="onPhenomenonSelected($event)"></n52-service-filter-selector>
               </div>
             </div>
           </div>

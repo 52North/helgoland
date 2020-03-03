@@ -2,8 +2,18 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { BasicAuthInformer, HelgolandBasicAuthModule } from '@helgoland/auth';
 import { HelgolandCachingModule } from '@helgoland/caching';
-import { DatasetApiInterface, Settings, SettingsService, SplittedDataDatasetApiInterface } from '@helgoland/core';
+import {
+  DatasetApiInterface,
+  DatasetApiV1ConnectorProvider,
+  DatasetApiV2ConnectorProvider,
+  DatasetApiV3ConnectorProvider,
+  DatasetStaConnectorProvider,
+  Settings,
+  SettingsService,
+  SplittedDataDatasetApiInterface,
+} from '@helgoland/core';
 import { VocabNercLabelMapperModule } from '@helgoland/depiction';
 import { JsonFavoriteExporterService } from '@helgoland/favorite';
 import {
@@ -17,6 +27,7 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { BasicAuthInformerImplService } from '../../../common/basic-auth-informer-impl.service';
 import { ComponentsModule } from '../../../common/components/components.module';
 import { InfoModule } from '../../../common/info/info.module';
 import { ProfilesModule } from '../../../common/profiles/profiles.module';
@@ -66,6 +77,7 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     InfoModule,
     HttpClientModule,
     HelgolandCachingModule,
+    HelgolandBasicAuthModule,
     NgbTabsetModule,
     NgbAccordionModule,
     NgbModalModule,
@@ -84,13 +96,21 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
       useClass: ExtendedSettingsService
     },
     {
+      provide: BasicAuthInformer,
+      useClass: BasicAuthInformerImplService
+    },
+    {
       provide: DatasetApiInterface,
       useClass: SplittedDataDatasetApiInterface
     },
     {
       provide: TimeseriesRouter,
       useClass: CustomTimeseriesRouter
-    }
+    },
+    DatasetApiV1ConnectorProvider,
+    DatasetApiV2ConnectorProvider,
+    DatasetApiV3ConnectorProvider,
+    DatasetStaConnectorProvider
   ],
   bootstrap: [AppComponent]
 })

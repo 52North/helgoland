@@ -2,11 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import {
   BlacklistedService,
   DatasetApi,
-  DatasetApiInterface,
   DatasetApiMapping,
-  DatasetApiVersion,
-  IDataset,
-  ParameterFilter,
+  HelgolandDataset,
+  HelgolandParameterFilter,
+  HelgolandServicesConnector,
   Provider,
   Service,
   Settings,
@@ -24,15 +23,15 @@ export class ProviderParameterSeletorComponent implements OnInit {
 
   @ViewChild('acc', { static: true }) accordion: NgbAccordion;
 
-  @Input() filter: ParameterFilter;
+  @Input() filter: HelgolandParameterFilter;
   @Input() parameters: Array<ListSelectorParameter>;
   @Input() selectorId: string;
 
-  @Output() datasetSelected: EventEmitter<IDataset[]> = new EventEmitter<IDataset[]>();
+  @Output() datasetSelected: EventEmitter<HelgolandDataset[]> = new EventEmitter();
 
   public activePanel: string;
 
-  public providerFilter: ParameterFilter;
+  public providerFilter: HelgolandParameterFilter;
   public selectedProvider: Array<Provider>;
   public selectedProviderLabel: string;
   public datasetApis: Array<DatasetApi>;
@@ -40,7 +39,7 @@ export class ProviderParameterSeletorComponent implements OnInit {
 
   constructor(
     protected listSelectorService: ListSelectorService,
-    protected apiInterface: DatasetApiInterface,
+    protected servicesConnector: HelgolandServicesConnector,
     protected apiMapping: DatasetApiMapping,
     protected settingsSrvc: SettingsService<Settings>
   ) { }
@@ -88,14 +87,8 @@ export class ProviderParameterSeletorComponent implements OnInit {
     setTimeout(() => this.accordion.expand(`${this.selectorId}-${idx}`), 50);
   }
 
-  private openDataset(url: string, params: ParameterFilter) {
-    this.apiMapping.getApiVersion(url).subscribe((apiVersionId) => {
-      if (apiVersionId === DatasetApiVersion.V2) {
-        this.apiInterface.getDatasets(url, params).subscribe(result => this.datasetSelected.emit(result));
-      } else if (apiVersionId === DatasetApiVersion.V1) {
-        this.apiInterface.getTimeseries(url, params).subscribe(result => this.datasetSelected.emit(result));
-      }
-    });
+  private openDataset(url: string, params: HelgolandParameterFilter) {
+    this.servicesConnector.getDatasets(url, params).subscribe(result => this.datasetSelected.emit(result));
   }
 
   public onPanelChange(event: NgbPanelChangeEvent) {

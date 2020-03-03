@@ -19,8 +19,8 @@
         height: 100%;
         display: flex;
         padding: 0;
-        overflow: auto;
-        overflow-x: hidden;
+        overflow: hidden;
+        // overflow-x: hidden;
 
         .row {
             flex: 1;
@@ -67,6 +67,10 @@
                 }
             }
 
+            #sidebar {
+                height: 100%;
+            }
+
             .legend {
                 height: 100%;
                 display: flex;
@@ -79,7 +83,6 @@
                 }
 
             }
-
 
             .sidebar-offcanvas {
                 overflow-y: auto;

@@ -1,8 +1,9 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
-    Dataset,
-    DatasetApiInterface,
     DatasetOptions,
+    DatasetType,
+    HelgolandServicesConnector,
+    HelgolandTrajectory,
     InternalIdHandler,
     LocatedTimeValueEntry,
     Timespan,
@@ -31,7 +32,7 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public datasetIds: Array<string>;
 
-    public trajectory: Dataset;
+    public trajectory: HelgolandTrajectory;
 
     public loading: boolean;
 
@@ -47,7 +48,7 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public selectedTimespan: Timespan;
 
-    @ViewChild('modalTrajectoryOptionsEditor', {static: true})
+    @ViewChild('modalTrajectoryOptionsEditor', { static: true })
     public modalTrajectoryOptionsEditor: TemplateRef<any>;
 
     public graphOptions: D3GraphOptions = {
@@ -62,7 +63,7 @@ export class TrajectoriesViewComponent implements OnInit {
     constructor(
         private trajectorySrvc: TrajectoriesService,
         public permalinkSrvc: TrajectoriesViewPermalink,
-        private api: DatasetApiInterface,
+        private servicesConnector: HelgolandServicesConnector,
         private internalIdHandler: InternalIdHandler,
         private modalService: NgbModal
     ) { }
@@ -74,21 +75,24 @@ export class TrajectoriesViewComponent implements OnInit {
         if (this.trajectorySrvc.hasDatasets()) {
             this.loading = true;
             const internalId = this.internalIdHandler.resolveInternalId(this.datasetIds[0]);
-            this.api.getDataset(internalId.id, internalId.url).subscribe(dataset => {
-                this.trajectory = dataset;
-                this.timespan = new Timespan(dataset.firstValue.timestamp, dataset.lastValue.timestamp);
-                this.selectedTimespan = this.timespan;
-                this.api.getData<LocatedTimeValueEntry>(internalId.id, internalId.url, this.timespan)
-                    .subscribe(data => {
-                        this.geometry = {
-                            type: 'LineString',
-                            coordinates: []
-                        };
-                        this.graphData = data.values;
-                        data.values.forEach(entry => this.geometry.coordinates.push(entry.geometry.coordinates));
-                        this.loading = false;
-                    });
-            });
+            this.servicesConnector.getDataset(internalId, { type: DatasetType.Trajectory }).subscribe(
+                trajectory => {
+                    this.trajectory = trajectory;
+                    this.timespan = new Timespan(trajectory.firstValue.timestamp, trajectory.lastValue.timestamp);
+                    this.selectedTimespan = this.timespan;
+                    this.servicesConnector.getDatasetData(trajectory, this.timespan).subscribe(
+                        data => {
+                            this.geometry = {
+                                type: 'LineString',
+                                coordinates: []
+                            };
+                            this.graphData = data.values;
+                            data.values.forEach(entry => this.geometry.coordinates.push(entry.geometry.coordinates));
+                            this.loading = false;
+                        }
+                    );
+                }
+            );
         }
     }
 

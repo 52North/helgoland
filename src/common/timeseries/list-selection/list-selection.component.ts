@@ -2,13 +2,13 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild, ViewEnc
 import {
   BlacklistedService,
   DatasetApi,
-  IDataset,
-  ParameterFilter,
+  DatasetType,
+  HelgolandDataset,
+  HelgolandParameterFilter,
   Provider,
   Service,
   Settings,
   SettingsService,
-  ValueTypes,
 } from '@helgoland/core';
 import { ListSelectorParameter } from '@helgoland/selector';
 import { NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
@@ -87,7 +87,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
 
   public datasetApis: Array<DatasetApi>;
   public providerBlacklist: Array<BlacklistedService>;
-  public providerFilter: ParameterFilter;
+  public providerFilter: HelgolandParameterFilter;
   public selectedService: Service;
   public addedService: Service;
 
@@ -105,7 +105,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
   public ngOnInit() {
     this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
     this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
-    this.providerFilter = { valueTypes: ValueTypes.quantity };
+    this.providerFilter = { type: DatasetType.Timeseries };
   }
 
   public ngAfterViewInit(): void {
@@ -137,7 +137,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
     this.addedService = service;
   }
 
-  public onDatasetSelected(datasetList: Array<IDataset>) {
+  public onDatasetSelected(datasetList: Array<HelgolandDataset>) {
     if (datasetList instanceof Array && datasetList.length === 1) {
       this.timeseriesService.addDataset(datasetList[0].internalId);
       this.router.navigateToDiagram();

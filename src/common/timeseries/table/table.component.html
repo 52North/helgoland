@@ -21,7 +21,7 @@
     <div class="col-9 col-md-4 col-xl-3 sidebar-offcanvas" id="sidebar">
       <div class="legend">
         <h3 class="header d-none d-md-block">{{'timeseries.diagram.legend.header' | translate}}</h3>
-        <div class="legend-entry">
+        <div class="legend-entries">
           <div *ngFor="let id of datasetIds">
             <n52-legend-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)"
               [timeInterval]="timespan" (onDeleteDataset)="deleteTimeseries(id)"

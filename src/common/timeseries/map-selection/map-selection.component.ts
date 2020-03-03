@@ -10,13 +10,14 @@ import {
 import {
   BlacklistedService,
   DatasetApi,
-  ParameterFilter,
+  DatasetType,
+  HelgolandParameterFilter,
+  HelgolandPlatform,
   Phenomenon,
   PlatformTypes,
   Service,
   Settings,
   SettingsService,
-  Station,
   ValueTypes,
 } from '@helgoland/core';
 import { NgbModal, NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
@@ -41,15 +42,15 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
 
   public datasetApis: Array<DatasetApi>;
   public providerBlacklist: Array<BlacklistedService>;
-  public providerFilter: ParameterFilter;
+  public providerFilter: HelgolandParameterFilter;
   public selectedService: Service;
   public addedService: Service;
 
-  public stationFilter: ParameterFilter;
-  public phenomenonFilter: ParameterFilter;
+  public stationFilter: HelgolandParameterFilter;
+  public phenomenonFilter: HelgolandParameterFilter;
   public selectedPhenomenonId: string;
   public cluster = true;
-  public station: Station;
+  public station: HelgolandPlatform;
   public datasetSelections: Set<string> = new Set();
   public datasetRemoves: Set<string> = new Set();
 
@@ -70,7 +71,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   public ngOnInit() {
     this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
     this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
-    this.providerFilter = { valueTypes: ValueTypes.quantity };
+    this.providerFilter = { type: DatasetType.Timeseries };
   }
 
   public ngAfterViewInit(): void {
@@ -100,7 +101,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     this.addedService = service;
   }
 
-  public onStationSelected(station: Station) {
+  public onStationSelected(station: HelgolandPlatform) {
     this.station = station;
     this.modalService.open(this.modalTemplate);
   }
@@ -135,8 +136,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
 
   private updateStationFilter(phenomenonId?: string) {
     this.stationFilter = {
-      platformTypes: this.defaultPlatformTypes,
-      valueTypes: this.defaultValueTypes,
+      type: DatasetType.Timeseries,
       service: this.selectedService.id
     };
     if (phenomenonId) { this.stationFilter.phenomenon = phenomenonId; }
@@ -144,8 +144,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
 
   private updatePhenomenonFilter() {
     this.phenomenonFilter = {
-      platformTypes: this.defaultPlatformTypes,
-      valueTypes: this.defaultValueTypes,
+      type: DatasetType.Timeseries,
       service: this.selectedService.id
     };
   }

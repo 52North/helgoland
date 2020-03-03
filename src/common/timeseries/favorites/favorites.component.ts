@@ -84,6 +84,7 @@ export class TimeseriesFavoritesComponent {
         editedLabel: entry.label,
         loading: false,
         timespan,
+        options: option,
         option: new Map([[entry.favorite.internalId, option]])
       });
     });
