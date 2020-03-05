@@ -1,7 +1,10 @@
+import 'moment-timezone';
+
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Data, DatasetOptions, IDataEntry, Service, Time, Timespan } from '@helgoland/core';
-import { D3PlotOptions } from '@helgoland/d3';
+import { Data, DatasetOptions, HelgolandTimeseries, IDataEntry, Service, Time, Timespan } from '@helgoland/core';
+import { D3PlotOptions, D3SimpleHoveringService, DataEntry, InternalDataEntry } from '@helgoland/d3';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 
 import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
 import { ModalOptionsEditorComponent } from '../../components/modal-options-editor/modal-options-editor.component';
@@ -11,6 +14,21 @@ import {
 import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from './../services/timeseries.service';
 import { TimeseriesDiagramPermalink } from './diagram-permalink.service';
+
+class CustomHoveringService extends D3SimpleHoveringService {
+
+    protected setHoveringLabel(d: DataEntry, entry: InternalDataEntry, timeseries: HelgolandTimeseries) {
+        const stringedValue = (typeof d.value === 'number') ? parseFloat(d.value.toPrecision(15)).toString() : d.value;
+        this.highlightText.append('text')
+            .text(`${stringedValue} ${entry.axisOptions.uom} ${moment.tz(d.timestamp, moment.tz.guess()).format('DD.MM.YY HH:mm zz')}`)
+            .attr('class', 'mouseHoverDotLabel')
+            .style('pointer-events', 'none')
+            .style('fill', 'black');
+        this.highlightText.append('text').attr('dy', '1em').text(timeseries.parameters.phenomenon.label);
+        this.highlightText.append('text').attr('dy', '2em').text(timeseries.parameters.category.label);
+    }
+
+}
 
 @Component({
     selector: 'n52-diagram',
@@ -27,6 +45,7 @@ export class TimeseriesDiagramComponent implements OnInit {
     public timespan: Timespan;
     public selectedProvider: Service;
     public timeriesView = 'diagram';
+    public hoveringService = new CustomHoveringService();
 
     public diagramOptions: D3PlotOptions = {
         grid: true,

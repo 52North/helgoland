@@ -43,6 +43,15 @@
                 .diagram {
                     flex: 1;
                     position: relative;
+
+                    ::ng-deep {
+                        #hovering-line-layer {
+                            .hovering-line {
+                                stroke: #ff9090;
+                                stroke-width: 1px;
+                            }
+                        }
+                    }
                 }
 
                 .overview-diagram {
