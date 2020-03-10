@@ -30,6 +30,7 @@ import { ComponentsModule } from '../components/components.module';
 import { CategorySelectorComponent } from './category-selection/category-selector.component';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
+import { CustomDatasetPermalinkDownloadComponent } from './diagram/legend-entry/custom-dataset-permalink-download.component';
 import { LegendEntryComponent } from './diagram/legend-entry/legend-entry.component';
 import { TimeseriesFavoritesComponent } from './favorites/favorites.component';
 import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
@@ -113,14 +114,15 @@ export const nestedTimeseriesRoutes: Routes = [
         ComponentsModule
     ],
     declarations: [
-        TimeseriesNavigationComponent,
+        CategorySelectorComponent,
+        CustomDatasetPermalinkDownloadComponent,
+        LegendEntryComponent,
         TimeseriesDiagramComponent,
-        TimeseriesTableComponent,
+        TimeseriesFavoritesComponent,
         TimeseriesListSelectionComponent,
         TimeseriesMapSelectionComponent,
-        TimeseriesFavoritesComponent,
-        LegendEntryComponent,
-        CategorySelectorComponent,
+        TimeseriesNavigationComponent,
+        TimeseriesTableComponent,
     ],
     providers: [
         TimeseriesService,
