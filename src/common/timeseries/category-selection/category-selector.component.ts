@@ -83,9 +83,14 @@ export class CategorySelectorComponent implements OnInit {
         this.counter = this.station.datasetIds.length;
         this.station.datasetIds.forEach(id => {
           this.servicesConnector.getDataset({ id, url: this.url }, { type: DatasetType.Timeseries }).subscribe(
-            ds => this.prepareResult(ds as ExtendedTimeseries, this.defaultSelected),
-            error => console.error(error),
-            () => this.counter--
+            ds => {
+              this.counter--;
+              this.prepareResult(ds as ExtendedTimeseries, this.defaultSelected);
+            },
+            error => {
+              this.counter--;
+              console.error(error);
+            }
           );
         });
       });
