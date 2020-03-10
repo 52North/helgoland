@@ -20,11 +20,25 @@ import {
   SettingsService,
   ValueTypes,
 } from '@helgoland/core';
+import { MarkerSelectorGenerator } from '@helgoland/map';
 import { NgbModal, NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { Layer } from 'leaflet';
+import * as L from 'leaflet';
 
 import { TimeseriesMapSelectionCache } from '../services/map-selection-cache.service';
 import { TimeseriesRouter } from '../services/timeseries-router.service';
 import { TimeseriesService } from './../services/timeseries.service';
+
+class MarkerSelectorGeneratorImpl implements MarkerSelectorGenerator {
+
+  public createDefaultGeometry?(platform: HelgolandPlatform): Layer {
+    return L.geoJSON(platform.geometry, {
+      onEachFeature: function (feature, layer) {
+        layer.bindTooltip(platform.label);
+      }
+    });
+  }
+}
 
 @Component({
   selector: 'n52-map-selection',
@@ -54,6 +68,8 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   public datasetSelections: Set<string> = new Set();
   public datasetRemoves: Set<string> = new Set();
 
+  public markerSelectorGenerator: MarkerSelectorGenerator;
+
   private defaultPlatformTypes = PlatformTypes.stationary;
   private defaultValueTypes = ValueTypes.quantity;
 
@@ -69,6 +85,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   ) { }
 
   public ngOnInit() {
+    this.markerSelectorGenerator = new MarkerSelectorGeneratorImpl();
     this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
     this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
     this.providerFilter = { type: DatasetType.Timeseries };
