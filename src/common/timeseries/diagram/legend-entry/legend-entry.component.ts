@@ -8,6 +8,8 @@ import { TimeseriesEntryComponent } from '@helgoland/depiction';
 })
 export class LegendEntryComponent extends TimeseriesEntryComponent {
 
+  public isCollapsed = true;
+
   public showGeometry() {
     if (this.dataset.platform.geometry) {
       this.onShowGeometry.emit(this.dataset.platform.geometry);
