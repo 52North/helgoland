@@ -60,6 +60,11 @@
         <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
       </div>
 
+      <div class="additionalLegendEntry" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
+        <n52-custom-dataset-permalink-download [internalId]="datasetId" [timeInterval]="timeInterval">
+        </n52-custom-dataset-permalink-download>
+      </div>
+
       <!-- temporarly disabled -->
       <!-- <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData" (click)="$event.stopPropagation();">
         <span class="fa fa-download"></span>

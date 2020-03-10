@@ -3,8 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HelgolandD3Module } from '@helgoland/d3';
-import { HelgolandDatasetlistModule, HelgolandDatasetTableModule,
-    HelgolandLabelMapperModule, HelgolandDatasetDownloadModule } from '@helgoland/depiction';
+import {
+    HelgolandDatasetDownloadModule,
+    HelgolandDatasetlistModule,
+    HelgolandDatasetTableModule,
+    HelgolandLabelMapperModule,
+} from '@helgoland/depiction';
 import { HelgolandFavoriteModule } from '@helgoland/favorite';
 import { HelgolandMapControlModule, HelgolandMapSelectorModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
@@ -17,6 +21,7 @@ import { CustomTimeseriesRouter } from '../../apps/timeseries/app/router.service
 import { ComponentsModule } from '../components/components.module';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
+import { CustomDatasetPermalinkDownloadComponent } from './diagram/legend-entry/custom-dataset-permalink-download.component';
 import { LegendEntryComponent } from './diagram/legend-entry/legend-entry.component';
 import { TimeseriesFavoritesComponent } from './favorites/favorites.component';
 import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
@@ -95,13 +100,14 @@ export const nestedTimeseriesRoutes: Routes = [
         ComponentsModule
     ],
     declarations: [
-        TimeseriesNavigationComponent,
+        CustomDatasetPermalinkDownloadComponent,
+        LegendEntryComponent,
         TimeseriesDiagramComponent,
-        TimeseriesTableComponent,
+        TimeseriesFavoritesComponent,
         TimeseriesListSelectionComponent,
         TimeseriesMapSelectionComponent,
-        TimeseriesFavoritesComponent,
-        LegendEntryComponent
+        TimeseriesNavigationComponent,
+        TimeseriesTableComponent,
     ],
     providers: [
         TimeseriesService,

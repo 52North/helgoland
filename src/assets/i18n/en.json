@@ -96,6 +96,7 @@
 			},
 			"legend": {
 				"entry": {
+					"csv-download": "Data as CSV (Zip-Archive)",
 					"first-value-at": "First value at",
 					"jumpToLastTimeStamp": "Jump to last measurement",
 					"last-value-at": "Last value at",
