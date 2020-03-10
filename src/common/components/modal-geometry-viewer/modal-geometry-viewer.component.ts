@@ -12,8 +12,6 @@ export class ModalGeometryViewerComponent implements AfterViewInit {
 
   public mapId = 'mapGeometryViewerModal';
 
-  public mapOptions: MapOptions = { zoom: 12 };
-
   @Input()
   public geometry: GeoJSON.GeoJsonObject;
 
@@ -23,7 +21,10 @@ export class ModalGeometryViewerComponent implements AfterViewInit {
   ) { }
 
   public ngAfterViewInit(): void {
-    window.setTimeout(() => this.mapCache.getMap(this.mapId).invalidateSize(), 10);
+    window.setTimeout(() => {
+      this.mapCache.getMap(this.mapId).invalidateSize();
+      this.mapCache.getMap(this.mapId).setZoom(8);
+    }, 10);
   }
 
 }
