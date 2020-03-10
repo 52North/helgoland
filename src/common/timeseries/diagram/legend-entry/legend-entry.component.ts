@@ -1,8 +1,5 @@
-import { Component, SimpleChanges } from '@angular/core';
-import { Timespan } from '@helgoland/core';
+import { Component } from '@angular/core';
 import { TimeseriesEntryComponent } from '@helgoland/depiction';
-import { LangChangeEvent } from '@ngx-translate/core';
-import * as moment from 'moment';
 
 @Component({
   selector: 'n52-legend-entry',
