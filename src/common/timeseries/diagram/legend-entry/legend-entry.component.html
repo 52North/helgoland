@@ -1,4 +1,4 @@
-<div class="legendItem" style="position: relative;" [ngStyle]="{'border-color': datasetOptions?.color}"
+<div *ngIf="dataset" class="legendItem" style="position: relative;" [ngStyle]="{'border-color': datasetOptions?.color}"
   [ngClass]="{'selected': selected}" (click)="toggleSelection()">
   <div class="loading-overlay" *ngIf="loading" [ngStyle]="{'background-color': datasetOptions?.color}">
     <div class="fa fa-refresh fa-spin fa-3x fa-fw"></div>
@@ -77,7 +77,7 @@
               <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
             </div>
 
-            <div class="additionalLegendEntry" (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
+            <div class="additionalLegendEntry" (click)="$event.stopPropagation();">
               <n52-custom-dataset-permalink-download [internalId]="datasetId" [timeInterval]="timeInterval">
               </n52-custom-dataset-permalink-download>
             </div>
