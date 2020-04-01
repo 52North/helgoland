@@ -91,6 +91,7 @@
 	},
 	"timeseries": {
 		"diagram": {
+			"annotation": "",
 			"hint": {
 				"select-timeseries-first": "Por favor, selecione uma série temporal primeiro."
 			},

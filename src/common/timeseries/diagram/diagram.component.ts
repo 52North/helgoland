@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Data, DatasetOptions, IDataEntry, Service, Time, Timespan } from '@helgoland/core';
 import { D3PlotOptions } from '@helgoland/d3';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
 import { ModalOptionsEditorComponent } from '../../components/modal-options-editor/modal-options-editor.component';
@@ -31,7 +32,12 @@ export class TimeseriesDiagramComponent implements OnInit {
         grid: true,
         showTimeLabel: false,
         showReferenceValues: true,
-        requestBeforeAfterValues: true
+        requestBeforeAfterValues: true,
+        copyright: {
+            label: '',
+            positionX: 'right',
+            positionY: 'bottom'
+        }
     };
     public overviewOptions: D3PlotOptions = {
         grid: true,
@@ -45,6 +51,7 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     constructor(
         private timeseriesService: TimeseriesService,
+        private translateSrvc: TranslateService,
         private timeSrvc: Time,
         public permalinkSrvc: TimeseriesDiagramPermalink,
         private modalService: NgbModal,
@@ -57,6 +64,8 @@ export class TimeseriesDiagramComponent implements OnInit {
         this.datasetIds = this.timeseriesService.datasetIds;
         this.datasetOptions = this.timeseriesService.datasetOptions;
         this.timespan = this.timeseriesService.timespan;
+        this.translateSrvc.onLangChange
+            .subscribe(() => this.diagramOptions.copyright.label = this.translateSrvc.instant('timeseries.diagram.annotation'));
     }
 
     public deleteTimeseries(internalId: string) {

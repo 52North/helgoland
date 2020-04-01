@@ -91,6 +91,7 @@
 	},
 	"timeseries": {
 		"diagram": {
+			"annotation": "Data without warranty",
 			"hint": {
 				"select-timeseries-first": "Please select a timeseries first."
 			},

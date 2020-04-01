@@ -91,6 +91,7 @@
 	},
 	"timeseries": {
 		"diagram": {
+			"annotation": "Daten ohne Gewähr",
 			"hint": {
 				"select-timeseries-first": "Bitte wählen Sie zuerst eine Zeitreihe aus."
 			},
