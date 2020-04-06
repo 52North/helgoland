@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{'basic-auth.header' | translate}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body geometryViewer">
+  <div class="service-url">{{serviceUrl}}</div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">{{'basic-auth.username' | translate}}</span>
+    </div>
+    <input type="text" [(ngModel)]="username" class="form-control">
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">{{'basic-auth.password' | translate}}</span>
+    </div>
+    <input type="text" [(ngModel)]="password" class="form-control">
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-light" (click)="confirm()">{{'controls.ok' | translate}}</button>
+  <button type="button" class="btn btn-light" (click)="cancel()">{{'controls.cancel' | translate}}</button>
+</div>
