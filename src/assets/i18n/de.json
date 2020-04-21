@@ -101,6 +101,7 @@
 				"select-timeseries-first": "Bitte wählen Sie zuerst eine Zeitreihe aus."
 			},
 			"legend": {
+				"downloadPDF": "Download PDF-Datei",
 				"entry": {
 					"csv-download": "Daten als CSV (Zip-Archiv)",
 					"first-value-at": "Erster Wert am",

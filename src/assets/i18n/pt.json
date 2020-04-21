@@ -101,6 +101,7 @@
 				"select-timeseries-first": "Por favor, selecione uma série temporal primeiro."
 			},
 			"legend": {
+				"downloadPDF": "",
 				"entry": {
 					"csv-download": "",
 					"first-value-at": "Primeiro valor a",

@@ -101,6 +101,7 @@
 				"select-timeseries-first": "Please select a timeseries first."
 			},
 			"legend": {
+				"downloadPDF": "Download PDF-File",
 				"entry": {
 					"csv-download": "Data as CSV (Zip-Archive)",
 					"first-value-at": "First value at",
