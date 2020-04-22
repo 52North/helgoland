@@ -1,0 +1,80 @@
+[
+    {
+        "name": "Carbon_monoxide",
+        "intervals": []
+    },
+    {
+        "name": "Nitric_oxide",
+        "intervals": []
+    },
+    {
+        "name": "Nitrogen_dioxide",
+        "intervals": [
+            {
+                "lower": 0,
+                "upper": 21.276,
+                "color": "rgba(80,240,230, 1)"
+            },
+            {
+                "lower": 21.276,
+                "upper": 47.872,
+                "color": "rgba(80,204,170, 1)"
+            },
+            {
+                "lower": 47.872,
+                "upper": 62.829,
+                "color": "rgba(240,230,65, 1)"
+            },
+            {
+                "lower": 62.829,
+                "upper": 122.340,
+                "color": "rgba(255,80,80, 1)"
+            },
+            {
+                "lower": 122.340,
+                "upper": 180.851,
+                "color": "rgba(255,80,80, 1)"
+            },
+            {
+                "lower": 180.851,
+                "upper": 531.914,
+                "color": "rgba(255,80,80, 1)"
+            }
+        ]
+    },
+    {
+        "name": "Ozone",
+        "intervals": [
+            {
+                "lower": 0,
+                "upper": 25,
+                "color": "rgba(80,240,230, 1)"
+            },
+            {
+                "lower": 25,
+                "upper": 50,
+                "color": "rgba(80,204,170, 1)"
+            },
+            {
+                "lower": 50,
+                "upper": 65,
+                "color": "rgba(240,230,65, 1)"
+            },
+            {
+                "lower": 65,
+                "upper": 120,
+                "color": "rgba(255,80,80, 1)"
+            },
+            {
+                "lower": 120,
+                "upper": 190,
+                "color": "rgba(255,80,80, 1)"
+            },
+            {
+                "lower": 190,
+                "upper": 400,
+                "color": "rgba(255,80,80, 1)"
+            }
+        ]
+    }
+]

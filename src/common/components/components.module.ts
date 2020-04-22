@@ -19,6 +19,7 @@ import {
   CustomMultiServiceFilterSelectorComponent,
 } from './custom-multi-service-filter-selector/custom-multi-service-filter-selector.component';
 import { CustomServiceSelectorComponent } from './custom-service-selector/custom-service-selector.component';
+import { CustomStationMapSelectorComponent } from './custom-station-map-selector/custom-station-map-selector.component';
 import { CustomTimeRangeSliderComponent } from './custom-time-range-slider/custom-time-range-slider.component';
 import {
   CustomTimespanShiftSelectorComponent,
@@ -59,6 +60,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     CustomMinMaxRangeComponent,
     CustomMultiServiceFilterSelectorComponent,
     CustomServiceSelectorComponent,
+    CustomStationMapSelectorComponent,
     CustomTimeRangeSliderComponent,
     CustomTimespanShiftSelectorComponent,
     InMailComponent,
@@ -81,9 +83,10 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     ModalTimeseriesTimespanComponent,
   ],
   exports: [
+    CustomAutoUpdateTimespanComponent,
     CustomListSelectorComponent,
     CustomServiceSelectorComponent,
-    CustomAutoUpdateTimespanComponent,
+    CustomStationMapSelectorComponent,
     CustomTimeRangeSliderComponent,
     CustomTimespanShiftSelectorComponent,
     LocalSelectorImplComponent,

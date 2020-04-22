@@ -39,8 +39,8 @@
           <div class="map-content">
             <button type="button" class="btn btn-primary btn-sm d-md-none legend-button" (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.phenomenon.header' | translate}}</button>
             <div class="map">
-              <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService.apiUrl" [filter]="stationFilter"
-                (onSelected)="onStationSelected($event)" [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
+              <n52-custom-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService.apiUrl" [filter]="stationFilter"
+                (onSelected)="onStationSelected($event)" [cluster]="cluster" [statusIntervals]="true" class="vbox boxItem fullHeight"></n52-custom-station-map-selector>
               <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
               <n52-locate-button class="locate-control" [mapId]="'timeseries'"></n52-locate-button>
             </div>
