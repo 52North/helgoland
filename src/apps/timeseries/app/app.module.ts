@@ -9,7 +9,7 @@ import {
   DatasetApiV1ConnectorProvider,
   DatasetApiV2ConnectorProvider,
   DatasetApiV3ConnectorProvider,
-  DatasetStaConnectorProvider,
+  HELGOLAND_SERVICE_CONNECTOR_HANDLER,
   Settings,
   SettingsService,
   SplittedDataDatasetApiInterface,
@@ -32,6 +32,7 @@ import { InfoModule } from '../../../common/info/info.module';
 import { TimeseriesModule, timeseriesRoutes } from '../../../common/timeseries/timeseries.module';
 import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { CustomStaApiV1ConnectorService } from './custom-sta-api-v1-connector.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -101,10 +102,14 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
       provide: DatasetApiInterface,
       useClass: SplittedDataDatasetApiInterface
     },
+    {
+      provide: HELGOLAND_SERVICE_CONNECTOR_HANDLER,
+      useClass: CustomStaApiV1ConnectorService,
+      multi: true
+    },
     DatasetApiV1ConnectorProvider,
     DatasetApiV2ConnectorProvider,
     DatasetApiV3ConnectorProvider,
-    DatasetStaConnectorProvider
   ],
   bootstrap: [AppComponent]
 })
