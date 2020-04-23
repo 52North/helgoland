@@ -23,36 +23,9 @@
   },
   "datasetApis": [
     {
-      "name": "nexos.demo.52north",
-      "url": "https://nexos.demo.52north.org/52n-sos-nexos-test/api/"
-    },
-    {
-      "name": "codm.hzg.de",
-      "url": "https://codm.hzg.de/52n-sos-webapp/api/v1/"
-    },
-    {
-      "name": "sensorwebclient-webapp-stable",
-      "url": "https://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/"
-    },
-    {
-      "name": "geo.irceline.be",
-      "url": "https://geo.irceline.be/sos/api/v1/"
-    },
-    {
-      "name": "fluggs.de",
-      "url": "https://www.fluggs.de/sos2/api/v1/"
-    },
-    {
-      "name": "52north - Sensorwebtestbed",
-      "url": "https://sensorweb.demo.52north.org/sensorwebtestbed/api/v1/"
-    },
-    {
-      "name": "Monalisa-Sos",
-      "url": "http://monalisasos.eurac.edu/sos/api/v1/"
-    },
-    {
-      "name": "STA-Test",
-      "url": "https://cors-anywhere.herokuapp.com/https://calgary-aq-sta.sensorup.com/v1.0/"
+      "name": "aqsens",
+      "url": "https://aqsens.52north.org/data/raw/sta/",
+      "basicAuth": true
     }
   ],
   "languages": [{
