@@ -45,7 +45,6 @@ export class CustomStationMapSelectorComponent extends StationMapSelectorCompone
             }
           }
           if (!marker) { marker = this.createDefaultColoredMarker(ds.platform); }
-          marker.on('click', () => this.onSelected.emit(ds.platform));
           this.markerFeatureGroup.addLayer(marker);
         });
 
