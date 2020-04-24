@@ -22,7 +22,7 @@ export class PhenomenonIntervalMatchingService {
   constructor(
     private http: HttpService
   ) {
-    this.http.client().get<IntervalEntry[]>('/assets/intervals.json').subscribe(
+    this.http.client().get<IntervalEntry[]>('./assets/intervals.json').subscribe(
       res => this.intervals = res,
     );
   }
