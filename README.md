@@ -11,7 +11,7 @@ This lightweight web application enables the exploration, visualization and anal
 - explore stations or mobile sensor platforms in a map,
 - select time series by a list selection,
 - visualize and navigate through time series data, trajectory data, profile measurements,
-- create favorites of selected time series
+- create favorites of selected time series,
 - export visualized data as CSV files.
 
 The application can connect to different Sensor Web endpoints (via 52°North Helgoland API). These endpoints provide a thin access layer to sensor data (e.g. offered by SOS servers'databases) via RESTful Web binding with different output formats.
@@ -25,13 +25,19 @@ Features:
 - data export (CSV)
   <!-- * Combination w/ R... -->
 
-The following main frameworks are used to provide this application:
+Key Technologies:
 
+- [JavaScript](https://www.javascript.com/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Angular](https://angular.io/)
 - [Leaflet](https://leafletjs.com/)
-- [Bootstrap](https://getbootstrap.com/)
-- [momentJs](https://momentjs.com/)
 - [d3](https://d3js.org/)
+
+Benefits:
+- Lightweight, web-based visualization of observation data
+- Exploration of Sensor Web data sources (SOS, SensorThings API)
+- Support of different types of obsevation data (time sereis, trajectories, profiles)
+- Data download (CSV)
 
 ## Quick Start (Configuration)
 
