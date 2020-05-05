@@ -2,18 +2,21 @@
 
 ## Description
 
-### Visual Exploration and Analysis of Sensor Web Data
+### Web-Based Visualization of Observation Data
 
-**This lightweight web application enables the exploration, analysis and visualization of sensor web data in various fields of use, e.g. hydrology, meteorology, environmental monitoring, traffic management.**
+**Enabling exploration, analysis and visualization of sensor web data**
 
-Helgoland is a lightweight web application to explore, analyze and visualize a broad range of sensor data. You can:
+This lightweight web application enables the exploration, visualization and analysis of sensor web data in various fields of use, e.g. hydrology, meteorology, environmental monitoring, traffic management. You can:
 
 - explore stations or mobile sensor platforms in a map,
 - select time series by a list selection,
-- visualize time series data,
-- or create favorites of selected time series.
+- visualize and navigate through time series data, trajectory data, profile measurements,
+- create favorites of selected time series
+- export visualized data as CSV files.
 
-The application is based on HTML, JavaScript and CSS and can connect to different Sensor Web endpoints (REST-APIs). These Sensor Web REST-APIs provide a thin access layer to sensor data via RESTful Web binding with different output formats.
+The application can connect to different Sensor Web endpoints (via 52°North Helgoland API). These endpoints provide a thin access layer to sensor data (e.g. offered by SOS servers'databases) via RESTful Web binding with different output formats.
+
+This software component is based on the Helgoland Toolbox. It integrates the different toolbox modules into a viewing applications that can be easily customized to the requirements of specific users.
 
 Features:
 
