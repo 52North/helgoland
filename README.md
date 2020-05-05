@@ -58,14 +58,14 @@ Helgoland is licensed under the [Apache 2.0 License](https://www.apache.org/lice
 
 <!-- ## User guide/tutorial -->
 
-<!-- ## Demo
+<!--## Demo
 
 Explore, analyze and visualize sensor web data with our [Helgoland](https://sensorweb.demo.52north.org/client/#/) demo.
 
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/3830314/15780576/ae8cf458-29a2-11e6-89ef-bc6f1453e38b.png" alt="Helgoland map view" width="75%"/>
   <img src="https://cloud.githubusercontent.com/assets/3830314/15780591/bdb9a4a8-29a2-11e6-9938-1717a0e7bb7a.png" alt="Helgoland diagram view" width="75%"/>
-</p> -->
+</p>-->
 
 <!-- ## Changelog -->
 
@@ -110,11 +110,11 @@ It comprises:
 - `npm run build` bundles the client to the `dist/timeseries` folder. The content of this folder can be deployed on a web server.
 <!-- - `npm run build` will also generates a war-file in `build`-folder. -->
 
-#### How to develop
+<!--#### How to develop-->
 
 <!-- See [here](https://github.com/52North/sensorweb-client-core#how-to-develop) for more informations. -->
 
-#### Configuration
+<!--#### Configuration-->
 
 <!-- See [here](https://github.com/52North/sensorweb-client-core#configuration) -->
 
