@@ -18,14 +18,14 @@ The application can connect to different Sensor Web endpoints (via 52°North Hel
 
 This software component is based on the Helgoland Toolbox. It integrates the different toolbox modules into a viewing applications that can be easily customized to the requirements of specific users.
 
-Features:
+**Features:**
 
 - access to SOS instances via REST-APIs (supports OGC SOS spec...)
 - diagram view of multiple time series, temporal zooming & panning...
 - data export (CSV)
   <!-- * Combination w/ R... -->
 
-Key Technologies:
+**Key Technologies:**
 
 - [JavaScript](https://www.javascript.com/)
 - [TypeScript](https://www.typescriptlang.org/)
@@ -33,7 +33,7 @@ Key Technologies:
 - [Leaflet](https://leafletjs.com/)
 - [d3](https://d3js.org/)
 
-Benefits:
+**Benefits:**
 - Lightweight, web-based visualization of observation data
 - Exploration of Sensor Web data sources (SOS, SensorThings API)
 - Support of different types of obsevation data (time sereis, trajectories, profiles)
