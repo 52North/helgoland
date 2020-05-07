@@ -121,6 +121,13 @@
 					"zeroBasedYAxis": "Série temporal baseado em zero"
 				}
 			},
+			"options": {
+				"hovering": {
+					"line": "",
+					"none": "",
+					"point": ""
+				}
+			},
 			"phenomenon": {
 				"header": "Parâmetros",
 				"show-all": "Todos os parâmetros"

@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Data, DatasetOptions, IDataEntry, Service, Time, Timespan } from '@helgoland/core';
-import { D3PlotOptions } from '@helgoland/d3';
+import { D3PlotOptions, HoveringStyle } from '@helgoland/d3';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -27,12 +27,14 @@ export class TimeseriesDiagramComponent implements OnInit {
     public data: Array<Data<IDataEntry>>;
     public timespan: Timespan;
     public selectedProvider: Service;
+    public hovering: HoveringStyle = HoveringStyle.point;
 
     public diagramOptions: D3PlotOptions = {
         grid: true,
         showTimeLabel: false,
         showReferenceValues: true,
         requestBeforeAfterValues: true,
+        hoverStyle: HoveringStyle.point,
         copyright: {
             label: '',
             positionX: 'right',
@@ -140,6 +142,11 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     public onGraphLoading(loading: boolean) {
         this.graphLoading = loading;
+    }
+
+    public hoveringChanged(hovering: HoveringStyle) {
+        this.hovering = hovering;
+        this.diagramOptions.hoverStyle = hovering;
     }
 
 }
