@@ -52,6 +52,16 @@ Configure your client in the settings.json in the root folder. Check this(link) 
 - `defaultProvider` - this is the default selected provider, when the user starts the client
 - `datasetApis` - this is a list of all supported providers by the client
 
+## References
+
+The software is in operational use by the following organizations or within the following projects.
+- [Federal Maritime and Hydrographic Agency (BSH)](https://www.bsh.de/)
+- [Wupperverband](https://www.wupperverband.de/)
+- [SeaDataCloud](https://www.seadatanet.org/About-us/SeaDataCloud)
+- [WaCoDiS](https://wacodis.fbg-hsbo.de/)
+- [MuDak-WRM](https://www.mudak-wrm.kit.edu/)
+
+
 ## License
 
 Helgoland is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
@@ -114,3 +124,5 @@ not needed
 see Github...
 
 ## Requirements-->
+
+
