@@ -1,0 +1,6 @@
+<div ngbDropdown placement="bottom-right" class="d-inline-block">
+  <button class="btn btn-primary" id="timezoneSelector" ngbDropdownToggle>{{currentTz}}</button>
+  <div ngbDropdownMenu aria-labelledby="timezoneSelector">
+    <button class="dropdown-item" *ngFor="let lang of timezones" (click)="setTimezone(lang)">{{lang}}</button>
+  </div>
+</div>

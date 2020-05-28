@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { HelgolandCoreModule } from '@helgoland/core';
 import { HelgolandD3Module } from '@helgoland/d3';
 import {
     HelgolandDatasetDownloadModule,
@@ -98,6 +99,7 @@ export const nestedTimeseriesRoutes: Routes = [
         HelgolandTimeModule,
         HelgolandFavoriteModule,
         HelgolandModificationModule,
+        HelgolandCoreModule,
         RouterModule,
         NgbTabsetModule,
         NgbAccordionModule,

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HelgolandCoreModule } from '@helgoland/core';
 import { HelgolandLabelMapperModule } from '@helgoland/depiction';
 import { HelgolandMapViewModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
@@ -34,6 +35,7 @@ import { PermalinkButtonComponent } from './permalink/permalink-button/permalink
 import { ToClipboardComponent } from './permalink/to-clipboard/to-clipboard.component';
 import { ProviderParameterSeletorComponent } from './provider-parameter-selector/provider-parameter-selector.component';
 import { TimespanSelectorComponent } from './timespan-selector/timespan-selector.component';
+import { TimezoneSelectorComponent } from './timezone-selector/timezone-selector.component';
 
 @NgModule({
   imports: [
@@ -42,6 +44,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     FormsModule,
     HelgolandLabelMapperModule,
     HelgolandMapViewModule,
+    HelgolandCoreModule,
     HelgolandModificationModule,
     HelgolandPermalinkModule,
     HelgolandSelectorModule,
@@ -71,6 +74,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     PermalinkButtonComponent,
     ProviderParameterSeletorComponent,
     TimespanSelectorComponent,
+    TimezoneSelectorComponent,
     ToClipboardComponent,
   ],
   entryComponents: [
@@ -90,6 +94,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     LocateButtonComponent,
     PermalinkButtonComponent,
     ProviderParameterSeletorComponent,
+    TimezoneSelectorComponent,
   ]
 })
 export class ComponentsModule { }
