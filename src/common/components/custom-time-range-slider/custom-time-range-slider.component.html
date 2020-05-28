@@ -1,18 +1,18 @@
 <div class="time-range-slider" [hidden]="!timeList">
   <div class="slider-container">
     <div class="left-start">
-      <span>{{start | date : 'short'}}</span>
+      <span>{{start | tzDate : 'L'}}</span>
     </div>
     <div class="center">
       <input id="slider" type="text" />
     </div>
     <div class="right-end">
-      <span>{{end | date : 'short'}}</span>
+      <span>{{end | tzDate : 'L'}}</span>
     </div>
   </div>
   <div class="selection" *ngIf="selectionStart">
-    <span>{{selectionStart | date : 'short'}}</span>
+    <span>{{selectionStart | tzDate : 'L'}}</span>
     <span> - </span>
-    <span>{{selectionEnd | date : 'short'}}</span>
+    <span>{{selectionEnd | tzDate : 'L'}}</span>
   </div>
 </div>

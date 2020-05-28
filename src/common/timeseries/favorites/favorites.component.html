@@ -39,9 +39,12 @@
           </div>
         </div>
         <div class="">
-          <small class="text-muted">{{'timeseries.favorites.lastMeasurements' | translate}}: {{favorite.timespan.from |
-            date}} - {{favorite.timespan.to
-            | date}}</small>
+          <small class="text-muted">
+            <span>{{'timeseries.favorites.lastMeasurements' | translate}}: </span>
+            <span>{{favorite.timespan.from | tzDate : 'L'}}</span>
+            <span> - </span>
+            <span>{{favorite.timespan.to | tzDate : 'L'}}</span>
+          </small>
         </div>
       </div>
       <div class="card-footer text-muted">

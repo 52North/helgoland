@@ -25,8 +25,8 @@
   </div>
   <div class="modal-body">
     <div class="time-at" style="text-align: center;">
-      <span>{{'profiles.selection.timestamp' | translate}}:</span>
-      <span>{{mobilePreviewTimestamp | date : 'medium'}}</span>
+      <span>{{'profiles.selection.timestamp' | translate}}: </span>
+      <span>{{mobilePreviewTimestamp | tzDate }}</span>
     </div>
     <div>
       <n52-plotly-profile-graph [datasetIds]="[mobilePreviewDataset.internalId]"

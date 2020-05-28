@@ -49,14 +49,14 @@
         (click)="jumpToFirstTimeStamp(); $event.stopPropagation();">
         <span class="fa fa-chevron-right"></span>
         <span>{{'timeseries.diagram.legend.entry.first-value-at' | translate}}</span>
-        <span> {{firstValue.timestamp | date: 'short': null : translateSrvc.currentLang}} </span>
+        <span> {{firstValue.timestamp | tzDate}} </span>
         <span class="hidden-medium">({{firstValue.value}} {{uom}})</span>
       </div>
       <div class="firstLastEntry additionalLegendEntry" *ngIf="lastValue"
         (click)="jumpToLastTimeStamp(); $event.stopPropagation();">
         <span class="fa fa-chevron-right"></span>
         <span>{{'timeseries.diagram.legend.entry.last-value-at' | translate}}</span>
-        <span> {{lastValue.timestamp | date: 'short' : null : translateSrvc.currentLang}} </span>
+        <span> {{lastValue.timestamp | tzDate}} </span>
         <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
       </div>
 
