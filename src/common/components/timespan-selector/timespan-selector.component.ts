@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Timespan } from '@helgoland/core';
+import { Timespan, TimezoneService } from '@helgoland/core';
 import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -24,33 +24,56 @@ export class TimespanSelectorComponent implements OnInit {
   public timeTo: NgbTimeStruct;
   public isValidTimespan: boolean;
 
+  constructor(
+    private timezoneSrvc: TimezoneService
+  ) { }
+
   public ngOnInit() {
-    const from = new Date(this.timespan.from);
-    const to = new Date(this.timespan.to);
+    const start = this.timezoneSrvc.createTzDate(this.timespan.from);
+    const end = this.timezoneSrvc.createTzDate(this.timespan.to);
+
+    this.isValidTimespan = start.isBefore(end);
+
     this.dateFrom = {
-      year: from.getFullYear(), month: from.getMonth() + 1, day: from.getDate()
+      year: start.year(), month: start.month() + 1, day: start.date()
     };
     this.timeFrom = {
-      hour: from.getHours(), minute: from.getMinutes(), second: from.getSeconds()
+      hour: start.hour(), minute: start.minute(), second: start.second()
     };
     this.dateTo = {
-      year: to.getFullYear(), month: to.getMonth() + 1, day: to.getDate()
+      year: end.year(), month: end.month() + 1, day: end.date()
     };
     this.timeTo = {
-      hour: to.getHours(), minute: to.getMinutes(), second: to.getSeconds()
+      hour: end.hour(), minute: end.minute(), second: end.minute()
     };
   }
 
   public timespanChanged() {
-    const dateTimeFrom = new Date(this.dateFrom.year, this.dateFrom.month - 1, this.dateFrom.day,
-      this.timeFrom.hour, this.timeFrom.minute, this.timeFrom.second);
-    const dateTimeTo = new Date(this.dateTo.year, this.dateTo.month - 1, this.dateTo.day,
-      this.timeTo.hour, this.timeTo.minute, this.timeTo.second);
 
-    this.isValidTimespan = (dateTimeFrom < dateTimeTo);
+    const start = this.timezoneSrvc.createTzDate({
+      year: this.dateFrom.year,
+      month: this.dateFrom.month - 1,
+      date: this.dateFrom.day,
+      hour: this.timeFrom.hour,
+      minute: this.timeFrom.minute,
+      second: this.timeFrom.second
+    });
+
+    const end = this.timezoneSrvc.createTzDate({
+      year: this.dateTo.year,
+      month: this.dateTo.month - 1,
+      date: this.dateTo.day,
+      hour: this.timeTo.hour,
+      minute: this.timeTo.minute,
+      second: this.timeTo.second
+    });
+    console.log(`start: ${start.format('L LT z')}`);
+    console.log(`end: ${end.format('L LT z')}`);
+
+    this.isValidTimespan = start.isBefore(end);
 
     if (this.isValidTimespan) {
-      this.timespan = new Timespan(dateTimeFrom.getTime(), dateTimeTo.getTime());
+      this.timespan = new Timespan(start.toDate(), end.toDate());
       this.timespanChange.emit(this.timespan);
       console.log(this.timespan);
     } else {

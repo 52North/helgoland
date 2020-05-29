@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="row invalid-notice" [style.visibility]="isValidTimespan ? 'hidden' : 'visible'">
+  <div class="row invalid-notice" *ngIf="!isValidTimespan">
     <div class="col">
       Invalid Timespan: "From" moment must be BEFORE "To" moment!
     </div>
