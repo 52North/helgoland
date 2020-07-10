@@ -14,7 +14,13 @@ import { HelgolandMapControlModule, HelgolandMapSelectorModule } from '@helgolan
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandSelectorModule } from '@helgoland/selector';
 import { HelgolandTimeModule } from '@helgoland/time';
-import { NgbAccordionModule, NgbDropdownModule, NgbModalModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+    NgbAccordionModule,
+    NgbButtonsModule,
+    NgbDropdownModule,
+    NgbModalModule,
+    NgbTabsetModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { CustomTimeseriesRouter } from '../../apps/timeseries/app/router.service';
@@ -96,6 +102,7 @@ export const nestedTimeseriesRoutes: Routes = [
         NgbTabsetModule,
         NgbAccordionModule,
         NgbModalModule,
+        NgbButtonsModule,
         NgbDropdownModule,
         ComponentsModule
     ],

@@ -33,6 +33,21 @@
           (onOpenTimeSettings)="openTimeSettings($event)"></n52-custom-timespan-shift-selector>
         <!-- <n52-custom-auto-update-timespan [currentTimespan]="timespan" (onChangeTimespan)="timeChanged($event)"
           [refreshInterval]="10"></n52-custom-auto-update-timespan> -->
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [ngModel]="hovering"
+          (ngModelChange)="hoveringChanged($event)">
+          <label ngbButtonLabel [ngClass]="{'btn-primary': hovering === 'point'}">
+            <input ngbButton type="radio" [value]="'point'">
+            <span>{{'timeseries.diagram.options.hovering.point' | translate}}</span>
+          </label>
+          <label ngbButtonLabel [ngClass]="{'btn-primary': hovering === 'line'}">
+            <input ngbButton type="radio" [value]="'line'">
+            <span>{{'timeseries.diagram.options.hovering.line' | translate}}</span>
+          </label>
+          <label ngbButtonLabel [ngClass]="{'btn-primary': hovering === 'none'}">
+            <input ngbButton type="radio" [value]="'none'">
+            <span>{{'timeseries.diagram.options.hovering.none' | translate}}</span>
+          </label>
+        </div>
       </div>
     </div>
     <div class="col-9 col-md-4 col-xl-3 sidebar-offcanvas" id="sidebar">

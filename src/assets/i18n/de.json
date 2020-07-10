@@ -122,6 +122,13 @@
 					"zeroBasedYAxis": "Zeitreihe null-basiert"
 				}
 			},
+			"options": {
+				"hovering": {
+					"line": "Linie",
+					"none": "Kein",
+					"point": "Punkt"
+				}
+			},
 			"phenomenon": {
 				"header": "Phänomene",
 				"show-all": "Alle Phänomene"

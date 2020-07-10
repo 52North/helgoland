@@ -122,6 +122,13 @@
 					"zeroBasedYAxis": "Timeseries zero based"
 				}
 			},
+			"options": {
+				"hovering": {
+					"line": "Line",
+					"none": "None",
+					"point": "Point"
+				}
+			},
 			"phenomenon": {
 				"header": "Phenomena",
 				"show-all": "All phenomena"
