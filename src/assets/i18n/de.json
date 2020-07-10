@@ -107,6 +107,7 @@
 					"first-value-at": "Erster Wert am",
 					"jumpToLastTimeStamp": "Springe zur letzten Messung",
 					"last-value-at": "Letzter Wert am",
+					"max-at": "Maximum am",
 					"no-data-available": "Keine Daten verfügbar"
 				},
 				"header": "Legende",

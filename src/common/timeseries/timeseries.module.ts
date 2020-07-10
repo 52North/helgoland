@@ -29,6 +29,7 @@ import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service'
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
 import { CustomDatasetPermalinkDownloadComponent } from './diagram/legend-entry/custom-dataset-permalink-download.component';
 import { LegendEntryComponent } from './diagram/legend-entry/legend-entry.component';
+import { MinMaxValueComponentComponent } from './diagram/min-max-value-component/min-max-value-component.component';
 import { TimeseriesFavoritesComponent } from './favorites/favorites.component';
 import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
 import { TimeseriesMapSelectionComponent } from './map-selection/map-selection.component';
@@ -115,6 +116,7 @@ export const nestedTimeseriesRoutes: Routes = [
         TimeseriesMapSelectionComponent,
         TimeseriesNavigationComponent,
         TimeseriesTableComponent,
+        MinMaxValueComponentComponent,
     ],
     providers: [
         TimeseriesService,

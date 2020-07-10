@@ -60,6 +60,11 @@
         <span class="hidden-medium">({{lastValue.value}} {{uom}})</span>
       </div>
 
+      <div class="additionalLegendEntry">
+        <n52-min-max-value-component [dataset]="dataset" (selectValue)="this.onSelectDate.emit($event);">
+        </n52-min-max-value-component>
+      </div>
+
       <div class="additionalLegendEntry" (click)="$event.stopPropagation();">
         <n52-custom-dataset-permalink-download [internalId]="datasetId" [timeInterval]="timeInterval">
         </n52-custom-dataset-permalink-download>
