@@ -24,14 +24,14 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^8.2.14",
-    "@angular/common": "^8.2.14",
-    "@angular/compiler": "^8.2.14",
-    "@angular/core": "^8.2.14",
-    "@angular/forms": "^8.2.14",
-    "@angular/platform-browser": "^8.2.14",
-    "@angular/platform-browser-dynamic": "^8.2.14",
-    "@angular/router": "^8.2.14",
+    "@angular/animations": "^10.1.2",
+    "@angular/common": "^10.1.2",
+    "@angular/compiler": "^10.1.2",
+    "@angular/core": "^10.1.2",
+    "@angular/forms": "^10.1.2",
+    "@angular/platform-browser": "^10.1.2",
+    "@angular/platform-browser-dynamic": "^10.1.2",
+    "@angular/router": "^10.1.2",
     "@helgoland/auth": "1.0.0-beta.23",
     "@helgoland/caching": "1.0.0-beta.23",
     "@helgoland/control": "1.0.0-beta.23",
@@ -56,15 +56,15 @@
     "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
     "leaflet-geosearch": "^2.7.0",
-    "rxjs": "^6.5.3",
+    "rxjs": "^6.6.3",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.25",
-    "@angular/cli": "^8.3.25",
-    "@angular/compiler-cli": "^8.2.14",
-    "@angular/language-service": "^8.2.14",
+    "@angular-devkit/build-angular": "~0.1001.2",
+    "@angular/cli": "^10.1.2",
+    "@angular/compiler-cli": "^10.1.2",
+    "@angular/language-service": "^10.1.2",
     "@biesbjerg/ngx-translate-extract": "^3.0.4",
     "@biesbjerg/ngx-translate-extract-marker": "^1.0.0",
     "@types/archiver": "^3.0.0",
@@ -87,7 +87,7 @@
     "qs": "^6.7.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.18.0",
-    "typescript": "3.5.3",
+    "typescript": "4.0.3",
     "webpack-cli": "^3.3.7"
   }
 }
