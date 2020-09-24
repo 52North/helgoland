@@ -11,7 +11,7 @@ const appname = 'helgoland';
 function buildZipApplication(apptype) {
   console.log(`Build zip for application ${apptype}`);
 
-  execSync(`npm run ng-high-memory -- build ${apptype} --prod --base-href /`);
+  execSync(`ng build ${apptype} --prod --base-href /`);
   const out = `dist/${appname}-${apptype}.zip`;
   const output = createWriteStream(out);
   const archive = archiver('zip', {
