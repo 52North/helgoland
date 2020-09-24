@@ -1,7 +1,5 @@
-import { execSync } from 'child_process';
-import { createWriteStream, unlinkSync } from 'fs';
-
 const archiver = require('archiver');
+const { execSync } = require('child_process');
 const fs = require('fs');
 const pjson = require('../package.json');
 
@@ -32,7 +30,7 @@ if (process.argv.length > 2) {
 
 console.log('Creating web.xml ...');
 
-fs.writeFile('./web.xml', xmlAsText, (errWrite: Error) => {
+fs.writeFile('./web.xml', xmlAsText, (errWrite) => {
   if (errWrite) {
     console.log(errWrite);
     console.log('web.xml could not be updated.');
@@ -51,13 +49,13 @@ function buildApplication() {
   );
 
   const out = `dist/${appname}-${apptype}.war`;
-  const output = createWriteStream(out);
+  const output = fs.createWriteStream(out);
   const archive = archiver('zip', {
     zlib: { level: 9 }
   });
 
   output.on('finish', () => {
-    unlinkSync('web.xml');
+    fs.unlinkSync('web.xml');
     console.log('Finished creation of war (' + out + ') with ' + archive.pointer() + ' total bytes.');
   });
 
