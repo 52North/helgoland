@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'fs';
+const { readFile, writeFile } = require("fs");
 
 const fileToD3 = 'node_modules/plotly.js/node_modules/d3/d3.js';
 // temporary fix for the following issue: https://github.com/plotly/plotly.js/issues/3518

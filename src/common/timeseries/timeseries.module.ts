@@ -107,6 +107,7 @@ export const nestedTimeseriesRoutes: Routes = [
         NgbTabsetModule,
         NgbAccordionModule,
         NgbModalModule,
+        NgbButtonsModule,
         NgbDropdownModule,
         NgbButtonsModule,
         NgbCollapseModule,

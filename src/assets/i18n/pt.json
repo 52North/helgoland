@@ -1,4 +1,9 @@
 {
+	"basic-auth": {
+		"header": "",
+		"password": "",
+		"username": ""
+	},
 	"controls": {
 		"cancel": "Cancelar",
 		"close": "Fechar",
@@ -100,6 +105,7 @@
 	},
 	"timeseries": {
 		"diagram": {
+			"annotation": "",
 			"hint": {
 				"select-timeseries-first": "Por favor, selecione uma série temporal primeiro."
 			},
@@ -122,6 +128,13 @@
 					"min": "Mínimo",
 					"pointRadius": "Raio do ponto",
 					"zeroBasedYAxis": "Série temporal baseado em zero"
+				}
+			},
+			"options": {
+				"hovering": {
+					"line": "",
+					"none": "",
+					"point": ""
 				}
 			},
 			"phenomenon": {

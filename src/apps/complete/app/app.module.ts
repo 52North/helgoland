@@ -27,7 +27,7 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { BasicAuthInformerImplService } from '../../../common/basic-auth-informer-impl.service';
+import { BasicAuthInformerImplService } from '../../../common/components/basic-auth/basic-auth-informer-impl.service';
 import { ComponentsModule } from '../../../common/components/components.module';
 import { InfoModule } from '../../../common/info/info.module';
 import { ProfilesModule } from '../../../common/profiles/profiles.module';

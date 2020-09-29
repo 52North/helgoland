@@ -3,7 +3,7 @@
     <span class="fa fa-arrow-left"></span>
   </button>
   <button type="button" class="btn btn-light" (click)="open()">
-    {{timespan.from | dateI18n: 'mediumDate'}} &nbsp;&ndash;&nbsp; {{timespan.to | dateI18n : 'mediumDate'}}
+    {{timespan.from | date: 'mediumDate'}} &nbsp;&ndash;&nbsp; {{timespan.to | date : 'mediumDate'}}
   </button>
   <button type="button" class="btn btn-light" (click)="forward()">
     <span class="fa fa-arrow-right"></span>

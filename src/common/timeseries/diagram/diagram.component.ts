@@ -1,9 +1,19 @@
 import 'moment-timezone';
 
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Data, DatasetOptions, HelgolandTimeseries, IDataEntry, Service, Time, Timespan } from '@helgoland/core';
-import { D3PlotOptions, D3SimpleHoveringService, DataEntry, InternalDataEntry } from '@helgoland/d3';
+import {
+    Data,
+    DatasetOptions,
+    HelgolandTimeseries,
+    IDataEntry,
+    Service,
+    Time,
+    Timespan,
+    TimezoneService,
+} from '@helgoland/core';
+import { D3PlotOptions, D3SimpleHoveringService, DataEntry, HoveringStyle, InternalDataEntry } from '@helgoland/d3';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 
 import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
@@ -45,13 +55,20 @@ export class TimeseriesDiagramComponent implements OnInit {
     public timespan: Timespan;
     public selectedProvider: Service;
     public timeriesView = 'diagram';
-    public hoveringService = new CustomHoveringService();
+    public hoveringService = new CustomHoveringService(this.timezoneSrvc);
+    public hovering: HoveringStyle = HoveringStyle.point;
 
     public diagramOptions: D3PlotOptions = {
         grid: true,
         showTimeLabel: false,
         showReferenceValues: true,
-        requestBeforeAfterValues: true
+        requestBeforeAfterValues: true,
+        hoverStyle: HoveringStyle.point,
+        copyright: {
+            label: '',
+            positionX: 'right',
+            positionY: 'bottom'
+        }
     };
     public overviewOptions: D3PlotOptions = {
         grid: true,
@@ -65,6 +82,8 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     constructor(
         private timeseriesService: TimeseriesService,
+        private translateSrvc: TranslateService,
+        private timezoneSrvc: TimezoneService,
         private timeSrvc: Time,
         public permalinkSrvc: TimeseriesDiagramPermalink,
         private modalService: NgbModal,
@@ -77,6 +96,8 @@ export class TimeseriesDiagramComponent implements OnInit {
         this.datasetIds = this.timeseriesService.datasetIds;
         this.datasetOptions = this.timeseriesService.datasetOptions;
         this.timespan = this.timeseriesService.timespan;
+        this.translateSrvc.onLangChange
+            .subscribe(() => this.diagramOptions.copyright.label = this.translateSrvc.instant('timeseries.diagram.annotation'));
     }
 
     public deleteTimeseries(internalId: string) {
@@ -151,6 +172,11 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     public onGraphLoading(loading: boolean) {
         this.graphLoading = loading;
+    }
+
+    public hoveringChanged(hovering: HoveringStyle) {
+        this.hovering = hovering;
+        this.diagramOptions.hoverStyle = hovering;
     }
 
 }
