@@ -63,7 +63,7 @@ export class TimeseriesDiagramComponent implements OnInit {
         showTimeLabel: false,
         showReferenceValues: true,
         requestBeforeAfterValues: true,
-        hoverStyle: HoveringStyle.point,
+        hoverStyle: HoveringStyle.none,
         copyright: {
             label: '',
             positionX: 'right',
