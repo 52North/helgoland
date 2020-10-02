@@ -44,7 +44,7 @@ fs.writeFile('./web.xml', xmlAsText, (errWrite) => {
 function buildApplication() {
   console.log(`Build application ${apptype}`);
   execSync(
-    `rimraf dist/${apptype} && npm run ng-high-memory -- build ${apptype} --prod --base-href=/${appname}-${apptype}/`,
+    `rimraf dist/${apptype} && ng build ${apptype} --prod --base-href=/${appname}-${apptype}/`,
     { stdio: [0, 1, 2] }
   );
 
