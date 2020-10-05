@@ -20,4 +20,4 @@ $theme-colors: map-merge((
 ), $theme-colors);
 
 @import '~bootstrap/scss/bootstrap';
-@import "~font-awesome/css/font-awesome.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
