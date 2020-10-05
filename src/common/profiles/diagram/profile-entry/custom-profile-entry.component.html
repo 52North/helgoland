@@ -21,9 +21,9 @@
       <span class="fa" [ngClass]="{'fa-eye-slash': item.visible, 'fa-eye': !item.visible}"
         (click)="toggleVisibility(item); $event.stopPropagation();"
         title="{{'profiles.legend.visibility' | translate}}"></span>
-      <span class="fa fa-pencil" (click)="editDatasetOptions(item); $event.stopPropagation();"
+      <span class="fa fa-pencil-alt" (click)="editDatasetOptions(item); $event.stopPropagation();"
         [ngStyle]="{color: item.color}" title="{{'profiles.legend.edit-style' | translate}}"></span>
-      <span class="fa fa-map-marker" (click)="showGeometry(item); $event.stopPropagation();"
+      <span class="fa fa-map-marker-alt" (click)="showGeometry(item); $event.stopPropagation();"
         title="{{'profiles.legend.show-geometry' | translate}}"></span>
       <span class="fa fa-times" (click)="removeDatasetOptions(item); $event.stopPropagation();"
         title="{{'profiles.legend.delete-subentry' | translate}}"></span>
