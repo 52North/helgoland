@@ -20,6 +20,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 
 import { BasicAuthComponent } from './basic-auth/basic-auth.component';
 import { CustomAutoUpdateTimespanComponent } from './custom-auto-update-timespan/custom-auto-update-timespan.component';
+import { CustomFavoriteTogglerComponent } from './custom-favorite-toggler/custom-favorite-toggler.component';
 import { CustomListSelectorComponent } from './custom-list-selector/custom-list-selector.component';
 import {
   CustomMinMaxRangeComponent,
@@ -70,6 +71,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
   declarations: [
     BasicAuthComponent,
     CustomAutoUpdateTimespanComponent,
+    CustomFavoriteTogglerComponent,
     CustomListSelectorComponent,
     CustomMinMaxRangeComponent,
     CustomMultiServiceFilterSelectorComponent,
@@ -98,6 +100,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     ModalTimeseriesTimespanComponent,
   ],
   exports: [
+    CustomFavoriteTogglerComponent,
     CustomListSelectorComponent,
     CustomServiceSelectorComponent,
     CustomServiceProviderManagerComponent,

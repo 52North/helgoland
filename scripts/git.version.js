@@ -3,7 +3,8 @@ const {
 } = require("child_process");
 const {
   existsSync,
-  writeFileSync
+  writeFileSync,
+  mkdirSync
 } = require("fs");
 
 const revision = execSync('git rev-parse HEAD').toString().trim();

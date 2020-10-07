@@ -14,7 +14,7 @@
           <div class="legend-item-label flex-grow-1" [ngStyle]="{'color': datasetOptions?.color}">
             <n52-label-mapper class="legendItemheader" label="{{platformLabel}}">
             </n52-label-mapper>
-            <n52-favorite-toggler [dataset]="dataset"></n52-favorite-toggler>
+            <custom-favorite-toggler [dataset]="dataset"></custom-favorite-toggler>
           </div>
         </div>
         <div class="noDataWarning firstLastEntry" *ngIf="!hasData">
@@ -52,9 +52,9 @@
             <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
               (click)="toggleVisibility(); $event.stopPropagation();" placement="bottom"
               ngbTooltip="{{'timeseries.diagram.legend.toggle-visibility-tooltip' | translate}}"></span>
-            <span class="fa fa-map-marker" (click)="showGeometry(); $event.stopPropagation();" placement="bottom"
+            <span class="fa fa-map-marker-alt" (click)="showGeometry(); $event.stopPropagation();" placement="bottom"
               ngbTooltip="{{'timeseries.diagram.legend.map-marker-tooltip' | translate}}"></span>
-            <span class="fa fa-pencil" (click)="editDatasetOptions(); $event.stopPropagation();"
+            <span class="fa fa-pencil-alt" (click)="editDatasetOptions(); $event.stopPropagation();"
               [ngStyle]="{color: datasetOptions?.color}" placement="bottom"
               ngbTooltip="{{'timeseries.diagram.legend.style-edit-tooltip' | translate}}"></span>
             <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();" placement="bottom"
