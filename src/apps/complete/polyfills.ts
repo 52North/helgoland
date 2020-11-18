@@ -40,6 +40,7 @@
 /** Evergreen browsers require these. **/
 import 'core-js/es6/reflect';
 
+import '@angular/localize/init';
 
 /**
  * Required to support Web Animations `@angular/platform-browser/animations`.
