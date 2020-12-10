@@ -107,7 +107,10 @@
 					"first-value-at": "First value at",
 					"jumpToLastTimeStamp": "Jump to last measurement",
 					"last-value-at": "Last value at",
-					"max-at": "Maximum at",
+					"max-at": {
+						"label": "Maximum at",
+						"loading": "Load maximum..."
+					},
 					"no-data-available": "No data available"
 				},
 				"header": "Legend",

@@ -47,8 +47,12 @@ const baseRoutes: Routes = [
   }
 ];
 
+export interface CustomSettings extends Settings {
+  staApiMapping: { sta: string, api: string }[]
+}
+
 @Injectable()
-export class ExtendedSettingsService extends SettingsService<Settings> {
+export class ExtendedSettingsService extends SettingsService<CustomSettings> {
   constructor() {
     super();
     this.setSettings(settings);

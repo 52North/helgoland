@@ -23,11 +23,32 @@
   },
   "datasetApis": [
     {
-      "name": "aqsens",
-      "url": "https://aqsens.52north.org/data/raw/sta/",
-      "basicAuth": true
+      "name": "AQSens - API - raw - protected",
+      "url": "https://aqsens.52north.org/data/raw/api/",
+      "basicAuth": true,
+      "connector": "DatasetApiV3Connector"
+    },
+    {
+      "name": "AQSens - API - reference",
+      "url": "https://aqsens.52north.org/data/reference/api/",
+      "connector": "DatasetApiV3Connector"
+    },
+    {
+      "name": "AQSens - API - predicted",
+      "url": "https://aqsens.52north.org/data/predicted/api/",
+      "connector": "DatasetApiV3Connector"
     }
   ],
+  "staApiMapping": [{
+    "sta": "https://aqsens.52north.org/data/reference/sta/",
+    "api": "https://aqsens.52north.org/data/reference/api/"
+  }, {
+    "sta": "https://aqsens.52north.org/data/predicted/sta/",
+    "api": "https://aqsens.52north.org/data/predicted/api/"
+  }, {
+    "sta": "https://aqsens.52north.org/data/raw/sta/",
+    "api": "https://aqsens.52north.org/data/raw/api/"
+  }],
   "languages": [{
       "label": "Deutsch",
       "code": "de"

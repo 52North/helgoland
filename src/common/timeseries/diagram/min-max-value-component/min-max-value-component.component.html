@@ -1,6 +1,7 @@
 <span *ngIf="value" (click)="selectValue.emit(this.valueDate); $event.stopPropagation()">
   <span class="fa fa-chevron-right"></span>
-  <span>{{'timeseries.diagram.legend.entry.max-at' | translate}}</span>
+  <span>{{'timeseries.diagram.legend.entry.max-at.label' | translate}}</span>
   {{valueDate | date: 'short' : '' : translateSrvc.currentLang}}
   ({{value | number: null: translateSrvc.currentLang}} {{dataset.uom}})
 </span>
+<span *ngIf="loading && !value">{{'timeseries.diagram.legend.entry.max-at.loading' | translate}}</span>

@@ -1,4 +1,4 @@
-import { Settings } from '@helgoland/core';
+import { CustomSettings } from './../app/app.module';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -9,9 +9,9 @@ export const environment = {
   production: false
 };
 
-export let settings: Settings;
+export let settings: CustomSettings;
 
-export const settingsPromise = new Promise<Settings>((resolve, reject) => {
+export const settingsPromise = new Promise<CustomSettings>((resolve, reject) => {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', './assets/settings.json');
   xhr.onload = () => {
