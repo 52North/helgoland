@@ -62,7 +62,6 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
   ],
   imports: [
     BrowserModule,
-    RouterModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

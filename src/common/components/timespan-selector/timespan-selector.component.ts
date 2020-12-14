@@ -80,8 +80,8 @@ export class TimespanSelectorComponent implements OnInit {
   public timeFrom: NgbTimeStruct;
   public dateTo: NgbDateStruct;
   public timeTo: NgbTimeStruct;
-  public isValidTimespan: boolean;
   public showErrorMessage = true;
+  public isValidTimespan = true;
 
   public ngOnInit() {
     const from = new Date(this.timespan.from);
