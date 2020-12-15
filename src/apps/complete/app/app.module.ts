@@ -85,7 +85,8 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     NgbTimepickerModule,
     VocabNercLabelMapperModule,
     RouterModule.forRoot(
-      baseRoutes
+      baseRoutes,
+      { useHash: true }
     )
   ],
   providers: [
