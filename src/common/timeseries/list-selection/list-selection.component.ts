@@ -88,6 +88,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
   public datasetApis: Array<DatasetApi>;
   public providerBlacklist: Array<BlacklistedService>;
   public providerFilter: HelgolandParameterFilter;
+  public parameterFilter: HelgolandParameterFilter = { type: DatasetType.Timeseries };
   public selectedService: Service;
   public addedService: Service;
 

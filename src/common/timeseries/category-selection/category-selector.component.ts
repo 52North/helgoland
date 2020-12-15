@@ -78,7 +78,7 @@ export class CategorySelectorComponent implements OnInit {
 
   public ngOnInit() {
     if (this.station) {
-      this.servicesConnector.getPlatform(this.station.id, this.url).subscribe(station => {
+      this.servicesConnector.getPlatform(this.station.id, this.url, { type: DatasetType.Timeseries }).subscribe(station => {
         this.station = station;
         this.counter = this.station.datasetIds.length;
         this.station.datasetIds.forEach(id => {
