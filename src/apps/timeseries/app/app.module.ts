@@ -48,7 +48,7 @@ const baseRoutes: Routes = [
 ];
 
 export interface CustomSettings extends Settings {
-  staApiMapping: { sta: string, api: string }[]
+  staApiMapping?: { sta: string, api: string }[]
 }
 
 @Injectable()
