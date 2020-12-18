@@ -79,6 +79,7 @@ export class ProfilesSelectionComponent implements OnInit {
 
   @ViewChild('profileSelection', { static: true })
   public accordion: NgbAccordion;
+  public platforms: HelgolandPlatform[];
 
   constructor(
     private settingsSrvc: SettingsService<Settings>,
@@ -183,6 +184,7 @@ export class ProfilesSelectionComponent implements OnInit {
     this.mobilePlatformFilter = this.createFilter();
     this.stationaryPlatformFilter.platformType = PlatformTypes.stationary;
     this.mobilePlatformFilter.platformType = PlatformTypes.mobile;
+    this.servicesConnector.getPlatforms(this.selectedProvider.apiUrl, this.stationaryPlatformFilter).subscribe(res => this.platforms = res);
   }
 
   private featureSelected(feature: Feature) {

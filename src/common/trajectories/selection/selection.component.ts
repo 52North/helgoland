@@ -26,7 +26,7 @@ export class TrajectoriesSelectionComponent implements OnInit {
 
   public platformParams: Array<ListSelectorParameter> = [
     {
-      type: 'platform',
+      type: 'procedure',
       header: this.translate.instant('trajectories.parameter.mobile-platform')
     }, {
       type: 'offering',
