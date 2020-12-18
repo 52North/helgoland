@@ -26,6 +26,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { PlotlyViaCDNModule } from 'angular-plotly.js';
 
 import { BasicAuthInformerImplService } from '../../../common/components/basic-auth/basic-auth-informer-impl.service';
 import { ComponentsModule } from '../../../common/components/components.module';
@@ -55,6 +56,9 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
   }
 
 }
+
+PlotlyViaCDNModule.setPlotlyVersion('1.55.2');
+PlotlyViaCDNModule.setPlotlyBundle('basic');
 
 @NgModule({
   declarations: [
@@ -87,7 +91,8 @@ export class ExtendedSettingsService extends SettingsService<Settings> {
     RouterModule.forRoot(
       baseRoutes,
       { useHash: true }
-    )
+    ),
+    PlotlyViaCDNModule
   ],
   providers: [
     JsonFavoriteExporterService,
