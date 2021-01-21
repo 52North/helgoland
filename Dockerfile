@@ -10,7 +10,7 @@ RUN npm install
 
 # copy the app and build it
 COPY . /usr/src/app
-RUN npm run build
+RUN npm run build --prod
 
 FROM nginx:alpine
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
