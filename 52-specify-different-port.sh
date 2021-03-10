@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# This script changes the port in the nginx configuration. MUST be in sync with the exposed port.
+# This script changes the port in the nginx configuration.
 #
 set -e
 #

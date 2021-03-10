@@ -14,6 +14,7 @@ RUN npm run build --prod
 
 FROM nginx:alpine
 ENV PORT=80
+ENV BASE_HREF=/
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./52-*.sh /docker-entrypoint.d/
 RUN chmod 0775 /docker-entrypoint.d/52-*.sh
