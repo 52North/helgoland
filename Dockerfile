@@ -13,7 +13,7 @@ COPY . /usr/src/app
 RUN npm run build --prod
 
 FROM nginx:alpine
-ENV PORT 80
+ENV PORT=80
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./52-specify-different-port.sh /docker-entrypoint.d/
 RUN chmod 0775 /docker-entrypoint.d/52-specify-different-port.sh
