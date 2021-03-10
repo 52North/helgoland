@@ -15,8 +15,8 @@ RUN npm run build --prod
 FROM nginx:alpine
 ENV PORT=80
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./52-specify-different-port.sh /docker-entrypoint.d/
-RUN chmod 0775 /docker-entrypoint.d/52-specify-different-port.sh
+COPY ./52-*.sh /docker-entrypoint.d/
+RUN chmod 0775 /docker-entrypoint.d/52-*.sh
 COPY --from=BUILD /usr/src/app/dist/timeseries /usr/share/nginx/html
 # the container can be started like this: docker run -p 80:80 -e PORT=80 helgoland
 CMD ["nginx", "-g", "daemon off;"]
