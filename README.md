@@ -8,13 +8,13 @@
 
 This lightweight web application enables the exploration, visualization and analysis of sensor web data in various fields of use, e.g. hydrology, meteorology, environmental monitoring, traffic management. You can:
 
-- explore stations or mobile sensor platforms in a map,
-- select time series by a list selection,
-- visualize and navigate through time series data, trajectory data, profile measurements,
-- create favorites of selected time series,
+- explore stations or mobile sensor platforms in a map
+- select time series data by a list selection
+- visualize and navigate through time series data, trajectory data, profile measurements
+- create favorites of selected time series
 - export visualized data as CSV files.
 
-The application can connect to different Sensor Web endpoints (via 52°North Helgoland API). These endpoints provide a thin access layer to sensor data (e.g. offered by SOS servers'databases) via RESTful Web binding with different output formats.
+The application can connect to different Sensor Web endpoints (via the 52°North Helgoland API). These endpoints provide a thin access layer to sensor data (e.g. offered by SOS servers'databases) via RESTful Web binding with different output formats. In addition to the Sensor Web endpoints, the Viewer can also connect to different OGC SensorThings APIs.
 
 This software component is based on the Helgoland Toolbox. It integrates the different toolbox modules into a viewing applications that can be easily customized to the requirements of specific users.
 
