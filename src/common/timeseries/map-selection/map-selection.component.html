@@ -21,7 +21,7 @@
 </ng-template>
 
 <div class="wrapper">
-  <ngb-tabset #tabset="ngbTabset" justify="fill">
+  <!-- <ngb-tabset #tabset="ngbTabset" justify="fill">
     <ngb-tab id="selectProvider">
       <ng-template ngbTabTitle>
         {{'timeseries.map-selection.provider' | translate}}
@@ -44,13 +44,13 @@
       <ng-template ngbTabTitle>
         {{'timeseries.map-selection.map' | translate}}
       </ng-template>
-      <ng-template ngbTabContent>
+      <ng-template ngbTabContent> -->
         <div class="row row-offcanvas row-offcanvas-right" [ngClass]="{active: legendToggled}">
           <div class="map-content">
             <button type="button" class="btn btn-primary btn-sm d-md-none legend-button"
               (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.phenomenon.header' | translate}}</button>
             <div class="map">
-              <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService.apiUrl"
+              <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService?.apiUrl"
                 [markerSelectorGenerator]="markerSelectorGenerator" [filter]="stationFilter" (onSelected)="onStationSelected($event)"
                 [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
               <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
@@ -64,13 +64,13 @@
               <hr>
               <div>
                 <n52-service-filter-selector [endpoint]="'phenomenon'" [filter]="phenomenonFilter"
-                  [serviceUrl]="selectedService.apiUrl" [selectionId]="selectedPhenomenonId"
+                  [serviceUrl]="selectedService?.apiUrl" [selectionId]="selectedPhenomenonId"
                   (onItemSelected)="onPhenomenonSelected($event)"></n52-service-filter-selector>
               </div>
             </div>
           </div>
         </div>
-      </ng-template>
+      <!-- </ng-template>
     </ngb-tab>
-  </ngb-tabset>
+  </ngb-tabset> -->
 </div>

@@ -51,8 +51,10 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   @ViewChild('modalStation', { static: true })
   public modalTemplate: TemplateRef<any>;
 
-  @ViewChild('tabset', { static: true })
-  public tabset: NgbTabset;
+  // @ViewChild('tabset', { static: true })
+  // public tabset: NgbTabset;
+
+  public legendToggled: boolean;
 
   public datasetApis: Array<DatasetApi>;
   public providerBlacklist: Array<BlacklistedService>;
@@ -96,13 +98,13 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
       this.providerSelected(this.cache.selectedService);
       this.cdr.detectChanges();
     }
-    if (this.cache.lastTab) {
-      this.tabset.select(this.cache.lastTab);
-      this.cdr.detectChanges();
-    }
-    this.tabset.tabChange.subscribe((tabChange: NgbTabChangeEvent) => {
-      this.cache.lastTab = tabChange.nextId;
-    });
+    // if (this.cache.lastTab) {
+    //   this.tabset.select(this.cache.lastTab);
+    //   this.cdr.detectChanges();
+    // }
+    // this.tabset.tabChange.subscribe((tabChange: NgbTabChangeEvent) => {
+    //   this.cache.lastTab = tabChange.nextId;
+    // });
   }
 
   public providerSelected(service: Service) {
@@ -110,8 +112,8 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     this.updateStationFilter();
     this.updatePhenomenonFilter();
     const id = 'selectByMap';
-    this.tabset.tabs.find(entry => entry.id === id).disabled = false;
-    this.tabset.select(id);
+    // this.tabset.tabs.find(entry => entry.id === id).disabled = false;
+    // this.tabset.select(id);
   }
 
   public serviceAdded(service: Service) {

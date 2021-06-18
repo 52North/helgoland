@@ -3,109 +3,109 @@
         word-break: break-word;
     }
 }
+
 n52-map-selection {
     width: 100%;
+
     .wrapper {
         height: 100%;
-        ngb-tabset {
-            display: flex;
-            flex-direction: column;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .row-offcanvas {
             height: 100%;
-            .tab-content {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                padding: 20px;
-                overflow: hidden;
-                .tab-pane {
-                    display: flex;
-                    flex-direction: column;
-                    flex: 1;
-                    overflow: auto;
-                    overflow-x: hidden;
+            margin-right: 0px;
+            margin-left: 0px;
+        }
 
-                    .row-offcanvas {
-                        height: 100%;
-                        margin-right: 0px;
-                        margin-left: 0px;
-                    }
+        /* button for off canvas styling */
+        .legend-button {
+            position: absolute;
+            right: 20px;
+            top: 5px;
+            z-index: 10;
+        }
 
-                    /* button for off canvas styling */
-                    .legend-button {
-                      position: absolute;
-                      right: 20px;
-                      top: 5px;
-                      z-index: 10;
-                    }
-                    .map-content {
-                        flex: 1;
-                        display: flex;
-                        height: 100%;
-                        .map {
-                            width: 65%;
-                            position: relative;
-                            z-index: 9;
-                            .locate-control {
-                                position: absolute;
-                                left: 25px;
-                                top: 80px;
-                                border-radius: 5px;
-                            }
-                            .zoom-control {
-                                position: absolute;
-                                left: 25px;
-                                top: 10px;
-                                border-radius: 5px;
-                            }
-                        }
-                        .phenomenon-list {
-                            height: 100%;
-                            flex: 1 1 auto;
-                            overflow-y: auto;
-                            width: 35%;
-                            padding: 10px;
-                        }
-                    }
+        .map-content {
+            flex: 1;
+            display: flex;
+            height: 100%;
+
+            .map {
+                width: 65%;
+                position: relative;
+                z-index: 9;
+
+                .locate-control {
+                    position: absolute;
+                    left: 25px;
+                    top: 80px;
+                    border-radius: 5px;
+                }
+
+                .zoom-control {
+                    position: absolute;
+                    left: 25px;
+                    top: 10px;
+                    border-radius: 5px;
                 }
             }
-            /* off canvas styling */
-            @media screen and (max-width: 767.98px) {
-                .tab-content {
-                    padding: 0px;
-                    .tab-pane {
-                        overflow: hidden;
-                        .map-content {
-                            .map {
-                                width: 100%;
-                            }
-                            .phenomenon-list {
-                                width: 75%;
-                            }
+
+            .phenomenon-list {
+                height: 100%;
+                flex: 1 1 auto;
+                overflow-y: auto;
+                width: 35%;
+                padding: 10px;
+            }
+        }
+
+        /* off canvas styling */
+        @media screen and (max-width: 767.98px) {
+            // .tab-content {
+            //     padding: 0px;
+
+            //     .tab-pane {
+            //         overflow: hidden;
+
+                    .map-content {
+                        .map {
+                            width: 100%;
+                        }
+
+                        .phenomenon-list {
+                            width: 75%;
                         }
                     }
-                }
-                .row-offcanvas {
-                    position: relative;
-                    transition: all .25s ease-out;
-                    height: 100%;
-                }
-                .row-offcanvas-right {
-                    right: 0;
-                }
-                .row-offcanvas-right.active .sidebar-offcanvas {
-                    right: -75%;
-                    /* 9 columns */
-                }
-                .row-offcanvas-right.active {
-                    right: 75%;
-                    /* 9 columns */
-                }
-                .sidebar-offcanvas {
-                    position: absolute;
-                    top: 0;
-                    overflow: auto;
-                    /* 9 columns */
-                }
+            //     }
+            // }
+
+            .row-offcanvas {
+                position: relative;
+                transition: all .25s ease-out;
+                height: 100%;
+            }
+
+            .row-offcanvas-right {
+                right: 0;
+            }
+
+            .row-offcanvas-right.active .sidebar-offcanvas {
+                right: -75%;
+                /* 9 columns */
+            }
+
+            .row-offcanvas-right.active {
+                right: 75%;
+                /* 9 columns */
+            }
+
+            .sidebar-offcanvas {
+                position: absolute;
+                top: 0;
+                overflow: auto;
+                /* 9 columns */
             }
         }
     }
