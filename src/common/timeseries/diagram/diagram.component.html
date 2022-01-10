@@ -27,7 +27,7 @@
         </div>
       </div>
       <div *ngIf="timeriesView === 'diagram'" class="overview-diagram d-none d-md-block">
-        <n52-d3-overview-timeseries-graph [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOptions"
+        <n52-d3-overview-timeseries-graph [datasetIds]="datasetIds" [rangefactor]="2" [datasetOptions]="datasetOverviewOptions"
           [presenterOptions]="overviewOptions" [timeInterval]="timespan" (onTimespanChanged)="timeChanged($event)"
           (onContentLoading)="onOverviewLoading($event)"></n52-d3-overview-timeseries-graph>
         <div class="loading-overlay" *ngIf="overviewGraphLoading">

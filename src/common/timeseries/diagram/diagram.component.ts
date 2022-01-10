@@ -100,6 +100,17 @@ export class TimeseriesDiagramComponent implements OnInit {
             .subscribe(() => this.diagramOptions.copyright.label = this.translateSrvc.instant('timeseries.diagram.annotation'));
     }
 
+    public get datasetOverviewOptions() {
+        const options = new Map();
+        this.timeseriesService.datasetOptions.forEach((v, k) => {
+            const copy = Object.assign({}, v);
+            copy.pointRadius = 0;
+            options.set(k, copy);
+        });
+        return options;
+    }
+
+
     public deleteTimeseries(internalId: string) {
         this.timeseriesService.removeDataset(internalId);
     }
