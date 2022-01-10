@@ -105,6 +105,7 @@ export class TimeseriesDiagramComponent implements OnInit {
         this.timeseriesService.datasetOptions.forEach((v, k) => {
             const copy = Object.assign({}, v);
             copy.pointRadius = 0;
+            copy.lineWidth = 1;
             options.set(k, copy);
         });
         return options;
