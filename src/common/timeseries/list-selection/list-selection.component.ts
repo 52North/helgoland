@@ -10,7 +10,7 @@ import {
   Settings,
   SettingsService,
 } from '@helgoland/core';
-import { ListSelectorParameter } from '@helgoland/selector';
+import { ListSelectorParameter, MultiServiceFilterEndpoint } from '@helgoland/selector';
 import { NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -27,58 +27,58 @@ import { TimeseriesService } from './../services/timeseries.service';
 export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
 
   public categoryParams: Array<ListSelectorParameter> = [{
-    type: 'category',
+    type: MultiServiceFilterEndpoint.category,
     header: this.translate.instant('list-selection.parameter.category')
   }, {
-    type: 'feature',
+    type: MultiServiceFilterEndpoint.feature,
     header: this.translate.instant('list-selection.parameter.station')
   }, {
-    type: 'phenomenon',
+    type: MultiServiceFilterEndpoint.phenomenon,
     header: this.translate.instant('list-selection.parameter.phenomenon')
   }, {
-    type: 'procedure',
+    type: MultiServiceFilterEndpoint.procedure,
     header: this.translate.instant('list-selection.parameter.sensor')
   }];
 
   public stationParams: Array<ListSelectorParameter> = [{
-    type: 'feature',
+    type: MultiServiceFilterEndpoint.feature,
     header: this.translate.instant('list-selection.parameter.station')
   }, {
-    type: 'category',
+    type: MultiServiceFilterEndpoint.category,
     header: this.translate.instant('list-selection.parameter.category')
   }, {
-    type: 'phenomenon',
+    type: MultiServiceFilterEndpoint.phenomenon,
     header: this.translate.instant('list-selection.parameter.phenomenon')
   }, {
-    type: 'procedure',
+    type: MultiServiceFilterEndpoint.procedure,
     header: this.translate.instant('list-selection.parameter.sensor')
   }];
 
   public phenomenonParams: Array<ListSelectorParameter> = [{
-    type: 'phenomenon',
+    type: MultiServiceFilterEndpoint.phenomenon,
     header: this.translate.instant('list-selection.parameter.phenomenon')
   }, {
-    type: 'category',
+    type: MultiServiceFilterEndpoint.category,
     header: this.translate.instant('list-selection.parameter.category')
   }, {
-    type: 'feature',
+    type: MultiServiceFilterEndpoint.feature,
     header: this.translate.instant('list-selection.parameter.station')
   }, {
-    type: 'procedure',
+    type: MultiServiceFilterEndpoint.procedure,
     header: this.translate.instant('list-selection.parameter.sensor')
   }];
 
   public procedureParams: Array<ListSelectorParameter> = [{
-    type: 'procedure',
+    type: MultiServiceFilterEndpoint.procedure,
     header: this.translate.instant('list-selection.parameter.sensor')
   }, {
-    type: 'feature',
+    type: MultiServiceFilterEndpoint.feature,
     header: this.translate.instant('list-selection.parameter.station')
   }, {
-    type: 'phenomenon',
+    type: MultiServiceFilterEndpoint.phenomenon,
     header: this.translate.instant('list-selection.parameter.phenomenon')
   }, {
-    type: 'category',
+    type: MultiServiceFilterEndpoint.category,
     header: this.translate.instant('list-selection.parameter.category')
   }];
 
