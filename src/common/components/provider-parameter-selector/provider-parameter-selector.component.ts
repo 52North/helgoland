@@ -69,7 +69,7 @@ export class ProviderParameterSeletorComponent implements OnInit {
       // copy filter to new item
       this.parameters[index + 1].filterList = JSON.parse(JSON.stringify(item.filterList));
       // add filter for selected item to next
-      this.parameters[index + 1].filterList.forEach((entry) => entry.filter[this.parameters[index].type] = entry.itemId);
+      this.parameters[index + 1].filterList.forEach((entry: any) => entry.filter[this.parameters[index].type] = entry.itemId);
       for (let j = index + 1; j < this.parameters.length; j++) {
         this.parameters[j].headerAddition = '';
       }

@@ -10,7 +10,7 @@ import {
   HelgolandParameterFilter,
   Provider,
 } from '@helgoland/core';
-import { ListSelectorParameter } from '@helgoland/selector';
+import { ListSelectorParameter, MultiServiceFilterEndpoint } from '@helgoland/selector';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -26,26 +26,26 @@ export class TrajectoriesSelectionComponent implements OnInit {
 
   public platformParams: Array<ListSelectorParameter> = [
     {
-      type: 'procedure',
+      type: MultiServiceFilterEndpoint.procedure,
       header: this.translate.instant('trajectories.parameter.mobile-platform')
     }, {
-      type: 'offering',
+      type: MultiServiceFilterEndpoint.offering,
       header: this.translate.instant('trajectories.parameter.offering')
     }, {
-      type: 'feature',
+      type: MultiServiceFilterEndpoint.feature,
       header: this.translate.instant('trajectories.parameter.path')
     }
   ];
 
   public phenomenonParams: Array<ListSelectorParameter> = [
     {
-      type: 'phenomenon',
+      type: MultiServiceFilterEndpoint.phenomenon,
       header: this.translate.instant('trajectories.parameter.phenomenon')
     }, {
-      type: 'offering',
+      type: MultiServiceFilterEndpoint.offering,
       header: this.translate.instant('trajectories.parameter.offering')
     }, {
-      type: 'feature',
+      type: MultiServiceFilterEndpoint.feature,
       header: this.translate.instant('trajectories.parameter.path')
     }
   ];

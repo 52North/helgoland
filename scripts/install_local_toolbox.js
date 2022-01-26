@@ -22,7 +22,7 @@ const modules = [
 function buildZipApplication() {
   modules.forEach(module => {
     console.log(`Install module ${module}`);
-    execSync(`npm install ../helgoland-toolbox/helgoland-${module}-* `);
+    execSync(`npm install ../npm-builds/helgoland-${module}-* `);
   });
 }
 
