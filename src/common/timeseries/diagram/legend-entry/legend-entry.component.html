@@ -65,6 +65,11 @@
         </n52-min-max-value-component>
       </div>
 
+      <div class="additionalLegendEntry">
+        <n52-station-description-link [dataset]="dataset">
+        </n52-station-description-link>
+      </div>
+
       <div class="additionalLegendEntry" (click)="$event.stopPropagation();">
         <n52-custom-dataset-permalink-download [internalId]="datasetId" [timeInterval]="timeInterval">
         </n52-custom-dataset-permalink-download>

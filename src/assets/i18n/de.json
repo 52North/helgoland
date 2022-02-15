@@ -111,7 +111,8 @@
 						"label": "Maximum am",
 						"loading": "Lade Maximalwert..."
 					},
-					"no-data-available": "Keine Daten verfügbar"
+					"no-data-available": "Keine Daten verfügbar",
+					"station-description": "Sensor-Beschreibung als PDF"
 				},
 				"header": "Legende",
 				"remove-all": "Zeitreihen entfernen",

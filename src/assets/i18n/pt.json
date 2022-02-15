@@ -111,7 +111,8 @@
 						"label": "",
 						"loading": ""
 					},
-					"no-data-available": "Nenhum dado disponível"
+					"no-data-available": "Nenhum dado disponível",
+					"station-description": ""
 				},
 				"header": "Legenda",
 				"remove-all": "",

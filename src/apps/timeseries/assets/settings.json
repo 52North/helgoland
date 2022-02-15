@@ -147,5 +147,9 @@
         "to": "moment().subtract(1, 'years').endOf('year')"
       }
     }
-  ]
+  ],
+  "sensorDescription": {
+    "url": "https://aqsens.52north.org/files/",
+    "regex": "^[0-9A-Z]{6}_[A-Z]{2}_[a-z0-9]{32}$"
+  }
 }
