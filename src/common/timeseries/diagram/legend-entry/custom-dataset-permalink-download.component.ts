@@ -6,4 +6,9 @@ import { DatasetPermalinkDownloadComponent } from '@helgoland/depiction';
     templateUrl: './custom-dataset-permalink-download.component.html',
     styleUrls: ['./custom-dataset-permalink-download.component.scss']
 })
-export class CustomDatasetPermalinkDownloadComponent extends DatasetPermalinkDownloadComponent { }
+export class CustomDatasetPermalinkDownloadComponent extends DatasetPermalinkDownloadComponent { 
+
+    triggerDownload() {
+        window.open(this.downloadLink);
+    }
+}

@@ -42,7 +42,7 @@
       }
     }
     .legendicons {
-      span {
+      ::ng-deep span {
         margin: 0 4%;
         font-size: 150%;
         &:hover {

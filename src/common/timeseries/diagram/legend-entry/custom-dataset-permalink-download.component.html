@@ -1,4 +1,2 @@
-<a href="{{downloadLink}}">
-  <span class="fa fa-download"></span>
-  <span> {{'timeseries.diagram.legend.entry.csv-download' | translate}}</span>
-</a>
+<span class="fa fa-download" (click)="triggerDownload(); $event.stopPropagation();" placement="bottom"
+  ngbTooltip="{{'timeseries.diagram.legend.entry.csv-download' | translate}}"></span>
