@@ -75,7 +75,7 @@ PlotlyViaCDNModule.setPlotlyBundle('basic');
     }),
     ComponentsModule,
     TimeseriesModule,
-    TrajectoriesModule,
+    // TrajectoriesModule,
     ProfilesModule,
     InfoModule,
     HttpClientModule,
