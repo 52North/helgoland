@@ -28,6 +28,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CustomTimeseriesRouter } from '../../apps/timeseries/app/router.service';
 import { ComponentsModule } from '../components/components.module';
 import { CategorySelectorComponent } from './category-selection/category-selector.component';
+import { CustomHoverLineComponent } from './diagram/custom-hover-line/custom-hover-line.component';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
 import { CustomDatasetPermalinkDownloadComponent } from './diagram/legend-entry/custom-dataset-permalink-download.component';
@@ -117,6 +118,7 @@ export const nestedTimeseriesRoutes: Routes = [
     declarations: [
         CategorySelectorComponent,
         CustomDatasetPermalinkDownloadComponent,
+        CustomHoverLineComponent,
         LegendEntryComponent,
         TimeseriesDiagramComponent,
         TimeseriesFavoritesComponent,

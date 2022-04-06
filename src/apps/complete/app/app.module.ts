@@ -34,7 +34,6 @@ import { InfoModule } from '../../../common/info/info.module';
 import { ProfilesModule } from '../../../common/profiles/profiles.module';
 import { TimeseriesRouter } from '../../../common/timeseries/services/timeseries-router.service';
 import { nestedTimeseriesRoutes, TimeseriesModule } from '../../../common/timeseries/timeseries.module';
-import { TrajectoriesModule } from '../../../common/trajectories/trajectories.module';
 import { settings } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { CustomTimeseriesRouter } from './router.service';
