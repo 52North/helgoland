@@ -10,9 +10,16 @@
     <div *ngIf="stationaryPlatformLoading">{{'profiles.selection.load-timestamps' | translate}}...</div>
     <div *ngIf="!stationaryPlatformLoading" style="padding: 10px;">
       <div>{{'profiles.selection.select-timestamp' | translate}}:</div>
-      <n52-time-list-selector [timeList]="stationaryTimestamps" (onTimeSelected)="onTimeselected($event); c">
-      </n52-time-list-selector>
+      <div class="selector-entry" *ngFor="let item of stationaryTimestamps; ">
+        <input type="checkbox" id="checkbox_{{item.time}}" [(ngModel)]="item.selected">
+        <label for="checkbox_{{item.time}}" style="margin: 0; padding-left: 5px;">{{item.time | tzDate: 'L LT z'}}</label>
+      </div>
     </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light"
+      (click)="addProfilesToChart(); c">{{'profiles.selection.to-diagram-view' | translate}}</button>
+    <button type="button" class="btn btn-light" (click)="c">{{'controls.close' | translate}}</button>
   </div>
 </ng-template>
 
@@ -42,13 +49,13 @@
   </div>
 </ng-template>
 
-<n52-permalink-button [generatedUrlFunction]="selectionPermalink.createPermalink"></n52-permalink-button>
+<!-- <n52-permalink-button [generatedUrlFunction]="selectionPermalink.createPermalink"></n52-permalink-button> -->
 
 <div class="wrapper">
   <div class="container">
-    <ngb-accordion #profileSelection="ngbAccordion" activeIds="selectProvider" closeOthers="true">
+    <ngb-accordion #profileSelection="ngbAccordion" activeIds="selectOffering" closeOthers="true">
 
-      <ngb-panel id="selectProvider">
+      <!-- <ngb-panel id="selectProvider">
         <ng-template ngbPanelTitle>
           <span>{{'profiles.selection.select-provider' | translate}}</span>
           <span *ngIf="selectedProvider"> - </span>
@@ -59,7 +66,7 @@
             [filter]="providerFilter" [showUnresolvableServices]="false"
             (onServiceSelected)="providerSelected($event, true);"></n52-custom-service-selector>
         </ng-template>
-      </ngb-panel>
+      </ngb-panel> -->
 
       <ngb-panel id="selectOffering" [disabled]="selectedProvider == undefined">
         <ng-template ngbPanelTitle>
@@ -115,7 +122,8 @@
         <ng-template ngbPanelContent>
           <div class="platform-body">
             <div class="stationary">
-              <n52-platform-map-viewer class="map" [platforms]="platforms" (onSelectedPlatform)="onStationaryPlatformSelected($event)"></n52-platform-map-viewer>
+              <n52-platform-map-viewer class="map" [platforms]="platforms"
+                (onSelectedPlatform)="onStationaryPlatformSelected($event)"></n52-platform-map-viewer>
             </div>
             <!-- <div *ngIf="loadingPlatforms">
               <span class="fa fa-refresh fa-spin fa-1x fa-fw"></span>

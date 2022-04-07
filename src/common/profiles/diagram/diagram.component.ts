@@ -1,11 +1,12 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { TimedDatasetOptions } from '@helgoland/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
 import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';
 import { ProfilesDiagramPermalink } from './diagram-permalink.service';
-import { TimedDatasetOptions } from '@helgoland/core';
 
 @Component({
     selector: 'n52-diagram',
@@ -14,10 +15,10 @@ import { TimedDatasetOptions } from '@helgoland/core';
 })
 export class ProfilesDiagramComponent implements OnInit {
 
-    @ViewChild('modalProfileOptionsEditor', {static: true})
+    @ViewChild('modalProfileOptionsEditor', { static: true })
     public modalProfileOptionsEditor: TemplateRef<any>;
 
-    @ViewChild('modalGeometryViewer', {static: true})
+    @ViewChild('modalGeometryViewer', { static: true })
     public modalGeometryViewer: TemplateRef<any>;
 
     public geometry: GeoJSON.GeoJsonObject;
@@ -75,12 +76,15 @@ export class ProfilesDiagramComponent implements OnInit {
     }
 
     public showGeometry(geometry: GeoJSON.GeoJsonObject) {
-        this.geometry = geometry;
-        this.modalService.open(this.modalGeometryViewer);
+        const ref = this.modalService.open(ModalGeometryViewerComponent, { size: 'lg' });
+        (ref.componentInstance as ModalGeometryViewerComponent).geometry = geometry;
     }
 
     public updateOption() {
-        this.editableOptions.color = this.tempColor;
+        const options = JSON.parse(JSON.stringify(this.editableOptions));
+        options.color = this.tempColor;
+        const idx = this.datasetOptions.get(options.internalId).findIndex(e => e.timestamp === options.timestamp);
+        this.datasetOptions.get(options.internalId)[idx] = options;
         this.profilesSrvc.updateDatasetOptions(this.datasetOptions.get(this.editableOptions.internalId), this.editableOptions.internalId);
     }
 

@@ -16,7 +16,7 @@
     </div>
   </div>
   <div *ngFor="let item of datasetOptions">
-    <div>
+    <div class="dataset-item">
       <span [ngStyle]="{'color': item.color}">{{item.timestamp | date: 'short'}}</span>
       <span class="fa" [ngClass]="{'fa-eye-slash': item.visible, 'fa-eye': !item.visible}"
         (click)="toggleVisibility(item); $event.stopPropagation();"

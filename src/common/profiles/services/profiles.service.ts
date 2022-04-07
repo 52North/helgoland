@@ -55,6 +55,7 @@ export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> 
                 }
             }
         }
+        this.saveState();
     }
 
 }

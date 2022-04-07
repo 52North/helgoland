@@ -56,7 +56,7 @@ export class ProfilesSelectionComponent implements OnInit {
   public stationaryPlatform: HelgolandPlatform;
   public stationaryPlatformLoading: boolean;
   public stationaryPlatformDataset: HelgolandProfile;
-  public stationaryTimestamps: Array<number>;
+  public stationaryTimestamps: Array<{ time: number, selected: boolean }>;
 
   public loadingTrajectories: boolean;
   public loadingPlatforms: boolean;
@@ -94,16 +94,20 @@ export class ProfilesSelectionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.selectionPermalink.validatePeramlink().subscribe((selection) => {
-      if (selection.selectedProvider) { this.providerSelected(selection.selectedProvider, false); }
-      if (selection.selectedOffering) { this.offeringSelected(selection.selectedOffering, false); }
-      if (selection.selectedPhenomenon) { this.phenomenonSelected(selection.selectedPhenomenon, false); }
-      if (selection.selectedProcedure) { this.procedureSelected(selection.selectedProcedure, false); }
-      if (selection.selectedFeature) { this.featureSelected(selection.selectedFeature); }
-    });
-    this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
-    this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
-    this.providerFilter = this.createFilter();
+    // this.selectionPermalink.validatePeramlink().subscribe((selection) => {
+    //   if (selection.selectedProvider) { this.providerSelected(selection.selectedProvider, false); }
+    //   if (selection.selectedOffering) { this.offeringSelected(selection.selectedOffering, false); }
+    //   if (selection.selectedPhenomenon) { this.phenomenonSelected(selection.selectedPhenomenon, false); }
+    //   if (selection.selectedProcedure) { this.procedureSelected(selection.selectedProcedure, false); }
+    //   if (selection.selectedFeature) { this.featureSelected(selection.selectedFeature); }
+    // });
+    // this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
+    // this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
+    // this.providerFilter = this.createFilter();
+    this.offeringFilter = this.createFilter();
+    this.setSelectedProvider(this.selectedProvider = {
+      apiUrl: this.settingsSrvc.getSettings().datasetApis[0].url,
+    } as HelgolandService)
   }
 
   private createFilter(): HelgolandParameterFilter {
@@ -209,7 +213,10 @@ export class ProfilesSelectionComponent implements OnInit {
         this.servicesConnector.getDatasetData(profile, timespan).subscribe(data => {
           this.stationaryTimestamps = [];
           data.values.forEach(entry => {
-            this.stationaryTimestamps.push(entry.timestamp);
+            this.stationaryTimestamps.push({
+              time: entry.timestamp,
+              selected: false,
+            });
           });
           this.stationaryPlatformLoading = false;
         });
@@ -256,6 +263,13 @@ export class ProfilesSelectionComponent implements OnInit {
 
   public trajectoriesLoaded(loading: boolean) {
     this.loadingTrajectories = loading;
+  }
+
+  public addProfilesToChart() {
+    this.stationaryTimestamps.forEach(e => {
+      e.selected && this.addProfileToChart(this.stationaryPlatformDataset, e.time);
+    })
+    this.router.navigate(['profiles/diagram']);
   }
 
 }

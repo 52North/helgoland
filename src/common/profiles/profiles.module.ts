@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HelgolandDatasetlistModule, HelgolandLabelMapperModule, HelgolandDatasetDownloadModule } from '@helgoland/depiction';
+import { HelgolandCoreModule } from '@helgoland/core';
+import {
+  HelgolandDatasetDownloadModule,
+  HelgolandDatasetlistModule,
+  HelgolandLabelMapperModule,
+} from '@helgoland/depiction';
 import { HelgolandMapSelectorModule, HelgolandMapViewModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandPlotlyModule } from '@helgoland/plotly';
@@ -42,10 +48,10 @@ const profilesRoutes: Routes = [
         path: 'selection',
         component: ProfilesSelectionComponent
       },
-      {
-        path: 'combi',
-        component: ProfilesCombiViewComponent
-      }
+      // {
+      //   path: 'combi',
+      //   component: ProfilesCombiViewComponent
+      // }
     ]
   }
 ];
@@ -54,6 +60,8 @@ const profilesRoutes: Routes = [
   imports: [
     CommonModule,
     TranslateModule,
+    FormsModule,
+    HelgolandCoreModule,
     HelgolandPlotlyModule,
     HelgolandMapViewModule,
     HelgolandDatasetlistModule,

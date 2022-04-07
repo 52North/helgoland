@@ -29,9 +29,11 @@
   </div>
 </ng-template>
 
-<n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink"></n52-permalink-button>
+<!-- <n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink">
+</n52-permalink-button> -->
 <div class="chart" *ngIf="datasetIds.length !== 0">
-  <n52-plotly-profile-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds" [datasetOptions]="datasetOptions"></n52-plotly-profile-graph>
+  <n52-plotly-profile-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds"
+    [datasetOptions]="datasetOptions"></n52-plotly-profile-graph>
 </div>
 <div class="legend" *ngIf="datasetIds.length !== 0">
   <h3>Legende</h3>
@@ -39,8 +41,8 @@
     <div *ngFor="let id of datasetIds">
       <n52-custom-profile-entry [datasetId]="id" [selected]="isSelected(id)" [datasetOptions]="datasetOptions.get(id)"
         (onDeleteDatasetOptions)="deleteProfileOptions($event)" (onSelectDataset)="selectProfile($event, id)"
-        (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)" (onShowGeometry)="showGeometry($event)"
-        (onOpenInCombiView)="openCombiView($event)"></n52-custom-profile-entry>
+        (onUpdateOptions)="updateOptions($event, id)" (onEditOptions)="editOption($event)"
+        (onShowGeometry)="showGeometry($event)" (onOpenInCombiView)="openCombiView($event)"></n52-custom-profile-entry>
     </div>
   </div>
 </div>
