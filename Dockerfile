@@ -19,5 +19,12 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./52-*.sh /docker-entrypoint.d/
 RUN chmod 0775 /docker-entrypoint.d/52-*.sh
 COPY --from=BUILD /usr/src/app/dist/timeseries /usr/share/nginx/html
-# the container can be started like this: docker run -p 80:80 -e PORT=80 helgoland
+#
+# the container can be started like this:
+#
+# docker run --publish 80:80 --env PORT=80 --rm 52north/helgoland
+#
+# this make helgoland available via http://localhost:80/ and 
+# removes the container after stopping it
+#
 CMD ["nginx", "-g", "daemon off;"]
