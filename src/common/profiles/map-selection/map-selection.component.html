@@ -1,0 +1,30 @@
+<ng-template #modalStationaryPlatform let-c="close()" let-d="dismiss()">
+  <div class="modal-header">
+    <h4 class="modal-title">{{'profiles.selection.platform' | translate}}: {{stationaryPlatform.label}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" *ngIf="stationaryPlatformDataset">
+    <div style="word-wrap: break-word;">{{stationaryPlatformDataset.label}}</div>
+    <div *ngIf="stationaryPlatformLoading">{{'profiles.selection.load-timestamps' | translate}}...</div>
+    <div *ngIf="!stationaryPlatformLoading" style="padding: 10px;">
+      <div>{{'profiles.selection.select-timestamp' | translate}}:</div>
+      <div class="selector-entry" *ngFor="let item of stationaryTimestamps; ">
+        <input type="checkbox" id="checkbox_{{item.time}}" [ngModel]="profileSelected(item.time)" (change)="updateSelection($event, item.time)">
+        <label for="checkbox_{{item.time}}"
+          style="margin: 0; padding-left: 5px;">{{item.time | tzDate: 'L LT z'}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light"
+      (click)="moveToChart(); c">{{'profiles.selection.to-diagram-view' | translate}}</button>
+    <button type="button" class="btn btn-light" (click)="c">{{'controls.close' | translate}}</button>
+  </div>
+</ng-template>
+
+<div class="map">
+  <n52-platform-map-viewer class="map" [platforms]="platforms" (onSelectedPlatform)="onStationSelected($event)">
+  </n52-platform-map-viewer>
+</div>

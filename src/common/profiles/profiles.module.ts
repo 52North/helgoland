@@ -14,7 +14,7 @@ import { HelgolandPlotlyModule } from '@helgoland/plotly';
 import { HelgolandSelectorModule } from '@helgoland/selector';
 import { HelgolandTimeModule } from '@helgoland/time';
 import { HelgolandTimeRangeSliderModule } from '@helgoland/time-range-slider';
-import { NgbAccordionModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbButtonsModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ComponentsModule } from '../components/components.module';
@@ -24,6 +24,7 @@ import { ProfilesCombiService } from './combi-view/combi-view.service';
 import { ProfilesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { ProfilesDiagramComponent } from './diagram/diagram.component';
 import { CustomProfileEntryComponent } from './diagram/profile-entry/custom-profile-entry.component';
+import { ProfilesMapSelectionComponent } from './map-selection/map-selection.component';
 import { ProfilesNavigationComponent } from './navigation/navigation.component';
 import { ProfilesSelectionPermalink } from './selection/selection-permalink.service';
 import { ProfilesSelectionComponent } from './selection/selection.component';
@@ -47,6 +48,10 @@ const profilesRoutes: Routes = [
       {
         path: 'selection',
         component: ProfilesSelectionComponent
+      },
+      {
+        path: 'map-selection',
+        component: ProfilesMapSelectionComponent
       },
       // {
       //   path: 'combi',
@@ -77,10 +82,12 @@ const profilesRoutes: Routes = [
     ),
     NgbTabsetModule,
     NgbAccordionModule,
+    NgbButtonsModule,
     ComponentsModule
   ],
   declarations: [
     ProfilesDiagramComponent,
+    ProfilesMapSelectionComponent,
     ProfilesSelectionComponent,
     ProfilesCombiViewComponent,
     ProfilesNavigationComponent,

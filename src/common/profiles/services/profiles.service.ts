@@ -29,6 +29,10 @@ export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> 
         }
     }
 
+    public hasTimedDataset(internalId: string, time: number) {
+        return this.datasetOptions.has(internalId) && this.datasetOptions.get(internalId).find(e => e.timestamp === time);
+    }
+
     protected createStyles(internalId: string): Array<TimedDatasetOptions> {
         return [new TimedDatasetOptions(internalId, this.color.getColor(), 0)];
     }
