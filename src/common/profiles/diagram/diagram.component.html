@@ -32,8 +32,8 @@
 <!-- <n52-permalink-button *ngIf="datasetIds.length !== 0" [generatedUrlFunction]="permalinkSrvc.createPermalink">
 </n52-permalink-button> -->
 <div class="chart" *ngIf="datasetIds.length !== 0">
-  <n52-plotly-profile-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds"
-    [datasetOptions]="datasetOptions"></n52-plotly-profile-graph>
+  <app-custom-profile-graph [datasetIds]="datasetIds" [selectedDatasetIds]="selectedIds"
+    [datasetOptions]="datasetOptions"></app-custom-profile-graph>
 </div>
 <div class="legend" *ngIf="datasetIds.length !== 0">
   <h3>Legende</h3>

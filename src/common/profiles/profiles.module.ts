@@ -16,11 +16,13 @@ import { HelgolandTimeModule } from '@helgoland/time';
 import { HelgolandTimeRangeSliderModule } from '@helgoland/time-range-slider';
 import { NgbAccordionModule, NgbButtonsModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { PlotlyViaCDNModule } from 'angular-plotly.js';
 
 import { ComponentsModule } from '../components/components.module';
 import { ProfilesCombiViewPermalink } from './combi-view/combi-view-permalink.service';
 import { ProfilesCombiViewComponent } from './combi-view/combi-view.component';
 import { ProfilesCombiService } from './combi-view/combi-view.service';
+import { CustomProfileGraphComponent } from './diagram/custom-profile-graph/custom-profile-graph.component';
 import { ProfilesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { ProfilesDiagramComponent } from './diagram/diagram.component';
 import { CustomProfileEntryComponent } from './diagram/profile-entry/custom-profile-entry.component';
@@ -83,7 +85,8 @@ const profilesRoutes: Routes = [
     NgbTabsetModule,
     NgbAccordionModule,
     NgbButtonsModule,
-    ComponentsModule
+    ComponentsModule,
+    PlotlyViaCDNModule
   ],
   declarations: [
     ProfilesDiagramComponent,
@@ -91,7 +94,8 @@ const profilesRoutes: Routes = [
     ProfilesSelectionComponent,
     ProfilesCombiViewComponent,
     ProfilesNavigationComponent,
-    CustomProfileEntryComponent
+    CustomProfileEntryComponent,
+    CustomProfileGraphComponent
   ],
   providers: [
     ProfilesDiagramPermalink,
