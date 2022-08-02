@@ -31,7 +31,6 @@ import { CategorySelectorComponent } from './category-selection/category-selecto
 import { CustomHoverLineComponent } from './diagram/custom-hover-line/custom-hover-line.component';
 import { TimeseriesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { TimeseriesDiagramComponent } from './diagram/diagram.component';
-import { CustomDatasetPermalinkDownloadComponent } from './diagram/legend-entry/custom-dataset-permalink-download.component';
 import { LegendEntryComponent } from './diagram/legend-entry/legend-entry.component';
 import { TimeseriesFavoritesComponent } from './favorites/favorites.component';
 import { TimeseriesListSelectionComponent } from './list-selection/list-selection.component';
@@ -116,7 +115,6 @@ export const nestedTimeseriesRoutes: Routes = [
     ],
     declarations: [
         CategorySelectorComponent,
-        CustomDatasetPermalinkDownloadComponent,
         CustomHoverLineComponent,
         LegendEntryComponent,
         TimeseriesDiagramComponent,

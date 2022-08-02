@@ -1,3 +1,4 @@
+import { CustomDatasetPermalinkDownloadComponent } from './custom-dataset-permalink-download/custom-dataset-permalink-download.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +15,7 @@ import {
   NgbDatepickerModule,
   NgbDropdownModule,
   NgbTimepickerModule,
+  NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -66,6 +68,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     NgbDatepickerModule,
     NgbDropdownModule,
     NgbTimepickerModule,
+    NgbTooltipModule,
     TranslateModule.forChild()
   ],
   declarations: [
@@ -80,6 +83,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     CustomTimespanShiftSelectorComponent,
     CustomServiceProviderManagerComponent,
     CustomTimespanButtonComponent,
+    CustomDatasetPermalinkDownloadComponent,
     InMailComponent,
     InNewWindowComponent,
     LocalSelectorImplComponent,
@@ -100,17 +104,18 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     ModalTimeseriesTimespanComponent,
   ],
   exports: [
+    CustomAutoUpdateTimespanComponent,
+    CustomDatasetPermalinkDownloadComponent,
     CustomFavoriteTogglerComponent,
     CustomListSelectorComponent,
-    CustomServiceSelectorComponent,
     CustomServiceProviderManagerComponent,
-    CustomAutoUpdateTimespanComponent,
+    CustomServiceSelectorComponent,
     CustomTimeRangeSliderComponent,
+    CustomTimespanButtonComponent,
     CustomTimespanShiftSelectorComponent,
     LocalSelectorImplComponent,
     LocateButtonComponent,
     PermalinkButtonComponent,
-    CustomTimespanButtonComponent,
     ProviderParameterSeletorComponent,
   ]
 })

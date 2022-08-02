@@ -8,16 +8,17 @@
       <span *ngIf="dataset?.uom">[
         <n52-label-mapper label="{{dataset.uom}}"></n52-label-mapper>]</span>
     </div>
-    <div class="small">
+    <!-- <div class="small">
       <n52-label-mapper label="{{dataset?.parameters.procedure.label}}"></n52-label-mapper>
     </div>
     <div class="small" *ngIf="dataset?.parameters.category.label != dataset?.parameters.phenomenon.label">
       <n52-label-mapper label="{{dataset?.parameters.category.label}}"></n52-label-mapper>
-    </div>
+    </div> -->
   </div>
   <div *ngFor="let item of datasetOptions">
     <div class="dataset-item">
-      <span [ngStyle]="{'color': item.color}">{{item.timestamp | date: 'short'}}</span>
+      <span
+        [ngStyle]="{'color': item.color}">{{item.timestamp | date: 'short': null : translateSrvc.currentLang}}</span>
       <span class="fa" [ngClass]="{'fa-eye-slash': item.visible, 'fa-eye': !item.visible}"
         (click)="toggleVisibility(item); $event.stopPropagation();"
         title="{{'profiles.legend.visibility' | translate}}"></span>
@@ -27,6 +28,8 @@
         title="{{'profiles.legend.show-geometry' | translate}}"></span>
       <span class="fa fa-times" (click)="removeDatasetOptions(item); $event.stopPropagation();"
         title="{{'profiles.legend.delete-subentry' | translate}}"></span>
+      <n52-custom-dataset-permalink-download [internalId]="datasetId" [timeInterval]="getTimeInterval(item.timestamp)">
+      </n52-custom-dataset-permalink-download>
     </div>
     <!-- temporarly disabled -->
     <!-- <div (click)="$event.stopPropagation();">

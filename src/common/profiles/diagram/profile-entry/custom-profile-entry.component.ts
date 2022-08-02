@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { ApiV3InterfaceService, HelgolandServicesConnector, InternalIdHandler, TimedDatasetOptions } from '@helgoland/core';
+import {
+  ApiV3InterfaceService,
+  HelgolandServicesConnector,
+  InternalIdHandler,
+  TimedDatasetOptions,
+  Timespan,
+} from '@helgoland/core';
 import { ProfileEntryComponent } from '@helgoland/depiction';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -30,5 +36,9 @@ export class CustomProfileEntryComponent extends ProfileEntryComponent {
   showGeometry(option: TimedDatasetOptions) {
     const resolve = this.internalIdHandler.resolveInternalId(option.internalId);
     this.api.getDataset(resolve.id, resolve.url).subscribe(res => this.onShowGeometry.emit(res.feature.geometry))
+  }
+
+  getTimeInterval(time: number) {
+    return new Timespan(time, time);
   }
 }
