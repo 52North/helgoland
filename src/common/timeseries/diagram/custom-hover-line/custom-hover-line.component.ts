@@ -30,9 +30,9 @@ export class CustomHoverLineComponent extends D3GraphHoverLineComponent {
   protected setLabel(label: HoverlineLabel, item: DataEntry, entry: InternalDataEntry) {
     label.text.selectAll('*').remove();
     const timeseries = this.d3Graph.getDataset(entry.internalId);
-    label.text.append('text').text(`${timeseries.platform.label}`).attr('alignment-baseline', 'text-before-edge').attr('class', 'hoverline-label-text');
-    label.text.append('text').text(`${timeseries.parameters.phenomenon.label}`).attr('dy', '1em').attr('alignment-baseline', 'text-before-edge').attr('class', 'hoverline-label-text');
-    label.text.append('text').text(`${item.value} ${(entry.axisOptions.uom ? entry.axisOptions.uom : '')}`).attr('dy', '2em').attr('alignment-baseline', 'text-before-edge').attr('class', 'hoverline-label-text');
+    label.text.append('text').text(`${timeseries.platform.label}`).attr('dominant-baseline', 'text-before-edge').attr('class', 'hoverline-label-text');
+    label.text.append('text').text(`${timeseries.parameters.phenomenon.label} in ${timeseries.parameters.category.label}`).attr('dy', '1em').attr('dominant-baseline', 'text-before-edge').attr('class', 'hoverline-label-text');
+    label.text.append('text').text(`${item.value} ${(entry.axisOptions.uom ? entry.axisOptions.uom : '')}`).attr('dy', '2em').attr('dominant-baseline', 'text-before-edge').attr('class', 'hoverline-label-text');
   }
 
 }
