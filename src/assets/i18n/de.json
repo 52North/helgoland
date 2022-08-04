@@ -67,6 +67,8 @@
 		},
 		"selection": {
 			"load-timestamps": "Läd die verfügbaren Zeitpunkte",
+			"phenomenon-placeholder": "Wähle Phänomen",
+			"phenomenon-selection-hint": "Wähle ein Phänomen an dieser Station",
 			"platform": "Platform",
 			"select-offering": "Wähle Offering",
 			"select-phenomenon": "Wähle Parameter",
@@ -120,8 +122,8 @@
 				"extended-infos-tooltip": "Weitere Infos",
 				"header": "Legende",
 				"map-marker-tooltip": "Position zeigen",
-				"remove-timeseries-tooltip": "Zeitreihe entfernen",
 				"remove-all": "Zeitreihen entfernen",
+				"remove-timeseries-tooltip": "Zeitreihe entfernen",
 				"show-geometry-header": "Position der Station",
 				"style-edit-tooltip": "Style bearbeiten",
 				"style-edit": {
@@ -204,8 +206,7 @@
 		},
 		"selection": {
 			"select-by-phenomenon": "Wähle über Parameter",
-			"select-by-platform": "Wähle über Platform",
-			"select-provider": "Wähle Anbieter"
+			"select-by-platform": "Wähle über Platform"
 		},
 		"view": {
 			"change-color-header": "Farbe ändern",

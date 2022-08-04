@@ -14,7 +14,7 @@ import { HelgolandPlotlyModule } from '@helgoland/plotly';
 import { HelgolandSelectorModule } from '@helgoland/selector';
 import { HelgolandTimeModule } from '@helgoland/time';
 import { HelgolandTimeRangeSliderModule } from '@helgoland/time-range-slider';
-import { NgbAccordionModule, NgbButtonsModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbButtonsModule, NgbDropdownModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
 
@@ -83,6 +83,7 @@ const profilesRoutes: Routes = [
       profilesRoutes
     ),
     NgbTabsetModule,
+    NgbDropdownModule,
     NgbAccordionModule,
     NgbButtonsModule,
     ComponentsModule,

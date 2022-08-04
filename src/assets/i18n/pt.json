@@ -67,6 +67,8 @@
 		},
 		"selection": {
 			"load-timestamps": "Carregamento de carimbos de hora válidos",
+			"phenomenon-placeholder": "",
+			"phenomenon-selection-hint": "",
 			"platform": "Plataforma",
 			"select-offering": "Selecione a oferta",
 			"select-phenomenon": "Selecione parâmetro",
@@ -117,9 +119,13 @@
 					"last-value-at": "Último valor em",
 					"no-data-available": "Nenhum dado disponível"
 				},
+				"extended-infos-tooltip": "",
 				"header": "Legenda",
+				"map-marker-tooltip": "",
 				"remove-all": "",
+				"remove-timeseries-tooltip": "",
 				"show-geometry-header": "Posição da estação",
+				"style-edit-tooltip": "",
 				"style-edit": {
 					"generalize": "Generalizar dados",
 					"header": "Alterar o estilo desta série temporal",
@@ -128,7 +134,8 @@
 					"min": "Mínimo",
 					"pointRadius": "Raio do ponto",
 					"zeroBasedYAxis": "Série temporal baseado em zero"
-				}
+				},
+				"toggle-visibility-tooltip": ""
 			},
 			"options": {
 				"hovering": {
@@ -157,6 +164,10 @@
 		},
 		"map-selection": {
 			"dataset-selection-hint": "Selecione um ou mais série temporal para exibir no diagrama",
+			"group-depth": "",
+			"group-phenomenon": "",
+			"group-select-all-categories": "",
+			"group-select-all-phenomenons": "",
 			"map": "Mapa",
 			"provider": "Provedor",
 			"show-in-diagram": "Mostrar os ajustes no diagrama"
@@ -165,11 +176,16 @@
 			"current_month": "Mês atual",
 			"current_week": "Semana atual",
 			"current_year": "Ano atual",
+			"custom": "",
+			"from-date": "",
 			"header": "Selecione o perído de tempo",
+			"invalid-timespan-error": "",
 			"last_hour": "Última hora",
 			"last_month": "Último mês",
 			"last_week": "Semana passada",
 			"last_year": "Último ano",
+			"pre-defined": "",
+			"to-date": "",
 			"today": "Hoje",
 			"today_yesterday": "Hoje & ontem",
 			"yesterday": "Ontem"
