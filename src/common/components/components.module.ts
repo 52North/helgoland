@@ -1,4 +1,3 @@
-import { CustomDatasetPermalinkDownloadComponent } from './custom-dataset-permalink-download/custom-dataset-permalink-download.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -22,11 +21,12 @@ import { ClipboardModule } from 'ngx-clipboard';
 
 import { BasicAuthComponent } from './basic-auth/basic-auth.component';
 import { CustomAutoUpdateTimespanComponent } from './custom-auto-update-timespan/custom-auto-update-timespan.component';
+import {
+  CustomDatasetPermalinkDownloadComponent,
+} from './custom-dataset-permalink-download/custom-dataset-permalink-download.component';
 import { CustomFavoriteTogglerComponent } from './custom-favorite-toggler/custom-favorite-toggler.component';
 import { CustomListSelectorComponent } from './custom-list-selector/custom-list-selector.component';
-import {
-  CustomMinMaxRangeComponent,
-} from './custom-min-max-range/custom-min-max-range.component';
+import { CustomMinMaxRangeComponent } from './custom-min-max-range/custom-min-max-range.component';
 import {
   CustomMultiServiceFilterSelectorComponent,
 } from './custom-multi-service-filter-selector/custom-multi-service-filter-selector.component';
@@ -48,6 +48,7 @@ import { InMailComponent } from './permalink/in-mail/in-mail.component';
 import { InNewWindowComponent } from './permalink/in-new-window/in-new-window.component';
 import { PermalinkButtonComponent } from './permalink/permalink-button/permalink-button.component';
 import { ToClipboardComponent } from './permalink/to-clipboard/to-clipboard.component';
+import { PlatformMapViewerComponent } from './platform-map-viewer/platform-map-viewer.component';
 import { ProviderParameterSeletorComponent } from './provider-parameter-selector/provider-parameter-selector.component';
 import { TimespanSelectorComponent } from './timespan-selector/timespan-selector.component';
 
@@ -74,16 +75,16 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
   declarations: [
     BasicAuthComponent,
     CustomAutoUpdateTimespanComponent,
+    CustomDatasetPermalinkDownloadComponent,
     CustomFavoriteTogglerComponent,
     CustomListSelectorComponent,
     CustomMinMaxRangeComponent,
     CustomMultiServiceFilterSelectorComponent,
+    CustomServiceProviderManagerComponent,
     CustomServiceSelectorComponent,
     CustomTimeRangeSliderComponent,
-    CustomTimespanShiftSelectorComponent,
-    CustomServiceProviderManagerComponent,
     CustomTimespanButtonComponent,
-    CustomDatasetPermalinkDownloadComponent,
+    CustomTimespanShiftSelectorComponent,
     InMailComponent,
     InNewWindowComponent,
     LocalSelectorImplComponent,
@@ -92,6 +93,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     ModalOptionsEditorComponent,
     ModalTimeseriesTimespanComponent,
     PermalinkButtonComponent,
+    PlatformMapViewerComponent,
     ProviderParameterSeletorComponent,
     TimespanSelectorComponent,
     ToClipboardComponent,
@@ -116,6 +118,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     LocalSelectorImplComponent,
     LocateButtonComponent,
     PermalinkButtonComponent,
+    PlatformMapViewerComponent,
     ProviderParameterSeletorComponent,
   ]
 })
