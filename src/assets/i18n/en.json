@@ -30,7 +30,7 @@
 			"combi": "Combination",
 			"diagram": "Diagram",
 			"main": "Profiles",
-			"selection": "Selection"
+			"selection": "Map"
 		},
 		"timeseries": {
 			"diagram": "Diagram",
@@ -170,7 +170,7 @@
 			"group-select-all-phenomenons": "select all parameters",
 			"map": "Map",
 			"provider": "Provider",
-			"show-in-diagram": "Show adjustments in diagram"
+			"show-in-diagram": "Diagram view"
 		},
 		"timespan-selector": {
 			"current_month": "Current Month",

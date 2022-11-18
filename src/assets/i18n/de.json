@@ -30,7 +30,7 @@
 			"combi": "Kombinierte Ansicht",
 			"diagram": "Diagramm",
 			"main": "Profile",
-			"selection": "Auswahl"
+			"selection": "Karte"
 		},
 		"timeseries": {
 			"diagram": "Diagramm",
@@ -85,7 +85,7 @@
 			"select-timestamp": "Selektiere ein Zeitpunkt um das Profile zu sehen",
 			"timestamp": "Zeitpunkt",
 			"to-combi-view": "Kombinierte Ansicht",
-			"to-diagram-view": "Diagram Ansicht"
+			"to-diagram-view": "Diagramm Ansicht"
 		}
 	},
 	"service-provider-manager": {
@@ -170,7 +170,7 @@
 			"group-select-all-phenomenons": "wähle alle Parameter",
 			"map": "Karte",
 			"provider": "Anbieter",
-			"show-in-diagram": "Anpassungen im Diagramm anzeigen"
+			"show-in-diagram": "Diagramm Ansicht"
 		},
 		"timespan-selector": {
 			"current_month": "Derzeitiger Monat",
