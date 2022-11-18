@@ -11,10 +11,22 @@
             <span class="fa" [ngClass]="{'fa-chevron-right': isCollapsed, 'fa-chevron-down': !isCollapsed}"
               (click)="isCollapsed = !isCollapsed; $event.stopPropagation();"></span>
           </div>
-          <div class="legend-item-label flex-grow-1" [ngStyle]="{'color': datasetOptions?.color}">
-            <n52-label-mapper class="legendItemheader" label="{{platformLabel}}">
+          <div class="legend-item-label">
+            <n52-label-mapper class="legendItemheader" label="{{platformLabel}}" [ngStyle]="{'color': datasetOptions?.color}">
             </n52-label-mapper>
-            <custom-favorite-toggler [dataset]="dataset"></custom-favorite-toggler>
+            <custom-favorite-toggler [dataset]="dataset" [ngStyle]="{'color': datasetOptions?.color}"></custom-favorite-toggler>
+            <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
+              (click)="toggleVisibility(); $event.stopPropagation();" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.toggle-visibility-tooltip' | translate}}"></span>
+            <span class="fa fa-pencil-alt" (click)="editDatasetOptions(); $event.stopPropagation();"
+              [ngStyle]="{color: datasetOptions?.color}" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.style-edit-tooltip' | translate}}"></span>
+            <span class="fa fa-map-marker-alt" (click)="showGeometry(); $event.stopPropagation();" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.map-marker-tooltip' | translate}}"></span>
+            <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.remove-timeseries-tooltip' | translate}}"></span>
+            <n52-custom-dataset-permalink-download [internalId]="datasetId" [timeInterval]="timeInterval">
+            </n52-custom-dataset-permalink-download>
           </div>
         </div>
         <div class="noDataWarning firstLastEntry" *ngIf="!hasData">
@@ -45,25 +57,25 @@
         </div>
         <div class="row" [ngbCollapse]="isCollapsed">
           <div class="col legendicons">
-            <n52-custom-dataset-permalink-download [internalId]="datasetId" [timeInterval]="timeInterval">
-            </n52-custom-dataset-permalink-download>
-            <span class="fa fa-info"
+            <!-- <n52-custom-dataset-permalink-download [internalId]="datasetId" [timeInterval]="timeInterval">
+            </n52-custom-dataset-permalink-download> -->
+            <!-- <span class="fa fa-info"
               [ngClass]="{'item-inactive': !informationVisible, 'item-active': informationVisible}"
               (click)="toggleInformation(); $event.stopPropagation();" placement="bottom"
-              ngbTooltip="{{'timeseries.diagram.legend.extended-infos-tooltip' | translate}}"></span>
-            <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
+              ngbTooltip="{{'timeseries.diagram.legend.extended-infos-tooltip' | translate}}"></span> -->
+            <!-- <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
               (click)="toggleVisibility(); $event.stopPropagation();" placement="bottom"
-              ngbTooltip="{{'timeseries.diagram.legend.toggle-visibility-tooltip' | translate}}"></span>
-            <span class="fa fa-map-marker-alt" (click)="showGeometry(); $event.stopPropagation();" placement="bottom"
-              ngbTooltip="{{'timeseries.diagram.legend.map-marker-tooltip' | translate}}"></span>
-            <span class="fa fa-pencil-alt" (click)="editDatasetOptions(); $event.stopPropagation();"
+              ngbTooltip="{{'timeseries.diagram.legend.toggle-visibility-tooltip' | translate}}"></span> -->
+            <!-- <span class="fa fa-map-marker-alt" (click)="showGeometry(); $event.stopPropagation();" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.map-marker-tooltip' | translate}}"></span> -->
+            <!-- <span class="fa fa-pencil-alt" (click)="editDatasetOptions(); $event.stopPropagation();"
               [ngStyle]="{color: datasetOptions?.color}" placement="bottom"
-              ngbTooltip="{{'timeseries.diagram.legend.style-edit-tooltip' | translate}}"></span>
-            <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();" placement="bottom"
-              ngbTooltip="{{'timeseries.diagram.legend.remove-timeseries-tooltip' | translate}}"></span>
+              ngbTooltip="{{'timeseries.diagram.legend.style-edit-tooltip' | translate}}"></span> -->
+            <!-- <span class="fa fa-times" (click)="removeDataset(); $event.stopPropagation();" placement="bottom"
+              ngbTooltip="{{'timeseries.diagram.legend.remove-timeseries-tooltip' | translate}}"></span> -->
           </div>
           <div class="w-100"></div>
-          <div class="collapseLegendEntry small-label" *ngIf="informationVisible">
+          <div class="collapseLegendEntry small-label">
             <div class="firstLastEntry additionalLegendEntry" *ngIf="firstValue"
               (click)="jumpToFirstTimeStamp(); $event.stopPropagation();">
               <span class="fa fa-chevron-right"></span>
@@ -80,8 +92,8 @@
             </div>
 
             <div class="additionalLegendEntry" (click)="$event.stopPropagation();">
-              <n52-custom-dataset-permalink-download [internalId]="datasetId" [timeInterval]="timeInterval">
-              </n52-custom-dataset-permalink-download>
+              <!-- <n52-custom-dataset-permalink-download [internalId]="datasetId" [timeInterval]="timeInterval">
+              </n52-custom-dataset-permalink-download> -->
             </div>
 
             <!-- temporarly disabled -->
