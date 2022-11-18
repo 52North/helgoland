@@ -47,6 +47,14 @@ export class CustomHoverLineComponent extends D3GraphHoverLineComponent {
     this.aggLabel = undefined;
   }
 
+  public mouseoutBackground() {
+    if (!this.disableHovering) {
+      this.hideHoverLineIndicator();
+      this.hideLabels();
+      this.displayLabel(this.aggLabel, false);
+    }
+  }
+
   protected setLabel(label: HoverlineLabel, item: DataEntry, entry: InternalDataEntry) {
     label.text.selectAll('*').remove();
     const timeseries = this.d3Graph.getDataset(entry.internalId);
@@ -84,6 +92,7 @@ export class CustomHoverLineComponent extends D3GraphHoverLineComponent {
         if (labelMapping.size > 0) {
           this.updateAggLabel(labelMapping);
           this.positionAggregatedLabel(this.aggLabel, mouse[0] + this.graphExtent.leftOffset, mouse[1]);
+          console.log(time);
           this.displayLabel(this.aggLabel, true);
         } else {
           this.displayLabel(this.aggLabel, false);
