@@ -84,7 +84,7 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "node-sass": "^4.12.0",
     "protractor": "~7.0.0",
-    "qs": "^6.7.0",
+    "qs": "^6.7.3",
     "tslint": "~6.1.0",
     "typescript": "4.0.3",
     "webpack-cli": "^3.3.7"
