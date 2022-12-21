@@ -181,7 +181,7 @@ export class CustomProfileGraphComponent extends DatasetPresenterComponent<Timed
             hovertemplate:
               `${dataEntry.dataset.parameters.feature.label}<br>` +
               `${dataEntry.dataset.parameters.phenomenon.label}<br>` +
-              `in %{y}m %{x}${dataEntry.dataset.uom}<br>`,
+              `in %{y}m %{x} ${dataEntry.dataset.uom}<br>`,
             hoverlabel: {
               bgcolor: "#FFF",
               bordercolor: option.color,
