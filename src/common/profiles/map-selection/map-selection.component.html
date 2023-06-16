@@ -5,9 +5,27 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body phenomenon-selection">
 
-    <div *ngIf="phenomenons" class="phenomenon-selection">
+    <div class="container">
+      <div>{{'profiles.selection.parameter-timestamp' | translate}}</div>
+      <div *ngFor="let ds of profileDatasets | orderBy: 'label'">
+        <div class="row collapse-toggle" (click)="ds.expanded = !ds.expanded;">
+          <div class="collapse-icon">
+            <span class="fa"
+              [ngClass]="{'fa-chevron-right': !ds.expanded, 'fa-chevron-down': ds.expanded}"></span>
+          </div>
+          <div class="col">
+            <div class="item-label">{{ds.parameters.phenomenon.label}}</div>
+          </div>
+        </div>
+        <div class="row" *ngIf="ds.expanded">
+          <app-timestamp-selection [dataset]="ds"></app-timestamp-selection>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div *ngIf="phenomenons" class="phenomenon-selection">
       <div>
         {{'profiles.selection.phenomenon-selection-hint'| translate}}
       </div>
@@ -22,7 +40,6 @@
     </div>
 
     <div *ngIf="selectedProfileDs">
-      <!-- <div style="word-wrap: break-word;">{{selectedProfileDs.label}}</div> -->
       <div *ngIf="stationaryPlatformLoading">{{'profiles.selection.load-timestamps' | translate}}...</div>
       <div *ngIf="!stationaryPlatformLoading" style="padding: 10px;">
         <div>{{'profiles.selection.select-timestamp' | translate}}:</div>
@@ -33,7 +50,7 @@
             style="margin: 0; padding-left: 5px;">{{item.time | tzDate: 'L LT z'}}</label>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light"

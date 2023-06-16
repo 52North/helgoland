@@ -27,6 +27,7 @@ import { ProfilesDiagramPermalink } from './diagram/diagram-permalink.service';
 import { ProfilesDiagramComponent } from './diagram/diagram.component';
 import { CustomProfileEntryComponent } from './diagram/profile-entry/custom-profile-entry.component';
 import { ProfilesMapSelectionComponent } from './map-selection/map-selection.component';
+import { TimestampSelectionComponent } from './map-selection/timestamp-selection/timestamp-selection.component';
 import { ProfilesNavigationComponent } from './navigation/navigation.component';
 import { ProfilesSelectionPermalink } from './selection/selection-permalink.service';
 import { ProfilesSelectionComponent } from './selection/selection.component';
@@ -82,15 +83,16 @@ const profilesRoutes: Routes = [
     RouterModule.forChild(
       profilesRoutes
     ),
-    NgbTabsetModule,
-    NgbDropdownModule,
     NgbAccordionModule,
     NgbButtonsModule,
+    NgbDropdownModule,
+    NgbTabsetModule,
     ComponentsModule,
     PlotlyViaCDNModule
   ],
   declarations: [
     ProfilesDiagramComponent,
+    TimestampSelectionComponent,
     ProfilesMapSelectionComponent,
     ProfilesSelectionComponent,
     ProfilesCombiViewComponent,

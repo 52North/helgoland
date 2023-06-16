@@ -48,6 +48,7 @@ import { InMailComponent } from './permalink/in-mail/in-mail.component';
 import { InNewWindowComponent } from './permalink/in-new-window/in-new-window.component';
 import { PermalinkButtonComponent } from './permalink/permalink-button/permalink-button.component';
 import { ToClipboardComponent } from './permalink/to-clipboard/to-clipboard.component';
+import { OrderByPipe } from './pipes/orderBy.pipe';
 import { PlatformMapViewerComponent } from './platform-map-viewer/platform-map-viewer.component';
 import { ProviderParameterSeletorComponent } from './provider-parameter-selector/provider-parameter-selector.component';
 import { TimespanSelectorComponent } from './timespan-selector/timespan-selector.component';
@@ -92,6 +93,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     ModalGeometryViewerComponent,
     ModalOptionsEditorComponent,
     ModalTimeseriesTimespanComponent,
+    OrderByPipe,
     PermalinkButtonComponent,
     PlatformMapViewerComponent,
     ProviderParameterSeletorComponent,
@@ -117,6 +119,7 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     CustomTimespanShiftSelectorComponent,
     LocalSelectorImplComponent,
     LocateButtonComponent,
+    OrderByPipe,
     PermalinkButtonComponent,
     PlatformMapViewerComponent,
     ProviderParameterSeletorComponent,

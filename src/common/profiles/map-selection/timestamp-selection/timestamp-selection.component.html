@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="container">
+    <div *ngFor="let item of groupedTimestamps | keyvalue">
+      <div class="row collapse-toggle" (click)="item.expanded = !item.expanded">
+        <div class="collapse-icon">
+          <span class="fa" [ngClass]="{'fa-chevron-right': !item.expanded, 'fa-chevron-down': item.expanded}"></span>
+        </div>
+        <div class="col">
+          <div class="item-label">{{item.key}}</div>
+        </div>
+      </div>
+      <div class="row" *ngIf="item.expanded">
+        <div class="container">
+          <div class="selector-entry" *ngFor="let ts of item.value; ">
+            <input type="checkbox" id="checkbox_{{ts.time}}" [ngModel]="profileSelected(ts.time)"
+              (change)="updateSelection($event, ts.time)">
+            <label for="checkbox_{{ts.time}}" style="margin: 0; padding-left: 5px;">{{ts.time | tzDate: 'L LT z'}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

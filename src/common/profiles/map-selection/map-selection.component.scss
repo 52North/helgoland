@@ -9,5 +9,9 @@
 }
 
 .phenomenon-selection {
-    text-align: center;
+    .collapse-toggle {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }

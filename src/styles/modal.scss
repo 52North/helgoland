@@ -4,3 +4,18 @@
         text-overflow: ellipsis;
     }
 }
+
+.modal-dialog {
+    height: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 1rem 0;
+
+    .modal-content {
+        max-height: 100%;
+
+        .modal-body {
+            overflow: auto;
+        }
+    }
+}

@@ -36,7 +36,6 @@ export class ProfilesMapSelectionComponent {
   public stationaryPlatformLoading: boolean;
   public platforms: HelgolandPlatform[];
 
-
   public selectedProfileDs: HelgolandProfile;
   public stationaryTimestamps: Array<{ time: number }>;
   public phenomenons: Parameter[];
