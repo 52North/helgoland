@@ -66,7 +66,12 @@
 			"visibility": "Zeige/Verstecke das Profil"
 		},
 		"selection": {
+			"filter": {
+				"label": "Projektstation",
+				"placeholder": "Projektstationen durchsuchen"
+			},
 			"load-timestamps": "Läd die verfügbaren Zeitpunkte",
+			"parameter-timestamp": "",
 			"phenomenon-placeholder": "Wähle Phänomen",
 			"phenomenon-selection-hint": "Wähle ein Phänomen an dieser Station",
 			"platform": "Platform",

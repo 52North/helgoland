@@ -1,5 +1,5 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, TemplateRef, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 import {
   ColorService,
   DatasetType,
@@ -13,11 +13,13 @@ import {
   SettingsService,
   TimedDatasetOptions,
   Timespan,
-} from '@helgoland/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { forkJoin } from 'rxjs';
+} from "@helgoland/core";
+import { MapCache } from "@helgoland/map";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { forkJoin } from "rxjs";
 
-import { ProfilesService } from '../services/profiles.service';
+import { ProfilesService } from "../services/profiles.service";
+
 
 @Component({
   selector: 'complete-map-selection',
@@ -42,6 +44,13 @@ export class ProfilesMapSelectionComponent {
   public selectedPhenomenon: Parameter;
   private profileDatasets: HelgolandProfile[];
 
+  public legendToggled: boolean;
+  public mapId = 'platform-map';
+
+  public filterTerm: string;
+  public filteredPlatforms: HelgolandPlatform[];
+  public highlightPlatform: HelgolandPlatform;
+
   constructor(
     private settingsSrvc: SettingsService<Settings>,
     private modalService: NgbModal,
@@ -49,6 +58,7 @@ export class ProfilesMapSelectionComponent {
     private profilesSrvc: ProfilesService,
     private router: Router,
     private color: ColorService,
+    private mapCache: MapCache
   ) {
     this.selectedProviderUrl = this.settingsSrvc.getSettings().datasetApis[0].url;
     this.stationFilter = {
@@ -56,7 +66,10 @@ export class ProfilesMapSelectionComponent {
       platformType: PlatformTypes.stationary,
       expanded: true
     };
-    this.servicesConnector.getPlatforms(this.selectedProviderUrl, this.stationFilter).subscribe(res => this.platforms = res);
+    this.servicesConnector.getPlatforms(this.selectedProviderUrl, this.stationFilter).subscribe(res => {
+      this.filteredPlatforms = res;
+      this.platforms = res;
+    });
   }
 
   public onStationSelected(platform: HelgolandPlatform) {
@@ -79,6 +92,15 @@ export class ProfilesMapSelectionComponent {
     if (profileDs) {
       this.setProfileDataset(profileDs);
     }
+  }
+
+  adjustFilter(ft: string) {
+    this.filterTerm = ft;
+    this.filteredPlatforms = this.platforms.filter(e => e.label.toLocaleLowerCase().indexOf(this.filterTerm.toLocaleLowerCase()) >= 0);
+  }
+
+  showOnPlatform(platform: HelgolandPlatform) {
+    this.highlightPlatform = platform;
   }
 
   private setProfileDataset(profile: HelgolandProfile) {

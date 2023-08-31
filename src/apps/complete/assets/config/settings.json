@@ -17,8 +17,9 @@
   }],
   "datasetApis": [
     {
-      "name": "bsh",
-      "url": "http://192.168.52.160:8080/52n-sos-bsh-webapp/api/"
+      "name": "BSH",
+      "url": "https://gdi.bsh.de/52n-sos-bsh-webapp/api/",
+      "_url": "https://www.geoseaportal.de/52n-sos-bsh-webapp/api/"
     }
   ],
   "languages": [{
@@ -28,10 +29,6 @@
     {
       "label": "English",
       "code": "en"
-    },
-    {
-      "label": "Portuguese",
-      "code": "pt"
     }
   ],
   "proxyUrl": "https://cors-anywhere.herokuapp.com/",

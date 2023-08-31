@@ -66,7 +66,12 @@
 			"visibility": "Show/Hide this profile"
 		},
 		"selection": {
+			"filter": {
+				"label": "Project station",
+				"placeholder": "Search project station"
+			},
 			"load-timestamps": "Loading valid time stamps",
+			"parameter-timestamp": "",
 			"phenomenon-placeholder": "Choose phenomenon",
 			"phenomenon-selection-hint": "Choose a phenomenon on this platform",
 			"platform": "Platform",

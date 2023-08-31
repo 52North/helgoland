@@ -66,7 +66,12 @@
 			"visibility": "Mostrar/ocultar este perfil"
 		},
 		"selection": {
+			"filter": {
+				"label": "",
+				"placeholder": ""
+			},
 			"load-timestamps": "Carregamento de carimbos de hora válidos",
+			"parameter-timestamp": "",
 			"phenomenon-placeholder": "",
 			"phenomenon-selection-hint": "",
 			"platform": "Plataforma",

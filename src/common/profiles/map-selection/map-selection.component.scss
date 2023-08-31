@@ -2,9 +2,103 @@
     width: 100%;
     height: 100%;
 
-    .map {
-        width: 100%;
+    .wrapper {
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .row-offcanvas {
+            height: 100%;
+            margin-right: 0px;
+            margin-left: 0px;
+        }
+
+        /* button for off canvas styling */
+        .legend-button {
+            position: absolute;
+            right: 20px;
+            top: 5px;
+            z-index: 10;
+        }
+
+        .map-content {
+            flex: 1;
+            display: flex;
+            height: 100%;
+
+            .map {
+                // width: 65%;
+                position: relative;
+                flex: 1;
+                z-index: 9;
+
+                .locate-control {
+                    position: absolute;
+                    left: 25px;
+                    top: 80px;
+                    border-radius: 5px;
+                }
+
+                .zoom-control {
+                    position: absolute;
+                    left: 25px;
+                    top: 10px;
+                    border-radius: 5px;
+                }
+            }
+
+            .platform-list {
+                height: 100%;
+                flex: 0 1 400px;
+                overflow-y: auto;
+                padding: 10px;
+
+                .platform-entry {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        /* off canvas styling */
+        @media screen and (max-width: 767.98px) {
+
+            .map-content {
+                .map {
+                    width: 100%;
+                }
+
+                .platform-list {
+                    width: 75%;
+                }
+            }
+
+            .row-offcanvas {
+                position: relative;
+                transition: all .25s ease-out;
+                height: 100%;
+            }
+
+            .row-offcanvas-right {
+                right: 0;
+            }
+
+            .row-offcanvas-right.active .sidebar-offcanvas {
+                right: -75%;
+            }
+
+            .row-offcanvas-right.active {
+                right: 75%;
+            }
+
+            .sidebar-offcanvas {
+                position: absolute;
+                top: 0;
+                overflow: auto;
+            }
+        }
     }
 }
 

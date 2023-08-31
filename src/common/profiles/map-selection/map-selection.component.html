@@ -12,8 +12,7 @@
       <div *ngFor="let ds of profileDatasets | orderBy: 'label'">
         <div class="row collapse-toggle" (click)="ds.expanded = !ds.expanded;">
           <div class="collapse-icon">
-            <span class="fa"
-              [ngClass]="{'fa-chevron-right': !ds.expanded, 'fa-chevron-down': ds.expanded}"></span>
+            <span class="fa" [ngClass]="{'fa-chevron-right': !ds.expanded, 'fa-chevron-down': ds.expanded}"></span>
           </div>
           <div class="col">
             <div class="item-label">{{ds.parameters.phenomenon.label}}</div>
@@ -59,7 +58,25 @@
   </div>
 </ng-template>
 
-<div class="map">
-  <app-platform-map-viewer class="map" [platforms]="platforms" (onSelectedPlatform)="onStationSelected($event)">
-  </app-platform-map-viewer>
+<div class="wrapper">
+  <div class="row row-offcanvas row-offcanvas-right" [ngClass]="{active: legendToggled}">
+    <div class="map-content">
+      <button type="button" class="btn btn-primary btn-sm d-md-none legend-button"
+        (click)="legendToggled = !legendToggled;">{{'profiles.selection.platform' | translate}}</button>
+      <div class="map">
+        <app-platform-map-viewer class="map" [mapId]="mapId" [platforms]="platforms"
+          [highlightPlatform]="highlightPlatform" (onSelectedPlatform)="onStationSelected($event)">
+        </app-platform-map-viewer>
+      </div>
+      <div class="platform-list sidebar-offcanvas">
+        <span>{{'profiles.selection.filter.label' | translate}} </span>
+        <input type="text" class="form-control" placeholder="{{'profiles.selection.filter.placeholder' | translate}}"
+          (ngModelChange)="adjustFilter($event)" [ngModel]="filterTerm">
+        <hr>
+        <div class="platform-entry" *ngFor="let platform of filteredPlatforms" (click)="showOnPlatform(platform)">
+          {{platform.label}}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

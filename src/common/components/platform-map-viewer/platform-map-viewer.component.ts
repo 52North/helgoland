@@ -1,17 +1,20 @@
-import { Component, SimpleChanges } from '@angular/core';
-import { PlatformMapViewerComponent as ToolboxPlatformMapViewerComponent } from '@helgoland/map';
-import * as L from 'leaflet';
+import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
+import { HelgolandPlatform } from "@helgoland/core";
+import { PlatformMapViewerComponent as ToolboxPlatformMapViewerComponent } from "@helgoland/map";
+import * as L from "leaflet";
 
 @Component({
   selector: 'app-platform-map-viewer',
   templateUrl: './platform-map-viewer.component.html',
   styleUrls: ['./platform-map-viewer.component.scss']
 })
-export class PlatformMapViewerComponent extends ToolboxPlatformMapViewerComponent {
+export class PlatformMapViewerComponent extends ToolboxPlatformMapViewerComponent implements OnChanges {
 
   private platformGeometry: L.GeoJSON;
 
   private platformLayer: L.MarkerClusterGroup;
+
+  @Input() highlightPlatform: HelgolandPlatform;
 
   ngAfterViewInit(): void {
     this.createMap();
@@ -19,10 +22,25 @@ export class PlatformMapViewerComponent extends ToolboxPlatformMapViewerComponen
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
     if (this.map) {
       if (changes.platforms) {
         this.drawCustomPlatforms();
+      }
+    }
+    if (changes.highlightPlatform && this.highlightPlatform) {
+      if (this.map) {
+        let match: any;
+        this.platformLayer.eachLayer((l: any) => {
+          l.closeTooltip();
+          if (l.feature.id === this.highlightPlatform.id) {
+            match = l;
+          }
+        });
+
+        if (match) {
+          this.map.setView(match.getLatLng(), 10, { animate: true });
+          setTimeout(() => match.openTooltip(), 300);
+        }
       }
     }
   }
@@ -32,7 +50,7 @@ export class PlatformMapViewerComponent extends ToolboxPlatformMapViewerComponen
       if (this.platformLayer) {
         this.map.removeLayer(this.platformLayer);
       }
-      this.platformLayer = L.markerClusterGroup({ animate: false });
+      this.platformLayer = L.markerClusterGroup({ animate: false, disableClusteringAtZoom: 10 });
 
       this.platformGeometry = L.geoJSON(null, {
         pointToLayer: (feature, latlng) => {
