@@ -92,7 +92,6 @@ export class CustomHoverLineComponent extends D3GraphHoverLineComponent {
         if (labelMapping.size > 0) {
           this.updateAggLabel(labelMapping);
           this.positionAggregatedLabel(this.aggLabel, mouse[0] + this.graphExtent.leftOffset, mouse[1]);
-          console.log(time);
           this.displayLabel(this.aggLabel, true);
         } else {
           this.displayLabel(this.aggLabel, false);

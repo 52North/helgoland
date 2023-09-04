@@ -125,11 +125,10 @@ export class TimespanSelectorComponent implements OnInit {
       this.showErrorMessage = false;
       this.timespan = new Timespan(dateTimeFrom.getTime(), dateTimeTo.getTime());
       this.timespanChange.emit(this.timespan);
-      console.log(this.timespan);
     } else {
       this.showErrorMessage = true;
       this.invalidTimespanSelected.emit(true);
-      console.log('Invalid timespan selected!');
+      console.error('Invalid timespan selected!');
     }
   }
 

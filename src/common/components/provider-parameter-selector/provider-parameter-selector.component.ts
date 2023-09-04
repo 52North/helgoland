@@ -92,7 +92,6 @@ export class ProviderParameterSeletorComponent implements OnInit {
   }
 
   public onPanelChange(event: NgbPanelChangeEvent) {
-    console.log(`Open ${event.panelId}`);
     const id = event.panelId.replace(this.selectorId + '-', '');
     const idx = parseInt(id, 10);
     if (isNaN(idx)) {

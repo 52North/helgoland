@@ -104,7 +104,6 @@ export class TrajectoriesViewComponent implements OnInit {
     }
 
     public onChartSelectionChangedFinished(range: D3SelectionRange) {
-        console.log('Range finished: ' + range.from + ' ' + range.to);
         this.selection = range;
         this.zoomToGeometry = {
             type: 'LineString',
