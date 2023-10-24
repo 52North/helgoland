@@ -9,7 +9,7 @@ RUN npm install
 
 # copy the app and build it
 COPY . /usr/src/app
-RUN npm run build:complete
+RUN NODE_OPTIONS="--max-old-space-size=8192" npm run build:complete
 
 FROM nginx:alpine
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
