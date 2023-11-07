@@ -70,7 +70,7 @@
 				"label": "Projektstation",
 				"placeholder": "Projektstationen durchsuchen"
 			},
-			"load-timestamps": "Läd die verfügbaren Zeitpunkte",
+			"load-timestamps": "Laden der verfügbaren Zeitpunkte",
 			"parameter-timestamp": "",
 			"phenomenon-placeholder": "Wähle Phänomen",
 			"phenomenon-selection-hint": "Wähle ein Phänomen an dieser Station",

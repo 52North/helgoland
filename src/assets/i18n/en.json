@@ -70,7 +70,7 @@
 				"label": "Project station",
 				"placeholder": "Search project station"
 			},
-			"load-timestamps": "Loading valid time stamps",
+			"load-timestamps": "Loading valid timestamps",
 			"parameter-timestamp": "",
 			"phenomenon-placeholder": "Choose phenomenon",
 			"phenomenon-selection-hint": "Choose a phenomenon on this platform",

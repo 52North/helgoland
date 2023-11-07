@@ -9,6 +9,7 @@
 
     <div class="container">
       <div>{{'profiles.selection.parameter-timestamp' | translate}}</div>
+      <div *ngIf="stationaryPlatformLoading">{{'profiles.selection.load-timestamps' | translate}}...</div>
       <div *ngFor="let ds of profileDatasets | orderBy: 'label'">
         <div class="row collapse-toggle" (click)="ds.expanded = !ds.expanded;">
           <div class="collapse-icon">

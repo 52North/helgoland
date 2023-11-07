@@ -77,6 +77,7 @@ export class ProfilesMapSelectionComponent {
     this.selectedPlatform = platform;
     this.selectedPhenomenon = undefined;
     this.stationaryPlatformLoading = true;
+    this.profileDatasets = [];
 
     forkJoin(platform.datasetIds.map(id => this.servicesConnector.getDataset({ url: this.selectedProviderUrl, id }, { type: DatasetType.Profile })))
       .subscribe(datasets => {
