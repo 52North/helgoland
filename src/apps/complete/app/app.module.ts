@@ -78,7 +78,10 @@ PlotlyViaCDNModule.setPlotlyBundle('basic');
     ProfilesModule,
     InfoModule,
     HttpClientModule,
-    HelgolandCachingModule,
+    HelgolandCachingModule.forRoot({
+      cachingDurationInMilliseconds: 300000,
+      getDataCacheActive: false
+    }),
     HelgolandBasicAuthModule,
     NgbTabsetModule,
     NgbAccordionModule,
