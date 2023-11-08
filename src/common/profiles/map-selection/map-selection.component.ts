@@ -79,7 +79,14 @@ export class ProfilesMapSelectionComponent {
     this.stationaryPlatformLoading = true;
     this.profileDatasets = [];
 
-    forkJoin(platform.datasetIds.map(id => this.servicesConnector.getDataset({ url: this.selectedProviderUrl, id }, { type: DatasetType.Profile })))
+
+    forkJoin(platform.datasetIds
+      .map(id => {
+        // Minimal set of properties needed for this view
+        let idWithFilter = id + "?select=id,parameters,feature,extras,label,datasetType,observationType,firstValue,lastValue";
+        let datasets = this.servicesConnector.getDataset({ url: this.selectedProviderUrl, id: idWithFilter }, { type: DatasetType.Profile });
+        return datasets;
+      }))
       .subscribe(datasets => {
         this.profileDatasets = datasets;
         this.phenomenons = datasets.map(ds => ds.parameters.phenomenon);
@@ -91,7 +98,7 @@ export class ProfilesMapSelectionComponent {
     this.selectedPhenomenon = phenomenon;
     const profileDs = this.profileDatasets.find(e => e.parameters.phenomenon.id === phenomenon.id);
     if (profileDs) {
-      this.setProfileDataset(profileDs);
+      this.selectedProfileDs = profileDs;
     }
   }
 
@@ -102,19 +109,6 @@ export class ProfilesMapSelectionComponent {
 
   showOnPlatform(platform: HelgolandPlatform) {
     this.highlightPlatform = platform;
-  }
-
-  private setProfileDataset(profile: HelgolandProfile) {
-    this.selectedProfileDs = profile;
-    const timespan = new Timespan(profile.firstValue.timestamp, profile.lastValue.timestamp);
-    this.servicesConnector.getDatasetData(profile, timespan).subscribe(data => {
-      this.stationaryTimestamps = [];
-      data.values.forEach(entry => {
-        this.stationaryTimestamps.push({
-          time: entry.timestamp
-        });
-      });
-    });
   }
 
   public profileSelected(timestamp: number) {

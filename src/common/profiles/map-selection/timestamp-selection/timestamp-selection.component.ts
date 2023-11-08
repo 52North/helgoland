@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ColorService, HelgolandProfile, HelgolandServicesConnector, TimedDatasetOptions, Timespan } from '@helgoland/core';
+import { ColorService, HelgolandProfile, HelgolandServicesConnector, HelgolandDataFilter, TimedDatasetOptions, Timespan } from '@helgoland/core';
 
 import { ProfilesService } from '../../services/profiles.service';
 
@@ -21,7 +21,28 @@ export class TimestampSelectionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Hook into helgoland-toolbox functionality to add select=timestamp parameter
+    (this.servicesConnector as any).getConnector(this.dataset.url).subscribe((connector: any) => {
+      if (connector.api.getDatasetDataRaw == undefined) {
+        connector.api.getDatasetDataRaw = connector.api.getDatasetData;
+        connector.api.getDatasetData = (id: string, apiUrl: string, params?: any) => {
+          params["select"] = "timestamp"
+          return connector.api.getDatasetDataRaw(id, apiUrl, params)
+        }
+      }
+    });
+
     this.loadTimestamps();
+  }
+
+  ngOnDestroy() {
+    // Remove Hook into helgoland-toolbox
+    (this.servicesConnector as any).getConnector(this.dataset.url).subscribe((connector: any) => {
+      if (connector.api.getDatasetDataRaw != undefined) {
+        connector.api.getDatasetData = connector.api.getDatasetDataRaw;
+        connector.api.getDatasetDataRaw = undefined;
+      };
+    });
   }
 
   profileSelected(timestamp: number) {
@@ -50,7 +71,6 @@ export class TimestampSelectionComponent implements OnInit {
           this.groupedTimestamps.set(year, [entry])
         }
       });
-
     });
   }
 
