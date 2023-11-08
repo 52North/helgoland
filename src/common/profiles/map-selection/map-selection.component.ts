@@ -18,7 +18,7 @@ import { MapCache } from "@helgoland/map";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { forkJoin } from "rxjs";
 
-import { ProfilesService } from "../services/profiles.service";
+import { ProfilesService, ProfileMapState } from "../services/profiles.service";
 
 
 @Component({
@@ -46,10 +46,13 @@ export class ProfilesMapSelectionComponent {
 
   public legendToggled: boolean;
   public mapId = 'platform-map';
+  public mapBounds: Array<object> ;
 
   public filterTerm: string;
   public filteredPlatforms: HelgolandPlatform[];
   public highlightPlatform: HelgolandPlatform;
+
+  private mapState : ProfileMapState;
 
   constructor(
     private settingsSrvc: SettingsService<Settings>,
@@ -60,6 +63,8 @@ export class ProfilesMapSelectionComponent {
     private color: ColorService,
     private mapCache: MapCache
   ) {
+    this.mapState = this.profilesSrvc.getMapState();
+
     this.selectedProviderUrl = this.settingsSrvc.getSettings().datasetApis[0].url;
     this.stationFilter = {
       type: DatasetType.Profile,
@@ -69,7 +74,21 @@ export class ProfilesMapSelectionComponent {
     this.servicesConnector.getPlatforms(this.selectedProviderUrl, this.stationFilter).subscribe(res => {
       this.filteredPlatforms = res;
       this.platforms = res;
+      this.adjustFilter(this.mapState.lastSearchTerm);
     });
+
+    // restore bounds of mapView
+    this.mapBounds = this.mapState.bounds;
+  }
+
+  ngOnDestroy() {
+    // store mapState
+    this.profilesSrvc.saveMapState(this.mapState);
+  }
+
+  public onCloseMap(currentBounds: Array<object>) {
+    // Store current Map bounds
+    this.mapState.bounds = currentBounds;
   }
 
   public onStationSelected(platform: HelgolandPlatform) {
@@ -103,6 +122,7 @@ export class ProfilesMapSelectionComponent {
   }
 
   adjustFilter(ft: string) {
+    this.mapState.lastSearchTerm = ft;
     this.filterTerm = ft;
     this.filteredPlatforms = this.platforms.filter(e => e.label.toLocaleLowerCase().indexOf(this.filterTerm.toLocaleLowerCase()) >= 0);
   }

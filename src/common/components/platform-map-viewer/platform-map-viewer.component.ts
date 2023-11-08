@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
 import { HelgolandPlatform } from "@helgoland/core";
 import { PlatformMapViewerComponent as ToolboxPlatformMapViewerComponent } from "@helgoland/map";
 import * as L from "leaflet";
@@ -16,9 +16,23 @@ export class PlatformMapViewerComponent extends ToolboxPlatformMapViewerComponen
 
   @Input() highlightPlatform: HelgolandPlatform;
 
+  @Input() bounds: Array<L.LatLng>;
+
+  @Output()
+  public onClose: EventEmitter<Array<L.LatLng>> = new EventEmitter();
+
   ngAfterViewInit(): void {
     this.createMap();
     this.drawCustomPlatforms();
+  }
+
+  ngOnDestroy() {
+    let bounds = this.map.getBounds();
+
+    this.onClose.emit([
+       new L.LatLng(bounds.getNorth(), bounds.getEast()),
+       new L.LatLng(bounds.getSouth(), bounds.getWest())
+    ]);
   }
 
   public ngOnChanges(changes: SimpleChanges) {
@@ -83,7 +97,12 @@ export class PlatformMapViewerComponent extends ToolboxPlatformMapViewerComponen
       })
       this.platformLayer.addLayer(this.platformGeometry);
       this.map.addLayer(this.platformLayer);
-      this.map.fitBounds(this.platformGeometry.getBounds());
+
+      if (this.bounds) {
+        this.map.fitBounds(L.latLngBounds(this.bounds));
+      } else {
+        this.map.fitBounds(this.platformGeometry.getBounds());
+      }
     }
   }
 

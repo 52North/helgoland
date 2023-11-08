@@ -3,9 +3,19 @@ import { ColorService, DatasetService, LocalStorage, TimedDatasetOptions } from 
 
 const PROFILES_OPTIONS_CACHE_PARAM = 'profilesOptions';
 const PROFILES_IDS_CACHE_PARAM = 'profilesIds';
+const PROFILES_MAPSTATE_PARAM = 'profilesMapState';
+
+
+export class ProfileMapState {
+    public lastSearchTerm: string = undefined;
+    public bounds: Array<object> = undefined;
+}
+
 
 @Injectable()
 export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> {
+
+    private mapState : ProfileMapState;
 
     constructor(
         protected localStorage: LocalStorage,
@@ -29,6 +39,15 @@ export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> 
         }
     }
 
+    public getMapState() {
+      return this.mapState;
+    }
+
+    public saveMapState(mapState: ProfileMapState) {
+      this.mapState = mapState;
+      this.saveState();
+    }
+
     public hasTimedDataset(internalId: string, time: number) {
         return this.datasetOptions.has(internalId) && this.datasetOptions.get(internalId).find(e => e.timestamp === time);
     }
@@ -40,12 +59,14 @@ export class ProfilesService extends DatasetService<Array<TimedDatasetOptions>> 
     protected saveState(): void {
         this.localStorage.save(PROFILES_IDS_CACHE_PARAM, this.datasetIds);
         this.localStorage.save(PROFILES_OPTIONS_CACHE_PARAM, Array.from(this.datasetOptions.values()));
+        this.localStorage.save(PROFILES_MAPSTATE_PARAM, this.mapState);
     }
 
     protected loadState(): void {
         const options = this.localStorage.loadArray<Array<TimedDatasetOptions>>(PROFILES_OPTIONS_CACHE_PARAM) || [];
         options.forEach(e => this.datasetOptions.set(e[0].internalId, e));
         this.datasetIds = this.localStorage.loadArray<string>(PROFILES_IDS_CACHE_PARAM) || [];
+        this.mapState = this.localStorage.load<ProfileMapState>(PROFILES_MAPSTATE_PARAM) || new ProfileMapState();
     }
 
     public removeDatasetOptions(options: TimedDatasetOptions) {

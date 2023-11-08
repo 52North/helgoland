@@ -66,13 +66,13 @@
         (click)="legendToggled = !legendToggled;">{{'profiles.selection.platform' | translate}}</button>
       <div class="map">
         <app-platform-map-viewer class="map" [mapId]="mapId" [platforms]="platforms"
-          [highlightPlatform]="highlightPlatform" (onSelectedPlatform)="onStationSelected($event)">
+          [highlightPlatform]="highlightPlatform" [bounds]="mapBounds" (onSelectedPlatform)="onStationSelected($event)" (onClose)="onCloseMap($event)">
         </app-platform-map-viewer>
       </div>
       <div class="platform-list sidebar-offcanvas">
         <span>{{'profiles.selection.filter.label' | translate}} </span>
         <input type="text" class="form-control" placeholder="{{'profiles.selection.filter.placeholder' | translate}}"
-          (ngModelChange)="adjustFilter($event)" [ngModel]="filterTerm">
+          (ngModelChange)="adjustFilter($event)" [(ngModel)]="filterTerm">
         <hr>
         <div class="platform-entry" *ngFor="let platform of filteredPlatforms" (click)="showOnPlatform(platform)">
           {{platform.label}}
