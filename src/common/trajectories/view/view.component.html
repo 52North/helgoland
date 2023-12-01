@@ -86,6 +86,8 @@
             tooltip="{{'trajectories.view.graph-ticks-tooltip' | translate}}" (onToggled)="onAxisTypeChanged($event)">
           </n52-string-toggler>
         </div>
+        <button type="button" class="btn btn-light" (click)="zoomOut()">Zoom Out
+        </button>
         <hr>
         <div class="chart-control">
           <n52-bool-toggler [value]="graphOptions.dotted" icon="line-chart"
