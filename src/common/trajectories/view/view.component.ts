@@ -28,6 +28,23 @@ export class TrajectoriesViewComponent implements OnInit {
 
     public zoomToGeometry: GeoJSON.LineString;
 
+    public zoomOut() {
+       // Calculate the new timespan by reducing the current timespan
+       const newTimespan = new Timespan(
+         this.timespan.from - (this.timespan.to - this.timespan.from) / 2,
+           this.timespan.to + (this.timespan.to - this.timespan.from) / 2
+    );
+
+       // Fetch new data based on the updated timespan
+        this.servicesConnector.getDatasetData(this.trajectory, newTimespan).subscribe(
+          data => {
+        this.graphData = data.values;
+        this.timespan = new Timespan(newTimespan.from, newTimespan.to);
+        this.selectedTimespan = new Timespan(newTimespan.from, newTimespan.to);
+        }
+      );
+   }
+
     public timespan: Timespan;
 
     public datasetIds: Array<string>;
