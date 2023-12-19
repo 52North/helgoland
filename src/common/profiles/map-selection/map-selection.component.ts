@@ -46,9 +46,9 @@ export class ProfilesMapSelectionComponent {
 
   public legendToggled: boolean;
   public mapId = 'platform-map';
-  public mapBounds: Array<object> ;
+  public mapBounds: Array<object>;
 
-  public filterTerm: string;
+  public filterTerm: string = "";
   public filteredPlatforms: HelgolandPlatform[];
   public highlightPlatform: HelgolandPlatform;
 
@@ -74,7 +74,9 @@ export class ProfilesMapSelectionComponent {
     this.servicesConnector.getPlatforms(this.selectedProviderUrl, this.stationFilter).subscribe(res => {
       this.filteredPlatforms = res;
       this.platforms = res;
-      this.adjustFilter(this.mapState.lastSearchTerm);
+      if (this.mapState.lastSearchTerm) {
+        this.adjustFilter(this.mapState.lastSearchTerm);
+      }
     });
 
     // restore bounds of mapView
