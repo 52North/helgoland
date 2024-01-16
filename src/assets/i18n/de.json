@@ -1,4 +1,6 @@
-{
+{	
+	"imprint": "Impressum",
+	"privacy-statement": "Datenschutzerklärung",
 	"basic-auth": {
 		"header": "Basic-Auth für Service-URL",
 		"password": "Passwort",

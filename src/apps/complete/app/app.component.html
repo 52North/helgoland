@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-secondary">
+<nav class="navbar navbar-expand-sm navbar-light">
   <a class="navbar-brand" href="#">
-    <img src="assets/bsh-logo.png">
+    <img src="assets/bsh-logo.svg">
   </a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +18,18 @@
         <a routerLink="/profiles" class="nav-link">{{'navigation.profiles.main' | translate}}</a>
       </li>
     </ul>
-    <n52-local-selector *ngIf="languageList" [languageList]="languageList"></n52-local-selector>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a href="https://gdi-dev.bsh.de/impressum" class="nav-link"><span class="fa fa-external-link-alt"></span>&nbsp;{{'imprint' | translate}}</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a href="https://gdi-dev.bsh.de/datenschutz" class="nav-link"><span class="fa fa-external-link-alt"></span>&nbsp;{{'privacy-statement' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <n52-local-selector *ngIf="languageList" [languageList]="languageList"></n52-local-selector>
+      </li>
+    </ul>
+    
   </div>
 </nav>
 <div class="content">

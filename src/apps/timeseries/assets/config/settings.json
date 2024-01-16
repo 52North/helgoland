@@ -24,7 +24,7 @@
   "datasetApis": [
     {
       "name": "test",
-      "url": "https://www.geoseaportal.de/52n-sos-bsh-webapp/api/"
+      "url": "https://gdi.bsh.de/52n-sos-bsh-webapp/api/"
     }
   ],
   "languages": [{

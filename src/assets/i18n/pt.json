@@ -1,4 +1,6 @@
 {
+	"imprint": "Impressão",
+	"privacy-statement": "Declaração de privacidade",
 	"basic-auth": {
 		"header": "",
 		"password": "",

@@ -2,4 +2,10 @@
     .btn-primary {
         color: white;
     }
+    .btn-secondary {
+        background-color: white;
+        color: var(--bsh-blau70);
+        border: none;
+        border-radius: 0.375rem;
+    }
 }

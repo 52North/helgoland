@@ -16,4 +16,21 @@
             min-height: 0;
         }
     }
+
+    .nav {
+        
+        .nav-link {
+            border-radius: 0 0 0.375rem 0.375rem;
+
+            &:hover {
+                background-color: var(--bsh-blau40);
+            }
+
+            &.active {
+                color: white;
+                background-color:var(--bsh-blau);
+            }
+        }
+
+    }
 }

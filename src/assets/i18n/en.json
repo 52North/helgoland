@@ -1,4 +1,6 @@
 {
+	"imprint": "Imprint",
+	"privacy-statement": "Privacy Statement",
 	"basic-auth": {
 		"header": "Basic-Auth for service url",
 		"password": "Password",

@@ -1,17 +1,26 @@
 $enable-rounded: false;
 
-$primary: rgba(102, 197, 228, 1.0);
-$secondary: rgba(98, 98, 80, 1.0);
+
+$bsh-blau: #1b5291;
+$bsh-blau80:#4874a7;
+$bsh-blau70:#5f85b2;
+$bsh-blau40:#a3b9d3;
+$bsh-blau20:#d1dce9;
+$bsh-blau10:#e8edf4;
+$bg-color:#01659d;
+
+$primary: $bsh-blau;
+$secondary: $bsh-blau70;
 
 $component-active-color: $secondary;
 $component-active-bg: $primary;
 $link-color: $secondary;
 
-$text-color: $secondary;
-$hover-background-color: lighten($primary, 20%);
-$hover-color: $secondary;
-$selection-background-color: $primary;
-$selection-color: $secondary;
+$text-color: $bsh-blau;
+$hover-background-color: $bsh-blau40;
+$hover-color: white;
+$selection-background-color: $bsh-blau70;
+$selection-color: white;
 
 $responsive-mobile-width: 768px;
 $responsive-tablet-width: 992px;

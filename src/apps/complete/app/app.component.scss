@@ -1,19 +1,40 @@
 @import "../../../variables";
 
+
 :host {
+    --bsh-blau:#1b5291;
+    --bsh-blau80:#4874a7;
+    --bsh-blau70:#5f85b2;
+    --bsh-blau40:#a3b9d3;
+    --bsh-blau20:#d1dce9;
+    --bsh-blau10:#e8edf4;
+    --bg-color:#01659d;
+
+    $nav-pills-link-active-color: var(--bsh-blau);
+
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
 
+
     .navbar {
         flex: 0 0 56px;
+        background-color: var(--bsh-blau);
+
+
+        .nav-item {
+            background-color: white;
+            margin-left: 10px;
+            border-radius: 0.375rem;
+        }
 
         .nav-link {
-            color: white;
+            color: var(--bsh-blau);
+            border-radius: 0.375rem;
 
             &:hover {
-                background-color: darken($primary, 20);
+                background-color: var(--bsh-blau40);
             }
 
             &.active {
@@ -28,8 +49,10 @@
             padding-bottom: 0;
 
             img {
-                height: 100%;
-                width: auto;
+                height: 200%;
+                background: white;
+                padding: 0.5rem;
+                margin-top: -1rem;
             }
         }
 
