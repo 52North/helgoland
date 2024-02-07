@@ -64,7 +64,8 @@ export class CustomProfileGraphComponent extends DatasetPresenterComponent<Timed
     ],
     displaylogo: false,
     showTips: false,
-    scrollZoom: true
+    scrollZoom: true,
+    responsive: true
   };
 
   constructor(
