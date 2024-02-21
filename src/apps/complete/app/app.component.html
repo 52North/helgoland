@@ -2,11 +2,11 @@
   <a class="navbar-brand" href="#">
     <img src="assets/bsh-logo.svg">
   </a>
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+  data-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed" >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngClass]="{'collapse': navbarCollapsed, 'navbar-collapse': true}">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="/timeseries" class="nav-link">{{'navigation.timeseries.main' | translate}}</a>
@@ -20,10 +20,10 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item" routerLinkActive="active">
-        <a href="https://gdi-dev.bsh.de/impressum" class="nav-link"><span class="fa fa-external-link-alt"></span>&nbsp;{{'imprint' | translate}}</a>
+        <a href="https://gdi-dev.bsh.de/52n-sos-bsh-webapp/impressum" class="nav-link"><span class="fa fa-external-link-alt"></span>&nbsp;{{'imprint' | translate}}</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a href="https://gdi-dev.bsh.de/datenschutz" class="nav-link"><span class="fa fa-external-link-alt"></span>&nbsp;{{'privacy-statement' | translate}}</a>
+        <a href="https://gdi-dev.bsh.de/52n-sos-bsh-webapp/datenschutz" class="nav-link"><span class="fa fa-external-link-alt"></span>&nbsp;{{'privacy-statement' | translate}}</a>
       </li>
       <li class="nav-item">
         <n52-local-selector *ngIf="languageList" [languageList]="languageList"></n52-local-selector>

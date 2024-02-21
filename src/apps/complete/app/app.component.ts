@@ -11,6 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
 
+  navbarCollapsed = true;
+
   public languageList: Language[];
 
   constructor(

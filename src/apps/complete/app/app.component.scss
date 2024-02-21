@@ -62,4 +62,28 @@
         flex: 1;
         position: relative;
     }
+
+    @media (width < 576px) {
+        .navbar-brand {
+            margin-bottom: 25px;
+        }
+
+        #navbarSupportedContent {
+            margin-top: 20px;
+        }
+
+        .nav-item {
+            margin-top: 4px;
+        }
+    }
+    @media (width < 170px) {
+
+        #navbarSupportedContent {
+            margin-top: 4px;
+        }
+
+        .navbar-toggler {
+            margin-top: 56px;
+        }
+    }
 }
