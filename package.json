@@ -47,7 +47,7 @@
     "@helgoland/selector": "^10.0.2",
     "@helgoland/time": "^10.0.2",
     "@helgoland/time-range-slider": "^10.0.2",
-    "@ng-bootstrap/ng-bootstrap": "^4.2.1",
+    "@ng-bootstrap/ng-bootstrap": "^5.3.0",
     "@ngx-translate/http-loader": "^2.0.1",
     "archiver": "^3.1.1",
     "bootstrap": "^4.3.1",
