@@ -126,7 +126,9 @@ export class ProfilesMapSelectionComponent {
   adjustFilter(ft: string) {
     this.mapState.lastSearchTerm = ft;
     this.filterTerm = ft;
-    this.filteredPlatforms = this.platforms.filter(e => e.label.toLocaleLowerCase().indexOf(this.filterTerm.toLocaleLowerCase()) >= 0);
+    if (this.platforms) {
+      this.filteredPlatforms = this.platforms.filter(e => e.label.toLocaleLowerCase().indexOf(this.filterTerm.toLocaleLowerCase()) >= 0);
+    }
   }
 
   showOnPlatform(platform: HelgolandPlatform) {
