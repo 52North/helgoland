@@ -127,6 +127,10 @@
       gap: 10px;
       display: flex;
       align-items: center;
+
+      span:hover {
+        cursor: pointer;
+      }
     }
 
     .small-label {

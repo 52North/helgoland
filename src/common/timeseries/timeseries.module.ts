@@ -21,7 +21,6 @@ import {
     NgbDropdownModule,
     NgbModalModule,
     NgbTabsetModule,
-    NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -109,7 +108,6 @@ export const nestedTimeseriesRoutes: Routes = [
         NgbDropdownModule,
         NgbModalModule,
         NgbTabsetModule,
-        NgbTooltipModule,
         RouterModule,
         TranslateModule,
     ],

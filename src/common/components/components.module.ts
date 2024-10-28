@@ -14,7 +14,6 @@ import {
   NgbDatepickerModule,
   NgbDropdownModule,
   NgbTimepickerModule,
-  NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -70,7 +69,6 @@ import { TimespanSelectorComponent } from './timespan-selector/timespan-selector
     NgbDatepickerModule,
     NgbDropdownModule,
     NgbTimepickerModule,
-    NgbTooltipModule,
     TranslateModule.forChild()
   ],
   declarations: [

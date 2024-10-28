@@ -126,13 +126,13 @@
 					"last-value-at": "Last value at",
 					"no-data-available": "No data available"
 				},
-				"extended-infos-tooltip": "",
+				"extended-infos-tooltip": "Further information",
 				"header": "Legend",
-				"map-marker-tooltip": "",
+				"map-marker-tooltip": "Show position",
 				"remove-all": "Remove series",
-				"remove-timeseries-tooltip": "",
+				"remove-timeseries-tooltip": "Remove timeseries",
 				"show-geometry-header": "Position of the station",
-				"style-edit-tooltip": "",
+				"style-edit-tooltip": "Edit style",
 				"style-edit": {
 					"generalize": "Generalize data",
 					"header": "Change style of this timeseries",
@@ -142,7 +142,7 @@
 					"pointRadius": "Point radius",
 					"zeroBasedYAxis": "Timeseries zero based"
 				},
-				"toggle-visibility-tooltip": ""
+				"toggle-visibility-tooltip": "Toggle visibility"
 			},
 			"options": {
 				"hovering": {
