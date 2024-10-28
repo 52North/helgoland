@@ -11,21 +11,21 @@
         [supportStations]="true" [filter]="providerFilter" (onServiceAdded)="serviceAdded($event)"></n52-custom-service-provider-manager>
       </ng-template>
     </ngb-tab> -->
-    <ngb-tab id="selectByCategory" [disabled]="selectedService == undefined">
-      <ng-template ngbTabTitle>{{'timeseries.list-selection.category' | translate}}</ng-template>
-      <ng-template ngbTabContent>
-        <div class="scrollable container">
-          <n52-custom-list-selector [parameters]="categoryParams" [selectorId]="'category'" [filter]="parameterFilter"
-            [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)">
-          </n52-custom-list-selector>
-        </div>
-      </ng-template>
-    </ngb-tab>
     <ngb-tab id="selectByStation" [disabled]="selectedService == undefined">
       <ng-template ngbTabTitle>{{'timeseries.list-selection.station' | translate}}</ng-template>
       <ng-template ngbTabContent>
         <div class="scrollable container">
           <n52-custom-list-selector [parameters]="stationParams" [selectorId]="'station'" [filter]="parameterFilter"
+            [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)">
+          </n52-custom-list-selector>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="selectByCategory" [disabled]="selectedService == undefined">
+      <ng-template ngbTabTitle>{{'timeseries.list-selection.category' | translate}}</ng-template>
+      <ng-template ngbTabContent>
+        <div class="scrollable container">
+          <n52-custom-list-selector [parameters]="categoryParams" [selectorId]="'category'" [filter]="parameterFilter"
             [providerList]="selectedProviderList" (onDatasetSelection)="onDatasetSelected($event)">
           </n52-custom-list-selector>
         </div>

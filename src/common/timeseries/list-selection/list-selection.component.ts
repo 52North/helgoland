@@ -26,26 +26,26 @@ import { TimeseriesService } from './../services/timeseries.service';
 })
 export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
 
+  public stationParams: Array<ListSelectorParameter> = [{
+    type: MultiServiceFilterEndpoint.feature,
+    header: this.translate.instant('list-selection.parameter.station')
+  }, {
+    type: MultiServiceFilterEndpoint.phenomenon,
+    header: this.translate.instant('list-selection.parameter.phenomenon')
+  },{
+    type: MultiServiceFilterEndpoint.category,
+    header: this.translate.instant('list-selection.parameter.category')
+  }, {
+    type: MultiServiceFilterEndpoint.procedure,
+    header: this.translate.instant('list-selection.parameter.sensor')
+  }];
+
   public categoryParams: Array<ListSelectorParameter> = [{
     type: MultiServiceFilterEndpoint.category,
     header: this.translate.instant('list-selection.parameter.category')
   }, {
     type: MultiServiceFilterEndpoint.feature,
     header: this.translate.instant('list-selection.parameter.station')
-  }, {
-    type: MultiServiceFilterEndpoint.phenomenon,
-    header: this.translate.instant('list-selection.parameter.phenomenon')
-  }, {
-    type: MultiServiceFilterEndpoint.procedure,
-    header: this.translate.instant('list-selection.parameter.sensor')
-  }];
-
-  public stationParams: Array<ListSelectorParameter> = [{
-    type: MultiServiceFilterEndpoint.feature,
-    header: this.translate.instant('list-selection.parameter.station')
-  }, {
-    type: MultiServiceFilterEndpoint.category,
-    header: this.translate.instant('list-selection.parameter.category')
   }, {
     type: MultiServiceFilterEndpoint.phenomenon,
     header: this.translate.instant('list-selection.parameter.phenomenon')
@@ -129,7 +129,7 @@ export class TimeseriesListSelectionComponent implements OnInit, AfterViewInit {
       id: service.id,
       url: service.apiUrl
     }];
-    const id = 'selectByCategory';
+    const id = 'selectByStation';
     this.tabset.tabs.find(entry => entry.id === id).disabled = false;
     this.tabset.select(id);
   }
