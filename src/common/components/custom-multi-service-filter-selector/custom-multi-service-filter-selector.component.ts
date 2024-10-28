@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HelgolandServicesConnector } from '@helgoland/core';
-import { MultiServiceFilterSelectorComponent } from '@helgoland/selector';
+import { HelgolandParameterFilter, HelgolandServicesConnector } from '@helgoland/core';
+import { FilteredParameter, MultiServiceFilterSelectorComponent } from '@helgoland/selector';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -17,4 +17,22 @@ export class CustomMultiServiceFilterSelectorComponent extends MultiServiceFilte
     super(servicesConnector, translate);
   }
 
+
+  protected setItems(
+    res: FilteredParameter[],
+    prevfilter: HelgolandParameterFilter,
+    url: string,
+    service?: string,
+  ): void {
+
+    // try to identify depth-labels and sort them as numbers
+    if (/^-?[\d.]+m$/.test(res[0].label)) {
+      // sort numerically
+      res = res.sort((a, b) => parseFloat(b.label) - parseFloat(a.label));
+    } else {
+      // sort alphabetically by default
+      res = res.sort();
+    }
+    super.setItems(res, prevfilter, url, service);
+  }
 }
