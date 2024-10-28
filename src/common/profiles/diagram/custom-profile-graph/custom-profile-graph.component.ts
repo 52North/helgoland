@@ -222,7 +222,7 @@ export class CustomProfileGraphComponent extends DatasetPresenterComponent<Timed
         title: dataset.uom,
         zeroline: true,
         hoverformat: '.2f',
-        showline: false,
+        showline: true,
         range: [range[0], range[1]],
         overlaying: '',
         // rangemode: 'tozero',
