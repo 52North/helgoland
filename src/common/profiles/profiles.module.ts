@@ -8,7 +8,7 @@ import {
   HelgolandDatasetlistModule,
   HelgolandLabelMapperModule,
 } from '@helgoland/depiction';
-import { HelgolandMapSelectorModule, HelgolandMapViewModule } from '@helgoland/map';
+import { HelgolandMapControlModule, HelgolandMapSelectorModule, HelgolandMapViewModule } from '@helgoland/map';
 import { HelgolandModificationModule } from '@helgoland/modification';
 import { HelgolandPlotlyModule } from '@helgoland/plotly';
 import { HelgolandSelectorModule } from '@helgoland/selector';
@@ -71,6 +71,7 @@ const profilesRoutes: Routes = [
     FormsModule,
     HelgolandCoreModule,
     HelgolandPlotlyModule,
+    HelgolandMapControlModule,
     HelgolandMapViewModule,
     HelgolandDatasetlistModule,
     HelgolandDatasetDownloadModule,

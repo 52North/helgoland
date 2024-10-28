@@ -68,6 +68,8 @@
         <app-platform-map-viewer class="map" [mapId]="mapId" [platforms]="platforms"
           [highlightPlatform]="highlightPlatform" [bounds]="mapBounds" (onSelectedPlatform)="onStationSelected($event)" (onClose)="onCloseMap($event)">
         </app-platform-map-viewer>
+        <n52-zoom-control class="zoom-control" [mapId]="'platform-map'"></n52-zoom-control>
+        <n52-locate-button class="locate-control" [mapId]="'platform-map'"></n52-locate-button>
       </div>
       <div class="platform-list sidebar-offcanvas">
         <span>{{'profiles.selection.filter.label' | translate}} </span>
