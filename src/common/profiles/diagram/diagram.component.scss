@@ -1,6 +1,10 @@
 :host {
     overflow: hidden;
     flex: 1;
+
+    .chart {
+        height: 100%;
+    }
     
     .container-fluid {
         position: absolute;
