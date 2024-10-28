@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Timespan } from '@helgoland/core';
-import { NgbDatepickerI18n, NgbDateStruct, NgbTimeStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerI18n, NgbDateStruct, NgbTimeStruct, NgbDateParserFormatter, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { CustomDateParserFormatter } from "./timespan-selector-date-parser-formatter.service"
 
@@ -54,7 +54,7 @@ export class LocalizedDatepickerI18n extends NgbDatepickerI18n {
   }
 
   getDayAriaLabel(date: NgbDateStruct): string {
-    return `${date.day}-${date.month}-${date.year}`;
+    return `${date.year}-${date.month}-${date.day}`;
   }
 }
 
@@ -62,7 +62,8 @@ export class LocalizedDatepickerI18n extends NgbDatepickerI18n {
   selector: 'n52-timespan-selector',
   templateUrl: './timespan-selector.component.html',
   styleUrls: ['./timespan-selector.component.scss'],
-  providers: [{provide: NgbDatepickerI18n, useClass: LocalizedDatepickerI18n},
+  providers: [
+    {provide: NgbDatepickerI18n, useClass: LocalizedDatepickerI18n},
     {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter}]
 })
 export class TimespanSelectorComponent implements OnInit {
@@ -100,22 +101,20 @@ export class TimespanSelectorComponent implements OnInit {
     };
 
     const dateTimeFrom = new Date(this.dateFrom.year, this.dateFrom.month - 1, this.dateFrom.day,
-      this.timeFrom.hour, this.timeFrom.minute, this.timeFrom.second);
+    this.timeFrom.hour, this.timeFrom.minute, this.timeFrom.second);
     const dateTimeTo = new Date(this.dateTo.year, this.dateTo.month - 1, this.dateTo.day,
-      this.timeTo.hour, this.timeTo.minute, this.timeTo.second);
+    this.timeTo.hour, this.timeTo.minute, this.timeTo.second);
 
     this.validateTimespan(dateTimeFrom, dateTimeTo);
   }
 
   public timespanChanged() {
     const dateTimeFrom = new Date(this.dateFrom.year, this.dateFrom.month - 1, this.dateFrom.day,
-      this.timeFrom.hour, this.timeFrom.minute, this.timeFrom.second);
+    this.timeFrom.hour, this.timeFrom.minute, this.timeFrom.second);
     const dateTimeTo = new Date(this.dateTo.year, this.dateTo.month - 1, this.dateTo.day,
-      this.timeTo.hour, this.timeTo.minute, this.timeTo.second);
+    this.timeTo.hour, this.timeTo.minute, this.timeTo.second);
 
-      this.validateTimespan(dateTimeFrom, dateTimeTo);
-
-    
+    this.validateTimespan(dateTimeFrom, dateTimeTo);
   }
 
   public validateTimespan(dateTimeFrom: Date, dateTimeTo: Date){
