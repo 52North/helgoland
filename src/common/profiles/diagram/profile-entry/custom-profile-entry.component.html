@@ -18,7 +18,7 @@
     <div class="dataset-item">
       <span
         [ngStyle]="{'color': item.color}">{{item.timestamp | date: 'short': null : translateSrvc.currentLang}}</span>
-      <span class="fa" [ngClass]="{'fa-eye-slash': item.visible, 'fa-eye': !item.visible}"
+      <span class="fa" [ngClass]="{'fa-eye-slash': !item.visible, 'fa-eye': item.visible}"
         (click)="toggleVisibility(item); $event.stopPropagation();"
         title="{{'profiles.legend.visibility' | translate}}"></span>
       <span class="fa fa-pencil-alt" (click)="editDatasetOptions(item); $event.stopPropagation();"

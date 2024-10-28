@@ -2,7 +2,7 @@
   <span>
     <a class="btn btn-light">
       <span class="fa fa-plus"
-        [ngClass]="{'fa-eye': datasetOptions?.visible, 'fa-eye-slash': !datasetOptions?.visible}"></span>
+        [ngClass]="{'fa-eye': !datasetOptions?.visible, 'fa-eye-slash': datasetOptions?.visible}"></span>
     </a>
   </span>
   <span style="padding-left: 10px;"

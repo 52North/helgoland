@@ -15,7 +15,7 @@
             <n52-label-mapper class="legendItemheader" label="{{platformLabel}}" [ngStyle]="{'color': datasetOptions?.color}">
             </n52-label-mapper>
             <custom-favorite-toggler [dataset]="dataset" [ngStyle]="{'color': datasetOptions?.color}"></custom-favorite-toggler>
-            <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
+            <span class="fa" [ngClass]="{'fa-eye-slash': !datasetOptions?.visible, 'fa-eye': datasetOptions?.visible}"
               (click)="toggleVisibility(); $event.stopPropagation();" placement="bottom"
               ngbTooltip="{{'timeseries.diagram.legend.toggle-visibility-tooltip' | translate}}"></span>
             <span class="fa fa-pencil-alt" (click)="editDatasetOptions(); $event.stopPropagation();"
@@ -63,7 +63,7 @@
               [ngClass]="{'item-inactive': !informationVisible, 'item-active': informationVisible}"
               (click)="toggleInformation(); $event.stopPropagation();" placement="bottom"
               ngbTooltip="{{'timeseries.diagram.legend.extended-infos-tooltip' | translate}}"></span> -->
-            <!-- <span class="fa" [ngClass]="{'fa-eye-slash': datasetOptions?.visible, 'fa-eye': !datasetOptions?.visible}"
+            <!-- <span class="fa" [ngClass]="{'fa-eye-slash': !datasetOptions?.visible, 'fa-eye': datasetOptions?.visible}"
               (click)="toggleVisibility(); $event.stopPropagation();" placement="bottom"
               ngbTooltip="{{'timeseries.diagram.legend.toggle-visibility-tooltip' | translate}}"></span> -->
             <!-- <span class="fa fa-map-marker-alt" (click)="showGeometry(); $event.stopPropagation();" placement="bottom"
