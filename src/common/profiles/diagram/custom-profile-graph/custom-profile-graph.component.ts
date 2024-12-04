@@ -22,9 +22,6 @@ interface RawData {
   options: TimedDatasetOptions[];
 }
 
-const MARKER_SIZE_SELECTED = 10;
-const MARKER_SIZE = 6;
-
 @Component({
   selector: 'app-custom-profile-graph',
   templateUrl: './custom-profile-graph.component.html',
@@ -193,9 +190,14 @@ export class CustomProfileGraphComponent extends DatasetPresenterComponent<Timed
               width: selected ? option.lineWidth + 3 : option.lineWidth
             },
             marker: {
-              size: selected ? option.pointRadius  + 10: option.pointRadius
+              size: selected ? option.pointRadius + 6: option.pointRadius
             }
           };
+
+          if (option.pointRadius > 0) {
+            // Force rendering of points - else it is optimized out by d3
+            prepared.mode= "lines+markers"
+          }
           this.preparedData.push(prepared);
         }
       });
