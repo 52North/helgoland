@@ -69,7 +69,7 @@ export class ProfilesMapSelectionComponent {
     this.stationFilter = {
       type: DatasetType.Profile,
       platformType: PlatformTypes.stationary,
-      expanded: true
+      expanded: false
     };
     this.servicesConnector.getPlatforms(this.selectedProviderUrl, this.stationFilter).subscribe(res => {
       this.filteredPlatforms = res;
@@ -100,19 +100,21 @@ export class ProfilesMapSelectionComponent {
     this.stationaryPlatformLoading = true;
     this.profileDatasets = [];
 
-
-    forkJoin(platform.datasetIds
-      .map(id => {
-        // Minimal set of properties needed for this view
-        let idWithFilter = id + "?select=id,parameters,feature,extras,label,datasetType,observationType,firstValue,lastValue";
-        let datasets = this.servicesConnector.getDataset({ url: this.selectedProviderUrl, id: idWithFilter }, { type: DatasetType.Profile });
-        return datasets;
-      }))
-      .subscribe(datasets => {
-        this.profileDatasets = datasets;
-        this.phenomenons = datasets.map(ds => ds.parameters.phenomenon);
-        this.stationaryPlatformLoading = false;
-      })
+    this.servicesConnector.getPlatform(platform.id, this.selectedProviderUrl, { expanded: true }).subscribe(platform => {
+      
+      forkJoin(platform.datasetIds
+        .map(id => {
+          // Minimal set of properties needed for this view
+          let idWithFilter = id + "?select=id,parameters,feature,extras,label,datasetType,observationType,firstValue,lastValue";
+          let datasets = this.servicesConnector.getDataset({ url: this.selectedProviderUrl, id: idWithFilter }, { type: DatasetType.Profile });
+          return datasets;
+        }))
+        .subscribe(datasets => {
+          this.profileDatasets = datasets;
+          this.phenomenons = datasets.map(ds => ds.parameters.phenomenon);
+          this.stationaryPlatformLoading = false;
+        })
+    });
   }
 
   selectPhenomenon(phenomenon: Parameter) {
