@@ -27,7 +27,7 @@ export class ProfilesDiagramComponent implements OnInit {
 
     public datasetOptions: Map<string, Array<TimedDatasetOptions>>;
 
-    public profilesView: "diagram" | "table";
+    public profilesView: "diagram" | "table" = "diagram";
 
     constructor(
         private modalService: NgbModal,
@@ -72,8 +72,15 @@ export class ProfilesDiagramComponent implements OnInit {
         const ref = this.modalService.open(ModalOptionsEditorComponent);
         (ref.componentInstance as ModalOptionsEditorComponent).availableOptions = "profile";
         (ref.componentInstance as ModalOptionsEditorComponent).options = options;
-        (ref.componentInstance as ModalOptionsEditorComponent).out.subscribe((resOptions: TimedDatasetOptions) => {
-            this.updateOptions([resOptions], resOptions.internalId);
+        (ref.componentInstance as ModalOptionsEditorComponent).out.subscribe((updated: TimedDatasetOptions) => {
+            let original = this.datasetOptions.get(options.internalId).map(orig => {
+                if (orig.timestamp == updated.timestamp) {
+                    return updated;
+                } else {
+                    return orig;
+                }
+            })
+            this.updateOptions(original, options.internalId);
         });
     }
 
