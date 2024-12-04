@@ -136,6 +136,7 @@ export class TimeseriesDiagramComponent implements OnInit {
 
     public editOption(options: DatasetOptions) {
         const ref = this.modalService.open(ModalOptionsEditorComponent);
+        (ref.componentInstance as ModalOptionsEditorComponent).availableOptions = "timeseries";
         (ref.componentInstance as ModalOptionsEditorComponent).options = options;
         (ref.componentInstance as ModalOptionsEditorComponent).out.subscribe((resOptions: DatasetOptions) => {
             this.updateOptions(resOptions, resOptions.internalId);

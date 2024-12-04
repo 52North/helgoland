@@ -1,12 +1,13 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { TimedDatasetOptions } from '@helgoland/core';
+import { DatasetOptions, TimedDatasetOptions } from '@helgoland/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ModalGeometryViewerComponent } from '../../components/modal-geometry-viewer/modal-geometry-viewer.component';
 import { ProfilesCombiService } from './../combi-view/combi-view.service';
 import { ProfilesService } from './../services/profiles.service';
 import { ProfilesDiagramPermalink } from './diagram-permalink.service';
+import { ModalOptionsEditorComponent } from '../../components/modal-options-editor/modal-options-editor.component';
 
 @Component({
     selector: 'n52-diagram',
@@ -14,9 +15,6 @@ import { ProfilesDiagramPermalink } from './diagram-permalink.service';
     styleUrls: ['./diagram.component.scss']
 })
 export class ProfilesDiagramComponent implements OnInit {
-
-    @ViewChild('modalProfileOptionsEditor', { static: true })
-    public modalProfileOptionsEditor: TemplateRef<any>;
 
     @ViewChild('modalGeometryViewer', { static: true })
     public modalGeometryViewer: TemplateRef<any>;
@@ -27,10 +25,9 @@ export class ProfilesDiagramComponent implements OnInit {
 
     protected selectedIds: Array<string> = [];
 
-    public editableOptions: TimedDatasetOptions;
-    public tempColor: string;
-
     public datasetOptions: Map<string, Array<TimedDatasetOptions>>;
+
+    public profilesView: "diagram" | "table";
 
     constructor(
         private modalService: NgbModal,
@@ -67,30 +64,21 @@ export class ProfilesDiagramComponent implements OnInit {
     }
 
     public updateOptions(options: Array<TimedDatasetOptions>, internalId: string) {
+        options = JSON.parse(JSON.stringify(options));
         this.profilesSrvc.updateDatasetOptions(options, internalId);
     }
 
     public editOption(options: TimedDatasetOptions) {
-        this.modalService.open(this.modalProfileOptionsEditor);
-        this.editableOptions = options;
+        const ref = this.modalService.open(ModalOptionsEditorComponent);
+        (ref.componentInstance as ModalOptionsEditorComponent).availableOptions = "profile";
+        (ref.componentInstance as ModalOptionsEditorComponent).options = options;
+        (ref.componentInstance as ModalOptionsEditorComponent).out.subscribe((resOptions: TimedDatasetOptions) => {
+            this.updateOptions([resOptions], resOptions.internalId);
+        });
     }
 
     public showGeometry(geometry: GeoJSON.GeoJsonObject) {
         const ref = this.modalService.open(ModalGeometryViewerComponent, { size: 'lg' });
         (ref.componentInstance as ModalGeometryViewerComponent).geometry = geometry;
     }
-
-    public updateOption() {
-        const options = JSON.parse(JSON.stringify(this.editableOptions));
-        options.color = this.tempColor;
-        const idx = this.datasetOptions.get(options.internalId).findIndex(e => e.timestamp === options.timestamp);
-        this.datasetOptions.get(options.internalId)[idx] = options;
-        this.profilesSrvc.updateDatasetOptions(this.datasetOptions.get(this.editableOptions.internalId), this.editableOptions.internalId);
-    }
-
-    public openCombiView(option: TimedDatasetOptions) {
-        this.combiSrvc.addDataset(option.internalId, [option]);
-        this.router.navigate(['profiles/combi']);
-    }
-
 }

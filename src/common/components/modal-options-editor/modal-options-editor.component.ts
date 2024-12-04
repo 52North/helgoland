@@ -12,6 +12,10 @@ export class ModalOptionsEditorComponent implements OnInit {
   @Input()
   public options: DatasetOptions;
 
+  @Input()
+  public availableOptions: "timeseries" | "profile";
+
+
   @Output()
   public out: EventEmitter<DatasetOptions> = new EventEmitter();
 

@@ -22,8 +22,6 @@ interface RawData {
   options: TimedDatasetOptions[];
 }
 
-const LINE_WIDTH_SELECTED = 5;
-const LINE_WIDTH = 2;
 const MARKER_SIZE_SELECTED = 10;
 const MARKER_SIZE = 6;
 
@@ -192,10 +190,10 @@ export class CustomProfileGraphComponent extends DatasetPresenterComponent<Timed
             },
             line: {
               color: option.color,
-              width: selected ? LINE_WIDTH_SELECTED : LINE_WIDTH
+              width: selected ? option.lineWidth + 3 : option.lineWidth
             },
             marker: {
-              size: selected ? MARKER_SIZE_SELECTED : MARKER_SIZE
+              size: selected ? option.pointRadius  + 10: option.pointRadius
             }
           };
           this.preparedData.push(prepared);

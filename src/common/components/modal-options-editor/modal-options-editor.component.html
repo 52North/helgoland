@@ -9,11 +9,11 @@
     <n52-color-selector [color]="options.color" (onColorChange)="color = $event"></n52-color-selector>
   </div>
   <div class="column">
-    <div class="custom-control custom-checkbox">
+    <div *ngIf="availableOptions == 'timeseries'" class="custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="generalizeCheck" [(ngModel)]="generalize">
       <label class="custom-control-label" for="generalizeCheck">{{'timeseries.diagram.legend.style-edit.generalize' | translate}}</label>
     </div>
-    <div class="custom-control custom-checkbox">
+    <div *ngIf="availableOptions == 'timeseries'" class="custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="zeroBasedYAxisCheck" [(ngModel)]="zeroBasedYAxis">
       <label class="custom-control-label" for="zeroBasedYAxisCheck">{{'timeseries.diagram.legend.style-edit.zeroBasedYAxis' | translate}}</label>
     </div>
@@ -26,6 +26,13 @@
         <option [ngValue]="1">1px</option>
         <option [ngValue]="2">2px</option>
         <option [ngValue]="3">3px</option>
+        <option [ngValue]="4">4px</option>
+        <option [ngValue]="5">5px</option>
+        <option [ngValue]="6">6px</option>
+        <option [ngValue]="7">7px</option>
+        <option [ngValue]="8">8px</option>
+        <option [ngValue]="9">9px</option>
+        <option [ngValue]="10">10px</option>
       </select>
     </div>
     <div class="input-group">
@@ -39,9 +46,14 @@
         <option [ngValue]="3">3px</option>
         <option [ngValue]="4">4px</option>
         <option [ngValue]="5">5px</option>
+        <option [ngValue]="6">6px</option>
+        <option [ngValue]="7">7px</option>
+        <option [ngValue]="8">8px</option>
+        <option [ngValue]="9">9px</option>
+        <option [ngValue]="10">10px</option>
       </select>
     </div>
-    <n52-custom-min-max-range [range]="range" (onRangeChange)="rangeChanged($event)"></n52-custom-min-max-range>
+    <n52-custom-min-max-range *ngIf="availableOptions == 'timeseries'" [range]="range" (onRangeChange)="rangeChanged($event)"></n52-custom-min-max-range>
   </div>
 </div>
 <div class="modal-footer">
