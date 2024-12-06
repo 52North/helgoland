@@ -127,8 +127,6 @@ export class ProfilesTableComponent extends DatasetPresenterComponent<TimedDatas
       }
       this.rawData.get(internalId).datas = newDatas;
       this.rawData.get(internalId).options = newOptions;
-      console.log(raw);
-      console.log(this.columnMap);
       this.prepareData(raw);
     }
   }
@@ -179,7 +177,6 @@ export class ProfilesTableComponent extends DatasetPresenterComponent<TimedDatas
         "color": option.color,
         "timestamp": option.timestamp
       })
-      console.log(dataset)
     })
     this.loading = false;
   }
