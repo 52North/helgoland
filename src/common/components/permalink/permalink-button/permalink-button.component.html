@@ -1,11 +1,13 @@
 <ng-template #permalinkModal let-c="close()" let-d="dismiss()">
   <div class="modal-header">
-    <h4 class="modal-title">Erstelle Permalink</h4>
+    <h4 class="modal-title">{{'permalink.header' | translate }}</h4><br>
     <button type="button" class="close" aria-label="Close" (click)="d">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+
   <div class="modal-body">
+    {{ 'permalink.warning' | translate }}
     <div class="permalink-button">
       <n52-custom-permalink-in-mail [url]="permalinkUrl" (onTriggered)="c"></n52-custom-permalink-in-mail>
     </div>

@@ -1,0 +1,96 @@
+:host {
+    flex: 1;
+
+    width: 100%;
+
+    overflow-y: scroll;
+    /* make table scrollable */
+    overflow-x: hidden;
+    /* suppress horizontal scrollbar */
+
+    /* Start fixed table header: http://jsfiddle.net/yeAhU/261/ */
+    tbody,
+    thead tr {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    table {
+        display: block;
+        border-collapse: separate;
+        border-spacing: 0 1px;
+    }
+
+    thead {
+        display: block;
+        position: sticky;
+        top: 0;
+        border-spacing: 0;
+    }
+
+    /* End fixed table header */
+
+    tr {
+
+        /* zebra stripes */
+        &:nth-child(2n) {
+            background-color: #eee;
+        }
+    }
+
+    th {
+        /* darken table head */
+        background-color: darkgray;
+        cursor: pointer;
+        border-bottom-width: 7px;
+        border-bottom-style: solid;
+
+        /* if word doesn't fit on whole line, breaks the word after any character without inserting a hyphen or anything else */
+        overflow-wrap: break-word;
+        /* if word doesn't fit on the rest of the current line, breaks the word where the browser's algorithm thinks it's approriate and renders a hyphen */
+        /*hyphens: auto;*/
+
+        &:first-child {
+            border-bottom-color: darkgray;
+
+            &.sorted-asc,
+            &.sorted-desc {
+                border-bottom-color: #555;
+            }
+        }
+
+        /* highlight sorted column */
+        &.sorted-asc,
+        &.sorted-desc {
+            background-color: #555;
+            color: white;
+        }
+
+        /* Display "up" and "down" triangles accordingly */
+        &.sorted-asc:after {
+            content: "\25B4";
+            /* up triangle */
+            float: right;
+        }
+
+        &.sorted-desc:after {
+            content: "\25BE";
+            /* down triangle */
+            float: right;
+        }
+    }
+
+    td {
+        /* prevents datetime from wrapping in small windows or when there's many columns */
+        white-space: nowrap;
+
+        /* thin horizontal lines between rows */
+        border-bottom: 1px solid gray;
+    }
+
+    th,
+    td {
+        padding: 5px 10px;
+    }
+}

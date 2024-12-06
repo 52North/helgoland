@@ -49,6 +49,8 @@
 		}
 	},
 	"permalink": {
+		"header": "Erstelle Permalink",
+		"warning": "Hinweis: Der Permalink speichert nur die geladenen Datensätze, ein angepasste Stylings können nicht geteilt werden.",
 		"button": {
 			"in-mail": "Per Mail verschicken",
 			"in-window": "In neuem Tab öffnen",
@@ -57,6 +59,9 @@
 		"confirm-to-clipboard": "Der Permalink ist in der Zwischenablage."
 	},
 	"profiles": {
+		"table": {
+			"depth": "Tiefe [m]"
+		},
 		"hint": {
 			"select-profile": "Bitte wählen Sie zuerst Profile aus."
 		},
@@ -135,7 +140,7 @@
 				"style-edit-tooltip": "Style bearbeiten",
 				"style-edit": {
 					"generalize": "Daten generalisieren",
-					"header": "Zeitreihenerscheinung ändern",
+					"header": "Style bearbeiten",
 					"lineWidth": "Linienbreite",
 					"max": "Max",
 					"min": "Min",

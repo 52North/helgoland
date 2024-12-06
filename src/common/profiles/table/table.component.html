@@ -1,0 +1,40 @@
+<div *ngIf="datasetIds.length == 0" class="container n52-alert">
+  <div class="alert alert-primary" role="alert">
+    <span class="alert-link"
+      (click)="router.navigateToMapSelection()">{{'timeseries.diagram.hint.select-timeseries-first' | translate}}</span>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="datasetIds.length > 0">
+  <div class="row row-offcanvas row-offcanvas-right" [ngClass]="{active: legendToggled}">
+    <div class="col-12 table-wrapper">
+      <button type="button" class="btn btn-primary btn-sm d-md-none legend-button"
+        (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.legend.header' | translate}}</button>
+      <div class="chart" *ngIf="datasetIds.length !== 0">
+        <table *ngIf="!loading">
+          <thead>
+            <tr>
+              <th [attr.data-column-id]="'datetime'">
+                {{ 'profiles.table.depth' | translate}}
+              </th>
+              <th *ngFor="let identifier of this.columnMap | keyvalue; let i = index" [attr.data-column-id]="i"
+                [ngStyle]="{ 'border-color': metadata.get(identifier.key).color }">
+                {{ metadata.get(identifier.key).label }} [{{ metadata.get(identifier.key).uom}}] {{
+                metadata.get(identifier.key).timestamp | date: 'short': null : translateSrvc.currentLang}}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let depth of verticalMap; let i = index">
+              <tr>
+                <td>{{depth}}</td>
+                <ng-container *ngFor="let ident of columnMap | keyvalue">
+                  <td>{{ columnMap.get(ident.key)[i] }}</td>
+                </ng-container>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+import { filter } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
+
+@Injectable()
+export class ProfileConditionalRouter {
+
+    constructor(
+        private router: Router
+    ) {
+        this.router.events
+            .pipe(filter((event) => event instanceof NavigationStart))
+            .subscribe((event: NavigationStart) => this.redirect(event.url));
+    }
+
+    private redirect(url: string) {
+        // if (url === '/timeseries') {
+        //     if (this.timeseriesSrvc.hasTimeseries()) {
+        //         this.router.navigate(['timeseries/diagram']);
+        //     } else {
+        //         this.router.navigate(['timeseries/map-selection']);
+        //     }
+        // }
+        // if ((url === '/timeseries/map-selection' || url === '/timeseries/list-selection')
+        //     && !this.providerSelection.hasSelectedProvider()) {
+        //     this.router.navigate(['timeseries/provider']);
+        // }
+    }
+}

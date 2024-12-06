@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HelgolandCoreModule } from '@helgoland/core';
 import {
   HelgolandDatasetDownloadModule,
+  HelgolandDatasetTableModule,
   HelgolandDatasetlistModule,
   HelgolandLabelMapperModule,
 } from '@helgoland/depiction';
@@ -33,6 +34,7 @@ import { ProfilesSelectionPermalink } from './selection/selection-permalink.serv
 import { ProfilesSelectionComponent } from './selection/selection.component';
 import { ProfilesSelectionCache } from './selection/selection.service';
 import { ProfilesService } from './services/profiles.service';
+import { ProfilesTableComponent } from './table/table.component';
 
 const profilesRoutes: Routes = [
   {
@@ -56,6 +58,10 @@ const profilesRoutes: Routes = [
         path: 'map-selection',
         component: ProfilesMapSelectionComponent
       },
+      {
+        path: 'table',
+        component: ProfilesTableComponent
+      },
       // {
       //   path: 'combi',
       //   component: ProfilesCombiViewComponent
@@ -78,6 +84,7 @@ const profilesRoutes: Routes = [
     HelgolandModificationModule,
     HelgolandMapSelectorModule,
     HelgolandLabelMapperModule,
+    HelgolandDatasetTableModule,
     HelgolandTimeModule,
     HelgolandTimeRangeSliderModule,
     HelgolandSelectorModule,
@@ -93,6 +100,7 @@ const profilesRoutes: Routes = [
   ],
   declarations: [
     ProfilesDiagramComponent,
+    ProfilesTableComponent,
     TimestampSelectionComponent,
     ProfilesMapSelectionComponent,
     ProfilesSelectionComponent,

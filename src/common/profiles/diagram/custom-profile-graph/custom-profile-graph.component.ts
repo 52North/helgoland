@@ -109,8 +109,7 @@ export class CustomProfileGraphComponent extends DatasetPresenterComponent<Timed
                 });
               }
             }
-            this.processData();
-          });
+          }, () => {return}, () => this.processData());
         }
       });
     });
