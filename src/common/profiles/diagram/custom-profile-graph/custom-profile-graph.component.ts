@@ -187,15 +187,16 @@ export class CustomProfileGraphComponent extends DatasetPresenterComponent<Timed
             line: {
               color: option.color,
               width: selected ? option.lineWidth + 3 : option.lineWidth
-            },
-            marker: {
-              size: selected ? option.pointRadius + 6: option.pointRadius
             }
           };
-
           if (option.pointRadius > 0) {
             // Force rendering of points - else it is optimized out by d3
-            prepared.mode= "lines+markers"
+            prepared.mode = "lines+markers"
+            prepared.marker = {
+              size: selected ? option.pointRadius + 6: option.pointRadius
+            }
+          } else {
+            prepared.mode = "lines"
           }
           this.preparedData.push(prepared);
         }
