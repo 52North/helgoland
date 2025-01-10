@@ -66,11 +66,11 @@
 			"select-profile": "Please select a profile first."
 		},
 		"legend": {
-			"delete-subentry": "Remove this profile",
-			"edit-style": "Edit the style of this profile",
+			"delete-subentry": "Remove diagram",
+			"edit-style": "Edit style",
 			"go-to-combi-view": "Show in the combined view",
-			"show-geometry": "Show profile geometry",
-			"visibility": "Show/Hide this profile"
+			"show-geometry": "Show location",
+			"visibility": "Toggle visibility"
 		},
 		"selection": {
 			"filter": {
@@ -133,9 +133,9 @@
 				},
 				"extended-infos-tooltip": "Further information",
 				"header": "Legend",
-				"map-marker-tooltip": "Show position",
-				"remove-all": "Remove series",
-				"remove-timeseries-tooltip": "Remove timeseries",
+				"map-marker-tooltip": "Show location",
+				"remove-all": "Remove all diagrams",
+				"remove-timeseries-tooltip": "Remove diagram",
 				"show-geometry-header": "Position of the station",
 				"style-edit-tooltip": "Edit style",
 				"style-edit": {
