@@ -4,6 +4,7 @@ import {
     DatasetOptions,
     HelgolandServicesConnector,
     LocalStorage,
+    Phenomenon,
     RenderingHintsDatasetService,
     SettingsService,
     Time,
@@ -16,11 +17,19 @@ import { HelgolandSettings } from './../../settings/helgoland-settings';
 const TIMESERIES_OPTIONS_CACHE_PARAM = 'timeseriesOptions';
 const TIMESERIES_IDS_CACHE_PARAM = 'timeseriesIds';
 const TIME_CACHE_PARAM = 'timeseriesTime';
+const TIMESERIES_MAPSTATE_PARAM = 'timeseriesMapState';
+
+export class TimeseriesMapState {
+    public selectedPhenomenonId: string = undefined;
+    public bounds: Array<object> = undefined;
+}
+
 
 @Injectable()
 export class TimeseriesService extends RenderingHintsDatasetService<DatasetOptions> {
 
     public timespan: Timespan;
+    private mapState: TimeseriesMapState;
 
     constructor(
         protected localStorage: LocalStorage,
@@ -46,9 +55,19 @@ export class TimeseriesService extends RenderingHintsDatasetService<DatasetOptio
         this.saveState();
     }
 
+    public getMapState() {
+        return this.mapState;
+    }
+
+    public saveMapState(mapState: TimeseriesMapState) {
+        this.mapState = mapState;
+        this.saveState();
+    }
+
     protected saveState(): void {
         this.localStorage.save(TIMESERIES_IDS_CACHE_PARAM, this.datasetIds);
         this.localStorage.save(TIMESERIES_OPTIONS_CACHE_PARAM, Array.from(this.datasetOptions.values()));
+        this.localStorage.save(TIMESERIES_MAPSTATE_PARAM, this.mapState);
         this.timeSrvc.saveTimespan(TIME_CACHE_PARAM, this.timespan);
     }
 
@@ -57,6 +76,7 @@ export class TimeseriesService extends RenderingHintsDatasetService<DatasetOptio
         if (options) { options.forEach(e => this.datasetOptions.set(e.internalId, e)); }
         this.datasetIds = this.localStorage.loadArray<string>(TIMESERIES_IDS_CACHE_PARAM) || [];
         this.timespan = this.timeSrvc.loadTimespan(TIME_CACHE_PARAM) || this.initTimespan();
+        this.mapState = this.localStorage.load(TIMESERIES_MAPSTATE_PARAM) || new TimeseriesMapState();
     }
 
     private initTimespan(): Timespan {

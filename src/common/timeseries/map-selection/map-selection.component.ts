@@ -20,14 +20,15 @@ import {
   SettingsService,
   ValueTypes,
 } from '@helgoland/core';
-import { MarkerSelectorGenerator } from '@helgoland/map';
+import { CachedMapComponent, MarkerSelectorGenerator, StationMapSelectorComponent } from '@helgoland/map';
 import { NgbModal, NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { Layer } from 'leaflet';
 import * as L from 'leaflet';
 
 import { TimeseriesMapSelectionCache } from '../services/map-selection-cache.service';
 import { TimeseriesRouter } from '../services/timeseries-router.service';
-import { TimeseriesService } from './../services/timeseries.service';
+import { TimeseriesMapState, TimeseriesService } from './../services/timeseries.service';
+import { CursorError } from '@angular/compiler/src/ml_parser/lexer';
 
 class MarkerSelectorGeneratorImpl implements MarkerSelectorGenerator {
 
@@ -51,6 +52,9 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   @ViewChild('modalStation', { static: true })
   public modalTemplate: TemplateRef<any>;
 
+  @ViewChild('map')
+  private map: StationMapSelectorComponent;
+
   // @ViewChild('tabset', { static: true })
   // public tabset: NgbTabset;
 
@@ -65,6 +69,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   public stationFilter: HelgolandParameterFilter;
   public phenomenonFilter: HelgolandParameterFilter;
   public selectedPhenomenonId: string;
+  public currentBounds: Array<object>;
   public cluster = true;
   public station: HelgolandPlatform;
   public datasetSelections: Set<string> = new Set();
@@ -76,6 +81,7 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
   private defaultValueTypes = ValueTypes.quantity;
 
   private showErrorMessage = false;
+  public mapState: TimeseriesMapState;
 
   constructor(
     private timeseriesService: TimeseriesService,
@@ -91,13 +97,38 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     this.datasetApis = this.settingsSrvc.getSettings().datasetApis;
     this.providerBlacklist = this.settingsSrvc.getSettings().providerBlackList;
     this.providerFilter = { type: DatasetType.Timeseries };
+    this.mapState = this.timeseriesService.getMapState();
+    this.selectedPhenomenonId = this.mapState.selectedPhenomenonId;
   }
 
   public ngAfterViewInit(): void {
+    console.log("ngAfterViewInit")
     if (this.cache.selectedService) {
       this.providerSelected(this.cache.selectedService);
       this.cdr.detectChanges();
     }
+    if (this.mapState.selectedPhenomenonId && this.cache.selectedService) {
+      this.updateStationFilter(this.mapState.selectedPhenomenonId);
+    }
+
+    // Zoom to the last known bounds. As the map always auto-resizes to the
+    // bounds of the feature layer we cannot do more than just wait else
+    // we are overwritten
+    if (this.mapState.bounds) {
+      setTimeout(() => {
+        (this.map as any).map.fitBounds(this.mapState.bounds);
+      }, 500)
+    }
+
+    // The map does not expose its bounds in any callback so we add a dirty
+    // hook here
+    (this.map as any).map.on('moveend', () => {
+      const bounds = (this.map as any).map.getBounds();
+      this.currentBounds = [
+        new L.LatLng(bounds.getNorth(), bounds.getEast()),
+        new L.LatLng(bounds.getSouth(), bounds.getWest())
+      ];
+    })
     // if (this.cache.lastTab) {
     //   this.tabset.select(this.cache.lastTab);
     //   this.cdr.detectChanges();
@@ -106,6 +137,14 @@ export class TimeseriesMapSelectionComponent implements OnInit, AfterViewInit {
     //   this.cache.lastTab = tabChange.nextId;
     // });
   }
+
+  ngOnDestroy() {
+    // store mapState
+    this.mapState.bounds = this.currentBounds;
+    this.mapState.selectedPhenomenonId = this.selectedPhenomenonId;
+    this.timeseriesService.saveMapState(this.mapState);
+  }
+
 
   public providerSelected(service: Service) {
     this.selectedService = this.cache.selectedService = service;

@@ -50,7 +50,7 @@
             <button type="button" class="btn btn-primary btn-sm d-md-none legend-button"
               (click)="legendToggled = !legendToggled;">{{'timeseries.diagram.phenomenon.header' | translate}}</button>
             <div class="map">
-              <n52-station-map-selector class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService?.apiUrl"
+              <n52-station-map-selector #map class="h-100" [mapId]="'timeseries'" [serviceUrl]="selectedService?.apiUrl"
                 [markerSelectorGenerator]="markerSelectorGenerator" [filter]="stationFilter" (onSelected)="onStationSelected($event)"
                 [cluster]="cluster" class="vbox boxItem fullHeight"></n52-station-map-selector>
               <n52-zoom-control class="zoom-control" [mapId]="'timeseries'"></n52-zoom-control>
