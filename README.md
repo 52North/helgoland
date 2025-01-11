@@ -111,6 +111,7 @@ It comprises:
 #### Clone and install
 
 - `git clone` this repository
+- cd helgoland
 - run `npm install` to get all dependencies
 
 #### Start the client in the development mode
@@ -122,6 +123,11 @@ It comprises:
 - `npm run build` bundles the client to the `dist/timeseries` folder. The content of this folder can be deployed on a web server.
 <!-- - `npm run build` will also generates a war-file in `build`-folder. -->
 
+
+#### Start with Docker 
+
+- `docker run --publish 80:80 --env PORT=80 --rm 52north/helgoland`
+  
 <!--#### How to develop-->
 
 <!-- See [here](https://github.com/52North/sensorweb-client-core#how-to-develop) for more informations. -->
