@@ -63,6 +63,23 @@
         position: relative;
     }
 
+
+
+    .footer {
+      flex: 0;
+
+      p {
+        background-color: #c2e8f4;
+        font-size: small;
+        text-align: end;
+        margin: 0;
+      }
+
+      .nav-link {
+        display: inline-block;
+      }
+    }
+
     @media (width < 576px) {
         .navbar-brand {
             margin-bottom: 25px;

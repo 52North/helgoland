@@ -1,6 +1,8 @@
 {
 	"imprint": "Imprint",
 	"privacy-statement": "Privacy Statement",
+	"accessibility": "Accessibility",
+	"accessibility-report": "Report Barrier",
 	"basic-auth": {
 		"header": "Basic-Auth for service url",
 		"password": "Password",

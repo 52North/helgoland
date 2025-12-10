@@ -1,6 +1,6 @@
 {
   "name": "helgoland",
-  "version": "2.2.6-bsh",
+  "version": "2.2.7-bsh",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
