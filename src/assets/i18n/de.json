@@ -1,6 +1,8 @@
 {	
 	"imprint": "Impressum",
-	"privacy-statement": "Datenschutzerklärung",
+	"privacy-statement": "Datenschutz",
+	"accessibility": "Barrierefreiheit",
+	"accessibility-report": "Barriere melden",
 	"basic-auth": {
 		"header": "Basic-Auth für Service-URL",
 		"password": "Passwort",
