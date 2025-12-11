@@ -69,10 +69,18 @@
       flex: 0;
 
       p {
-        background-color: #c2e8f4;
-        font-size: small;
+        background-color: var(--bsh-blau);
+        font-size: xx-small;
         text-align: end;
         margin: 0;
+
+        a {
+            color: white;
+        }
+        
+        span {
+            color: white;
+        }
       }
 
       .nav-link {
