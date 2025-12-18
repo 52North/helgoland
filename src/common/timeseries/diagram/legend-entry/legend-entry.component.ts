@@ -19,4 +19,12 @@ export class LegendEntryComponent extends TimeseriesEntryComponent {
     }
   }
 
+  public getFixedCapabilitiesUrl(): string {
+  if (!this.dataset?.url) {
+    return '';
+  }
+  const baseUrl = this.dataset.url.split('?')[0];
+  return `${baseUrl}?service=SOS&request=GetCapabilities`;
+}
+
 }

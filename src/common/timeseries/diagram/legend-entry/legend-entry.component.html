@@ -65,6 +65,15 @@
         </n52-custom-dataset-permalink-download>
       </div>
 
+      <div class="additionalLegendEntry"(click)="$event.stopPropagation();" *ngIf="getFixedCapabilitiesUrl()">
+        <a [href]="getFixedCapabilitiesUrl()"
+            target="_blank"
+            rel="noopener noreferrer">
+            <span class="fa fa-external-link-alt"></span>
+            <span>SOS Capabilities</span>
+        </a>
+      </div>
+
       <!-- temporarly disabled -->
       <!-- <div class="firstLastEntry additionalLegendEntry" *ngIf="hasData" (click)="$event.stopPropagation();">
         <span class="fa fa-download"></span>
