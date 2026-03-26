@@ -9,7 +9,7 @@ import { TimespanShiftSelectorComponent } from '@helgoland/time';
 })
 export class CustomTimespanShiftSelectorComponent extends TimespanShiftSelectorComponent {
 
-  constructor(timeSrvc: Time) {
+  constructor(protected override timeSrvc: Time) {
     super(timeSrvc);
   }
 
