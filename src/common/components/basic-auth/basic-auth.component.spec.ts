@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { BasicAuthComponent } from './basic-auth.component';
 
@@ -8,7 +11,12 @@ describe('BasicAuthComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BasicAuthComponent ]
+      declarations: [ BasicAuthComponent ],
+      imports: [
+        FormsModule,
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } })
+      ],
+      providers: [NgbActiveModal]
     })
     .compileComponents();
   }));

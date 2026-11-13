@@ -1,11 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { ColorService, LocalStorage } from '@helgoland/core';
 
 import { TrajectoriesService } from './trajectories.service';
 
 describe('TrajectoriesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TrajectoriesService]
+      providers: [TrajectoriesService, LocalStorage, ColorService]
     });
   });
 

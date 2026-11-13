@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { TrajectoriesNavigationComponent } from './navigation.component';
 
@@ -8,7 +10,11 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrajectoriesNavigationComponent ]
+      declarations: [ TrajectoriesNavigationComponent ],
+      imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } })
+      ]
     })
     .compileComponents();
   }));
