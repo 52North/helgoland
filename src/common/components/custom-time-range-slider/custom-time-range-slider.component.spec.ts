@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TimeRangeSliderCache } from '@helgoland/time-range-slider';
 
 import { CustomTimeRangeSliderComponent } from './custom-time-range-slider.component';
 
@@ -8,7 +9,8 @@ describe('CustomTimeRangeSliderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomTimeRangeSliderComponent ]
+      declarations: [ CustomTimeRangeSliderComponent ],
+      providers: [TimeRangeSliderCache]
     })
     .compileComponents();
   }));

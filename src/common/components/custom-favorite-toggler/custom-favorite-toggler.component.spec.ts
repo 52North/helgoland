@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { LocalStorage, NotifierService } from '@helgoland/core';
+import { FavoriteService } from '@helgoland/favorite';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { CustomFavoriteTogglerComponent } from './custom-favorite-toggler.component';
 
@@ -8,7 +11,11 @@ describe('CustomFavoriteTogglerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomFavoriteTogglerComponent ]
+      declarations: [ CustomFavoriteTogglerComponent ],
+      imports: [
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } })
+      ],
+      providers: [FavoriteService, LocalStorage, NotifierService]
     })
     .compileComponents();
   }));
